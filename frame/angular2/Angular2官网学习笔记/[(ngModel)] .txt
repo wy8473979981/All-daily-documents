@@ -1,0 +1,40 @@
+让表单输入支持双向数据绑定之前，我们得先导入FormsModule模块。 只要把它添加到NgModule装饰器
+的imports数组中就可以了，该数组是应用中用到的外部模块列表。 这样我们就引入了表单包，其中包含
+了ngModel
+
+当在表单中使用 [(ngModel)] 时，必须要定义 name 属性
+
+通过 ngModel 跟踪修改状态与有效性验证
+
+	状态        			为真时的 CSS 类			为假时的 CSS 类
+	
+	控件已经被访问过	ng-touched			ng-untouched
+	
+	控件值已经变化		ng-dirty			ng-pristine
+	
+	控件值是有效的		ng-valid			ng-invalid
+	
+
+保持模板中的语句简洁
+	<input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' ">
+	 
+	我们喜欢前一条，它调用了 addHero 。 我们不喜欢第二条，它把一个空值赋值给了输入框的 value 
+	
+	我们不得不使用一个小花招来重置表单控件。 我们给组件添加一个 active 标记，把它初始化为 true 。
+	当我们添加一个新的英雄时，它把 active 标记设置为 false ， 然后通过一个快速的 setTimeout 函数迅速把它设置回 true 
+	
+	active = true;
+
+  	newHero() {
+    	this.model = new Hero(42, '', '');
+    	this.active = false;
+    	setTimeout(() => this.active = true, 0);
+  	}
+  	
+
+	然后，我们把 form 元素绑定到这个 active 标志上
+	<form *ngIf="active">
+	
+	在通过 NgIf 绑定到 active 标志之后，点击“新增英雄”将从 DOM 中移除这个表单，并在一眨眼的功夫重建它。 重新创建的表单处于“全新”状态。错误信息被隐藏了。
+
+	这只是一个临时的变通方案，将来我们还会有一个更合适的方案来重置表单。

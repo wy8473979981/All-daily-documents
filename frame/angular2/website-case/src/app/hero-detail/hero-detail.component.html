@@ -1,0 +1,29 @@
+<div *ngIf="hero">
+    <h2>{{ hero.name | uppercase }} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <div>
+        <label>name:
+      <input [(ngModel)]="hero.name" placeholder="name"/>
+    </label>
+    </div>
+    <button (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
+    <h1>form两种提交方式</h1>
+    <form (ngSubmit)="onSubmit1(heroForm)" #heroForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name
+            <input class="form-control" name="name" required [(ngModel)]="hero.name">
+          </label>
+        </div>
+        <button [disabled]="!heroForm.form.valid">Submit</button>
+    </form>
+    <form (ngSubmit)="onSubmit2(hero)">
+        <div class="form-group">
+            <label for="name">Name
+            <input class="form-control" name="name" required [(ngModel)]="hero.name">
+          </label>
+        </div>
+        <button [disabled]="!heroForm.form.valid">Submit</button>
+    </form>
+
+</div>

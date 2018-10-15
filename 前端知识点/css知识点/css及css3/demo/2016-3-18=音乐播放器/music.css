@@ -1,0 +1,68 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+ul,
+li {
+  list-style: none;
+}
+.container {
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+  background-color: #518cc8;
+}
+.container header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  background-color: #000000;
+}
+.container article {
+  width: 100%;
+  background-color: #000000;
+}
+.container article ul li {
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  line-height: 30px;
+  border-bottom: 1px solid #ccc;
+}
+.container article ul li a {
+  margin-right: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.container article ul .active {
+  background-color: #8B8B8B;
+  color: #000;
+}
+.container footer {
+  width: 100%;
+  height: 100px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  background-color: #000000;
+}
+.container footer input {
+  margin-top: 20px;
+  width: 80%;
+}
+.container footer div {
+  margin-top: 15px;
+  font-size: 20px;
+}
+.container footer div i {
+  cursor: pointer;
+}
+.container footer div i:nth-child(2) {
+  margin: 0 15px;
+}
+/*# sourceMappingURL=music.css.map */

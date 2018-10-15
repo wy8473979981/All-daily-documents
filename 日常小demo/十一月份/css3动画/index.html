@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>RunJS 演示代码</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+
+	<body>
+		<div class='content'>
+			<div style='padding-right:40px'>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div style='padding-right:20px'>
+				<div></div>
+				<div></div>
+				<div style='margin-right:122px'>
+				</div>
+			</div>
+			<div>
+				<div></div>
+				<div></div>
+				<div style='margin-right:142px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:82px' class="play"></div>
+				<div class="play"></div>
+				<div style='margin-right:42px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:62px' class="play"></div>
+				<div class="play"></div>
+				<div class="play"></div>
+				<div style='margin-right:42px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:42px' class="play"></div>
+				<div class="play"></div>
+				<div class="play"></div>
+				<div class="play"></div>
+				<div style='margin-right:42px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:62px' class="play"></div>
+				<div class="play"></div>
+				<div class="play"></div>
+				<div style='margin-right:42px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:82px' class="play"></div>
+				<div class="play"></div>
+				<div style='margin-right:42px'></div>
+			</div>
+			<div>
+				<div style='margin-right:22px'></div>
+				<div style='margin-right:142px'></div>
+			</div>
+			<div>
+				<div style='margin-right:42px'></div>
+				<div></div>
+				<div style='margin-right:102px'></div>
+			</div>
+			<div>
+				<div style='margin-right:62px'></div>
+				<div></div>
+				<div style='margin-right:82px'></div>
+			</div>
+			<div>
+				<div style='margin-right:42px'></div>
+				<div></div>
+				<div style='margin-right:102px'></div>
+			</div>
+			<div>
+				<div style='margin-right:22px'></div>
+				<div></div>
+				<div style='margin-right:122px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div></div>
+				<div style='margin-right:142px'></div>
+			</div>
+			<div>
+				<div></div>
+				<div style='margin-right:162px'></div>
+			</div>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			animate();
+			$(".play").click(animate).mouseover(function() {
+				$(".play").css({
+					"background-color": "#A55"
+				});
+			}).mouseout(function() {
+				$(".play").css({
+					"background-color": "#060"
+				});
+			});
+		});
+
+		function animate() {
+			$('div>div>div').each(function(id) {
+				$(this).css({
+					position: 'relative',
+					top: '-200px',
+					opacity: 0
+				});
+				var wait = Math.floor((Math.random() * 3000) + 1);
+				$(this).delay(wait).animate({
+					top: '0px',
+					opacity: 1
+				}, 1000);
+			});
+		}
+	</script>
+
+</html>

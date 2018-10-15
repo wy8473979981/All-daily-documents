@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1 {width:488px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+		</style>
+	</head>
+	<body>
+		<div id="div1" ></div>
+		<img id="drag1" src="286208.jpg" draggable="true" width="336" height="69" />
+	</body>
+	<script type="text/javascript">
+		var drag1 = document.getElementById("drag1");
+		var div1 = document.getElementById("div1");
+		drag1.ondragstart = function(ev){
+			ev.dataTransfer.setData("Text",ev.target.id);
+		}
+		div1.ondragover = function(ev){
+			ev.preventDefault();
+			ev.stopPropagation();
+		}
+		div1.ondrop = function(ev){
+			ev.preventDefault();
+			ev.stopPropagation();
+			var data=ev.dataTransfer.getData("Text");
+			ev.target.appendChild(document.getElementById(data));
+		}
+	</script>
+</html>

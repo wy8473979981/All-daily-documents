@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<fieldset id="">
+			<legend>file</legend>
+			<input type="file" name="fileDemo" id="fileDemo" value="" multiple/>
+			<input type="button" name="btn" id="btn" value="获取文件信息" />
+			<p id="msg"></p>
+		</fieldset>
+
+	</body>
+	<script type="text/javascript">
+		
+		var msg = document.getElementById("msg");
+		var btn = document.getElementById("btn");
+		btn.onclick = function() {
+			var files = document.getElementById("fileDemo").files;
+			var filelength = files.length;
+			console.log(filelength);
+			for (var i = 0; i < filelength; i++) {
+				console.log('文件类型：' + files[i].type);
+				console.log('文件大小：' + (files[i].size / 1024).toFixed() + 'px');
+				console.log('文件名字：' + files[i].name);
+				console.log('文件最后修改时间：' + files[i].lastModifiedDate);
+			}
+		}
+	</script>
+
+</html>

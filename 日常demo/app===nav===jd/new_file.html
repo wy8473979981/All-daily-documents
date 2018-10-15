@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			a,
+			abbr,
+			acronym,
+			address,
+			applet,
+			article,
+			aside,
+			audio,
+			b,
+			big,
+			blockquote,
+			body,
+			canvas,
+			caption,
+			center,
+			cite,
+			code,
+			dd,
+			del,
+			details,
+			dfn,
+			div,
+			dl,
+			dt,
+			em,
+			embed,
+			fieldset,
+			figcaption,
+			figure,
+			footer,
+			form,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			header,
+			hgroup,
+			html,
+			i,
+			iframe,
+			img,
+			ins,
+			kbd,
+			label,
+			legend,
+			li,
+			mark,
+			menu,
+			nav,
+			object,
+			ol,
+			output,
+			p,
+			pre,
+			q,
+			ruby,
+			s,
+			samp,
+			section,
+			small,
+			span,
+			strike,
+			strong,
+			sub,
+			summary,
+			sup,
+			table,
+			tbody,
+			td,
+			tfoot,
+			th,
+			thead,
+			time,
+			tr,
+			tt,
+			u,
+			ul,
+			var,
+			video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			
+			.floor {
+				font-size: 0;
+				width: 100%;
+			}
+			
+			.floor-item {
+				width: 100%;
+				font-size: 100%;
+				overflow: hidden;
+			}
+			
+			.position-r {
+				position: relative;
+			}
+			
+			.quick-nav-box {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+			
+			.container-bg {
+				width: 100%;
+				overflow: auto;
+				position: relative;
+				min-height: 127px;
+			}
+			
+			.box-enter .quick-nav-box img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.box-enter .container-bg img {
+				height: auto;
+			}
+			
+			.floor .opa1 {
+				opacity: 1;
+				-webkit-transition: opacity .3s ease-in;
+			}
+			
+			.quick-nav-box img {
+				width: 100%;
+			}
+			/*.position-ab.quick-entry-nav {
+				padding: 10px 0;
+			}*/
+			/*.quick-entry-nav {
+				padding-top: 11px;
+			}*/
+			
+			.position-ab {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+			}
+			
+			@media screen and (min-width: 375px) {
+				.hasBgImg.quick-nav-five .quick-entry-link {
+					font-size: 13px;
+				}
+			}
+			
+			.quick-nav-five .quick-entry-link {
+				width: 20%;
+			}
+			
+			a:visited {
+				text-decoration: none;
+			}
+			
+			.floor a {
+				text-decoration: none;
+			}
+			
+			.quick-entry-link {
+				width: 25%;
+				float: left;
+				font-size: 12px;
+				text-decoration: none;
+				color: #666;
+				text-align: center;
+				display: block;
+				/*padding-bottom: 0px;*/
+			}
+			
+			.quick-entry-link {
+				height: 50%;
+				position: relative;
+				color: #686868;
+				font-size: 11px;
+				font-family: PingFang-Medium, PingFangSC-Regular, Helvetica;
+				/*padding-bottom: 10px;*/
+			}
+			
+			a {
+				text-decoration: none;
+				background: transparent;
+				-webkit-tap-highlight-color: transparent;
+			}
+			
+			@media screen and (min-width: 375px) {
+				.hasBgImg.quick-nav-five .quick-box {
+					height: 51px;
+				}
+			}
+			
+			.quick-box {
+				margin: auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				height: 44px;
+			}
+			
+			@media screen and (min-width: 375px) {
+				.hasBgImg.quick-nav-five .quick-entry-link img {
+					height: 34px;
+					width: 34px;
+				}
+			}
+			
+			.quick-nav-five .quick-entry-link img {
+				width: 29px;
+				height: 29px;
+				margin: 0 auto 4px auto;
+			}
+			
+			.quick-entry-link img {
+				display: block;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto 6px auto;
+			}
+			
+			.quick-box span {
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 1;
+				-webkit-box-orient: vertical;
+				display: box;
+				line-clamp: 1;
+				box-orient: vertical;
+				/*height: 2em;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="appcenter" class="floor box-enter">
+			<div class="floor-item">
+				<div class="position-r">
+					<div class="container-bg quick-nav-box"> <img class="opa1" src="bg-img.png" style="opacity: 1;">
+					</div>
+					<nav class="quick-entry-nav position-ab     hasBgImg   quick-nav-five ">
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">京东超市</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">全球购</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">服装城</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">京东生鲜</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">京东到家</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">充值缴费</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping J_ping">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">领京豆</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">领券</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">惠赚钱</span>
+							</span>
+						</a>
+
+						<a class="quick-entry-link fz12 J_ping" href="#">
+							<span class="quick-box">
+								<img width="45" height="45" src="img1.png">
+								<span style="color:#000000">物流查询</span>
+							</span>
+						</a>
+
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!--<img width="45" height="45" src="img1.png">-->
+	</body>
+
+</html>

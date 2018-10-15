@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>CSS3 object-fit理解 以及object-fit的兼容性，包括兼容IE9+浏览器</title>
+	</head>
+
+	<body>
+		<style>
+			.box {
+				width: 160px;
+				height: 160px;
+				margin: 10px 0 20px;
+				background-color: #beceeb;
+				overflow: hidden;
+				resize: both;
+			}
+			
+			.box img {
+				width: 160px;
+				height: 160px;
+				background-color: #cd0000;
+				overflow: hidden;
+				object-fit: cover;
+			}
+		</style>
+		<link rel="stylesheet" href="./dist/polyfill.object-fit.css">
+		<strong>object-fit: cover</strong>
+		<div class="box">
+			<img src="mm1.jpg">
+		</div>
+		<!--兼容JS文件-->
+		<script src="./dist/polyfill.object-fit.js"></script>
+		<script>
+			// Call polyfill to fit in images
+			document.addEventListener('DOMContentLoaded', function() {
+				objectFit.polyfill({
+					selector: 'img',
+					fittype: 'cover'
+				});
+			});
+		</script>
+		<!--//兼容JS-->
+	</body>
+
+</html>

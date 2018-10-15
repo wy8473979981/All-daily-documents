@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+		/*线性渐变
+			var lg= context.createLinearGradient(xStart,yStart,xEnd,yEnd)
+			 线性渐变颜色
+			lg.addColorStop(offset,color)
+			xstart:渐变开始点x坐标
+		    ystart:渐变开始点y坐标
+		    xEnd:渐变结束点x坐标
+		    yEnd:渐变结束点y坐标
+		    offset:设定的颜色离渐变结束点的偏移量(0~1)
+		    color:绘制时要使用的颜色
+		*/
+		
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		/*设置渐变区间*/
+		var lg = context.createLinearGradient(0,0,0,300);
+		/*设置渐变期间区间的颜色*/
+		lg.addColorStop("0","#ff0000");
+		lg.addColorStop("0.5","#00ff00");
+		lg.addColorStop("1","#0000ff");
+		/*自定义咱们的填充样式*/
+		context.fillStyle = lg;
+		/*绘制矩形*/
+		context.fillRect(0,0,400,300);
+	</script>
+</html>

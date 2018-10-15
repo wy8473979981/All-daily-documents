@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/1.jpg"/>
+			<img src="img/2.jpg"/>
+			<img src="img/3.jpg"/>
+			<img src="img/4.jpg"/>
+			<img src="img/5.jpg"/>
+			<img src="img/6.jpg"/>
+			<img src="img/7.jpg"/>
+			<img src="img/8.jpg"/>
+			<img src="img/9.jpg"/>
+			<img src="img/10.jpg"/>	
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var imgs = document.getElementsByTagName("img");
+		var imgsLength = imgs.length;
+		var rotX = null;
+		var rotY = null;
+		var stepX = null;
+		var stepY = null;
+		console.log(imgsLength);
+		for(var i = 0 ; i < imgsLength ; i ++ ){
+			var rot = 360 / imgsLength;
+			var str = 'rotateY(' + rot*i + 'deg' + ')' + 'translateZ(300px)';
+			//console.log(str);
+			cssTransform(imgs[i],str);
+		}
+		document.ondragstart = function(){
+			return false;
+		}
+		document.onmousedown = function(e){
+			var evt = e || window.event;
+			/*alert(evt.type);*/
+			var X = evt.clientX;
+			var Y = evt.clientY;
+			document.onmousemove = function(e){
+				var ev = e || window.event;
+				var XX = ev.clientX;
+				var YY = ev.clientY;	
+				rotX = XX - X;
+				rotY = YY - Y;
+				
+				stepX -=rotY*0.2;//这样写是因为在X方向旋转，类似与在Y上运动//鼠标在水平移动是相对于Y轴在运动
+				stepY +=rotX*0.1;
+				var newStr = 'perspective(800px) rotateX(-30deg) rotateX('+ stepX + 'deg)  rotateY('+ stepY + 'deg)';
+				//console.log(newStr);
+				cssTransform(box,newStr);
+				X = XX;
+				Y = YY;	
+			}	
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+		function cssTransform(ele,value){
+			var data = ["o","ms","moz","webkit",""];
+			var length = data.length;
+			for(var i = 0;i<length;i++){
+				ele.style[data[i]+"Transform"] = value;
+			}
+		}
+	</script>
+	
+	
+</html>

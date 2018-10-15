@@ -1,0 +1,64 @@
+Meta标签定义
+	
+	使用 viewport meta 标签在手机浏览器上控制布局
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	
+	
+	通过快捷方式打开时全屏显示
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	
+	
+	隐藏状态栏
+	<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+	
+	iPhone会将看起来像电话号码的数字添加电话连接，应当关闭
+	<meta name="format-detection" content="telephone=no" />
+	
+常用于布局的CSS Media Queries有以下几种
+
+设备类型(media type):
+all		所有设备
+screen 		电脑显示器
+print		打印用纸或打印预览视图
+handheld	便携设备
+tv		电视机类型的设备
+speech		语意和音频盒成器
+braille		盲人用点字法触觉回馈设备
+embossed	盲文打印机
+projection	各种投影设备
+tty		使用固定密度字母栅格的媒介，比如电传打字机和终端
+
+
+设备特性(media feature):
+
+width			浏览器宽度
+
+height			浏览器高度
+
+device-width		设备屏幕分辨率的宽度值
+
+device-height		设备屏幕分辨率的高度值
+
+orientation		浏览器窗口的方向纵向还是横向，
+			当窗口的高度值大于等于宽度时该特性值为portrait，
+			否则为landscape
+
+aspect-ratio		比例值，浏览器的纵横比
+
+device-aspect-ratio	比例值，屏幕的纵横比
+
+
+/* for 240 px width screen */
+@media only screen and (max-device-width:240px){
+	selector{ ... }
+}
+
+/* for 320px width screen */
+@media only screen and (min-device-width:241px) and (max-device-width:320px){
+	selector{ ... }
+}
+
+/* for 480 px width screen */
+@media only screen (min-device-width:321px)and (max-device-width:480px){
+	selector{ ... }
+}

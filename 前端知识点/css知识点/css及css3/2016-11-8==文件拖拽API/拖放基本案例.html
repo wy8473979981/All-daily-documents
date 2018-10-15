@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p>模拟回收站存入功能</p>
+		<label id="msg">温馨提示：你不想要这个文件了吗？</label>
+		<div class="box" id="box" style="width: 150px;height:150px;border:1px solid #f66;" ondrop="drop(event)" ondragover="dragOver(event)" ondragenter="dragEnter(event)"></div>
+		<img src="img/testPic3.jpg" style="width:90px;height:auto;margin-top: 10px;" draggable="true" ondragstart="dragStart(event)" ondrag="drag()"/>
+	</body>
+	<script type="text/javascript">
+		function dragStart(ev){
+			msg.innerHTML = "开始动啦？";
+			
+		}
+		function drag(ev){
+			msg.innerHTML = "来吧，来吧";
+			ev.DataTransfer.setData("lll",ev.target.id);
+		}
+		function dragEnter(ev){
+			msg.innerHTML = "进来了？";
+		}
+		function drop(ev){
+			var data = ev.DataTransfer.getData("lll");
+			alert(ev.target.id);
+		}
+		function dragOver(ev){
+			ev.preventDefault();
+			
+			msg.innerHTML = "来了就不要走了吗？";
+		}
+	</script>
+</html>

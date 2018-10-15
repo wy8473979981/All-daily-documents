@@ -1,0 +1,42 @@
+iCheck自定义复选框和单选按钮组件（jQuery)，它避免在日常开发中重复造轮子，在数量庞大的浏览器，设备和它们的不同版本中，它提供了风格一致的外观。回调和方法可以用来方便地处理修改和自定义输入。兼容主流浏览器。在 iOS，Android，BlackBerry 和 Windows Phone 设备测试通过。懒人图库推荐下载！
+
+使用方法：
+1、选择你要使用的皮肤样式主题，共6个
+flat, futurico, line, minimal, polaris, square
+每个皮肤底下有好几个可以选择的颜色，例如：
+Black — square.css
+Red — red.css
+Green — green.css
+Blue — blue.css
+Aero — aero.css
+Grey — grey.css
+Orange — orange.css
+Yellow — yellow.css
+Pink — pink.css
+Purple — purple.css
+2 例如选择square皮肤下的blue.css,复制 skin/square文件夹下的到css文件夹下
+<link href="css/square/blue.css" rel="stylesheet">
+3 引入icheck.js
+移动端引入：
+<script src="js/zepto.js"></script>
+<script src="js/icheck.min.js"></script>
+PC端引入
+<script src="js/jquery.js"></script>
+<script src="js/icheck.min.js"></script>
+4 在页面添加以下代码
+HTML：
+<input type="checkbox">
+<input type="checkbox" checked>
+<input type="radio" name="iCheck">
+<input type="radio" name="iCheck" checked>
+javascript：
+<script>
+$(document).ready(function(){
+ $('input').iCheck({
+   checkboxClass: 'icheckbox_square-blue',  // 注意square和blue的对应关系
+   radioClass: 'iradio_square-blue',
+   increaseArea: '20%' // optional
+ });
+});
+</script>
+iCheck提供了大量回调事件，都可以用来监听change事件。

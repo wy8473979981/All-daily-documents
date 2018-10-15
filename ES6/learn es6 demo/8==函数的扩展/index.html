@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="../browser.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function foo({x, y = 5}) {
+		  console.log(x, y);
+		}
+		
+		foo({}) // undefined, 5
+		foo({x: 1}) // 1, 5
+		foo({x: 1, y: 2}) // 1, 2
+		foo()   // TypeError: Cannot read property 'x' of undefined
+				//只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值而生成。
+				//如果函数foo调用时参数不是对象，变量x和y就不会生成，从而报错
+		function throwIfMissing() {
+		  throw new Error('Missing parameter');
+		}
+		
+		function foo(mustBeProvided = throwIfMissing()) {
+		  return mustBeProvided;
+		}
+		
+		foo()		
+				
+		
+	</script>
+</html>

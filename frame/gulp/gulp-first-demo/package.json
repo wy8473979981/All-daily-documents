@@ -1,0 +1,19 @@
+{
+  "name": "gulp-first-demo",
+  "version": "1.0.0",
+  "description": "gulp-first-demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-less": "^3.4.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sourcemaps": "^2.6.3"
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="bsgrid/bsgrid.all.min.css" />
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bsgrid/bsgrid.all.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bsgrid/grid.zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<table id="searchTable">
+			<tr>
+				<th w_index="XH" width="5%;">XH</th>
+				<th w_index="ID" width="5%;">ID</th>
+				<th w_index="CHAR" w_align="left" width="15%;">CHAR</th>
+				<th w_index="TEXT" w_align="left" width="30%;">TEXT</th>
+				<th w_index="DATE" width="15%;">DATE</th>
+				<th w_index="TIME" width="15%;">TIME</th>
+				<th w_index="NUM" width="5%;">NUM</th>
+				<th w_render="operate" width="10%;">Operate</th>
+			</tr>
+		</table>
+	</body>
+
+	<script type="text/javascript">
+		var gridObj;
+		$(function() {
+			gridObj = $.fn.bsgrid.init('searchTable', {
+				url: '/json.json',
+				autoLoad: false,
+				pageSizeSelect: true,
+				pageSize: 10
+			});
+		});
+
+		function operate(record, rowIndex, colIndex, options) {
+			return '<a href="#" onclick="alert(\'ID=' + gridObj.getRecordIndexValue(record, 'ID') + '\');">Operate</a>';
+		}
+	</script>
+
+
+</html>

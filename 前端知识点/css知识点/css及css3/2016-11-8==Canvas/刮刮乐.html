@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/*body{
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+			}*/
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="320" height="160"></canvas>
+		<p id="img"></p>
+		
+	</body>
+	<script type="text/javascript">
+		var bodyStyle = document.body.style;
+		bodyStyle.webkitUserSelect = "none";
+		bodyStyle.mozUserSelect = "none";
+		bodyStyle.msUserSelect = "none";
+		
+		//获取canvas,定义一张图片
+		var canvas = document.getElementById("myCanvas");
+		var image = new Image();
+		//定义图片数组
+		var imgs = ["img/p_0.jpg","img/p_1.jpg"];
+		//产生随机数
+		var num = Math.floor(Math.random()*2);
+		//定义图片地址
+		image.src = imgs[num];
+		//添加图片记载完成事件
+		
+		image.addEventListener("load",function(e){
+			//在图片记载完成事件中定义上下文，图片的宽度高度，canvas的位置（offsetLeft，offsetTop）
+			var ctx;
+			var w = image.width,
+				h = image.height;
+			debugger
+			//canvas的位置
+			var offsetX = canvas.offsetLeft,
+				offsetY = canvas.offsetTop;
+			debugger
+			// 定义一个变量标记鼠标是否按下mousedown，默认为false
+			var mouseDown = false;
+			
+			//定义一个函数layer（ctx）,设置填充颜色和绘制矩形
+			function layer(ctx){
+				ctx.fillStyle = "#cccccc";
+				ctx.fillRect(0,0,w,h);
+			}
+			
+			//定义一个鼠标按下事件eventDown（e）,先阻止其默认事件，再改变mousedown
+			function eventDown(e){
+				e.preventDefault();
+				mouseDown = true;
+			}
+			
+			//定义一个鼠标弹起事件eventUp（e）,先阻止其默认事件，再改变mousedown
+			function eventUp(e){
+				e.preventDefault();
+				mouseDown = false;
+			}
+			//定义一个鼠标按下移动事件eventMove（e）,先阻止其默认事件，
+			function eventMove(e){
+				e.preventDefault();
+				//判断鼠标是否按下，如果按下则
+				if(mouseDown){
+					//判断e.changedTouches， changedTouches是涉及当前事件的触摸点的列表。
+					//if(e.changedTouches){
+						//执行 e=e.changedTouches[e.changedTouches.length-1];
+					//	e=e.changedTouches[e.changedTouches.length-1];
+					//}
+					//定义一个圆圈的位置
+					//var x = (e.clientX + document.body.scrollLeft || e.pageX) - offsetX || 0,
+					var x = (e.clientX + document.body.scrollLeft || e.pageX)-offsetX||0;
+					//y = (e.clientY + document.body.scrollTop || e.pageY) - offsetY || 0;
+					var y = (e.clientY + document.body.scrollTop || e.pageY)-offsetY||0;
+					debugger
+					//开始路劲
+					ctx.beginPath();
+					//绘制圆
+					ctx.arc(x,y,10,0,Math.PI*2,true);
+					//结束
+					ctx.closePath();
+					//切记不可忘记
+					ctx.fill();
+					document.getElementById("img").innerHTML="x:"+x+"<br>y:"+y;
+				}
+			}
+	
+			//设置canvas的背景图片canvas.style.backgroundImage='url('+img.src+')';
+			canvas.style.backgroundImage = "url("+image.src+")";
+			ctx  = canvas.getContext("2d");
+			// 设置填充颜色为透明ctx.fillStyle='transparent';
+			ctx.fillStyle ="#ff0000";
+			layer(ctx);
+			ctx.globalCompositeOperation="destination-out";
+			canvas.addEventListener('mousedown', eventDown);
+			canvas.addEventListener('mouseup', eventUp);
+			canvas.addEventListener('mousemove', eventMove);
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</html>

@@ -1,0 +1,163 @@
+@charset "utf-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+ul,li{
+	list-style: none;
+}
+html,body{
+	width:100%;
+	min-width:320px;
+	background-color: #F1F1F1;
+}
+a{
+	text-decoration: none!important;
+}
+/*初始化结束*/
+
+
+header{
+	width:100%;
+	height:.74rem;
+	color:#fff!important;
+	font-size: .31rem;
+	display: flex;
+	align-items: center; /*定义body的元素垂直居中*/
+	justify-content: center; /*定义body的里的元素水平居中*/
+	background-color:#0F91C5;
+
+}
+
+nav{
+	height:.67rem;
+	width:100%;
+	background-color: #fff;
+}
+nav .search{
+	width:82%;
+	height:80%;
+	border: none;
+	float: left;
+	margin-top:0.06rem;
+	margin-left:0.06rem;
+	padding-left: .2rem;
+	outline: none;
+	font-size: .23rem;
+}
+nav .btnSch{
+	width: .84rem;
+	height:80%;
+	float: left;
+	color:#fff;
+	margin:0.06rem 0.06rem 0rem;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display: flex;
+	align-items: center; /*定义body的元素垂直居中*/
+	justify-content: center; /*定义body的里的元素水平居中*/
+	background-color: #0F91C5;
+	font-size: .23rem;
+}
+section{
+	height:8.49rem;
+	background-color: #fff;
+	margin-top:.1rem;
+}
+section .info1{
+	height:1.39rem;
+	border-bottom: 1px solid #D8D8D8;
+}
+section .info1 .infoImg{
+	height:1.39rem;
+	width:1.39rem;
+	float: left;
+	border-bottom: 1px solid #D8D8D8;
+	display: flex;
+	align-items: center; /*定义body的元素垂直居中*/
+}
+section .info1 .infoImg img{
+	width:.93rem;
+	margin-left:.2rem;
+}
+section .info1 .infoRight{
+	height:1.11rem;
+	line-height: .3rem;
+	padding-top:.28rem;
+}
+section .info1 .infoRight p:nth-child(1){
+	font-size: .32rem;
+	color: #000000;
+	font-weight: bold;
+	font-size: .25rem;
+}
+section .info1 .infoRight p:nth-child(2){
+	color:#999999;
+	font-size: .23rem;
+}
+
+
+.clear2{
+	width:100%;
+	margin-top: 0.07rem;
+	height:0.79rem;
+	clear: both;
+	
+}
+footer{
+	height:.79rem;
+	width: 100%;
+	border-top:1px solid #CDCDCD;
+	background-color: #fff;
+	position: fixed;
+	left:0px;
+	bottom: 0px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	z-index: 9999!important;
+}
+footer div{
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-box-flex: 1;
+	box-flex: 1;
+	text-align: center;
+	
+	
+}
+footer div a{
+	display: block;
+	margin-top:.1rem;
+	font-size: .24rem;
+	color: #CCCCCC;
+}
+.active2{
+	color: #fff;
+}
+footer div:nth-child(3){
+	position: relative;
+}
+footer div:nth-child(3) a{
+	display: block;
+	position: absolute;
+	top:-0.25rem;
+	width:100%;
+	height:110%;
+	font-size: .44rem;
+	background-color: #fff;
+	border:1px solid #ccc;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: flex;
+	align-items: center; /*定义body的元素垂直居中*/
+	justify-content: center; /*定义body的里的元素水平居中*/
+}
+
+
+
+
+
+

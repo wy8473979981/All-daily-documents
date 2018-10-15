@@ -1,0 +1,10 @@
+设置 base 标签
+	打开index.html并且在<head>区的顶部添加<base href="/">语句。
+	index.html (base-href)
+	<head>
+	  <base href="/">
+	  
+当我们在应用中导航时，路由器就把激活的组件显示在<router-outlet>里面。
+
+我们把RouterLink指令（ROUTER_DIRECTIVES中的另一个指令）绑定到一个字符串
+。 它将告诉路由器，当用户点击这个链接时，应该导航到哪里。

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+				padding-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+	
+		with(context){
+			save();
+			fillStyle = "#EEEEFF";
+            fillRect(0, 0, 400, 300);
+            
+            fillStyle = "rgba(255,0,0,0.1)";
+            translate(100, 100);
+            scale(0.5, 0.5);
+			rotate(Math.PI / 4);
+			fillRect(0, 0, 100, 100);
+			
+			/*restore();
+			save();
+			fillStyle = "rgba(255,0,0,0.2)";
+			translate(100, 100);
+			rotate(Math.PI / 4);*/
+			
+			
+			
+			
+		}
+
+
+
+	</script>

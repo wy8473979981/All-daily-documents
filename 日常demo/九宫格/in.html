@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
+<title></title>
+<style>
+	body{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
+	html,body{width: 100%;height: 100%;font-family: "PingFangSC", "微软雅黑", "黑体";background-color: #ffffff;}
+	body,html,div,img,ul,ol,li,dl,dt,em,span,p,h1,h2,h3,h4,section,header,footer{margin: 0; padding: 0;}
+	a{text-align: none;outline: none; text-decoration: none;-webkit-tap-highlight-color: rgba(0,0,0,0);color: #ffffff;}
+	img{border:none; width: 100%;display: block;}
+	p{word-wrap: break-word; word-break: break-all;}
+	ul,li {list-style:none;}
+	input{border:0;outline:none;}
+	.clearfix:after { content: ""; display: block; height: 0; clear: both;overflow: visible;} 
+	.clearfix { zoom: 1; }
+	.tenCj,.warpCj,#wei,#zhong,.zjTi{height: auto;overflow:hidden;}
+	.tenCj,#begin,.weiTop,.weiBoo,.zhBoo,.zhTop,#content{position: relative;}
+	.liCj,#content li,#begin,.btt,.gx{position: absolute;}
+	#content li,#begin,.btt p,#alert,#alT1,#alT2,#sucBtn,.shopAte li p{text-align: center;}
+	.warpCj,#content,#alert,#pic img,#alT1,#alT2,.shopAte,.shopAte li{width: 100%;}
+	#content,.shopAte li p:nth-child(2),.shopAte li p:nth-child(1){float: left;}
+	.shopAte li p:nth-child(2),.shopAte li p:nth-child(1){margin-left: 3%;}
+	.shopAte li,.shopAte li p{overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+	#alert,#pic,#alT1,#alT2,#wei,#zhong,#sucBtn,.dhInsu{position:fixed;}
+	
+	
+	.warpCj{background: url(img/cjBack.jpg) no-repeat;background-size:cover;}
+	.headerCj,.tenCj{width: 80%;margin: 0 10% 0 10%;}
+	.liCj{width: 85%;height: 85%;top: 6.3%;left:7.5%;}
+	#content{height:100%;}
+	#content li,#begin{width: 32%;height: 32%;}
+	#content li{background: url(img/1.png) no-repeat;background-size: 100%;}
+	#content li.current{background: #f6ff00;width: 32%;height: 30%;border-radius: 12px;box-shadow: 0px 0px 10px #ffde00;margin-top: -1%;}
+	#content li img{width: 85%;margin: 3% 0 7.5% 7%;}
+	#begin{left: 34%;top: 32%; color: #000000;background: url(img/2.png) no-repeat;background-size: 100%;}
+	.btt{top: 15%;left:28%;}
+	.btt p{font-size:18px;color: #f61212;text-shadow: 0px 2px 2px #FFFFFF;font-weight: bolder;}
+	/*弹窗*/
+	#alert{height:100%;background-color:rgba(64,64,64,.9);top:0;display: none;color:red;}
+	#pic{width: 40%;top: 28%;left: 30%; z-index: 99;}
+	#alT1,#alT2{font-size: 16px;color: #FFFFFF;text-shadow: 0px 2px 2px #000000;}
+	#wei,#zhong{width: 90%;display: none;left: 5%;top: 15%;}
+	#alT1{bottom: 40%;}
+	#alT2{bottom: 35%;}
+	.gx{top: 15%;width: 30%;left: 35%;}
+	/*确定*/
+	#sucBtn{width: 30%;font-size: 14px;color: #FFFFFF;left:35%;bottom:25%;border-radius: 100px;padding: 2% 0 2% 0;background-image:-webkit-linear-gradient(to top, #ff79f5, #ff6fc0); background-image:linear-gradient(to top,#ff79f5,#ff6fc0);}
+	/*中奖*/
+	.zjTi{width: 82%;background-color: #FFFFFF;border-radius: 10px;margin: -3% 0 10% 9%;}
+    .shopAte{height:120px;overflow:hidden;display: inline-block;margin: 7% 0 5% 0;}  
+	.shopAte li{height:30px; line-height:30px; }  
+	.shopAte li p{height: 30px;font-size: 12px;}
+	.shopAte li p:nth-child(1){width: 25%;}
+	.shopAte li p:nth-child(2){width: 25%;}
+	.shopAte li p:nth-child(3){width: 40%;color: #ff000c;float: right;margin-right: 3%;}
+	/*积分不足*/
+	.dhInsu{display: none;color:#FFFFFF;font-size: 16px;width: 80%;margin: 0 auto;background-color: #000000;padding: 5% 0 5% 0;top: 50%;left: 10%;text-align: center;}
+	@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){
+		.btt{top: 12%;left: 25%;}
+		.btt p{font-size: 16px;}
+		.zjTi{width: 90%;margin-left: 5%;}
+		.shopAte li p:nth-child(1){width: 20%;}
+		.shopAte li p:nth-child(2){width: 23%;}
+		.shopAte li p:nth-child(3){width: 43%;}
+		
+	}
+	@media only screen and (min-width: 768px) and (max-width: 1024px){
+		.warp{height: 1500px;}
+		.btt{top: 22%;left: 33%;}
+		.btt p,#alT1, #alT2,#sucBtn{font-size: 28px;}
+		#alT1{bottom: 37%;}
+		#alT2{bottom: 32%;}
+		.shopAte{height: 160px;}
+		.shopAte li{height: 40px;}
+		.shopAte li p{font-size: 20px;}
+		#sucBtn{bottom: 20%;}
+		.dhInsu{font-size: 26px;}
+	}
+	@media only screen and (min-width: 1024px) and (max-width: 1366px){
+		.warp{height: 2000px;}
+		#sucBtn{font-size: 38px;}
+		.btt p,#alT1, #alT2{font-size: 35px;}
+		.btt p{letter-spacing: 5px;}
+		.shopAte{height: 240px;}
+		.shopAte li{height: 60px;}
+		.shopAte li p{font-size: 25px;}
+		.shopAte li p{letter-spacing: 2px;}
+		.dhInsu{font-size: 30px;}
+	}		
+
+
+</style>
+</head>
+<body>
+	<div class="warpCj">
+		<img src="img/cjHea.png" class="headerCj"/>
+		<div class="tenCj">
+			<img src="img/2332.png"/>
+			<div class="liCj">
+				<ul id="content">
+					<li style="left:0;top:0;" data-type = "0">
+						<img src="img/zj.png"/>
+					</li>
+					<li style="left:34%;top:0;" data-type = "1">
+						<img src="img/wu.png"/>
+					</li>
+					<li style="left:68%;top:0;" data-type = "2">
+						<img src="img/zuan.png"/>
+					</li>
+					<li style="left:68%;top:32%;" data-type = "3">
+						<img src="img/jy.png"/>
+					</li>
+					<li style="left:68%;top:64%;" data-type = "4">
+						<img src="img/sjy.png"/>
+					</li>
+					<li style="left:34%;top:64%;" data-type = "5">
+						<img src="img/lb.png"/>
+					</li>
+					<li style="left:0;top:64%;" data-type = "6">
+						<img src="img/jf.png"/>
+					</li>
+					<li style="left:0;top:32%;" data-type = "7">
+						<img src="img/rk.png"/>
+					</li>
+				</ul>
+				
+				<div id="begin">
+					<div class="btt">
+						<p>立即</p>
+						<p>抽奖</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="zjTi">
+			<ul class="shopAte">
+		        <li>
+		        	<p>名字名字名字名字名字名字名字</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		        
+		         <li>
+		        	<p>11111111111111111111111111111</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		         <li>
+		        	<p>2222222222222222222222222222</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		         <li>
+		        	<p>2223333333333333333333333333</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		         <li>
+		        	<p>444444444444444444444</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		         <li>
+		        	<p>55555555555555555555555</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		         <li>
+		        	<p>66666666666666666666</p>
+		        	<p>10分钟</p>
+		        	<p>获得双倍经验卡周卡</p>
+		        </li> 
+		    </ul>
+		</div>
+		
+	</div>
+	
+	
+	<div id="alert">
+		<div id="pic"></div>
+		<div id="alT1"></div>
+		<div id="alT2"></div>
+		<div id="wei">
+			<div class="weiTop">
+				<img src="img/g1.png"/>
+			</div>
+			<div class="weiBoo">
+				<img src="img/g2.png"/>
+				
+			</div>
+		</div>
+		<div id="zhong">
+			<div class="zhTop">
+				<img src="img/gx.png" class="gx"/>
+				<img src="img/z1.png"/>
+			</div>
+			<div class="zhBoo">
+				<img src="img/z2.png"/>
+			</div>
+		</div>
+		<div id="sucBtn" onclick="sucBtn()">确认</div>
+	</div>
+	
+	<!--积分不足-->
+	<div class="dhInsu">您的积分不够前去做任务吧！</div>
+	
+	<script src="js/jquery.min.js"></script>
+	<script>
+//		data-type  li的标示  根据  data-type 更改图片
+		(function($) {
+			var list = $('content').children,
+				tan = $("alert"),
+				wei = $("wei"),
+				zhong = $("zhong"),
+				pic = $("pic"),
+				alT1 =$("alT1"),
+				alT2 =$("alT2"),
+				alpha =$("alpha"),
+				sucBtn =$("sucBtn"), 
+				len = list.length,
+				begin = $('begin'),
+				index = 0,
+				interval = null;
+			var num = 1;
+			begin.onclick = function() {
+				debugger
+					if(this.running) return;
+					this.running = true;//开始
+					this.remain = 10;
+					console.log(this.remain);
+					interval = setInterval(function() {
+							list[index].className = "";
+							list[(index + 1) % len].className = "current";
+							index = ++index % len;
+							begin.remain -= 100;
+					}, 200);
+					
+					
+					if (this.remain = 5) {
+						this.running = true;
+					} 
+					setTimeout(function(){
+						console.log("可以结束了");
+						clearInterval(interval);
+					},1000)
+			};
+			
+			sucBtn.onclick = function() {
+				tan.style.display = "none";
+			};//弹窗消失
+			
+
+		})
+		
+		
+		
+		
+		(function(id) {
+			return document.getElementById(id)
+		});
+		
+		/*$(function(){
+			var lH = $('.shopAte li').height();  
+		    setInterval(function(){  
+		        $('.shopAte li').eq(0).animate({marginTop:-lH,opacity:0},'slow',function(){  
+		            $('.shopAte li').eq(0).css('margin-top','').appendTo('.zjTi ul').animate({opacity:1});  
+		        });  
+		    },3000);
+		});*/
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="fileDemo" id="fileDemo" value="" accept="text/*" /> 
+		<input type="button" name="btn" id="btn" value="readAsDataUrl:读取文件的URL地址" />
+		<input type="button" name="btn1" id="btn1" value="readAsBinaryString:读取二进制字符串" />
+		<input type="button" name="btn2" id="btn2" value="readAsText:读取文本" />
+		<p id="msg"></p>
+	</body>
+	<script type="text/javascript">
+		if(typeof(FileReader)=="undefined"){
+			alert("您老的浏览器不行啦，请去青年浏览器google吧！");
+		}
+		//此方法不可取
+		/*if(window.FileReader){
+			alert("您老的浏览器不行啦，请去青年浏览器google吧！");
+		}*/
+		var btn = document.getElementById("btn");
+		var btn1 = document.getElementById("btn1");
+		var btn2 = document.getElementById("btn2");
+		var msg = document.getElementById("msg");
+		/*btn.onclick = function(){
+			var fileDemo = document.getElementById("fileDemo").files[0];
+			//alert(fileDemo)
+			if(fileDemo){
+				var reader = new FileReader();
+				reader.readAsDataURL(fileDemo);
+				reader.onload = function(){
+				//	alert(this.result);
+				msg.innerHTML = "<img src='"+this.result+"'>";
+				}
+			
+			}
+		}*/
+		btn.onclick = function(){
+			var fileDemoList = document.getElementById("fileDemo").files;
+			var listLength = fileDemoList.length;
+			if(fileDemoList){
+				for(var i = 0;i<listLength;i++){
+					var fileSize = (fileDemoList[i].size/1024).toFixed(2);
+					if(fileSize>10){
+						alert("第"+(i+1)+"张图片太大，请选择10KB以下的图片");
+					}else{
+						var reader = new FileReader();
+						reader.readAsDataURL(fileDemoList[i]);
+						reader.onload = function(){
+							//	alert(this.result);
+							msg.innerHTML += "<img src='"+this.result+"'>";
+						}
+					}
+				}
+			}
+		}
+		
+		btn1.onclick = function(){
+			var fileDemo = document.getElementById("fileDemo").files[0];
+			if(fileDemo){
+				var render = new FileReader();
+				render.readAsBinaryString(fileDemo);
+				render.onload = function(){
+					msg.innerHTML = this.result;
+				}
+			}
+			
+		}
+		btn2.onclick = function(){
+			var fileDemo = document.getElementById("fileDemo").files[0];
+			if(fileDemo){
+				var render = new FileReader();
+				render.readAsText(fileDemo,"gb2312");
+				render.onload = function(){
+					msg.innerHTML = this.result;
+				}
+			}
+			
+		}
+	</script>
+</html>

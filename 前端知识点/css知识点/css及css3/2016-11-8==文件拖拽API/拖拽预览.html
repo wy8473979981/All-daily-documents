@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.oDiv{
+				width: 300px;
+				min-height:500px;
+				border:1px solid #f66;
+				margin:30px auto;
+			}
+			.oDiv img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>拖拽上传预览</h2>
+		<div class="oDiv" id="oDiv"></div>
+		<p id="msg"></p>
+	</body>
+	<script type="text/javascript">
+		var oDiv = document.getElementById("oDiv");
+		var msg = document.getElementById("msg");
+		
+		oDiv.ondragover = function(ev){
+			msg.innerHTML = "进来了？";
+			ev.stopPropagation();
+			ev.preventDefault();
+		}
+		
+		oDiv.ondrop = function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			/*var fileList = ev.dataTransfer.files;
+		//	alert(fileList.length)
+			var listLength = fileList.length;*/
+			
+			var file = ev.dataTransfer.files[0];
+			if(file){
+				var render = new FileReader();
+				render.readAsDataURL(file);
+				render.onload = function(){
+					oDiv.innerHTML = "<img src ='"+this.result+"'/>";
+				}
+			}
+		}
+		
+	</script>
+</html>

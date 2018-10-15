@@ -1,0 +1,176 @@
+
+
+body{
+		margin: 0;
+		padding:0;
+	}	
+
+	.container{
+		font-family: 微软雅黑;
+		background: #fff;
+		padding: 30px;
+		margin:50px auto;
+        overflow: hidden;
+	}
+
+	.container .menu{
+		width: 240px;
+		margin-left: 130px;
+		float: left;
+		border-right: 1px solid #aaa;
+	}
+/*position 菜单背景图标*/
+	.positionIicon{
+		display: inline block;
+		width: 32px;
+		height: 32px;
+		margin: 0px 4px;
+		float: left;
+		margin-right: 10px;
+	}
+/*menu图标*/
+	.q-menu-img{
+		background: url("../img/iconfont-kuaisulu.png");
+	}
+	
+	.q-menu-doit{
+		background: url("../img/iconfont-0bangzhushouce.png");
+	}
+
+	.q-menu-three{
+		background: url("../img/iconfont-wenti.png");
+	}
+
+
+	.container .menu h3{
+		font-size: 20px;
+		cursor: pointer;
+	}
+    .container .menu ul{
+        display: none;
+    }
+	.container .menu ul li{
+		height: 28px;
+		line-height: 28px;
+	}
+
+	.container .menu ul li a:hover{
+		background: #9FB6CD;
+		border-radius: 14px;
+		-webkit-border-radius: 14px;
+		-moz-border-radius: 14px;
+		-moz-border-radius:14px;
+		color:#fff;
+	
+	}
+
+	ul{
+		list-style: none;
+	}
+
+	a{
+		text-decoration: none;
+		color: #000;
+		font-size: 14px;
+		display: block;
+		width: 180px;
+		height: 26px;
+		padding-left: 10px;
+	}
+
+	.container .menu .selected{
+		background: #ccc;
+		border-radius: 14px;
+	}
+
+
+
+	.container .content{
+		margin-top: 15px;
+		width: 860px;
+		margin-left: 400px;
+	}
+
+	.container .content .get-menu{
+		margin-left: -10px;
+	}
+
+	.container .content .get-menu a{
+		display: inline-block;
+		font-size: 15px;
+	    height: 40px;
+	}
+
+	.container .content .get-menu a:last-child{
+		margin-left: -8px;
+		color: #7D9EC0;
+	}
+
+	.container .content .get-menu span{
+		display: inline-block;
+	    height: 40px;
+	    margin-left: -110px;
+	}
+
+	.container .content .menu1 .tab {
+		display: none;
+	}
+
+	.container .content .menu1 .active{
+		display: block;
+	}
+
+	.container .content .menu1 .tab p{
+		font-size: 14px;
+		line-height: 20px;
+		color: rgba(0,0,0,1);
+        word-break:break-all;
+	}
+
+	.container .content .menu1 .tab .tt{
+		font-size: 14px;
+		font-weight: bold;
+
+	}
+/*第二个菜单下的文档内容*/
+	.container .content .menu2 .tab {
+		display: none;
+	}
+
+	.container .content .menu2 .active{
+		display: block;
+	}
+
+	.container .content .menu2 .tab p{
+		font-size: 14px;
+		line-height: 20px;
+		color: rgba(0,0,0,0.8);
+        word-break:break-all;
+	}
+
+	.container .content .menu2 .tab .tt{
+		font-size: 14px;
+		font-weight: bold;
+
+	}
+/*第三个菜单下的文档内容*/
+	.container .content .menu3 .tab {
+		display: none;
+	}
+
+	.container .content .menu3 .active{
+		display: block;
+	}
+
+	.container .content .menu3 .tab p{
+		font-size: 14px;
+		line-height: 20px;
+		color: rgba(0,0,0,0.8);
+        word-break:break-all;
+	}
+
+	.container .content .menu3 .tab .tt{
+		font-size: 13px;
+		font-weight: bold;
+
+	}

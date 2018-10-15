@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#flex {
+				display: -webkit-flex;
+				display: flex;
+				width: 400px;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			#flex li {
+				width: 200px;
+			}
+			
+			#flex li:nth-child(1) {
+				background: #888;
+			}
+			
+			#flex li:nth-child(2) {
+				background: #ccc;
+			}
+			
+			#flex li:nth-child(3) {
+				-webkit-flex-shrink: 3;
+				flex-shrink: 3;
+				background: #aaa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--flex-shrink的默认值为1，如果没有显示定义该属性，将会自动按照默认值1在所有因子相加之后计算比率来进行空间收缩。
+			本例中c显式的定义了flex-shrink，a,b没有显式定义，但将根据默认值1来计算，可以看到总共将剩余空间分成了5份，
+			其中a占1份，b占1份，c占3分，即1:1:3
+			我们可以看到父容器定义为400px，子项被定义为200px，相加之后即为600px，超出父容器200px。那么这么超出的200px需要被a,b,c消化
+			按照以上定义a,b,c将按照1:1:3来分配200px，计算后即可得40px,40px,120px，换句话说，a,b,c各需要消化40px,40px,120px，
+			那么就需要用原定义的宽度相减这个值，最后得出a为160px，b为160px，c为80px-->
+		<ul id="flex">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+		</ul>
+	</body>
+
+</html>

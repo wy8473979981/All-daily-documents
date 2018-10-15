@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+				padding-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+	
+		//同心圆
+		/*with(context){
+			var rg = createRadialGradient(200, 150, 0, 200, 150, 100);
+			rg.addColorStop(0.1,"blue");
+			rg.addColorStop(1,"yellow");
+			fillStyle = rg;
+			beginPath();
+			arc(200, 150, 100, 0, Math.PI * 2, true);
+			closePath();
+			fill();
+		}*/
+		//不是同心圆
+		with(context){
+			var rg = createRadialGradient(100, 150, 10, 300, 150, 50);
+			rg.addColorStop(0.1,"blue");
+			rg.addColorStop(1,"yellow");
+			fillStyle = rg;
+			beginPath();
+			fillRect(0,0,400,400);
+			closePath();
+		}
+
+
+
+	</script>

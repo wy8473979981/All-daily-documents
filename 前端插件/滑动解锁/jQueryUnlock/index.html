@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>验证码demo</title>
+</head>
+<body>
+	
+	<input id="dian" type="button" value="点击获取验证码">
+
+
+	<script src="jquery-1.11.0.js"></script>
+	<script src="diy_code.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#dian").click(function(){
+				//参数：第一个为图片路径，第二个为成功回调函数，第三个为失败回调函数。
+				H_testcode.ready("ceshi1.jpg",function(e,x){
+					alert("成功！，耗时："+e+"秒,误差："+x+"像素");
+				},function(e,x){
+					alert("失败！，耗时："+e+"秒,误差："+x+"像素");
+				});
+			});
+		});
+	</script>
+</body>
+</html>

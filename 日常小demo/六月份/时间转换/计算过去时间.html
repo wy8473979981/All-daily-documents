@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//计算下载以过时间
+		timer();
+
+		function timer() {
+			var currentTime = getNowDate(new Date());
+			$.each(downlist, function(index, item) {
+				var timeJson = DateDiff(getNowDate(item.downtime), currentTime);
+				if(timeJson.Days != 0) {
+					$("#" + item.id).html(timeJson.Days + "天前");
+				} else if(timeJson.Hours != 0) {
+					$("#" + item.id).html(timeJson.Hours + "小时前");
+				} else if(timeJson.Minutes != 0) {
+					$("#" + item.id).html(timeJson.Minutes + "分钟前");
+				}
+			})
+		}
+
+		function DateDiff(sDate1, sDate2) {
+
+			var oDate1 = new Date(sDate1.replace(" ", "T")).getTime();
+			var oDate2 = new Date(sDate2.replace(" ", "T")).getTime();
+
+			var timeSpan = {};
+			var TotalMilliseconds = Math.abs(oDate1 - oDate2); //相差的毫秒数
+			timeSpan.Days = parseInt(TotalMilliseconds / 1000 / 60 / 60 / 24); //相差的天数
+			timeSpan.TotalHours = parseInt(TotalMilliseconds / 1000 / 60 / 60); //相差的小时
+			timeSpan.Hours = timeSpan.TotalHours % 24;
+			timeSpan.TotalMinutes = parseInt(TotalMilliseconds / 1000 / 60);
+			timeSpan.Minutes = timeSpan.TotalMinutes % 60;
+			timeSpan.TotalSeconds = parseInt(TotalMilliseconds / 1000);
+			timeSpan.Seconds = timeSpan.TotalSeconds % 60;
+			timeSpan.TotalMilliseconds = TotalMilliseconds;
+			timeSpan.Milliseconds = TotalMilliseconds % 1000;
+			return timeSpan;
+		}
+
+		function getNowDate(date) {
+			var myDate = new Date(date);
+			var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+			var month = myDate.getMonth(); //获取当前月份(0-11,0代表1月)
+			var day = myDate.getDate(); //获取当前日(1-31)
+			var hour = myDate.getHours();
+			var minute = myDate.getMinutes();
+			var second = myDate.getSeconds(); //秒
+			var time = formate(year) + "-" + formate(month + 1) + "-" + formate(day) + " " + formate(hour) + ":" + formate(minute) + ":" + formate(second);
+			return time;
+		}
+
+		function formate(myDate) {
+			return myDate > 9 ? myDate : '0' + myDate;
+		}
+	</script>
+
+</html>

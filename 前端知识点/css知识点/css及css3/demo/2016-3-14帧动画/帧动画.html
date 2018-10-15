@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="帧动画.css"/>
+	</head>
+	<body>
+		
+		<div class="box" id="box">
+			<div class="one">
+				
+			</div>
+		</div>
+		
+		
+		<a class="xfast" href="#none">最快</a>
+		<a class="fast" href="#none">快</a>
+		<a class="normal" href="#none">正常</a>
+		<a class="slow" href="#none">慢</a>
+		<button class="paused">暂停</button>
+		
+		
+	</body>
+	<script src="../jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){    
+        $("a").on("click",function(e){
+            $("#box").find(".box").removeClass("paused");
+            $("#box").attr("class",$(this).attr("class"));
+            console.log($(this).attr("class"));
+        })
+         $("button").on("click",function(e){
+            $("#box").attr("class",$(this).attr("class"));
+        })
+        
+    })
+	</script>
+</html>

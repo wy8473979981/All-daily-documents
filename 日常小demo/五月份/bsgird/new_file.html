@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<input type="text" value="" class="input" placeholder="1111" />
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".input").on("blur", function() {
+				$(this).css({
+					"background-color": "red"
+				})
+			});
+		});
+	</script>
+	<script type="text/javascript">
+	var p =  [{
+		"id": "001",
+		"open": true,
+		"level": "1",
+		"font": "{'font-weight':'bold'}",
+		"name": "ROOT",
+		"isParent": true,
+		"children": [],
+		"parentid": "0",
+		"url": "",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "002",
+		"open": true,
+		"level": "2",
+		"font": "{'font-style':'italic'}",
+		"name": "?3??????????",
+		"isParent": true,
+		"children": [],
+		"parentid": "001",
+		"url": "",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "003",
+		"open": true,
+		"level": "2",
+		"font": "{'font-style':'italic'}",
+		"name": "?????°??????",
+		"isParent": true,
+		"children": [],
+		"parentid": "001",
+		"url": "",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "004",
+		"open": false,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "??¨??·??????",
+		"isParent": false,
+		"children": [],
+		"parentid": "002",
+		"url": "http://www.baidu.com",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "005",
+		"open": false,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "è§?è?2??????",
+		"isParent": false,
+		"children": [],
+		"parentid": "002",
+		"url": "http://www.ztree.me/v3/api.php",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "006",
+		"open": false,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "??????????-???????",
+		"isParent": false,
+		"children": [],
+		"parentid": "003",
+		"url": "https://123.sogou.com/",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "007",
+		"open": false,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "???é???????????",
+		"isParent": false,
+		"children": [],
+		"parentid": "003",
+		"url": "https://www.sogou.com/",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "008",
+		"open": false,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "???????????ˉ??????",
+		"isParent": false,
+		"children": [],
+		"parentid": "003",
+		"url": "http://www.baidu.com",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "009",
+		"open": true,
+		"level": "3",
+		"font": "{'background-color':'black', 'color':'white'}",
+		"name": "é????￥??-???",
+		"isParent": true,
+		"children": [],
+		"parentid": "003",
+		"url": "",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "010",
+		"open": false,
+		"level": "4",
+		"font": "{'color':'red'}",
+		"name": "??????",
+		"isParent": false,
+		"children": [],
+		"parentid": "009",
+		"url": "http://www.baidu.com",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "011",
+		"open": false,
+		"level": "4",
+		"font": "{'color':'red'}",
+		"name": "èμ??????????",
+		"isParent": false,
+		"children": [],
+		"parentid": "009",
+		"url": "http://www.baidu.com",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}, {
+		"id": "012",
+		"open": false,
+		"level": "4",
+		"font": "{'color':'blue'}",
+		"name": "?′???¨??-???",
+		"isParent": false,
+		"children": [],
+		"parentid": "009",
+		"url": "http://www.baidu.com",
+		"prices": "",
+		"price": "",
+		"taxprice": "",
+		"taxcount": "",
+		"count": "0"
+	}]
+	
+
+	console.log(p[0].id);
+	</script>
+
+</html>

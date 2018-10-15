@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<select name="cars" id="select_id">
+
+			<option value="volvo">Volvo</option>
+			
+			<option value="saab">Saab</option>
+			
+			<option value="fiat">Fiat</option>
+			
+			<option value="audi">Audi</option>
+			
+		</select>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var p = "3";
+		console.log(p)
+		$('#select_id')[0].selectedIndex = p;
+	</script>
+
+</html>

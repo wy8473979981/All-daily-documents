@@ -1,0 +1,175 @@
+
+3、盒的类型：
+	在css3中使用display来定义盒的类型，总体来说盒分为block类型和inline类型
+	举例：div  span
+	1、inline-block类型
+		属于block类型中的一种
+		举例：修改div样式、添加一个div添加高度值进行对比
+		使用inline-block类型执行分列显示
+		我们一般使用float属性或者position属性来在一行中并列显示多个block类型的元素，使用inline-block可以将此需求变得更加简单
+		float可以配合clear属性清楚浮动(3个div的父元素定义宽度为一个固定宽度)
+	2、inline-table
+		实例：使用tanble元素的实例，前后都有文字将其围绕
+	3、list-item
+		可以将多个元素作为列表显示，并且添加标记
+		一般是配合list-style-type: circle;这个来使用，以便达到无序列表的样式
+		disc：实心圆 circle：空心圆  square：实心方块
+	4、run-in类型和compact类型（只在ie中显示，不做测试）
+		将元素指定为run-in类型或者compact类型时，如果元素后面还有block类型的元素，run-in类型
+		的那个元素将被包括在后面的block类型的元素的内部，而compact类型的元素将被放置在block
+		类型的元素左边
+	5、none类型
+4、弹性盒(注意兼容性写法)
+	1、使用自适应窗口的弹性盒布局
+	在css3中添加一个box-flex属性，使得我们的盒布局变成弹性盒布局就可以了
+	eg:给父元素设置display:box,给子元素添加box-flex
+	2、改变元素的显示排序
+	可以通过box-ordinal-group属性来改变各个元素的显示顺序，在每个元素中加入该属性，
+	这个属性使用一个表示序号的正数属性值，浏览器在显示的时候根据序号从小到大来显示这些元素
+	
+	3、改变元素的排列方向
+	在使用弹性盒的时候，可以通过box-orient来指定多个元素的排列方向
+	horizontal水平从左到右排列子元素
+	vertical从上向下垂直排雷子元素
+	4、元素的宽度与高度自适应
+	在使用盒布局的时候，元素的宽高具有自适应性，
+	就是元素的宽度与高度可以根据排列方向的改变而改变
+	5、指定水平或者垂直方向的对齐方式
+	使用盒布局的时候，可以使用box-pack属性及box-align属性来指定元素中的文字、图像、
+	以及子元素的水平方向或者垂直方向上的对其方式
+	
+	6、box-sizing指定针对元素的宽度与高度的计算方法
+	注：一般在给元素添加边框的时候注意去使用它，它的默认值是content-box,咱们可以
+	设置其属性值为border-box去避免多出的边框像素
+5、媒体查询
+	1、写法：E1,E2表示的是我们的选择器，sRules表示的是该选择器的属性的组合
+			@media screen(max-width:400px){
+				E1{sRules}
+				E2{sRules}
+			}
+			@media screen(min-width:1200px){
+				E1{sRules}
+				E2{sRules}
+			}
+			@media screen(min-width:400px) and (max-width:1200px){
+				E1{sRules}
+				E2{sRules}
+			}
+			/*landscape宽度大于高度:横屏*/
+			@media (orientation :landscape){
+				E1{sRules}
+			}
+			/*portrait高度大于宽度:竖屏*/
+			@media (orientation :portrait){
+				E1{sRules}
+			}
+			
+			注意点：如果需要通过浏览器动态改变宽度来设置样式的时候，咱们时通过
+				body.onresize = function(){
+					screenWidth = body.offsetWidth;//注意兼容性的写法
+					//回顾文档：js获取浏览器宽度.txt
+					if(screenWidth<800){
+						//动态改变元素的样式
+					}else{
+						//动态改变元素的样式
+					}
+				}
+			
+			
+	2、less
+		1、变量
+			eg:@color:#f66;
+				.div{
+					color:@color;
+				}
+		2、混合
+			eg:   .bordered{
+					border:1px solid @color;
+					}
+				.div{
+					.bordered;
+				}
+
+		3、带参数的混合
+			eg: .borderRadius(@radius){
+				border-randius:@radius;
+			}
+			
+			.div{
+				.borderRadius(10px);
+			}
+		4、arguments变量
+			.boxShadow(@x:0,@y:0,@blur:0,@color:#000){
+				box-shadow:@arguments;
+			}
+			.div{
+				.boxShadow(2px 5px 5px #f66);
+			}
+			注：arguments中定义函数的时候参数需要用“，”隔开，但是在调用的不需要用“，”隔开，切记在函数内部写属性值的时候，写成@arguments。
+		5、饱和度降低desaturate(color,percent)
+			eg:@color:#f66;
+			.div{
+				color:desaturate(@color,10%);
+			}
+		6、亮度的变化
+			eg:
+			写函数
+				//变暗
+				.mimin(dark,@color){
+					color:darken(@color,10%);
+				}
+				//变亮
+				.mimin(light,@color){
+					color:lighten(@color,10%);
+				}
+				.mimin(@_,@color){
+					display:block;
+				}
+			调用函数
+			.div{
+				.mimin(dark,#f66);
+			}
+		7、传一个颜色值，通过亮度去执行不同的样式
+			eg:
+			写函数：
+			.mixin (@a) when (lightness(@a) >= 50%) {
+			  background-color: black;
+			}
+			.mixin (@a) when (lightness(@a) < 50%) {
+			  background-color: white;
+			}
+			.mixin (@a) {
+			  color: @a;
+			}
+			
+			调用：
+			.div{
+				.mixin(#777777);
+			}
+	总结：
+		1、切记不是直接写css文件，你通过编辑less文件，可以自动生成css文件；
+		2、当我们需要添加属性选择器或者给当前元素添加样式的时候，需要用&打头，切记前后不要使用“,”;
+			eg1:
+			div{
+				&:hover{
+					E{sRules}
+				}
+			}
+			css：
+			div:hover{
+			
+			}
+			eg2:
+			div{
+				&.oDiv{
+					E{sRules}
+				}
+			}
+			css：
+			div.oDiv{
+				E{sRules}
+			}
+			html:
+			<div class="oDiv"></div>
+		
+		

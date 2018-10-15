@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5", // 指定生成后ES版本 
+    "module": "commonjs", // 指定模块类型，这包括：commonjs、amd、system、umd、es2015
+    "moduleResolution": "node", // 模块解析方式，node（也叫node.js）表示使用 import 或 export 来操作模块
+    "sourceMap": true, // 是否生成sourceMap
+    "emitDecoratorMetadata": true, // 支持带有装饰器的声明生成元数据
+    "experimentalDecorators": true, // 支持注解
+    "removeComments": false, // 移除注释
+    "noImplicitAny": false // 当编译器不能根据变量的使用来推断变量类型时，直接默认为 any 类型
+  },
+  // 排除不编译的目录
+  "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
+  ]
+}

@@ -1,0 +1,124 @@
+@charset "utf-8";
+html{
+	font-size: 62.5%;
+}
+.clearfix{
+	clear: both;
+}
+ul,li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.header{
+	position: fixed;
+	left:0;
+	right: 0;
+	height: 4.4rem;
+	border-bottom: 1px solid #f66;
+	background-color: #f66;
+	box-shadow: 0 1px 1px #000;
+	display: -webkit-box;
+	display: -moz-box;
+	color: #fff;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	z-index: 9999 !important;
+}
+.header .back,.header .tipInfo{
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-box-flex: 1;
+	box-flex: 1;
+	line-height: 4.4rem;
+}
+.header .back{
+	text-align: left;
+}
+.header .tipInfo{
+	text-align: right;
+}
+.header .titleName{
+	text-align: center;
+	line-height: 4.4rem;
+	font-size: 2.4rem;
+	-webkit-box-flex: 4;
+	-moz-box-flex: 4;
+	-ms-box-flex: 4;
+	box-flex: 4;
+}
+.headerTop{
+	height:4.5rem;
+}
+
+
+.banner{
+	max-height: 25rem;
+}
+@media(min-width: 450px){
+	min-height: 35rem;
+}
+.menuList{
+	display: -webkit-box;
+	background-color: #fff;
+	margin-top: 1rem;
+}
+.menuList figure{
+	display: block;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-ms-box-flex: 1;
+	box-flex: 1;
+	padding: 1rem;
+	margin: 0;
+}
+.menuList figure img{
+	width: 100%;
+}
+.menuList figure figcaption{
+	width: 100%;
+	display: block;
+	font-size: 1.4rem;
+	text-align: center;
+	color: #f66;
+	font-family: "黑体";
+}
+
+
+.userMessage{
+	background-color: #fff;
+	margin-top: 1rem;
+}
+.userMessage h1{
+	padding: 0.5rem 1.5rem;
+	font-size: 2.2rem;
+	color: #f66;
+}
+
+.userMessage .messageList{
+	padding-left: 1.6rem;
+}
+.newList{
+	margin-top: 1rem;
+}
+.newList li{
+	background-color: #fff;
+	margin-bottom: 0.5rem;
+}
+.newList li figure{
+	padding: 0;
+	margin: 0;
+}
+.newList li figure img{
+	width: 100%;
+}
+.newList li figure figcaption{
+	padding: 0.5rem 1rem;
+}
+.newList li figure figcaption h3{
+	color: #f66;
+	font-size: 1.8rem;
+}
+.newList li figure figcaption p{
+	color: #333;
+}

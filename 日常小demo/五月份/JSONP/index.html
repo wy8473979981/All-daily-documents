@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="divCustomers"></div>
+		
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			function callbackFunction(result, methodName) {
+				var html = '<ul>';
+				for (var i = 0; i < result.length; i++) {
+					html += '<li>' + result[i] + '</li>';
+				}
+				html += '</ul>';
+				document.getElementById('divCustomers').innerHTML = html;
+			}
+		</script>
+		<script type="text/javascript" src="http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"></script>
+</html>

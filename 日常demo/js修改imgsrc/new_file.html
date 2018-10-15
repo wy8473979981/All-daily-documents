@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="class">
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+			<img src="weinxin_green.png" alt="" />
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var img = document.getElementsByClassName("class")[0].getElementsByTagName("img");
+		var imgLength = img.length;
+		for(var i=0;i<imgLength;i++){
+			console.log(img[i].getAttribute("src"));
+			img[i].setAttribute("src", "smile.png");
+		}
+		
+	</script>
+
+</html>

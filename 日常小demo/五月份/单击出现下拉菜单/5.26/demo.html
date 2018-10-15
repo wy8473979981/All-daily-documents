@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="keywords" content="站长,网页特效,js特效,js脚本,脚本,广告代码,zzjs,zzjs.net,sky,www.zzjs.net,站长特效 网" />
+<meta name="description" content="www.zzjs.net,站长特效网，站长必备js特效及广告代码。大量高质量js特效，提供高质量广告代码下载,尽在站长特效网" />
+<title></title>
+<style type="text/css">
+body{margin:20px auto;font-family:Arial,Helvetica,sans-serif;font-size:12px;width:950px;height:400px;border:solid 1px #aaa;position:relative;padding:10px;}
+ul{margin:0;padding:0;list-style:none;}
+.dropDownList{position:absolute;left:100px;top:100px;}
+/*.dropDownList div.dropdown select{display:none;}*/
+.dropDownList div.dropdown{float:left;margin-right:50px;width:200px;}
+.dropDownList span{display:block;width:146px;height:26px;background:url(/img/select_20100906.gif) left top no-repeat;line-height:26px;text-indent:12px;border:solid 1px #83BBD9;cursor:default;}
+.dropDownList span.over{background-position:left bottom;border-color:#B4C91A;}
+	.dropDownList ul{background:#eee;width:200px;display:none;}
+		.dropDownList ul li{height:20px;width:100%;padding:3px 0;text-indent:12px;cursor:default;}
+		.dropDownList ul li.over{background:#ccc;}
+	.dropDownList ul.show{display:block;}
+</style>
+</head>
+<body>
+
+<!--欢迎来到站长特效网，我们网站收集大量高质量js特效，提供许多广告代码下载，网址：www.zzjs.net，zzjs@msn.com,用.net打造靓站-->
+<!--<script type="text/javascript" src="http://www.zzjs.net/ad/tc.js"></script>-->
+<form action="#" method="get">
+<div class="dropDownList">
+	<div id="dropDownList1" class="dropdown">
+		<select name="birthday">
+			<option>生日</option>
+			<option>1985</option>
+			<option>1986</option>
+			<option>1987</option>
+			<option>1988</option>
+			<option>1989</option>
+		</select>
+		<span>请选择生日</span>
+		<ul></ul>
+	</div>
+	<div id="dropDownList2" class="dropdown">
+		<select name="sex">
+			<option>性别</option>
+			<option>男</option>
+			<option>女</option>
+		</select>
+		<span>请选择性别</span>
+		<ul></ul>
+	</div>
+	<div id="dropDownList3" class="dropdown">
+		<select name="student">
+			<option>学历</option>
+			<option>小学</option>
+			<option>初中</option>
+			<option>高中</option>
+			<option>大学</option>
+		</select>
+		<span>请选择学历</span>
+		<ul></ul>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+var ____configArray;
+function __initDropDownList(configArray){
+	//获取Select菜单
+	____configArray=configArray;
+	var existArray=configArray.split("|");
+	for(var i=0;i<existArray.length;i++){
+		if(existArray[i].length<1){return;}
+		//根据参数分别获取div，并分别添加事件
+		var parentContainer=document.getElementById(existArray[i]);
+		if(!parentContainer){return;}
+		//获取下面的select，且获取其中的option
+		var selectObj=parentContainer.getElementsByTagName("select");
+		if(selectObj.length<1){return;}
+		var optionArray=selectObj[0].getElementsByTagName("option");
+		//获取option，并分别添加到各个li
+		var optionLength=optionArray.length;
+		for(var j=0;j<optionLength;j++){
+			//获取ul，以便能够添加项目
+			var ulObj=parentContainer.getElementsByTagName("ul");
+			if(ulObj.length<1){return;}
+			//获取span，以便能显示当前选择的项目
+			var spanObj=parentContainer.getElementsByTagName("span");
+			if(spanObj.length<1){return;}
+			var liObj=document.createElement("li");
+			var textNode=document.createTextNode(optionArray[j].firstChild.nodeValue)
+			liObj.appendChild(textNode);
+			liObj.setAttribute("currentIndex",j);
+			//给每个liObj添加事件
+			liObj.onclick=function(){
+				selectCurrentItem(this.parentNode,this);
+			}
+			liObj.onmouseover=function(){this.className="over";}
+			liObj.onmouseout=function(){this.className="";}
+			ulObj[0].appendChild(liObj);
+			spanObj[0].onclick=function(event){
+				//如果当前是显示的，就隐藏，反之亦然
+				showHiddenUl(this);
+			}
+			spanObj[0].onmouseover=function(){this.className='over';}
+			spanObj[0].onmouseout=function(){this.className="";};
+			ulObj[0].onclick=function(){this.className="";}
+		}
+		parentContainer.onclick=function(event){
+			if(!event){event=window.event;}
+				//阻止事件冒泡
+				event.cancelBubble=true;
+				var eventUlObj=this.getElementsByTagName("ul")[0];
+				bodyClickHiddenUl(eventUlObj);
+		}
+	}
+}//欢迎来到站长特效 网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+function selectCurrentItem(ulObj,currentObj){
+	var parentObj=ulObj.parentNode;
+	var spanObj=parentObj.getElementsByTagName("span")[0];
+	spanObj.firstChild.nodeValue=currentObj.firstChild.nodeValue;
+	var selectObj=parentObj.getElementsByTagName("select")[0];
+	selectObj.selectedIndex=parseInt(currentObj.getAttribute("currentIndex"));
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特 集大量高质量js代码，还有许多广告代码下载。
+function showHiddenUl(currentObj){
+	var parentNode=currentObj.parentNode;
+	var ulObj=parentNode.getElementsByTagName("ul")[0];
+	if(ulObj.className==""){
+		ulObj.className="show";
+	}else{
+		ulObj.className="";
+	}
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+//点击body区域（非“下拉菜单”）隐藏菜单
+function addBodyClick(func) {
+	var bodyObj=document.getElementsByTagName("body")[0];
+	var oldBodyClick = bodyObj.onclick;
+		if (typeof bodyObj.onclick != 'function') {
+			bodyObj.onclick = func;
+		} else {
+			bodyObj.onclick = function() {
+			oldBodyClick();
+			func();
+		}
+	}
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集 大量高质量js代码，还有许多广告代码下载。
+//隐藏所有的UL
+function bodyClickHiddenUl(eventUlObj){
+	var existArray=____configArray.split("|");
+	for(var i=0;i<existArray.length;i++){
+		if(existArray[i].length<1){return;}
+		//寻找所有UL并且隐藏
+		var parentContainer=document.getElementById(existArray[i]);
+		if(!parentContainer){return;}
+		var ulObj=parentContainer.getElementsByTagName("ul");
+		if(eventUlObj!=ulObj[0]){
+			ulObj[0].className="";
+		}
+	}
+}//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有 许多广告代码下载。
+var __dropDownList="dropDownList1|dropDownList2|dropDownList3";
+__initDropDownList(__dropDownList);
+//添加这个可以确保点击body区域的时候也可以隐藏菜单
+addBodyClick(bodyClickHiddenUl);
+</script>
+</body>
+</html>

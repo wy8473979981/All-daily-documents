@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<style type="text/css">
+			.box {
+				width: 800px;
+				height: 400px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on 左侧
+</button>
+
+			<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on 顶部
+</button>
+
+			<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on 底部
+</button>
+
+			<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Popover on 右侧
+</button>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function () {
+			 $('[data-toggle="popover"]').popover();
+		})
+	</script>
+</html>

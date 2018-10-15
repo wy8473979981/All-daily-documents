@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0px;
+				height:0px;
+				
+			}
+			.stage{
+				width:500px;
+				height:500px;
+				margin:100px auto 0;
+				border:1px solid #C0A16B;
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-transform: perspective(800);
+				-moz-transform: perspective(800);
+				-ms-transform: perspective(800);
+				-o-transform: perspective(800);
+				transform: perspective(800);
+				position:relative;
+			}
+			.flat{
+				width:400px;
+				height:200px;
+				font-size: 120px;
+				text-align: center;
+				line-height: 200px;
+				background-color: rgba(255,0,0,0.5);
+				border:1px solid #000099;
+				position: absolute;
+				top:30%;
+				left:10%;
+			}
+			.flat-two{
+				width:200px;
+				height:200px;
+				font-size: 120px;
+				text-align: center;
+				line-height: 200px;
+				background-color: rgba(255,0,0,0.5);
+				border:1px solid #000099;
+				position: absolute;
+				top:30%;
+				left:10%;
+			}
+			.before{
+				background: rbga(255,255,255,0.5);
+				-webkit-transform: translateZ(100px) ;
+				-moz-transform: translateZ(100px) ;
+				-ms-transform: translateZ(100px) ;
+				-o-transform: translateZ(100px);
+				transform: translateZ(100px) ;
+			}
+			.after{
+				background: #00CCCC;
+				-webkit-transform: translateZ(-100px) rotateY(180deg);
+				-moz-transform: translateZ(-100px) rotateY(180deg);
+				-ms-transform: translateZ(-100px) rotateY(180deg);
+				-o-transform: translateZ(-100px)  rotateY(180deg);
+				transform: translateZ(-100px) rotateY(180deg);
+			}
+			.left{
+				background: #C7254E;
+				-webkit-transform: translateX(-100px) rotateY(-90deg) ;
+				-moz-transform: translateX(-100px) rotateY(-90deg) ;
+				-ms-transform: translateX(-100px) rotateY(-90deg) ;
+				-o-transform: translateX(-100px) rotateY(-90deg) ;
+				transform: translateX(-100px) rotateY(-90deg) ;
+			}
+			.right{
+				background: #31708F;
+				-webkit-transform: translateX(300px) rotateY(90deg) ;
+				-moz-transform: translateX(300px) rotateY(90deg) ;
+				-ms-transform: translateX(300px) rotateY(90deg) ;
+				-o-transform: translateX(300px) rotateY(90deg) ;
+				transform: translateX(300px) rotateY(90deg) ;
+			}
+			.top{
+				background: #00FF00;
+				-webkit-transform: translateY(-100px) rotateX(90deg) ;
+				-moz-transform: translateY(-100px) rotateX(90deg) ;
+				-ms-transform: translateY(-100px) rotateX(90deg) ;
+				-o-transform: translateY(-100px) rotateX(90deg) ;
+				transform: translateY(-100px) rotateX(90deg) ;
+			}
+			.bottom{
+				background: #00CCCC;
+				-webkit-transform: translateY(100px) rotateX(-90deg) ;
+				-moz-transform: translateY(100px) rotateX(-90deg) ;
+				-ms-transform: translateY(100px) rotateX(-90deg) ;
+				-o-transform: translateY(100px) rotateX(-90deg) ;
+				transform: translateY(100px) rotateX(-90deg) ;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="stage">
+			<div class="flat before">前</div>
+			<div class="flat after">后</div>
+			<div class="flat-two left">左</div>
+			<div class="flat-two right">右</div>
+			<div class="flat top">上</div>
+			<div class="flat bottom">下</div>
+		</div>
+		
+		
+	</body>
+</html>

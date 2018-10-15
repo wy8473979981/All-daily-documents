@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟</title>
+		<style type="text/css">
+			body{
+				background-color: #ccc;
+			}
+			#canvas{
+				display: block;
+				margin:100px auto 0;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext('2d');//上下文；绘图的轨迹
+		
+		//画圆
+		/*ctx.beginPath();
+		ctx.fillStyle = 'blue';
+		ctx.arc(250,250,200,0,360,false);
+		ctx.stroke();//绘制边框
+		ctx.fill();
+		ctx.closePath();*/
+		
+		//画线
+		/*ctx.beginPath();
+		ctx.lineWidth = 10;
+		ctx.moveTo(10,200);
+		ctx.lineTo(300,200);
+		ctx.stroke();*/
+		
+		/*ctx.beginPath();
+		ctx.closrPath();*/
+		
+		
+		function draw(){
+			ctx.clearRect(0,0,500,500);
+				//一、 表盘
+			ctx.beginPath();
+			ctx.lineWidth = 5;
+			ctx.strokeStyle = 'blue';
+			ctx.arc(250,250,200,0,Math.PI*2,true);
+			ctx.stroke();
+			ctx.closePath();
+			//如何和本地时间挂钩
+			var now = new Date();
+			var sec = now.getSeconds();
+			var min = now.getMinutes();
+			var hour = now.getHours();
+			sec = sec + sec/60;
+			hour = hour + min/60;
+			hour = hour > 12 ? hour - 12:hour;
+			
+			
+			
+			//二、分刻度时刻度
+			for(var i = 0 ; i< 60; i++){
+				ctx.save();
+				ctx.translate(250,250);//移动到画布中心点，以此为中心坐标
+				ctx.rotate(6*i*Math.PI/180);
+				ctx.strokeStyle = 'white';
+				ctx.beginPath();
+				ctx.moveTo(0,-180);
+				ctx.lineTo(0,-190);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.restore();
+			}
+			for(var i = 0 ; i< 12; i++){
+				ctx.save();
+				ctx.translate(250,250);//移动到画布中心点，以此为中心坐标
+				ctx.rotate(30*i*Math.PI/180);
+				ctx.strokeStyle = 'red';
+				ctx.beginPath();
+				ctx.moveTo(0,-170);
+				ctx.lineTo(0,-190);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.restore();
+			}
+			//三时针
+			ctx.save();
+			ctx.strokeStyle = 'yellow';
+			console.log('黄色为时针');
+			ctx.translate(250,250);
+			ctx.rotate(30*hour*Math.PI/180);//转弧度
+			ctx.beginPath();
+			ctx.moveTo(0,-100);
+			ctx.lineTo(0,20);
+			ctx.stroke();
+			ctx.closePath();
+			ctx.restore();
+			//分针
+			ctx.save();
+			ctx.strokeStyle = '#33ff00';
+			console.log('绿色为分针');
+			ctx.lineWidth = 7;
+			ctx.translate(250,250);
+			ctx.rotate(min*6*Math.PI/180);//转弧度
+			ctx.beginPath();
+			ctx.moveTo(0,-130);
+			ctx.lineTo(0,20);
+			ctx.stroke();
+			ctx.closePath();
+			ctx.restore();
+			
+			//秒针
+			ctx.save();
+			ctx.strokeStyle = 'red';
+			console.log('红色为秒针');
+			ctx.lineWidth = 3;
+			ctx.translate(250,250);
+			ctx.rotate(sec*6*Math.PI/180);//转弧度
+			ctx.beginPath();
+			ctx.moveTo(0,-150);
+			ctx.lineTo(0,20);
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.fillStyle = "gray";
+			ctx.arc(0,0,5,0,360,false);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.arc(0,-130,5,0,360,false);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			
+			
+			ctx.beginPath();
+			ctx.fillStyle = "green";
+			ctx.arc(0,-120,10,0,360,false);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.restore();
+		}
+		setInterval(draw,1);
+		
+		
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>canvas粒子动画</title>
+		<style type="text/css">
+			body{
+				background-color: #000000;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//4.将“粒子“定义为类，并将产生的粒子保存在一个数组中。
+ var	canvas = document.createElement( 'canvas' ),
+ context = canvas.getContext( '2d' );
+ var canvasWidth = window.innerWidth; 
+ canvasHeight = window.innerHeight;
+ //初始化一个数组
+ var particles = [];
+
+  init();
+
+ function init() { 
+  document.body.appendChild(canvas); 
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  setInterval(loop, 1000/30);
+  }
+
+ function loop(){ //重点是这个方法了。
+  // 清除canvas中的内容 
+  context.fillStyle = "rgba(0,0,0,0.1)";
+  context.fillRect(0,0, canvasWidth, canvasHeight);
+
+   //随机产生一个粒子
+   var particle = new Particle(Math.random()*canvasWidth, Math.random()*canvasHeight);
+   particles.push(particle); //加入数组
+
+   // 绘制数组中的每一个粒子
+   for (i=0; i<particles.length; i++) {
+     var particle = particles[i]; 
+     particle.render(context); 
+  }
+
+ }
+
+   //粒子类
+  function Particle (xPos, yPos) { 
+    this.xPos = xPos;//中心X坐标
+    this.yPos = yPos; //中心Y坐标
+
+    this.render = function(c){
+      // set the color of the fill
+      c.fillStyle = "rgba(255, 255, 255, .1)";
+      // draw a circle of the required size
+      c.beginPath();
+      c.arc(this.xPos, this.yPos, 20, 0, Math.PI*2, true);
+      // and fill it
+      c.fill(); 
+   }
+  }
+		</script>
+	</body>
+</html>

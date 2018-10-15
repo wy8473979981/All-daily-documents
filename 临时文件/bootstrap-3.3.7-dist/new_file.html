@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+	</head>
+	<body>
+		<button type="button" id="myButton" data-loading-text="请稍后。。。">按钮</button>
+		
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#myButton').on('click', function () {
+		  var $btn = $(this).button('请稍后。。。');
+		})
+	</script>
+</html>

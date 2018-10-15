@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="fileDemo" id="fileDemo" value="" /> <!--如果限制用户选择的类型，可以使用accept=""-->
+		<input type="button" name="btn" id="btn" value="获取文件的信息" />
+		<p id="msg"></p>
+	</body>
+	<script type="text/javascript">
+		
+		var btn = document.getElementById("btn");
+		var msg = document.getElementById("msg");
+		btn.onclick = function(){
+			//1、获取文件列表
+			var fileDemo = document.getElementById("fileDemo").files[0];
+			var fileName = fileDemo.name;//文件名称
+			var fileType = fileDemo.type;//文件类型
+			//文件大小，单位为B，如果需要进行转化为KB，则除以1024，如果需要取小数点后几位n,那么就用a.toFixed(n);
+//			var fileSize = fileDemo.size;
+			//单位就为KB
+//			var fileSize = fileDemo.size/1024;
+			var fileSize = (fileDemo.size/1024).toFixed(2);//小数点后保留2位---四舍五入
+			//文件的最后修改日期
+//			var fileLastModifiedDate = fileDemo.lastModifiedDate;
+			//时间的格式转化
+			var fileLastModifiedDate = fileDemo.lastModifiedDate.toLocaleDateString()+fileDemo.lastModifiedDate.toLocaleTimeString();
+			//alert(fileDemo.name+"--"+fileDemo.type+"--"+(fileDemo.size/1024).toFixed(1)+"KB--"+fileDemo.lastModifiedDate.toLocaleDateString()+" "+fileDemo.lastModifiedDate.toLocaleTimeString());
+			if(!(/image\/\w+/.test(fileType))){
+				msg.innerHTML = "请选择图片,当前的文件类型为:"+fileType;
+			}else{
+				if(fileSize >10){
+					msg.innerHTML = "文件过大，请选择10KB以下的图片";
+				}else{
+					msg.innerHTML = fileName+"<br>"+fileType+"<br>"+fileSize+"KB<br>"+fileLastModifiedDate;
+				}
+			}
+			
+			
+			
+		}
+		
+	</script>
+</html>

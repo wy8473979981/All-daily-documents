@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="fileDemo" id="fileDemo" value="" multiple=""/>
+		<input type="button" id="btn" value="提交分析文件信息" onclick="getFileInfo()"/>
+		<p id="msg"></p>
+	</body>
+	<script type="text/javascript">
+	
+		
+		/*function getFileInfo(){
+				var file = document.getElementById("fileDemo").files[0];
+//				alert("文件类型："+file.type+"文件大小："+file.size+"文件名称"+file.name+"文件的最后修改日期："+file.lastModifiedDate);
+				msg.innerHTML =  "文件类型："+file.type+"<br>文件大小："+file.size+"<br>文件名称"+file.name+"<br>文件的最后修改日期："+file.lastModifiedDate;
+		}*/
+		
+		function getFileInfo(){
+			var files = document.getElementById("fileDemo").files;
+			var oLength = files.length;
+			for(var i = 0;i<oLength;i++){
+				msg.innerHTML +=  "文件类型："+files[i].type+"<br>文件大小："+files[i].size+"<br>文件名称"+files[i].name+"<br>文件的最后修改日期："+files[i].lastModifiedDate;
+			}
+		}
+		
+	</script>
+</html>

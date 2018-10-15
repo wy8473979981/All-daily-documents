@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			绘制贝塞尔曲线（贝济埃、bezier） 
+context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y) 
+绘制二次样条曲线 
+context.quadraticCurveTo(qcpx,qcpy,qx,qy)
+ cp1x:第一个控制点x坐标
+    cp1y:第一个控制点y坐标
+    cp2x:第二个控制点x坐标
+    cp2y:第二个控制点y坐标
+    x:终点x坐标
+    y:终点y坐标
+    qcpx:二次样条曲线控制点x坐标
+    qcpy:二次样条曲线控制点y坐标
+    qx:二次样条曲线终点x坐标
+    qy:二次样条曲线终点y坐标
+		-->
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas")
+		var context = canvas.getContext("2d")
+		
+		context.bezierCurveTo(0,0,0,150,200,200);
+		context.bezierCurveTo(200,200,100,200,300,300);
+		/*context.quadraticCurveTo(100,200,300,300);*/
+		context.stroke();
+		
+		
+		
+	</script>
+</html>

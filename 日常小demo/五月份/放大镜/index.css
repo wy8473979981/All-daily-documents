@@ -1,0 +1,76 @@
+@charset "utf-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+ul,li{
+	list-style: none;
+}
+/*商品介绍开始*/
+.p01-l{
+	width:980px;
+	height:410px;
+	margin-top:15px;
+	border-bottom: 2px solid #ccc;
+	position:relative;
+	background-color: red;
+}
+/*放大镜效果开始*/
+.picIdBox{
+	float:left;
+	width:72px;
+	height:380px;
+}
+.picIdBox li{
+	width:70px;
+	height:70px;
+	cursor: pointer;
+	border:1px solid #ccc;
+}
+.picIdBox li img{
+	width:70px;
+	height:70px;
+}
+.p01-l .pic-box{
+    width: 350px;
+    height: 350px;
+ 	float:left;
+ 	margin-left:10px;
+    cursor: move;
+    border: 1px solid #ccc;
+    position:relative;
+}
+.p01-l .pic-box .smallCursor{
+    position: absolute;
+   	display: none;
+    width: 170px;
+    height: 170px;
+    border: 1px solid #0069CE;
+    background-color: #EAFFFF;
+    moz-opacity: 0.3;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+ .p01-l  .zoomBox{
+	position:absolute;
+	left:470px;
+	top:0px;
+	width:393px;
+	height:391px;
+	border:1px solid #ccc;
+	overflow: hidden;
+	/*display: none;*/
+}
+.zoomBox img{
+	position:absolute;
+	width:800px;
+	heihgt:800px;
+	left: 0;
+	top:0;
+}
+
+
+
+
+
+/*放大镜效果结束*/

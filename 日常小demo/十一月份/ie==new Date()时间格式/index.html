@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		在使用new Date()方法时，ie的 参数有一定的限制
+		var startTime = new Date($("#"+ start).val().replace(" ","T")).getTime();
+		var endTime = new Date($("#"+ end).val().replace(" ","T")).getTime();
+		
+		2010-06-09T15:20:00Z
+		6/9/2010 3:20 pm
+		2010 June 9
+		2010-06-09T15:20:00-07:00
+		2010-06-09T15:20:00Z
+		2010-06-09
+		
+		
+		
+		传入的格式不对，会返回 Invalid Date
+	</body>
+</html>

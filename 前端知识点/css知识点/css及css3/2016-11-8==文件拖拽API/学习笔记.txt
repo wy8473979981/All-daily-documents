@@ -1,0 +1,144 @@
+1、文件基本写法
+	<input type="file" name = "fileDemo" id= "fileDemo"/>
+	<input type="button" id="btn" value="提交分析文件信息" onclick="getFileInfo()"/>
+	<p id="msg"></p>
+	注：如果需要选取多个文件，则需要添加multiple属性
+	要限制选择文件的类型，不能用pattern，应该用accept
+	常用的文件类型：application/*,text/*,images/*,audio/*,video/*
+	如果是word文档，加入后缀为doc形式，类型为application/msword，如果后缀为docx，文件类型将会显示
+	如果需要验证选择的文件是否是图片，需要用到正则验证
+	！(/image\/\w+/.test(file.type))-----非图片
+
+	如果选择的是单个文件，获取文件对象的方法为
+	document.getElementById("file").files[0];
+	如果获取的是多个文件
+	document.getElementById("file").files;
+	通过for循环获取
+
+2、FileList对象：
+	注：它是File对象的一个集合
+	//获取选择的文件列表
+	var fileList = document.getElementById("fileDemo").files;
+	//获取单个文件
+	var fille= document.getElementById("fileDemo").files[0];
+3、File对象
+	继承自Blob对象，指向一个具体的文件，有两个属性值name和lastModifiedDate
+4、Blob对象
+	其实就是一个原始数据对象
+	它提供了slice方法可以读取原始数据中的某块数据。
+	另外有两个属性：size（数据的大小），type（数据的MIME类型）；
+5、FileReader对象
+	设计用来读取文件里面的数据
+	提供三个最常用的读取文件数据的方法，另外读取文件数据使用了异步的方式，非常高效。
+	传的参数均为Blob对象(你获取到的文件对象)
+	也就是说可以将一个图片的结果指向给一个img的src属性
+	通常来说的就是上传前预览图片
+	（课扩展的功能：上传预览并带裁剪功能（canvas的drawImage方法（9个参数哦）））
+
+		reader.readAsDataURL(resultFile);
+			传入一个Blob对象，读取内容可以做为URL属性，也就是说可以将一个图片的结果指向给一个img的src属性。 
+
+		reader.readAsBinaryString(resultFile);
+			传入一个Blob对象，然后读取数据的结果作为二进制字符串的形式放到FileReader的result属性中。
+			
+
+		reader.readAsText(resultFile,'gb2312');
+			第一个参数传入Blob对象，然后第二个参数传入编码格式，异步将数据读取成功后放到result属性中，读取的内容是普通的文本字符串的形式。（可以读取txt的文本信息，（实际上读的是文件类型为text/*的文件的信息，并且会自动解析部分文本））
+
+	注： 这些方法都是异步的方式读取数据，读取成功后就直接将结果放到属性result中。所以一般就是直接读取数据，然后监听此对象的onload事件，然后在事件里面读取result属性，再做后续处理。当然abort就是停止读取的方法。其他的就是事件和状态不再赘述。
+6、判断您的浏览器是否支持FileRender
+	请使用if(typeof FileReader == "undefined"){
+		alert("您老的浏览器不行了")
+	}
+
+7、选取文件提取文件信息
+	方法：var file = document.getElementById("fileDemo").files[0];
+	文件信息:
+		file.type--文件的类型
+		file.size--文件的大小
+		file.name--文件的名字
+		file.lastModifiedDate--文件的最后修改日期
+	eg：如果是多个文件的话，使用方法如下
+	<input type="file" name = "fileDemo" id= "fileDemo" multiple/>
+	var files = document.getElementById("fileDemo").files;
+		var oLength = files.length;
+		for(var i = 0;i<oLength;i++){
+			msg.innerHTML +=  "文件类型："+files[i].type+"<br>文件大小："+files[i].size+"<br>文件名称"+files[i].name+"<br>文件的最后修改日期："+files[i].lastModifiedDate;
+	}
+	注意：如果需要区分时图片还是非图片的话，可以使用正则表达式/image\/\w+/
+	使用test方法去匹配
+	eg：!(/image\/\w+/.test(fileList[i].type))----非图片
+8、读取文件内容，然后将文件内容直接读取到浏览器
+	function getDataUrl(){
+		var file = document.getElementById("fileDemo").files[0];
+		if(file){
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e){
+				var urlData = this.result;
+				document.getElementById("result").innerHTML = "<img src='" + urlData + "' alt='" + file.name + "' />";
+			}
+		}
+	}
+	测试readAsBinaryString与readAsText方法
+	
+	作业：
+	点击提交按钮时验证图片的大小，当图片大于300KB时，提示图片过大。并且不可以提交除了jpg与png格式以外的图片，否则提示请选择jpg与png的图片（在input中添加accept="image/*" ----只能添加图片，第一步筛选，剩下的格式在代码中验证）
+9、拖拽Api
+	过去我们想实现网页中的拖拽效果，基本上都是使用DOM事件模型中的mousedown、mousemove、mouseup的鼠标事件监听来模拟拖拽效果，为了实现实时的拖拽移动效果，还要不停地获取鼠标的坐标，不停的修改元素的位置，代码要堆很多，而且性能也很差，现在有了HTML5原生的Drag & Drop 拖拽事件，一切变得so easy~
+10、实现可拖放的步骤
+	1、将想要拖放的对象元素的draggable的属性设为true(draggable = "true")
+	2、编写与拖放有关的事件处理代码
+		事件		产生事件的元素		         		描述
+	dragstart		被拖放的元素。		       		开始拖放操作。
+	drag			被拖放的元素。		        	拖放过程中。
+	dragenter		拖放过程中鼠标经过的元素。  	被拖放的元素(鼠标)进入本元素的范围内。
+	dragover        拖放过程中鼠标经过的元素。   	被拖放的元素正在本元素范围内移动。
+	dragleave		拖放过程中鼠标经过的元素。   	被拖放的元素离开本元素的范围
+	drop			拖放的目标元素。	            有其他元素被拖放到了本元素中。
+	dragend			拖放的目标元素。                拖放操作结束。 
+11、注意事项
+	1、设置元素可拖放
+             <img draggable="true" />
+	2、拖动什么 - ondragstart 和 setData()
+
+	3、drag(event)，它规定了被拖动的数据
+
+	4、dataTransfer.setData() 方法设置被拖数据的数据类型和值，在dragStart的时候设置
+		 dataTransfer：数据传送
+		 数据类型是 "Text"，值是可拖动元素的 id ("drag1")。
+		 drop 事件的默认行为是以链接形式打开
+		function dragStart(ev) { ev.dataTransfer.setData("Text",ev.target.id); }，数据类型是 "Text"，值是可拖动元素的 id ("drag1")
+	拖拽文件列表对象：dataTransfer . files
+
+	5、放到何处 - ondragover
+	ondragover 事件规定在何处放置被拖动的数据
+	默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式ev.preventDefault();
+	6、进行放置 - ondrop
+	当放置被拖数据时，会发生 drop 事件
+
+
+	调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+	通过 dataTransfer.getData("Text") 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。
+	被拖数据是被拖元素的 id ("drag1")
+	把被拖元素追加到放置元素（目标元素）中
+12、模拟回收站功能
+	思路：
+	1、定义一个框作为回收站
+    2、给回收站绑定事件：ondrop="drop(event)"
+	function drop(ev)
+		{//不执行默认行为（拒绝被拖放）ev.preventDefault();
+		//获取自定义的数据格式var data=ev.dataTransfer.getData("Text");
+		ev.target.appendChild(document.getElementById(data));
+		info.innerHTML="<h2>--到回收站了--</h2>";
+	}
+    3、给回收站绑定事件：ondragover="allowDrop(event)"
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	4、一张图片 添加属性：draggable="true"设置函数ondragstart="drag(event)"
+	function drag(ev){
+		ev.dataTransfer.setData("Text",ev.target.id);
+		info.innerHTML="<h2>--正在拉近回收站的路上--</h2>";
+	}
+

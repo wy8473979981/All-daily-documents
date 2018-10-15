@@ -1,0 +1,10 @@
+*{
+	margin:0;
+	padding:0;
+}
+.box ul li{
+	width: 100%;
+	padding:1rem;
+	font-size:14px;/*px*/
+	background: #CCCC77;
+}

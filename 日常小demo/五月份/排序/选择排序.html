@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var numbers = [9,8,8,7,6,66,56,43,23,21];
+		var temp;
+		for(var i=0; i<numbers.length; i++){
+			for(var j=i+1; j<numbers.length; j++){
+				if(numbers[i] > numbers[j]){
+					temp = numbers[i];
+					numbers[i] = numbers[j];
+					numbers[j] = temp;
+				}
+			}
+		}
+		console.log(numbers);
+	</script>
+</html>

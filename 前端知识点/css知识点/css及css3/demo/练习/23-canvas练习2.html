@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0px;
+				padding:0px;
+			}
+			body{
+				text-align: center;
+				padding-top:20px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="500"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		
+		//每次画路径都在前后加context.beginPath() 和context.closePath()就行
+		context.beginPath();//系统默认在绘制第一个路径的开始点为beginPath
+		context.fillStyle = "red";
+		context.arc(100,100,50,0,Math.PI/2,true);
+		context.fill();
+		context.closePath();
+		
+		context.beginPath();//系统默认在绘制第一个路径的开始点为beginPath
+		context.fillStyle = "red";
+		context.arc(200,100,50,Math.PI/2,Math.PI,false);
+		context.fill();
+		context.closePath();
+		
+		context.beginPath();//系统默认在绘制第一个路径的开始点为beginPath
+		context.fillStyle = "red";
+		context.arc(100,200,50,Math.PI*3/2,0,false);
+		context.fill();
+		context.closePath();
+		
+		context.beginPath();//系统默认在绘制第一个路径的开始点为beginPath
+		context.fillStyle = "red";
+		context.arc(200,200,50,Math.PI,Math.PI*3/2,false);
+		context.fill();
+		context.closePath();
+		
+		
+	</script>
+</html>

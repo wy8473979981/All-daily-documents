@@ -1,0 +1,345 @@
+.mx .window,.mx.window {
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	min-height: 160px;
+	border: 1px solid #242B32;
+	box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	background: url(images/window_bg.png);
+}
+
+.mx .window.active,.mx.window.active {
+	background: url(images/window_active_bg.png) repeat-x;
+}
+
+.mx .window>#head,.mx.window>#head {
+	overflow: hidden;
+	border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	white-space: nowrap;
+	cursor: default;
+}
+
+.mx .window.dragging>#head,.mx.window.dragging>#head {
+	cursor: default;
+}
+
+.mx .window>#head>#title,.mx.window>#head>#title {
+	color: #6a6a6a;
+	display: block;
+	font-weight: normal;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+	padding-right: 6px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mx .window.active>#head>#title,.mx.window.active>#head>#title {
+	color: black;
+	position: absolute;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	left: 10px;
+	right: 100px;
+}
+
+.mx .window>#head>#controlBox,.mx.window>#head>#controlBox {
+	position: absolute;
+	top: 4px;
+	right: 5px;
+}
+
+.mx .window>#head>#controlBox>#windowMinStateButton,.mx.window>#head>#controlBox>#windowMinStateButton
+	{
+	float: left;
+	width: 24px;
+	height: 16px;
+	border-right: none;
+	margin-right: -1px;
+	border: 1px solid #999;
+	border-radius: 3px 0 0px 3px;
+	-moz-border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 3px 0 0px 3px;
+	background: url(images/window_min.png);
+}
+
+.mx .window.active>#head>#controlBox>#windowMinStateButton,.mx.window.active>#head>#controlBox>#windowMinStateButton
+	{
+	background: url(images/window_active_min.png);
+}
+
+.mx .window>#head>#controlBox>#windowMinStateButton:hover,.mx.window>#head>#controlBox>#windowMinStateButton:hover {
+	background-image: url(images/window_min_hover.png);
+	box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+}
+
+.mx .window>#head>#controlBox>#windowStateButton,.mx.window>#head>#controlBox>#windowStateButton
+	{
+	float: left;
+	width: 24px;
+	height: 16px;
+	border-right: none;
+	margin-right: -1px;
+	border: 1px solid #999;
+	border-radius: 3px 0 0px 3px;
+	-moz-border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 3px 0 0px 3px;
+	background: url(images/window_max.png);
+}
+
+.mx .window.active>#head>#controlBox>#windowStateButton,.mx.window.active>#head>#controlBox>#windowStateButton
+	{
+	background: url(images/window_active_max.png);
+}
+
+.mx .window.active>#head>#controlBox>#windowStateButton:hover,.mx.window.active>#head>#controlBox>#windowStateButton:hover {
+	background-image: url(images/window_max_hover.png);
+	box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+}
+
+.mx .window>#head>#controlBox>#closeButton,.mx.window>#head>#controlBox>#closeButton
+	{
+	float: left;
+	width: 41px;
+	height: 16px;
+	border: 1px solid #999;
+	border-radius: 0 3px 3px 0;
+	-moz-border-radius: 0 3px 3px 0;
+	-webkit-border-radius: 0 3px 3px 0;
+	background: url(images/window_close.png);
+}
+
+.mx .window.active>#head>#controlBox>#closeButton,.mx.window.active>#head>#controlBox>#closeButton
+	{
+	background-image: url(images/window_close_active.png);
+}
+
+.mx .window>#head>#controlBox>#closeButton:hover,.mx.window>#head>#controlBox>#closeButton:hover {
+	background-image: url(images/window_close_hover.png);
+	box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+.mx .window>#head>#controlBox>#closeButton :active,.mx.window>#head>#controlBox>#closeButton
+	:active {
+	background-image: url(images/window_close_pressed.png);
+}
+
+.mx .window>#head>#controlBox.min>#windowStateButton,.mx.window>#head>#controlBox.min>#windowStateButton
+	{
+	border-radius: 0 0 0 0;
+	-moz-border-radius: 0 0 0 0;
+	-webkit-border-radius: 0 0 0 0;
+}
+
+.mx .window>#head,.mx.window>#head {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 25px;
+}
+
+.mx .window.nohead>#body,.mx.window.nohead>#body {
+	top: 8px;
+}
+
+.mx .window>#body,.mx.window>#body {
+	overflow: auto;
+	position: absolute;
+	margin-left: 6px;
+	margin-right: 6px;
+	margin-bottom: 7px;
+	background-color: #f0f0f0;
+	border: 1px solid #5C6A79;
+	left: 0;
+	right: 0;
+	top: 25px;
+	bottom: 0;
+}
+
+.mx .window.maximize,.mx.window.maximize {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 0;
+	border: none;
+}
+
+.mx .window.maximize>#body,.mx.window.maximize>#body {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+}
+
+.mx .window.maximize>#head,.mx.window.maximize>#head {
+	border-radius: 0;
+}
+
+.mx .window.maximize>#head>#controlBox>#windowStateButton,.mx.window.maximize>#head>#controlBox>#windowStateButton
+	{
+	background-image: url(images/window_normal.png);
+}
+
+.mx .window.maximize>#head>#controlBox>#windowStateButton:hover,.mx.window.maximize>#head>#controlBox>#windowStateButton:hover {
+	background-image: url(images/window_normal_hover.png);
+}
+
+.mx .window.maximize>#statusBar,.mx.window.maximize>#statusBar {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+}
+
+.mx .window>#statusBar,.mx.window>#statusBar {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 25px;
+	line-height: 25px;
+	margin-left: 6px;
+	margin-right: 6px;
+	margin-bottom: 6px;
+	border: 1px solid #5C6A79;
+	background-image: url(images/window_status_bar_bg.png);
+	padding-left: 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: default;
+}
+
+.mx .borderlessWindow,.mx.borderlessWindow {
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	min-height: 160px;
+	background-color: #f0f0f0;
+	border-left: 1px solid #9b9b9b;
+	border-right: 1px solid #9b9b9b;
+	border-bottom: 1px solid #9b9b9b;
+	box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 7px 25px rgba(0, 0, 0, 0.4);
+}
+
+.mx .borderlessWindow>#body,.mx.borderlessWindow>#body {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	right: -1px;
+	bottom: -1px;
+	padding: 8px;
+	padding-top: 12px;
+	box-shadow: inset 0 5px 14px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: inset 0 5px 14px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: inset 0 5px 14px rgba(0, 0, 0, 0.4);
+}
+
+.mx .window>#loadingMask,.borderlessWindow>#loadingMask,.mx.window>#loadingMask,.borderlessWindow>#loadingMask
+	{
+	position: absolute;
+	z-index: 999990;
+	background: black;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	text-align: center; 
+    vertical-align: middle;
+    padding-top: 25%;
+}
+
+.mx .window>#statusBar>.quickToolBar,.mx.window>#statusBar>.quickToolBar
+	{
+	padding-right: 8px;
+	margin-right: 8px;
+	position: relative;
+	top: 3px;
+	background: url(images/quick_tool_bar_separator.png) center right
+		no-repeat;
+}
+
+.mx .window.messageBox>#body>#top,.mx.window.messageBox>#body>#top {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 35px;
+	top: 0;
+	border-bottom: 1px solid #898C95;
+}
+
+.mx .window.messageBox>#body>#top>#top_left,.mx.window.messageBox>#body>#top>#top_left
+	{
+	width: 80px;
+	height: 100%;
+	/*
+	background:url(images/message_box_info.png) center center no-repeat;
+	*/
+}
+
+.mx .window.messageBox #top #top_left .icontable {
+	width: 100%;
+	height: 100%;
+}
+
+.mx .window.messageBox>#body>#top>#top_right,.mx.window.messageBox>#body>#top>#top_right
+	{
+	position: absolute;
+	left: 80px;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: auto;
+	height: 100%;
+	overflow: auto;
+}
+
+.mx .window.messageBox>#body>#top>#top_right>table,.mx.window.messageBox>#body>#top>#top_right>table
+	{
+	width: 100%;
+	height: 100%;
+	cursor: default;
+}
+
+.mx .window.messageBox>#body>#bottom,.mx.window.messageBox>#body>#bottom
+	{
+	position: absolute;
+	height: 35px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-top: 1px solid white;
+	text-align: right;
+}
+
+.mx .window.messageBox>#body>#bottom>.buttonDiv,.mx.window.messageBox>#body>#bottom>.buttonDiv
+	{
+	margin-right: 8px;
+	margin-top: 7px;
+}
+.mx .window.messageBox #top #top_left .icontable, .mx.window.messageBox #top #top_left .icontable {
+	width: 100%;
+	height: 100%;
+}
+
+.mx .window.messageBox #top #top_left .icontable td, .mx.window.messageBox #top #top_left .icontable td{
+	font-family: pictos;
+	font-size: 60px;
+	color: silver;
+}

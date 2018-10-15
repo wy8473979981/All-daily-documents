@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>模态弹出框--实现原理解析（二）</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+	<style type="text/css">
+		.modal-backdrop {
+		  position: fixed;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+		  z-index: 1040;
+		  background-color: red;/*改变遮罩层的背景色*/
+		}
+		.modal-footer{
+			text-align: center;/*让两个按钮居中显示*/
+		}
+	</style>
+</head>
+<body>
+<h3>大/小尺寸模态弹出框</h3>
+<!-- Large modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+大的模态弹出窗
+</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">大的模态弹出窗标题</h4>
+			</div>
+			<div class="modal-body">
+				<p>模态弹出窗主体内容</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">保存</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Small modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">
+小的模态弹出窗
+</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">小的模态弹出窗标题</h4>
+			</div>
+			<div class="modal-body">
+				<p>模态弹出窗主体内容</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">保存</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../js/jquery-1.11.0.js"></script>
+<script src="../js/bootstrap.js"></script> 
+</body>
+</html>

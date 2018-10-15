@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		/*参数0~2个，0则使用默认值 – stretch*/
+		/*1则表示水平方向及垂直方向均使用此参数；2个参数的话则第一个参数表水平方向，第二个参数表示垂直方向*/
+		/*这么比方吧，您从万科地产买了个99.5m*99.5m的毛坯房，地面要贴瓷砖，都是1m*1m的正方形瓷砖。如果是“平铺”，对不起，
+		 * 这1m边长的瓷砖不行，要处理！怎么处理法？很简单，每个瓷砖压成0.995m*0.995m的，这样就可以了，所以，平铺就是以完整
+		 * 的单元铺满整个区域。如果是重复，就直接把这1m*1m的瓷砖从一个角落一个一个的放置，
+		 * 放到头放不下了怎么办？直接把瓷砖从中间“咔”掉，于是最后会在房子的边角看到很多半截的瓷砖。
+		*/
+			.border_image1{
+			    width:400px;
+			    height:100px; 
+			    line-height: 100px;
+			    text-align: center;
+			  	-moz-border-image:url("border.png") 30 30 round; /* Firefox */
+				-webkit-border-image:url("border.png") 30 30 round; /* Safari 和 Chrome */
+				-o-border-image:url("border.png") 30 30 round; /* Opera */
+				border-image:url("border.png") 30 30 round;
+			   border-width:15px;
+			}
+			.border_image2{
+			    width:400px;
+			    height:100px; 
+			     line-height: 100px;
+			    text-align: center;
+			  	-moz-border-image:url("border.png") 27; /* Firefox */
+				-webkit-border-image:url("border.png") 27; /* Safari 和 Chrome */
+				-o-border-image:url("border.png") 27; /* Opera */
+				border-image:url("border.png") 27;
+			   border-width:15px;
+			}
+			.border_image3{
+			    width:400px;
+			    height:100px; 
+			    line-height: 100px;
+			    text-align: center;
+			    border:14px solid #000;
+			  	-moz-border-image:url("border.png") 27 repeat; /* Firefox */
+				-webkit-border-image:url("border.png") 27 repeat; /* Safari 和 Chrome */
+				-o-border-image:url("border.png") 27 repeat; /* Opera */
+				border-image:url("border.png") 27 repeat;
+			   
+			}
+			.border_image4{
+			      	width:100px; 
+			      	border:double gray 20px; 
+				    -moz-border-image:url(rounded_corner.png) 20; 
+				    -webkit-border-image:url(rounded_corner.png) 20; 
+				    text-align:center; 
+				    color:white;
+			   
+			}
+			.border_image5{
+			      	width:100px; 
+			      	border:double gray 10px; 
+				    -moz-border-image:url(rounded_corner.png) 20; 
+				    -webkit-border-image:url(rounded_corner.png) 20; 
+				    text-align:center; 
+				    color:white;
+			   
+			}
+			.border_image6{
+			      	width:180px; 
+				    height:26px; 
+				    -moz-border-image:url(border_tab.png) 5 5 0; 
+				    -webkit-border-image:url(border_tab.png) 5 5 0; 
+				    border-style:solid; border-width:5px 5px 0px; 
+				    text-align:center;
+			   
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="border_image1">平铺</div>
+		<div class="border_image2">默认拉伸</div>
+		<div class="border_image3">重复</div>
+		<img src="rounded_corner.png"/>
+		<div class="border_image4">圆角效果20px</div>
+		<div class="border_image5">圆角效果10px</div>
+		<div class="border_image6">选项卡</div>
+		
+		
+		
+	</body>
+
+</html>

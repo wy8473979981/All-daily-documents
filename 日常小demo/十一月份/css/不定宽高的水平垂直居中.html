@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.style{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				z-index: 3;
+				-webkit-transform: translate(-50%,50%);
+			}
+			
+			/*第二种*/
+			.flexbox{
+				width: 200px;
+				height: 200px;
+				background: #CCCCCC;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+			}
+			#box2{
+				width: 20px;
+				height: 20px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1" class="flexbox">
+			<div id="box2">
+				
+			</div>
+		</div>
+	</body>
+</html>

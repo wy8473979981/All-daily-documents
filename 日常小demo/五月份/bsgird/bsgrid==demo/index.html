@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link href="bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="bsgrid.all.min.css" />
+		<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="grid.zh-CN.min.js"></script>
+		<script type="text/javascript" src="bsgrid.all.min.js"></script>
+		<script type="text/javascript" src="bootstrap.min.js"></script>
+		<script type="text/javascript" src="bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+		<style>
+			#save {
+				color: red;
+				display: block;
+				border: 1px;
+				corsor: point;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table id="searchtable">
+			<thead>
+				<tr>
+					<th w_edit="text" w_index="ids">aaaaaaaaaaaaaaaaaaaaaa</th>
+					<th w_edit="text" w_index="time">bbbbbbbbbbbbbbbbbbbbbb</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<div><a id="save">save</a></div>
+	</body>
+<div>
+	<input type="text" id="datetimepicker">
+</div>
+</html>
+<script type="text/javascript">
+var gridObj;
+	$(document).ready(function() {
+		$('#datetimepicker').datetimepicker({
+			format: 'yyyy-mm-dd hh:ii'
+		});
+		var mockData = [{
+			ids: '1121',
+			time: '2012-05-15 21:05'
+		}, {
+			ids: '23',
+			time: '2013-12-25 21:02'
+		}];
+		gridObj = $.fn.bsgrid.init('searchtable', {
+			autoLoad: true,
+			localData: mockData,
+			pageSize: 5,
+			/* event: {
+             customCellEvents: {
+                 click: function (record, rowIndex, colIndex, tdObj, trObj, options) {
+                     if(colIndex == 0 && gridObj.getSelectedRow().length > 0){
+                     	// $(gridObj.getRowCells(0)[0]).find('.bsgrid_editgrid_edit')
+                     	if(gridObj.getSelectedRow().find('.bsgrid_editgrid_edit').hasClass('newLine')){
+                     		$(gridObj.getRowCells(0)[0]).append('<span class="fa fa-plus-square fa-1" data-toggle="modal" id="proSelector" data-target="#proSelectorModal" style="right:0;position: absolute;padding: 5px;margin-right: 6px;"></span>')
+                     	}else{
+	 	                    $(tdObj).append('<span class="ti-menu" data-toggle="modal" data-target="#proSelectorModal" style="right:0;position: absolute;padding: 5px;margin-right: 6px;"></span>');		
+                     	}
+                     }
+                 }
+             }
+      	 },*/
+			extend: {
+				settings: {
+					supportGridEdit: true, // default false, if support extend grid edit
+					supportGridEditTriggerEvent: 'rowClick', // default 'rowClick', values: ''(means no need Trigger), 'rowClick', 'rowDoubleClick', 'cellClick', 'cellDoubleClick'
+				}
+			}
+		});
+		/*gridObj.options.settings.localData = mockData;*/
+		/*gridObj.refreshPage();*/
+	 	$("#searchtable td").click(function(){
+	 		alert("1");
+	 		
+	 		
+	 	})
+		$("#save").click(function() {
+			    var localdata = gridObj.options.settings.localData;
+				var changeValue = gridObj.getRowsChangedColumnsValue();
+				var localobj = JSON.stringify(localdata);
+				var changeobj = JSON.stringify(changeValue);
+				if(changeobj != "{}"){
+					var finaldata = "";
+					var num = localdata.length;
+					var i = 0;
+					var zcvalue = "";
+					var aa = JSON.stringify(changeValue.row_1.time);
+				    alert(num);
+					
+				}
+			})
+			/*var gridObj2;
+			var result = [];
+			var newCount = 0;
+			var isEdit = true;
+			extend: {
+                settings: {
+                    supportGridEdit: true, // default false, if support extend grid edit
+                    supportGridEditTriggerEvent: 'rowClick',
+                   }
+               }*/
+	});
+</script>

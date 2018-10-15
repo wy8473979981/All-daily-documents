@@ -1,0 +1,77 @@
+	import {Injectable}     from 'angular2/core';
+	import {Http, Response} from 'angular2/http';
+	import {Hero}           from './hero';
+	import {Observable}     from 'rxjs/Observable';
+	@Injectable()
+	export class HeroService {
+	  constructor (private http: Http) {}
+	  private _heroesUrl = 'app/heroes';  // URL to web api
+	  getHeroes (): Observable<Hero[]> {
+	    return this.http.get(this._heroesUrl)
+	                    .map(this.extractData)
+	                    .catch(this.handleError);
+	  }
+	  private extractData(res: Response) {
+	    if (res.status < 200 || res.status >= 300) {
+	      throw new Error('Bad response status: ' + res.status);
+	    }
+	    let body = res.json();
+	    return body.data || { };
+	  }
+	  private handleError (error: any) {
+	    // In a real world app, we might send the error to remote logging infrastructure
+	    let errMsg = error.message || 'Server error';
+	    console.error(errMsg); // log to console instead
+	    return Observable.throw(errMsg);
+	  }
+	}
+
+
+	记得，我们的 getHeroes 方法中的 map() 方法，会将提取数据映射到 this.extractData 方法。
+	
+	private extractData(res: Response) {
+	  if (res.status < 200 || res.status >= 300) {
+	    throw new Error('Bad response status: ' + res.status);
+	  }
+	  let body = res.json();
+	  return body.data || { };
+	}
+	response 对象并不是返回我们可以直接使用的数据，要想变成应用程序所需要的数据需要：
+	
+	检查不良响应
+	解析响应数据
+	错误状态码
+	
+	示例中的状态码200-300范围从应用角度来说是错误，但对于 http 角度来说并非错误，所以先判断状
+	态码并抛出一个错误。而对于 404 - Not Found 像其他一样会有响应，我们发送一请求出去，然后返
+	回一个响应，这对于 http 来说是错误的，所以会立即得到一个 observable 错误。
+	
+	因为状态码200-300范围从应用角度来说是错误，所以我们拦截并抛出，移动 observable 链到错误路
+	径。而 catch 操作来处理我们抛出的错误。
+	
+	解析JSON
+	
+	响应数据返回的是一个JSON字符串格式，我们必须调用 response.json() 转换成JavaScript对象。这
+	并非Angular自行设计的，这是因为Angular HTTP Client使用的是ES2015规范中的 Fetch 方法返回响
+	应对象，它定义了一个 json() 方法来解析响应内容成JavaScript对象。
+	
+	JSON劫持
+	
+	我们不应该让 json() 直接返回一个数组 hero，而应该是返回一个带有 data 属性的对象，
+	比如：{data: [ hero, hero ] }。
+	
+	这是因对于老式浏览器可能会有JSON被劫持安全漏洞，这是另外一个话题了，大概就是老式浏览器可以重
+	写 Array.prototype.constructor 从而达到拦截JSON的内容，安全问题不再过多叙述。
+	
+	不要直接返回response对象
+	
+	getHeroes() 能够直接返回 Observable<Response>，但这不是好主意，Server类的目的就是为了向用户
+	隐藏与服务器交互细节，组件只需调用 HeroService 获取想要 hreoes，谁管你什么是Response。
+	
+	记得处理错误
+	
+	细心的读者可能已经发现我们使用 catch 操作符并结合 handleError 方法，但并未讨论实际的工作方式，
+	每当我们处理 I/O 时，必须要做到处理错误的准备。
+	
+	HeroService 捕获错误并返回一个对用户更友好、能理解的消息，handleError 方法是 catch 操作符委
+	托的处理方法。

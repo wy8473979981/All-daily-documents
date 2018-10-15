@@ -1,0 +1,8 @@
+String 字符串类型
+Number 数字类型
+Object 对象类型
+Boolean 布尔值类型
+Null  空值
+Undefined 未定义
+
+Symbol的初衷：解决对象的属性名冲突

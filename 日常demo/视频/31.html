@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta content="telephone=no" name="format-detection">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+    <title></title>
+    <style type="text/css">
+    	body{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
+		html,body{width: 100%;height: 100%;font-family: "PingFangSC", "微软雅黑", "黑体";background-color: #FFFFFF;-webkit-text-size-adjust:none; font-size:9px;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+		body,html,div,img,ul,ol,li,dl,dt,em,span,p,h1,h2,h3,h4,section,header,footer{margin: 0; padding: 0;}
+		a{text-align: none;outline: none; text-decoration: none;-webkit-tap-highlight-color: rgba(0,0,0,0);color: #ffffff;}
+		img{border:none; width: 100%;display: block;}
+		p{word-wrap: break-word; word-break: break-all;}
+		ul,li {list-style:none;}
+		input{border:0;outline:none;}
+		.clearfix:after { content: ""; display: block; height: 0; clear: both;overflow: visible;} 
+		.clearfix { zoom: 1; }
+		body{width: 375px;max-width: 1024px;min-width: 320px;margin: 0 auto;}
+		
+		.warp,.center,.video,.VideoPic,.footer{width:100%;}
+		.warp,.center,.video,.VideoPic{height: 100%;}
+		.VideoPic,.Play,.footer,.FooSp{position: absolute;}
+	
+		.center,.video,.FooRight{position: relative;}
+		.video video{object-fit: fill;display: block;}
+		.VideoPic{top: 0;object-fit: cover;}
+		.Play{width: 18%;top: 40%;left: 42%;}
+		.footer{height:auto;overflow:hidden;background-color: #FFFFFF;bottom: 0;}
+		.FooLeft{float: left;width:55%;}
+		.FooPic{margin: 5% 0 5% 5%;}
+		.FooPic,.FooText{float: left;}
+		.FooPic,.FooPic img{width:60px;height: 60px;border-radius: 50%;}
+		.FooText{margin-top: 10%;margin-left: 4%;}
+		.FooText p{font-size: 12px;line-height: 20px;text-align: left;}
+		.FooText p:nth-child(1){color: #333333;}
+		.FooText p:nth-child(2){color: #666666;font-size: 13px;}
+		.FooRight{float: right;width: 45%;background-color: #f9d94a;border-bottom-left-radius: 20px;border-top-left-radius: 20px;margin-top:6%;}
+		.FooBorder{font-size: 13px;color: #FFFFFF;margin-left: 40%;padding: 5% 0 5% 0;}
+		.FooSp{width: 18%;top: 25%;left: 10%;}
+		
+    	@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){
+    		body{width: 320px;}
+    	}
+    	@media (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
+    		body{width:414px;}
+    	}
+    	
+    	@media only screen and (min-width: 768px) and (max-width: 1024px){
+    		body{width:768px;}
+    		.FooPic,.FooPic img{width:100px;height: 100px;}
+    		.FooBorder{font-size: 25px;}
+    		.FooText p{line-height: 33px;font-size: 22px;}
+    		.FooText p:nth-child(2){font-size: 25px;}
+    		.FooRight{border-bottom-left-radius: 40px;border-top-left-radius: 40px;}
+    	}
+		@media only screen and (min-width: 1024px) and (max-width: 1366px){
+			body{width:1024px;}
+			.FooPic,.FooPic img{width:140px;height: 140px;}
+			.FooBorder{font-size: 35px;}
+    		.FooText p{line-height: 45px;font-size: 30px;}
+    		.FooText p:nth-child(2){font-size: 32px;}
+    		.FooRight{border-bottom-left-radius: 50px;border-top-left-radius: 50px;}
+    	}
+    </style>
+</head>
+<body>
+<div class="warp">
+	<div class="center">
+		<div class="video" onclick="playPause()">
+			<video id="video1" preload="auto" width="100%" height="100%" src="video/r.mp4" webkit-playsinline="true" playsinline="true" x-webkit-airplay="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-ignore-metadata="true">
+			</video>
+			<img src="img/7.jpg" class="VideoPic"/>
+			<img src="img/play.png" class="Play"/>
+		</div>
+		<div class="footer clearfix">
+			<div class="FooLeft clearfix">
+				<a href="#">
+					<div class="FooPic">
+						<img src="img/7.jpg"/>
+					</div>
+				</a>
+				<div class="FooText">
+					<p>名字名字</p>
+					<p>ID:12345678</p>
+				</div>
+			</div>
+			<a href="#">
+				<div class="FooRight">
+					<img src="img/sp.png" class="FooSp"/>
+					<div class="FooBorder">
+						快来和我视频
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		var myVideo = document.getElementById("video1");
+		function playPause() {
+			if(myVideo.paused) {
+				myVideo.play();
+				$('.VideoPic').hide();
+				$('.Play').hide();
+			}else{
+				myVideo.pause();
+			}
+		}
+		myVideo.addEventListener('pause',function(){ 
+			$('.Play').show();
+			myVideo.pause();
+		});
+//		preload="auto"  规定是否在页面加载后载入视频。 auto当页面加载后载入整个视频
+//		webkit-playsinline="true" 让视频在小窗内播放，不全屏播放 只能在ios10生效
+//		playsinline="true"  ios微信浏览器支持小窗口播放
+//		x-webkit-airplay="true" 
+//		x5-video-player-type="h5" 启用H5播放器，是wechat安卓版特性，可使用定位讲div浮动在video上，解决层级问题 
+//		x5-video-player-fullscreen="true" 全屏设置，true防止横屏
+//		x5-video-ignore-metadata="true">
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+.mx .toolBar
+{
+	position:relative;
+    padding-left:2px;
+    padding-right:2px;	
+    padding-bottom:1px;
+    vertical-align:middle;
+    border:1px solid #A0AFC3;
+	background-image:url(images/tool_bar_bg.png);
+	border-radius:4px 4px 0px 0px; -moz-border-radius:4px 4px 0px 0px; -webkit-border-radius:4px 4px 0px 0px;
+	overflow: auto;
+}
+
+.mx .toolBar.nowrap
+{
+	overflow: hidden;
+	white-space: nowrap;	
+}
+
+.mx .toolBar > div#controlBut
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 25px;
+	border-radius:2px 2px 2px 2px; -moz-border-radius:2px 2px 2px 2px; -webkit-border-radius:2px 2px 2px 2px;
+	background:url(images/tool_bar_contol_up_button.png) center no-repeat;
+	background-color: #eeeeee;
+	display: none;
+}
+
+.mx .toolBar > div#controlBut.hover
+{
+	border: 1px solid white;
+	background-color: #cddcef;
+}
+
+.mx .toolBar.nowrap > div#controlBut
+{
+	background:url(images/tool_bar_contol_down_button.png) center no-repeat;
+	background-color: #eeeeee;
+}
+
+.mx .toolBar.nowrap > div#controlBut.hover
+{
+	background-color: #cddcef;
+}
+
+.mx .toolBar > li
+{	
+	position:relative;
+/* 	float:left; */
+    white-space:nowrap;
+    display: inline-block;
+    vertical-align: middle;
+	height: 21px;
+	line-height: 21px;
+	top: 1px\9;	
+	bottom: 1px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){.mx .toolBar > li{top: 1px;} }
+
+
+.mx .toolBar > li > a
+{
+	display:inline-block;
+    cursor:default;		
+    color:#323234;
+    height:20px;
+    width:100%;
+	text-align:center;
+    line-height:20px;	
+    padding-left:5px;
+    padding-right:5px;
+	border:1px solid transparent;
+	border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;
+	vertical-align:middle;
+}
+.mx .toolBar > li > a > span
+{
+	position:relative;
+	vertical-align:middle;
+	padding-left:2px;
+	padding-right:2px;
+	height:20px;
+	top: -1px;
+}
+
+.mx .toolBar > li > a > span#img
+{
+	display:inline-block;
+	position:relative;
+	width:16px;
+    background:no-repeat center;
+}
+.mx .toolBar > li.group > a:hover > span#group
+{
+	border-left:1px solid #b8c8da;
+}
+
+.mx .toolBar > li > a > span#group
+{
+	display:inline-block;
+	position:relative;
+	width:16px;
+	background:url(images/tool_bar_group_cursor.png) 6px  no-repeat;
+	border-left:1px solid transparent;
+	top:-1px;
+}
+
+.mx .toolBar > li.disabled.group > a:hover > span#img
+{
+	border:none;
+}
+.mx .toolBar > li.disabled.group > a > span#group
+{
+	position:relative;
+	width:12px;
+	height:16px;
+    background:url(images/tool_bar_group_cursor_disabled.png) center  no-repeat;
+}
+.mx .toolBar > li.disabled > a > span#img
+{
+	filter:gray();
+	opacity:.3;
+}
+
+
+.mx .toolBar > li:hover > a
+{		
+	box-shadow:inset 0 0 3px #ECF5F8; -moz-box-shadow:inset 0 0 3px #ECF5F8; -webkit-box-shadow:inset 0 0 3px #ECF5F8;	
+	border:1px solid #b8c8da;
+	background:url(images/tool_bar_item_hover.png);
+}
+
+.mx .toolBar.disabled > li:hover > a, .mx .toolBar > li.disabled:hover > a, .mx .toolBar.imgUp > li.disabled:hover > a
+{
+	border:1px solid transparent;
+	box-shadow:none; -moz-box-shadow:none; -webkit-box-shadow:none;	
+	background-image:none;
+}
+
+.mx .toolBar.disabled > li > a, .mx .toolBar > li.disabled > a, .mx .toolBar > li.disabled > a:active
+{
+    color:#6D6D6D;
+}
+
+.mx .toolBar.disabled > li > a:hover > span#img
+{
+	border:none;
+}
+
+.mx .toolBar > li > a:active, .mx .toolBar > li.checked > a, .mx .toolBar > li.droppedDown > a
+{
+	border:1px solid #b8c8da;
+	box-shadow:inset 0 0 3px #A6A6A6; -moz-box-shadow:inset 0 0 3px #A6A6A6; -webkit-box-shadow:inset 0 0 3px #A6A6A6;
+}
+
+
+
+
+.mx .toolBar > li.separator
+{
+    width:10px;
+    height:21px;
+	background:url(images/tool_bar_separator.png) center center no-repeat;
+}
+
+.mx .toolBar > li.toolBarFlag
+{	
+	width:10px;
+    height:21px;
+	background:url(images/tool_bar_startFlag.png) center center no-repeat;
+}
+
+
+.mx .toolBar.quickToolBar > li.toolBarFlag
+{	
+	width:10px;
+    height:21px;
+	background:none;
+}
+.mx .toolBar.quickToolBar
+{
+	background-image:url(images/quick_tool_bar_bg.png);
+	border-radius:0px 0px 0px 0px; -moz-border-radius:0px 0px 0px 0px; -webkit-border-radius:0px 0px 0px 0px;
+}
+
+.mx .toolBar.disabled > li.separator
+{
+    width:5px;
+    height:100%\9;
+	background:url(images/tool_bar_separator_disabled.png) center center no-repeat;
+}
+
+.mx .toolBar > li.separator > span
+{
+    display:block;
+    width:20px;
+    height:16px;
+}
+
+/*******************************工具栏图标和文字以竖向显示        开始***********************************************/
+.mx .toolBar.imgUp > li.toolBarFlag {
+	height: 25px;
+	background-repeat: repeat-y;
+}
+
+.mx .toolBar.imgUp {
+	background-image: url(images/tool_bar_bg.png);
+}
+
+.mx .toolBar.imgUp > li {
+	height: 40px;
+	line-height: 40px;
+}
+
+.mx .toolBar.imgUp > li > a {
+	height: 40px;
+	line-height: 40px;
+}
+
+.mx .toolBar.imgUp > li > a > span {
+	height: 20px;
+	line-height: 16px;
+}
+
+.mx .toolBar.imgUp > li > a > span#img {
+	position: static;
+	display: block;
+	width: auto;
+}
+
+.mx .toolBar.imgUp > li:hover > a {
+	background: url(images/tool_bar_ver_item_hover.png);
+}
+
+.mx .toolBar.imgUp > li.separator {
+	height: 35px;
+	background: url(images/tool_bar_hor_separator.png) center center
+		no-repeat;
+}
+/*******************************工具栏图标和文字以竖向显示        结束***********************************************/
+
+
+.mx .toolBar.vertical {
+	width: 100px;
+	max-width: 150px;
+	background:url(images/tool_bar_bg_1.png) repeat;
+}
+
+.mx .toolBar.vertical > li
+{
+	display: block;
+	height: 25px;
+	line-height: 25px;
+}
+
+.mx .toolBar.vertical > li > a
+{
+	text-align: left;
+	position: relative;
+}
+
+.mx .toolBar.vertical > li > a > span#text
+{
+	position: absolute;
+	left: 25px;
+	right: 16px;
+	top: 0px;
+	height: auto;
+	bottom: 0px;
+	display: inline-block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.mx .toolBar.vertical > li.separator
+{
+    height: 10px;
+    width: 100%;
+	background:url(images/tool_bar_separator_1.png) center center repeat-x;
+}
+
+.mx .toolBar.vertical > li.toolBarFlag
+{	
+    height:10px;
+    width: 100%;
+	background:url(images/tool_bar_startFlag_1.png) center center repeat-x;
+}
+
+.mx .toolBar.vertical.disabled > li.separator
+{
+	background:url(images/tool_bar_separator_disabled_1.png) center center repeat-x;
+}
+
+.mx .toolBar.vertical > li > a > span#group
+{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: auto;
+	bottom: 0px;
+	background:url(images/tool_bar_group_cursor_1.png) 6px  no-repeat;
+}
+
+.mx .toolBar.vertical > li.disabled.group > a > span#group
+{
+    background:url(images/tool_bar_group_cursor_disabled_1.png) center  no-repeat;
+}

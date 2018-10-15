@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/*每3行选择一行；*/
+
+.one li:nth-child(3n) {
+	background: #32CD32;
+}
+
+
+/*从第4行开始每隔一行选择一行；*/
+
+.two li:nth-child(2n+4) {
+	background: #32CD32;
+}
+
+
+/*反向选择所有行、*/
+
+.three li:nth-last-child(n) {
+	background: #32CD32;
+}
+
+
+/*倒数第2行、*/
+
+.four li:nth-last-child(2) {
+	background: #32CD32;
+}
+
+
+/*最后3行*/
+
+.five li:nth-last-child(-n+3) {
+	background: #32CD32;
+}
+
+
+/*可用为黄色，不可用为紫色*/
+
+input[type="text"]:enabled {
+	background-color: yellow;
+}
+
+input[type="text"]:disabled {
+	background-color: purple;
+}
+
+
+/*read-only、E:read-write*/
+
+input[type="text"]:read-only {
+	background-color: gray;
+}
+
+input[type="text"]:read-write {
+	background-color: greenyellow;
+}
+
+input[type="text"]:-moz-read-only {
+	background-color: gray;
+}
+
+input[type="text"]:-moz-read-write {
+	background-color: greenyellow;
+}
+
+
+/*-E:checked*/
+
+input[type="checkbox"]:checked {
+	outline: 2px solid blue;
+}
+
+input[type="checkbox"]:-moz-checked {
+	outline: 2px solid blue;
+}
+
+li::selection {
+	color: #f66
+}
+
+.oli + li {
+	color: red
+}
+
+.active~li {
+	color: #f66
+}
+
+q:lang(no) {
+	quotes: "~" "~"
+}
+
+
+/*使用content属性来插入项目编号*/
+h1:before {
+	content: counter(mycounter);
+}
+
+h1 {
+	counter-increment: mycounter;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

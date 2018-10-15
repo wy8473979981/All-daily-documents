@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var numbers = [9,8,7,6,5,4,3,2,1,1];
+		var newArray = numbers.sort(function(num1,num2){
+			if(num1 < num2){
+				return -1;
+			}else if (num1 > num2){
+				return 1;
+			}else{
+				return 0;
+			}
+		});
+		console.log(numbers);
+		console.log(newArray);
+	</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<link rel="stylesheet" type="text/css" href="layer/skin/espresso/style.css" />-->
+		<link rel="stylesheet" type="text/css" href="layer/skin/default/layer.css" />
+
+	</head>
+
+	<body>
+		<button id="test0">小小提示层0</button>
+		<button id="test1">小小提示层1</button>
+		<button id="test2">小小提示层2</button>
+		<button id="test3">小小提示层3</button>
+		<button id="test4">小小提示层4</button>
+		<button id="test5">小小提示层5</button>
+		<button id="test6">小小提示层6</button>
+		<button id="test7">自定义7</button>
+		<button id="test8">询问框8</button>
+
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer/layer.js"></script>
+	<script type="text/javascript">
+		/*layer.config({
+																	extend: 'skin/espresso/style.css'
+																});*/
+		$('#test0').on('click', function() {
+			layer.open({
+				title: '在线调试',
+				content: '可以填写任意的layer代码',
+				icon: 0
+			});
+		});
+		$('#test1').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 1
+			});
+		});
+		$('#test2').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 2
+			});
+		});
+		$('#test3').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 3
+			});
+		});
+		$('#test4').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 4
+			});
+		});
+		$('#test5').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 5
+			});
+		});
+		$('#test6').on('click', function() {
+			layer.alert('见到你真的很高兴', {
+				icon: 6
+			});
+		});
+		$('#test7').on('click', function() {
+			layer.open({
+				title: '注册协议',
+				type: 1,
+				skin: 'layui-layer-rim', //加上边框
+				closeBtn: 1,
+				btn: ['同意协议'], //按钮
+				area: ['420px', '240px'], //宽高
+				content: '协议内容'
+			});
+		});
+		
+		
+		$('#test8').on('click', function() {
+			//询问框
+			layer.confirm('您是如何看待前端开发？您是如何看待前端开发您是如何看待前端开发您是如何看待前端开发', {
+				icon: 6,
+				title: '注册协议',
+				btn: ['重要', '奇葩'] //按钮
+			}, function() {
+				layer.msg('的确很重要', {
+					icon: 1
+				});
+			}, function() {
+				/*layer.msg('也可以这样', {
+					time: 20000, //20s后自动关闭
+					btn: ['明白了', '知道了']
+				});*/
+			});
+		});
+	</script>
+
+</html>

@@ -1,0 +1,996 @@
+/**
+ ******************************************ACCORDION***********************************
+ */
+.mx .accordion
+{
+	position:relative;
+	border-left: 1px solid #84acdd;
+	border-right: 1px solid #84acdd;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid #84acdd;
+	border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;
+}
+
+.mx .accordion .panel
+{
+	position:absolute;
+	left:0;
+	right:0;
+	border: none;
+	border-bottom: 1px solid transparent;
+	border-top: 1px solid #84acdd;
+	background: white;
+	border-radius:0px 0px 0px 0px; -moz-border-radius:0px 0px 0px 0px; -webkit-border-radius:0px 0px 0px 0px;
+}
+
+.mx .accordion .panel #head
+{
+	position:relative;
+	cursor: pointer;
+	text-align:center;
+	border-radius:0px 0px 0px 0px; -moz-border-radius:0px 0px 0px 0px; -webkit-border-radius:0px 0px 0px 0px;
+}
+
+.mx .accordion .panel #head:hover
+{
+	background:url(images/panel_head_bg_hover.png) repeat-x; 
+}
+
+.mx .accordion .panel.selection #head
+{
+	background:url(images/panel_head_bg_selection.png) repeat-x;
+}
+
+.mx .accordion.disabled .panel #head{
+	color: #A0A0A0 !important;
+    border: 1px solid #ADB2B5 !important;
+    background-image: url(images/button_disabled_bg.png) !important;
+}
+
+
+
+
+
+
+
+
+/**
+ ******************************************PANEL***********************************
+ */
+.mx .panel
+{
+	position:relative;
+    border:1px solid #9b9b9b;          
+    border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;
+}
+
+.mx .panel > #head
+{
+	background:url(images/panel_head_bg.png) repeat-x;
+	overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid #84acdd;
+    border-radius:3px 3px 0 0; -moz-border-radius:3px 3px 0 0; -webkit-border-radius:3px 3px 0 0;
+    height:21px;
+    line-height:21px;
+}
+
+.mx .panel > #head > #title
+{
+    width:100%;
+    font-size:12px;
+    text-shadow:0 1px 1px white;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    vertical-align:middel;
+    padding-left:6px;
+    padding-right:6px;
+}
+
+.mx .panel > #body
+{
+   	position:absolute;
+	top:0;
+	bottom:0;
+	width: 100%;
+	padding: 1px;
+	overflow: auto;
+}
+
+
+/**
+ ********************************DRAWER**********************************
+ */
+.mx .drawer> .panel
+{
+	position:relative;
+    border:1px solid #9b9b9b;
+}
+
+.mx .drawer> .panel > #head
+{
+    background:url(images/panel_head_bg.png) repeat-x;
+    border-bottom:1px solid #BABAC0;
+    height:21px;
+    line-height:21px;
+}
+
+.mx .drawer> .panel > #head > #title
+{
+    width:100%;
+    font-size:12px;
+    text-shadow:0 1px 1px white;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    vertical-align:middel;
+    padding-left:20px;
+    padding-right:6px;
+    text-align:center;
+    font-weight: bold;
+}
+
+.mx .drawer> .panel > #body
+{
+	position:static;
+	top:0;
+	bottom:0;
+	width: 100%;
+	height:100%;
+	padding: 0px;
+	overflow:hidden;
+	background:#d8d8d8;
+}
+.mx .drawer> .horizontal > #body
+{
+	overflow: none;
+}
+.mx .drawer> .panel.vertical > #body >ul >li{
+	display:block;
+	width: 98%;
+}
+
+.mx  .drawer> .panel.horizontal > #body >ul >li{
+	display:inline-block;
+	width: auto;
+	float:left;
+	padding:0px 20px 0px 20px;
+}
+
+.mx .drawer> .panel > #body >ul >li
+{
+	
+    height:21px;
+	background:#fdfdfd;
+	text-align:center;
+	margin:7px 0px 7px 0px;
+	margin-left:1%;
+	color:#000;
+	box-sizing:border-box;
+	border-bottom:2px solid #959595;
+	box-shadow:3px 3px 5px #c2c2c2;
+}
+ 
+.mx .drawer> .panel > #body >ul >li >a
+{
+	color:#000;
+}
+
+.mx .drawer> .panel > #body >ul >li:hover
+{	
+	background:#238de8;
+	box-shadow: inset 2px 2px 5px #0f61b4;
+}
+
+.mx .drawer> .panel > #body >ul >li:hover a
+{	
+	color:#fff;
+}
+.mx .drawer> .panel > #head  > img{
+	display:block;
+	width:16px;
+	height:16px;
+	position:absolute;
+	top:2px;
+	left:4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ ********************************SPLIT**********************************
+ */
+.mx .split
+{
+	position:relative;
+	width:100%;  
+	height:100%;
+	overflow:hidden;
+}
+
+
+.mx .split > .panel1, .mx .split > .panel2
+{
+	position:relative;
+	overflow:auto;
+	border:1px solid #A0A0A0;
+	border-radius:5px 5px 5px 5px; -moz-border-radius:5px 5px 5px 5px; -webkit-border-radius:5px 5px 5px 5px;
+	padding:3px;
+}
+
+.mx .split.vSplit > .panel1
+{
+	float:left;
+	width:50%;
+	height:100%;
+	_height:99%;
+}
+.mx .split.vSplit > .panel2
+{
+	width:auto;
+	height:100%;
+}
+.mx .split.vSplit > .splitter
+{
+	position:relative;
+	overflow:hidden;
+	float:left;
+	width:3px;
+	height:100%;
+	cursor:e-resize;
+}
+
+
+
+.mx .split.hSplit > .panel1
+{
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	width:100%;
+}
+.mx .split.hSplit > .panel2
+{
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	width:100%;
+}
+.mx .split.hSplit > .splitter
+{
+	position:absolute;
+	overflow:hidden;
+	height:3px;
+	width:100%;
+	left:0;
+	right:0;
+	cursor:n-resize;	
+}
+
+
+
+
+
+
+
+/**
+ ********************************展开隐藏面板**********************************
+ */
+.mx .split > .splitter > table
+{	
+	width:100%;
+	height:100%;
+}
+
+.mx .split.vSplit > .splitter > table span
+{
+	display:block;
+	width:3px;
+	height:100px;
+}
+
+.mx .split.vSplit > .splitter > table span.left
+{	
+	background:url(images/dockpage_left_hidebutton.png) center no-repeat;
+}
+.mx .split.vSplit > .splitter > table span.left.collapsed
+{
+	background:url(images/dockpage_left_showbutton.png) center no-repeat;
+}
+
+.mx .split.vSplit > .splitter > table span.right
+{	
+	background:url(images/dockpage_left_showbutton.png) center no-repeat;
+}
+.mx .split.vSplit > .splitter > table span.right.collapsed
+{
+	background:url(images/dockpage_left_hidebutton.png) center no-repeat;
+}
+
+
+.mx .split.vSplit > .splitter > table span:hover
+{
+	cursor:pointer;
+}
+
+
+
+
+
+.mx .split.hSplit > .splitter > table span
+{
+	display:inline-block;
+	width:100px;
+	height:3px;	
+}
+.mx .split.hSplit > .splitter > table td
+{
+	text-align:center;	
+}
+
+.mx .split.hSplit > .splitter > table span.top
+{	
+	background:url(images/dockpage_top_hidebutton.png) center no-repeat;
+}
+.mx .split.hSplit > .splitter > table span.top.collapsed
+{
+	background:url(images/dockpage_top_showbutton.png) center no-repeat;
+}
+
+.mx .split.hSplit > .splitter > table span.bottom
+{	
+	background:url(images/dockpage_top_showbutton.png) center no-repeat;
+}
+.mx .split.hSplit > .splitter > table span.bottom.collapsed
+{
+	background:url(images/dockpage_top_hidebutton.png) center no-repeat;
+}
+
+.mx .split.hSplit > .splitter > table span:hover
+{
+	cursor:pointer;
+}
+
+
+
+
+
+
+
+/**
+ ******************************************DOCKPAGE***********************************
+ */
+.mx.dockPage
+{
+	position:absolute;
+    border: 1px solid #738393;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.5);-moz-box-shadow:1px 1px 2px rgba(0,0,0,0.5);-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.5);        
+    border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;
+    z-index: 100;
+}
+
+.mx.dockPage > #head
+{
+    position:relative;
+    border-radius:3px 3px 0 0; -moz-border-radius:3px 3px 0 0; -webkit-border-radius:3px 3px 0 0;
+    background:url(images/dockpanel_head_bg.png);
+    border-bottom:1px solid #738393;
+}
+
+.mx.dockPage > #body
+{
+	background-color:#ffffff;
+}
+
+.mx.dockPage > #head > #title
+{
+	position:relative;
+    font-size:12px;
+    text-align:left;
+    text-shadow:0 1px 1px white;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    vertical-align:middel;
+    padding-left:6px;
+    padding-right:6px;
+}
+
+.mx.dockPage > #head > #buttonGroup
+{
+	display:inline-block;
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:40px;
+}
+
+.mx.dockPage > #head > #buttonGroup > #closeButton
+{
+	display:inline-block;
+    width:20px;
+    height:21px;
+    background:url(images/close.png) no-repeat center center; 
+    vertical-align:middel;
+}
+
+.mx.dockPage > #head > #buttonGroup > #closeButton:hover
+{
+    background:url(images/close_hover.png) no-repeat center center; 
+}
+
+.mx.dockPage > #head > #buttonGroup > #dockableButton
+{
+	display:inline-block;
+    width:16px;
+    height:21px;
+    vertical-align:middel;
+}
+
+.mx.dockPage.dockable > #head > #buttonGroup > #dockableButton
+{
+    background:url(images/dockpage_dockable.png) center no-repeat;
+}
+
+.mx.dockPage.dockable > #head > #buttonGroup > #dockableButton:hover
+{
+    background:url(images/dockpage_autoHide_hover.png) center no-repeat;
+}
+
+.mx.dockPage.autoHide > #head > #buttonGroup > #dockableButton
+{
+    background:url(images/dockpage_autoHide.png) center no-repeat;
+}
+
+.mx.dockPage.autoHide > #head > #buttonGroup > #dockableButton:hover
+{
+    background:url(images/dockpage_dockable_hover.png) center no-repeat;
+}
+
+
+
+
+/* dockPositon = left */
+.mx.dockPage.left
+{
+	width:150px;
+    height:100%;
+    left: 21px;
+}
+
+.mx.dockPage.left > #body
+{
+	position:absolute;
+	height:100%;
+	width:100%;
+	bottom:0px;
+	background-color:#ffffff;
+}
+.mx.dockPage.left > #hideGroup
+{
+	position:absolute;
+    width:5px;
+    height:100%;
+    float:right;
+    vertical-align:middel;
+    top:0px;
+    right:0px;
+}
+
+.mx.dockPage.left > #hideGroup:hover
+{
+	background:url(images/dockpage_left_hidebutton.png) center no-repeat;
+}
+.mx.dockPage.left.hiding > #hideGroup:hover
+{
+	background:url(images/dockpage_left_showbutton.png) center no-repeat;
+}
+
+
+
+
+
+
+
+
+
+/* dockPositon = top */
+.mx.dockPage.top
+{
+	width:100%;
+    height:150px;
+    top: 21px;
+}
+
+
+.mx.dockPage.top > #head > #buttonGroup
+{
+	display:inline-block;
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+
+
+
+.mx.dockPage.top > #body
+{
+    position:absolute;
+	height:100%;
+	width:100%;
+    top:0px;
+    bottom: 0px;
+}
+.mx.dockPage.top > #hideGroup
+{
+	position:absolute;
+   	height:4px;
+    width:100%;
+    vertical-align:middel;
+    text-align:center;
+    bottom:0px;
+}
+
+.mx.dockPage.top > #hideGroup:hover
+{
+	background:url(images/dockpage_top_hidebutton.png) center no-repeat;
+}
+
+.mx.dockPage.top.hiding > #hideGroup:hover
+{
+	background:url(images/dockpage_top_showbutton.png) center no-repeat;
+}
+
+
+
+
+
+
+
+/* dockPositon = right */
+.mx.dockPage.right
+{
+	width:150px;
+    height:100%;
+    right:21px;
+}
+
+.mx.dockPage.right > #head > #buttonGroup
+{
+	display:inline-block;
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:40px;
+}
+
+.mx.dockPage.right > #body
+{
+	position:absolute;
+	float:right;
+	height:100%;
+	width:100%;
+	bottom:0px;
+}
+.mx.dockPage.right > #hideGroup
+{
+	position:absolute;
+    width:4px;
+    height:100%;
+    float:left;
+    vertical-align:middel;
+    line-height:100%;
+    top:0px;
+    left:0px;
+}
+
+.mx.dockPage.right > #hideGroup:hover
+{
+	background:url(images/dockpage_left_showbutton.png) center no-repeat;
+}
+
+.mx.dockPage.right.hiding > #hideGroup:hover
+{
+	background:url(images/dockpage_left_hidebutton.png) center no-repeat;
+}
+
+
+
+
+/* dockPositon = bottom */
+.mx.dockPage.bottom
+{
+	width:100%;
+    height:150px;
+	bottom:21px;
+}
+
+.mx.dockPage.bottom > #head > #title
+{
+	position:relative;
+    font-size:11px;
+    text-align:left;
+    text-shadow:0 1px 1px white;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    vertical-align:middel;
+    padding-left:6px;
+    padding-right:6px;
+}
+
+.mx.dockPage.bottom > #head > #buttonGroup
+{
+	display:inline-block;
+    position:absolute;
+    right:0px;
+    top:0px;
+}
+
+.mx.dockPage.bottom > #body
+{
+    position:absolute;
+	height:100%;
+	width:100%;
+	box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+    top:0px;
+    bottom: 0px;
+}
+.mx.dockPage.bottom > #hideGroup
+{
+	position:absolute;
+   	height:4px;
+    width:100%;
+    vertical-align:middel;
+    text-align:center;
+    top:0px;
+}
+
+.mx.dockPage.bottom > #hideGroup:hover
+{
+	background:url(images/dockpage_top_showbutton.png) center no-repeat;
+}
+
+.mx.dockPage.bottom.hiding > #hideGroup:hover
+{
+	background:url(images/dockpage_top_hidebutton.png) center no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+/**
+ ******************************************DOCKPANEL***********************************
+ */
+.mx .dockPanel
+{
+	position:absolute;
+	background:#F6F7F6;
+	float:left;
+}
+
+.mx .dockPanel > #buttonContainer
+{
+	position:relative;
+	border: 1px solid #BABAC0;
+}
+
+.mx .dockPanel > #buttonContainer a
+{
+	position:relative;
+	display:inline-block;
+	cursor:pointer;		
+    color:#323234;
+	border:1px solid #a0a0a0;
+	border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;
+}
+
+.mx .dockPanel.disabled > #buttonContainer a
+{
+	color:#6D6D6D;
+}
+
+.mx .dockPanel > #buttonContainer a:hover
+{
+	color:#000000;
+	box-shadow:inset 0 0 3px #ECF5F8; -moz-box-shadow:inset 0 0 3px #ECF5F8; -webkit-box-shadow:inset 0 0 3px #ECF5F8;	
+}
+
+.mx .dockPanel.disabled > #buttonContainer a:hover
+{
+	color:#6D6D6D;
+}
+
+.mx .dockPanel > #buttonContainer a:active
+{
+	border:1px solid #666666;
+	box-shadow:inset 0 0 3px #A6A6A6; -moz-box-shadow:inset 0 0 3px #A6A6A6; -webkit-box-shadow:inset 0 0 3px #A6A6A6;
+}
+
+.mx .dockPanel.disabled > #buttonContainer a:active
+{
+	color:#6D6D6D;
+}
+
+.mx .dockPanel > #buttonContainer span#img
+{
+	width:16px;
+    height:18px;
+    background:no-repeat center;
+    vertical-align:middle;
+}
+
+.mx .dockPanel.disabled > #buttonContainer span#img
+{
+	filter:gray();
+	opacity:.3;
+}
+
+.mx .container.disabled #buttonContainer > a, .mx .container.dockPanel #buttonContainer.disabled > a{
+	color: #A0A0A0 !important;
+    border: 1px solid #ADB2B5 !important;
+    background-image: url(images/button_disabled_bg.png) !important;
+}
+
+/* dockPositon = left */
+.mx .dockPanel.left
+{
+	height: 100%;
+	width: auto;
+	left: 0px;
+    top: 0px;
+}
+
+.mx .dockPanel.left > #buttonContainer
+{
+	width: 21px;
+	height: 100%;
+	float:left;
+}
+
+.mx .dockPanel.left > #buttonContainer a
+{
+	margin-top:3px;
+	margin-bottom:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	background:url(images/dock_panel_left_button_bg.png) center repeat-y;
+	left:-1px;
+}
+
+.mx .dockPanel.left > #buttonContainer a.selected
+{
+	background:url(images/dock_panel_left_button_bg_selected.png) center repeat-y;
+}
+
+
+.mx .dockPanel.left > #buttonContainer a.normal:hover
+{
+	background:url(images/dock_panel_left_button_bg_hover.png) center repeat-y;
+}
+
+.mx .dockPanel.left > #buttonContainer span
+{
+	display:block;
+	width: 18px;
+	text-align:center;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+
+
+/* dockPositon = top */
+.mx .dockPanel.top
+{
+	width:100%;
+	height:21px;
+	top: 0px;
+    left: 0px;
+}
+
+.mx .dockPanel.top > #buttonContainer
+{
+	width:100%;
+	height:21px;
+}
+
+.mx .dockPanel.top > #buttonContainer a
+{
+	margin-left:3px;
+	margin-right:3px;
+	padding-left:3px;
+	padding-right:3px;
+	background:url(images/dock_panel_top_button_bg.png) center repeat-x;
+	top:-1px;
+}
+
+.mx .dockPanel.top > #buttonContainer a.normal:hover
+{
+	background:url(images/dock_panel_top_button_bg_hover.png) center repeat-x;
+}
+
+.mx .dockPanel.top > #buttonContainer a.selected
+{
+	background:url(images/dock_panel_top_button_bg_selected.png) center repeat-x;
+}
+
+.mx .dockPanel.top > #buttonContainer span
+{
+	display:inline-block;
+	height: 18px;
+	text-align:center;
+	word-wrap:break-word;
+	word-break:break-all;
+	vertical-align:middle;
+}
+
+
+
+
+
+
+/* dockPositon = right */
+.mx .dockPanel.right
+{
+	height: 100%;
+	width: auto;
+	right: 0px;
+	top: 0px;
+    
+}
+
+.mx .dockPanel.right > #buttonContainer
+{
+	width: 21px;
+	height: 100%;
+	border: 1px solid #BABAC0;
+	float:right;
+}
+
+.mx .dockPanel.right > #buttonContainer a
+{
+	margin-top:3px;
+	margin-bottom:3px;
+	padding-top:3px;
+	padding-bottom:3px;
+	background:url(images/dock_panel_left_button_bg.png) center repeat-y;
+}
+
+.mx .dockPanel.right > #buttonContainer a.normal:hover
+{
+	background:url(images/dock_panel_left_button_bg_hover.png) center repeat-y;
+}
+
+.mx .dockPanel.right > #buttonContainer a.selected
+{
+	background:url(images/dock_panel_left_button_bg_selected.png) center repeat-y;
+}
+
+.mx .dockPanel.right > #buttonContainer span
+{
+	display:block;
+	width: 18px;
+	text-align:center;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+
+
+
+
+
+
+
+/* dockPositon = bottom */
+.mx .dockPanel.bottom
+{
+	width:100%;
+	height:21px;
+	bottom:0px;
+}
+
+.mx .dockPanel.bottom > #buttonContainer
+{
+	width:100%;
+	height:21px;
+	border:1px solid #BABAC0;
+}
+
+.mx .dockPanel.bottom > #buttonContainer a
+{
+	margin-left:3px;
+	margin-right:3px;
+	padding-left:3px;
+	padding-right:3px;
+	background:url(images/dock_panel_top_button_bg.png) center repeat-x;
+}
+
+.mx .dockPanel.bottom > #buttonContainer a.normal:hover
+{
+	background:url(images/dock_panel_top_button_bg_hover.png) center repeat-x;
+}
+
+.mx .dockPanel.bottom > #buttonContainer a.selected
+{
+	background:url(images/dock_panel_top_button_bg_selected.png) center repeat-x;
+}
+
+.mx .dockPanel.bottom > #buttonContainer span
+{
+	display:inline-block;
+	height: 18px;
+	text-align:center;
+	word-wrap:break-word;
+	word-break:break-all;
+	vertical-align:middle;
+}
+
+.mx .columnLayoutField
+{
+	border:1px solid red;
+	height:100%;
+	margin-left:10px;
+	position:relative
+}
+
+.mx .columnLayoutField .columnLayoutLegend 
+#dropDownButton.expand
+{		
+	top:-1px;
+    bottom:0px;
+	border:1px solid transparent;
+	width:15px;
+	height:19px;			
+	background:url(images/drop_down_button_bg.png);
+	display: inline-block;
+}
+.mx .columnLayoutField .columnLayoutLegend 
+#dropDownButton.expand:hover
+{					
+	background:url(images/drop_down_button_hover.png);
+}
+
+.mx .columnLayoutField .columnLayoutLegend 
+#dropDownButton 
+{		
+	top:-1px;
+    bottom:0px;
+	border:1px solid transparent;
+	width:15px;
+	height:19px;			
+	background:url(images/expandable_expand.png);
+	display: inline-block;
+}
+
+.mx .columnLayoutField .columnLayoutLegend 
+#dropDownButton:hover
+{					
+	background:url(images/expandable_expand_hover.png);
+}
+
+.mx .columnLayoutField .columnLayoutLegend .caption
+{
+	position:relative;
+	top:-3px;
+}
+
+
+

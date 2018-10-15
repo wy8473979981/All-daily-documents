@@ -1,0 +1,10 @@
+在兼容CommonJS的系统中，你可以实用JavaScript程序开发：
+
+服务器端JavaScript应用程序
+命令行工具
+图形界面应用程序
+混合应用程序（如，Titanium或Adobe AIR）
+
+CommonJS是一种规范，NodeJS是这种规范的实现。CommonJS是一 个不断发展的规范
+
+查看官方网站的说明：http://commonjs.org/specs/

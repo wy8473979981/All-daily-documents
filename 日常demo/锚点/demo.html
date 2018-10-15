@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.nav {
+				position: fixed;
+				left: 20px;
+				top: 50px;
+			}
+			
+			ul>li {
+				list-style: none;
+				padding: 20px;
+			}
+			.box{
+				width:1200px;
+				margin: 0 auto;
+			}
+			.box>div{
+				width:100%;
+				height:500px;
+			}
+			.box1{
+				background: #000000;
+			}
+			.box2{
+				background: #0055AA;
+			}
+			.box3{
+				background: #008000;
+			}
+			.box4{
+				background: #00B7EE;
+			}
+			.box5{
+				background: #122B40;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="nav">
+			<ul>
+				<li><a href="#box1" class="smooth">1F</a></li>
+				<li><a href="#box2" class="smooth">2F</a></li>
+				<li><a href="#box3" class="smooth">3F</a></li>
+				<li><a href="#box4" class="smooth">4F</a></li>
+				<li><a href="#box5" class="smooth">5F</a></li>
+			</ul>
+		</div>
+		<div class="box">
+			<div class="box1" id="box1">1F</div>
+			<div class="box2" id="box2">2F</div>
+			<div class="box3" id="box3">3F</div>
+			<div class="box4" id="box4">4F</div>
+			<div class="box5" id="box5">5F</div>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery.anchor.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".smooth").zxxAnchor({
+				anchortag: "href",
+				animateTime:"100"
+			});
+		});
+	</script>
+
+</html>

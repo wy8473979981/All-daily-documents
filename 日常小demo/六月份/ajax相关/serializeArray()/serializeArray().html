@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+
+	<body>
+		<form id='addForm' action='UserAdd.action' type='post'>
+			<label for='uname'>用户名</label>：<input type='text' name='uname' id='uname'><br>
+			<label for='mobileIpt'>手机号：</label><input type='text' name='mobileIpt' id='mobileIpt'><br>
+			<label for='birthday'>生日：</label><input type='text' name='birthday'><br>
+			<input type='button' value='提交' onclick='addUser()'>
+		</form>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		/*序列化表格元素 (类似 '.serialize()' 方法) 返回 JSON 数据结构数据。
+		注意，此方法返回的是JSON对象而非JSON字符串。需要使用插件或者第三方库进行字符串化操作。
+		返回的JSON对象是由一个对象数组组成的，其中每个对象包含一个或两个名值对——name参数和value参数（如果value不为空的话）。*/
+		
+		
+		function addUser(){
+			console.log(JSON.stringify($('#addForm').serializeArray()));
+			
+			
+			
+			/*将表单元素数组或者对象序列化*/
+			console.log($.param( $('#addForm').serializeArray() ));
+		}
+		
+	</script>
+
+</html>

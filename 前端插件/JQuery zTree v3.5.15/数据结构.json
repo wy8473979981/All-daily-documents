@@ -1,0 +1,48 @@
+
+	[
+		 {
+			id: "allwarehouse",
+			name: "所有仓库",
+			pId: "0"
+		}, {
+			id: "redSea",
+			name: "红海",
+			pId: "allwarehouse"
+		}, {
+			id: "blueSea",
+			name: "蓝海",
+			pId: "allwarehouse"
+		}, {
+			id: "jishou",
+			name: "寄售",
+			pId: "blueSea"
+		}, {
+			id: "bujishou",
+			name: "不寄售",
+			pId: "blueSea"
+		}, {
+			id: "jishou_redSea",
+			name: "寄售",
+			pId: "redSea"
+		}, {
+			id: "bujishou_redSea",
+			name: "不寄售",
+			pId: "redSea"
+		}, {
+			id: "1_82",
+			name: "上海业威寄售库（方承的货）",
+			pId: "jishou"
+		}, {
+			id: "1_83",
+			name: "上海业威短期寄售库（方承物权）	",
+			pId: "bujishou"
+		}, {
+			id: "1_84",
+			name: "上海业威短期寄售库（波科物权）",
+			pId: "jishou_redSea"
+		}, {
+			id: "1_85",
+			name: "上海中邦(波科)",
+			pId: "bujishou_redSea"
+		}
+	]

@@ -1,0 +1,50 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<html>
+<head>
+	<title>会员列表</title>
+	<meta name="decorator" content="default"/>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="${ctxStatic}/IDH/dist/css/bootstrap.min.css" />
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script type="text/javascript">
+		function page(n,s){
+			$("#pageNo").val(n);
+			$("#pageSize").val(s);
+			$("#searchForm").submit();
+	    	return false;
+	    }
+	</script>
+</head>
+<body>
+	<section class="main-content bg-white">
+
+        <div class="content-wrap">
+            <div class="wrapper" style="min-height:500px;overflow-y:auto;background-color:#ccc;">   
+            	<div class="col-lg-12>
+            		<div class="row">
+           				<form id="searchForm" role="form">
+			                <div class="col-lg-3 col-xs-4 form-group">
+								<div class="row">
+									<div class="col-xs-4 col-sm-4">
+										<label for="title">订单编号</label>
+									</div>
+									<div class="col-xs-8 col-sm-8">
+										<input type="text" id="bizzNumber" name="bizzNumber" class="form-control" placeholder="订单编号" autofocus>
+									</div>
+								</div>
+							</div>
+						</form>
+            		</div>
+            	</div>
+            </div>                
+        </div>   		 
+    </section>
+	<div class="pagination">${page}</div>
+</body>
+</html>

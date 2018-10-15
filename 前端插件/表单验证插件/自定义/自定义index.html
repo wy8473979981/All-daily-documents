@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>BootstrapValidator demo</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="boostrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="dist/css/bootstrapValidator.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap-datepicker3.5/bootstrap-datepicker.css" />
+
+		<!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+		<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+
+		<script type="text/javascript" src="jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="boostrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="dist/js/bootstrapValidator.js"></script>
+		<script src="bootstrap-datepicker3.5/bootstrap-datepicker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bootstrap-datepicker3.5/bootstrap-datepicker.zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<!-- form: -->
+				<section>
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="page-header">
+							<h2>验证大小和时间</h2>
+							<h2>form-group 必须有</h2>
+							<h2>提交按钮 type="submit"</h2>
+						</div>
+
+						<form id="defaultForm" method="post" class="form-horizontal" action="target.php">
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">最小</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="r.captcha1" id="captchaOperation1" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">最大</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="r.captcha2" id="captchaOperation2" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">开始时间</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control Wdate" name="r.startTime" id="startTime" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">结束时间</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control Wdate" name="r.endTime" id="endTime" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">结束时间</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control " name="33" id="33" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-lg-9 col-lg-offset-3">
+									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Sign up</button>
+									<button type="submit" class="btn btn-primary" name="signup2" value="Sign up 2">Sign up 2</button>
+									<button type="button" class="btn btn-info" id="validateBtn">Manual validate</button>
+									<button type="button" class="btn btn-info" id="resetBtn">Reset form</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</section>
+				<!-- :form -->
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".Wdate").datepicker({
+					format: "yyyy-mm-dd",
+					autoclose: "ture",
+					todayHighlight: true,
+					language: "zh-CN"
+				}).on('hide', function(ev) {
+					time();
+				});
+
+
+				$('#defaultForm').bootstrapValidator({
+					//        live: 'disabled',
+					message: 'This value is not valid',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						'r.captcha1': {
+							validators: {
+								callback: {
+									message: '请输入大于0的数且最小值不能大于最大值！',
+									callback: function(value, validator) {
+										var maxValue = parseInt($('#captchaOperation2').val().trim());
+										if($('#captchaOperation2').val().trim() == undefined || $('#captchaOperation2').val().trim() == '') {
+											if(!/^[0-9]*[1-9][0-9]*$/.test(value)) {
+												return false;
+											} else {
+												return true;
+											}
+										} else {
+											if(!/^[0-9]*[1-9][0-9]*$/.test(value)) {
+												return false;
+											} else if(maxValue < value) {
+												return false
+											} else if(!/^[0-9]*[1-9][0-9]*$/.test(maxValue)) {
+												return false;
+											} else {
+												validator.updateStatus('r.captcha2', 'VALID');
+												return true;
+											}
+										}
+									}
+								}
+							}
+						},
+						'r.captcha2': {
+							validators: {
+								callback: {
+									message: '请输入大于0的数且最小值不能大于最大值！',
+									callback: function(value, validator) {
+										var minValue = parseInt($('#captchaOperation1').val().trim());
+										if($('#captchaOperation1').val().trim() == undefined || $('#captchaOperation1').val().trim() == '') {
+											if(!/^[0-9]*[1-9][0-9]*$/.test(value)) {
+												return false;
+											} else {
+												return true;
+											}
+										} else {
+											if(!/^[0-9]*[1-9][0-9]*$/.test(value)) {
+												return false;
+											} else if(value < minValue) {
+												return false
+											} else if(!/^[0-9]*[1-9][0-9]*$/.test(minValue)) {
+												return false;
+											} else {
+												validator.updateStatus('r.captcha1', 'VALID');
+												return true;
+											}
+										}
+									}
+								}
+							}
+						},
+						'r.startTime': {
+							trigger: 'change',
+							validators: {
+								callback: {
+									message: '开始时间应小于结束时间！',
+									callback: function() {
+
+										var startTimes = new Date($('#startTime').val()).getTime();
+										var endTimes = new Date($('#endTime').val()).getTime();
+										console.log('startTime:', startTimes, ' endTime:', endTimes);
+										if(endTimes == undefined || endTimes == '') {
+
+										} else {
+											if(startTimes > endTimes) {
+												return false;
+											} else {
+
+												return true;
+											}
+										}
+
+									}
+								}
+							}
+						},
+						'r.endTime': {
+							trigger: 'change',
+							validators: {
+								callback: {
+									message: '结束时间应大于开始时间！',
+									callback: function() {
+										var startTimes = new Date($('#startTime').val()).getTime();
+										var endTimes = new Date($('#endTime').val()).getTime();
+										console.log('startTime:', startTimes, ' endTime:', endTimes);
+										if(startTimes == undefined || startTimes == '') {
+
+										} else {
+											if(startTimes > endTimes) {
+												return false;
+											} else {
+
+												return true;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				});
+
+				function time() {
+					var startTimes = $('#startTime').val();
+					var endTimes = $('#endTime').val();
+					if(startTimes != '' && endTimes != '') {
+						$("#defaultForm").data('bootstrapValidator').updateStatus('r.endTime', 'NOT_VALIDATED', null).validateField('r.endTime');
+						$("#defaultForm").data('bootstrapValidator').updateStatus('r.startTime', 'NOT_VALIDATED', null).validateField('r.startTime');
+					}
+				}
+				// Validate the form manually
+				$('#validateBtn').click(function() {
+					$('#defaultForm').bootstrapValidator('validate');
+				});
+
+				$('#resetBtn').click(function() {
+					$('#defaultForm').data('bootstrapValidator').resetForm(true);
+				});
+			});
+		</script>
+	</body>
+
+</html>

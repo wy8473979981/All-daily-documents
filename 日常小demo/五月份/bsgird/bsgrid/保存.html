@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="form-group has-feedback">
+					<label for="type" class="col-sm-3 control-label">供应商经营许可证有效期</label>
+					<div class="col-sm-7">
+						<input class="Wdate" style="width:100%;" type="text" id="supplierBuCertValidat" name="m.supplierBuCertValidat" readonly="readonly" onClick="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'})" placeholder="供应商经营许可证有效期" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$('#saveBsgridData').click(function() {
+			if (isEdit) {
+				//编辑状态save
+				//debugger;
+				var rowsIndex = gridObj.getChangedRowsIndexs(); //获取changed行的索引值, 行索引从0开始
+				var changeValue = gridObj.getRowsChangedColumnsValue(); // 获取changed单元格的值, 返回Object对象, 其key是'row_'+rowIndex, 值也是Object对象
+				var data = cloneJSON(gridObj.options.settings.localData);
+				rowsIndex.forEach(function(item, index) {
+					//console.log("index:" + index);
+					//console.log("rowsIndex改变");
+					console.log('row index: ' + item + ' changed.');
+					console.log('row object: ' + changeValue['row_' + item]);
+					var changedKeys = Object.keys(changeValue['row_' + item]);
+					changedKeys.forEach(function(key, keyIndex) {
+						console.log("keyIndex:" + keyIndex + ",key:" + key);
+						//console.log('changeValue["row_"+item][key]', changeValue['row_'+keyIndex][key]);
+						data[keyIndex][key] = changeValue['row_' + keyIndex][key];
+					});
+				});
+			} else {
+				//新增状态save
+				var changeValue = gridObj.getRowsChangedColumnsValue();
+				var data = cloneJSON(gridObj.options.settings.localData)[0];
+				result = [];
+				var index = 0;
+				for (item in changeValue) {
+					result.push(JSON.stringify(Object.assign(cloneJSON(data), changeValue['row_' + index])));
+					index++;
+				}
+				isEdit = true;
+				console.log('result', result);
+				for (var i = 0; i < result.length; i++) {
+					console.log(result[i]);
+				}
+			}
+			var postData = JSON.stringify(data);
+			//debugger;
+			$.post("${base}/private/godown/entry/addpro", {
+					"id": '$!obj.id',
+					"data": postData
+				},
+				function(data) {
+					if (data.type == "success") {
+						Toast.success("成功添加入库单");
+						setTimeout(function() {
+							location.href = "${base}/private/oms/order";
+						}, 2000);
+					} else {
+						Toast.error(data.content);
+					}
+				}, "json");
+		});
+		
+
+		
+		
+	</script>
+
+</html>

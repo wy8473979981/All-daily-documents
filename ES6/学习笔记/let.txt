@@ -1,0 +1,4 @@
+http://mp.weixin.qq.com/s?__biz=MzA3MDg1NzQyNA==&mid=2649654045&idx=1&sn=b0eeb0f4037586eb0b582a4caa898827&scene=21#wechat_redirect
+
+用let声明变量只在块级作用域起作用，适合在for循环使用，也不会出现变量提升现象。
+同一个代码块内，不可重复声明的相同变量，不可重复声明函数内的参数。

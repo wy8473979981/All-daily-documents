@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		function bubbleSort(arr) {
+			var n = arr.length; //获取数组的长度，即有n个数在排序
+			var temp = null; //定义一个临时变量，交换数据用
+			for (var i = 0; i < n - 1; i++) { //外层循环n-1次
+				for (var j = 0; j < n - 1 - i; j++) { //内层每次循环n-1-i次，每次循环完，都能从剩下的数当中找出一个最大的放在n-1-i的位置
+					if (arr[j] > arr[j + 1]) { //如果a[j]>a[j+1]则交换位置
+						temp = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = temp;
+					}
+				}
+			}
+			return arr; //返回排好序的数组
+		}
+		arr = ["1","2","3","54","45","555","2","4"];
+		bubbleSort(arr);
+		console.log(arr)
+	</script>
+
+</html>

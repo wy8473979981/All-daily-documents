@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding:0;
+				margin:0;
+			}
+			body{
+				overflow: hidden;
+			}
+			.stage{
+				width:500px;
+				height:500px;
+				position:relative;
+				margin:50px auto;
+				border:1px solid #ccc;
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-transform: perspective(800px);
+				-moz-transform: perspective(800px) rotate3d(0,1,0,60deg);
+				-ms-transform: perspective(800px) rotate3d(0,1,0,60deg);
+				-o-transform: perspective(800px) rotate3d(0,1,0,60deg);
+				transform: perspective(800px);
+			}
+			.flat1{
+				width:0;
+				height:0;
+				border:200px solid transparent;
+				border-bottom:200px solid #f66;
+				position:absolute;
+				left:10%;
+				top:-15%;
+			}
+			.flat2{
+				width:0;
+				height:0;
+				border:200px solid transparent;
+				border-top:200px solid #f66;
+				position:absolute;
+				left:10%;
+				top:50%;
+			}
+			.top1{
+				-webkit-transform: rotateX(35.26438968deg);
+				-moz-transform: rotateX(35.26438968deg);
+				-ms-transform: rotateX(35.26438968deg);
+				-o-transform: rotateX(35.26438968deg);
+				transform: rotateX(35.26438968deg);
+				border-bottom:200px solid #f66;
+			}
+			.top2{
+				-webkit-transform:rotateY(-120deg) rotateX(35.26438968deg);
+				-moz-transform:rotateY(-120deg) rotateX(35.26438968deg);
+				-ms-transform:rotateY(-120deg) rotateX(35.26438968deg);
+				-o-transform:rotateY(-120deg) rotateX(35.26438968deg);
+				transform:rotateY(-120deg) rotateX(35.26438968deg);
+				border-bottom:200px solid #ccc;
+			}
+			.top3{
+				-webkit-transform:rotateY(120deg) rotateX(35.26438968deg);
+				-moz-transform:rotateY(120deg) rotateX(35.26438968deg);
+				-ms-transform:rotateY(120deg) rotateX(35.26438968deg);
+				-o-transform:rotateY(120deg) rotateX(35.26438968deg);
+				transform:rotateY(120deg) rotateX(35.26438968deg);
+				border-bottom:200px solid #0f0;
+			}
+			.bottom1{
+				-webkit-transform: rotateX(-35.26438968deg);
+				-moz-transform: rotateX(-35.26438968deg);
+				-ms-transform: rotateX(-35.26438968deg);
+				-o-transform: rotateX(-35.26438968deg);
+				transform: rotateX(-35.26438968deg);
+				border-top:200px solid #ff0;
+			}
+			.bottom2{
+				-webkit-transform:rotateY(-120deg) rotateX(-35.26438968deg);
+				-moz-transform:rotateY(-120deg) rotateX(-35.26438968deg);
+				-ms-transform:rotateY(-120deg) rotateX(-35.26438968deg);
+				-o-transform:rotateY(-120deg) rotateX(-35.26438968deg);
+				transform:rotateY(-120deg) rotateX(-35.26438968deg);
+				border-top:200px solid #00f;
+			}
+			.bottom3{
+				-webkit-transform:rotateY(120deg) rotateX(-35.26438968deg);
+				-moz-transform:rotateY(120deg) rotateX(-35.26438968deg);
+				-ms-transform:rotateY(120deg) rotateX(-35.26438968deg);
+				-o-transform:rotateY(120deg) rotateX(-35.26438968deg);
+				transform:rotateY(120deg) rotateX(-35.26438968deg);
+				border-top:200px solid #f0f;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="stage" id="stage">
+			<div class="flat1 top1">top1</div>
+			<div class="flat1 top2">top2</div>
+			<div class="flat1 top3">top3</div>
+			<div class="flat2 bottom1">bottom1</div>
+			<div class="flat2 bottom2">bottom2</div>
+			<div class="flat2 bottom3">bottom3</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function(){
+			var stage = document.getElementById("stage");
+			var rotX = 0, rotY = 0;
+			document.ondragstart = function(){
+				return false;
+			}
+			document.onmousedown = function(e){
+				var musX = e.clientX;
+				var musY = e.clientY;
+				document.onmousemove = function(e){
+					var mouseX = e.clientX;
+					var mouseY = e.clientY;
+					var stepX = musX - mouseX;
+					var stepY = musY - mouseY;
+					rotX += stepY * 0.1;
+					rotY -= stepX * 0.2;
+					musX = mouseX;
+					musY = mouseY;
+					var str = "perspective(800px) rotateX(" + rotX + "deg) rotateY(" + rotY + "deg)";
+					css3dTransform(stage,str);
+				}
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+		function css3dTransform(ele,value){
+			var array = ["webkit","moz","ms","o",""];
+			for(var j=0;j<array.length;j++){
+				ele.style[array[j]+"Transform"] = value;
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,56 @@
+.dhxvlt_hidden {
+    z-index: 4;
+    filter: alpha(opacity: 0);
+    text-align: left;
+    opacity: 0;
+    -moz-opacity: 0;
+    cursor: pointer;
+    left: 0px;
+    position: absolute;
+    height: 25px;
+}
+a.link:hover, a.link:visited, a.link:link {color: #0033CC;}
+
+.fileName, .text, a.link:hover, a.link:visited, a.link:link {font-size: 12px;font-family: Tahoma, Arial, Helvetica, sans-serif;}
+.fileName {overflow:hidden;height:14px;width:280px;}
+.btnAddDiv {left:9px;width:70px;overflow:hidden;height:32px;direction:rtl;position:absolute;}
+.dhxvlt_panelbg {background-color:#eceef4;}
+.dhxvlt_panelborder {border: 1px solid #a4bed4;}
+.dhxvlt_panel2border {
+	border:1px solid #a4bed4;
+	/*���IE9���ֹ��������ȱ�խ����*/
+	box-sizing:content-box;
+}
+.dhxvlt_panel2border.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+.dhxvlt_row {background: none;}
+.dhxvlt_row table {border-bottom:1px solid #E2E2E2;}
+.dhxvlt_rowsel {background: url(images/fileupload/rowsel.gif);}
+.dhxvlt_rowsel table {border-bottom:1px solid #ffffff !important;}
+.dhxvlt_txtremove {display:none;}
+#dhxvlt_icoremove {position:relative;top:7px;width:16px;height:16px;background:url(images/fileupload/delete.gif) no-repeat;cursor:pointer;}
+.dhxvlt_txtpreview {display:none;}
+#dhxvlt_icopreview {position:relative;top:7px;width:16px;height:16px;background:url(images/fileupload/preview.png) no-repeat;cursor:pointer;}
+
+.dhxvlt_rbtn {margin-right:7px;}
+.dhxvlt_rbtn3 {width:4px;height:21px;float:right;background:url(images/fileupload/btn3.gif) no-repeat;}
+.dhxvlt_rbtn2 {cursor:pointer;height:21px;float:right;background:url(images/fileupload/btn2.gif) repeat-x;overflow-y:hidden;font-size:8pt;font-family:Tahoma,Arial,Helvetica,sans-serif;}
+.dhxvlt_rbtn2 nobr {margin-right:4px}
+.dhxvlt_rbtn2 img {margin-top:5px;margin-left:4px;margin-right:4px;}
+.dhxvlt_rbtn1 {width:4px;height:21px;float:right;background:url(images/fileupload/btn1.gif) no-repeat;}
+
+.dhxvlt_lbtn {margin-right:7px;}
+.dhxvlt_lbtn3 {width:4px;height:21px;float:left;background:url(images/fileupload/btn3.gif) no-repeat;}
+.dhxvlt_lbtn2 {cursor:pointer;height:21px;float:left;background:url(images/fileupload/btn2.gif) repeat-x;overflow-y:hidden;font-size:8pt;font-family:Tahoma,Arial,Helvetica,sans-serif;}
+.dhxvlt_lbtn2 nobr {margin-right:4px}
+.dhxvlt_lbtn2 img {margin-top:5px;margin-left:4px;margin-right:4px;}
+.dhxvlt_lbtn1 {width:4px;height:21px;float:left;background:url(images/fileupload/btn1.gif) no-repeat;}
+
+.dhxvlt_fo {width:70px}
+
+.btnAddBtn {left:10px;width:94px;overflow:hidden;height:32px;position:absolute;top:212px;}
+
+.dhxvlt_dis {color:#999}

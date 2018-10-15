@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="top" class="append_box mb20">
+			平滑跳转到底部：
+			<a href="#bottom" class="smooth">滑到底部</a>
+
+			按钮平滑到底部：<button id="btnBottom" type="button" anchor="bottom">点击我</button>
+		</div>
+		<div id="appendBox" class="append_box">
+			<img width="300" height="3281" src="//ss4.sinaimg.cn/bmiddle/6200b7a8t8b6743480673&690" />
+		</div>
+		<div id="bottom" class="append_box mt20 pb20">
+			平滑回到顶部：
+			<a href="#top" class="smooth">回到顶部链接</a>
+
+			直接跳到顶部：<button id="btnTop" type="button" anchor="top">点击我吧</button>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery.anchor.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".smooth").zxxAnchor({
+				anchortag: "href"
+			});
+			$("#btnBottom").zxxAnchor();
+			$("#btnTop").zxxAnchor({
+				anchorSmooth: false
+			});
+		});
+	</script>
+
+</html>

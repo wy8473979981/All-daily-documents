@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<form id="form22" name="form22" action="checklogin.action" method="post">
+			<div class="username" style="margin-top:50px;">
+				<label>用户名：</label>
+				<input type="text" name="username" id="userName" />
+				<span id="myuser" style="color: red; font-size:12px; font-weight: normal;"></span>
+			</div>
+
+			<div class="password">
+				<label>密 码：</label>
+				<input name="password" id="passWord" type="password" />
+				<span id="mypass" style="color: red; font-size:12px; font-weight: normal;"></span>
+			</div>
+
+			<div class="user_type">
+				<label>  </label>
+				<input type="checkbox" id="saveUserName" style="float: left; margin-top:3px;" />
+				<span> 记住用户</span>
+			</div>
+
+			<input type="button" value="登录" class="btn_login" id="btn_login" onclick="checkform();" />
+			<input type="button" value="删除" class="btn_login" id="btn_login1" onclick="deleteCookie1()"/>
+		</form>
+	</body>
+	<script src="cookie.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*原理
+		 * 1、判断是否选中checkbox，为true 存储用户名和密码到cookie
+		 * 
+		 * 2、页面每次加载就取出cookie
+		 * 
+		 * */
+		window.onload = function() {
+
+			var getUserName = getCookie("loginUserName");
+			var getUserPassword = getCookie("loginUserPassword");
+
+			debugger
+			if(getUserName != null && getUserName != "" && getUserPassword != null && getUserPassword != "") {
+				document.getElementById("userName").value = getUserName;
+				document.getElementById("passWord").value = getUserPassword;
+
+			} else {
+				document.getElementById("userName").focus();
+			}
+
+		}
+		function deleteCookie1() {
+			deleteCookie("loginUserName");
+
+		}
+		function checkform() {
+			var setUserName = document.getElementById("userName").value;
+			var setPassword = document.getElementById("passWord").value;
+			var isChecked = document.getElementById("saveUserName").checked;
+			if(isChecked) {
+				setCookie("loginUserName", setUserName);
+				setCookie("loginUserPassword", setPassword);
+			}
+
+		}
+	</script>
+
+</html>

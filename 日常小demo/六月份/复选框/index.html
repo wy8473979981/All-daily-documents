@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>5.26</title>
+	</head>
+
+	<body>
+		<table class="mis-list">
+			<thead>
+				<tr>
+					<td><input type="checkbox" name="check" id="zh" class="select" onclick="checkChild();"/></td>
+					<td>账户归属</td>
+					<td>账户名称</td>
+					<td>账号</td>
+					<td>账号余额</td>
+					<td>浮动盈亏</td>
+					<td>账户净值</td>
+					<td>杠杆</td>
+					<td>MT4组</td>
+					<td>城市</td>
+					<td>账户组</td>
+					<td>客户名称</td>
+					<td>开户时间</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td><input type="checkbox" name="check" /></td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+				</tr>
+
+				<tr>
+					<td><input type="checkbox" name="check" /></td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+				</tr>
+
+				<tr>
+					<td><input type="checkbox" name="check" /></td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+					<td>name</td>
+				</tr>
+				<tr>
+					<td>合计</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	/*	$("#zh").click(
+		function() {
+			if (this.checked) {
+				$("input[name='check']").each(function() {
+					this.checked = true;
+				});
+			} else {
+				$("input[name='check']").each(function() {
+					this.checked = false;
+				});
+			}
+		}
+	);*/
+	
+	function checkChild() {
+		if ($(".select").is(':checked')) {
+			$('input[name="check"]').prop("checked",true);
+		} else {
+			$('input[name="check"]').prop("checked",false);
+		}
+	}
+	
+	
+	
+	/*使用iCheck.js*/
+	$(document).on('click','.checkBox', function(e){
+		var minusCount = 0;
+		var plusCount = 0;
+		$('.checkBox').each(function(index, item){
+			if($(item).is(':checked')){
+				minusCount ++;
+				console.log("minusCount===" + minusCount);
+			}else{
+				plusCount ++;
+				console.log("plusCount===" + plusCount)
+			};
+			if(minusCount >= $('.checkBox').length){
+				$("#data th input[type='checkbox']").iCheck('check');
+			}
+			if (plusCount >= $('.checkBox').length){
+				$("#data th input[type='checkbox']").iCheck('uncheck');
+			}
+		})
+	});
+	</script>
+</html>

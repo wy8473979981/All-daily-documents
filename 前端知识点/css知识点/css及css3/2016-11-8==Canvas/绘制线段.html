@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		
+		with (context){
+			strokeStyle = "red";
+			lineWidth = "15";
+			moveTo(200,0);
+			lineTo(0,200);
+			lineTo(200,200);
+			lineTo(0,400);
+			shadowBlur = "5";
+			shadowColor = "#000";
+			shadowOffsetX = 10;
+			shadowOffsetY = 10;
+			stroke();
+		}
+	</script>
+</html>

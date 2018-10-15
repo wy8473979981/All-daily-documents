@@ -1,0 +1,325 @@
+@charset "utf-8";
+*{
+	padding: 0;
+	margin: 0;
+}
+html{
+	font-size: 62.5%;
+}
+
+figure{
+	position: relative;
+	float: left;
+	width: 33.33%;
+	height: 365px;
+	transition: all .5s;
+	overflow: hidden;
+}
+h2{
+	font-size: 3.2rem;
+	color:#ffffff;
+	transition: all .5s;
+}
+p{
+	color:#ffffff;
+	font-size: 2.2rem;
+	transition: all .5s;
+}
+img{
+	position: absolute;
+	left:0;
+	top:0;
+	opacity: 1;
+	transition: all .5s;
+}
+
+span{
+	display: block;
+	color:#000;
+	background-color: #ffffff;
+	font-size: 1.4rem;
+	line-height: 1.6rem;
+	transition: all .5s;
+}
+figure:hover img{
+	transform: translateX(-20px);
+	opacity: .5;
+}
+
+div{
+	transition: all .5s;
+}
+.effect1 h2{
+	position: absolute;
+	left: 30px;
+	bottom:60px;
+	
+}
+.effect1 p{
+	position: absolute;
+	left: 30px;
+	bottom:-30px;
+	
+}
+.effect1:hover img{
+	transform: translateX(-20px);
+}
+.effect1:hover h2{
+	transform: translateY(-10px);
+}
+.effect1:hover p{
+	transform: translateY(-50px);
+}
+
+.effect2 h2{
+	position: absolute;
+	top:60px;
+	left:30px;
+}
+.effect2:hover h2{
+	transform: translateY(-15px);
+}
+
+.effect2 .span1{
+	position: absolute;
+	top:100px;
+	left:-220px;
+}
+.effect2 .span1{
+	position: absolute;
+	top:130px;
+	left:-220px;
+}
+.effect2 .span2{
+	position: absolute;
+	top:160px;
+	left:-220px;
+	transition-delay: .2s;
+}
+.effect2 .span3{
+	position: absolute;
+	top:190px;
+	left:-220px;
+	transition-delay: .3s;
+}
+.effect2:hover .span1{
+	transform: translateX(250px);
+	
+}
+.effect2:hover .span2{
+	transform: translateX(250px);
+	
+}
+.effect2:hover .span3{ 
+	transform: translateX(250px);
+}
+
+.effect3 h2{
+	position: absolute;
+	top:100px;
+	left:30px;
+}
+.effect3:hover h2{
+	transform: translateY(-10px);
+}
+
+.effect3 p{
+	position: absolute;
+	left:0;
+	bottom: -50px;
+	background-color: #ffffff;
+	width: 100%;
+	text-indent: 2rem;
+	height: 50px;
+	line-height: 1.8rem;
+	font-size: 1.4rem;
+	color: #000;
+}
+.effect3:hover p{
+	transform: translateY(-50px);
+}
+
+.effect4 h2{
+	position: absolute;
+	top:100px;
+	left:30px;
+	opacity: 0;
+}
+
+.effect4 div{
+	position: absolute;
+	bottom: -300px;
+	width: 800px;
+	height: 300px;
+	z-index: 98;
+	background-color: #ffffff;
+	
+}
+.effect4 .info1{
+	position: absolute;
+	right: 120px;
+	bottom:-50px;
+	color:#000;
+	font-weight:bold;
+	z-index:99;
+}
+.effect4 .info2{
+	position: absolute;
+	right: 50px;
+	bottom:-50px;
+	color:#000;
+	z-index:99;
+	font-weight:bold;
+	transition-delay: 0.05s;
+}
+.effect4:hover h2{
+	transform: translateY(-30px);
+	opacity: 1;
+}
+.effect4:hover .info2{
+	transform:translateY(-80px);
+}
+.effect4:hover .info1{
+	transform:translateY(-80px);
+}
+.effect4:hover div{
+	transform-origin: 0 0;
+	transform: rotate(-15deg);
+}
+
+.effect5 div{
+	position: absolute;
+	left:15%;
+	top:15%;
+	width: 70%;
+	height: 70%;
+	border:1px solid #000;
+	transform: translateY(-400px) rotate(0deg) ;
+	transform-origin: 0 0;
+}
+.effect5:hover div{
+	transform: translateY(0px) rotate(360deg) ;
+}
+.effect5 h2{
+	position: absolute;
+	left: 30px;
+	top: 60px;
+}
+.effect5:hover h2{
+	transform: translateX(50px);
+}
+.effect5 p{
+	position: absolute;
+	font-size: 1.2rem;
+	left:20%;
+	top:50%;
+}
+.effect5:hover p{
+	transform: translateY(-30px);
+}
+
+.effect6 h2{
+	position: absolute;
+	left:30px;
+	top:30px;
+	transform: skew(90deg);
+}
+.effect6 p{
+	position: absolute;
+	left:60px;
+	top:80px;
+	transform: skew(90deg);
+}
+.effect6:hover h2{
+	transform: skew(0deg);
+}
+.effect6:hover p{
+	transform: skew(0deg);
+}
+
+.effect7 h2{
+	position: absolute;
+	left:20%;
+	top:20%;
+	transform: scale(1.2);
+}
+.effect7 img{
+	transform: scale(1.2);
+}
+.effect7:hover img{
+	transform: scale(1);
+}
+.effect7 div{
+	width: 70%;
+	height: 70%;
+	position: absolute;
+	left: 15%;
+	top:15%;
+	transform: scale(1.2);
+	border: 2px solid #ffffff;
+}
+.effect7 p{
+	position: absolute;
+	left: 35%;
+	top:45%;
+	transform: scale(1.2);
+}
+.effect7:hover h2{
+	transform: scale(1);
+}
+.effect7:hover p{
+	transform: scale(1);
+}
+.effect7:hover div{
+	transform: scale(1);
+}
+.effect8 h2{
+	position: absolute;
+	left:12%;
+	top:17%;
+}
+.effect8:hover h2{
+	transform: translateX(30px);
+}
+.effect8 p{
+	position: absolute;
+	left:17%;
+	top:33%;
+	opacity: 0;
+}
+.effect8:hover p{
+	transform: translateY(-20px);
+	opacity: 1;
+}
+.effect8 .borW{
+	width:80%;
+	height: 70%;
+	border: 1px solid #ffffff;
+	border-left: none;
+	border-right: none ;
+	position: absolute;
+	left: 10%;
+	top: 15%;
+	transform: scaleX(0);
+	
+}
+.effect8 .borH{
+	width:70%;
+	height: 80%;
+	border: 1px solid #ffffff;
+	border-top: none;
+	border-bottom: none ;
+	position: absolute;
+	left: 15%;
+	top: 10%;
+	transform: scaleY(0);
+}
+
+.effect8:hover .borH{
+	transform: scaleY(1);
+}
+.effect8:hover .borW{
+	transform: scaleY(1);
+}
+
+ 

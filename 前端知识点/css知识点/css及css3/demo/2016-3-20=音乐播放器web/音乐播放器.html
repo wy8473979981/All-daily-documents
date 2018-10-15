@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="generator" content="EditPlus" />
+		<meta name="author" content="" />
+		<meta name="keywords" content="" />
+		<meta name="Description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<title>音乐播放器</title>
+		<link rel="stylesheet" type="text/css" href="index.css" />
+	</head>
+
+	<body>
+		<di id="ui-auduoface">
+			<div class="ui-content">
+				<img src="images/disk.png" class="ui-disk" alt="" />
+				<dl class="ui-info">
+					<dt>请选择歌曲</dt>
+					<dd></dd>
+					<dd>未选择...</dd>
+				</dl>
+				<ul class="ui-tools">
+					<li>
+						<a href="#" class="ui-icon ui-list">0</a>
+					</li>
+					<li>
+						<a href="#" class="ui-score ui-show ">谱</a>
+					</li>
+				</ul>
+				<div class="ui-opface">
+					<a href="#" class="ui-icon ui-prev"></a>
+					<a href="#" class="ui-icon ui-play"></a>
+					<a href="#" class="ui-icon ui-next"></a>
+					<a href="#" class="ui-icon ui-cycle"></a>
+					<a href="#" class="ui-icon ui-volume-icon"></a>
+					<span class="ui-icon ui-rate">
+						<a href="#" class="ui-icon"></a>
+					</span>
+				</div>
+			</div>
+			<div class="ui-list">
+				<ul>
+					<li  path="music/许嵩 - 断桥残雪.mp3" name="断桥残雪" singer="许嵩">
+						<a href="#">断桥残雪</a>
+						<a href="#">许嵩</a>
+					</li>
+					<li  path="music/任贤齐 - 我是一只鱼.mp3" name="我是一只鱼" singer="任贤齐">
+						<a href="#">我是一只鱼</a>
+						<a href="#">任贤齐</a>
+					</li>
+					<li  path="music/任贤齐 - 我是一只鱼.mp3" name="我是一只鱼" singer="任贤齐">
+						<a href="#">我是一只鱼</a>
+						<a href="#">任贤齐</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/audioface.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var audioface = new AudioFace();
+		var effect = 500;
+		audioface.onplay = function(duration){
+			$('#ui-auduoface div.ui-content img.ui-disk').addClass('ui-playing');
+			duration = parseInt(duration);
+			$('#ui-auduoface div.ui-content dl.ui-info dd:last').text(parseInt(duration/60)+':'+ parseInt(duration%60));
+		};
+		audioface.onpause = function(){
+			$('#ui-auduoface div.ui-content img.ui-disk').removeClass('ui-playing');
+		}
+		
+		$(function(){
+			var $music = $('#ui-auduoface div.ui-list ul li');
+			$music.click(function(){
+				var $this = $(this);//只调用一次jquery函数
+				var path = $this.attr('path');
+				var name = $this.attr('name');
+				var singer = $this.attr('singer');
+				
+				$this.addClass("ui-currm").siblings().removeClass("ui-currm");
+				$('#ui-auduoface div.ui-content dl.ui-info dt').text(name);
+				$('#ui-auduoface div.ui-content dl.ui-info dd:first').text(singer);
+				$('#ui-auduoface div.ui-content dl.ui-info dd:last').text('正在加载');
+				audioface.request(path);
+				audioface.stop();
+			});
+			$('#ui-auduoface div.ui-content ul.ui-tools li a.ui-list').text($music.size());
+			var $score = $('#ui-auduoface div.ui-score'); 
+			
+			$('#ui-auduoface div.ui-content ul.ui-tools li a.ui-score').click(function(){
+				if($(this).toggleClass('ui-show').hasClass('ui-show')){
+					
+					$score.fadeIn(effect);
+				}else{
+					$score.fadeOut(effect);
+				}
+			});
+			var $list = $('#ui-auduoface div.ui-list');
+			$('#ui-auduoface div.ui-content ul.ui-tools li a.ui-list').click(function(){
+				$list.fadeToggle(effect);
+			});
+		
+			$('#ui-auduoface div.ui-content div.ui-opface a.ui-play').click(function(){
+				var status = audioface.status;
+				if(status != 0){
+					if(status == 1){
+						audioface.pause();
+						$(this).addClass('ui-pause');
+					}else if(status == 2){
+						audioface.resume();
+						$(this).removeClass('ui-pause');
+					}
+				}
+			});
+			$('#ui-auduoface div.ui-content div.ui-opface a.ui-next').click(function(){
+				var status = audioface.status;
+				$('#ui-auduoface div.ui-list ul li.ui-currm').next().trigger('click');
+			});
+			$('#ui-auduoface div.ui-content div.ui-opface a.ui-prev').click(function(){
+				var status = audioface.status;
+				$('#ui-auduoface div.ui-list ul li.ui-currm').prev().trigger('click');
+			});
+		});
+		
+		
+		
+	</script>
+</html>

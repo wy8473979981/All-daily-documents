@@ -1,0 +1,33 @@
+很明显使用事件变量就会有上面提到的纠结问题，故而用另一种使用本地模板变量来获取用户录入。
+
+Angular有个叫本地模板变量的模板语法特征，这种变量可以直接访问到元素自身，其声明方式只需要在变量名加上 #。
+
+以下是一个非常简单利用本地模板变量记录用户录入的示例：
+
+@Component({
+  selector: 'my-app',
+  template:`
+    <input #box (keyup)="0">
+    <p>{{box.value}}</p>
+  `
+})
+export class LoopbackComponent { }
+为 <input> 声明一个 #box 本地模板变量，box 就是 <input> 元素的自身引用，因此可以在模板的当前元素、兄弟元素、和任意子元素中直接使用。
+
+上面完全没有使用到任何组件类的东西，其中 (keyup)="0" 已经算是能想到最简化的代码。
+
+同时，另一个问题接踵而至，如何把本地模板变量传给组件类呢？既然 box 表示input元素自身引用，我们可以在模板里把input的值以传参形式传递给组件类。
+
+@Component({
+  selector: 'my-app',
+  template: `
+      <input #box (keyup)="onKey(box.value)">
+      <p>{{values}}</p>`
+})
+export class AppComponent {
+    values = '';
+    onKey(value: string) {
+        this.values += value + ' | ';
+    }
+}
+这样组件类简洁获得到录入信息，同时又不需要告诉事件和DOM结构信息给组件类

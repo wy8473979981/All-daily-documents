@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="p"></p>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#p").html(new Date().toLocaleTimeString());
+		setInterval(function(){
+			$("#p").html(new Date().toLocaleTimeString());
+		},1000)
+	</script>
+</html>

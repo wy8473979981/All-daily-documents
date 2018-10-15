@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../icheck-1.x/skins/square/blue.css"/>
+	</head>
+
+	<body>
+		<input type="checkbox">
+		<input type="checkbox" checked>
+		<input type="radio" name="iCheck">
+		<input type="radio" name="iCheck" checked>
+
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="icheck.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(document).ready(function() {
+			$('input').iCheck({
+				checkboxClass: 'icheckbox_square-blue', // 注意square和blue的对应关系
+				radioClass: 'iradio_square-blue',
+				increaseArea: '20%' // optional
+			});
+		});
+	</script>
+
+</html>

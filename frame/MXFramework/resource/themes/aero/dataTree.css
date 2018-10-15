@@ -1,0 +1,195 @@
+.mx .dataTree
+{
+    list-style:none;
+    overflow:auto;
+    padding:1px;
+    border-top:1px solid #ABADB3;
+    border-left:1px solid #E2E3EA;
+    border-bottom:1px solid #E3E9EF;
+    border-right:1px solid #DBDFE6;
+    background-color:white;
+    cursor:default;
+    box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+}
+
+.mx .dataTree ul
+{
+    display:table;
+    width:100%;
+}
+
+
+.mx .dataTree li
+{
+    white-space:nowrap; 
+    line-height:19px;
+}
+
+.mx .dataTree li > a
+{
+    display:block;
+    border:1px solid transparent;
+    padding-left:4px;
+    color:black;
+    vertical-align:middle;
+}
+
+.mx .dataTree li > a > #checkBox
+{
+	position:relative;
+	display:inline-block;
+    width:16px;
+    height:16px;
+	top:-1px;
+	margin-right:2px;
+    vertical-align:middle;
+    background-image:url(images/check_editor_unchecked.png);
+}
+
+.mx .dataTree li.checked > a > #checkBox
+{
+	background-image:url(images/check_editor_checked.png);
+}
+
+.mx .dataTree li.checkedPart > a > #checkBox
+{
+	background-image:url(images/check_editor_checked_part.png);
+}
+
+.mx .dataTree li.selected > a
+{
+    border:1px solid #84ACDD;
+    border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;
+    background-image:url(images/tree_node_selected_bg.png);
+    background-repeat:repeat-x;
+}
+.mx .dataTree li.selected > a:hover
+{
+    border:1px solid #7DA2CE;
+    background-image:url(images/tree_node_selected_hover_bg.png);
+    background-repeat:repeat-x;
+}
+
+.mx .dataTree li > a:hover
+{
+    border:1px solid #B8D6FB;
+    border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;
+    background:url(images/tree_node_hover_bg.png);
+}
+
+.mx .dataTree li > a > #text
+{   
+    padding-right:10px;
+}
+
+.mx .dataTree li > a > #expandor
+{
+    display:inline-block;
+    width:16px;
+    height:16px;
+    background:url(images/expandable_collapse.png) no-repeat;
+}
+.mx .dataTree li > a > #expandor:hover
+{
+     background:url(images/expandable_collapse_hover.png) no-repeat;
+}
+.mx .dataTree li.selected > a > #expandor:hover
+{
+     background:url(images/expandable_collapse_selected_hover.png) no-repeat;
+}
+
+.mx .dataTree li.item > a > #expandor
+{
+    background-image:none;  
+}
+
+.mx .dataTree li.expanded > a > #expandor
+{
+    background:url(images/expandable_expand.png) no-repeat;
+}
+.mx .dataTree li.expanded > a > #expandor:hover
+{
+    background:url(images/expandable_expand_hover.png) no-repeat;
+}
+.mx .dataTree li.expanded.selected > a > #expandor:hover
+{
+    background:url(images/expandable_expand_selected_hover.png) no-repeat;
+}
+
+.mx .dataTree li > a > img
+{
+    width:16px;
+    height:16px;
+    margin-right:3px;
+    vertical-align:middle;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.mx .dataTree li > a > span
+{
+    vertical-align:middle;
+}
+
+.mx .dataTree li > a > span.text
+{
+    display:block;  
+}
+
+.mx .dataTree li > ul
+{
+    display:none;
+}
+
+.mx .dataTree li.expanded > ul
+{
+    display:block;
+}
+
+
+
+
+.mx .dataTree.disabled, .mx .dataTree.disabled ul
+{
+    background-color:#F0F0F0;
+}
+
+.mx .dataTree.disabled li > a > #text
+{   
+    color:#555555;
+}
+
+.mx .dataTree.disabled li > a, .mx .dataTree.disabled li > a:hover
+{
+	background:none;
+    border:1px solid transparent;
+}
+
+.mx .dataTree.disabled li > a > #checkBox
+{
+    background-image:url(images/check_editor_unchecked_disabled.png);
+}
+
+.mx .dataTree.disabled li.checked > a > #checkBox
+{
+	background-image:url(images/check_editor_checked_disabled.png);
+}
+
+.mx .dataTree.disabled li.checkedPart > a > #checkBox
+{
+	background-image:url(images/check_editor_checked_disabled_part.png);
+}
+
+
+.mx .dataTree.disabled li > a > #expandor:hover
+{
+    background:url(images/expandable_collapse.png) no-repeat;
+}
+.mx .dataTree.disabled li.expanded > a > #expandor:hover
+{
+    background:url(images/expandable_expand.png) no-repeat;
+}
+.mx .dataTree.disabled li.item > a > #expandor
+{
+    background-image:none;  
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>table</title>
+
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0
+			}
+			input{
+				outline: none;
+				border: none;
+			}
+			.xsInput {
+				width: 50px;
+			}
+			
+			.mdInput {
+				width: 170px;
+			}
+			.table tr th {
+				text-align: center;
+			}
+			
+			.container .table td {
+				padding: 4px;
+				height: 42px;
+				
+			}
+			.table td .btn-group-wrap{
+				display: none;
+			}
+			.table td input {
+				width: 100%;
+				height: 34px;
+				padding: 0;
+				text-align: center;
+				display: none;
+				border:1px solid #ccc;
+			}
+			.table td .btn-group{
+				height: 100%;
+				padding:0;
+			}
+			.table td .btn-group button{
+				width: 100%;
+			}
+			.table td .btn-group>div{
+				margin: 0px 4px;
+			}
+			.dropdown-menu{
+				width: 100%;
+				min-width: 30px;
+				text-align: center;
+			}
+			.dropdown-menu li:hover{
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Firstname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" class="xsInput" placeholder="1"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+								</tr>
+								<tr>
+									<td><input type="text" class="xsInput" placeholder="1"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+								</tr>
+								<tr>
+									<td><input type="text" class="xsInput" placeholder="1"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+								</tr>
+								<tr>
+									<td><input type="text" class="xsInput" placeholder="1"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+									<td><input type="text" class="mdInput" placeholder="Anna"/></td>
+									<td><input type="text" class="xsInput" placeholder="Anna"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+		<!--给td写样式 -->
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Firstname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+									<th>Secondname</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="xsInput"><input type="text" placeholder="1" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+								</tr>
+								<tr>
+									<td class="xsInput"><input type="text" placeholder="1" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+								</tr>
+								<tr>
+									<td class="xsInput"><input type="text" placeholder="1" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput">
+
+										<input type="text" placeholder="Anna" />
+
+									</td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+								</tr>
+								<tr>
+									<td class="xsInput"><input type="text" placeholder="1" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput"><input type="text" placeholder="Anna" /></td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+									<td class="mdInput">
+										<div class="btn-group-wrap">
+											<div class="btn-group col-sm-4">
+												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  						 <span class="secMsg">全部1</span><span class="caret"></span>
+						 						 </button>
+												<ul class="dropdown-menu">
+													<li>全部1</li>
+													<li>全部2</li>
+													<li>全部3</li>
+													<li>全部4</li>
+												</ul>
+											</div>
+											<div class="btn-group  col-sm-4">
+												<div>
+													
+												
+												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  						 <span class="secMsg">全部1</span><span class="caret"></span>
+						 						 </button>
+												<ul class="dropdown-menu">
+													<li>全部1</li>
+													<li>全部2</li>
+													<li>全部3</li>
+													<li>全部4</li>
+												</ul>
+												</div>
+											</div>
+											<div class="btn-group  col-sm-4">
+												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  						 <span class="secMsg">全部1</span><span class="caret"></span>
+						 						 </button>
+												<ul class="dropdown-menu">
+													<li>全部1</li>
+													<li>全部2</li>
+													<li>全部3</li>
+													<li>全部4</li>
+												</ul>
+											</div>
+										</div>
+									</td>
+									<td class="xsInput"><input type="text" placeholder="Anna" /></td>
+								</tr>
+							</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		$(".table td").on("click", function() {
+			$(this).children().show();
+			$(this).find("input").focus();
+		})
+		$("input").on("blur", function() {
+			$(this).css({
+				"border": "transparent",
+			});
+		});
+		$("input").on("focus", function() {
+			$(this).css({
+				"border": "1px solid #ccc",
+				
+			});
+		})
+		
+		$(".dropdown-menu li").on("click",function(){
+			var $text = $(this).text();
+			$(this).parent().siblings("button").find("span.secMsg").text($text);
+			
+		});
+	</script>
+
+</html>

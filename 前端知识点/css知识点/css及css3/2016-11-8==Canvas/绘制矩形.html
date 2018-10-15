@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--绘制矩形
+	    context.fillRect(x,y,width,height)  
+	    strokeRect(x,y,width,height)
+        x:矩形起点横坐标（坐标原点为canvas的左上角，
+       	当然确切的来说是原始原点
+     	y:矩形起点纵坐标
+     	width:矩形长度
+     	height:矩形高度
+     	 清除矩形区域 context.clearRect(x,y,width,height)
+     	
+     	-->
+     	
+     	<canvas id="myCanvas" width="400" height="500" style="border:1px solid #000"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		
+		
+		/*1、绘制一个矩形，使用方法：context.fillRect(x,y,width,height)  */
+		context.fillRect(0,0,100,100);
+		
+		/*2、绘制一个矩形边框， strokeRect(x,y,width,height)*/
+		context.strokeRect(110,0,100,100);
+		
+		/*3、设置填充颜色*/
+		
+		context.fillStyle = "red";
+		context.strokeStyle = "blue";
+		context.fillRect(220,0,100,100);
+		context.strokeRect(0,110,100,100);
+		
+		/*3、rgb格式    */
+		context.fillStyle = "rgb(0,255,0)";
+		context.strokeStyle = "rgb(0,255,0)";
+		context.fillRect(110,110,100,100);
+		context.strokeRect(220,110,100,100);
+		
+		/*4、格式    rgba*/
+		context.fillStyle = "rgba(0,255,0,0.3)";
+		context.strokeStyle = "rgba(0,255,0,0.3)";
+		context.fillRect(0,220,100,100);
+		context.strokeRect(110,220,100,100);
+		
+		/*5、清除坐标从（50，50）开始，宽度为150，高度100的矩形区域*/
+		context.clearRect(50,50,150,100);
+	</script>
+	
+	
+</html>

@@ -1,0 +1,154 @@
+.mx .listEditor,.mx.listEditor 
+{
+	display: block;
+	border-top: 1px solid #7091b2;
+	border-left: 1px solid #7091b2;
+	border-bottom: 1px solid #7091b2;
+	border-right: 1px solid #7091b2;
+	background-color: white;
+	text-align: left;
+	padding: 1px;
+	cursor: default;
+	box-sizing: inherit\0;	
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+
+.mx .listEditor.error,.mx.listEditor.error 
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+.mx .listEditor ul,.mx.listEditor ul 
+{
+	width: 100%;
+	height: 100%;
+}
+
+.mx .listEditor li,.mx.listEditor li 
+{
+	height: 18px;
+	line-height: 18px;
+	padding-left: 2px;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.mx .listEditor li.selected,.mx.listEditor li.selected 
+{
+	background-color: #3399FF;
+}
+
+.mx .listEditor li a,.mx.listEditor li a 
+{
+	display: block;
+	height: 100%;
+}
+
+.mx .listEditor li font.heightLight,.mx.listEditor li font.heightLight
+{
+	background-color:yellow;
+	color:red;
+}
+
+.mx .listEditor li.nullItem a #text,.mx.listEditor li.nullItem a #text
+{
+	color:#aaaaaa;
+}
+
+.mx .listEditor li.selected a #text,.mx.listEditor li.selected a #text 
+{
+	/* color: white; */
+	background-color: #3399FF;
+}
+
+.mx .listEditor li a #text,.mx.listEditor li a #text 
+{
+	/*position: relative;*//*��IE6��7�»�ʹ���������б����������������IE8~10����Ӱ��*/
+	height: 100%;
+	line-height: 17px;
+	color: black;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+	.mx .listEditor li a #text,.mx.listEditor li a #text 
+	{
+		line-height: 18px;
+	}
+}
+
+/*�����ִ�ֱ������*/
+.mx .listEditor .checkListEditor
+{
+	overflow:visible; 
+}
+
+.mx .checkListEditor li a #text,.mx.checkListEditor li a #text 
+{
+	vertical-align: middle;
+	margin-left: 3px;
+}
+
+.mx .checkListEditor li a #img,.mx.checkListEditor li a #img 
+{
+	/*position: relative;*//*��IE6��7�»�ʹ���������б����������������IE8~10����Ӱ��*/
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: url(images/check_editor_unchecked.png) center center
+		no-repeat;
+}
+
+.mx .checkListEditor li.checked a #img,.mx.checkListEditor li.checked a #img
+{
+	background: url(images/check_editor_checked.png) center center no-repeat;
+}
+
+.mx .listEditor.disabled,.mx.listEditor.disabled 
+{
+	background-color: #F0F0F0;
+}
+
+.mx .listEditor.disabled li.selected,.mx.listEditor.disabled li.selected
+{
+	background-color: transparent;
+}
+
+.mx .listEditor.checkListEditor.disabled li a #img,.mx.listEditor.checkListEditor.disabled li a #img
+{
+	background: url(images/check_editor_unchecked_disabled.png) center
+		center no-repeat;
+}
+
+.mx .listEditor.checkListEditor.disabled li.checked a #img,.mx.listEditor.checkListEditor.disabled li.checked a #img
+{
+	background: url(images/check_editor_checked_disabled.png) center center
+		no-repeat;
+}
+
+.mx .listEditor.disabled li a #img,.mx.listEditor.disabled li a #img,
+.mx .listEditor.readonly li a #img,.mx.listEditor.readonly li a #img
+{
+	background: url(images/check_editor_unchecked_disabled.png) center center no-repeat;
+}
+
+.mx .listEditor.disabled li.checked a #img,.mx.listEditor.disabled li.checked a #img,
+.mx .listEditor.readonly li.checked a #img,.mx.listEditor.readonly li.checked a #img
+{
+	background: url(images/check_editor_checked_disabled.png) center center no-repeat;
+}
+
+.mx .listEditor.disabled li a #text,.mx.listEditor.disabled li a #text,
+.mx .listEditor.readonly li a #text,.mx.listEditor.readonly li a #text 
+{
+	color: #aaaaaa;
+}
+
+.mx .listEditor.dropDown,.mx.listEditor.dropDown 
+{
+	padding: 0;
+}

@@ -1,0 +1,397 @@
+[
+    {
+        "menuId": "1",
+        "parentId": 0,
+        "name": "首页",
+        "url": "/",
+        "type": 1,
+        "list": null
+    },
+    {
+        "menuId": "2",
+        "parentId": 0,
+        "name": "多睦健康",
+        "url": "/health",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "21",
+                "parentId": "2",
+                "name": "简介",
+                "url": "/health",
+                "type": 1
+            },
+            {
+                "menuId": "22",
+                "parentId": "2",
+                "name": "发展历史",
+                "url": "/health",
+                "type": 1
+            },
+            {
+                "menuId": "23",
+                "parentId": "2",
+                "name": "合作标准",
+                "url": "/health",
+                "type": 1
+            },
+            {
+                "menuId": "24",
+                "parentId": "2",
+                "name": "招聘信息",
+                "url": "/health",
+                "type": 1
+            },
+            {
+                "menuId": "25",
+                "parentId": "2",
+                "name": "联系方式",
+                "url": "/health",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "3",
+        "parentId": 0,
+        "name": "精密检测",
+        "url": "/precisionInspection",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "31",
+                "parentId": "3",
+                "name": "全身普检",
+                "url": "/precisionInspection",
+                "type": 1
+            },
+            {
+                "menuId": "32",
+                "parentId": "3",
+                "name": "专项体检",
+                "url": "/precisionInspection",
+                "type": 1
+            },
+            {
+                "menuId": "33",
+                "parentId": "3",
+                "name": "癌症筛选",
+                "url": "/precisionInspection",
+                "type": 1
+            },
+            {
+                "menuId": "34",
+                "parentId": "3",
+                "name": "基因检测",
+                "url": "/precisionInspection",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "4",
+        "parentId": 0,
+        "name": "重疾治疗",
+        "url": "/treatments",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "21",
+                "parentId": "4",
+                "name": "癌症",
+                "url": "/treatments",
+                "type": 1
+            },
+            {
+                "menuId": "22",
+                "parentId": "4",
+                "name": "糖尿病",
+                "url": "/treatments",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "5",
+        "parentId": 0,
+        "name": "名医",
+        "url": "/famousDoctor",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "21",
+                "parentId": "5",
+                "name": "藤井隆广",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "22",
+                "parentId": "5",
+                "name": "紫芝良昌",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "23",
+                "parentId": "5",
+                "name": "高橋慶一",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "24",
+                "parentId": "5",
+                "name": "大堀理",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "25",
+                "parentId": "5",
+                "name": "大野真司",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "26",
+                "parentId": "5",
+                "name": "山口俊晴",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "27",
+                "parentId": "5",
+                "name": "鈴木健司",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "28",
+                "parentId": "5",
+                "name": "川崎诚治",
+                "url": "/famousDoctor",
+                "type": 1
+            },
+            {
+                "menuId": "29",
+                "parentId": "5",
+                "name": "更多",
+                "url": "/famousDoctor",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "6",
+        "parentId": 0,
+        "name": "名院",
+        "url": "/famousHospital",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "21",
+                "parentId": "6",
+                "name": "国立癌症研究中心医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "22",
+                "parentId": "6",
+                "name": "群马大学重粒子线医学中心",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "23",
+                "parentId": "6",
+                "name": "东京医科大学附属医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "24",
+                "parentId": "6",
+                "name": "国立癌症研究中心医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "25",
+                "parentId": "6",
+                "name": "群马大学重粒子线医学中心",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "26",
+                "parentId": "6",
+                "name": "东京医科大学附属医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "27",
+                "parentId": "6",
+                "name": "国立癌症研究中心医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "28",
+                "parentId": "6",
+                "name": "群马大学重粒子线医学中心",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "29",
+                "parentId": "6",
+                "name": "东京医科大学附属医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "30",
+                "parentId": "6",
+                "name": "国立癌症研究中心医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "31",
+                "parentId": "6",
+                "name": "群马大学重粒子线医学中心",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "32",
+                "parentId": "6",
+                "name": "东京医科大学附属医院",
+                "url": "/famousHospital",
+                "type": 1
+            },
+            {
+                "menuId": "33",
+                "parentId": "6",
+                "name": "更多",
+                "url": "/famousHospital",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "7",
+        "parentId": "0",
+        "name": "再生疗法",
+        "url": "/therapy",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "71",
+                "parentId": "7",
+                "name": "免疫细胞疗法",
+                "url": "/therapy",
+                "type": 1
+            },
+            {
+                "menuId": "72",
+                "parentId": "7",
+                "name": "干细胞疗法",
+                "url": "/therapy",
+                "type": 1
+            },
+            {
+                "menuId": "73",
+                "parentId": "7",
+                "name": "青春之旅（清补调）",
+                "url": "/therapy",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "8",
+        "parentId": "0",
+        "name": "案例",
+        "url": "/cases",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "81",
+                "parentId": "8",
+                "name": "体检案例",
+                "url": "/cases",
+                "type": 1
+            },
+            {
+                "menuId": "82",
+                "parentId": "8",
+                "name": "治療案例",
+                "url": "/cases",
+                "type": 1
+            },
+            {
+                "menuId": "83",
+                "parentId": "8",
+                "name": "再生疗法案例",
+                "url": "/cases",
+                "type": 1
+            }
+        ]
+    },
+    {
+        "menuId": "9",
+        "parentId": 0,
+        "name": "服务指南",
+        "url": "/service",
+        "type": 3,
+        "list": [
+            {
+                "menuId": "91",
+                "parentId": "9",
+                "name": "预约",
+                "url": "/service",
+                "type": 1
+            },
+            {
+                "menuId": "92",
+                "parentId": "9",
+                "name": "签证",
+                "url": "/service",
+                "type": 1
+            },
+            {
+                "menuId": "93",
+                "parentId": "9",
+                "name": "翻译",
+                "url": "/service",
+                "type": 1
+            },
+            {
+                "menuId": "94",
+                "parentId": "9",
+                "name": "陪同",
+                "url": "/service",
+                "type": 1
+            },
+            {
+                "menuId": "95",
+                "parentId": "9",
+                "name": "接待",
+                "url": "/service",
+                "type": 1
+            },
+            {
+                "menuId": "96",
+                "parentId": "9",
+                "name": "出行准备",
+                "url": "/service",
+                "type": 1
+            }
+        ]
+    }
+]

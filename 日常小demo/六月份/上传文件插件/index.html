@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!-- 这里我们只使用最基本的html结构：一个选择文件的按钮，一个开始上传文件的按钮(甚至该按钮也可以不要) -->
+		<p>
+			<button id="browse">选择文件</button>
+			<button id="start_upload">开始上传</button>
+		</p>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="plupload.full.min/moxiecode-plupload-b5da3bf/js/plupload.full.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//实例化一个plupload上传对象
+		var uploader = new plupload.Uploader({
+			browse_button: 'browse', //触发文件选择对话框的按钮，为那个元素id
+			url: 'upload.php', //服务器端的上传页面地址
+			flash_swf_url: 'js/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+			silverlight_xap_url: 'js/Moxie.xap' //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+		});
+		//在实例对象上调用init()方法进行初始化
+		uploader.init();
+		//绑定各种事件，并在事件监听函数中做你想做的事
+		uploader.bind('FilesAdded', function(uploader, files) {
+			//每个事件监听函数都会传入一些很有用的参数，
+			//我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+		});
+		uploader.bind('UploadProgress', function(uploader, file) {
+			//每个事件监听函数都会传入一些很有用的参数，
+			//我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+		});
+		//......
+		//......
+		//最后给"开始上传"按钮注册事件
+		document.getElementById('start_upload').onclick = function() {
+			uploader.start(); //调用实例对象的start()方法开始上传文件，当然你也可以在其他地方调用该方法
+		}
+		
+		
+		
+		/*//实例化一个plupload上传对象
+		var uploader = new plupload.Uploader({
+	        browse_button : "browse", //触发文件选择对话框的按钮，为那个元素id
+	        url : '${base}/private/data/backstage/upload', //服务器端的上传页面地址
+	        flash_swf_url : '${base}/include/plugins/Moxie.swf', //swf文件，当需要使用swf方式进行上传时需要配置该参数
+	        silverlight_xap_url : '${base}/include/plugins/Moxie.xap', //silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+	        filters : {
+	    		max_file_size : '100mb'
+	    	}
+	    });    
+
+	    //在实例对象上调用init()方法进行初始化
+	    uploader.init();
+
+	    //绑定各种事件，并在事件监听函数中做你想做的事
+	    uploader.bind('FilesAdded',function(uploader,files){
+	        //每个事件监听函数都会传入一些很有用的参数，
+	        //我们可以利用这些参数提供的信息来做比如更新UI，提示上传进度等操作
+	    	$("#ossfile").empty();
+			plupload.each(files, function(file) {
+				uploader.selFile = file;
+				if ( file.name != "") {
+					$("#fileName").val(file.name);
+					$("#wenjian").val(file.name);
+					$("#sizes").val(plupload.formatSize(file.size));
+				}
+				//得到文件夹的名字   保存在div中
+				document.getElementById('ossfile').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ')<b></b>' + '<div class="progress" id="ss"><div class="progress-bar" style="width: 0%"></div></div>' + '</div>';			    
+			});
+	    });
+	    uploader.bind('UploadProgress',function(uploader,file){
+	    	if (!file || (uploader.selFile.id != file.id)) {
+				return;
+			}
+			var d = document.getElementById(file.id);
+			d.getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+			var prog = d.getElementsByTagName('div')[0];
+			var progBar = prog.getElementsByTagName('div')[0]
+			progBar.style.width = file.percent + '%';
+			progBar.setAttribute('aria-valuenow', file.percent);
+	    });
+        $('.up_info_change_plus_icon').click(function(){
+			$('.activity_notice_change').removeClass('dis_blo');
+			$('.activity_notice_add').addClass('dis_blo');
+		});
+ 		$('.example-xss').multiselect();
+		var select_width_original=$('.activity_left_apply').width();
+ 		var select_width_css={width:select_width_original+'px'};
+ 		$('.activity_left_bth').css(select_width_css);
+ 		$('.activity_left_bth_ul').css(select_width_css);
+		//最后给"开始上传"按钮注册事件
+	    document.getElementById('start_upload').onclick = function(){
+	        uploader.start(); //调用实例对象的start()方法开始上传文件，当然你也可以在其他地方调用该方法
+		    flag=false;
+		}*/
+	</script>
+
+</html>

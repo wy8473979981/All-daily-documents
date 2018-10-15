@@ -1,0 +1,172 @@
+@keyframes 
+
+1、rotate3D（a,b,c,d）
+	例如：rotate3D（a,b,c,d）
+	
+	4个参数，前三个，对应x,y,z 轴，是标示你是否希望沿着该轴旋转，
+	是为1，不是为0，最后一个标示旋转的角度。
+	
+2、translate3D(a,b,c)三个参数表示沿着X,Y,Z轴的移动距离
+
+
+3、scale3d（） 不能自己单独使用，指定对象的3D缩放。
+	第1个参数对应X轴，第2个参数对应Y轴，第3个参数对应Z轴，参数不允许省略
+	
+	
+4、支持投影：
+
+	-webkit-box-reflect:below 10px 
+	-webkit-linear-gradient(top,rgba(0,0,0,0) 50%,rgba(0,0,0,0.7) 100%);
+
+5、js添加css3转换的浏览器兼容写法
+	function css3Transform(element, value) {
+	        var arrPriex = ["o", "ms", "Moz", "webkit", ""];
+	        var length = arrPriex.length;
+	        for (var i=0; i < length; i+=1) {  
+	       	 	element.style[arrPriex[i] + "Transform"] = value;  
+	        }
+	    }
+		
+6、当您在 @keyframes 中创建动画时，请把它捆绑到某个选择器，否则不会产生动画效果。
+	通过规定至少以下两项 CSS3 动画属性，即可将动画绑定到选择器：
+	规定动画的名称
+	规定动画的时长
+	疑问：还可以添加什么动画属性
+	属性					描述	
+	@keyframes					规定动画。	
+	animation					所有动画属性的简写属性，除了 animation-play-state 属性。	
+	animation-name				规定 @keyframes 动画的名称。	
+	animation-duration			规定动画完成一个周期所花费的秒或毫秒。默认是 0。	
+	animation-timing-function	规定动画的速度曲线。默认是 "ease"。step-start;或者steps（1）/* 马上跳到动画每一结束桢的状态 */	（linear，匀速，ease低速开始）
+	animation-delay				规定动画何时开始。默认是 0。	
+	animation-iteration-count	规定动画被播放的次数。默认是 1 infinite无限次播放，或者直接限定次数	
+	animation-direction			规定动画是否在下一周期逆向地播放。默认是 "normal"。alternate（反向）
+	animation-play-state		规定动画是否正在运行或暂停。默认是 "running"。	paused规定动画已暂停
+	animation-fill-mode			规定对象动画时间之外的状态。none | forwards | backwards | both;
+		值	描述
+		none	不改变默认行为。
+		forwards	当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+		backwards	在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+		both	向前和向后填充模式都被应用。
+
+组合写法：animation: myfirst 5s linear 2s infinite alternate both;
+
+
+perspective写法有两种：
+一、写到父元素
+	属性值：属性值
+	-webkit-perspective: 1200px;
+	-moz-perspective: 1200px;
+	-ms-perspective: 1200px;
+	perspective: 1200px;
+
+二、写到子元素，起效果的那个元素
+
+	-webkit-transform:perspective(1200px) translateZ(300px) translate(30px,30px);
+ 	-moz-transform: perspective(1200px) translateZ(300px) translate(30px,30px);
+  	-ms-transform: perspective(1200px) translateZ(300px) translate(30px,30px);
+ 	transform:perspective(1200px) translateZ(300px) translate(30px,30px);
+
+preserve-3d 放到父元素
+
+	-webkit-transform-style: preserve-3d;
+  	-moz-transform-style: preserve-3d;
+ 	-ms-transform-style: preserve-3d;
+  	-o-transform-style: preserve-3d;
+  	transform-style: preserve-3d;
+  	
+
+css3 3D转换
+转换属性	
+下面的表格列出了所有的转换属性：	
+属性	描述
+transform	    	向元素应用 2D 或 3D 转换。
+transform-origin	允许你改变被转换元素的位置。
+transform-style		规定被嵌套元素如何在 3D 空间中显示。 flat|preserve-3d. 前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。
+perspective			规定 3D 	元素的透视效果。
+perspective-origin	规定 3D 元素的底部位置。
+backface-visibility	定义元素在不面对屏幕时是否可见。
+
+@keyframes myfirst
+{
+from {background: red;}
+to {background: yellow;}
+}
+@-moz-keyframes myfirst /* Firefox */
+{
+from {background: red;}
+to {background: yellow;}
+}
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {background: red;}
+to {background: yellow;}
+}
+@-o-keyframes myfirst /* Opera */
+{
+from {background: red;}
+to {background: yellow;}
+}
+
+div
+{
+width:100px;
+height:100px;
+background:red;
+animation:myfirst 5s;
+-moz-animation:myfirst 5s; /* Firefox */
+-webkit-animation:myfirst 5s; /* Safari and Chrome */
+-o-animation:myfirst 5s; /* Opera */
+}
+@keyframes myfirst
+{
+0%   {background:red;}
+25%  {background:yellow;}
+50%  {background:blue;}
+100% {background:green;}
+}
+
+div
+{
+width:100px;
+height:100px;
+background:red;
+position:relative;
+animation:myfirst 5s;
+-moz-animation:myfirst 5s; /* Firefox */
+-webkit-animation:myfirst 5s; /* Safari and Chrome */
+-o-animation:myfirst 5s; /* Opera */
+}
+@keyframes myfirst
+{
+0%   {background:red; left:0px; top:0px;}
+25%  {background:yellow; left:200px; top:0px;}
+50%  {background:blue; left:200px; top:200px;}
+75%  {background:green; left:0px; top:200px;}
+100% {background:red; left:0px; top:0px;}
+}
+CSS3 动画属性	
+下面的表格列出了 @keyframes 规则和所有动画属性：	
+属性	描述
+@keyframes	规定动画。
+animation	所有动画属性的简写属性，除了 animation-play-state 属性。
+animation-name	规定 @keyframes 动画的名称。
+animation-duration	规定动画完成一个周期所花费的秒或毫秒。默认是 0。
+animation-timing-function	规定动画的速度曲线。默认是 "ease"。
+animation-delay	规定动画何时开始。默认是 0。
+animation-iteration-count	规定动画被播放的次数。默认是 1。
+animation-direction	规定动画是否在下一周期逆向地播放。默认是 "normal"。
+
+CSS3 动画属性	
+下面的表格列出了 @keyframes 规则和所有动画属性：	
+属性	描述
+@keyframes	规定动画。
+animation	所有动画属性的简写属性，除了 animation-play-state 属性。
+animation-name	规定 @keyframes 动画的名称。
+animation-duration	规定动画完成一个周期所花费的秒或毫秒。默认是 0。
+animation-timing-function	规定动画的速度曲线。默认是 "ease"。
+animation-delay	规定动画何时开始。默认是 0。
+animation-iteration-count	规定动画被播放的次数。默认是 1。
+animation-direction	规定动画是否在下一周期逆向地播放。默认是 "normal"。
+animation-play-state	规定动画是否正在运行或暂停。默认是 "running"。
+animation-fill-mode	规定对象动画时间之外的状态。

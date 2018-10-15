@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+	</body>
+	<script src="CryptoJS v3.1.2/components/core-min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="CryptoJS v3.1.2/rollups/aes.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var pwd = "我的密码";
+
+		var mi = CryptoJS.AES.encrypt("你好，欢迎来到开源中国在线工具，这是一个AES加密测试", pwd);
+
+		console.log("你好，欢迎来到开源中国在线工具，这是一个AES加密测试----密文:" + mi);
+
+		var result = CryptoJS.AES.decrypt(mi, pwd).toString(CryptoJS.enc.Utf8);
+
+		console.log("解密结果：" + result);
+	</script>
+
+</html>

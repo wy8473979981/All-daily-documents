@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>测试分享</title>
+		<meta name="description" content="针对国内青少年STEAM创客教育建设的，提供教学案例，案例代码，国内外一手资源和创新实验信息等的开源交流社区。">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			
+	</head>
+
+	<body>
+	<div id="qrcode"></div> 
+	
+
+	</body>
+	<script type="text/javascript"> 
+		new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie"); 
+		var qrcode = new QRCode("test", {
+		 text: "http://jindo.dev.naver.com/collie",
+		 width: 128,
+		 height: 128,
+		 colorDark : "#000000",
+		 colorLight : "#ffffff",
+		 correctLevel : QRCode.CorrectLevel.H
+		});
+	</script>
+</html>

@@ -1,0 +1,199 @@
+在ES6之前，Javascript还不支持原生的模块化。如果要实现模块化，我们要借助一些框架，比如：requireJS或者seaJS等；什么？没用过也没听过这些框架？没关系，它们不是我们今天要讲的重点。
+
+        今天的主角是：ES6自带的模块化。
+模块化的初衷
+        也许你要问了，好端端的，为什么要模块化？
+
+        现在的web系统越来越庞大、复杂，需要团队分工，多人协作，大型系统的javascript文件经常存在复杂的依赖关系，后期的维护成本会越来越高。
+
+        JavaScript模块化正式为了解决这一需求而诞生。
+ 
+        竟然模块化这么重要，我们看看ES6的module模块是什么实现的？
+
+        Ps：目前还没有浏览器支持ES6的module模块。
+ 
+        假设现在有两个js文件，分别是module-A.js和module-B.js，我们把它们视为两个模块。
+
+        带着这个假设，下面我们来学习module模块的几个概念以及它们的含义。
+
+模块Module
+        模块Module：一个模块，就是一个对其他模块暴露自己的属性或者方法的文件。
+
+        在这里，我们会把module-A.js和module-B.js分别当作两个模块（moduleA模块和moduleB模块）来对待和处理。用这两个模块来演示如何暴露一个模块的属性或方法。
+ 
+导出Export
+        导出Export：作为一个模块，它可以选择性地给其他模块暴露（提供）自己的属性和方法，供其他模块使用。
+ 
+导入Import
+        导入Import：作为一个模块，可以根据需要，引入其他模块的提供的属性或者方法，供自己模块使用。
+ 
+模块化的实现
+        带着这三个概念，我们来演示一下它们的基本用法：
+
+moduleB模块代码：
+
+    //---module-B.js文件---
+
+    //导出变量：name
+    export var name = "前端君"; 
+
+
+        模块B我们使用关键字export关键字，对外暴露了一个属性：name的值为：字符串“前端君”。一个关键字，一句代码就实现了，是不是很简单。
+
+        模块B演示了导出，接下来我们用模块A来演示如何导入。
+ 
+moduleA模块代码：
+
+    //---module-A.js文件---
+
+    //导入 模块B的属性 name
+    import { name } from "./module-B.js";
+    console.log(name)
+    //打印结果：前端君
+
+
+        模块A我们使用关键字import导入了模块B的name属性，并且赋值给变量name。关键字from的作用是指定你想要引入的模块，我们这里指定的是module-B.js文件，也就是上面的模块B。打印结果：“前端君”正是模块B的对外暴露的属性。
+ 
+批量导出
+        对于模块B，如果你想导出（暴露）多个属性和方法的话，你可以这样实现：
+
+    //属性name
+    var name = "前端君";
+    //属性age
+    var age  = 25;
+    //方法 say
+    var say = function(){
+        console.log("say hello");
+    }
+    
+    //批量导出
+    export {name,age,say}
+
+
+        上面，我们定义了2个属性和1个方法，最后用一个对象实现将它们批量导出。我们更推荐的是使用这种方法实现导出，因为当对外暴露的属性和方法较多的时候，这种方法可以更直观地看出当前模块暴露了哪些变量。
+ 
+        而对于这种批量导出，我们导入的时候怎么对应上呢？
+
+
+    //---module-A.js文件---
+
+    //导入 模块B的属性 name
+    import { name,age,say } from "./module-B.js";
+
+    console.log(name)
+    //打印结果：前端君
+
+    console.log(age)
+    //打印结果：25
+
+    say()
+    //打印结果：say hello
+
+
+        同样，我们使用多个同名变量就可以获取对应的属性和方法，变量名字必须跟导出的一致才能准确获取，位置顺序无要求。
+ 
+重命名导入的变量
+        也许你突发奇想，想给导入的变量换一个名字的话，你可以这样做：
+
+
+    import { name as myname } from "./module-B.js";
+
+    console.log(myname)
+    //打印结果：前端君
+
+
+        使用关键字as，可以实现给变量name更换名字为myname。最后正确输出myname的值：“前端君”。
+ 
+整体导入
+        我们还可以使用星号*实现整体导入：
+
+    
+    //使用*实现整体导入
+    import * as obj from "./module-B.js";
+
+    console.log(obj.name)
+    //结果："前端君"
+
+    console.log(obj.age)
+    //结果：25
+
+    obj.say();
+    //结果：say hello
+
+
+        使用星号符*将模块B提供的所有属性和方法整体导入赋值给变量obj，我们可以点运算符来获取它的属性和方法。
+ 
+默认导出
+        默认导出，每个模块支持我们导出一个没有名字的变量，我们使用关键语句export default来实现：
+
+   
+    export default function(){
+        console.log("I am default Fn");
+    }
+    
+
+        我们使用export default关键字对外导出一个匿名函数，导入这个模块的时候，可以为这个匿名函数取任意的名字，我们试一下导入上面那个匿名函数：
+
+
+    //取任意名字均可
+    import sayDefault from "./module-B.js";
+
+    sayDefault();
+    //结果：I am default Fn
+
+
+        同样是使用import关键字导入模块B，但是这次不需要使用大括号{ }。我们使用新的名字：sayDefault来代替导入的匿名函数，最后调用一下，打印结果正是模块B默认导出的匿名函数的执行效果。
+ 
+注意事项
+    1、声明的变量，对外都是只读的。
+
+
+    //---module-B.js文件------
+    var name = "前端君"
+    export {name}
+
+
+    //---module-A.js文件------
+    import {name} from "./module-B.js";
+    name = "修改字符串变量";
+    //报错：name is read-only
+
+
+        上面的代码片段包含了2个模块，其中，模块B导出了字符串变量name，模块A导出变量name之后试图修改它的值，结果报错。
+ 
+        但是，如果模块B导出的是对象类型的值，就可修改。
+
+
+    //---module-B.js文件---
+    var person = {"name":"前端君"}
+    export { person }
+
+
+    //---module-A.js文件------
+    import {person} from "./module-B.js";
+    person.name = "修改字符串变量";
+    //修改成功
+
+
+        上面的代码片段包含了2个模块，模块B导出了对象person，模块A导入后，对其属性name进行修改，结果修改成功，这一点大家要注意，并不是所有导出的变量都不可修改，对象类型就可修改。
+ 
+        2、导入不存在的变量，值为undefined。
+
+
+    //---module-B.js文件---
+    var name = "前端君";
+    export {name}
+
+
+    //---module-A.js文件------
+    import { height } from "./module-B.js";
+    console.log(height);
+    //打印结果：undefined
+
+
+        模块A想导入的变量height，在模块B中并没有提供，但这不会抛出异常，只是height的值为undefined。
+
+        module模块的讲解就到这里，ES6整个系列的连载也算完满结束，但是ES6的学起还没结束，周末会推出一期增值服务，如果你想进一步巩固这么多天来的ES6学习，那么，敬请期待！
+ 
+本节小结
+总结：ES6自带了module模块，但目前浏览器并没有支持。我们可以轻松实现导入导出，批量导出，默认导入export default，使用星号符*整体导入，as关键字实现重命名。        

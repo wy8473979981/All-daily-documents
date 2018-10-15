@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			.box {
+				width: 300px;
+				min-height: 400px;
+				height: auto;
+				clear: both;
+				margin: 0 auto;
+				background-color: #C0A16B;
+			}
+			
+			.box1 {
+				width: 100px;
+				height: 50px;
+				background-color: #ccc;
+				position: relative;
+			}
+			
+			.box2 {
+				width: 200px;
+				height: 1000px;
+				background-color: #0000FF;
+				position: absolute;
+				left: 99px;
+				bottom: -1000px;
+				z-index: 52;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="box1">
+				<div class="box2">
+
+				</div>
+				 <div style="clear:both;"></div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

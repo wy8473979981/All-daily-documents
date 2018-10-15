@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>模态JavaScript触发参数设置</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+<button class="btn btn-primary" type="button">点击我</button>
+<div class="modal" id="themodal"  tabindex="-1">
+    <div class="modal-dialog">
+    	<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">模态弹出窗标题</h4>
+			</div>
+			<div class="modal-body">
+				<p>模态弹出窗主体内容</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">保存</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="../js/jquery-1.11.0.js"></script>
+<script src="../js/bootstrap.js"></script> 
+<script>
+$(function(){
+
+    $(".btn").click(function(){
+
+      $("#themodal").modal({
+                 keyboard:false,//按esc键不能取消
+                 })
+
+      })
+    $("#themodal").modal({
+                 keyboard:false,
+                 show:true//页面初始化时出现model
+                 })
+
+  });
+</script>
+</body>
+</html>

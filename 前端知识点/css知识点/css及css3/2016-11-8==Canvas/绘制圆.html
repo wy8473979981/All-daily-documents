@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+   圆弧context.arc(x, y, radius, starAngle,endAngle, anticlockwise)
+    x:圆心的x坐标
+    y:圆心的y坐标
+    straAngle:开始角度
+    endAngle:结束角度
+    anticlockwise:是否逆时针（true）为逆时针，(false)为顺时针
+-->
+
+	<canvas id="myCanvas" width="600" height="600"></canvas>
+	</body>
+	<script type="text/javascript">
+		/*var canvas = document.querySelector("#myCanvas");*/
+		var canvas = document.querySelector("canvas");
+		var context = canvas.getContext("2d");
+		
+		context.strokeRect(50,50,200,200);
+		context.moveTo(50,150);
+		context.lineTo(250,150);
+		context.stroke();
+		context.moveTo(150,50);
+		context.lineTo(150,250);
+		context.stroke();
+		//1、context执行一个方法，从context.beginPath();*/
+		context.beginPath();
+		context.fillStyle = "red";
+		context.strokeStyle = "blue";
+		//2、进行绘制圆的函数*/
+		//绘制的从0到360
+		//context.arc(150,150,100,0,Math.PI*2,true);
+		//绘制从0到90,true时是逆时针的
+		//context.arc(150,150,100,0,Math.PI/2,true);
+		context.arc(150,150,100,0,Math.PI*3/2,true);
+		
+		//3、结束我的绘制*/
+		/*context.closePath();
+		context.stroke();
+		context.fill();
+		context.beginPath();
+		context.arc(150,150,100,0,Math.PI*1/2,false);
+		context.closePath();
+		context.stroke();
+		context.beginPath();
+		context.arc(150,150,100,Math.PI*1/2,Math.PI,false);
+		context.closePath();
+		context.stroke();
+		context.beginPath();
+		context.arc(150,150,100,Math.PI,Math.PI*3/2,false);
+		context.closePath();
+		context.stroke();*/
+		
+		//重复利用咱们里面的context
+		with(context){
+			closePath();
+			stroke();
+			fill();
+			beginPath();
+			arc(150,150,100,0,Math.PI*1/2,false);
+			closePath();
+			stroke();
+			beginPath();
+			arc(150,150,100,Math.PI*1/2,Math.PI,false);
+			closePath();
+			stroke();
+			beginPath();
+			arc(150,150,100,Math.PI,Math.PI*3/2,false);
+			closePath();
+			stroke();
+		}
+		
+	</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.rubbish{
+				width: 150px;
+				height: 200px;
+				border: 1px solid #f66;
+				margin-bottom: 30px;
+				-webkit-user-select: none;
+			}
+			img{
+				max-width: 100px;max-height: 150px;
+			}
+			p{height:30px;}
+		</style>
+	</head>
+	<body>
+		<h2>模拟回收站回收功能</h2>
+		<p id="tip"></p>
+		<p id="msg"></p>
+		<div class="rubbish" id="rubbish" ondrop="drop(event)" ondragend="dragend(event)" ondragenter="dragenter(event)" ondragover="dragover(event)" ondragleave="dragleave(event)"></div>
+		
+		<img src="img/testPic3.jpg" id="img1" draggable="true" ondragstart="dragStart(event)" ondrag="drag(event)"/>
+		<img src="img/testPic2.jpg" id="img" />
+	</body>
+	<script type="text/javascript">
+		/*
+		 	事件		产生事件的元素		         		描述
+	dragstart		被拖放的元素。		       		开始拖放操作。
+	drag			被拖放的元素。		        	拖放过程中。
+	dragenter		拖放过程中鼠标经过的元素。  	被拖放的元素(鼠标)开始进入本元素的范围内。
+	dragover        拖放过程中鼠标经过的元素。   	被拖放的元素正在本元素范围内移动。
+	dragleave		拖放过程中鼠标经过的元素。   	被拖放的元素离开本元素的范围
+	drop			拖放的目标元素。	                     有其他元素被拖放到了本元素中。
+	dragend			拖放的目标元素。                       拖放操作结束。 */
+	
+		var rubbish = document.getElementById("rubbish");
+		var tip = document.getElementById("tip");
+		var msg = document.getElementById("msg");
+		var img1 = document.getElementById("img1");
+		
+		function dragStart(ev){
+			msg.innerHTML = "开始拖拽";
+			//alert(ev.target.id)
+			ev.dataTransfer.setData("rubbish",ev.target.id);
+		}
+		var timer = 0;
+		function drag(ev){
+			timer++;
+			tip.innerHTML = "拖放中"+timer;
+		}
+		
+		function dragenter(ev){
+			msg.innerHTML = "开始进入回收站";
+		}
+		
+		function dragover(ev){
+			//阻止冒泡
+			ev.stopPropagation();
+			//禁用默认事件，允许放置
+			ev.preventDefault();
+			msg.innerHTML = "来了就不要走啦，好嘛？";
+		}
+		
+		function dragleave(ev){
+			msg.innerHTML = "讨厌，怎么丢下人家走了";
+		}
+		
+		function drop(ev){
+			
+			ev.stopPropagation();
+			ev.preventDefault();
+		//	alert(1)
+			//alert(ev.dataTransfer.getData("rubbish"));
+			var eleId = ev.dataTransfer.getData("rubbish");
+			ev.target.appendChild(document.getElementById(eleId));
+			/*rubbish.appendChild(document.getElementById(eleId));*/
+			msg.innerHTML = "终于来了";
+		}
+		
+		function dragend(ev){
+			msg.innerHTML = "啦啦啦啦啦啦啦";
+			img1.setAttribute("draggable","false");
+		}
+	</script>
+</html>

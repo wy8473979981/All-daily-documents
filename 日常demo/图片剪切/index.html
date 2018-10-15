@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="cropper/cropper.min.css"/>
+		
+		<style type="text/css">
+			#showCopperImg {
+				width: 100%;
+				height: 300px;
+			}
+			
+			.copper-img-show {
+				max-width: 100%;
+				max-height: 300px;
+				width: 80%;
+			}
+			
+			.layui-upload-button {
+				cursor: pointer;
+			}
+			
+			.show-preview {
+				margin-top: 20px;
+				margin-left: 90px;
+			}
+			
+			.show-preview .preview-lg {
+				width: 150px;
+				height: 150px;
+				display: inline-block;
+				margin-left: 10px;
+			}
+			
+			.show-preview .preview-md {
+				width: 100px;
+				height: 100px;
+				display: inline-block;
+				margin-left: 10px;
+			}
+			
+			.show-preview .preview-sm {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				display: inline-block;
+				margin-left: 10px;
+			}
+			.img-preview {
+			    overflow: hidden;
+			}
+		</style>
+		
+		
+	</head>
+
+	<body>
+		<button onclick="layuiOpen()" class="layui-upload-icon layui-btn">更改</button>
+		<input type="file" class="layui-hide" name="avator" id="LAY-avator" onchange="copperShow(event)">
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<!--转二进制流文件-->
+	<script src="cropper/canvas-to-blob.js" type="text/javascript" charset="utf-8"></script>
+	<script src="cropper/cropper.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['element', 'form'], function() {
+			var element = layui.element,
+				form = layui.form;
+
+		});
+		
+		//上传完成，获取blob地址预览
+		function copperShow(e){
+			debugger
+	        var file = e.target.files[0] 
+	        blobURL = URL.createObjectURL(file);  
+	       	$("#showCopperImg").removeClass("layui-hide");
+	        $("#showCopperImg .copper-img-show").attr("src",blobURL);
+	        $("#showCopperImg .copper-img-show").cropper('reset').cropper('replace', blobURL);
+		}
+		
+		//打开截图层
+		function layuiOpen() {
+			var htmlImg = '<div id="showCopperImg">' +
+				'<img class="copper-img-show" alt="" src="p1.png">' +
+				'<div class="show-preview">' +
+				'<hr>' +
+				'<span>150*150:</span>' +
+				'<div class="img-preview preview-lg"></div>' +
+				' <span>100*100:</span>' +
+				'<div class="img-preview preview-md"></div>' +
+				' <span>30*30:</span>' +
+				'<div class="img-preview preview-sm"></div>' +
+				'</div>' +
+				'</div>';
+			layer.open({
+				type: 1,
+				skin: 'layui-layer-rim',
+				area: ['800px', '600px'],
+				btn: ['打开图片', '确定'],
+				content: htmlImg,
+				success: function(layero, index) { //弹出成功，初始或截图插件
+					$(layero).find(".copper-img-show").cropper({
+						aspectRatio: 1,
+						viewMode: 1,
+						preview: '.img-preview', // 预览图的class名
+						ready: function() {
+							croppable = true;
+						}
+					});
+				},
+				yes: function(index, layero) {
+					$("#LAY-avator").click();
+				},
+				btn2: function(index, layero) { //获取截图，转换blob格式
+					$(layero).find(".copper-img-show").cropper('getCroppedCanvas', {// getCroppedCanvas([options])—画一张剪裁的图片。如果没有剪裁，则返回一个绘制整个im的画布（这个感觉很有用）
+						width: 300,
+						height: 300
+					}).toBlob(function(callback, type, encoderOptions) {
+						// 转化为blob后更改src属性，隐藏模态框
+
+						var formData = new FormData();
+						var nameImg = new Date().getTime() + '.png';
+						formData.append("avator", callback, nameImg);
+						var request = new XMLHttpRequest();
+						request.open("POST", "/user/profile/avator.html");
+						request.send(formData);
+						setTimeout(function() {
+							window.location.href = "/user/profile.html?t=avator"
+						}, 100)
+
+					});
+				}
+			});
+		}
+	</script>
+
+</html>

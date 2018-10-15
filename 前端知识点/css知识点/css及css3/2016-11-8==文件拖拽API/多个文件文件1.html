@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="fileDemo" id="fileDemo" value="" multiple="multiple" /> <!--如果限制用户选择的类型，可以使用accept=""-->
+		<input type="button" name="btn" id="btn" value="获取文件的信息" />
+		<p id="msg"></p>
+	</body>
+	<script type="text/javascript">
+		
+		var btn = document.getElementById("btn");
+		var msg = document.getElementById("msg");
+		btn.onclick = function(){
+			//1、获取文件列表
+			var fileDemoList = document.getElementById("fileDemo").files;
+			var listLength = fileDemoList.length;
+		//	alert(listLength)
+			
+			for(var i = 0; i< listLength;i++){
+				var fileName = fileDemoList[i].name;//文件名称
+				var fileType = fileDemoList[i].type;//文件类型
+				var fileSize = (fileDemoList[i].size/1024).toFixed(2);//小数点后保留2位---四舍五入
+				var fileLastModifiedDate = fileDemoList[i].lastModifiedDate.toLocaleDateString()+fileDemoList[i].lastModifiedDate.toLocaleTimeString();
+				msg.innerHTML +="第"+(i+1)+"张图片：<br>"+fileName+"<br>"+fileType+"<br>"+fileSize+"<br>"+fileLastModifiedDate+"<br>";
+			}
+			
+			
+			
+		}
+		
+	</script>
+</html>

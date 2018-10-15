@@ -1,0 +1,322 @@
+*{
+	margin:0;
+	padding:0;
+}
+figure{
+	position:relative;
+	overflow:hidden;
+	width:33.3%;
+	height:350px;
+	float:left;
+	background:gray;
+}
+img{
+	position:absolute;
+	transition:all 0.3s;
+	left:0px;
+	top:0px;
+	opacity:1;
+}
+figure:hover img{
+	opacity:0.5;
+}
+h2{
+	transition:all 0.3s;
+	color:white;
+}
+p{
+	transition:all 0.3s;
+	color:white;
+}
+span{
+	display:block;
+	transition:all 0.3s;
+	height:25px;
+	line-height:25px;
+}
+div{
+	transition:all 0.3s;
+}
+.effect1 h2{
+	position:absolute;
+	left:20px;
+	bottom:60px;
+}
+.effect1 p{
+	position:absolute;
+	left:20px;
+	bottom:-20px;
+}
+.effect1:hover img{
+	transform:translateX(-30px);
+}
+.effect1:hover h2{
+	transform:translateY(-10px);
+}
+.effect1:hover p{
+	transform:translateY(-60px);
+}
+.effect2 h2{
+	position:absolute;
+	left:20px;
+	top:60px;
+}
+.effect2 .span1{
+	position:absolute;
+	left:-200px;
+	top:100px;
+	background:white;
+}
+.effect2 .span2{
+	position:absolute;
+	left:-200px;
+	top:130px;
+	background:white;
+	transition-delay:0.05s;
+	tr
+}
+.effect2 .span3{
+	position:absolute;
+	left:-200px;
+	top:160px;
+	background:white;
+	transition-delay:0.1s ;
+	transition-timing-function: cubic-bezier(1,2,1,2);
+}
+.effect2:hover .span1{
+	transform:translateX(220px);
+}
+.effect2:hover .span2{
+	transform:translateX(220px);
+}
+.effect2:hover .span3{
+	transform:translateX(220px);
+}
+.effect2:hover img{
+	transform:translateX(-30px);
+}
+.effect3 h2{
+	position:absolute;
+	left:20px;
+	top:90px;
+	opacity:0;
+}
+.effect3 div{
+	position:absolute;
+	bottom:-50px;
+	text-indent:2em;
+	height:50px;
+	background:white;
+	line-height:25px;
+}
+.effect3:hover h2{
+	transform:translateY(-30px);
+	opacity:1;
+}
+.effect3:hover div{
+	transform:translateY(-50px);
+}
+.effect3:hover img{
+	transform:translateX(-30px);
+}
+.effect4 h2{
+	position:absolute;
+	left:20px;
+	top:90px;
+	opacity:0;
+}
+.effect4 div{
+	position:absolute;
+	bottom:-300px;
+	width:800px;
+	height:300px;
+	background:white;
+}
+.effect4 .info1{
+	position:absolute;
+	color:black;
+	right:50px;
+	bottom:-50px;
+	z-index:99;
+	font-weight:bold;
+	transition-delay:0.05s;
+}
+.effect4 .info2{
+	position:absolute;
+	color:black;
+	right:120px;
+	bottom:-50px;
+	z-index:99;
+	font-weight:bold;
+}
+.effect4:hover .info2{
+	transform:translateY(-100px);
+}
+.effect4:hover .info1{
+	transform:translateY(-100px);
+}
+
+.effect4:hover h2{
+	transform:translateY(-30px);
+	opacity:1;
+}
+.effect4:hover div{
+	transform-origin:0 0;
+	transform:rotate(-15deg);
+}
+.effect5 div{
+	position:absolute;
+	left:15%;
+	top:15%;
+	border:2px solid black;
+	width:70%;
+	height:70%;
+	transform:rotate(0deg) translateY(-400px);
+	transform-origin:0% 0%;
+}
+.effect5 h2{
+	position:absolute;
+	top:60px;
+	left:20px;
+}
+.effect5 p{
+	position:absolute;
+	top:140px;
+	left:80px;
+	opacity:1;
+}
+.effect5:hover div{
+	transform:rotate(360deg) translateY(0px);
+}
+.effect5:hover h2{
+	transform:translateX(60px);
+}
+.effect5:hover p{
+	transform:translateY(-40px) ;
+	opacity:1;
+}
+.effect5:hover img{
+	transform:translateX(-30px);
+}
+.effect6 h2{
+	position:absolute;
+	left:20px;
+	top:60px;
+	transform:skewX(90deg);
+}
+.effect6 .p1{
+	position:absolute;
+	left:40px;
+	top:100px;
+	transform:skewX(90deg);
+} 
+.effect6 .p2{
+	position:absolute;
+	left:40px;
+	top:120px;
+	transform:skewX(90deg);
+}
+.effect6:hover h2{
+	transform:skewX(0deg);
+}
+.effect6:hover p{
+	transform:skewX(0deg);
+}
+.effect7 img{
+	transform:scale(1.2);
+}
+.effect7:hover img{
+	transform:scale(1);
+}
+.effect7 h2{
+	position:absolute;
+	left: 50px;
+	top:60px;
+	transform:scale(1.2);
+}
+.effect7 p{
+	position:absolute;
+	left:50px;
+	top:90px;
+	/*font-size:*/
+	text-indent:2em;
+	transform:scale(1.2);
+}
+.effect7 div{
+	position:absolute;
+	left:8.335%;
+	top:8.335%;
+	width:83.33%;
+	height:83.33%;
+	border:2px solid white;
+	transform:scale(1.2);
+	opacity:0;
+}
+.effect7:hover h2{
+	transform:scale(1);
+}
+.effect7:hover p{
+	transform:scale(1);
+}
+.effect7:hover div{
+	transform:scale(1);
+	opacity:1;
+}
+.effect8 h2{
+	position:absolute;
+	left:20px;
+	top:60px;
+}
+.effect8 p{
+	position:absolute;
+	left:70px;
+	top:160px;
+	opacity:0;
+	text-indent:2em;
+}
+.effect8 .boxW{
+	position:absolute;
+	left:10%;
+	top:15%;
+	width:80%;
+	height:70%;
+	border:1px solid white;
+	border-left:none;
+	border-right:none;
+	transform:scaleX(0);
+}
+.effect8 .boxH{
+	position:absolute;
+	left:15%;
+	top:10%;
+	width:70%;
+	height:80%;
+	border:1px solid white;
+	border-top:none;
+	border-bottom:none;
+	transform:scaleY(0);
+}
+.effect8:hover h2{
+	transform:translateX(50px);
+}
+.effect8:hover p{
+	opacity:1;
+	transform:translateY(-60px);
+}
+.effect8:hover .boxW{
+	transform:scaleX(1);
+}
+.effect8:hover .boxH{
+	transform:scaleY(1);
+}
+.effect8 img{
+	transform:scale(1.2);
+}
+.effect8:hover img{
+	transform:scale(1);
+}
+.effect9 h2{
+	position: absolute;
+	left:20px;
+	bottom:60px;
+}

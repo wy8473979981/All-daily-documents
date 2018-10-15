@@ -1,0 +1,56 @@
+.mx .dataGridSearchBox
+{
+	padding: 2px;
+	background: #F0F1F0;
+	border-top: 1px solid #E3E8EE;
+	overflow-x:auto;
+	/*加下面这句是为了修复，查询框高度不断增高的问题，这是IE9下的一个问题*/
+	display:inline-block;
+}
+
+.mx .dataGridSearchBox > table
+{
+	width:100%;
+	table-layout: auto;
+}
+
+.mx .dataGridSearchBox > table > tbody > tr
+{
+	height: 23px;
+}
+
+.mx .dataGridSearchBox > table  tr > td
+{
+	border: 1px solid #E3E8EE;
+	vertical-align:middle;
+}
+
+.mx .dataGridSearchBox > table > tbody > tr > td.editor
+{
+	text-align:left;
+	word-break: keep-all;
+	white-space: nowrap;
+}
+
+.mx .dataGridSearchBox > table > tbody > tr > td.caption
+{
+	text-align:center;
+	background: #F0F1F0;
+	white-space :nowrap ;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+
+.mx .dataGridSearchBox > table > tbody > tr > td.buttonTd
+{
+	text-align:left;
+	padding-left: 20px;
+	white-space: nowrap;
+	overflow: visible;
+}
+.mx .dataGridSearchBox > table > tbody > tr > td > div.space
+{
+	display:inline-block;
+	width: 15px;
+	height:15px;
+}

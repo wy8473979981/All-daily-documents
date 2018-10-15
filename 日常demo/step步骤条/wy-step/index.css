@@ -1,0 +1,43 @@
+.demo-block .source {
+    padding: 24px;
+}
+.demo-block .source {
+    padding: 24px;
+}
+.demo-block .source {
+    padding: 24px;
+}
+.el-step.is-horizontal {
+    display: inline-block;
+}
+.el-step.is-center .el-step__head, .el-step.is-center .el-step__main {
+    text-align: center;
+}
+.el-step__head.is-finish {
+    color: #409eff;
+    border-color: #409eff;
+}
+.el-step__head {
+    position: relative;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

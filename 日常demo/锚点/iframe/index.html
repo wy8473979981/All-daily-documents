@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			header {
+				width: 100%;
+				height: 80px;
+			}
+			
+			header ul>li {
+				float: left;
+				list-style: none;
+			}
+			header ul>li a{
+				padding: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<ul>
+				<li>
+					<a href="#box1" class="smooth">box1</a>
+				</li>
+				<li>
+					<a href="#box2" class="smooth">box2</a>
+				</li>
+				<li>
+					<a href="#box3" class="smooth">box3</a>
+				</li>
+				<li>
+					<a href="#box4" class="smooth">box4</a>
+				</li>
+				<li>
+					<a href="#box5" class="smooth">box5</a>
+				</li>
+				<li>
+					<a href="#box6" class="smooth">box6</a>
+				</li>
+				<li>
+					<a href="#box7" class="smooth">box7</a>
+				</li>
+				<li>
+					<a href="#box8" class="smooth">box8</a>
+				</li>
+			</ul>
+
+		</header>
+		<iframe src="mao.html" width="100%" height="2000px" scrolling="no" id="mainIframe" frameborder="0" scrolling="no" frameborder="0">
+		</iframe>
+	</body>
+	<script src="../jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../jquery.anchor.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".smooth").zxxAnchor({
+				anchortag: "href"
+			});
+		});
+	</script>
+
+</html>

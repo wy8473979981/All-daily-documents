@@ -1,0 +1,78 @@
+//用new关键字创建一个Promise实例
+    let pro = new Promise(function(resolve,reject){
+        //假设condition的值为true
+        let condition = true;
+
+        if(condition){
+            //调用操作成功方法
+            resolve('操作成功');
+            //状态：pending->fulfilled
+        }else{
+            //调用操作异常方法
+            reject('操作异常');
+            //状态：pending->rejected
+        }
+    });
+
+    //用then处理操作成功，catch处理操作异常
+    pro.then(function (res) {
+
+        //操作成功的处理程序
+        console.log(res)
+
+    }).catch(function (error) {
+
+        //操作失败的处理程序
+        console.log(error)
+
+    });
+    //控制台输出：操作成功
+    
+
+上面就是Promise用于处理操作异常的这个过程；但是，正如文章开头讲到的，如果多个操作之间层层依赖，我们用Promise又是怎么处理的呢？
+
+完整案例
+        
+        我们看看下面的案例，代码有点长，但是一点都不复杂：
+
+
+    let pro = new Promise(function(resolve,reject){
+
+        if(true){
+            //调用操作成功方法
+            resolve('操作成功');
+        }else{
+            //调用操作异常方法
+            reject('操作异常');
+        }
+    });
+
+    //用then处理操作成功，catch处理操作异常
+    pro.then(requestA)
+        .then(requestB)
+        .then(requestC)
+        .catch(requestError);
+
+    function requestA(){
+        console.log('请求A成功');
+        return '请求B，下一个就是你了';
+    }
+    function requestB(res){
+        console.log('上一步的结果：'+res);
+        console.log('请求B成功');
+        return '请求C，下一个就是你了';
+    }
+    function requestC(res){
+        console.log('上一步的结果：'+res);
+        console.log('请求C成功');
+    }
+    function requestError(){
+        console.log('请求失败');
+    }
+
+    //打印结果：
+    //请求A成功
+    //上一步的结果：请求B，下一个就是你了
+    //请求B成功
+    //上一步的结果：请求C，下一个就是你了
+    //请求C成功说

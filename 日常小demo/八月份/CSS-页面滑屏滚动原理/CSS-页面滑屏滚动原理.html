@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="wrapper">
+				<div class="page page0 active" data-page="0">
+					第一页 博客园-FlyElephant
+				</div>
+				<div class="page page1" data-page="1">
+					第二页
+				</div>
+				<div class="page page2" data-page="2">
+					第三页
+				</div>
+				<div class="page page3" data-page="3">
+					第四页
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.container').on('mousewheel', function(event) {
+				//mac自然状态向上是-1
+				//window向上滑动时候是1 向下-1
+				console.log(event.deltaX, event.deltaY, event.deltaFactor);
+				var currentPage = parseInt($('.active').attr('data-page'));
+				if (event.deltaY > 0) {
+					var prevpage = currentPage - 1;
+					if (prevpage >= 0) {
+						$('.page' + prevpage).addClass('active');
+						$('.page' + currentPage).removeClass('active');
+						$('.wrapper').css({
+							'transform': 'translate(0,' + (prevpage * -100) + '%)'
+						});
+					}
+				} else {
+					var nextpage = currentPage + 1;
+					if (nextpage < 4) {
+						$('.page' + nextpage).addClass('active');
+						$('.page' + currentPage).removeClass('active');
+						$('.wrapper').css({
+							'transform': 'translate(0,' + (nextpage * -100) + '%)'
+						});
+					}
+				}
+			});
+		});
+	</script>
+
+</html>

@@ -1,0 +1,15 @@
+div {
+    width: 150px;
+    height: 64px; /*px*/
+    font-size: 28px; /*px*/
+    border: 1px solid #ddd; /*no*/
+}
+.index1 {
+  background-color: red;
+}
+.index2 {
+  background-color: black;
+}
+.index3 {
+  background-color: blue;
+}

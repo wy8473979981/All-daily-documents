@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 4.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>jQuery formValidator表单验证插件 -- by:猫冬，email:wzmaodong@126.com</title>
+<meta name="Author" content="猫冬" />
+<meta name="description" content="jQuery formValidator表单验证插件" />
+<meta name="keywords" content="jQuery,formValidator,插件,表单,验证,插件,javascript,表单验证,提示层" />
+<script src="jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="formValidator-4.1.1.js" type="text/javascript" charset="UTF-8"></script>
+<script src="formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+<script language="javascript" src="DateTimeMask.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.formValidator.initConfig({formID:"form1",theme:"ArrowSolidBox",submitOnce:true,
+		onError:function(msg,obj,errorlist){alert(msg);},
+		ajaxPrompt : '有数据正在异步验证，请稍等...'
+	});
+	$("#xueli").formValidator({onShow:"请选择你的学历",onFocus:"学历必须选择",onCorrect:"谢谢你的配合",defaultValue:"a"})
+	.change(function(){alert('')});
+	//$("#xueli1").change(function(){alert('')});
+	//.inputValidator({min:1,onError: "你是不是忘记选择学历了!"}).defaultPassed();
+});
+</script>
+</head>
+
+<body>
+<select name="xueli" id="xueli">
+          <option value="">－－请选择你的学历－－</option>
+          <option value="a">专科</option>
+          <option value="b">本科</option>
+          <option value="c">研究生</option>
+          <option value="e">硕士</option>
+          <option value="d">博士</option>
+        </select><div id="xueliTip" style="width:280px"></div>
+		<p><select name="xueli1" id="xueli1">
+          <option value="">－－请选择你的学历－－</option>
+          <option value="a">专科</option>
+          <option value="b">本科</option>
+          <option value="c">研究生</option>
+          <option value="e">硕士</option>
+          <option value="d">博士</option>
+        </select></p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <button id="btn">点击</button>
+</body>
+
+</html>
+<script>
+    var btn = document.getElementById("btn");
+    document.onclick = function() {
+        alert("点击了空白处")
+    }
+    btn.onclick = function(event) {
+        alert("点击了按钮")
+        var event = event || window.event;
+        if (event && event.stopPropagation) {
+            event.stopPropagation(); //  w3c 标准
+        } else {
+            event.cancelBubble = true; // ie 678  ie浏览器
+        }
+    }
+</script>

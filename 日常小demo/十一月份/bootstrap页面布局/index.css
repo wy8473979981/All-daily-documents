@@ -1,0 +1,9 @@
+@charset "utf-8";
+header{
+	height: 100px;
+	background-color: #C7254E;
+}
+section{
+	height: 800px;
+	background-color: #C1E2B3;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div onclick="showMsg(this,event)" id="outSide" style="width:100px; height:100px; background:#000; padding:50px">
+
+			<div onclick="showMsg(this,event)" id="inSide" style="width:100px; height:100px; background:#CCC"></div>
+
+		</div>
+
+		<script type="text/javascript">
+			//阻止事件冒泡后，你点击灰色盒子，整个过程只弹一次对话框了（注意与默认情况对比）
+			function showMsg(obj, e)
+			{
+				alert(obj.id);
+				stopBubble(e)
+			}
+			//阻止事件冒泡函数
+			function stopBubble(e)
+			{
+				if (e && e.stopPropagation)
+					e.stopPropagation()
+				else
+					window.event.cancelBubble = true
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>一个数组如何去掉重复的项</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr = ["a","ab","ac","n","m"]
+		function removeRepeat(arr){
+			var tmpArr = [];
+			for(var i in arr){
+				if(tmpArr.indexOf(arr[i]) == -1){
+					tmpArr.push(arr[i]);
+				}
+			}
+			return tmpArr;
+		}
+		var r=removeRepeat(arr);
+		console.log(r);
+		
+		
+	</script>
+	
+	
+	
+</html>

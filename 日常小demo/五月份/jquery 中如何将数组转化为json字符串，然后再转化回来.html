@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$.fn.stringifyArray = function(array) {
+	        return JSON.stringify(array)
+	    }
+
+	    $.fn.parseArray = function(array) {
+	        return JSON.parse(array)
+	    }
+
+	 	//   然后调用：
+	 	var array = [4,5,6,7,8,9];
+	 	var p = $("").stringifyArray(array);
+	 	var b= $("").stringifyArray(p);
+	 	 console.log(b);
+	   
+	</script>
+</html>

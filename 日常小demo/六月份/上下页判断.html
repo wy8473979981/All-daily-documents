@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		//上下页初始判断
+		function initialJudgment() {
+			setTimeout(function() {
+				spanCountOne = document.getElementById("ShowSelectedData_pt_curPage").innerHTML;
+				spanCountTwo = document.getElementById("ShowSelectedData_pt_totalPages").innerHTML;
+				firstAndPrevNextAndLast();
+				if (spanCountOne == 1) {
+					firstAndPrevDisabled();
+				}
+				if (spanCountTwo == 1) {
+					nextAndLastDisabled();
+				}
+			}, 100);
+		}
+		$(function() {
+				//首页
+				$("#ShowSelectedData_pt_firstPage").click(function() {
+					gridObj.refreshPage();
+					spanCountOne = document.getElementById("ShowSelectedData_pt_curPage").innerHTML;
+					spanCountTwo = document.getElementById("ShowSelectedData_pt_totalPages").innerHTML;
+					if (spanCountOne == 1) {
+						firstAndPrevDisabled();
+						nextAndLastAvailable();
+					}
+				});
+				//上一页
+				$("#ShowSelectedData_pt_prevPage").click(function() {
+					gridObj.refreshPage();
+					spanCountOne = document.getElementById("ShowSelectedData_pt_curPage").innerHTML;
+					spanCountTwo = document.getElementById("ShowSelectedData_pt_totalPages").innerHTML;
+					if (spanCountOne == 1) {
+						firstAndPrevDisabled();
+						nextAndLastAvailable();
+					}
+					if (1 < spanCountOne && spanCountOne < spanCountTwo) {
+						firstAndPrevAvailable();
+						nextAndLastAvailable();
+					}
+				});
+				//下一页
+				$("#ShowSelectedData_pt_nextPage").click(function() {
+					gridObj.refreshPage();
+					spanCountOne = document.getElementById("ShowSelectedData_pt_curPage").innerHTML;
+					spanCountTwo = document.getElementById("ShowSelectedData_pt_totalPages").innerHTML;
+					if (spanCountOne > 1) {
+						firstAndPrevAvailable();
+					}
+					if (spanCountOne == spanCountTwo) {
+						nextAndLastDisabled();
+					}
+				});
+				//末页
+				$("#ShowSelectedData_pt_lastPage").click(function() {
+					gridObj.refreshPage();
+					spanCountOne = document.getElementById("ShowSelectedData_pt_curPage").innerHTML;
+					spanCountTwo = document.getElementById("ShowSelectedData_pt_totalPages").innerHTML;
+					if (spanCountOne > 1) {
+						firstAndPrevAvailable();
+					}
+					if (spanCountOne == spanCountTwo) {
+						nextAndLastDisabled();
+					}
+				});
+			})
+			//首页、上一页、下一页、末页可用
+		function firstAndPrevNextAndLast() {
+			$("#ShowSelectedData_pt_firstPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_prevPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_firstPage").prop("disabled", false);
+			$("#ShowSelectedData_pt_prevPage").prop("disabled", false);
+			$("#ShowSelectedData_pt_nextPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_lastPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_nextPage").prop("disabled", false);
+			$("#ShowSelectedData_pt_lastPage").prop("disabled", false);
+		}
+		//首页、上一页可用
+		function firstAndPrevAvailable() {
+			$("#ShowSelectedData_pt_firstPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_prevPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_firstPage").prop("disabled", false);
+			$("#ShowSelectedData_pt_prevPage").prop("disabled", false);
+		}
+		//首页、上一页禁用
+		function firstAndPrevDisabled() {
+			$("#ShowSelectedData_pt_firstPage").addClass("disabled");
+			$("#ShowSelectedData_pt_prevPage").addClass("disabled");
+			$("#ShowSelectedData_pt_firstPage").prop("disabled", "disabled");
+			$("#ShowSelectedData_pt_prevPage").prop("disabled", "disabled");
+		}
+		//下一页、末页可用
+		function nextAndLastAvailable() {
+			$("#ShowSelectedData_pt_nextPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_lastPage").removeClass("disabled");
+			$("#ShowSelectedData_pt_nextPage").prop("disabled", false);
+			$("#ShowSelectedData_pt_lastPage").prop("disabled", false);
+		}
+		//下一页、末页禁用
+		function nextAndLastDisabled() {
+			$("#ShowSelectedData_pt_nextPage").addClass("disabled");
+			$("#ShowSelectedData_pt_lastPage").addClass("disabled");
+			$("#ShowSelectedData_pt_nextPage").prop("disabled", "disabled");
+			$("#ShowSelectedData_pt_lastPage").prop("disabled", "disabled");
+		}
+	</script>
+
+</html>

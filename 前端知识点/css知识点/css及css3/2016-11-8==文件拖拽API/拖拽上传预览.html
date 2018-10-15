@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>拖拽上传预览</title>
+		<style type="text/css">
+			#oDiv{
+				width: 300px;
+				min-height: 300px;
+				height:auto;
+				border: 1px solid #000;
+				text-align: center;
+				line-height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="oDiv">
+			拖一个美女回家！
+		</div>
+	</body>
+	<script type="text/javascript">
+		var oDiv = document.getElementById("oDiv");
+		
+		oDiv.ondragover = function (ev){
+			//停止事件传播
+			ev.stopPropagation();
+			ev.preventDefault();
+		}
+		
+		oDiv.ondrop = function (ev){
+			//获取到拖拽的文件
+			var fileName = ev.dataTransfer.files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(fileName);
+			reader.onload = function (e){
+				oDiv.innerHTML = "<img src = '"+this.result+"' alt='"+fileName.name+"' style='width:100%;'/>";
+			};
+			
+			//停止事件传播
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+		}
+	</script>
+</html>

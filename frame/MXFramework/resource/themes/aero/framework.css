@@ -1,0 +1,394 @@
+.mx input[type=button], .mx input[type=submit], .mx button, .mx .button
+{    
+    border:1px solid #707070;
+    border-radius:3px; -moz-border-radius:3px;-webkit-border-radius:3px;      
+    padding-left:15px;
+    padding-right:15px;    
+    background:url(images/button_bg.png) repeat-x center center;                 
+}
+.mx input[type=button]:hover, .mx input[type=submit]:hover, .mx button:hover, .mx .button:hover
+{    		
+    border:1px solid #3C7FB1;    
+    background-image:url(images/button_hover.png);          	
+    box-shadow:inset 0 0 3px #48D8FB; -moz-box-shadow:inset 0 0 3px #48D8FB; -webkit-box-shadow:inset 0 0 3px #48D8FB;
+}
+.mx  input[type=button]:active, .mx input[type=submit]:active, .mx button:active, .mx .button:active
+{    
+    border:1px solid #2C628B;
+    background-image:url(images/button_active.png);    
+	box-shadow:inset 0 0 3px #AEC3CE; -moz-box-shadow:inset 0 0 3px #AEC3CE; -webkit-box-shadow:inset 0 0 3px #AEC3CE;	    
+}
+.mx input[type=button][disabled], .mx input[type=submit][disabled], .mx button[disabled], .mx .button.disabled
+{
+	color:#A0A0A0;
+    border:1px solid #ADB2B5;
+    background-image:url(images/button_disabled_bg.png); 
+}
+
+.mx input[type=button][disabled]:hover, .mx input[type=submit][disabled]:hover, .mx button[disabled]:hover, .mx .button.disabled:hover
+{       
+    box-shadow:none; -moz-box-shadow:none; -webkit-box-shadow:none; 
+}
+.mx input[type=button][disabled]:active, .mx input[type=submit][disabled]:active, .mx button[disabled]:active, .mx .button.disabled:active
+{    
+   
+}
+
+
+
+.mx input[type=text], .mx input[type=password], .mx textarea
+{	
+    border-top:1px solid #ABADB3;
+    border-left:1px solid #E2E3EA;
+    border-bottom:1px solid #E3E9EF;
+    border-right:1px solid #DBDFE6;
+    border-radius:1px; -moz-border-radius:1px; -webkit-border-radius:1px;
+}
+.mx input[type=text]:focus, .mx input[type=password]:focus, .mx textarea:focus
+{	
+    border-top:1px solid #3D7BAD;
+    border-left:1px solid #B5CFE7;
+    border-bottom:1px solid #B7D9ED;
+    border-right:1px solid #A4C9E3;
+}
+
+.mx input[type=text][disabled], .mx input[type=password][disabled], .mx textarea[disabled]
+{
+	background-color:#F0F0F0;
+}
+
+
+
+.mx .mask, .mx.mask
+{
+    background:black;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+.mx.busying,.mx .busying
+{
+	overflow: hidden;
+	position:absolute;
+	left: 0;
+	top:0;
+	background:url(images/alpha_10.png);
+	width: 100%;
+	height: 100%;
+}
+.mx.busying > span,.mx .busying > span
+{
+	display:block;
+	width:100%;
+	height:100%;
+	background:url(images/loading_32.gif) no-repeat center center;
+}
+
+.mx.busying > div,.mx .busying > div
+{
+	text-align:center;
+	position:relative;
+	top:50%;
+	left: 75px;
+}
+
+
+.mx #indication, .mx#indication
+{
+    position:absolute;
+    z-index:999999999;
+    background-image:url(images/alpha_70.png);
+    padding:12px;
+    padding-top:8px;
+}
+
+.mx #indication > #text, .mx#indication > #text
+{
+    color:White;
+    font-size:14px;
+    font-family:微软雅黑,Arial;
+    font-weight:bold;
+    text-align:center;
+    text-shadow:0 1px black;
+}
+
+
+.mx #indication > #icon, .mx#indication > #icon
+{
+    color:White;
+    font-family:pictos;
+    font-size:40px;
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.mx #indication > #icon .info
+{
+    width:40px;
+    margin-bottom:5px;
+    background:url(images/loading_32.gif) no-repeat center center;
+}
+
+/*
+.groupBox
+{		
+	background-color:#F1EDED;		
+	border:1px solid #D5DFE5; 		
+	box-shadow:inset 0 0 3px white; -moz-box-shadow:inset 0 0 3px white; -webkit-box-shadow:inset 0 0 3px white;		
+	border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;		
+	box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+    padding:15px;
+}
+*/
+
+.mx .expandable > dt
+{
+    height:18px;
+    line-height:18px;
+    text-indent:20px;
+	font-weight:bold;
+	background:url(images/collapse.png) left 0 no-repeat;
+    cursor:pointer;
+}
+
+
+.mx .expandable.expanded > dt
+{
+    background:url(images/expand.png) left 0 no-repeat;
+}
+
+
+.mx .expandable > dd
+{
+    padding:15px;
+	padding-bottom:0px;
+    padding-top:3px;
+}
+
+
+.mx .mask, .mx.mask
+{
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	background:black;
+}
+
+.mx.busying,.mx .busying
+{
+	overflow: hidden;
+	position:absolute;
+	left: 0;
+	top:0;
+	background:url(images/alpha_20.png);
+	width: 100%;
+	height: 100%;
+}
+.mx.busying > span,.mx .busying > span
+{
+	display:block;
+	width:100%;
+	height:100%;
+	background:url(images/loading_32.gif) no-repeat center center;
+}
+
+.mx#indication, .mx #indication
+{
+    position:absolute;
+    z-index:999999999;
+    background-image:url(images/alpha_70.png);
+    padding:12px;
+    padding-top:8px;
+}
+
+.mx#indication > #text, .mx #indication > #text
+{
+    color:White;
+    font-size:14px;
+    font-family:寰蒋闆呴粦,Arial;
+    font-weight:bold;
+    text-align:center;
+    text-shadow:0 1px black;
+}
+
+
+.mx#indication > #icon, .mx #indication > #icon
+{
+    color:White;
+    font-family:pictos;
+    font-size:40px;
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.mx#indication > .info
+{
+    width:100%;
+	height:48px;
+    background:url(../../icons/40/info.png) no-repeat center center;
+}
+
+.mx#indication > .warn
+{
+    width:100%;
+	height:48px;
+    background:url(../../icons/40/warn.png) no-repeat center center;
+}
+
+.mx#indication > .error
+{
+	width:100%;
+	height:48px;
+    background:url(../../icons/40/error.png) no-repeat center center;
+}
+
+.mx#indication > .busy
+{
+    width:100%;
+	height:48px;
+    background:url(../../icons/40/busy.png) no-repeat center center;
+}
+
+.mx#indication > .user
+{
+    width:100%;
+	height:48px;
+    background:url(../../icons/40/user.png) no-repeat center center;
+}
+
+
+/* toolTip CSS */
+.mx#toolTip_holder 
+{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99999;
+}
+
+.mx#toolTip_holder.tip_top 
+{
+	padding-bottom: 5px;
+}
+
+.mx#toolTip_holder.tip_bottom 
+{
+	padding-top: 5px;
+}
+
+.mx#toolTip_holder.tip_right 
+{
+	padding-left: 5px;
+}
+
+.mx#toolTip_holder.tip_left 
+{
+	padding-right: 5px;
+}
+
+.mx#toolTip_holder #toolTip_content 
+{
+	font-size: 11px;
+	color: #fff;
+	text-shadow: 0 0 2px #000;
+	padding: 4px 8px;
+	border: 1px solid rgba(123,123,123,0.25);
+	background-color: #7B7B7B;
+	background-color: rgba(123,123,123,0.92);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#787777));
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	box-shadow: 0 0 3px #555;
+	-webkit-box-shadow: 0 0 3px #555;
+	-moz-box-shadow: 0 0 3px #555;
+}
+
+.mx#toolTip_holder #toolTip_arrow, .mx#toolTip_holder #toolTip_arrow_inner 
+{
+	position: absolute;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 6px;
+	height: 0;
+	width: 0;
+}
+
+.mx#toolTip_holder.tip_top #toolTip_arrow 
+{
+	border-top-color: #7c7c7c;
+	border-top-color: rgba(123,123,123,0.35);
+}
+
+.mx#toolTip_holder.tip_bottom #toolTip_arrow 
+{
+	border-bottom-color: #7c7c7c;
+	border-bottom-color: rgba(123,123,123,0.35);
+}
+
+.mx#toolTip_holder.tip_right #toolTip_arrow 
+{
+	border-right-color: #7c7c7c;
+	border-right-color: rgba(123,123,123,0.35);
+}
+
+.mx#toolTip_holder.tip_left #toolTip_arrow 
+{
+	border-left-color: #7c7c7c;
+	border-left-color: rgba(123,123,123,0.35);
+}
+
+.mx#toolTip_holder.tip_top #toolTip_arrow_inner 
+{
+	margin-top: -7px;
+	margin-left: -6px;
+	border-top-color: #7B7B7B;
+	border-top-color: rgba(123,123,123,0.92);
+}
+
+.mx#toolTip_holder.tip_bottom #toolTip_arrow_inner 
+{
+	margin-top: -5px;
+	margin-left: -6px;
+	border-bottom-color: #7B7B7B;
+	border-bottom-color: rgba(123,123,123,0.92);
+}
+
+.mx#toolTip_holder.tip_right #toolTip_arrow_inner 
+{
+	margin-top: -6px;
+	margin-left: -5px;
+	border-right-color: #7B7B7B;
+	border-right-color: rgba(123,123,123,0.92);
+}
+
+.mx#toolTip_holder.tip_left #toolTip_arrow_inner 
+{
+	margin-top: -6px;
+	border-left-color: #7B7B7B;
+	border-left-color: rgba(123,123,123,0.92);
+}
+
+/* Webkit Hacks  */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{	
+	.mx#toolTip_holder #toolTip_content 
+	{
+		padding: 4px 8px 5px 8px;
+		background-color: rgba(123,123,123,0.88);
+	}
+	.mx#toolTip_holder.tip_bottom #toolTip_arrow_inner 
+	{ 
+		border-bottom-color: rgba(123,123,123,0.88);
+	}
+	.mx#toolTip_holder.tip_top #toolTip_arrow_inner 
+	{ 
+		border-top-color: rgba(123,123,123,0.92);
+	}
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</body>
+	<script type="text/javascript">
+	
+	/*
+	 图形组合 context.globalCompositeOperation=type
+    图形组合就是两个图形相互叠加了图形的表现形式,是后画的覆盖掉先画的呢，
+还是相互重叠的部分不显示等等，至于怎么显示就取决于type的值了
+
+ type：
+        source-over（默认值）:在原有图形上绘制新图形
+        destination-over:在原有图形下绘制新图形
+        source-in:显示原有图形和新图形的交集，新图形在上，所以颜色为新图形的颜色
+        destination-in:显示原有图形和新图形的交集，原有图形在上，所以颜色为原有图形的颜色
+        source-out:只显示新图形非交集部分
+        destination-out:只显示原有图形非交集部分
+        source-atop:显示原有图形和交集部分，新图形在上，所以交集部分的颜色为新图形的颜色
+        destination-atop:显示新图形和交集部分，新图形在下，所以交集部分的颜色为原有图形的颜色
+        lighter:原有图形和新图形都显示，交集部分做颜色叠加
+        xor:重叠部分不显示
+        copy:只显示新图形
+
+*/
+		var canvas = document.querySelector("#myCanvas");
+		var context = canvas.getContext("2d");
+		context.fillStyle = "rgb(0,0,255)";
+		context.rect(0,0,50,50);
+		context.fill();
+		/*context.globalCompositeOperation = "xor";*/
+		context.beginPath();
+		context.fillStyle = "#ff0000";
+		context.arc(50,50,25,0,Math.PI*2,true);
+		context.closePath();
+		/*context.scale(12);*/
+		context.fill();
+		
+		
+		
+	</script>
+	
+</html>

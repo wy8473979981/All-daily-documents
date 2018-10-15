@@ -1,0 +1,12 @@
+ - 1、在 pull 下的文件夹下切换分支 git checkout dev
+ - 2、epf_portal epf_system 两个项目放在  enterprise-platform  -- >  src -- > main -- > resources 下
+ - 3、分别对其 npm install 同时要 npm start ,对两个项目编译
+ - 4、在eclipse 中启动是在Maven bulid 中输入spring-boot:run
+ - 5、在浏览器输入localhost：8080 访问页面
+ - 6、在aoolication.properties中修改webappFolder=epf_portal 右边的值，切换访问前台还是后天页面
+ - 7、spring.datasource.url=jdbc:mysql://192.168.1.5:3306/enterprise_platform?characterEncoding=UTF-8&serverTimezone=UTC
+		spring.datasource.username=root
+		spring.datasource.password=Danyan!23
+		这是数据的地址，是服务器上的，建议不要对服务器数据操作
+		
+		在resurces下的两个sql一个是  表   ；一个是数据

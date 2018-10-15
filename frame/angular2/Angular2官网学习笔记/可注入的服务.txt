@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class HeroService {
+}
+
+
+可注入的服务
+	注意，我们导入了 Angular 的Injectable函数，并作为@Injectable()装饰器使用这个函数。
+	
+	不要忘了写圆括号！如果忘了写，就会导致一个很难诊断的错误。
+	当 TypeScript 看到@Injectable()装饰器时，就会记下本服务的元数据。 如果 Angular 需要
+	往这个服务中注入其它依赖，就会使用这些元数据。
+	
+	此时，HeroService还没有任何依赖，但我们还是得加上这个装饰器。 作为一项最佳实践，无论是出于
+	提高统一性还是减少变更的目的， 都应该从一开始就加上@Injectable()装饰器。
+
+注入 HeroService	
+	import { HeroService } from './hero.service';
+	
+	添加一个构造函数，并定义一个私有属性。
+	添加组件的providers元数据。
+	
+	下面就是这个构造函数：
+	app/app.component.ts (constructor)
+	constructor(private heroService: HeroService) { }
+	
+	providers: [HeroService]
+
+	providers数组告诉 Angular，当它创建新的AppComponent组件时，也要创建一个
+	HeroService的新实例。 AppComponent会使用那个服务来获取英雄列表，在它组件树中的每一个子组件
+	也同样如此

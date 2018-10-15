@@ -1,0 +1,109 @@
+1、前言
+	canvas一般就是用来绘制图像的
+
+2、基本知识
+	上下文对象
+	var canvas = doucment.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	
+	ctx.fillStyle = "color";// 填充样式
+	ctx.strokeStyle = "color";//边框样式
+	
+	ctx.fill();//填充区域
+	ctx.stroke();//绘制边框
+ 
+
+3、绘制矩形
+	//1、设置填充样式或者边框样式(ctx.fillStyle = "color";或者ctx.strokeStyle = "color";)
+	//2、绘制矩形区域(如果采用fillRect或者strokeRect绘制矩形，可以省略第3步);
+	//3、填充或者加上边框(ctx.fill();或者ctx.stroke();)
+4、清除矩形区域
+	作用：就像刚交完工的房子，有很多垃圾，你需要清理，清理除一块区域，以后将作为你的卧室。
+	ctx.clearRect(x,y,w,h);
+5、圆弧
+	//1、设置填充样式或者边框样式(ctx.fillStyle = "color";或者ctx.strokeStyle = "color";)
+	//2、绘制原型区域
+		ctx.arc(x,y,r,startAngle,endAngle,boolean);
+		r代表半径，startAngle,endAngle分别代表开始角度和结束角度，最后一个参数表示true(逆时针),false(顺时针)
+	//3、填充或者加上边框(ctx.fill();或者ctx.stroke();)
+	
+	注：1、在绘制圆弧的时候，必须使用ctx.beginPath()开始和ctx.closePath()结束，当然，前提条件时你要画规则的图形
+		2、这里的开始角度和结束角度不是deg，而是Math.PI*(相应的值)。
+6、路径
+	ctx.beginPath()与ctx.closePath()
+	注：如果不加的话，就会出现“灵异事件”（它将你的上一个结束点作为接下来的开始点）；变得不是你想要的图形。
+	
+7、绘制线段
+	ctx.moveTo(x,y);-----这里必须以moveTo开头，其实是将你的原点移动了位置
+	ctx.lineTo(x,y);---绘制接下来的点。
+	注：一般情况下、只需要一个moveTo即可。
+8、绘制贝塞尔曲线
+	context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)
+	绘制二次样条曲线 context.quadraticCurveTo(qcpx,qcpy,qx,qy)
+	cp1x:第一个控制点x坐标		cp1y:第一个控制点y坐标		cp2x:第二个控制点x坐标		cp2y:第二个控制点y坐标
+	x:终点x坐标	y:终点y坐标	qcpx:二次样条曲线控制点x坐标	qcpy:二次样条曲线控制点y坐标
+	qx:二次样条曲线终点x坐标	qy:二次样条曲线终点y坐标
+	
+	注：context.quadraticCurveTo(qcpx,qcpy,qx,qy)还可以换成
+		context.bezierCurveTo(x,y,cp2x,cp2y,x,y),第一组的x和y表示的是第一条曲线的终点
+9、线性渐变
+	var lg= context.createLinearGradient(xStart,yStart,xEnd,yEnd)
+	lg.addColorStop(offset,color);
+	eg:(lg.addColorStop(0,"red");lg.addColorStop(0.5,"green");lg.addColorStop(1,"blue"))
+	ctx.fillStyle = lg;
+	*********
+10、径向渐变（发散）
+	var rg=context.createRadialGradient(xStart,yStart,radiusStart,xEnd,yEnd,radiusEnd)
+	径向渐变（发散）颜色rg.addColorStop(offset,color)
+	xStart:发散开始圆心x坐标
+	yStart:发散开始圆心y坐标	radiusStart:发散开始圆的半径	xEnd:发散结束圆心的x坐标	yEnd:发散结束圆心的y坐标
+	radiusEnd:发散结束圆的半径	offset:设定的颜色离渐变结束点的偏移量(0~1)
+	color:绘制时要使用的颜色
+	
+	用法同上：9、线性渐变
+	案例：同心圆、三角案例、扇形案例
+11、图形变形（平移、旋转、缩放）
+	ctx.translate(x,y);
+	ctx.rotate(Math.PI*(angleValue));
+	ctx.scale(x,y);
+	注：平移2个值，缩放2个值，旋转角度是弧度
+12、图形组合
+	在绘制完成第一个图形之后，加
+	 context.globalCompositeOperation=type
+	 再接着绘制第二个图形
+	 type：
+	source-over（默认值）:在原有图形上绘制新图形
+	destination-over:在原有图形下绘制新图形
+	source-in:显示原有图形和新图形的交集，新图形在上，所以颜色为新图形的颜色
+	destination-in:显示原有图形和新图形的交集，原有图形在上，所以颜色为原有图形的颜色
+	source-out:只显示新图形非交集部分
+	destination-out:只显示原有图形非交集部分,是将交集的部分转化为透明
+	source-atop:显示原有图形和交集部分，新图形在上，所以交集部分的颜色为新图形的颜色
+	destination-atop:显示新图形和交集部分，新图形在下，所以交集部分的颜色为原有图形的颜色
+	lighter:原有图形和新图形都显示，交集部分做颜色叠加
+	xor:重叠飞部分不现实
+	copy:只显示新图形
+13、给图形绘制阴影
+	ctx.shadowOffsetX = "5";
+	ctx.shadowOffsetY = "5";
+	ctx.shadowBlur = "5";
+	ctx.shadowColor = "red";
+	绘制需要的图形
+16、绘制文字
+	ctx.font="italic 30px 微软雅黑";//顺序不能改
+	*ctx.fillStyle = "color";或者ctx.strokeStyle = "color";
+	ctx.textBaseline = "";设置垂直对齐方式
+	ctx.textAlign = "";设置水平对齐方式
+	ctx.fillText("文本",x,y)（实心字）或者ctx.strokeText("文本",x,y)（字的轮廓）;
+	注：上面带*的那个设置，其实设置的时字体的颜色
+17、保存和恢复状态（context）
+	ctx.save();//保存当前绘制的图形，
+	ctx.restore();//恢复到离他最近的那个save的状态
+18、保存文件
+	 var w=window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=400,height=350");
+19、结合setInterval制作动画
+	window.setInterval(function(){
+		//执行的方法体
+	},10)；
+
+background: linear-gradient(90deg, rgb(49,193,243), rgb(99,76,226));

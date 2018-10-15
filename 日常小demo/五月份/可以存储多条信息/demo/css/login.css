@@ -1,0 +1,126 @@
+@charset "utf-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+html,body{
+	background-color: #F6F5F5;
+}
+ul,li{
+	list-style: none;
+}
+.clear{
+	height:44px;
+	clear: both;
+}
+
+header{
+	position: fixed;
+	left:0;
+	right: 0;
+	height:44px;
+	padding: 0 10px;
+	background-color: #DC0A4B;
+	display: -webkit-box;
+	display: -moz-box;
+	color: #fff;
+	z-index: 9999 !important;
+}
+header .back,header .tipInfo{
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+}
+header .back{
+	text-align: left;
+	line-height: 44px;
+}
+header .tipInfo{
+	text-align: right;
+	line-height: 44px;
+}
+header .tipInfo a{
+	color:#fff;
+}
+header .titName{
+	text-align: center;
+	line-height: 44px;
+	-webkit-box-flex: 4;
+	-moz-box-flex: 4;
+}
+.input{
+	margin:5% 3% 8% 4%;
+	height:62px;
+	padding-top:20px;
+	background-color: #fff;
+}
+
+.input img{
+	display: block;
+	height:60%;
+	float:left;
+	margin-left:30px;
+}
+.input .tel{
+
+}
+.input input{
+	border:none;
+	width:70%;
+	height:60%;
+	float:left;
+}
+.btn{
+	height:42px;
+	background-color: #00A0E9;
+	margin:0 25%;
+	line-height: 42px;
+	text-align: center;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	color:#fff;
+}
+.changePassword{
+	margin-left:25%;
+	margin-top:10px;
+	color:#00A0E9;
+}
+.model{
+	height:30px;
+	display: none;
+	font-size:14px;
+	color:#fff;
+	position:absolute;
+	left:40%;
+	bottom:60px;
+	line-height: 30px;
+	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.footer{
+	color:#626262;
+	position: fixed;
+	right: 5%;
+	bottom: 1%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

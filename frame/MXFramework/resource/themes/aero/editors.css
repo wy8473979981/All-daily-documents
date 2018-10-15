@@ -1,0 +1,683 @@
+/**
+ ******************************************CHECKEDITOR***********************************
+ */
+.mx .checkEditor
+{
+	display:inline-block;
+    vertical-align:middle;           
+    box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;   
+	cursor:default;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.mx .checkEditor > #img
+{
+	position:relative;
+	display:inline-block;	
+	width:16px;
+	height:16px;
+	top:3px;
+	margin-right:3px;
+	background:url(images/check_editor_unchecked.png) center center no-repeat;
+}
+
+.mx .checkEditor.checked > #img
+{
+	background:url(images/check_editor_checked.png) center center no-repeat;
+}
+
+.mx .checkEditor.disabled > #img
+{
+	background:url(images/check_editor_unchecked_disabled.png) center center no-repeat;
+}
+
+.mx .checkEditor.checked.disabled > #img
+{
+	background:url(images/check_editor_checked_disabled.png) center center no-repeat;
+}
+
+.mx .checkEditor > #text
+{
+	position:relative;
+	display:inline-block;
+	height:21px;
+	line-height:21px;
+}
+.mx .checkEditor.disabled > #text
+{
+    color:#555555;	
+}
+
+.mx .checkEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+
+/**
+ ******************************************CHECKLISTEDITOR***********************************
+ */
+.mx .checkListEditor
+{
+	overflow-y:hidden;
+	cursor:default;
+	padding-left: 3px;
+}
+
+.mx .checkListEditor .checkEditor
+{
+	margin-right: 8px;
+}
+
+.mx .checkListEditor.radio .checkEditor > #img
+{
+	background:url(images/radio_unchecked.png) center center no-repeat;
+}
+
+.mx .checkListEditor.radio .checkEditor.checked > #img
+{
+	background:url(images/radio_checked.png) center center no-repeat;
+}
+
+.mx .checkListEditor.radio .checkEditor.disabled > #img
+{
+	background:url(images/radio_unchecked_disabled.png) center center no-repeat;
+}
+
+.mx .checkListEditor.radio .checkEditor.checked.disabled > #img
+{
+	background:url(images/radio_checked_disabled.png) center center no-repeat;
+}
+
+.mx .checkListEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+/**
+ ******************************************TEXTEDITOR***********************************
+ */
+.mx .textEditor
+{	
+    display:inline-block;
+    vertical-align:middle;        
+    background-color:white;
+	box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;	
+}
+
+.mx .textEditor #inputContainer,.mx .disabled.textEditor #inputContainer
+{
+	width:100%;
+	height:100% 
+}
+
+.mx .hint 
+{
+	color:#aaaaaa;
+}
+
+.mx .hintEnabled
+{
+	color:#aaaaaa;
+	background-color:#f0f0f0;
+}
+
+.mx .textEditor > input
+{
+	width:100%;
+	padding-left: 5px;
+}
+
+.mx .textEditor > textarea
+{
+	outline:none;
+	width:100%;
+	height:100%;
+	overflow-y:auto;
+}
+
+.mx .textEditor.disabled  textarea
+{
+	outline:none;
+	width:100%;
+	height:100%;
+	overflow-y:auto;
+	color:#9B9898;
+	background-color: #F0F0F0;
+}
+
+.mx .textEditor #resizableSizeGrip
+{
+	background:url(images/resizable_size_grip.png) right bottom no-repeat;
+}
+
+.mx .textEditor.error input[type=text],.mx .textEditor.error input[type=password],.mx .textEditor.error textarea
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+#editorTextReadOnlyTip
+{
+	font-size:12px;
+	z-index:99999;
+	overflow : hidden;
+	position : absolute;
+	white-space :normal;
+	word-break :break-all;
+	word-wrap :break-word;
+	background-color : rgb(229,230,240);
+	border:1px solid #C5C5C5;
+    padding:5px;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+           -moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+           -webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+           box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+}
+
+
+
+
+/**
+ ******************************************CUSTOMEDITOR***********************************
+ */
+.mx .customEditor
+{
+	position:relative;
+    display:inline-block;
+    vertical-align:middle;        
+    box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+}
+
+.mx .customEditor #inputContainer
+{
+    position:absolute;
+    left:0;
+    top:0;
+    right:20px;
+    bottom:0;
+	margin-right:3px;             
+}
+
+.mx .customEditor #inputContainer input
+{       
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    padding-left: 5px;        
+}
+
+.mx .customEditor #customButton
+{
+    position:absolute;      
+    top:0;
+    bottom:0;
+    right:0;     
+    width:20px;
+    height:21px;
+	
+}
+.mx .customEditor #customButton input[type=button]
+{
+	padding:0;
+	width:100%;
+	text-align:center;
+}
+
+.mx .customEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+/**
+ ****************************************** FileEditor ***********************************
+ */
+
+.mx .fileEditor, .mx.fileEditor
+{
+	height: auto;
+}
+
+.mx .fileEditor #inputContainer, .mx.fileEditor #inputContainer
+{
+	position: relative;
+	min-height: 21px;
+	margin-right: 23px;
+  	white-space: nowrap;
+  	overflow: hidden;
+  	border: 1px solid #CCD0D5;
+  	background: #F0F1F0;
+}
+
+.mx .fileEditor #inputContainer .linkEditor > a > span, .mx.fileEditor #inputContainer .linkEditor > a > span
+{
+	color: black; 
+	text-decoration: underline;
+}
+
+.mx .fileEditor.disabled #inputContainer .linkEditor > a, .mx.fileEditor.disabled #inputContainer .linkEditor > a
+{
+	cursor: default;
+}
+
+.mx .fileEditor.autoWrap #inputContainer, .mx.fileEditor.autoWrap #inputContainer
+{
+	position: relative;
+	min-height: 21px;
+	margin-right: 23px;
+	text-overflow: ellipsis;
+  	white-space: normal;
+  	overflow: normal;
+  	border: 1px solid #CCD0D5;
+  	background: #F0F1F0;
+  	padding-bottom: 5px;
+}
+
+.mx .fileEditor.autoWrap #inputContainer .linkEditor > a > span, .mx.fileEditor.autoWrap #inputContainer .linkEditor > a > span
+{
+	color: black; 
+	text-decoration: underline;
+}
+
+
+
+/**
+ ******************************************COMPLEXCONDITIONEDITOR***********************************
+ */
+.mx .complexConditionEditor
+{
+	position:relative;
+    overflow:hidden;
+    background-color:white;
+    border: 1px solid #AAAAAA;
+}
+.mx.complexConditionEditor
+{
+	position:relative;
+    overflow:hidden;
+    background-color:white;
+    border: 1px solid #AAAAAA;
+    border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    box-shadow:0 2px 3px rgba(0,0,0,0.1);-moz-box-shadow:0 2px 3px rgba(0,0,0,0.1);-webkit-box-shadow:0 2px 3px rgba(0,0,0,0.1);  
+}
+
+.mx .complexConditionEditor table,.mx.complexConditionEditor table
+{
+	width:100%;
+    height:100%;
+    border-collapse: collapse;
+}
+
+.mx .complexConditionEditor table  tr,.mx.complexConditionEditor table  tr
+{
+    height:22px;
+}
+
+.mx .complexConditionEditor > table > tbody > tr > td,.mx.complexConditionEditor > table > tbody > tr > td
+{
+	padding-left: 2px;
+}
+
+.mx .complexConditionEditor table  tr > td > div.delBtn,.mx.complexConditionEditor table  tr > td > div.delBtn
+{
+    width:16px;
+    height:16px;
+    background:url(images/datagrid_dragcol_rejust.png) ;     
+}
+
+
+
+
+
+
+
+/**
+ ******************************************LABELEDITOR***********************************
+ */
+.mx .labelEditor, .mx.labelEditor
+{
+	border: 1px solid #CCD0D5;
+	display: block;
+}
+
+.mx .labelEditor.displayInline, .mx.labelEditor.displayInline
+{
+	display: inline-block;
+}
+
+.mx .labelEditor.autoWrap, .mx.labelEditor.autoWrap
+{
+	height: auto;
+}
+
+.mx .labelEditor.autoWrap div, .mx.labelEditor.autoWrap div
+{
+	height: auto;
+}
+
+
+.mx .labelEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+.mx .labelEditor.disabled
+{
+	background-color:#F0F0F0;
+}
+
+
+
+
+
+
+/**
+ ******************************************LINKEDITOR***********************************
+ */
+.mx .linkEditor 
+{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	overflow:hidden;
+}
+
+.mx .linkEditor a
+{
+	color: #477bab;
+	cursor: pointer;
+}
+
+.mx .linkEditor a:hover 
+{
+	color: #79ace2;
+	text-decoration: underline;
+	cursor: hand
+}
+
+.mx .linkEditor.disabled a 
+{
+	color: #79ace2;
+	cursor: point;
+}
+
+.mx .linkEditor a span 
+{
+	position: relative;
+	vertical-align: middle;
+	display: inline-block;
+	height: 100%;
+	top:2px;
+}
+
+.mx .linkEditor a #text 
+{
+	margin-left: 3px;
+}
+
+.mx .linkEditor a #img 
+{
+	width: 16px;
+	background: no-repeat;
+}
+
+.mx .linkEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+
+
+
+
+
+
+
+
+
+
+/**
+ ******************************************UPDOWNEDITOR***********************************
+ */
+.mx .upDownEditor
+{
+	position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    border:1px solid #CCD0D5;
+    padding-right:17px; 
+	background-color:white; 
+    border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;     
+    box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+}
+
+.mx .upDownEditorHiddenButton
+{
+	padding-right:0px;
+}
+
+.mx .upDownEditor #inputDomain
+{
+	position:relative;
+	width:100%;
+    height:100%;      
+    border:none;
+    padding-left: 5px;          
+}
+
+.mx .upDownEditor #buttonContainer
+{
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:-2px;
+	width:17px;			
+}
+
+.mx .upDownEditor #upButton,.mx .upDownEditor #downButton 
+{
+	display:block;
+    width:15px; 
+    border-left:1px solid transparent;   
+    background-repeat:no-repeat;
+}
+
+.mx .upDownEditor #upButton
+{
+	height:9px; 
+	border-bottom:1px solid transparent;	
+	background:url(images/up_button.png) center center no-repeat;
+}
+.mx .upDownEditor #downButton 
+{
+	height:10px; 
+	border-top:1px solid transparent;
+	background:url(images/down_button.png) center center no-repeat;
+}
+
+
+
+.mx .upDownEditor #upButton:hover
+{		
+    background:url(images/up_button_hover.png) center center no-repeat;
+    border-left:1px solid #BEC1C4; 
+    border-bottom:1px solid #BEC1C4;
+}
+
+.mx .upDownEditor #downButton:hover
+{			
+    background:url(images/down_button_hover.png) center center no-repeat; 
+    border-left:1px solid #BEC1C4;  
+}
+
+.mx .upDownEditor #buttonContainer:hover #downButton
+{
+	border-left:1px solid #BEC1C4;
+}
+.mx .upDownEditor #buttonContainer:hover #upButton
+{
+	border-bottom:1px solid #BEC1C4;
+	border-left:1px solid #BEC1C4;
+}
+
+.mx .upDownEditor #inputDomain:hover + div[id=buttonContainer] #upButton
+{
+	border-left:1px solid #BEC1C4;
+	border-bottom:1px solid #BEC1C4;
+}
+.mx .upDownEditor #inputDomain:hover + div[id=buttonContainer] #downButton
+{
+	border-left:1px solid #BEC1C4;
+}
+
+.mx .upDownEditor #upButton:active
+{
+    background:url(images/up_button_pressed.png) center center no-repeat;
+}
+
+.mx .upDownEditor #downButton:active
+{	
+    background:url(images/down_button_pressed.png) center center no-repeat;
+}
+
+
+
+.mx .upDownEditor.disabled #inputContainer:hover + div[id=buttonContainer] #upButton
+{
+	border-left:1px solid transparent;
+	border-bottom:1px solid transparent;
+}
+.mx .upDownEditor.disabled #inputContainer:hover + div[id=buttonContainer] #downButton
+{
+	border-left:1px solid transparent;
+}
+
+.mx .upDownEditor.disabled:hover #upButton
+{
+	border-bottom:1px solid transparent;
+	border-left:1px solid transparent; 
+}
+.mx .upDownEditor.disabled:hover #downButton
+{
+	border-left:1px solid transparent; 
+}
+
+
+.mx .upDownEditor.disabled #upButton, .mx .upDownEditor.disabled #upButton:hover, .mx .upDownEditor.disabled #upButton:active
+{
+	border-bottom:1px solid transparent;	
+	background:url(images/up_button_disabled.png) center center no-repeat;
+}
+
+.mx .upDownEditor.disabled #downButton, .mx .upDownEditor.disabled #downButton:hover, .mx .upDownEditor.disabled #downButton:active
+{		
+	background:url(images/down_button_disabled.png) center center no-repeat;
+}
+
+.mx .upDownEditor.disabled #buttonContainer:hover #downButton
+{
+	border-left:1px solid transparent;
+}
+.mx .upDownEditor.disabled #buttonContainer:hover #upButton
+{
+	border-bottom:1px solid transparent;
+	border-left:1px solid transparent;
+}
+
+
+.mx .upDownEditor.disabled #buttonContainer #upButton, .mx .upDownEditor.disabled #buttonContainer #downButton
+{
+	background-color:#F0F0F0;
+}
+
+.mx .upDownEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8);-moz-box-shadow:0 0 2px rgba(255, 0, 0, 0.8);-webkit-box-shadow:0 0 2px rgba(255, 0, 0, 0.8);
+}
+
+
+.mx .upDownEditor.disabled #inputContainer
+{
+	color:#3e3636;    
+}
+.mx .SliderEditor 
+{
+	padding-top:2px;
+}
+
+/**
+ ******************************************DropDownEditor***********************************
+ */
+.mx .dateTimeEditor #dropDownButton
+{
+	background: url(images/calendar_button_bg.png) no-repeat !important;
+}
+ 
+.mx .dateTimeEditor:hover #dropDownButton, .mx .dateTimeEditor #inputContainer:hover + a[id=dropDownButton], .mx .dateTimeEditor #dropDownButton:hover
+{
+	background: url(images/calendar_button_bg_hover.png) no-repeat !important;
+}
+
+.mx .dateTimeEditor #dropDownButton:active, .mx .dateTimeEditor.droppedDown #dropDownButton, .mx .dateTimeEditor #inputContainer:active + a[id=dropDownButton]
+{
+	background: url(images/calendar_button_bg_active.png) no-repeat !important;
+}
+
+
+/**
+ ******************************************PICTUREMANAGEREDITOR***********************************
+ */
+.mx .pictureManagerEditor
+{
+	border: 1px solid #CCD0D5
+}
+
+.mx .pictureManagerEditorWin.active > #body, .mx.pictureManagerEditorWin.active > #body,
+.mx .pictureManagerEditorWin > #body, .mx.pictureManagerEditorWin > #body
+{
+	background-color: #eceef4;
+}
+
+.mx .pictureManagerEditorWin.active > #body .imgContainer, .mx.pictureManagerEditorWin.active > #body .imgContainer,
+.mx .pictureManagerEditorWin > #body .imgContainer, .mx.pictureManagerEditorWin > #body .imgContainer
+{
+	position: absolute;
+	border: 1px solid #a4bed4;
+	top: 10px;
+	left: 10px;
+	right:10px;
+	bottom:48px;
+	z-index: 2;
+}
+.mx .pictureManagerEditorWin.active > #body #_btns, .mx.pictureManagerEditorWin.active > #body #_btns,
+.mx .pictureManagerEditorWin > #body #_btns, .mx.pictureManagerEditorWin > #body  #_btns
+{
+	border-top: 1px solid #a4bed4;
+}
+.mx .pictureManagerEditorWin.active > #body #_btns > td, .mx.pictureManagerEditorWin.active > #body > td,
+.mx .pictureManagerEditorWin > #body #_btns > td, .mx.pictureManagerEditorWin > #body  #_btns > td
+{
+	padding-top: 10px;
+}
+
+.mx .pictureManagerEditorWin .btnDisable,.mx.pictureManagerEditorWin .btnDisable
+{
+	color: #999999
+}
+
+/**
+ ******************************************SliderEditor***********************************s
+ */
+
+.mx .SliderEditor{
+	position: relative;
+}

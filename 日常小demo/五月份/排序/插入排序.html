@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function insetNum2Array(array,num){
+			var len = array.length;
+			console.log(len);
+			for(var i=0;i<array.length;i++){
+				if(num<array[i]){
+					array.splice(i,0,num);
+					break;
+				}
+			}
+			if(len === array.length){
+				array.push(num);
+			}
+		}
+		
+		function newArr(abc){
+			//console.log(abc);
+			var newArray = [];
+			for(var i=0;i<abc.length;i++){
+				insetNum2Array(newArray,abc[i]);
+			}
+			return newArray;
+		}
+		newArr([9,88,7,8,6,8,6,7,7,6,78,888,6,7,7])
+		//console.log(newArr([9,88,7,8,6,8,6,7,7,6,78,888,6,7,7]));
+/*1、newArr调用insetNum2Array函数，第一次传递的是个空数组和数组的第一个值
+ 2、第一次调用insetNum2Array时，第一个for不成立，len === array.length，这个条件成立，因为长度都为0
+ 3、第二次调用就是将数组newArr里的第二个值与与array里的值比较，同事确定位置；一次类推；插入排序成立
+ */
+	</script>
+</html>

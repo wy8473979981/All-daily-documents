@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="divCustomers"></div>
+		<script>
+			/(?=^.{5,}$)(?=.*\d)(?=.*\W+)(?=.*[A-Z])(?=.*[a-z])(?!.*\n).*$/
+			$.getJSON("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", function(data) {
+				var html = '<ul>';
+				for (var i = 0; i < data.length; i++) {
+					html += '<li>' + data[i] + '</li>';
+				}
+				html += '</ul>';
+				$('#divCustomers').html(html);
+			});
+		</script>
+	</body>
+
+</html>

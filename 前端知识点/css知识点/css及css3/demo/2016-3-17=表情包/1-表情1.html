@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+			}
+			#canvas{
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+		
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		with(ctx){
+			var rg = createRadialGradient(250, 250, 10, 250, 250, 200);
+			rg.addColorStop(0.1,"yellow");
+			rg.addColorStop(1,"gold");
+			fillStyle = rg;
+			beginPath();
+			arc(250, 250, 200, 0, Math.PI * 2, true);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "#fff";
+			arc(250, 280, 150, 0, Math.PI,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = rg;
+			arc(250, 230, 160, 0, Math.PI,false);
+			fill();
+			closePath();
+			
+			
+			beginPath();
+			fillStyle = "#fff";
+			arc(150, 200, 80, 0, Math.PI * 2, true);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "#fff";
+			arc(350, 200, 80, 0, Math.PI * 2, true);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "#000";
+			arc(155, 230, 50, 0, Math.PI * 2, true);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "#000";
+			arc(345, 230, 50, 0, Math.PI * 2, true);
+			fill();
+			closePath();
+			
+			
+			
+		}
+		
+	</script>
+
+</html>

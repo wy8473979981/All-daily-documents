@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.wrapper {
+				width: 320px;
+				height: 50px;
+				margin: 20px auto;
+				position: relative;
+				border: 1px solid #f0f0f0;
+			}
+			
+			input {
+				width: 100px;
+				height: 30px;
+			}
+			
+			button {
+				position: absolute;
+				cursor: pointer;
+				pointer-events: none;
+				width: 100px;
+				height: 30px;
+				left: 0;
+				top: 0;
+			}
+			
+			a {
+				pointer-events: none;
+			}
+			
+			.img {
+				border: 1px solid #ccc;
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<input type="file" accept="image/*" capture="camera" id="img" />
+			<button>上传照片 </button >
+		</div >
+	</body>
+	<script type="text/javascript">
+		document.getElementById( 'img').addEventListener( 'change', function () {
+		     var reader = new FileReader();
+		     reader.onload = function (e) {
+		          //调用图片压缩方法：compress();
+		     };
+		     reader.readAsDataURL(this.files[0]);
+		     console.log(this.files[0]);
+		     var fileSize = Math.round( this.files[0].size/1024/1024) ; //以M为单位
+		     //this.files[0] 该信息包含：图片的大小，以byte计算 获取size的方法如下：this.files[0].size;
+		}, false);
+		
+		//最终实现思路：
+		//1、设置压缩后的最大宽度 or 高度；
+		//2、设置压缩比例，根据图片的不同size大小，设置不同的压缩比。
+		
+		function compress(res,fileSize) { //res代表上传的图片，fileSize大小图片的大小
+		    var img = new Image(),
+		        maxW = 640; //设置最大宽度
+		
+		    img.onload = function () {
+		        var cvs = document.createElement( 'canvas'),
+		            ctx = cvs.getContext( '2d');
+		
+		        if(img.width > maxW) {
+		            img.height *= maxW / img.width;
+		            img.width = maxW;
+		        }
+		
+		        cvs.width = img.width;
+		        cvs.height = img.height;
+		
+		        ctx.clearRect(0, 0, cvs.width, cvs.height);
+		        ctx.drawImage(img, 0, 0, img.width, img.height);
+		
+		        var compressRate = getCompressRate(1,fileSize);
+		
+		        var dataUrl = cvs.toDataURL( 'image/jpeg', compressRate);
+		
+		        document.body.appendChild(cvs);
+		        console.log(dataUrl);
+		    }
+		
+		    img.src = res;
+		}
+		
+		function getCompressRate(allowMaxSize,fileSize){ //计算压缩比率，size单位为MB
+		      var compressRate = 1;
+		
+		      if(fileSize/allowMaxSize > 4){
+		           compressRate = 0.5;
+		      } else if(fileSize/allowMaxSize >3){
+		           compressRate = 0.6;
+		      } else if(fileSize/allowMaxSize >2){
+		           compressRate = 0.7;
+		      } else if(fileSize > allowMaxSize){
+		           compressRate = 0.8;
+		      } else{
+		           compressRate = 0.9;
+		      }
+		
+		      return compressRate;
+		}
+		//使用nodeJS将base64转化成图片
+		//如果使用nodeJS，需要单独部署nodeJS代码到服务器，整个逻辑会比较麻烦。综合比较两种方法，推荐使用第一种方法，直接传base64给服务器，后台处理相应的转化
+		var express = require('express');
+		var fs = require("fs");
+		var app = module.exports = express();
+		
+		function dataToImage(dataUrl){
+		    var base64Data = dataUrl.replace(/^data:image\/\w+;base64,/,'');
+		    var dataBuffer = new Buffer(base64Data,'base64');
+		
+		    fs.writeFile('out.jpg',dataBuffer,function(err){
+		        if(err){
+		            console.log(err);
+		        }else{
+		            console.log('Success...');
+		        }
+		    });
+		}
+		
+		dataToImage('data:image/jpeg;base64,/9...'); //图片完整base64过长，所以省略...
+		
+		if(!module.parent){
+		    app.listen(8000);
+		    console.log('Express started on port 8000');
+		}
+	</script>
+</html>

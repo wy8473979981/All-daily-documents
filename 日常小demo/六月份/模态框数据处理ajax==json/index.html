@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				white-space: nowrap;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="Font-Awesome-master/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="Distribution-audit.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap-datepicker3.5/bootstrap-datepicker.css" />
+		<link rel="stylesheet" type="text/css" href="skin/layer.css" />
+	</head>
+
+	<body>
+
+		<div id="dialogShowInfo" class="modal fade bs-modal-lg" tabindex="-2" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" style="width:1300px;">
+				<div class="modal-content">
+					<div class="modal-header" style="background:#1D57A0;">
+						<button type="button" class="close" style="color:#fff;" data-dismiss="modal" onclick="excit();" aria-hidden="true">×</button>
+						<h5 class="modal-title" style="color:#fff;">第三方纰漏信息</h5>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-lg-12 table-responsive">
+								<form id="bigTable" class="bigTable" action="" method="post" style="overflow: auto;">
+									<input id="disNames" name="s.disId" value="" type="hidden">
+									<input id="proNames" name="s.proId" value="" type="hidden">
+									<table id="dataT" class="table no-m" style="min-width:1600px;">
+										<thead style="padding:0px;">
+
+											<tr>
+												<th class="col-md-1">医院名称</th>
+												<th class="col-md-1">合作产品线</th>
+												<th class="col-md-1">公司名称1</th>
+												<th class="col-md-1">与贵司或医院关系1</th>
+												<th class="col-md-1">公司名称2</th>
+												<th class="col-md-1">与贵司或医院关系2</th>
+												<th class="col-md-1">审批状态</th>
+												<th class="col-md-1">审批人</th>
+												<th class="col-md-1">审批时间</th>
+												<th class="col-md-1">加入时间</th>
+												<th class="col-md-1">公布时间</th>
+												<th class="">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="BIM_text">
+												<td class="col-md-1"><input type="text" class="form-control" name="s.hospitalName" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.productLine" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.companyName01" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.relationship01" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.companyName02" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.relationship02" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.approvalStatus" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control" name="s.approvalPeople" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control date" name="s.approvalTime" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control date" name="s.remark01" value="" /></td>
+												<td class="col-md-1"><input type="text" class="form-control date" name="s.remark02" value="" /></td>
+												<td class="BIM_delete_icon  cur_po">
+													<i class="fa fa-plus fa-1" id="add" name="addBtn" onclick="addSquaremeter();"></i>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="button" class="btn" onclick="show();" value="点击弹出模态框" />
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-datepicker3.5/bootstrap-datepicker.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-datepicker3.5/bootstrap-datepicker.zh-CN.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			/*$('#dialogShowInfo').modal({
+				backdrop: 'static',
+				keyboard: true
+			});
+			$('#dialogShowInfo').modal('hide') // 初始化*/
+			$(".date").datepicker({
+				format: "yyyy-mm-dd",
+				autoclose: "true",
+				todayHighlight: true,
+				language: "zh-CN"
+			});
+		});
+		document.getElementById("")
+		function show() {
+			var dialog = $("#dialogShowInfo");
+			dialog.modal("show");
+			$.getJSON(encodeURI("shouWindowData.json"), {}, function(activityList) {
+				$.each(activityList, addNewRowDialog);
+			});
+			
+		};
+		/*新建tr方法*/
+		function addNewRowDialog(index, squaremeter) {
+			var $tr = '<tr class="firm_tr_change_bg cur_po" >' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.hospitalName + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.productLine + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.companyName01 + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.relationship01 + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.companyName02 + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.relationship02 + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.approvalStatus + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.approvalPeople + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.approvalTime + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.remark01 + '</td>' +
+				'<td class="BIM_indent col-md-1">' + squaremeter.remark02 + '</td>' +
+				'<td class="BIM_indent col-md-1">' +
+				'<div class="flo_left posi_re" style="width:30px; overflow: hidden;color:#1d57a0">' +
+				'<div class="posi_re" style="top:0;left:-10px">浏览</div>' +
+				'<input type="file" id="look' + squaremeter.id + '" name="look' + squaremeter.id + '" value="" class="transparent_0 posi_ab" style="top:0;left:0">' +
+				'</div>' +
+				'<div class="flo_left" id="upload' + squaremeter.id + '" style="color:#1d57a0;width:28px" name="upload' + squaremeter.id + '"  onclick="uploaderOK(\'' + squaremeter.id + '\');">上传</div>' +
+				'<a class="invoice_upload flo_left cur_po posi_re" onclick="invoice_business(this,\'' + squaremeter.id + '\')" >' +
+				'<i class="fa fa-eye fa-1" style="width:20px;"></i>' +
+				'</a>' +
+				'<i class="fa fa-trash-o fa-1" name="deleteBtn" onclick="deleteById(\'' + squaremeter.id + '\')"></i>' +
+				'</td>' +
+				'</tr>';
+			$("#bigTable tbody").append($tr);
+		}
+		/*添加事件*/
+		function addSquaremeter() {
+			if ($("#approvalTime").val() == "") {
+				layer.msg('请选择审批时间！', {
+					time: 1000
+				});
+				return;
+			}
+			var dataPost = $("#bigTable").serializeArray();
+			$.ajax({
+				type: "POST",
+				data: dataPost,
+				async: true,
+				url: '${base}/private/contract/backstage/addsquaremeter',
+				dataType: "json",
+				success: function(data) {
+					$("#dataT  tbody tr:not(:first)").empty("");
+					quxiao();
+					$.ajax({
+						type: "POST",
+						data: {
+							disId: $("#disNames").val(),
+							proId: $("#proNames").val()
+						},
+						async: true,
+						url: '${base}/private/contract/backstage/squaremeterList',
+						dataType: "json",
+						success: function(squaremeters) {
+							$.each(squaremeters, addNewRowDialog);
+							if (data.type == "success") {
+								layer.msg('添加成功！', {
+									time: 1000
+								});
+							} else {
+								layer.msg('添加失败！', {
+									time: 1000
+								});
+							}
+						},
+						error: function() {}
+					});
+				}
+			});
+		}
+		/*删除方法*/
+		function deleteById(id) {
+			layer.confirm('信息删除后将无法恢复，确定要删除吗？', {
+					btn: ['确定', '取消']
+				},
+				function() {
+					$.ajax({
+						type: "POST",
+						data: {
+							id: id
+						},
+						async: true,
+						url: "${base}/private/contract/backstage/deletesquaremeter",
+						dataType: "json",
+						success: function(data) {
+							if (data.type == "success") {
+								$("#" + id).remove();
+								layer.msg('删除成功！', {
+									time: 1000
+								});
+							} else {
+								layer.msg('删除失败！', {
+									time: 1000
+								});
+							}
+						},
+						error: function() {}
+					});
+				},
+				function() {});
+		}
+		//取消按钮有效
+		function quxiao() {
+			var formObj = document.getElementById("bigTable");
+			if (formObj == undefined) {
+				return;
+			}
+			$(".search-choice-close").click();
+			$('.multiselect-selected-text').html('请选择');
+			for (var i = 0; i < formObj.elements.length; i++) {
+				if (formObj.elements[i].type == "text") {
+					formObj.elements[i].value = "";
+				} else if (formObj.elements[i].type == "password") {
+					formObj.elements[i].value = "";
+				} else if (formObj.elements[i].type == "radio") {
+					formObj.elements[i].checked = false;
+				} else if (formObj.elements[i].type == "checkbox") {
+					formObj.elements[i].checked = false;
+				} else if (formObj.elements[i].type == "select-one") {
+					formObj.elements[i].options[0].selected = true;
+				} else if (formObj.elements[i].type == "select-multiple") {
+					for (var j = 0; j < formObj.elements[i].options.length; j++) {
+						formObj.elements[i].options[j].selected = false;
+					}
+				} else if (formObj.elements[i].type == "file") {
+					var file = formObj.elements[i];
+					if (file.outerHTML) {
+						file.outerHTML = file.outerHTML;
+					} else {
+						file.value = ""; // FF(包括3.5) 
+					}
+				} else if (formObj.elements[i].type == "textarea") {
+					formObj.elements[i].value = "";
+				}
+			}
+		}
+		/*单击异步添加第一种*/
+		/*function addSquaremeter() {
+			var dataPost = $("#bigTable").serializeArray();
+			$.ajax({
+				type: "POST",
+				data: dataPost,
+				async: true,
+				url: '${base}/private/contract/backstage/addsquaremeter',
+				dataType: "json",
+				success: function(data) {
+					var target = {};
+					dataPost.forEach(function(i) {
+						i.name = i.name.split('.')[1] || i.name;
+						target[i.name] = i.value;
+					})
+					if (data.type == "success") {
+						addNewRowDialog(0, target);
+						layer.msg('添加成功！', {
+							time: 1000
+						});
+					} else {
+						layer.msg('添加失败！', {
+							time: 1000
+						});
+					}
+				}
+			});
+		}*/
+		/*单击异步添加第二种*/
+		/*function addSquaremeter() {
+			if ($("#approvalTime").val() == "") {
+				layer.msg('请选择审批时间！', {
+					time: 1000
+				});
+				return;
+			}
+			var dataPost = $("#bigTable").serializeArray();
+			$.ajax({
+				type: "POST",
+				data: dataPost,
+				async: true,
+				url: '${base}/private/contract/backstage/addsquaremeter',
+				dataType: "json",
+				success: function(data) {
+					$("#dataT  tbody tr:not(:first)").empty("");
+					quxiao();
+					$.ajax({
+						type: "POST",
+						data: {
+							disId: $("#disNames").val(),
+							proId: $("#proNames").val()
+						},
+						async: true,
+						url: '${base}/private/contract/backstage/squaremeterList',
+						dataType: "json",
+						success: function(squaremeters) {
+							$.each(squaremeters, addNewRowDialog);
+							if (data.type == "success") {
+								layer.msg('添加成功！', {
+									time: 1000
+								});
+							} else {
+								layer.msg('添加失败！', {
+									time: 1000
+								});
+							}
+						},
+						error: function() {}
+					});
+				}
+			});
+		}
+*/
+		/*ajax异步请求数据*/
+		/*function show() {
+			//得到窗体
+			var dialog = $("#dialogShowInfo");
+			$.ajax({
+				type: "POST",
+				data: {
+					disId: $("#disNames").val(),
+					proId: $("#proNames").val()
+				},
+				async: true,
+				url: '${base}/private/contract/backstage/squaremeterList',
+				dataType: "json",
+				success: function(squaremeters) {
+					console.log(JSON.stringify(squaremeters));
+					$.each(squaremeters, addNewRowDialog);
+				},
+				error: function() {}
+			});
+			dialog.modal("show");
+		}*/
+		/*删除方法*/
+		/*function deleteById(id) {
+			layer.confirm('信息删除后将无法恢复，确定要删除吗？', {
+					btn: ['确定', '取消']
+				},
+				function() {
+					$.ajax({
+						type: "POST",
+						data: {
+							id: id
+						},
+						async: true,
+						url: "${base}/private/contract/backstage/deletesquaremeter",
+						dataType: "json",
+						success: function(data) {
+							if (data.type == "success") {
+								$("#" + id).remove();
+								layer.msg('删除成功！', {
+									time: 1000
+								});
+							} else {
+								layer.msg('删除失败！', {
+									time: 1000
+								});
+							}
+						},
+						error: function() {}
+					});
+				},
+				function() {});
+		}*/
+	</script>
+
+</html>

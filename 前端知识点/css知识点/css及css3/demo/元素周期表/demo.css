@@ -1,0 +1,187 @@
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+body {
+	background: #fff;
+}
+
+.tabOne {
+	margin: 20px auto 0px;
+}
+
+.tabOne tr td {
+	width: 60px;
+	height: 60px;
+	empty-cells: hide;
+	border-radius: 5px;
+	font-size: 12px;
+	text-align: center;
+	table-layout: fixed;
+	cursor: pointer;
+	position: relative;
+	box-shadow: 0 0 1px #fff;
+}
+
+.color1 {
+	background: #81D183;
+	opacity: 0.7;
+}
+
+.color2 {
+	background: #D17D57;
+	opacity: 0.7;
+}
+
+.color3 {
+	background: #6575D3;
+	opacity: 0.7;
+}
+
+.color4 {
+	background: #D1D157;
+	opacity: 0.7;
+}
+
+.color5 {
+	background: #55D157;
+	opacity: 0.7;
+}
+
+.color6 {
+	background: #8591D3;
+	opacity: 0.7;
+}
+
+.color7 {
+	background: #D1D1D3;
+	opacity: 0.7;
+}
+
+.color8 {
+	background: #D17DD3;
+	opacity: 0.7;
+}
+
+.color9 {
+	background: #CCFFFF;
+	opacity: 0.7;
+}
+
+
+/*.color1{
+				background: rgba(132,211,132,0.3);
+			}
+			.color2{
+				background: rgba(214,125,82,0.3);
+			}
+			.color3{
+				background: rgba(99,117,214,0.3);
+			}
+			.color4{
+				background: rgba(214,211,82,0.3);
+			}
+			.color5{
+				background: rgba(214,125,82,0.3);
+			}
+			.color6{
+				background: rgba(132,146,214,0.3);
+			}
+			.color7{
+				background: rgba(214,211,214,0.3);
+			}*/
+
+.tabOne tr td .box {
+	width: 258px;
+
+	text-align: left;
+	background: #FFFFFF;
+	display: none;
+	box-shadow: 0px 0px 20px #ccc;
+	border-radius: 5px;
+	position: absolute;
+	left: 0px;
+	top: 60px;
+}
+
+.tabOne tr td .box .tit {
+	font-weight: bold;
+	line-height: 15px;
+	margin-left: 10px;
+}
+
+.tabOne tr td .box .p1 {
+	line-height: 20px;
+	margin-left: 10px;
+}
+
+.tabOne tr td .box .p2 {
+	line-height: 15px;
+	margin-left: 10px;
+}
+
+.tabOne tr td .box .p3 {
+	color: red;
+	line-height: 30px;
+	margin-left: 10px;
+}
+
+.ulOne {
+	width: 916px;
+	margin:15px auto 0;
+	font-size: 12px;
+}
+
+.ulOne li {
+	float: left;
+	width: 229px;
+	height: 20px;
+	line-height: 20px;
+	padding-top: 5px;
+}
+
+.ulOne li span {
+	display: block;
+	float: left;
+	margin-right: 10px;
+	width: 18px;
+	height: 18px;
+	border-radius: 3px;
+}
+.span1{
+	background: #81D183;
+}
+.span2{
+	background: #D1D157;
+}
+.span3{
+	background: #55D157;
+}
+.span4{
+	background: #CCFFFF;
+}
+.span5{
+	background: #6575D3;
+}
+.span6{
+	background: #D17D57;
+}
+.span7{
+	background: #8591D3;
+}
+.span8{
+	background: #D1D1D3;
+}
+.span9{
+	background: #D17DD3;
+}
+
+.ulOne li p {
+	float: left;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css"/>
+	</head>
+	<body>
+		<label class="col-lg-1 col-md-2 text-center" >有效期</label>
+        <div class="col-lg-4 col-md-5" style="height:40px;line-height:40px;">
+            <input type="text" name="start_date" id="start_date" class="date_input flo_left cur_po col-lg-5 col-md-5" value="May/29/2016" style="margin-left:-13px;"/>
+			<span class="flo_left ">-</span>
+			<input type="text" name="start_date" id="end_date" class="date_input flo_left cur_po col-lg-5 col-md-5" value="" />
+		</div>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-datepicker-master/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-datepicker-master/js/locales/bootstrap-datepicker.zh-EN.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".date_input").datepicker({
+			format: 'MM/dd/yyyy',
+	        /*pickDate: true,
+	        pickTime: true,
+	        hourStep: 1,
+	        minuteStep: 15,
+	        secondStep: 30,
+	        inputMask: true,*/
+　　			todayHighlight: true
+		});
+	</script> 
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<a href="#" id="weibo" onclick="getXLWBRHerf();">分享</a>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function getXLWBRHerf() {
+			
+			linkurl = "http://127.0.0.1:8080/admin/informationdisplay/hotDetail/4028814361df7ca70161df84e4b3006e.html?id=4028814361df7ca70161df84e4b3006e";
+			
+			debugger
+			var link = 'http://service.weibo.com/share/share.php?' +
+				'url=' + encodeURIComponent(linkurl) +
+				'&sharesource=weibo'+
+				'&title=' + encodeURIComponent("标题") +
+				'&pic='+
+				'&appkey=583395093';
+				$("#weibo").attr("target","_blank");
+ 				$("#weibo").attr("href",link);
+		}
+	</script>
+
+</html>

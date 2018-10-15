@@ -1,0 +1,286 @@
+.mx .comboEditor
+{
+	position:relative;
+    display:inline-block;
+    vertical-align:middle;        
+    background-color:white;
+    border:1px solid #707070;
+    border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;
+}
+.mx .comboEditor:hover
+{
+    border:1px solid #3C7FB1;       
+}
+
+.mx .comboEditor #inputContainer
+{
+    position:absolute;
+    left:0;
+    top:0;
+    right:13px;
+    bottom:0;             
+}
+
+.mx .comboEditor #inputContainer input
+{       
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;    
+    border:none;
+    background:url(images/drop_down_list_bg1.png);
+    cursor:default;
+    padding-left: 5px;
+}
+
+.mx .comboEditor.disabled #inputContainer input, .mx .comboEditor.readOnly #inputContainer input
+{       
+    background:url(images/drop_down_list_bg.png);
+}
+
+.mx .comboEditor:hover #inputContainer input, .comboEditor #inputContainer input:hover
+{
+    background:url(images/drop_down_list_hover_bg.png); 
+}
+
+.mx .comboEditor.droppedDown #deleteContainer
+{
+	position:absolute;
+	top:0;
+	right:16px;		
+	width:12px;
+	height:100%;
+}
+
+.mx .comboEditor.droppedDown #deleteContainer span
+{
+	display:block;
+    width:100%;
+	height:100%;
+    background:url(images/drop_down_delete_bg.png) center center no-repeat;
+}
+.mx .comboEditor.droppedDown #deleteContainer span:hover
+{
+    background:url(images/drop_down_delete_hover.png) center center no-repeat;
+}
+
+.mx .comboEditor #dropDownButton
+{
+    position:absolute;      
+    top:0;
+    bottom:0;
+    right:0;     
+    width:15px;
+    height:19px;                    
+    background:url(images/drop_down_list_button_bg1.png);
+}
+
+.mx .comboEditor.disabled #dropDownButton, .mx .comboEditor.readOnly #dropDownButton
+{
+    background:url(images/drop_down_list_bg.png);
+}
+
+.mx .comboEditor.droppedDown:hover #dropDownButton,.mx .comboEditor.droppedDown #inputContainer:hover + a[id=dropDownButton],
+.mx .comboEditor.droppedDown #dropDownButton:hover
+{
+    border-left:0;
+    border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    background:url(images/drop_down_list_button_active.png);
+}
+
+.mx .comboEditor:hover #dropDownButton,.mx .comboEditor #inputContainer:hover + a[id=dropDownButton],
+.mx .comboEditor #dropDownButton:hover
+{
+    border-left:0;
+    border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    background:url(images/drop_down_list_button_hover.png);
+}
+
+.mx .comboEditor #dropDownButton:active, .mx .comboEditor.droppedDown #dropDownButton,
+.mx .comboEditor #inputContainer:active + a[id=dropDownButton]
+{   
+    background:url(images/drop_down_list_button_active.png);
+}
+.mx .comboEditor:active #inputContainer input,.mx .comboEditor #inputContainer:active input,.mx .comboEditor.droppedDown #inputContainer input
+{
+    background:url(images/drop_down_list_active_bg.png);
+}
+
+.mx .comboEditor.disabled
+{
+	border:1px solid #ADB2B5;
+}
+.mx .comboEditor.disabled:hover
+{
+    border:1px solid #ADB2B5;
+}
+.mx .comboEditor.disabled #dropDownButton, .mx .comboEditor.disabled:hover #dropDownButton, .mx .comboEditor.disabled #inputContainer:hover + a[id=dropDownButton],
+.mx .comboEditor.disabled #dropDownButton:hover
+{
+    background:url(images/drop_down_list_button_disabled_bg.png);
+}
+.mx .comboEditor.disabled:hover #inputContainer input,.mx .comboEditor.disabled #inputContainer:hover input,.mx .comboEditor.disabled #inputContainer input:hover
+{
+    background:url(images/drop_down_list_bg.png);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.mx .comboEditor.allowEditing
+{
+    border-left:1px solid #E2E3EA;
+    border-top:1px solid #ABADB3; 
+    border-right:1px solid #DBDFE6;
+    border-bottom:1px solid #E3E9EF;     
+}
+
+.mx .comboEditor.allowEditing:hover
+{	
+	border-left:1px solid #B5CFE7;
+	border-top:1px solid #3D7BAD;
+	border-right:1px solid #A4C9E3;
+	border-bottom:1px solid #B7D9ED;
+}
+
+.mx .comboEditor.allowEditing:hover #dropDownButton,.mx .comboEditor.allowEditing #inputContainer:hover + a[id=dropDownButton]
+{	        
+    border-left:1px solid #A4C9E3;
+    border-top:1px solid #3D7BAD;
+    border-right:1px solid #A4C9E3;
+    border-bottom:1px solid #B7D9ED;  	
+    background:url(images/drop_down_button_bg.png);
+}
+.mx .comboEditor.allowEditing.droppedDown:hover #dropDownButton,.mx .comboEditor.allowEditing.droppedDown #inputContainer:hover + a[id=dropDownButton]
+{
+    border:1px solid #2C628B;   
+    background:url(images/drop_down_button_active.png);
+}
+
+.mx .comboEditor.allowEditing #inputContainer input
+{
+    background:none;
+    cursor:text; 
+}
+
+.mx .comboEditor.allowEditing #dropDownButton
+{
+	position:absolute;		
+	top:-1px;
+    bottom:0px;
+    right:0px; 
+	border:1px solid transparent;
+	width:15px;
+	height:19px;			
+	background:url(images/drop_down_button_bg.png);
+}
+
+.mx .comboEditor.allowEditing #dropDownButton:hover
+{	
+	border:1px solid #3C7FB1;	
+	background:url(images/drop_down_button_hover.png);
+}
+
+.mx .comboEditor.allowEditing #dropDownButton:active,.comboEditor.allowEditing.droppedDown #dropDownButton
+{
+	border:1px solid #2C628B;	
+	background:url(images/drop_down_button_active.png);
+}
+
+
+.mx .comboEditor.allowEditing.disabled
+{
+	background-color:#F0F0F0;
+}
+.mx .comboEditor.allowEditing.disabled:hover
+{
+	border-left:1px solid #E2E3EA;
+    border-top:1px solid #ABADB3; 
+    border-right:1px solid #DBDFE6;
+    border-bottom:1px solid #E3E9EF;  
+}
+.mx .comboEditor.allowEditing.disabled #dropDownButton
+{
+	background:url(images/drop_down_button_disabled_bg.png);
+}
+
+.mx .comboEditor.allowEditing.disabled:hover #dropDownButton,.mx .comboEditor.allowEditing.disabled #inputContainer:hover + a[id=dropDownButton],
+.mx .comboEditor.allowEditing.disabled #dropDownButton:hover,.mx .comboEditor.allowEditing.disabled #dropDownButton:active
+{	
+	top:0;
+	bottom:0;
+	right:0;
+	border:none;		
+	background:url(images/drop_down_button_disabled_bg.png);
+}
+.mx .comboEditor.allowEditing.disabled:hover #inputContainer input,.mx .comboEditor.allowEditing.disabled #inputContainer:hover input,
+.mx .comboEditor.allowEditing.disabled #inputContainer input:hover
+{
+	background:none;
+}
+
+.mx .comboEditor.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8); 
+}
+
+
+.listEditor.dropDown, .mx .calendar.dropDown,#dropDownEditorContainer.dropDown
+{
+    box-shadow:2px 2px 2px rgba(0,0,0,0.4); -moz-box-shadow:2px 2px 2px rgba(0,0,0,0.4); -webkit-box-shadow:2px 2px 2px rgba(0,0,0,0.4);       
+}
+
+.listEditor.dropDown  li:hover,#dropDownEditorContainer.dropDown .listEditor li:hover
+{
+    background-color:#3399FF;
+}
+
+#dropDownEditorContainer.dropDown
+{
+	border-left: 1px solid #7091b2;
+	border-bottom: 1px solid #7091b2;
+	border-right: 1px solid #7091b2;
+	background-color: white;
+}
+
+#dropDownEditorContainer.dropDown .listEditor{
+	border-left: none;
+}
+
+#dropDownEditorContainer.dropDown #checkTable{
+	width:100%;
+	margin-bottom:1px;
+}
+
+#dropDownEditorContainer.dropDown #checkTable #closetext{
+	height:21px;
+	line-height:21px;
+}
+#dropDownEditorContainer.dropDown #checkTable td[align=right]{
+	padding-top: 1px;
+	padding-right: 2px;
+}
+#dropDownEditorContainer.dropDown #checkTable #closeDiv{
+	color: #477bab;
+	cursor: pointer;
+	padding-left:5px;
+	padding-right:5px;
+	vertical-align: middle;
+	height: 21px;
+	margin-left:10px;
+	background:url(images/button_bg.png) repeat-x center center;
+}
+#dropDownEditorContainer.dropDown #checkTable #closeDiv:hover{
+	background-image:url(images/button_hover.png);
+}

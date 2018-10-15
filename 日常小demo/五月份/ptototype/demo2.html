@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function Ele() {}
+		Ele.prototype = {
+			get: function() {
+				this.create = $('<div class="abc">1111</div>');
+				return this;
+			},
+			sty: function() {
+				$(".abc").css({
+					"width": "100px",
+					"height": "100px",
+					"color": "red"
+				});
+				return this;
+			},
+			post: function() {
+				this.app = function() {
+					$("body").append(this.get().create);
+					return this;
+				}
+				return this;
+			}
+		}
+		var Div = new Ele();
+		Div.post().app().sty();
+	</script>
+
+</html>

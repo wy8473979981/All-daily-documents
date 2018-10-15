@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.pdfobject-container {
+				height: 500px;
+			}
+			
+			.pdfobject {
+				border: 1px solid #666;
+			}
+			#example1,#example2{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="example1"></div>
+		<div id="example2"></div>
+		<div class="btn" onclick="showDocx()">显示docx</div>
+		<div class="btn" onclick="showPdf()">显示pdf</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="PDFObject-master/pdfobject.js"></script>
+	<script>
+		PDFObject.embed("233.docx", "#example1");
+	</script>
+	<script>
+		PDFObject.embed("111.pdf", "#example2");
+	</script>
+	<script type="text/javascript">
+		function showDocx(){
+			$("#example1").show();
+		}
+		function showPdf(){
+			$("#example2").show();
+		}
+	</script>
+</html>

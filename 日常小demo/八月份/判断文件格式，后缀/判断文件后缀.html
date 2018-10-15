@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//判断文件上传格式
+		var extension = new String(contractName.substring(contractName.lastIndexOf(".") + 1, contractName.length)); //文件扩展名
+		if (extension == "pdf" || extension == "doc" || extension == "docx") {} else {
+			console.log("文件格式错误")
+			return false;
+		}
+	</script>
+
+</html>

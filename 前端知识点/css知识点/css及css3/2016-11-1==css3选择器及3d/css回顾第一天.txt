@@ -1,0 +1,419 @@
+选择器
+	
+	tr:nth-of-type(even){  }//选择偶数行
+	tr:nth-of-type(odd){   }//选择奇数行
+	每行设置不同的颜色
+	tr:nth-last-child(n) {   } 从后向前选择,n为参数
+	n:所有行
+	2:倒数第2行
+	-n+3:最后3行
+	tr:last-child:最后1行
+	td:last-child:最后1列
+	tr:first-child:第1行
+	td:first-child:第1列
+	
+	1、nth-child(odd)与nth-child(even)
+	eg1:
+	<div>
+		<h2>标题</h2>
+		<p>内容</p>
+		<h2>标题</h2>
+		<p>内容</p>
+		<h2>标题</h2>
+		<p>内容</p>
+		<h2>标题</h2>
+		<p>内容</p>
+	</div>
+	h2:nth-child(odd){color:#f66}
+	h2:nth-child(even){color:#f00}
+	预期效果：所有H2的基数行颜色替换为#f66;偶数行为#f00;
+	结果：所有的H2都变为了#f66；
+	解析：nth-child选择器在计算子元素时第奇数个元素还是偶数个元素时，是连同父元素的所有子元素一起计算的，换句话说就是
+		h2:nth-child(odd)指代的时当div中的第奇数个子元素如果时H2子元素的时候使用
+	eg2:
+	li:nth-child(odd){font-size: 18px;}
+	li:nth-child(even){font-size: 36px;}
+		<div >
+			<h2>标题A</h2>
+			<ul>
+				<li>标题</li>
+				<li>标题</li>
+				<li>标题</li>
+				<li>标题</li>
+				<li>标题</li>
+				<li>标题</li>
+				<li>标题</li>
+			</ul>
+		</div>
+	预期结果：所有李li的基数行字体大小为18px;偶数行为36px;
+	结果：正确
+	解析：当父元素是列表的时候，因为列表中只可能有列表项目一种子元素，所以不会有问题，而当父元素是div的时候，因为div的子元素中有了不止一种子元素，所以引起了问题的产生
+2、nth-of-type(odd)奇数和:nth-of-type(even)偶数
+	将上诉代码更新之后看效果
+	作业：设计条纹状表格
+3、循环使用样式
+	语法:    E:nth-child(n){sRules}    E":nth-last-child(n){sRules}
+	eg1:
+	<ul>
+		<li>1111111</li>
+		<li>2222222</li>
+		<li>3333333</li>
+		<li>4444444</li>
+		<li>555555</li>
+		<li>666666</li>
+		<li>777777</li>
+		<li>8888888</li>
+		<li>9999999</li>
+		<li>0000000</li>
+	</ul>
+	1）选取每一行：nth-child(n){font-size:18px;}
+	语气结果：每一行都为18px;
+	结果：正确
+	2）除第一行之位的所有行nth-child(n+2){color:#f66}
+	预期结果：除第一行之位的所有行改变颜色;
+	结果：正确
+	疑问：为什么时+2
+	解析：验证n+1
+	3）每2行选择一行：nth-child(2n){font-size:36px;}
+	预期结果：每一行都为36px;
+	结果：正确
+	作业：每3行选择一行；从第4行开始每隔一行选择一行；反向选择所有行、倒数第2行、最后3行
+4、only-child：只有一个元素时使用
+	eg:
+	<ul class="oul1">
+		<li>1111111</li>
+		<li>2222222</li>
+		<li>3333333</li>
+		<li>4444444</li>
+		<li>555555</li>
+		<li>666666</li>
+		<li>777777</li>
+		<li>8888888</li>
+		<li>9999999</li>
+		<li>0000000</li>
+	</ul>
+	<ul class="oul1">
+		<li>1111111</li>
+	</ul>
+	.oul1 li:only-child{font-size:36px;}
+	预期结果：第2个ul的器效果;
+	结果：正确
+5、UI元素状态伪类选择器
+	1）E:hover、E:active、E:focus
+	2）E:enabled、E:disabled
+	eg:
+	<form>
+		<input type="radio" id="radio1" name="radio" 
+		 onchange="radio_onchange();">可用</radio>
+		<input type="radio" id="radio2" name="radio" 
+		onchange="radio_onchange();">不可用</radio><br/>
+		<input type=text id="text1" disabled />
+	</form>
+	input[type="text"]:enabled{
+		background-color:yellow; 
+	}
+	input[type="text"]:disabled{
+		background-color:purple;
+	}
+	
+	function radio_onchange()
+	{    
+		var radio=document.getElementById("radio1");
+		var text=document.getElementById("text1");
+		if(radio.checked)
+			text.disabled="";
+		else
+		{
+			text.value="";
+			text.disabled="disabled";
+		}
+	}
+	预期结果：可用为黄色，不可用为紫色
+	结果OK
+	3)E:read-only、E:read-write
+	eg：
+	<form>
+		<p>姓名：<input type="text" name="name" />
+		<p>地址：<input type="text" name="address" value="江苏省苏州市"
+		 readonly="readonly" />
+		</p>
+	</form>
+	input[type="text"]:read-only{
+		background-color: gray;
+	}
+	input[type="text"]:read-write{
+		background-color: greenyellow;
+	}
+	input[type="text"]:-moz-read-only{
+		background-color: gray;
+	}
+	input[type="text"]:-moz-read-write{
+		background-color: greenyellow;
+	}
+	
+	预期结果：姓名可以编辑，地址不可以
+	结果OK
+	4）E:checked
+	<form>
+		兴趣:<input type="checkbox">阅读</input>
+		<input type="checkbox">旅游</input>
+		<input type="checkbox">看电影</input>
+		<input type="checkbox">上网</input>
+	</form>
+	input[type="checkbox"]:checked {//为所有被选中的 input 元素设置outline：
+		outline:2px solid blue;
+	}
+	input[type="checkbox"]:-moz-checked {
+		outline:2px solid blue;
+	}
+	预期结果：选中为蓝色边框
+	结果OK
+	5）E:default
+	<form>
+		兴趣:<input type="checkbox">阅读</input>
+		<input type="checkbox">旅游</input>
+		<input type="checkbox">看电影</input>
+		<input type="checkbox">上网</input>
+	</form>
+	input[type="checkbox"]:default {
+		outline:2px solid blue;
+	}
+	预期结果：默认状态为蓝色边框
+	结果：木有呢，不起效果
+	6）E:inderterminate 当用户将默认设定为选取状态的单选框或者复选框修改为非选取状态，使用default选择器设定的样式依然有效
+	<input type="radio" name="radio" value="male" />男
+	<input type="radio" name="radio" value="female" />女
+	input[type="radio"]:indeterminate{
+		outline: solid 3px blue;
+	}
+	预期结果：默认状态为蓝色边框
+	结果：ok
+	作业：完成一组开关按钮
+	7)E:selection指定当元素处于选中状态时的样式
+	<ul>
+		<li>11111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+	</ul>
+	li::selection{
+		color:#f66
+	}
+	
+	预期结果：双击文本，文字颜色改变为红色
+	结果：ok
+	疑问：当为一个：时，会发生什么样的效果？
+6、相邻兄弟选择器
+	li + li
+	<ul>
+		<li>11111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+	</ul>
+	li+li{
+		color:#f66
+	}
+	预期结果：从第2个li到 5 个li，一共4个
+	结果：ok
+	疑问：假如结构为
+		<ul>
+			<li class="oli">11111</li>
+			<li>2222</li>
+			<li class="oli">3333</li>
+			<li>4444</li>
+			<li class="oli">5555</li>
+		</ul>
+		样式为
+		.oli + li{
+			color:red
+		}
+		结果会显示为什么样的呢//反选
+7、通用兄弟选择器
+	E~F			
+	<ul>
+		<li class="active>11111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>
+	</ul>
+	.active~li{
+		color:#f66	
+	}
+	预期结果：选取的是E后面F的元素
+	结果：ok
+8、:lang 伪类
+	<p>文字<q lang="no">段落中的引用的文字</q>文字</p>
+	q:lang(no){
+		quotes: "~" "~"  
+	}
+	预期结果：文字段落中的引用的文字文字
+	结果：ok
+	疑问：带有lang属性的元素有哪些
+	只能用q
+9、使用content属性来插入项目编号
+	用法：
+		<元素>：before{
+			content:counter(计数器名)
+			}
+		<元素>{
+			counter-increment:before选择器/after选择器中指定的计数器名
+			}
+	eg:
+	<h1>大标题</h1>
+	<p>示例文字。</p>
+	<h1>大标题</h1>
+	<p>示例文字。</p>
+	<h1>大标题</h1>
+	<p>示例文字。</p>
+	h1:before{
+		content: counter(mycounter);
+	}
+	h1{
+		counter-increment: mycounter;
+	}
+	预期结果：
+		1大标题
+		示例文字。
+		2大标题
+		示例文字。
+		3大标题
+		示例文字。
+	结果：ok
+	
+	补充：如果要在项目编号中追加文字，比说说.   应该为
+		h1:before{
+		content: counter(mycounter)".";
+	}
+	h1{
+		counter-increment: mycounter;
+	}
+	
+	1、语法：
+		E[att] { sRules }     选择器{属性：属性值;}  E{sRules}
+		说明：
+		选择具有att属性的E元素。
+		例如：
+		<style>
+		img[alt] {
+			margin: 10px;
+		}
+		</style>
+		
+		<img src="图片url" alt="" />
+		<img src="图片url" />
+		此例，将会命中第一张图片，因为匹配到了alt属性
+
+2、语法：
+	E[att="val"] { sRules }
+	说明：
+	选择具有att属性且属性值等于val的E元素。
+	例如：
+	<style>
+	input[type="text"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<input type="text" />
+	<input type="submit" />
+	此例，将会命中第一张input，因为匹配到了alt属性，并且属性值为text
+
+3、语法：
+	E[att~="val"] { sRules }
+	说明：
+	选择具有att属性且属性值为一用空格分隔的字词列表，其中一个等于val的E元素（包含只有一个值且该值等于val的情况）。
+	例如：
+	<style>
+	div[class~="a"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<div class="a">1</div>
+	<div class="b">2</div>
+	<div class="a b">3</div>
+	此例，将会命中1, 3两个div，因为匹配到了class属性，且属性值中有一个值为a
+
+4、语法：
+	E[att^="val"] { sRules }
+	说明：
+	选择具有att属性且属性值为以val开头的字符串的E元素。
+	例如：
+	<style>
+	div[class^="a"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<div class="abc">1</div>
+	<div class="acb">2</div>
+	<div class="bac">3</div>
+	此例，将会命中1, 2两个div，因为匹配到了class属性，且属性值以a开头
+
+6、语法：
+	E[att$="val"] { sRules }
+	说明：
+	选择具有att属性且属性值为以val结尾的字符串的E元素。
+	例如：
+	<style>
+	div[class$="c"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<div class="abc">1</div>
+	<div class="acb">2</div>
+	<div class="bac">3</div>
+	此例，将会命中1, 3两个div，因为匹配到了class属性，且属性值以c结尾
+
+7、语法：
+	E[att*="val"] { sRules }
+	说明：
+	选择具有att属性且属性值为包含val的字符串的E元素。
+	例如：
+	<style>
+	div[class*="b"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<div class="abc">1</div>
+	<div class="acb">2</div>
+	<div class="bac">3</div>
+	此例，将会命中所有div，因为匹配到了class属性，且属性值中都包含了b
+
+8、语法：
+	E[att|="val"] { sRules }
+	说明：
+	选择具有att属性且属性值为以val开头并用连接符"-"分隔的字符串的E元素，如果属性值仅为val，也将被选择。
+	例如：
+	<style>
+	div[class|="a"] {
+		border: 2px solid #000;
+	}
+	</style>
+	
+	<div class="a-test">1</div>
+	<div class="b-test">2</div>
+	<div class="c-test">3</div>
+	此例，将会命中第一个div，因为匹配到了class属性，且属性值以紧跟着"-"的a开头
+
+	2、伪元素选择器
+	是指并不是针对真正的元素使用的选择器，而是针对css中已经定义好的伪元素使用的选择器
+	用法：
+	选择器：伪元素{属性：值}
+	
+	 css2 first-line:用于为某个元素的第一行文字使用样式
+         first-letter:用于为某个元素的第一个文字使用样式
+         before：用于在某个元素之前插入一些内容
+         after：用于在某个元素之后插入一些内容
+	css3中的结构性伪类选择器：
+	:empty{
+		
+	}
+	使用该选择器来制定当元素内容为空白时使用的样式。
+	

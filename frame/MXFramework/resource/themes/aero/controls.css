@@ -1,0 +1,1127 @@
+/**
+ ******************************************BUTTON***********************************
+ */
+.mx .buttonDiv
+{
+	position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    min-height: 21px;
+    max-height: 140px;
+}
+
+.mx .buttonDiv input[type=button]
+{
+	min-height: 21px;
+    max-height: 140px;
+}
+
+/**
+ ******************************************LABEL***********************************
+ */
+.mx .label
+{
+	position:relative;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+.mx .label.disabled
+{
+	color:#AAAAAA;
+	cursor:default;
+}
+
+.mx .label span
+{
+	display:block;
+	text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;  
+    vertical-align: middle;
+	width:100%;
+	height:100%;
+	min-height:18px;
+}
+
+.mx .label.autoWrap
+{
+	display:inline-table;
+    vertical-align:middle;
+    overflow:hidden;
+	min-height:18px;
+}
+
+.mx .label.autoWrap span
+{
+	display:table-cell;
+	text-overflow:ellipsis;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow:hidden;
+    vertical-align: middle;
+	width:100%;
+	height:100%;
+}
+
+
+
+
+
+
+
+
+
+/**
+ ******************************************CALENDAR***********************************
+ */
+.mx .calendar, .mx.calendar
+{
+	width:175px;	
+	background-color:white; 
+	position: relative;
+}
+
+.mx .calendar > table, .mx.calendar > table
+{	
+	table-layout:fixed;	
+	border-collapse:separate;	
+    width:175px;
+    border:1px solid #718BB7;
+	cursor:default;				
+}
+
+.mx .calendar #naviRow, .mx.calendar #naviRow
+{		
+    height:26px;    
+    background-image:url(images/calendar_naviRow_bg.png);
+}
+
+.mx .calendar #naviRow #monthLabel, .mx.calendar #naviRow #monthLabel
+{
+	cursor:pointer;
+}
+
+
+.mx .calendar #naviRow td, .mx.calendar #naviRow td
+{
+	color:white;
+    text-align:center;   
+}
+
+.mx .calendar #naviRow a, .mx.calendar #naviRow a
+{	 
+    display:inline-block;
+	margin-top:3px\0;
+    width:15px;
+    height:15px;    
+}
+
+.mx .calendar #naviRow a#prevMonthButton, .mx.calendar #naviRow a#prevMonthButton
+{	
+    background-image:url(images/calendar_prev_button.png);
+    cursor:pointer;
+}
+.mx .calendar #naviRow a#prevMonthButton:hover, .mx.calendar #naviRow a#prevMonthButton:hover
+{
+	background-image:url(images/calendar_prev_button_hover.png);
+}
+
+.mx .calendar #naviRow a#nextMonthButton, .mx.calendar #naviRow a#nextMonthButton
+{
+    background-image:url(images/calendar_next_button.png);
+	cursor:pointer;
+}
+.mx .calendar #naviRow a#nextMonthButton:hover, .mx.calendar #naviRow a#nextMonthButton:hover
+{
+	background-image:url(images/calendar_next_button_hover.png);
+}
+
+.mx .calendar #weekRow, .mx.calendar #weekRow
+{			
+	border-bottom:1px solid #A3BAD9;	
+	background-image:url(images/calendar_weekRow_bg.png);	
+}
+
+.mx .calendar #weekRow td, .mx.calendar #weekRow td
+{    	
+	height:18px;
+    color:#555;    
+    text-align:center;
+    text-shadow:0 1px 1px white;      
+}
+
+.mx .calendar .dayRow td, .mx.calendar .dayRow td
+{	
+	height:16px;	
+	color:#424242;
+	border:1px solid transparent;		
+	text-align:center;
+	font-family:微软雅黑,Arial;	
+	cursor:pointer;
+}
+.mx .calendar .dayRow td:hover, .mx.calendar .dayRow td:hover
+{
+	background-color:#DDECFE;	
+}
+
+.mx .calendar .dayRow td.outOfRange, .mx.calendar .dayRow td.outOfRange
+{
+	color:#b3b3b3;	
+}
+.mx .calendar .dayRow td.outOfRange:hover, .mx.calendar .dayRow td.outOfRange:hover
+{
+	color:#555;
+}
+.mx .calendar .dayRow td.outOfRange.selected, .mx.calendar .dayRow td.outOfRange.selected
+{
+	font-weight:normal;
+	border:1px solid #8B0000;
+	background:none; 		
+}
+.mx .calendar .dayRow td.outOfRange.selected:hover, .mx.calendar .dayRow td.outOfRange.selected:hover
+{
+	background-image:url(images/calendar_day_selected_bg.png);
+}
+
+
+
+.mx .calendar .dayRow td.selected, .mx.calendar .dayRow td.selected
+{
+	font-weight:bold;
+	border:1px solid #8DB2E3;
+	background-image:url(images/calendar_day_selected_bg.png);
+}
+
+.mx .calendar .dayRow td.today, .mx.calendar .dayRow td.today
+{
+	border:1px solid #8B0000;    
+}
+
+
+.mx .calendar #timeRow, .mx.calendar #timeRow
+{
+    height:25px;
+    background-color:#efefef;
+}
+
+
+
+
+
+
+
+
+
+
+
+.mx .calendar #ymSelector, 
+.mx.calendar #ymSelector
+{
+	width:175px;
+	height:190px;
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:white;	
+	border:1px solid #718BB7;
+	background-color:#efefef;
+}
+
+
+.mx .calendar #ymSelector > #ymSelector_top > div, 
+.mx.calendar #ymSelector > #ymSelector_top > div
+{
+	font-weight:bold;
+	text-align:center;
+	background-image:url(images/calendar_weekRow_bg.png);	
+	cursor:default;
+}
+.mx .calendar #ymSelector > #ymSelector_top > table, 
+.mx.calendar #ymSelector > #ymSelector_top > table
+{
+	table-layout:fixed;	
+	border-collapse:separate;	
+    width:173px;
+	cursor:default;	
+	background-color:white;
+}
+
+.mx .calendar #ymSelector > #ymSelector_top > table td, 
+.mx.calendar #ymSelector > #ymSelector_top > table td,
+.mx .calendar #ymSelector > #ymSelector_center > table td, 
+.mx.calendar #ymSelector > #ymSelector_center > table td
+{
+	height:16px;	
+	color:#424242;
+	border:1px solid transparent;		
+	text-align:center;
+	font-family:微软雅黑,Arial;	
+	cursor:pointer;
+}
+.mx .calendar #ymSelector > #ymSelector_top > table td:hover, 
+.mx.calendar #ymSelector > #ymSelector_top > table td:hover
+{
+	background-color:#DDECFE;	
+}
+.mx .calendar #ymSelector > #ymSelector_top > table td.monthSelected, 
+.mx.calendar #ymSelector > #ymSelector_top > table td.monthSelected
+{
+	font-weight:bold;
+	border:1px solid #8DB2E3;
+	background-image:url(images/calendar_day_selected_bg.png);
+}
+
+
+.mx .calendar #ymSelector > #ymSelector_center > div, 
+.mx.calendar #ymSelector > #ymSelector_center > div
+{
+	font-weight:bold;
+	text-align:center;
+	background-image:url(images/calendar_weekRow_bg.png);	
+	cursor:default;
+}
+.mx .calendar #ymSelector > #ymSelector_center > div > #yearPrev, 
+.mx.calendar #ymSelector > #ymSelector_center > div > #yearPrev
+{
+	float:left;
+	margin-top:1px;
+	width:20px;
+	height:15px;
+	background:url(images/calendar_year_prev_button.png) right center no-repeat;
+}
+.mx .calendar #ymSelector > #ymSelector_center > div > #yearPrev:hover, 
+.mx.calendar #ymSelector > #ymSelector_center > div > #yearPrev:hover
+{
+	background:url(images/calendar_year_prev_button_hover.png) right center no-repeat;
+}
+
+.mx .calendar #ymSelector > #ymSelector_center > div > #yearNext, 
+.mx.calendar #ymSelector > #ymSelector_center > div > #yearNext
+{
+	float:right;
+	margin-top:1px;
+	width:20px;
+	height:15px;
+	background:url(images/calendar_year_next_button.png) left center no-repeat;
+}
+.mx .calendar #ymSelector > #ymSelector_center > div > #yearNext:hover, 
+.mx.calendar #ymSelector > #ymSelector_center > div > #yearNext:hover
+{
+	background:url(images/calendar_year_next_button_hover.png) left center no-repeat;
+}
+
+
+
+
+.mx .calendar #ymSelector > #ymSelector_center > table, 
+.mx.calendar #ymSelector > #ymSelector_center > table
+{
+	table-layout:fixed;	
+	border-collapse:separate;	
+    width:173px;
+	cursor:default;	
+	background-color:white;
+}
+
+.mx .calendar #ymSelector > #ymSelector_center > table td:hover, 
+.mx.calendar #ymSelector > #ymSelector_center > table td:hover
+{
+	background-color:#DDECFE;	
+}
+.mx .calendar #ymSelector > #ymSelector_center > table td.yearSelected, 
+.mx.calendar #ymSelector > #ymSelector_center > table td.yearSelected
+{
+	font-weight:bold;
+	border:1px solid #8DB2E3;
+	background-image:url(images/calendar_day_selected_bg.png);
+}
+
+.mx .calendar #ymSelector > #ymSelector_bottom,
+.mx.calendar #ymSelector > #ymSelector_bottom
+{
+	text-align:center;
+}
+
+.mx .calendar #ymSelector > #ymSelector_bottom input, 
+.mx.calendar #ymSelector > #ymSelector_bottom input
+{
+	margin-right:5px;
+	margin-top:5px;
+}
+
+
+.mx .calendar #ymSelector.ymSelector_displayTime > #ymSelector_bottom,
+.mx.calendar #ymSelector.ymSelector_displayTime > #ymSelector_bottom
+{
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#efefef;
+}
+
+.mx .calendar #ymSelector.ymSelector_displayTime,
+.mx.calendar #ymSelector.ymSelector_displayTime
+{
+	background-color:white;
+}
+
+.mx .calendar #ymSelector.ymSelector_displayTime > #ymSelector_bottom input, 
+.mx.calendar #ymSelector.ymSelector_displayTime > #ymSelector_bottom input
+{
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+
+
+
+
+
+/**
+ ******************************************PROGRESSBAR***********************************
+ */
+.mx .progressBar
+{
+	position:relative;
+    border:1px solid #B2B2B2;	
+    border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    background:url(images/progress_bar_bg.png) repeat-x center left;
+    vertical-align:middle;
+}
+
+.mx .progressBar > div#bar
+{
+	display:block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	background:url(images/progress_bar_bg_value.png) repeat-x center left;
+	background-repeat: no-repeat;        
+}
+
+.mx .progressBar > span#percentage
+{
+	position:absolute;
+	left:0;
+	top:-2px;
+	right:0;
+	bottom:0;
+	text-align:center;
+	font-size:10px;	
+}
+
+
+
+
+
+
+
+/**
+ ******************************************ERRORBOX***********************************
+ */
+.mx.errorMask
+{
+    position:absolute;
+    z-index:99999999;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    background-image:url(images/alpha_10.png);
+}
+
+.mx .errorBox
+{
+    position:absolute;
+    top:80px;
+    left:50%;
+    width:700px;
+    height:350px;
+    border-radius:3px  3px  3px 3px ;
+    margin-left: -350px;
+}
+
+.mx .errorBox > div#content
+{
+    position: absolute;
+    left:13px;
+    top:13px;
+    right:13px;
+    bottom:5px;
+    background: #ffffff;
+    border-radius:5px  5px  5px 5px ;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.8); 
+    border: 5px solid #F1F3F2;
+    border: 5px solid #DADDE3\9\0;
+}
+
+.mx .errorBox #btnClose
+{
+	position:absolute;
+    top: 0px;
+    right: 0px;
+    background:url(images/error_close.png) no-repeat; 
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index:100000000;
+}
+
+.mx .errorBox #btnClose:hover
+{
+    background:url(images/error_close_hover.png) no-repeat; 
+}
+
+.mx .errorBox > div#content > div#warmImg
+{
+	position:absolute;
+    background-image:url(images/error_wram.png); 
+    width: 43px;
+    height: 39px;
+    top: 25px;
+    left: 10px;
+}
+
+.mx .errorBox > div#content > div#errorImg
+{
+	position:absolute;
+    background:url(images/error_jqr.png) no-repeat; 
+    width: 150px;
+    height: 180px;
+    bottom: 25px;
+    right: 10px;
+}
+
+.mx .errorBox > div#content > div#warmMessage
+{
+	position:absolute;
+    top: 25px;
+    left: 65px;
+    font-size: 16px;
+}
+
+
+.mx .errorBox > div#content #message
+{
+	position:relative;
+    width:490px;
+    background-color:transparent;
+    height:230px;
+    white-space:pre;
+    overflow:auto;
+    padding:5px;
+    font-size: 12px;
+    top: 80px;
+    left: 10px;
+}
+
+.mx .errorBox > div#content #message:focus
+{
+	box-shadow:none;
+}
+
+
+
+
+
+
+
+
+/**
+ ******************************************ICONTRAY***********************************
+ */
+.mx .iconTray
+{
+	display:inline-block;
+    cursor:default;
+    position:relative;
+}
+
+.mx .iconTray > li
+{
+	position:relative;
+    float:left;
+    display: inline-block;
+    white-space: nowrap;
+	vertical-align: middle;
+	height: 22px;
+	line-height: 22px;
+}
+
+.mx .iconTray > li.separator
+{
+    width:10px;
+    height:21px;
+	background:url(images/tool_bar_separator.png) center center no-repeat;
+}
+
+.mx .iconTray > li.separator > span
+{
+    display:block;
+    width:20px;
+    height:16px;
+}
+
+.mx .iconTray.disabled > li.separator
+{
+    width:5px;
+    height:100%\9;
+	background:url(images/tool_bar_separator_disabled.png) center center no-repeat;
+}
+
+.mx .iconTray > li > a
+{
+	display:block;
+	position:relative;
+	height:20px;
+	line-height:20px;
+	border:1px solid transparent;
+	border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;
+	padding-left:10px;
+	padding-right:10px;
+	margin-top:1px;
+	vertical-align:middle;
+    color:black;  
+}
+.mx .iconTray > li > a > span#img
+{
+	position: relative;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: no-repeat center center;
+}
+.mx .iconTray > li:hover > a, .mx .iconTray > li.droppedDown > a
+{
+	border:1px solid #9499A5;
+    background-image:url(images/main_menu_hover_bg.png);    
+}
+
+.mx .iconTray > li:active > a
+{
+    border:1px solid #585859;
+    background-image:url(images/main_menu_pressed_bg.png);         
+}
+
+
+
+
+.mx .iconTray > li > a > #badge
+{
+    display:block;
+    position:absolute;
+    background:#c10015;
+    color:White;
+    border:1px solid #8f000f;
+    border-radius:5px; -moz-border-radius:5px;
+    font-family:Arial;
+    font-weight:bold;
+    font-size:10px;
+    min-width:11px;
+    height:11px;
+    line-height:11px;
+    text-align:center;
+    padding:0;
+    padding-left:1px;
+    padding-right:1px;
+    right:3px;
+    bottom:0px;
+    box-shadow:0 0 8px rgba(0,0,0,0.8);-moz-box-shadow:0 0 8px rgba(0,0,0,0.8);-webkit-box-shadow:0 0 8px rgba(255,0,0,0.8);
+}
+
+
+/*设置disabled样式*/
+.mx .iconTray.disabled li,
+.mx .iconTray li.disabled
+{
+	color:#6D6D6D;
+	vertical-align:middle;
+	border:0px solid #000000;
+	background:no-repeat center center;
+}
+/*disabled时图像变灰色*/
+.mx .iconTray.disabled li a span#img,
+.mx .iconTray li.disabled a span#img
+{
+	filter:gray();
+	opacity:.3;
+}
+
+/*IE>6 hover设置*/
+.mx .iconTray.disabled li:hover a,
+.mx .iconTray li.disabled:hover a
+{
+	color:#6D6D6D;
+    background-image:none;
+    border:1px solid #EEEEEE;
+    cursor:default;
+}
+
+.mx .iconTray.disabled li a,
+.mx .iconTray li.disabled a
+{
+	color:#6D6D6D;
+}
+
+
+
+
+
+
+
+
+/**
+ ******************************************DRAGUPLOADCONTROL***********************************
+ */
+.mx .dragUploadControl
+{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+.mx .dragUploadControl.error
+{
+	border:1px solid red;
+	box-shadow:0 0 2px rgba(255, 0, 0, 0.8);
+}
+
+.mx .dragUploadControl #tip
+{
+	position:absolute;
+	left:16px;
+	top:50px;
+	right:16px;
+	bottom:16px;
+	/**margin-right:32px;
+	margin-bottom:16px;*/
+	border:2px dashed #DDDDDD;
+}
+
+.mx .dragUploadControl #tip table
+{
+	width:100%;
+	height:100%;
+}
+
+.mx .dragUploadControl #tip table td > div
+{
+	position:relative;
+	width:180px;
+	height:150px;
+}
+
+.mx .dragUploadControl #tip #img
+{
+	width:100%;
+	height:128px;
+	background:url(images/drag_upload_bg.png) center center no-repeat;
+}
+.mx .dragUploadControl #tip #text
+{
+	position:absolute;
+	left:0;
+	bottom:15px;
+	width:100%;
+	height:22px;
+	color:#999999;
+	font-weight:bold;
+	font-size:15px;
+}
+
+.mx .dragUploadControl #grid #body td#name,
+.mx .dragUploadControl #grid #body td#size
+{
+	border-left:none;
+	border-right:none;
+}
+.mx .dragUploadControl #grid #body td#status
+{
+	border-left:none;
+}
+
+
+.mx .uploadUpgrade, .mx.uploadUpgrade
+{
+	position:absolute;
+   	bottom:25px;
+   	left:25px;
+   	right:25px;
+   	top:25px;
+   	background-color:rgb(232, 232, 232);
+   	border:1px rgb(167, 167, 167) solid;
+}
+
+.mx .uploadUpgrade > div, .mx.uploadUpgrade > div
+{
+		background:url(images/upgrade_btn_bg.png) repeat-x center; 
+		position:absolute;
+		top:100px; 
+		left:112px;
+		width:230px;
+		height:50px;
+		padding-top:5px;
+		text-align:center;
+		font-size:16px;
+		cursor:pointer;
+}
+
+.mx .uploadUpgrade > span, .mx.uploadUpgrade > span
+{
+ 	position:absolute; 
+ 	top:180px; 
+ 	left:115px
+}
+
+.mx .uploadUpgrade > span > span, .mx .uploadUpgrade > span > span
+{
+ 	color:blue;
+ 	cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/**
+ ******************************************UPLOADCONTROL***********************************
+ */
+ 
+ .mx .previewMask, .mx.previewMask
+{
+    position:absolute;
+    z-index:9999999;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+}
+ .mx .previewMask > table, .mx.previewMask > table
+{
+	width: 100%;
+	height: 100%;
+}
+
+.mx .preview, .mx.preview
+{
+	width: 100%;
+	height: 100%;
+}
+.mx .preview #content, .mx.preview #content
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	border-radius: 5px 5px 5px 5px;
+ 	background-image:url(images/alpha_80.png);
+}
+.mx .preview img, .mx.preview img
+{
+	height: auto;
+	width: auto;
+}
+.mx .preview table, .mx.preview table
+{
+	width: 100%;
+	height: 100%;
+}
+.mx .preview #btnClose, .mx.preview #btnClose
+{
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 38px;
+	height: 38px;
+	cursor: pointer;
+	z-index: 100000;
+	background: url(images/error_close.png) no-repeat;
+	background-position: center;
+}
+.mx .preview #btnClose:hover, .mx.preview #btnClose:hover
+{
+	top: 1px;
+	right: 1px;
+    background:url(images/error_close_hover.png) no-repeat; 
+    background-position: center;
+}
+.mx .preview #slider, .mx.preview #slider
+{
+	position: absolute;
+	top:1px;
+	right: 50px;
+	cursor: pointer;
+	z-index: 100000;
+	width: 48px;
+	height: 48px;
+	background: url(images/preview_slide.png) no-repeat;
+	background-position: center;
+}
+.mx .preview #slider:hover, .mx.preview #slider:hover
+{
+	top:1px;
+    background:url(images/preview_slide_hover.png) no-repeat; 
+   	background-position: center;
+}
+/**
+ ******************************************SLIDER***********************************
+ */
+ 
+.mx .slider, .mx.slider{
+	position: relative;
+	padding: 0px 0 2px;
+	width: 100%;
+	/*margin:0 auto;*/
+}
+.mx .slider > table,.mx.slider > table{
+	height: 100%;
+}
+.mx .slider .slider_w,.mx.slider .slider_w {
+	border: 1px solid #ccc;
+	text-align: center;
+	height: 12px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #eee;
+	position: relative;
+}
+
+.mx .slider .slder_control,.mx.slider .slder_control {
+	overflow: hidden;
+	cursor: default;
+	width: 12px;
+	height: 16px;
+	position: absolute;
+	top: -3px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background: #DCDCDC;;
+	z-index:10;
+}
+
+.mx .slider .slder_control:hover,.mx.slider .slder_control:hover,.mx .slider .slder_control:active,.mx.slider .slder_control:active {
+	border: 1px solid #ccc;
+	background: #f9f9f9;
+	cursor: default;
+	
+}
+.mx .slider .slider_progress,.mx.slider .slider_progress {
+	position: absolute;
+	width: 0;
+	background-color: #ccc;
+	height: 10px;
+}
+
+#process_wrap {
+	position: absolute;
+	top : 10px;
+	z-index: 1000000;
+	left:0;
+	padding:3px 5px;
+	border:1px solid #ccc;
+	text-align: center;
+	display:none;
+	background-color: #fff;
+	font-size: 12px;
+}
+/**
+ ******************************************SLIDESHOW***********************************
+ */
+ .mx .slideshow, .mx.slideshow
+{
+    position:absolute;
+    z-index:99999;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+}
+
+.mx .slideshow #btnClose, .mx.slideshow #btnClose
+{
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 38px;
+	height: 38px;
+	cursor: pointer;
+	z-index: 100000;
+	background: url(images/error_close.png) no-repeat;
+	background-position: center;
+}
+
+.mx .slideshow #btnClose:hover, .mx.slideshow #btnClose:hover
+{
+   	top: 1px;
+	right: 1px;
+    background:url(images/error_close_hover.png) no-repeat;
+	background-position: center;
+}
+
+ .mx .slideshow > table, .mx.slideshow > table
+{
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.mx .slideshow > table #imgStage, .mx.slideshow > table #imgStage
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+ 	background-image:url(images/alpha_80.png);
+ 	overflow: hidden;
+}
+
+.mx .slideshow > table #imgStage > #palyBtn, .mx.slideshow > table #imgStage > #palyBtn
+{
+	position:absolute;
+	width:60px;
+	height:20px;
+	left:45%;
+	top:15px;
+	padding-right: 6px;
+	text-align:right;
+	z-index:100000;
+	cursor: pointer;
+	background:gray;
+	color: #dddddd;
+}
+
+.mx .slideshow > table #imgStage > #palyBtn > span, .mx.slideshow > table #imgStage > #palyBtn > span
+{
+	position:absolute;
+	width:30%;
+	height:100%;
+	left:3px;
+    background:url(images/slideshow_play.png) no-repeat; 
+    background-position: center;
+}
+
+.mx .slideshow > table #imgStage > #checkItems, .mx.slideshow > table #imgStage > #checkItems
+{
+	position:absolute;
+	width:60px;
+	height:20px;
+	left:45%;
+	top:15px;
+	padding-right: 6px;
+	text-align:right;
+	z-index:100000;
+	cursor: pointer;
+	background:gray;
+	color: #dddddd;
+}
+
+.mx .slideshow > table #imgStage > #checkItems > #stop, .mx.slideshow > table #imgStage > #checkItems > #stop
+{
+	position:absolute;
+	width:20px;
+	height:100%;
+	right:2px;
+    background:url(images/slideshow_paurse.png) no-repeat; 
+    background-position: center;
+}
+
+.mx .slideshow > table #imgStage > #checkItems > #crntTime, .mx.slideshow > table #imgStage > #checkItems > #crntTime
+{
+	position: absolute;
+	width: 36px;
+	height: 19px;
+	left: 2px;
+	top: 1px;
+	text-align: center;
+	text-overflow: clip;
+	color: #ffccff;
+	border: #cccccc 1px solid;
+	background:#222233;
+}
+
+.mx .slideshow > table #imgStage > #checkItems > .pauseItem, .mx.slideshow > table #imgStage > #checkItems > .pauseItem
+{
+	position: absolute;
+	width: 36px;
+	height: 21px;
+	left: 2px;
+	top: 1px;
+	text-align: center;
+	text-overflow: clip;
+	color: #ccccee;
+	border: #cccccc 1px solid;
+}
+
+.mx .slideshow > table #rightBtn, .mx.slideshow > table #rightBtn
+{
+	position:absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width:30%;
+    cursor: pointer;
+    z-index:1;
+    background:url(images/scroll-right.png) no-repeat; 
+    background-position: right;
+}
+.mx .slideshow > table #rightBtn:hover, .mx.slideshow > table #rightBtn:hover
+{
+    background:url(images/scroll-right-hover.png) no-repeat; 
+    background-position: right;
+}
+.mx .slideshow > table #leftBtn, .mx.slideshow > table #leftBtn
+{
+	position:absolute;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    width:30%;
+    cursor: pointer;
+    z-index:1;
+    background:url(images/scroll-left.png) no-repeat; 
+    background-position: left;
+}
+.mx .slideshow > table #leftBtn:hover, .mx.slideshow > table #leftBtn:hover
+{
+    background:url(images/scroll-left-hover.png) no-repeat; 
+    background-position: left;
+}
+
+.mx .imgBox
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.mx .imgBox > table
+{
+	width: 100%;
+	height: 100%;
+	border:0; 
+	border-collapse: collapse;
+}
+.mx .imgBox > table td
+{
+	background-image:url(images/alpha_80.png);
+}
+.mx .imgBox > table img
+{
+	 border:none;
+	 height:auto;
+	 width:auto;
+}

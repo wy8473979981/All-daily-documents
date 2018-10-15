@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="400"></canvas><br>
+		<canvas id="myCanvas1" width="400" height="400"></canvas><br>
+		<canvas id="myCanvas2" width="400" height="400"></canvas><br>
+		
+	</body>
+	<script type="text/javascript">
+	
+		draw28("myCanvas");
+		draw12("myCanvas1");
+			draw13("myCanvas2");
+        function draw28(id) {
+
+            var image = new Image();
+
+            image.src = "img/html.png";
+            var canvas = document.getElementById(id);
+
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#EEEEFF";
+
+            context.fillRect(0, 0, 400, 300);
+            image.onload = function () {
+                context.drawImage(image,0,0);
+            }
+        }
+
+        //drawImage(image,x,y,w,h)
+        function draw12(id) {
+          
+            var image = new Image();
+
+            image.src = "img/html.png";
+            var canvas = document.getElementById(id);
+
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#EEEEFF";
+           
+            context.fillRect(0, 0, 400, 300);
+            image.onload = function () {
+                context.drawImage(image, 50, 50, 300, 200);
+            }
+        }
+
+        //drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh)
+        function draw13(id){
+            var image = new Image();
+            image.src = "img/html.png";
+            var canvas = document.getElementById(id);
+           
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#EEEEFF";
+          
+            context.fillRect(0, 0, 400, 300);
+            image.onload = function () {
+                context.drawImage(image, 100, 100, 200, 150,50,50,300,200);//这里取的是实际尺寸
+            }
+        }
+	</script>
+</html>

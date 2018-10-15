@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width:300px;
+				min-height:300px;
+				border:1px solid #F0AD4E;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var imgArr = [];//存放图片，判断是否有相同图片
+		box.ondragover = function(e){//被拖放的元素正在本元素范围内移动
+			e.preventDefault();
+			e.stopPropagation();
+			
+		}
+		box.ondrop = function(e){//有其他元素被拖到了本元素中
+			e.preventDefault();
+			e.stopPropagation();
+			var files = e.dataTransfer.files;//拖拽文件列表对象
+			if(files){
+				for(var i=0;i<files.length;i++){
+					if(/image\/[png|jpg]/.test(files[i].type)){
+						if((files[i].size/1024).toFixed(2) < 300){
+							var reader = new FileReader();
+							reader.readAsDataURL(files[i]);
+							reader.onload = function(){
+								if(imgArr.indexOf(this.result) == -1){
+									var img = document.createElement("img");
+									img.src = this.result;
+									console.log(this.result);
+									imgArr.push(this.result);
+									img.style.width = "100%";
+									box.appendChild(img);
+								}else{
+									if(confirm("是否帮您去除掉重复的图片")){
+										alert("已去除掉")
+									}else{
+										var img = document.createElement("img");
+										img.src = this.result;
+										imgArr.push(this.result);
+										img.style.width = "100%";
+										box.appendChild(img);
+									}
+								}
+								
+							}
+						}else{
+							alert("图片过大");
+						}
+					}else{
+						alert("文件格式不正确");
+					}
+				}
+			}else{
+				alert("请拖入图片");
+			}
+		}
+	</script>
+</html>

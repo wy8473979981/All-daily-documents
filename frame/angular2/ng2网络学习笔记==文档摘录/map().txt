@@ -1,0 +1,16 @@
+	遍历数组，在每一项元素后面触发一个回调函数，通过计算，返回一个新的当前项，最后返回一个新数组。
+	
+	reducers/todos.js 29行
+	
+	return state.map(todo =>
+	        todo.id === action.id ?
+	          Object.assign({}, todo, { text: action.text }) :
+	          todo
+	      )
+	箭头后面的值是个三元运算符，也就是return的新元素。如果id匹配，则通过Object.assign()合并一个新的
+	属性，也就是给todo添加或者重写一个text属性，属性值为action.text。
+	
+	Object.assign()第一个参数是target，就是目标，第二个第三个以及后面的参数都是source，也就是拷贝的
+	源，是不是很像jquery插件中的extend？
+	
+	这个代码的作用是给数组中指定的任务更新text属性。

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var fileName = "12345.exees";
+		
+		var index = getIndex(fileName, ".");
+		console.log(index);
+		var newFileName = fileName.substring(0, index);
+		console.log((newFileName));
+		
+
+		function getIndex(str, content) {
+			for (var i = 0; i < str.length; i++) {
+				if (str[i] == ".") {
+					return i;
+				}
+			}
+		}
+	</script>
+
+</html>

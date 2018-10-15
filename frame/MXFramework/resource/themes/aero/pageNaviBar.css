@@ -1,0 +1,105 @@
+.mx .pageNaviBar
+{
+	border:1px solid #BABAC0;
+	padding-left:10px;
+	background:url(images/pagenavibar_bg.png);
+	line-height:21px;
+	padding-top:1px;
+    white-space:nowrap;
+    overflow: hidden;
+}
+
+.mx .pageNaviBar > span
+{
+	display:inline-block;
+	width:30px;
+	height:21px;
+	vertical-align:middle;
+	margin-left:2px;
+	margin-right:2px;
+	border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+	float:left;
+}
+.mx .pageNaviBar > span.btn
+{
+	cursor:pointer;
+}
+
+.mx .pageNaviBar > span.btn:hover
+{
+	border:1px solid #BABAC0;
+}
+
+.mx .pageNaviBar > span#firstPage
+{
+	background:url("images/pagenavibar_firstPage.png") no-repeat center;
+}
+.mx .pageNaviBar > span#firstPage.disabled
+{
+	background:url("images/pagenavibar_firstPage_disabled.png") no-repeat center;
+	border:none;
+	cursor:default;
+}
+
+.mx .pageNaviBar > span#previousPage
+{
+	background:url("images/pagenavibar_previousPage.png") no-repeat center;
+}
+.mx .pageNaviBar > span#previousPage.disabled
+{
+	background:url("images/pagenavibar_previousPage_disabled.png") no-repeat center;
+	border:none;
+	cursor:default;
+}
+
+.mx .pageNaviBar > span#nextPage
+{
+	background:url("images/pagenavibar_nextPage.png") no-repeat center;
+}
+.mx .pageNaviBar > span#nextPage.disabled
+{
+	background:url("images/pagenavibar_nextPage_disabled.png") no-repeat center;
+	border:none;
+	cursor:default;
+}
+
+.mx .pageNaviBar > span#lastPage
+{
+	background:url("images/pagenavibar_lastPage.png") no-repeat center;
+}
+.mx .pageNaviBar > span#lastPage.disabled
+{
+	background:url("images/pagenavibar_lastPage_disabled.png") no-repeat center;
+	border:none;
+	cursor:default;
+}
+
+.mx .pageNaviBar > span#refresh
+{
+	background:url("images/pagenavibar_refresh.png") no-repeat center;
+}
+
+.mx .pageNaviBar > span#refresh.disabled
+{
+	background:url("images/pagenavibar_refresh_disabled.png") no-repeat center;
+	border:none;
+	cursor:default;
+}
+
+.mx .pageNaviBar > span.separator
+{
+	background:url("images/pagenavibar_separator.png") no-repeat center;
+}
+
+.mx .pageNaviBar > span.pageIndexEditor
+{
+	width:auto;
+}
+
+.mx .pageNaviBar > span.pageInfo
+{
+	width:auto;
+	float:right;
+}
+
+

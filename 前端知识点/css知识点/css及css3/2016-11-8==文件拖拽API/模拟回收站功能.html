@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#oDiv{
+				width: 200px;
+				height: 300px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="oDiv" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragend="dragEnd(event)" ondragleave="dragLeave(event)" ondragover="dragOver(event)"></div>
+		<img id="img1" src="img/testPic2.jpg"  draggable="true" ondrag="drag(event)" ondragstart="dragStart(event)" style="max-width: 130px;"/>
+		<p id="msg"></p>
+		<p id="tip"></p>
+	</body>
+	<script type="text/javascript">
+		var msg = document.getElementById("msg");
+		var tip = document.getElementById("tip");
+		function dragStart(ev){
+			ev.dataTransfer.setData("lll",ev.target.id);
+			msg.innerHTML = "开始拖拽";
+		}
+		var timer = 1;
+		function drag(ev){
+			timer++;
+			msg.innerHTML = "拖拽过程中"+timer;
+		}
+		function dragEnter(ev){
+			tip.innerHTML = "开始进入回收站";
+		}
+		function dragOver(ev){
+			//有时我们希望事件在特定节点执行完之后不再传递, 可以使用事件对象的 stopPropagation() 方法.
+			//默认地，无法将数据/元素放置到其他元素中。
+			//如果需要设置允许放置，我们必须阻止对元素的默认处理方式ev.preventDefault();
+			ev.stopPropagation();
+			ev.preventDefault();
+			tip.innerHTML = "在回收站了";
+		}
+		
+		function dragLeave(ev){
+			tip.innerHTML = "走啦";
+		}
+		
+		function drop(ev){
+			ev.preventDefault();
+			//ev.dataTransfer.getData("lll");对应的咱们设置的那个可拖拽元素的id
+			var data=ev.dataTransfer.getData("lll");
+			alert(data);
+			//给目标元素添加咱们的拖拽元素
+			ev.target.appendChild(document.getElementById(data));
+			//ev.target.appendChild(document.getElementById(data));
+			tip.innerHTML = "来了就来了么，别走了";
+		}
+		
+		function dragEnd(ev){
+			msg.innerHTML += "结束拖拽";
+		}
+	</script>
+</html>

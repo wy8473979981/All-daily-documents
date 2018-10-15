@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/layui.css" />
+	</head>
+
+	<body>
+		<form class="layui-form" action="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">输入框</label>
+				<div class="layui-input-block">
+					<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">密码框</label>
+				<div class="layui-input-inline">
+					<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux">辅助文字</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">选择框</label>
+				<div class="layui-input-block">
+					<select name="city" lay-verify="required">
+						<option value=""></option>
+						<option value="0">北京</option>
+						<option value="1">上海</option>
+						<option value="2">广州</option>
+						<option value="3">深圳</option>
+						<option value="4">杭州</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">复选框</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="like[write]" title="写作">
+					<input type="checkbox" name="like[read]" title="阅读" checked>
+					<input type="checkbox" name="like[dai]" title="发呆">
+					<input type="checkbox" name="" title="写作" lay-skin="primary" checked>
+					<input type="checkbox" name="" title="发呆" lay-skin="primary">
+					<input type="checkbox" name="" title="禁用" lay-skin="primary" disabled>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">开关</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="switch" lay-skin="switch">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">单选框</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="男" title="男">
+					<input type="radio" name="sex" value="女" title="女" checked>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">文本域</label>
+				<div class="layui-input-block">
+					<textarea name="describecontent" id="describecontent" placeholder="请输入内容" class="layui-textarea" required lay-verify="required"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['form', 'layedit'], function() { //表单验证提交
+			var form = layui.form();
+		});
+		//整理数据
+		function integratingData(data) {
+			var html = '';
+			var imgUrl = "/strorage/menu/";
+			for(var i = 0; i < data.length; i++) {
+				var $li = '<li class="layui-clear" >'+
+							'<a class="box" href="/admin/informationdisplay/hotDetail/${newList.id!''}.html?id=${newList.id!''}">'+
+								'<div class="new-card-list">'+
+									'<img alt="" src="/res/informationdisplay/${newList.fileurl!''}.html">'+
+								'</div>'+
+								'<div class="info">'+
+									'<div class="title layui-elip">${newList.title!''}</div>'+
+									'<div class="userInfoBox">'+
+										'<div class="time"><i class="fa fa-clock-o"></i>${newList.releasetime!?string("yyyy-MM-dd")}</div>'+
+									'</div>'+
+									'<div class="descBox">${newList.briefintroduction!''}</div>'+
+								'</div>'+
+							'</a>'+
+						'</li>';
+						$('#shipmentsLog ul').append(html);
+			}
+
+		}
+		//异步分页
+		function menulists(url, curr) {
+			var page = curr || 1; //向服务端传的参数
+			$.api.getJSON(url, function(json) {
+				if(json.errcode == 0) {
+					var rows = json.data;
+					$('#shipmentsLog ul li').remove();
+					//拼接数据
+					integratingData(rows);
+
+					//显示分页
+					laypage({
+						cont: 'page1', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+						pages: json.total, //通过后台拿到的总页数
+						skip: true, //是否开启跳页
+						skin: '#6665fe',
+						curr: curr || 1, //当前页
+						jump: function(obj, first) { //触发分页后的回调
+							if(!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+								$('#shipmentsLog ul li').remove();
+								menulists(url + '&page=' + obj.curr, obj.curr);
+							}
+						}
+					});
+				}
+			});
+		};
+	</script>
+
+</html>

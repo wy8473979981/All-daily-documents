@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>canvas粒子动画</title>
+		<style type="text/css">
+			body{
+				background-color: #000000;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//3、循环产生随机的一些“粒子”
+		  var	canvas = document.createElement( 'canvas' ),
+   context = canvas.getContext( '2d' );
+   var canvasWidth = window.innerWidth; 
+   canvasHeight = window.innerHeight;
+
+   init();
+
+  function init() { 
+   document.body.appendChild(canvas); 
+   canvas.width = canvasWidth;
+   canvas.height = canvasHeight;
+   setInterval(loop, 1000/30);//这一步就这里啦，
+  }
+
+ function loop(){
+    //在一些随机位置产生并画粒子。
+   var particle = new Particle(Math.random()*canvasWidth, Math.random()*canvasHeight);
+  }
+
+  function Particle (xPos, yPos) { 
+   this.xPos = xPos;
+   this.yPos = yPos;
+
+   // set the color of the fill
+   context.fillStyle = "rgba(255, 255, 255, .4)";
+   // draw a circle of the required size
+   context.beginPath();
+   context.arc(this.xPos, this.yPos, 20, 0, Math.PI*2, true);
+   // and fill it
+   context.fill();
+  }
+
+		</script>
+	</body>
+</html>

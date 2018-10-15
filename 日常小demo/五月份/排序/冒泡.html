@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function bubble(array){
+			var len = array.length;
+			var temp;
+			for(var i = 0 ; i < len ; i++){
+				for(var j=len-1 ; j>i ; j--){
+					if(array[j]<array[j-1]){
+						temp = array[j];
+						array[j] = array[j-1];
+						array[j-1] = temp;
+					}
+				}
+			}
+			console.log(array);
+		}
+		bubble([9,8,7,6,5,4,3,2,1,1]);
+	</script>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="510" height="600" style="border:1px solid #cccccc;"></canvas>
+	</body>
+
+</html>
+
+	<script type="text/javascript">
+		init();
+//定义一个定时器lev，var lev = 100;用于确定速度
+//网格大小，现在是30x30  var num=30; 就是你要走的步数
+//定义方向键： 0:up  1:down  2:left  3:right  var direction=3; 
+//用于管理定时器 var handle；
+//分数 var score=0;
+//暂停使用 var pause = true;
+var lev = 100;
+var num = 30;
+var direction = 3;
+var handle;
+var score = 0;
+var pause= true;
+//获取canvas
+var canvas = document.getElementById("myCanvas");
+//获取上下文context
+var ctx = canvas.getContext("2d");
+drawScore('');
+	ctx.strokeRect(0,30,302,302);
+	makeprize();
+	drawNode(prize[0],prize[1]);
+	snakex[0]=0;snakey[0]=0;
+	drawNode(snakex[0],snakey[0]);
+//定义两个数组分别存放舍身的X坐标和Y坐标var snakex=new Array();var snakey=new Array();
+//定义一个数组，用于存放食物的位置 var prize=new Array(); 
+var snakex = new Array();
+var snakey = new Array();
+var prize = new Array();
+//定义一个产生随机数的方法rand（）；return parseInt(Math.random()*num); 
+function rand(){
+	return parseInt(Math.random()*num);
+}
+//检查是否结束，包括越界chk(x,y),返回true
+function chk(x,y){
+	//如果x<0||y<0,则游戏结束，返回false
+	//走的步数超过，则游戏结束x>num-1||y>num-1
+	//循环判断是不是在蛇身上var i=0; i!=snakex.length-1;i++
+	//如果snakex[i]==x&&snakey[i]==y，则游戏结束返回false
+	if(x<0||y<0)return false;
+	if((x>num-1)||(y>num-1))return false;
+	for(var i = 0;i!=snakex.length-1;i++){
+		if((snakex[i] == x)&&(snakey[i] == y)){
+			return false;
+		}
+	}
+	return true;
+}
+
+//定义打印分数函数drawScore(text)
+//清楚一块区域context.clearRect(0,0,300,50);
+//填充文本为context.fillText("Score:"+text,5,5);
+function drawScore(text){
+	/*ctx.clearRect(0,0,300,25);*/
+	/*ctx.fillText("您的分数："+score,5,5);*/
+}
+
+
+//产生食物的位置函数makeprize()
+//定义一个boolean类型变量flag，用于判断食物是否在蛇身中var flag = false;
+//定义一个2个参数的数组用于存放食物的位置var prizepre=new Array(2);
+//如果食物不在蛇身中，改变flag的值为true
+//随机食物的坐标并且复制给数组 prizepre：prizepre[0]=rand();prizepre[1]=rand();
+//循环我的蛇身，var i=0; i!=snakex.length;i++
+//判断蛇身的位置，如果和食物的位置重合，则改变flag的值为false:
+//(snakex[i]==prizepre[0])&&(snakey[i]==prizepre[1])
+//将食物位置赋值： prize=prizepre;
+function makeprize(){
+	var flag = false;
+	var prizepre = new Array(2);
+	if(!flag){
+		flag = true;
+		prizepre[0] = rand();
+		prizepre[1]=rand();
+		for(var i=0;i!=snakex.length;i++){
+			if(snakex[i] == prizepre[0]&&snakey[i] == prizepre[1]){
+				flag = false;
+			}
+		}
+		prize = prizepre;
+	}
+}
+//画点，共30X30个点（10*10像素算1个点）：drawNode(x,y):
+//context.fillRect(x*10+1,y*10+1,10,10);
+function drawNote(x,y){
+	return ctx.fillRect(x*10+1,y*10+1,10);
+}
+//清楚画点clearNode(x,y):context.clearRect(x*10+1,y*10+31,10,10);
+function clearNode(x,y){
+	return clearRect(x*10+1,y*10+1,10,10);
+}
+//定义一个函数runscore(x,y)来判断是否吃到食物，并做处理返回false;
+//如果食物的位置和给定参数的坐标位置一致，则加分prize[0]==x&&prize[1]==y；score = score+1;
+//执行绘制分数函数 drawScore(score);
+//重定义蛇身的位置： snakex[snakex.length]=prize[0];snakey[snakey.length]=prize[1];
+//重新执行产生食物函数：  makeprize();
+//重新绘点：drawNode(prize[0],prize[1]);并且返回true
+function runscore(x,y){
+	if(prize[0] == x&& prize[1] == y){
+		score+=1;
+		drawScore(score);
+		snakex[snakex.length] = prize[0];
+		snakey[snakey.length] = prize[1];
+		makeprize();
+		drawNode(prize[0],prize[1]);
+		return true;
+	}
+}
+//定时器用来判断snake行进方向等等run()
+function run(){
+//使用switch来判断方向并且执行相应操作
+//0:上，蛇身坐标x不变，y-1; 
+//snakex[snakex.length]=snakex[snakex.length-1];
+//snakey[snakey.length]=snakey[snakey.length-1]-1;
+	switch(direction){
+		case 0:
+			snakex[snakex.length] = snakex[snakex.length -1];
+			snakey[snakey.length] = snakey[snakey.length -1]+1;
+			break;
+		case 1:
+			snakex[snakex.length] = snakex[snakex.length -1];
+			snakey[snakey.length] = snakey[snakey.length -1]-1;
+			break;
+		case 2:
+			snakex[snakex.length] = snakex[snakex.length -1]-1;
+			snakey[snakey.length] = snakey[snakey.length -1];
+			break;
+		case 3:
+			snakex[snakex.length] = snakex[snakex.length -1]+1;
+			snakey[snakey.length] = snakey[snakey.length -1];
+			break;
+	}
+	//如果没有吃到食物，!runscore(snakex[snakex.length-1],snakey[snakey.length-1])
+	if(!runscore(snakex[snakex.length-1]),snakey[snakey-1]){
+		//检查是否结束，包括越界：如果
+		//chk(snakex[snakex.length-1],snakey[snakey.length-1])==false
+		if(chk(snakex[snakex.length-1],snakey[snakey.length-1])==false){
+			//清楚计时器clearInterval(handle);
+			//绘制文本drawScore('\tGame over');并且return;
+			
+			clearInterval(handle);
+			drawScore("游戏结束了");
+			return;
+		}
+		//绘制drawNode(snakex[snakex.length-1],snakey[snakey.length-1]);
+	}
+	//清楚画点： clearNode(snakex[0],snakey[0]);
+	//shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值: 
+	//snakex.shift(); snakey.shift();
+	clearNode(snakex[0],snakey[0]);
+	snakex.shift(); 
+	snakey.shift();
+}
+
+//定义初始化函数init(),设置画布大小，启动定时器等等
+//设置画布狂傲为510和600 canvas.width = 510;canvas.height = 600;
+//设置字体的基本位置样式 context.textBaseline = "top";
+//绘制文本：context.fillText('P键开始/暂停，方向键控制',0,350);
+//初始化分数：drawScore('');
+//绘制矩形：context.strokeRect(0,30,302,302);
+//绘制食物： makeprize();
+//画点食物： drawNode(prize[0],prize[1]);
+//初始化第一个蛇身： snakex[0]=0;snakey[0]=0;
+//画点蛇身：drawNode(snakex[0],snakey[0]);
+
+function init(){
+	
+}
+
+document.onkeydown = function (){
+	var e = event||window.event;
+	if(e&&e.keyCode == 38){
+		direction=0;
+	}
+	if(e&&e.keyCode == 40){
+		direction=1;
+	}
+	if(e&&e.keyCode == 37){
+		direction=2;
+	}
+	if(e&&e.keyCode == 39){
+		direction=3;
+	}
+	if(e&&e.keyCode == 80){
+		if(pause){
+			pause = false;
+			handle = setInterval(run,lev);
+		}else{
+			pause = true;
+			handle = clearInterval(handle);
+		}
+	}
+}
+
+
+	</script>

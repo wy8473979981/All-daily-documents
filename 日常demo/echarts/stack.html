@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<title>堆积图总计</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: arial;
+				font-size: 14px;
+				font-weight: bold;
+				margin-left: 200px;
+			}
+			
+			#main {
+				height: 600px;
+				width: 800px;
+				margin: 130px 100px 100px 100px;
+			}
+			
+			div ul li {
+				display: block;
+				width: 100%;
+				text-align: center;
+				margin-bottom: 3px;
+			}
+			
+			div ul li a:link,
+			div ul li a:hover {
+				display: block;
+				width: 100%;
+				text-align: center;
+				line-height: 22px;
+				text-decoration: none;
+				color: white;
+			}
+			
+			div ul li a:hover {
+				background-color: orange;
+			}
+			
+			.overflow-y {
+				overflow-y: auto;
+				height: 180px;
+				width: 100%;
+			}
+			
+			.clpd {
+				padding: 0;
+				backgound-color: #ccc;
+			}
+		</style>
+	</head>
+
+	<body class="pos-r">
+		<div id="main">
+		</div>
+	</body>
+
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<!-- 目前开发先使用其源文件  -->
+	<script type="text/javascript" src="js/echarts.js"></script>
+	<!-- 在这里书写js代码 -->
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById("main"));
+		var count = 0;
+		myChart.showLoading();
+		var result = {
+			title: "2016年语言使用人数(假数据)",
+			month: [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12
+			],
+			java: [
+				8287.0,
+				9436.0,
+				5248.0,
+				3789.0,
+				5148.0,
+				3644.0,
+				7160.0
+			],
+			python: [
+				3265.0,
+				3727.0,
+				2349.0,
+				2364.0,
+				2337.0,
+				2304.0,
+				2860.0
+			],
+			php: [
+				3283.0,
+				2834.0,
+				1021.0,
+				1066.0,
+				1668.0,
+				1673.0,
+				2056.0
+			],
+			js: [
+				2779.0,
+				1659.0,
+				999.0,
+				1195.0,
+				692.0,
+				374.0,
+				2015.0
+			],
+			ruby: [
+				1584.0,
+				380.0,
+				1034.0,
+				1142.0,
+				1052.0,
+				973.0,
+				1075.0
+			],
+			lisp: [
+				323.0,
+				437.0,
+				302.0,
+				552.0,
+				835.0,
+				897.0,
+				631.0
+			],
+			name: [
+				"java",
+				"python",
+				"php",
+				"js",
+				"ruby",
+				"lisp"
+			]
+		}
+		pp(result);
+		function pp(result) {
+			/*result = eval("(" + result + ")");*/
+			myChart.hideLoading();
+			var names = result.name;
+			debugger
+
+			myChart.setOption(option = {
+				title: {
+					text: result['title'],
+					left: 'center',
+					textStyle: {
+						color: 'black'
+					}
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: { // 坐标轴指示器，坐标轴触发有效
+						type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					top: 'bottom',
+					data: names
+				},
+				/*toolbox: {
+					show: true,
+					orient: 'vertical',
+					calculable: true,
+					feature: {
+						mark: {
+							show: true
+						},
+						dataZoom: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: ['line']
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						},
+						myTool1: {
+							show: true,
+							title: '数字切换',
+							icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+							onclick: function() {
+								count++;
+								if(count % 2 == 0) {
+									myChart.setOption({
+										series: labels(names)
+									});
+								} else {
+									myChart.setOption({
+										series: nolabels(names)
+									});
+								}
+							}
+						}
+					}
+				},*/
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '12%',
+					containLabel: true
+				},
+				xAxis: [{
+					type: 'category',
+					data: result['month']
+				}],
+				yAxis: [{
+					type: 'value',
+					axisLine: {
+						show: false
+					}
+				}],
+				series: series(result, names)
+			});
+			//最后加一个总计的系列serie,需要根据legend的变化而变化,所以还需要绑定legend的切换事件,讲label设置在底部,背景颜色为透明
+			//就只为了显示label达到总计效果
+			//在切换事件里面重新计算总计,根据选中的legend的状态进行增加或者减少
+			var totals = buildTotal();
+			myChart.setOption({
+				series: seriess(result, names, totals)
+			});
+
+			//legend切换事件上进行total的重 计算
+			myChart.on('legendselectchanged', function(params) {
+				var legends = params.selected;
+				var keys = Object.keys(legends);
+				var totals = reBuildTotal(legends, keys);
+				debugger
+				myChart.setOption({
+					series: seriess(result, names, totals)
+				});
+			});
+		};
+
+		//第一次不加总计时构建的series对象
+		function series(result, names) {
+			var series = [];
+			for(var i = 0; i < names.length; i++) {
+				var serie = {
+					name: names[i],
+					type: 'bar',
+					stack: '含量',
+					label: {
+						normal: {
+							show: true,
+							textStyle: {
+								color: '#000'
+							},
+							formatter: function(params) {
+								return sliceDecimal(params.data);
+							}
+						}
+					},
+					data: result[names[i]]
+				}
+				series.push(serie);
+			}
+			//debugger
+			return series;
+		}
+
+		//重新构件series数组
+		function seriess(result, names, totals) {
+			debugger
+			var series = [];
+			for(var i = 0; i < names.length; i++) {
+				var serie = {
+					name: names[i],
+					type: 'bar',
+					stack: '含量',
+					label: {
+						normal: {
+							show: true,
+							textStyle: {
+								color: '#000'
+							},
+							formatter: function(params) {
+								return sliceDecimal(params.data);
+							}
+						}
+					},
+					data: result[names[i]]
+				}
+				series.push(serie);
+			}
+			var serie = buildTotalSerie(totals);
+			series.push(serie);
+			debugger
+			return series;
+		}
+
+		//组织serices里面的数据变成想要的加总数组,就是按列求和,然后返回这个列求和的数组
+		function buildTotal() {
+			debugger
+			var series = myChart.getOption().series;
+			var totalLength = series[0].data.length;
+			var totals = [];
+			for(var k = 0; k < totalLength; k++) {
+				totals[k] = 0;
+			}
+			for(var i = 0; i < series.length; i++) {
+				for(var j = 0; j < series[i].data.length; j++) {
+					totals[j] += series[i].data[j];
+				}
+			}
+			debugger
+			return totals;
+		}
+
+		//重新组织serices里面的数据变成想要的加总数组
+		function reBuildTotal(legends, keys) {
+			var series = myChart.getOption().series;
+			var totalLength = series[0].data.length;
+			var totals = [];
+			for(var k = 0; k < totalLength; k++) {
+				totals[k] = 0;
+			}
+			for(var i = 0; i < series.length - 1; i++) {
+				debugger
+				var name = series[i].name;
+				for(var j = 0; j < series[i].data.length; j++) {
+					if(legends[keys[i]] === true) {
+						totals[j] += series[i].data[j];
+					}
+				}
+			}
+			return totals;
+		}
+
+		//构建总计serie对象
+		function buildTotalSerie(totals) {
+			debugger
+			var isZero = isAllZero(totals);
+			var serie = {};
+			if(isZero === false) {
+				serie = {
+					name: "总计",
+					type: 'bar',
+					stack: '含量',
+					itemStyle: {
+						normal: {
+							color: 'rgba(0,0,0,0)'
+						}
+					},
+					label: {
+						normal: {
+							position: 'insideBottom',
+							show: true,
+							textStyle: {
+								color: '#000',
+								fontStyle: 'normal',
+								fontSize: '16',
+								fontWeight: 'bold'
+							},
+							formatter: function(params) {
+								return "Total" + sliceDecimal(params.data);
+							}
+						}
+					},
+					data: totals
+				};
+			} else {
+				serie = {
+					name: "总计",
+					type: 'bar',
+					stack: '含量',
+					itemStyle: {
+						normal: {
+							color: 'rgba(0,0,0,0)'
+						}
+					},
+					label: {
+						normal: {
+							position: 'insideBottom',
+							textStyle: {
+								color: '#000',
+								fontStyle: 'normal',
+								fontSize: '16',
+								fontWeight: 'bold'
+							},
+							formatter: function(params) {
+								return 0;
+							}
+						},
+						emphasis: {
+							position: 'insideBottom',
+							textStyle: {
+								color: '#000',
+								fontStyle: 'normal',
+								fontSize: '16',
+								fontWeight: 'bold'
+							},
+							formatter: function(params) {
+								return 0;
+							}
+						}
+					},
+					data: totals
+				};
+			}
+
+			return serie;
+		}
+
+		//判断数组内所有数字全部为0,如果是返回true,如果不全是返回false
+		function isAllZero(totals) {
+			for(var i = 0; i < totals.length; i++) {
+				if(totals[i] !== 0) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		/*function labels(names) {
+			var labels = [];
+			for(var i = 0; i < names.length; i++) {
+				var label = {
+					label: {
+						normal: {
+							show: true,
+							textStyle: {
+								color: '#000'
+							},
+							formatter: function(params) {
+								return sliceDecimal(params.data);
+							}
+						}
+					}
+				}
+				labels.push(label);
+			}
+			return labels;
+		}*/
+
+		/*function nolabels(names) {
+			var labels = [];
+			for(var i = 0; i < names.length; i++) {
+				var label = {
+					label: {
+						normal: {
+							show: false,
+							textStyle: {
+								color: '#000'
+							},
+							formatter: function(params) {
+								return sliceDecimal(params.data);
+							}
+						}
+					}
+				}
+				labels.push(label);
+			}
+			return labels;
+		}*/
+
+		/**
+		千分位用逗号分隔
+		*/
+		function sliceDecimal(num) {
+			if(num) {
+				if('' == num || isNaN(num)) {
+					return 'Not a Number ! ';
+				}
+				num = num + '';
+				var sign = num.indexOf("-") > 0 ? '-' : '';
+				var cents = num.indexOf(".") > 0 ? num.substr(num.indexOf(".")) : '';
+				cents = cents.length > 1 ? cents : '';
+				num = num.indexOf(".") > 0 ? num.substring(0, (num.indexOf("."))) : num;
+				if('' == cents) {
+					if(num.length > 1 && '0' == num.substr(0, 1)) {
+						return 'Not a Number ! ';
+					}
+				} else {
+					if(num.length > 1 && '0' == num.substr(0, 1)) {
+						return 'Not a Number ! ';
+					}
+				}
+				for(var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
+					num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+				}
+				return(sign + num + cents);
+			}
+		}
+	</script>
+
+</html>

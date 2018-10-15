@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>验证码</title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+			}
+			input{
+				padding-left:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="cod" id="cod" value="" />
+		<canvas id="canvas" width="80" height="80"></canvas>
+		<input type="button" name="btn" id="btn" value="看不清换一张" />
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		var text;
+		
+		context.clearRect(0,0,80,80);
+		var arrayP = ['a','b','c','d','e','f','g','h','l','i','j','k','m',
+		'n','o','p','q','r','x','t','u','v','w','x','y','z','A','B',
+		'C','D','E','F','G','H','L','I','J','K','M','N','O','P','Q','R','X',
+		'T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9'];
+		function getFont(){
+			var index1 = Math.floor(Math.random()*62);
+			var index2 = Math.floor(Math.random()*62);
+			var index3 = Math.floor(Math.random()*62);
+			var index4 = Math.floor(Math.random()*62);
+			
+			var str1 = arrayP[index1];
+			var str2 = arrayP[index2];
+			var str3 = arrayP[index3];
+			var str4 = arrayP[index4];
+			var strin = str1+str2+str3+str4;
+			/*console.log(strin);*/
+			return strin;
+		}
+		width();
+		function width(){
+			with(context){
+				
+				text = getFont();
+				font = "italic bold 30px microsoft yahei";
+				var lg = createLinearGradient(0,0,300,0);
+				lg.addColorStop(0,"yellow");
+				lg.addColorStop(0.2,"plum");
+				lg.addColorStop(0.4,"blue");
+				lg.addColorStop(0.6,"orange");
+				lg.addColorStop(0.8,"green");
+				lg.addColorStop(1,"gold");
+				strokeStyle = lg;
+				strokeText(text,0,76);
+			}
+		}
+		
+			
+		$("#btn").on("click",function(){
+			context.clearRect(0,0,80,80);
+			width();
+		})
+		
+		
+		var reg = new RegExp(text,"ig");
+		$("#cod").on("blur",function(){
+			var code = $(this).val();
+			console.log($(this).val());
+			console.log(text);
+			if(reg.test(code) == false){
+				alert("验证码输入错误");
+			}else{
+				alert("正确");
+			}
+		});
+		
+
+	</script>
+</html>

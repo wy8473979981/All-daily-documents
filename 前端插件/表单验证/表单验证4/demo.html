@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网友切糕分享Validate通用表单验证Jquery插件</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery.poshytip.js"></script>
+<script type='text/javascript' src='lib/jq.validate.js'></script>
+
+<link rel="stylesheet" type="text/css" href="reset.css" />
+
+<link rel="stylesheet" type="text/css" href="lib/tip-yellowsimple/tip-yellowsimple.css" />
+
+
+<style type="text/css">
+td{padding:7px;}
+.labels {text-align:right;}
+</style>
+
+<script type="text/javascript">
+$(function(e) {
+	var vali=new Validators();
+	$("#btn").bind("click", vali.subByJs);
+});
+</script>
+
+</head>
+<body>
+
+<form action="http://www.17sucai.com" type="validate">
+	<div align="center">
+		<h1>验证DEMO</h1>
+		<br />
+		<table width="30%" border="0">
+		<tr>
+			<td class="labels">账号:</td><td><input type="text" id="t1" name="t1" valType="required" msg="<font color=red>*</font>账号不能为空" /></td>
+		</tr>
+		<tr>
+			<td class="labels">密码:</td><td><input type="text" name="t2" valType="required" msg="<font color=red>*</font>密码不能为空" /></td>
+		</tr>
+		<tr>
+			<td class="labels">电话:</td><td><input type="text" name="t2" valType="TEL" msg="<font color=red>*</font>电话格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">手机:</td><td><input type="text" name="t2" valType="MOBILE" msg="<font color=red>*</font>手机格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">IP:</td><td><input type="text" name="t2" valType="IP" msg="<font color=red>*</font>IP格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">URL:</td><td><input type="text" name="t2" valType="URL" msg="<font color=red>*</font>URL格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">电子邮箱:</td><td><input type="text" name="t2" valType="MAIL" msg="<font color=red>*</font>电子邮箱格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">中文姓名:</td><td><input type="text" name="t2" valType="CHINESE" msg="<font color=red>*</font>中文格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">身份证号码:</td><td><input type="text" name="t2" valType="IDENTITY" msg="<font color=red>*</font>身份证号码格式不正确" /></td>
+		</tr>
+		<tr>
+			<td class="labels">数字验证码:</td><td><input type="text" name="t3" valType="NUMBER" msg="<font color=red>*</font>验证码只能是数字" /></td>
+		</tr>
+		<tr>
+			<td class="labels">自定义验证规则-数字:</td><td><input type="text" name="t3" valType="OTHER" regString="^[0-9]*$" msg="<font color=red>*</font>自定义规则-数字" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="提交" /> <input type="button" value="提交回调函数" id='btn'/></td>
+		</tr>
+		</table>
+	</div>
+</form>
+
+</body>
+</html>

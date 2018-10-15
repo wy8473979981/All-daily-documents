@@ -1,0 +1,4 @@
+querystring.stringify 构造url参数格式的querystring
+querystring.parse 将querystring解析出对应的值
+querystring.escape 字符串url编码
+querystring.unescape 字符串反url编码

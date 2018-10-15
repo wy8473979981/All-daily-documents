@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li class="all"></li>
+			<li class="all"></li>
+			<li class="all"></li>
+			<li class="all"></li>
+			<li class="all"></li>
+		</ul>
+		
+		
+		
+		
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".all").each(function(index,item){
+			console.log(item,index);
+		})
+		
+		var all = $(".all");
+		$.each(all,function(index,item){
+			console.log(index,item);
+		})
+	</script>
+</html>

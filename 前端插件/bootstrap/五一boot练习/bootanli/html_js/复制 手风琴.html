@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>手风琴</title>
+		<link rel="stylesheet" href="../css/bootstrap.css">
+			<style type="text/css">
+				li{
+					line-height: 40px;
+					border-bottom:1px solid #ccc;
+					cursor:pointer;
+				}
+				li div{
+					display:none;
+				}
+			</style>
+	</head>
+
+	<body>
+		<ul>
+			<li>
+				效果1
+				<div>效果1的内容</div>
+			</li>
+			<li>
+				效果2
+				<div>效果2的内容</div>
+			</li>
+			<li>
+				效果3
+				<div>效果3的内容</div>
+			</li>
+			<li>
+				效果4
+				<div>效果4的内容</div>
+			</li>
+			<li>
+				效果5
+				<div>效果5的内容</div>
+			</li>
+		</ul>
+		
+		
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script src="../js/bootstrap.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("li").on("click",function(){
+					$(this).find("div").slideToggle();
+					$(this).siblings().find("div").slideUp();
+				});
+				
+			});
+		</script>
+	</body>
+
+</html>

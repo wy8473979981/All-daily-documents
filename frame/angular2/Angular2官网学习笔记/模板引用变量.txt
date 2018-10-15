@@ -1,0 +1,54 @@
+模板引用变量
+
+	模板引用变量 是模板中对 DOM 元素或指令的引用。
+	
+	它能在原生 DOM 元素中使用，也能用于 Angular 组件——实际上，它可以和任何自定义 Web 组件协同工作。
+	
+	引用一个模板引用变量
+	我们可以在同一元素、兄弟元素或任何子元素中引用模板引用变量。
+	
+	不要在同一个模版中多次定义同一个变量名，否则运行时的值将会不可预测。
+	
+	这里是关于创建和消费模板引用变量的另外两个例子：
+	
+	<!-- phone refers to the input element; pass its `value` to an event handler -->
+	<input #phone placeholder="phone number">
+	<button (click)="callPhone(phone.value)">Call</button>
+	
+	<!-- fax refers to the input element; pass its `value` to an event handler -->
+	<input ref-fax placeholder="fax number">
+	<button (click)="callFax(fax.value)">Fax</button>
+	"phone" 的 (#) 前缀意味着我们将要定义一个 phone 变量。
+	
+	有些人不喜欢使用 # 字符，而是使用它的规范形式： ref- 前缀。例如，我们既能用 #phone ，也能用 ref-phone 来定义我们的 phone 变量。
+	
+	如何获取变量的值
+	Angular 把这种变量的值设置为它所在的那个元素。 我们在这个 input 元素上定义了这些变量。 我们把那些 input 元素对象传给 button 元素，
+	在这里，它们被当做参数传给了事件绑定中的 call 方法。
+	
+	NgForm 和模板引用变量
+	让我们看看最后一个例子：一个表单，使用模板引用变量的典范。
+	
+	正如我们在 表单 一章中所见过的，此表单的 HTML 可以做得相当复杂。 下面是一个 简化过的 范例——虽然仍算不上多简单。
+	
+	<form (ngSubmit)="onSubmit(theForm)" #theForm="ngForm">
+	  <div class="form-group">
+	    <label for="name">Name</label>
+	    <input class="form-control" name="name" required [(ngModel)]="currentHero.firstName">
+	  </div>
+	  <button type="submit" [disabled]="!theForm.form.valid">Submit</button>
+	</form>
+	
+	模板引用变量 theForm 在这个例子中出现了三次，中间隔着一大段 HTML 。
+	
+
+	<form (ngSubmit)="onSubmit(theForm)" #theForm="ngForm">
+	  <button type="submit" [disabled]="!theForm.form.valid">Submit</button>
+	</form>
+	theForm 变量的值是什么？
+	
+	如果 Angular 没有接管它，那它可能是个 HTMLFormElement 。 实际上它是个 ngForm ，一个对 Angular 内置指令 NgForm 的引用。
+	它包装了原生的 HTMLFormElement 并赋予它更多“超能力”，比如跟踪用户输入的有效性。
+	
+	这解释了我们该如何通过检查 theForm.form.valid 来禁用提交按钮，以及如何把一个信息量略大的对象传给父组件的 onSubmit 方法 
+	( 译注： onSubmit 方法可能会出发一个事件，被父组件监听，参见下面的 输入和输出属性 和 父组件监听子组件的事件 。 )

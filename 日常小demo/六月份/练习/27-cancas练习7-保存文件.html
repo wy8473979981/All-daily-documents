@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+				padding-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+		<input type="button" name="btn" id="btn" value="点击保存png图片" />
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		context.fillStyle = "rgb(0,0,225)";
+		context.fillRect(0, 0, 300, 300);
+		context.fillStyle = "rgb(255,255,0)";
+		context.fillRect(10, 20, 50, 50);
+		//把图像保存到新的窗口
+		var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=400,height=350");
+	</script>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

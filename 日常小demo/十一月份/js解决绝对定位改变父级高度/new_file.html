@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			.box {
+				width: 300px;
+				min-height: 400px;
+				height: auto;
+				clear: both;
+				margin: 0 auto;
+				background-color: #C0A16B;
+			}
+			
+			.box1 {
+				width: 100px;
+				height: 50px;
+				background-color: #ccc;
+				position: relative;
+			}
+			
+			.box2 {
+				width: 200px;
+				height: 1000px;
+				background-color: #0000FF;
+				position: absolute;
+				left: 99px;
+				bottom: -1000px;
+				z-index: 52;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="box1">
+				<div class="box2">
+
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".box1").click(function(){
+			$(".box2").css({"display":"block"});
+			debugger
+			var box2height = $(".box2").height();
+			var boxheight = $(".box").height();
+			$(".box").css({"height":box2height+boxheight});
+		})
+	</script>
+
+</html>

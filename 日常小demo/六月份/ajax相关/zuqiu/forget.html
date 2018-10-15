@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>找回密码</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<!--bootstrap.min.css-->
+		<!--<link rel="stylesheet" type="text/css" href="dist/css/bootstrap.min.css"/>-->
+		<!--自定义css-->
+		<link rel="stylesheet" type="text/css" href="css/forget.css"/>
+	</head>
+	<body>
+		<header>
+			<a href="javascript:;">足球圈子 — 找回密码</a>
+		</header>
+		<div class="login">
+			<div class="logTel">
+				<input type="text" name="tel" id="tel" value="" placeholder="手机号" class="tel"/>
+			</div>
+			<div class="logPwd">
+				<input type="text" name="hqcode" id="hqcode" value="" placeholder="验证码" class="hqcode"/>
+				<div class="code">
+					获取验证码
+				</div>
+			</div>
+			
+		</div>
+		<div class="btn">
+			提    交
+		</div>
+		<div class="toast" id="toast">
+			您的信息有误
+		</div>
+		<div class="tip">
+			<p>请在竖屏状态下浏览</p>
+			
+		</div>
+		<div class="loadEct">
+			<div class="loading" id="loading"></div>
+		</div>
+		
+		
+	</body>
+	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/fontSize.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/forget.js" type="text/javascript" charset="utf-8"></script>
+</html>

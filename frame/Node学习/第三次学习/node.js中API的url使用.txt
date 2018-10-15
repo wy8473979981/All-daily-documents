@@ -1,0 +1,9 @@
+url.parse('http://www.imooc.com/video/6710/0');<br>(1)<br>
+url.parse('http://www.imooc.com/video/6710/0', true);
+<br>(2)<br>其中（1）与（2）的区别在于解析结果中的query不同，（1）中的query是string类型,（2）中的query是数组类型如{a:xxx,b:xxx}<br>
+url.parse('http://www.imooc.com/video/6710/0', true , true);<br>（3）<br>
+这个第三个参数是用来对于不知道这个地址是遵循哪种协议时使用的<br>
+一般出现这种情况下用的<br>
+
+
+

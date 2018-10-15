@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>BootstrapValidator demo</title>
+
+		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="dist/css/bootstrapValidator.css" />
+		<link rel="stylesheet" type="text/css" href="../bootstrap-datepicker3.5/bootstrap-datepicker.css" />
+
+		<!-- Include the FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+		<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />-->
+
+		<script type="text/javascript" src="vendor/jquery/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="dist/js/bootstrapValidator.js"></script>
+		<script src="../bootstrap-datepicker3.5/bootstrap-datepicker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../bootstrap-datepicker3.5/bootstrap-datepicker.zh-CN.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<!-- form: -->
+				<section>
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="page-header">
+							<h2>Sign up</h2>
+						</div>
+
+						<form id="defaultForm" method="post" class="form-horizontal" action="target.php">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Full name</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" name="firstName" placeholder="First name" />
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" name="lastName" placeholder="Last name" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Username</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="username" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Email address</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="email" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Password</label>
+								<div class="col-lg-5">
+									<input type="password" class="form-control" name="password" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Retype password</label>
+								<div class="col-lg-5">
+									<input type="password" class="form-control" name="confirmPassword" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-lg-3 control-label">最小</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="captcha1" id="captchaOperation1" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">最大</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="captcha2" id="captchaOperation2" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">开始时间</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control Wdate" name="startTime" id="startTime" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">结束时间</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control Wdate" name="endTime" id="endTime" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-lg-9 col-lg-offset-3">
+									<button type="submit" class="btn btn-primary" name="signup" value="Sign up">Sign up</button>
+									<button type="submit" class="btn btn-primary" name="signup2" value="Sign up 2">Sign up 2</button>
+									<button type="button" class="btn btn-info" id="validateBtn">Manual validate</button>
+									<button type="button" class="btn btn-info" id="resetBtn">Reset form</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</section>
+				<!-- :form -->
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".Wdate").datepicker({
+					format: "yyyy-mm-dd",
+					autoclose: "ture",
+					todayHighlight: true,
+					language: "zh-CN"
+				});
+
+				// Generate a simple captcha
+				function randomNumber(min, max) {
+					return Math.floor(Math.random() * (max - min + 1) + min);
+				};
+				$('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+				$('#defaultForm').bootstrapValidator({
+					//        live: 'disabled',
+					message: 'This value is not valid',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						firstName: {
+							validators: {
+								notEmpty: {
+									message: 'The first name is required and cannot be empty'
+								}
+							}
+						},
+						lastName: {
+							validators: {
+								notEmpty: {
+									message: 'The last name is required and cannot be empty'
+								}
+							}
+						},
+						username: {
+							message: 'The username is not valid',
+							validators: {
+								notEmpty: {
+									message: 'The username is required and cannot be empty'
+								},
+								stringLength: {
+									min: 6,
+									max: 30,
+									message: 'The username must be more than 6 and less than 30 characters long'
+								},
+								regexp: {
+									regexp: /^[a-zA-Z0-9_\.]+$/,
+									message: 'The username can only consist of alphabetical, number, dot and underscore'
+								},
+								remote: {
+									url: 'remote.php',
+									message: 'The username is not available'
+								},
+								different: {
+									field: 'password',
+									message: 'The username and password cannot be the same as each other'
+								}
+							}
+						},
+						email: {
+							validators: {
+								emailAddress: {
+									message: 'The input is not a valid email address'
+								}
+							}
+						},
+						password: {
+							validators: {
+								notEmpty: {
+									message: 'The password is required and cannot be empty'
+								},
+								identical: {
+									field: 'confirmPassword',
+									message: 'The password and its confirm are not the same'
+								},
+								different: {
+									field: 'username',
+									message: 'The password cannot be the same as username'
+								}
+							}
+						},
+						confirmPassword: {
+							validators: {
+								notEmpty: {
+									message: 'The confirm password is required and cannot be empty'
+								},
+								identical: {
+									field: 'password',
+									message: 'The password and its confirm are not the same'
+								},
+								different: {
+									field: 'username',
+									message: 'The password cannot be the same as username'
+								}
+							}
+						},
+						birthday: {
+							validators: {
+								date: {
+									format: 'YYYY/MM/DD',
+									message: 'The birthday is not valid'
+								}
+							}
+						},
+						gender: {
+							validators: {
+								notEmpty: {
+									message: 'The gender is required'
+								}
+							}
+						},
+						'languages[]': {
+							validators: {
+								notEmpty: {
+									message: 'Please specify at least one language you can speak'
+								}
+							}
+						},
+						'programs[]': {
+							validators: {
+								choice: {
+									min: 2,
+									max: 4,
+									message: 'Please choose 2 - 4 programming languages you are good at'
+								}
+							}
+						},
+						captcha1: {
+							validators: {
+								integer: {
+									message: '请输入数字！'
+								},
+								between: {
+									min: 0,
+									max: 9999999999999999999999999999999999999999999999,
+									message: '请输入大于0的数！'
+								},
+								callback: {
+									message: '最小值不能大于最大值！',
+									callback: function(value, validator) {
+										var maxValue = parseInt($('#captchaOperation2').val());
+										if(maxValue == $('#captchaOperation2').val() || $('#captchaOperation2').val() == '') {
+											return true;
+										} else {
+											if(maxValue > value) {
+												validator.updateStatus('captcha2', 'VALID');
+												return true;
+											} else {
+												return false;
+											}
+
+											if(value < maxValue) {
+												return true;
+											} else {
+												return false;
+											}
+										}
+									}
+								}
+							}
+						},
+						captcha2: {
+							validators: {
+								integer: {
+									message: '请输入数字！'
+								},
+								between: {
+									min: 0,
+									max: 9999999999999999999999999999999999999999999999,
+									message: '请输入大于0的数！'
+								},
+								callback: {
+									message: '最大值不能小于最小值',
+									callback: function(value, validator) {
+										var minValue = parseInt($('#captchaOperation1').val());
+										if(minValue < value && minValue >= 0) {
+											validator.updateStatus('captcha1', 'VALID');
+											return true;
+										}
+
+										if(value > minValue) {
+											return true;
+										} else {
+											return false;
+										}
+									}
+								}
+							}
+						}
+					}
+				});
+
+				function pp() {
+					alert()
+				}
+				// Validate the form manually
+				$('#validateBtn').click(function() {
+					$('#defaultForm').bootstrapValidator('validate');
+				});
+
+				$('#resetBtn').click(function() {
+					$('#defaultForm').data('bootstrapValidator').resetForm(true);
+				});
+			});
+		</script>
+	</body>
+
+</html>

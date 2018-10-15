@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function cancel(){
+		var formObj = document.getElementById("addFrm"); 
+		if(formObj == undefined){ 
+			return; 
+		} 
+		$(".search-choice-close").click();
+		$('.multiselect-selected-text').html('请选择');
+		for(var i=0; i<formObj.elements.length; i++){ 
+			if(formObj.elements[i].type == "text"){ 
+				formObj.elements[i].value = ""; 
+			} 
+			else if(formObj.elements[i].type == "password"){ 
+				formObj.elements[i].value = ""; 
+			} 
+			else if(formObj.elements[i].type == "radio"){ 
+				formObj.elements[i].checked = false; 
+			} 
+			else if(formObj.elements[i].type == "checkbox"){ 
+				formObj.elements[i].checked = false; 
+			} 
+			else if(formObj.elements[i].type == "select-one"){ 
+				formObj.elements[i].options[0].selected = true; 
+			} 
+			else if(formObj.elements[i].type == "select-multiple"){ 
+				for(var j = 0; j < formObj.elements[i].options.length; j++){ 
+					formObj.elements[i].options[j].selected = false; 
+				} 
+			} 
+			else if(formObj.elements[i].type == "file"){ 
+				var file = formObj.elements[i]; 
+				if(file.outerHTML){ 
+					file.outerHTML = file.outerHTML; 
+				}else{ 
+					file.value = ""; // FF(包括3.5) 
+				} 
+			} 
+			else if(formObj.elements[i].type == "textarea"){ 
+				formObj.elements[i].value = ""; 
+			} 
+			
+		} 
+   	}
+	</script>
+</html>

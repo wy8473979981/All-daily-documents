@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/vue-router.js"></script>
+    <script type="text/javascript" src="js/vue-resource.js"></script>
+    <title>数据获取</title>
+</head>
+<body>
+    <div id="app">
+    	<h1>导航完成之后获取</h1>
+        <router-link to="/">首页</router-link>
+        <router-link to="/foo">关于我们</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var url="./data.json";
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:"/",
+                    component:{
+                        data:function(){
+                            return {
+                                xinxi:[],
+                                no:true
+                            }
+                        },
+                        template:`
+                            <div>
+                                <h2>个人信息</h2>
+                                <span v-show = 'no'>加载中.........</span>
+                                <ul>
+                                    <li v-for="(xin , i) in xinxi">{{xin.name}}{{xin.age}}{{xin.sex}}</li>
+                                </ul>
+                            </div>
+                            `,
+                        mounted:function(){
+                           var t = this;
+                             setTimeout(function(){
+                                t.$http.get(url).then(response => {
+                                    t.no = false
+                                    t.xinxi = response.body;
+
+                                }, response => {
+
+                                });
+                            },3000)
+                            
+                        }
+                    }
+                },
+                {
+                    path:"/foo",
+                    component:{
+                        template:`
+                            <div>
+                                <h2>关于我们</h2>
+                            </div>
+                            `
+                    }
+                }
+            ]
+        });
+        var vm = new Vue({
+            el:"#app",
+            router
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1009 @@
+.mx .dataGrid {
+	position: relative;
+	overflow: hidden;
+	border-left: 1px solid #E2E3EA;
+	border-bottom: 1px solid #E3E9EF;
+	border-right: 1px solid #DBDFE6;
+	background-color: white;
+}
+.mx .dataGrid .gridDirtyCell{
+	background-image:url('../../icons/gif/dirty.gif');
+	background-position:0 0;
+	background-repeat:no-repeat;
+	
+}
+.mx .dataGrid>#grid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+}
+.mx .dataGrid #titleDiv
+{
+    position:absolute;
+    z-index:999999999;
+    background: url(images/data_grid_body_tr_selected.png) repeat-x center;
+    white-space :normal;
+	word-break :break-all;
+	word-wrap :break-word;
+	padding:5px;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+           -moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+           -webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+           box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+}
+.mx .dataGrid  #head {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 24px;
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+	border-top: 1px solid #C5C5C5;
+	border-bottom: 1px solid #C5C5C5;
+	overflow: hidden;
+}
+.mx .dataGrid  div#upRightBg {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	height: 24px;
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+	border-top: 1px solid #C5C5C5;
+	border-bottom: 1px solid #C5C5C5;
+	border-right: 1px solid #C5C5C5;
+	overflow: hidden;
+}
+.mx .dataGrid  #body {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 24px;
+	bottom: 0;
+	overflow-y: scroll;
+	overflow-x: auto;
+	padding-right: 1px;
+}
+.mx .dataGrid  table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+}
+.mx .dataGrid  table>tbody>tr>td {
+	border: 1px solid #E3E8EE;
+}
+.mx .dataGrid  #head>table {
+	height: 24px;
+	border-right: 1px solid #DBDFE6;
+}
+.mx .checkDataGrid #grid #head  table>tbody>tr>td:first-child,.mx .checkDataGrid #grid #body  table>tbody>tr>td:first-child
+	{
+	padding: 0;
+	text-align: center;
+	border-left: none;
+}
+.mx .checkDataGrid #head>table>tbody>tr>td  #checkBox {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 24px;
+	top: -2px;
+	vertical-align: middle;
+	background: url(images/check_editor_unchecked.png) no-repeat center
+		center;
+}
+
+.mx .checkDataGrid #head>table>tbody>tr.checked>td  #checkBox {
+	background-image: url(images/check_editor_checked.png);
+}
+
+.mx .checkDataGrid #body table>tbody>tr>td  #checkBox {
+	display: block;
+	width: 100%;
+	height: 16px;
+	vertical-align: middle;
+	background: url(images/check_editor_unchecked.png) no-repeat center;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td:hover {
+	background-image: url(images/data_grid_head_hover.png);
+}
+
+.mx .dataGrid #head>table>tbody>tr>td>div:active {
+	background-image: url(images/data_grid_head_active.png);
+}
+
+.mx .dataGrid #head>table>tbody>tr>td>div {
+	white-space: nowrap;
+	overflow: hidden;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 100%;
+	width: 100%;
+	line-height: 24px;
+	position: relative;
+	cursor: default;
+	vertical-align: middle;
+}
+
+.mx .dataGrid #head > table > tbody > tr > td#__temp_Column_rnd__ > div {
+	padding-left: 0px\9\0;
+	padding-right: 0px\9\0;
+	width: 0px\9\0;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td span {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+}
+
+.mx .dataGrid #head > table > tbody > tr > td span.adjustCol_left
+{		
+	position:absolute;
+	width:5px;
+	cursor: e-resize;	
+	left:0;
+}
+
+.mx .dataGrid #head > table > tbody > tr > td#__temp_Column_rnd__ span.adjustCol_left
+{		
+	width: 0px\9\0;
+}
+
+.mx .dataGrid #head > table > tbody > tr > td span.adjustCol_right
+{		
+	position:absolute;
+	width:5px;
+	cursor: e-resize;	
+	right:0px;
+}
+
+.mx .dataGrid #head table tbody tr td#__temp_Column_rnd__ span.adjustCol_right 
+{
+	width: 0px\9\0;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td.sort.ascend span#sortOrderSpan {
+	position: absolute;
+	background: url(images/data_grid_head_cursor_up.png) center no-repeat;
+	top: 1px;
+	left: 48%;
+	width: 7px;
+	height: 4px;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td.sort.descend  span#sortOrderSpan {
+	position: absolute;
+	background: url(images/data_grid_head_cursor_down.png) center no-repeat;
+	top: 1px;
+	left: 48%;
+	width: 7px;
+	height: 4px;
+}
+
+.mx .dataGrid.hideColSplitLine  #body>table>tbody>tr>td {
+	border-left: none;
+}
+
+.mx .dataGrid #body table>tbody>tr>td>img {
+	position: relative;
+	top: 2px;
+	margin-right: 2px;
+}
+
+.mx .dataGrid #body table>tbody>tr {
+	height: 22px;
+	border-top: 1px solid transparent;
+}
+
+.mx .dataGrid #body table>tbody>tr.even {
+	background: #FAFAFA;
+}
+
+.mx .dataGrid #body table>tbody>tr:hover {
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	background: url(images/data_grid_body_tr_hover.png) repeat-x center
+		center;
+}
+
+.mx .dataGrid  #body table>tbody>tr.selected {
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	background: url(images/data_grid_body_tr_selected.png) repeat-x center
+		center;
+}
+
+.mx .dataGrid #body table>tbody>tr>td {
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.mx .dataGrid #body table>tbody>tr>td>div.editorContainer{
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 21px;
+}
+
+.mx .dataGrid #body table>tbody>tr>td#rownumber {
+	text-align: center;
+}
+
+.mx .dataGrid #body table>tbody>tr>td#__temp_Column_rnd__ {
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+	padding:0px;
+	margin:0px;
+}
+
+.mx .dataGrid #body table>tbody>tr>td.editing {
+	padding: 0px;
+	vertical-align: middle;
+}
+
+.mx .checkDataGrid #body table>tbody>tr>td:first-child {
+	padding: 0;
+	text-align: center;
+	border-right: 1px solid #E3E8EE;
+}
+
+.mx .checkDataGrid #body table>tbody>tr.checked>td #checkBox {
+	background-image: url(images/check_editor_checked.png);
+}
+
+.mx .rowNumberDataGrid #body table>tbody>tr>td.rownumber {
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+}
+
+.mx .dataGrid.disabled {
+	background-color: #F0F0F0;
+}
+
+.mx .dataGrid.disabled  #head>table>tbody>tr>td:hover,.mx .dataGrid.disabled  #head>table>tbody>tr>td.sort
+	{
+	background-image: none;
+	border-right: 1px solid #E3E8EE;
+}
+
+.mx .dataGrid.disabled  #body>table>tbody>tr:hover,.mx .dataGrid.disabled  #body>table>tbody>tr.selected
+	{
+	/**border: 1px solid transparent; 会导致单元格抖动*/
+	background: none;
+}
+
+.mx .dataGrid.disabled #body table>tbody>tr>td {
+	color: #555555;
+}
+
+.mx .dataGrid .pageNaviBar {
+	position: absolute;
+	bottom: 0;
+}
+
+.mx .dataGrid  #head>table>tbody>tr>td>div.colProxy {
+	position: absolute;
+	top: 0px;
+	z-index: 1;
+	display: none;
+}
+
+.mx .dataGrid  #head>table>tbody>tr>td>div.colProxy.colProxyMove {
+	background: url(images/data_grid_head_proxy_bg.png);
+	cursor: pointer;
+	border: 1px solid #b7bdbd;
+	display: block;
+}
+
+.mx .dataGrid  #head>table>tbody>tr>td>div.colProxy.colProxyMove>span.rejustInsert
+	{
+	position: absolute;
+	display: inline-block;
+	width: 16px;
+	height: 21px;
+	background: url(images/datagrid_dragcol_rejust.png) no-repeat center
+		center;
+	right: 2px;
+}
+
+.mx .dataGrid  #head>table>tbody>tr>td>div.colProxy.colProxyMove>span.acceptInsert
+	{
+	position: absolute;
+	display: inline-block;
+	width: 16px;
+	height: 21px;
+	background: url(images/datagrid_dragcol_accept.png) no-repeat center
+		center;
+	right: 2px;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td {
+	border-top: none;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td#__temp_Column_rnd__ {
+	border-right: none;
+}
+
+.mx .dataGrid #head>table>tbody>tr>td#__temp_Column_rnd__:hover {
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+}
+
+.mx.dataGrid.insertFlag {
+	position: absolute;
+	display: block;
+	background: url(images/datagrid_col_insert.png) no-repeat center center;
+	width: 12px;
+	height: 12px;
+	padding: 0px;
+	z-index: 100000;
+}
+
+/* 查询框显示和隐藏按钮 */
+.mx .dataGrid div.toggleShowBtn,.mx .lockHeaderGrid div.toggleShowBtn {
+	position: absolute;
+	right: 1px;
+	top: 3px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("images/dataGridSearchBox_toggleShowBtn.png");
+	cursor: pointer;
+}
+
+.mx .dataGrid div.toggleShowBtn:hover,.mx .lockHeaderGrid div.toggleShowBtn:hover
+	{
+	background: url("images/dataGridSearchBox_toggleShowBtn_hover.png");
+}
+
+.mx .dataGrid div.toggleHideBtn,.mx .lockHeaderGrid div.toggleHideBtn {
+	position: absolute;
+	right: 1px;
+	top: 4px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("images/dataGridSearchBox_toggleHideBtn.png");
+	cursor: pointer;
+}
+
+.mx .dataGrid div.toggleHideBtn:hover,.mx .lockHeaderGrid div.toggleHideBtn:hover
+	{
+	background: url("images/dataGridSearchBox_toggleHideBtn_hover.png");
+}
+
+.mx .dataGrid.autowrap #body table>tbody>tr>td {
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.mx .dataGrid.autowrap #body table>tbody>tr>td>div.editorContainer{
+	max-height: 1000px;
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.mx .dataGrid #body table>tbody>tr>td.cellError,
+.mx .dataGrid.hideColSplitLine #body table>tbody>tr>td.cellError,
+.mx .dataGrid.hideColSplitLine table>tbody>tr>td.cellError {
+	background-image: url('images/data_grid_invalid_line.gif');
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+/**
+ ************************列固定****************************
+ */
+.mx .lockHeaderGrid #gridLeft {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+}
+
+.mx .lockHeaderGrid #gridRight {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft,.mx .lockHeaderGrid #gridRight #headRight
+	{
+	height: 24px;
+	border-top: 1px solid #C5C5C5;
+	border-bottom: 1px solid #C5C5C5;
+	overflow: hidden;
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft table,.mx .lockHeaderGrid #gridRight #headRight table
+	{
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+.mx .lockHeaderGrid.checkDataGrid #gridLeft #headLeft>table>tbody>tr>td  #checkBox
+	{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 24px;
+	top: -2px;
+	background: url(images/check_editor_unchecked.png) no-repeat center
+		center;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td span.adjustCol_left,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td span.adjustCol_left
+	{
+	position: absolute;
+	width: 5px;
+	cursor: e-resize;
+	left: 0;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td span.adjustCol_right,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td span.adjustCol_right
+	{
+	position: absolute;
+	width: 5px;
+	cursor: e-resize;
+	right: 0px;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td.sort.ascend span#sortOrderSpan,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td.sort.ascend span#sortOrderSpan
+	{
+	position: absolute;
+	background: url(images/data_grid_head_cursor_up.png) center no-repeat;
+	top: 1px;
+	left: 48%;
+	width: 7px;
+	height: 4px;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td.sort.descend span#sortOrderSpan,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td.sort.descend span#sortOrderSpan
+	{
+	position: absolute;
+	background: url(images/data_grid_head_cursor_down.png) center no-repeat;
+	top: 1px;
+	left: 48%;
+	width: 7px;
+	height: 4px;
+}
+
+.mx .lockHeaderGrid.checkDataGrid #gridLeft #headLeft>table>tbody>tr.checked>td #checkBox,.mx .lockHeaderGrid.checkDataGrid #gridLeft #bodyLeft>table>tbody>tr.checked>td #checkBox
+	{
+	background-image: url(images/check_editor_checked.png);
+}
+
+.mx .lockHeaderGrid.checkDataGrid #gridLeft #bodyLeft>table>tbody>tr>td  #checkBox
+	{
+	display: block;
+	width: 100%;
+	height: 16px;
+	vertical-align: middle;
+	background: url(images/check_editor_unchecked.png) no-repeat center;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td:hover,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td:hover
+	{
+	background-image: url(images/data_grid_head_hover.png);
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td>div:active,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td>div:active
+	{
+	background-image: url(images/data_grid_head_active.png);
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td>div,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td>div
+	{
+	white-space: nowrap;
+	overflow: hidden;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 100%;
+	width: 100%;
+	line-height: 24px;
+	position: relative;
+	cursor: default;
+	vertical-align: middle;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td span,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td span
+	{
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	line-height: 24px;
+	vertical-align: middle;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td#__temp_Column_rnd__,.mx .lockHeaderGrid #gridRight #headRight>table>tbody>tr>td#__temp_Column_rnd__
+	{
+	border-right: none;
+}
+
+.mx .lockHeaderGrid #gridLeft #headLeft>table>tbody>tr>td#__temp_Column_rnd__:hover,.mx .lockHeaderGrid #gridLeft #headRight>table>tbody>tr>td#__temp_Column_rnd__:hover
+	{
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 24px;
+	bottom: 0;
+	overflow-y: scroll;
+	overflow-x: auto;
+}
+
+.mx .lockHeaderGrid #gridLeft #bodyLeft {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 24px;
+	bottom: 0;
+	overflow: hidden;
+}
+
+.mx .lockHeaderGrid  div#upRightBg {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: inline-block;
+	height: 24px;
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+	border-top: 1px solid #C5C5C5;
+	border-bottom: 1px solid #C5C5C5;
+	border-right: 1px solid #C5C5C5;
+	border-left: 1px solid #DBDFE6;
+	overflow: hidden;
+}
+.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr>td>img {
+	position: relative;
+	top: 2px;
+	margin-right: 2px;
+}
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr
+{
+	height: 22px;
+	min-height: 22px;
+	border-top: 1px solid transparent;
+}
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr>td,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr>td
+{
+	min-height: 22px;
+	height: 22px;
+}
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr.even,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr.even
+	{
+	background: #FAFAFA;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr.hover,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr.hover,.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr:hover,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr:hover
+	{
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: url(images/data_grid_body_tr_hover.png) repeat-x center
+		center;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr.selected,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr.selected
+	{
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: url(images/data_grid_body_tr_selected.png) repeat-x center
+		center;
+}
+
+.mx .lockHeaderGrid #grid>table>tbody>tr.selected
+	{
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background: url(images/data_grid_body_tr_selected.png) repeat-x center
+		center;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr>td,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr>td
+	{
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+	height: 22px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr>td#__temp_Column_rnd__
+	{
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+}
+
+.mx .lockHeaderGrid #gridRight #bodyRight>table>tbody>tr>td.editing,.mx .lockHeaderGrid #gridLeft #bodyLeft>table>tbody>tr>td.editing
+	{
+	padding: 0px;
+	vertical-align: middle;
+}
+
+.mx .lockHeaderGrid.checkDataGrid #gridLeft #bodyLeft>table>tbody>tr>td:first-child
+	{
+	padding: 0;
+	text-align: center;
+	border-right: 1px solid #E3E8EE;
+}
+
+.mx .lockHeaderGrid.rowNumberDataGrid #gridLeft #bodyLeft>table>tbody>tr>td.rownumber
+	{
+	background: url(images/data_grid_head_bg.png) repeat-x center;
+}
+
+.mx .lockHeaderGrid.disabled {
+	background-color: #F0F0F0;
+}
+.mx .lockHeaderGrid.disabled #gridLeft #headLeft>table>tbody>tr>td:hover,.mx .lockHeaderGrid.disabled #gridLeft #headLeft>table>tbody>tr>td.sort,.mx .lockHeaderGrid.disabled #gridRight #headRight>table>tbody>tr>td:hover,.mx .lockHeaderGrid.disabled #gridRight #headRight>table>tbody>tr>td.sort
+	{
+	background-image: none;
+	border-right: 1px solid #E3E8EE;
+}
+.mx .lockHeaderGrid.disabled #gridLeft #bodyLeft>table>tbody>tr:hover,.mx .lockHeaderGrid.disabled #gridLeft #bodyLeft>table>tbody>tr.selected,.mx .lockHeaderGrid.disabled #gridRight #bodyRight>table>tbody>tr:hover,.mx .lockHeaderGrid.disabled #gridRight #bodyRight>table>tbody>tr.selected
+	{
+	border: 1px solid transparent;
+	background: none;
+}
+.mx .lockHeaderGrid.disabled #gridLeft #bodyLeft>table>tbody>tr>td,.mx .lockHeaderGrid.disabled #gridLeft #bodyLeft>table>tbody>tr>td,.mx .lockHeaderGrid.disabled #gridRight #bodyRight>table>tbody>tr>td,.mx .lockHeaderGrid.disabled #gridRight #bodyRight>table>tbody>tr>td
+{
+	color: #555555;
+}
+.mx .lockHeaderGrid.autowrap #gridLeft #bodyLeft>table>tbody>tr>td,.mx .lockHeaderGrid.autowrap #gridRight #bodyRight>table>tbody>tr>td
+{
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+	height: auto;
+}
+.mx .lockHeaderGrid #gridLeft #bodyLeft table>tbody>tr>td.cellError, .mx .lockHeaderGrid #gridRight #bodyRight table>tbody>tr>td.cellError
+{
+	background-image: url('images/data_grid_invalid_line.gif');
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+/**
+ ************************多表头****************************
+ */
+.mx .groupHeaderGrid #grid #head,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight
+	{
+	position: relative;
+	height: auto;
+	border-top: 1px solid #C5C5C5;
+	border-bottom: none;
+	background: url(images/group_header_grid_head_bg.png) repeat-x center
+		center;
+	overflow: hidden;
+}
+
+.mx .groupHeaderGrid #head>table>tbody>tr>td:hover,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td:hover,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td:hover
+	{
+	background-image: none;
+}
+
+.mx .groupHeaderGrid #head>table>tbody>tr>td>div:active,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td>div:active,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td>div:active
+	{
+	background-image: none;
+}
+
+.mx .groupHeaderGrid #head>table>tbody>tr>td>div,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td>div,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td>div
+	{
+	padding: 0;
+	white-space: nowrap;
+}
+
+.mx .groupHeaderGrid #head>table>tbody>tr>td span.adjustCol_right,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td span.adjustCol_right,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td span.adjustCol_right
+	{
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	cursor: e-resize;
+	right: 0px;
+}
+.mx .groupHeaderGrid #head>table>tbody>tr>td div.cellDiv.sort.ascend span#sortOrderSpan,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td div.cellDiv.sort.ascend span#sortOrderSpan,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td div.cellDiv.sort.ascend span#sortOrderSpan
+{
+	position: absolute;
+	background: url(images/data_grid_head_cursor_up.png) center no-repeat;
+	bottom: 1px;
+	right: 5%;
+	width: 7px;
+	height: 4px;
+}
+.mx .groupHeaderGrid #head>table>tbody>tr>td div.cellDiv.sort.descend span#sortOrderSpan,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td div.cellDiv.sort.descend span#sortOrderSpan,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td div.cellDiv.sort.descend span#sortOrderSpan
+{
+	position: absolute;
+	background: url(images/data_grid_head_cursor_down.png) center no-repeat;
+	top: 1px;
+	right: 5%;
+	width: 7px;
+	height: 4px;
+}
+.mx .groupHeaderGrid #head>table>tbody>tr>td.groupHeader>#columnContainer,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td.groupHeader>#columnContainer,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td.groupHeader>#columnContainer
+	{
+	height: 100%;
+}
+
+.mx .groupHeaderGrid #head>table>tbody>tr>td>div,.mx .groupHeaderGrid #head>table>tbody>tr>td span,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td>div,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft>table>tbody>tr>td span,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td>div,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight>table>tbody>tr>td span
+	{
+	height: auto;
+	overflow: hidden;
+}
+
+.mx .groupHeaderGrid #head div,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft div,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight div
+	{
+	border-collapse: collapse;
+}
+
+.mx .groupHeaderGrid #head #groupColumn>div,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft #groupColumn>div,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight #groupColumn>div
+	{
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.mx .groupHeaderGrid #grid #head td div.cellDiv,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td div.cellDiv,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td div.cellDiv
+	{
+	position: relative;
+}
+
+.mx .groupHeaderGrid #grid #head td.groupHeader div.cellDiv,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td.groupHeader div.cellDiv,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td.groupHeader div.cellDiv
+	{
+	height: 100%;
+}
+
+.mx .groupHeaderGrid #grid #head td.groupHeader div.cellDiv:hover,.mx .groupHeaderGrid #grid #head td.groupHeader div#groupCaptionDiv:hover,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td.groupHeader div.cellDiv:hover,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td.groupHeader div#groupCaptionDiv:hover,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td.groupHeader div.cellDiv:hover,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td.groupHeader div#groupCaptionDiv:hover
+	{
+	background-color: #E2E2E3;
+}
+
+.mx .groupHeaderGrid #grid #head td:hover,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td:hover,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td:hover
+	{
+	background-color: #E2E2E3;
+}
+
+.mx .groupHeaderGrid #grid #head td.groupHeader:hover,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft td.groupHeader:hover,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td.groupHeader:hover
+	{
+	background-color: transparent;
+}
+
+.mx .groupHeaderGrid #head #groupColumn>#columnContainer,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft #groupColumn>#columnContainer,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight #groupColumn>#columnContainer
+	{
+	height: 100%;
+	border-right: 1px solid #DBDFE6;
+	border-top: 1px solid #DBDFE6;
+	vertical-align: top;
+}
+
+.mx .groupHeaderGrid #head #groupColumn>#columnContainer:first-child,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft #groupColumn>#columnContainer:first-child,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight #groupColumn>#columnContainer:first-child
+	{
+	border-left: none;
+}
+
+.mx .groupHeaderGrid #head #groupColumn>#columnContainer:last-child,.mx .groupLockHeaderGrid #grid>#gridLeft>#headLeft #groupColumn>#columnContainer:last-child,.mx .groupLockHeaderGrid #grid>#gridRight>#headRight #groupColumn>#columnContainer:last-child
+	{
+	border-right: none;
+}
+
+.mx .groupHeaderGrid  div#upRightBg,.mx .groupLockHeaderGrid div#upRightBg
+	{
+	display: inline-block;
+	background: none;
+	background-color: #F5F5F5;
+	border: 1px solid #DBDFE6;
+	overflow: hidden;
+}
+
+.mx .groupHeaderGrid  div.toggleShowBtn,.mx .groupLockHeaderGrid div.toggleShowBtn
+	{
+	position: absolute;
+	right: 1px;
+	top: 0;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("images/dataGridSearchBox_toggleShowBtn.png") center
+		center no-repeat;
+	cursor: pointer;
+}
+
+.mx .groupHeaderGrid  div.toggleShowBtn:hover,.mx .groupLockHeaderGrid div.toggleShowBtn:hover
+	{
+	background: url("images/dataGridSearchBox_toggleShowBtn_hover.png")
+		center center no-repeat;
+}
+
+.mx .groupHeaderGrid  div.toggleHideBtn,.mx .groupLockHeaderGrid  div.toggleHideBtn
+	{
+	position: absolute;
+	right: 1px;
+	top: 0;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("images/dataGridSearchBox_toggleHideBtn.png") center
+		center no-repeat;
+	cursor: pointer;
+}
+
+.mx .groupHeaderGrid  div.toggleHideBtn:hover,.mx .groupLockHeaderGrid  div.toggleHideBtn:hover
+	{
+	background: url("images/dataGridSearchBox_toggleHideBtn_hover.png")
+		center center no-repeat;
+}
+.mx .groupLockHeaderGrid #grid>#gridRight>#headRight span.autoWrap,.mx .groupHeaderGrid #head>table>tbody>tr>td>div span.autoWrap
+{
+	white-space:normal;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.mx .groupLockHeaderGrid #grid>#gridRight>#headRight td.groupHeader div.cellDiv span.cellWrap, .mx .groupHeaderGrid #head>table>tbody>tr>td>div span.cellWrap
+{
+	display:table-cell;
+	top:0px;
+}
+.mx .groupLockHeaderGrid #gridRight #bodyRight>table>tbody>tr>td#__temp_Column_rnd__
+	{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.mx .groupLockHeaderGrid #gridRight #headRight>table>tbody>tr>td div#__temp_Column_rnd__
+{
+	width: 0px\9\0; /*兼容IE9下拖动宽度时错位*/
+}
+
+
+/**
+ *************************************统计行************************************
+ */
+.mx .dataGrid #statisticRow,.mx .dataGrid.lockHeaderGrid #statisticRowLeft,.mx .dataGrid.lockHeaderGrid #statisticRowRight
+	{
+	height: 24px;
+}
+
+.mx .dataGrid #statisticRow>table>tbody>tr,.mx .dataGrid.lockHeaderGrid #statisticRowLeft>table>tbody>tr,.mx .dataGrid.lockHeaderGrid #statisticRowRight>table>tbody>tr
+	{
+	height: 22px;
+	background-color: #F0F0F0;
+}
+
+.mx .dataGrid #statisticRow>table>tbody>tr>td,.mx .dataGrid.lockHeaderGrid #statisticRowLeft>table>tbody>tr>td,.mx .dataGrid.lockHeaderGrid #statisticRowRight>table>tbody>tr>td
+	{
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1px solid #E3E8EE;
+}
+
+.mx .dataGrid  #statisticRow>table>tbody>tr>td#__temp_Column_rnd__,.mx .dataGrid.lockHeaderGrid #statisticRowRight>table>tbody>tr>td#__temp_Column_rnd__
+	{
+	border-left: 1px solid #E3E8EE;
+	border-bottom: none;
+	background-color: white;
+}
+
+/**
+ *************************************行分组************************************
+ */
+.mx .dataGrid.groupItemGrid #body #bodyDiv {
+	display: table;
+	width: 100%;
+	background-color: #F3F4F6;
+}
+
+.mx .dataGrid.groupItemGrid #body #itemGroup {
+	border-bottom: 1px solid white;
+}
+
+.mx .dataGrid.groupItemGrid #body #itemGroup dl table {
+	background-color: white;
+}
+
+.mx .dataGrid.groupItemGrid #body #itemGroup dd,.mx .dataGrid.groupItemGrid #body #itemGroup dl
+	{
+	padding: 0;
+	padding-top: 3px;
+}
+
+.mx .dataGrid.groupItemGrid #body #bodyDiv #itemGroup dl table tr.selected{
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	background: url(images/data_grid_body_tr_selected.png) repeat-x center center;
+}
+
+/**
+ *************************************升级提示************************************
+ */
+.mx .dataGridUpgrade,.mx.dataGridUpgrade {
+	position: absolute;
+	bottom: 25px;
+	left: 25px;
+	right: 25px;
+	top: 25px;
+	background-color: rgb(232, 232, 232);
+	border: 1px rgb(167, 167, 167) solid;
+}
+
+.mx .dataGridUpgrade>div,.mx.dataGridUpgrade>div {
+	background: url(images/upgrade_btn_bg.png) repeat-x center;
+	position: absolute;
+	top: 100px;
+	left: 112px;
+	width: 230px;
+	height: 50px;
+	padding-top: 5px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.mx .dataGridUpgrade>span,.mx.dataGridUpgrade>span {
+	position: absolute;
+	top: 180px;
+	left: 115px
+}
+
+.mx .dataGrid.hideColSplitLine #body table>tbody>tr>td ,.mx .dataGrid.hideColSplitLine table>tbody>tr>td {
+	border: none;
+}
+
+.mx .groupHeaderGrid #body table>tbody>tr:first-child>td
+{
+	border-top: none;
+}
+
+/************************** print *************************/
+.mx .printTable
+{
+}
+.mx #printBody .dataGrid 
+{
+	overflow: hidden;
+	border:0;
+}
+
+.mx #printBody .dataGrid tr td
+{
+	padding-left: 0px;
+	padding-right: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mx #printBody .dataGrid  #head {
+	background: none;
+	border:0;
+}
+
+
+.mx #printBody .dataGrid table>tbody>tr>td
+{
+	border:0;
+}

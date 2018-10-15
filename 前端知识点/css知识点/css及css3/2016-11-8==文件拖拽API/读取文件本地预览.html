@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="fileDemo" id="fileDemo" value="" accept="image/*"/>
+		 <input type="button" name="readDataUrl" id="readDataUrl" value="显示地址" onclick="getDataUrl()"/>
+		 <input type="button" name="readAsBinaryString" id="readAsBinaryString" value="readAsBinaryString" onclick="readAsBinaryString()"/>
+		 <input type="button" name="readAsText" id="readAsText" value="readAsText" onclick="readAsText()"/>
+		 <p id="result"></p>
+	</body>
+	
+	<script type="text/javascript">
+	if(typeof FileReader == "undefined"){
+		alert("您老的浏览器不行了")
+	}
+		function getDataUrl(){
+			var file = document.getElementById("fileDemo").files[0];
+			if(file){
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(e){
+					var urlData = this.result;
+					document.getElementById("result").innerHTML = "<img src='" + urlData + "' alt='" + file.name + "' />";
+				}
+			}
+		}
+		
+		function readAsBinaryString(){
+			var file = document.getElementById("fileDemo").files[0];
+			if(file){
+				var reader = new FileReader();
+				reader.readAsBinaryString(file);
+				reader.onload = function(e){
+					var urlData = this.result;
+					document.getElementById("result").innerHTML = urlData;
+				}
+			}
+		}
+		function readAsText(){
+			var file = document.getElementById("fileDemo").files[0];
+			if(file){
+				var reader = new FileReader();
+				reader.readAsText(file,"utf-8");
+				reader.onload = function(e){
+					var urlData = this.result;
+					document.getElementById("result").innerHTML = urlData;
+				}
+			}
+		}
+	</script>
+</html>

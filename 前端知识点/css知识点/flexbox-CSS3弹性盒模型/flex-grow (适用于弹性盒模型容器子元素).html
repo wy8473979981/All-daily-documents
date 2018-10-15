@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				display: -webkit-flex;
+				display: flex;
+				width: 600px;
+				margin: 0;
+				padding: 10px;
+				list-style: none;
+				background-color: #eee;
+			}
+			
+			.box li {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #aaa;
+				text-align: center;
+			}
+			
+			#box li:nth-child(2) {
+				-webkit-flex-grow: 1;
+				flex-grow: 1;
+			}
+			
+			#box li:nth-child(3) {
+				-webkit-flex-grow: 2;
+				flex-grow: 2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="box" class="box">
+			<li>a</li>
+			<li>b</li>
+			<li>c</li>
+			<li>d</li>
+			<li>e</li>
+		</ul>
+	</body>
+
+</html>

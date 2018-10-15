@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+				padding-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+	</body>
+	<script type="text/javascript">
+		
+	   var canvas = document.getElementById("myCanvas");
+	   var ctx = canvas.getContext("2d");
+		with(ctx){
+			beginPath();
+			shadowOffsetX = "5";
+			shadowOffsetY = "5";
+			shadowBlur = "5";
+			shadowColor = "green";
+			fillStyle = "red";
+			fillRect(30,30,100,100);
+			closePath();
+		}
+		
+		
+		
+		
+	</script>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

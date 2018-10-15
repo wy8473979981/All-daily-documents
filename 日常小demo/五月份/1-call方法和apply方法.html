@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	
+	<script type="text/javascript">
+		function print(a,b,c,d){
+			console.log(a+b+c+d);
+		}
+		function example(a,b,c,d){
+			//用call方式借用print，参数显示打散传递
+			//print.call(this,a,b,c,d);
+			//用apply方式借用print，参数作为一个数组传递
+			//第一种这里直接用js方法内本身有的arguments数组
+			print.apply(this,arguments);
+			
+			//第二种或者封装成数组
+			/*print.apply(this,[a,b,c,d]);*/
+		}
+		example("背","光","脚","本");
+		
+		
+		
+		
+		(function(x){
+			delete x;
+			alert(x);
+		})(1+5);
+	</script>
+	
+	
+</html>

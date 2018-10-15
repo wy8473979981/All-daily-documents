@@ -1,0 +1,15 @@
+1、设置 <base href>
+
+	组件路由使用浏览器 history.pushState 来导航，这样的URL地址看起来就像跟直接
+	从服务端URL一样，例如：localhost:3000/crisis-center。
+	
+	现代浏览器都支持HTML5 pushState，为了让 pushState 更好工作，还需要在 index.html 
+	添加一个　<base href="/"> 元素，这样同样可以确保所有请求的资源前缀。
+	
+	HTML5模式导航是组件路由默认风格，我们也可以用老式的哈希（＃）风格，后面会谈到
+	
+2、导入组件路由模块
+
+	前面就说过路由模块是独立模块，需要从 angular/router 模块中获取。
+	
+	import { Routes, Router, ROUTER_DIRECTIVES } from '@angular/router';

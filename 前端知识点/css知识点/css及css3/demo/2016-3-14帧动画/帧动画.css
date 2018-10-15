@@ -1,0 +1,159 @@
+@charset "utf-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+.box{
+	width: 100%;
+	height: 100%;
+	margin:0 auto;
+
+}
+.one{
+	width: 180px;
+	height: 300px;
+	overflow: hidden;
+	background: url(charector.png) no-repeat  0 0 ;
+	position: absolute;
+	transform: rotateY(180deg);
+	-webkit-animation-name: ballRun;/* 动画名称 */
+	-webkit-animation-iteration-count: infinite;/* 动画无限播放 */
+	-webkit-animation-timing-function: step-start;/* 马上跳到动画每一结束桢的状态 */
+	-webkit-animation-duration: 950ms;/* 动画运行的时间 */
+}
+a{
+	display: block;
+	margin-right:40px;
+	float:left;
+	margin-top:400px;
+}
+button{
+	margin-top:400px;
+}
+/*
+@-webkit-keyframes ballRun{
+	0% {background-position: 0 0;}
+    14.28% {background-position: -180px 0;}
+    28.56% {background-position: -360px 0;}
+    42.84% {background-position: -540px 0;}
+    57.12% {background-position: -720px 0;}
+    71.4% {background-position: -900px 0;}
+    85.68% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-moz-keyframes ballRun{
+	0% {background-position: 0 0;}
+    14.28% {background-position: -180px 0;}
+    28.56% {background-position: -360px 0;}
+    42.84% {background-position: -540px 0;}
+    57.12% {background-position: -720px 0;}
+    71.4% {background-position: -900px 0;}
+    85.68% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-ms-keyframes ballRun{
+	0% {background-position: 0 0;}
+    14.28% {background-position: -180px 0;}
+    28.56% {background-position: -360px 0;}
+    42.84% {background-position: -540px 0;}
+    57.12% {background-position: -720px 0;}
+    71.4% {background-position: -900px 0;}
+    85.68% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-o-keyframes ballRun{
+	0% {background-position: 0 0;}
+    15% {background-position: -180px 0;}
+    30% {background-position: -360px 0;}
+    45% {background-position: -540px 0;}
+    60% {background-position: -720px 0;}
+    75% {background-position: -900px 0;}
+    90% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}	
+}
+@keyframes ballRun{
+	0% {background-position: 0 0;}
+    14.28% {background-position: -180px 0;}
+    28.56% {background-position: -360px 0;}
+    42.84% {background-position: -540px 0;}
+    57.12% {background-position: -720px 0;}
+    71.4% {background-position: -900px 0;}
+    85.68% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}*/			
+
+/* 跑步动画名称 */
+@-webkit-keyframes person-xfast{/* 超快 */
+    0% {background-position: 0 0;}
+    14.3% {background-position: -180px 0;}
+    28.6% {background-position: -360px 0;}
+    42.9% {background-position: -540px 0;}
+    57.2% {background-position: -720px 0;}
+    71.5% {background-position: -900px 0;}
+    85.8% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-webkit-keyframes person-fast{/* 快 */
+    0% {background-position: 0 0;}
+    14.3% {background-position: -180px 0;}
+    28.6% {background-position: -360px 0;}
+    42.9% {background-position: -540px 0;}
+    57.2% {background-position: -720px 0;}
+    71.5% {background-position: -900px 0;}
+    85.8% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-webkit-keyframes person-normal{/* 正常 */
+    0% {background-position: 0 0;}
+    14.3% {background-position: -180px 0;}
+    28.6% {background-position: -360px 0;}
+    42.9% {background-position: -540px 0;}
+    57.2% {background-position: -720px 0;}
+    71.5% {background-position: -900px 0;}
+    85.8% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+@-webkit-keyframes person-slow{/* 慢 */
+    0% {background-position: 0 0;}
+    14.3% {background-position: -180px 0;}
+    28.6% {background-position: -360px 0;}
+    42.9% {background-position: -540px 0;}
+    57.2% {background-position: -720px 0;}
+    71.5% {background-position: -900px 0;}
+    85.8% {background-position: -1080px 0;}
+    100% {background-position: 0 0;}
+}
+/* 跑步动作频率控制 */
+.xfast .one{/* 超快 */
+-webkit-animation-name: person-xfast;
+-webkit-animation-duration: 500ms;
+}
+.fast .one{/* 快 */
+-webkit-animation-name: person-fast;
+-webkit-animation-duration: 650ms;
+}
+.normal .one{/* 正常 */
+-webkit-animation-name: person-normal;
+-webkit-animation-duration: 800ms;
+}
+.slow .one{/* 慢 */
+-webkit-animation-name: person-slow;
+-webkit-animation-duration: 950ms;
+}
+/* 暂停动画 */
+.paused .charector{
+-webkit-animation-play-state:paused;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

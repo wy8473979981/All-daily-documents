@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			<style> #header {
+				width: 1000px;
+				margin-left: auto;
+				margin-right: auto;
+				font-weight: bold;
+			}
+			
+			#tblGrid {
+				border-collapse: collapse;
+				width: 1000px;
+				border: 0;
+				cellpadding: 0;
+				cellspacing: 1;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			#tblGrid thead tr td {
+				color: #025aa4;
+				background-color: #def3fc;
+				height: 36px;
+				font-size: 14px;
+				font-weight: bold;
+				text-align: center;
+			}
+			
+			#tblGrid th,
+			#tblGrid td {
+				border: 1px solid #E1E1E1;
+				text-align: center;
+			}
+			
+			.hover {
+				background-color: #5dd354;
+				cursor: pointer;
+			}
+			
+			.sorted {
+				background-color: oldlace;
+			}
+			
+			.clickable {
+				text-decoration: underline;
+			}
+		</style>
+		</style>
+	</head>
+
+	<body>
+		<table id="tblGrid">
+			<thead>
+				<tr>
+					<td style="width: 10%;">
+						员工工号
+					</td>
+					<td style="width: 10%;">
+						员工姓名
+					</td>
+					<td style="width: 15%;">
+						职务名称
+					</td>
+					<td class="sort-numeric" style="width: 10%;">
+						得分
+					</td>
+					<td class="sort-alpha" style="width: 10%;">
+						绩效考核等级<br /> （直接主管）
+					</td>
+					<td style="width: 25%;">
+						事例说明
+					</td>
+					<td class="sort-alpha" style="width: 10%;">
+						绩效考核等级<br /> （上级主管）
+					</td>
+					<td style="width: 10%;">
+						绩效考核等级<br /> （部门主管）
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<!--#RowBegin#-->
+				<tr rowindex='1'>
+					<td height="28px">
+					</td>
+					<td>
+						c3场
+					</td>
+					<td>
+						客服支持
+					</td>
+					<td>
+					</td>
+					<td class="director_1">
+						优秀
+					</td>
+					<td>
+						李四 直接主管考评信息
+					</td>
+					<td>
+						待改进
+					</td>
+					<td>
+						<select id="model_RANK_0" name="Table:model:RANK:0">
+							<option value="">-请选择-</option>
+							<option value="优秀">优秀</option>
+							<option value="优良">优良</option>
+							<option value="良好">良好</option>
+							<option value="待改进" selected>待改进</option>
+							<option value="不胜任">不胜任</option>
+						</select>
+					</td>
+				</tr>
+				<tr rowindex='2'>
+					<td height="28px">
+					</td>
+					<td>
+						a1啊
+					</td>
+					<td>
+						客服支持
+					</td>
+					<td>
+					</td>
+					<td class="director_2">
+						优良
+					</td>
+					<td>
+						事例说明
+					</td>
+					<td>
+						优良
+					</td>
+					<td>
+						<select id="model_RANK_1" name="Table:model:RANK:1">
+							<option value="">-请选择-</option>
+							<option value="优秀">优秀</option>
+							<option value="优良" selected>优良</option>
+							<option value="良好">良好</option>
+							<option value="待改进">待改进</option>
+							<option value="不胜任">不胜任</option>
+						</select>
+					</td>
+				</tr>
+				<tr rowindex='3'>
+					<td height="28px">
+					</td>
+					<td>
+						b2吧
+					</td>
+					<td>
+						客服支持
+					</td>
+					<td>
+					</td>
+					<td class="director_3">
+						优秀
+					</td>
+					<td>
+						直接主管考评信息
+					</td>
+					<td>
+						优秀
+					</td>
+					<td>
+						<select id="model_RANK_2" name="Table:model:RANK:2">
+							<option value="">-请选择-</option>
+							<option value="优秀" selected>优秀</option>
+							<option value="优良">优良</option>
+							<option value="良好">良好</option>
+							<option value="待改进">待改进</option>
+							<option value="不胜任">不胜任</option>
+						</select>
+					</td>
+				</tr>
+				<!--#RowEnd#-->
+			</tbody>
+		</table>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#tblGrid').each(function() {
+				var $table = $(this); //将table存储为一个jquery对象
+
+				$('thead td', $table).each(function(column) {
+					var findSortKey;
+					if($(this).is('.sort-alpha')) { //按字母排序
+						findSortKey = function($cell) {
+							return $cell.find('sort-key').text().toUpperCase() + '' + $cell.text().toUpperCase();
+						};
+					} else if($(this).is('.sort-numeric')) { //按数字排序
+						findSortKey = function($cell) {
+							var key = parseFloat($cell.text().replace(/^[^\d.]*/, ''));
+							return isNaN(key) ? 0 : key;
+						};
+					}
+
+					if(findSortKey) {
+						$(this).addClass('clickable').hover(function() {
+							$(this).addClass('hover');
+						}, function() {
+							$(this).removeClass('hover');
+						}).click(function() {
+							//反向排序状态声明
+							var newDirection = 1;
+							if($(this).is('.sorted-asc')) {
+								newDirection = -1;
+							}
+							var rows = $table.find('tbody>tr').get(); //将数据行转换为数组
+							$.each(rows, function(index, row) {
+								row.sortKey = findSortKey($(row).children('td').eq(column));
+							});
+							rows.sort(function(a, b) {
+								if(a.sortKey < b.sortKey) return -newDirection;
+								if(a.sortKey > b.sortKey) return newDirection;
+								return 0;
+							});
+							$.each(rows, function(index, row) {
+								$table.children('tbody').append(row);
+								row.sortKey = null;
+							});
+
+							$table.find('thead td').removeClass('sorted-asc').removeClass('sorted-desc');
+							var $sortHead = $table.find('thead td').filter(':nth-child(' + (column + 1) + ')');
+							//实现反向排序
+							if(newDirection == 1) {
+								$sortHead.addClass('sorted-asc');
+							} else {
+								$sortHead.addClass('sorted-desc');
+							}
+
+							//移除已排序的列的样式,添加样式到当前列
+							$table.find('td').removeClass('sorted').filter(':nth-child(' + (column + 1) + ')').addClass('sorted');
+							$table.trigger('repaginate');
+						});
+					}
+				});
+			});
+		});
+	</script>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				position: relative;
+				width: 180px;
+				height: 180px;
+				border: 20px dashed #2196f3;
+				margin: 50px;
+				float: left;
+			}
+			
+			.style_one {
+				background: #9c27b0;
+			}
+			
+			.style_one::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: #fff;
+			}
+			
+			.style_two {
+				background: #fff;
+				background-clip: padding-box;/*属性决定了绘制区间*/
+			}
+			
+			.style_two::before {
+				content: "";
+				position: absolute;
+				top: -20px;
+				left: -20px;
+				bottom: -20px;
+				right: -20px;
+				background: #996699;
+				z-index: -1;
+			}
+			
+			.style_three {
+				border-radius: 50%;
+				background-image: radial-gradient(#fff 90px, transparent 90px);
+				background-repeat: no-repeat;
+			}
+			
+			.style_three::after {
+				content: "";
+				position: absolute;
+				top: -20px;
+				left: -20px;
+				right: -20px;
+				bottom: -20px;
+				background: deeppink;
+				z-index: -1;
+				border-radius: 50%;
+			}
+			
+			.style_shadow {
+				background: yellowgreen;
+				box-shadow: inset 180px 0 0 0 #fff;
+			}
+			
+			.style_outline {
+				border: 20px solid #2196f3;
+			}
+			
+			.style_outline::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				outline: 20px dashed #ffc107;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 中间白色底色是伪元素 -->
+		<div class='style_one'></div>
+
+		<!-- 中间白色底色是背景色 -->
+		<div class='style_two'></div>
+
+		<!-- 径向渐变 -->
+		<div class='style_three'></div>
+
+		<!-- 内阴影 -->
+		<div class='style_shadow'></div>
+
+		<!-- outline + 伪类 -->
+		<div class='style_outline'></div>
+
+	</body>
+
+</html>

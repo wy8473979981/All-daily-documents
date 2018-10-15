@@ -1,0 +1,17 @@
+整理代码格式 ： Shift + Alt + f
+
+
+VS代码支持快速同步编辑多个游标。您可以通过添加辅助光标（渲染更薄）ALT +点击
+
+按住Shift键和Alt键的同时拖动做列选择
+
+
+按Ctrl + Shift + K		 删除行     		editor.action.deleteLines
+
+Alt +向下				移动线下行		editor.action.moveLinesDownAction
+
+按住Shift + Alt +向下		复制线下行		editor.action.copyLinesDownAction
+
+SHIFT + ALT + A			切换块注释		editor.action.blockComment
+
+按Ctrl + /				切换行注释		editor.action.commentLine

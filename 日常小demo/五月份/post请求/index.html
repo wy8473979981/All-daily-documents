@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<form id="ajaxform" name="ajaxform" method="post" action="action.php">
+			<p>
+				email<input type="text" name="email" id="email" />     </p>
+			<p>
+				address<input type="text" name="address" id="address" />     </p>
+			<p id="msg"></p>
+			<p>
+				<input name="Submit" type="button" value="submit" onclick="return checkemail()" />
+			</p>
+		</form>
+	</body>
+	<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="post.php" type="text/javascript" charset="utf-8"></script>
+	<script language="javascript">
+		function checkemail() { 
+			if ($('#email').val() == "") {   
+				$('#msg').html("please enter the email!");   
+				$('#email').focus;   
+				return false; 
+			} 
+			if ($('#address').val() == "") {   
+				$('#msg').html("please enter the address!");   
+				$('#address').focus;   
+				return false; 
+			} 
+			ajax_post();
+		}
+		function ajax_post() { 
+			$.post("post.php", {
+				email: $('#email').val(),
+				address: $('#address').val()
+			},  function(data) {    //$('#msg').html("please enter the email!");
+				    //alert(data);
+				   
+				$('#msg').html(data); 
+			},  "text"); //这里返回的类型有：json,html,xml,text
+		}
+	</script>
+
+</html>

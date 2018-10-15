@@ -1,0 +1,163 @@
+1、宿主元素（:host）
+
+		使用 :host 伪类选择器应用到组件的宿主元素里。换言之，:host 的使用只对目标元素有效。
+		
+		:host {
+		  display: block;
+		  border: 1px solid black;
+		}
+		这是唯一一种对目标宿主元素设置样式的方式，组件内的其他选择器是无法应用它，因为它不是
+		组件自己模板的一部分。并且是在父组件的模板中有效。当然除此之外，我们还可以针对个别的
+		宿主元素设置样式，比如以下只针对含有 .active 有效：
+		
+		:host(.active) {
+		  border-width: 3px;
+		}
+		
+2、宿主祖先元素（:host-context）
+
+		有时需要通过外部条件来改变宿主元素的样式，例如，可能需要根据 <body> 元素设置的CSS主题
+		类，然后再其基础做对我们组件进行修改。
+		
+		用法和 :host() 类似，使用 :host-context() 伪类，括号里面可以指定根选择器。比如下面示
+		例是针对带 theme-light 类下所有 h2 元素有效。
+		
+		:host-context(.theme-light) h2 {
+		  background-color: #eef;
+		}
+		
+3、宿主元素样式的穿透（/deep/）
+
+		如果你了解影子DOM（Shadow DOM）的话，那么其中影子边界是个非常重要的概念。前面我们已经了
+		解一点宿主元素与组件样式的作用域不同点。然而有时候我们需要对组件样式和其子组件样式同时设
+		置样式时，这就需要 /deep/ 来穿透影子边界了。
+		
+		比如下面示例是针对所有 <h3> 元素有效，包括组件与子组件下所有 <h3> 元素都有效：
+		
+		:host /deep/ h3 {
+		  font-style: italic;
+		}
+		/deep/ 选择器还有另外一个别名 >>>。
+		
+三、组件样式加载类型
+
+		有三种方式可以对组件添加样式：
+		
+		HTML模板里
+		通过元数据设置 style 或 styleUrls 属性
+		使用import加载CSS
+	1、元数据
+
+		上面示例都是通过元数据的 style 属性里定义样式。
+		
+		@Component({
+		  selector: 'hero-app',
+		  template: `
+		    <h1>Tour of Heroes</h1>
+		    <hero-app-main [hero]=hero></hero-app-main>`,
+		  styles: ['h1 { font-weight: normal; }'],
+		  directives: [HeroAppMainComponent]
+		})
+		styles 属性是一个数组类型，每个项最终都会独立生成一个 <style></style> 来包裹其样式内容，通
+		常我们只需要一个项即可。
+
+	2、模板内定义style标签
+
+		我们可以在模板里嵌入一个 <style> 标签，这和传统没有什么区别：
+		
+		@Component({
+		  selector: 'hero-controls',
+		  template: `
+		    <style>
+		      button {
+		        background-color: white;
+		        border: 1px solid #777;
+		      }
+		    </style>
+		    <h3>Controls</h3>
+		    <button (click)="activate()">Activate</button>
+		  `
+		})
+	3、元数据设置外部样式
+
+		设置组件元数据的 styleUrls 属性，它是指定一个外部样式的URL地址。
+		
+		@Component({
+		  selector: 'hero-details',
+		  template: `
+		    <h2>{{hero.name}}</h2>
+		    <hero-team [hero]=hero></hero-team>
+		    <ng-content></ng-content>
+		  `,
+		  styleUrls: ['app/hero-details.component.css'],
+		  directives: [HeroTeamComponent]
+		})
+		URL地址必须是相对于应用程序根目录开始。
+
+	4、模板内定义link标签
+
+		我们可以在模板里嵌入一个 <link> 标签，与 styleUrls 效果相同。
+		
+		@Component({
+		  selector: 'hero-team',
+		  template: `
+		    <link rel="stylesheet" href="app/hero-team.component.css">
+		    <h3>Team</h3>
+		    <ul>
+		      <li *ngFor="#member of hero.team">
+		        {{member}}
+		      </li>
+		    </ul>`
+		})
+	5、@imports方法
+
+		我们也可以标准CSS的 @import。
+		
+		@import 'hero-details-box.css';
+		与前面两者URL导入方式不同，其相对路径是组件所在的位置。
+
+	四、组件样式封装类型：原生、仿真、不封装
+
+		我们可以通过组件元数据来控制对样式的封装类型，Angular2有三种样式封装模式：
+		
+		原生 视图封装是使用浏览器原生的影子DOM（Shadow DOM），这是Web组件新提出一种方法，目前浏览器的
+		支持情况还不是很好。
+		仿真 视图封装是采用影子DOM（Shadow DOM）的写法，但Angular2最终会生成传统的CSS选择器来解决浏览
+		器不支持影子DOM（Shadow DOM）的情况。
+		不封装 意思就是说Angular不会对视图进行任何封装。
+		可以在组件元数据里 encapsulation 属性，重新定义我们的视图封装类型。比如设置为原生视图封装：
+		
+		import { Component, ViewEncapsulation } from 'angular2/core';
+		
+		@Component({
+		    encapsulation: ViewEncapsulation.Native
+		})
+	五、仿真视图封装生成的CSS
+
+		当使用Angular2默认仿真视图封装时，Angular2会预处理所有组件样式。在影子DOM里有个影子边界的概念，它
+		是保证元素样式不受其它样式影响，这也是Web组件里最核心的功能之一。所以，在仿真视图封装时就需要对这些
+		样式进行重命名。
+		
+		当我们透过浏览器的元素检查看到的都是这样的代码：
+		
+		<hero-details _nghost-pmm-5>
+		  <h2 _ngcontent-pmm-5>Mister Fantastic</h2>
+		  <hero-team _ngcontent-pmm-5 _nghost-pmm-6>
+		    <h3 _ngcontent-pmm-6>Team</h3>
+		  </hero-team>
+		</hero-detail>
+		生成的代码有两种属性风格：
+		
+		一个影子DOM的宿主元素会生成一个 _nghost 属性。
+		一个影子DOM的影子元素会生成一个 _ngcontent 属性。
+		这些属性的确切值并不重要，是由Angular2自动生成，并确保唯一性。最终生成把结果放在一个新创建 <style> 标签里。
+		
+		[_nghost-pmm-5] {
+		  display: block;
+		  border: 1px solid black;
+		}
+		
+		h3[_ngcontent-pmm-6] {
+		  background-color: white;
+		  border: 1px solid #777;
+		}

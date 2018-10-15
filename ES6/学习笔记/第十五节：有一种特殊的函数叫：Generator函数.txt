@@ -1,0 +1,83 @@
+ 我们来看看这个函数张什么模样：
+
+
+    //声明一个Hello的Generator函数
+    function* Hello(name) {
+        yield `hello ${name}`;
+        yield `how are you`;
+        yield `bye`;
+    }
+    
+
+        上面这个就是Generator函数，乍一看，是不是跟普通的函数没什么两样？确实很像，但是我们要知道它有两个重要的区别：
+
+普通函数用function来声明，Generator函数用function*声明。
+Generator函数内部有新的关键字：yield，普通函数没有。
+
+了解了Generator函数的声明方式，我们又多了两个疑问：
+
+Generator函数运行起来会发生什么？
+关键字yield语句的作用是什么？
+
+
+
+关键字yield*
+        
+        在一个Generator函数里面，如果我们想调用另一个Generator函数，就需要用到的关键字是：yield*。
+
+        我们来看看怎么玩，代码有点长，但是很好理解：
+
+
+    //声明Generator函数：gen1   
+    function* gen1() {
+        yield "gen1 start";
+        yield "gen1 end";
+    }
+
+    //声明Generator函数：gen2
+    function* gen2() {
+        yield "gen2 start";
+        yield "gen2 end";
+    }
+
+    //声明Generator函数：start
+    function* start() {
+        yield "start";
+        yield* gen1();
+        yield* gen2();
+        yield "end";
+    }
+
+    //调用start函数
+    var ite = start();
+    //创建一个生成器
+    
+    ite.next();
+    //{value: "start", done: false}
+
+    ite.next();
+    //{value: "gen1 start", done: false}
+
+    ite.next();
+    //{value: "gen1 end", done: false}
+
+    ite.next();
+    //{value: "gen2 start", done: false}
+
+    ite.next();
+    //{value: "gen2 end", done: false}
+
+    ite.next();
+    //{value: "end", done: false}
+    
+
+        我们主要看start( )这个Generator函数，其中有两句代码：
+
+
+    yield* gen1();
+    yield* gen2();
+
+
+        这里使用了关键字yield*来实现调用另外两个Generator函数。从后面的多个next( )方法得到的结果看，我们可以知道：
+
+        如果一个Generator函数A执行过程中，进入（调用）了另一个Generator函数B，那么会一直等到Generator函数B全部执行完毕后，才会返回Generator函数A继续执行。

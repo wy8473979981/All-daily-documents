@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>iview example</title>
+		<link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+		<script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+		<script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+		<style scoped>
+			.time {
+				font-size: 14px;
+				font-weight: bold;
+			}
+			
+			.content {
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<i-button @click="show">Click me!</i-button>
+			<Modal v-model="visible" title="Welcome">Welcome to iView</Modal>
+			<div id="components-demo">
+				<button-counter></button-counter>
+			</div>
+		</div>
+
+	</body>
+
+	<script>
+		// 定义一个名为 button-counter 的新组件
+		Vue.component('button-counter', {
+			template: `<Timeline>
+						<TimelineItem>
+							<p class="time">1976年</p>
+							<p class="content">Apple I 问世</p>
+						</TimelineItem>
+						<TimelineItem>
+							<p class="time">1984年</p>
+							<p class="content">发布 Macintosh</p>
+						</TimelineItem>
+						<TimelineItem>
+							<p class="time">2007年</p>
+							<p class="content">发布 iPhone</p>
+						</TimelineItem>
+						<TimelineItem>
+							<p class="time">2010年</p>
+							<p class="content">发布 iPad</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+						</TimelineItem>
+						<TimelineItem>
+							<p class="time">2011年10月5日</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+							<p class="content">史蒂夫·乔布斯去世</p>
+						</TimelineItem>
+					</Timeline>`
+		})
+		new Vue({
+			el: '#app',
+			data: {
+				visible: false
+			},
+			methods: {
+				show: function() {
+					this.visible = true;
+				}
+			}
+		})
+	</script>
+
+</html>

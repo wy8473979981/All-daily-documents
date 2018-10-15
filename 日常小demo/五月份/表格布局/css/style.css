@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*------全局属性------------------*/
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{margin:0;padding:0;}
+fieldset,img{border:none;}
+img{display: block;}
+address,caption,cite,code,dfn,th,var{font-style:normal;font-weight:normal;}
+ul,ol{list-style:none;}
+body{color:#333;padding:5px 0;font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;background:#fff;/* overflow-y:scroll;*/ overflow-x:hidden;}
+a{color:#666;text-decoration:none;}
+a:visited{color:#666;}
+a:hover,a:active,a:focus{color:#ff8400;text-decoration:underline;}
+
+
+/*--------------------------细线表格-----------------------*/
+.tabl{width:300px;height:300px;border-collapse:separate;margin:15px auto;}
+.tabl td{border:1px solid #000;}
+
+
+
+/*--------------------------粗线表格-----------------------*/
+.tab2{border-collapse:collapse;margin:15px auto;border:5px solid #000;}
+.tab2 td{width:100px;height:100px;border:1px solid #000;}
+
+
+
+
+/*--------------------------双线表格-----------------------*/
+.tab3{border-collapse:collapse;margin:15px auto;border:10px double #000;}
+.tab3 td{width:100px;height:100px;border:1px solid #000;}
+
+
+
+/*--------------------------宫子表格-----------------------*/
+.tab4{margin:15px auto;border-collapse:separate;border-spacing:20px;}
+.tab4 td{width:100px;height:100px;border:1px solid #000;}
+
+
+
+/*--------------------------单线表格-----------------------*/
+.tab5{border-collapse:collapse;margin:15px auto;}
+.tab5 td{width:100px;height:100px;border-bottom:1px solid #000;}
+
+ 
+
+/*-------------------------表格加色-----------------------*/
+.tab6{border-collapse:separate;margin:15px auto;border:3px solid #F00;border-spacing:20px;}
+.tab6 td{width:100px;height:100px;border:1px solid #000;background:#F00;}
+
+ 
+
+
+/*-------------------------表格隐藏-----------------------*/
+.tab7{border-collapse:separate;margin:15px auto;border:3px solid #F00;border-spacing:20px;}
+.tab7 td{width:100px;height:100px;border:1px solid #000;empty-cells:hide;}
+
+
+
+
+
+/*-------------------------表格固定宽高-----------------------*/
+.tab8{width:300px;height:300px;border-collapse:separate;margin:15px auto;border:3px solid #F00;border-spacing:20px;table-layout:fixed;}
+.tab8 td{border:1px solid #000;empty-cells:hide;}
+
+
+/*-------------------------表格标题-----------------------*/
+.tab9{border-collapse:separate;margin:15px auto;border:3px solid #F00;border-spacing:20px;table-layout:fixed;}
+.tab9 td{width:300px;height:100px;border:1px solid #000;empty-cells:hide;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+
+
+/*-------------------------表格列标题-----------------------*/
+.tab10{border-collapse:collapse;margin:15px auto;border:3px solid #F00;border-spacing:20px;table-layout:fixed;}
+.tab10 td{width:300px;height:100px;border:1px solid #000;empty-cells:hide;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+.tab10 th{width:300px;height:100px;background:blue;font-size:19px;}
+
+
+/*-------------------------合并列-----------------------*/
+.tab11{width:300px;height:300px;border-collapse:collapse;margin:15px auto;border:3px solid #F00;}
+.tab11 td{border:1px solid #000;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+
+/*-------------------------合并行-----------------------*/
+.tab12{width:300px;height:300px;border-collapse:collapse;margin:15px auto;border:3px solid #F00;}
+.tab12 td{width:100px;height:100px;border:1px solid #000;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+
+
+
+/*-------------------------通讯录-----------------------*/
+.tab13{border-collapse:collapse;margin:15px auto;border:3px solid #F00;table-layout:fixed;}
+.tab13 td{width:300px;height:100px;border:1px solid #000;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+
+
+/*-------------------------作业-----------------------*/
+.tab14{width:766px;height:301px;border:1px solid #8C6790;border-bottom:2px solid #8C6790;margin:15px auto;border-collapse:collapse;}
+.tbody td{width:126px;height:21px;}
+.thead{width:766px;height:54px;background:#CC0098;}
+.biaotou{font-size:25px;border:0;}
+
+
+.tbody{width:766px;height:247px;}
+.tbody1{background:#C966D0;}
+.tr1{background:#FECCFF;}
+
+
+
+
+
+
+/*-------------------------数据列分组-----------------------*/
+.tab15{border-collapse:collapse;margin:15px auto;border:3px solid #F00;table-layout:fixed;}
+.tab15 td{width:300px;height:100px;border:1px solid #000;}
+caption{border:8px solid #ccc;font-size:19px;}
+
+
+/*-------------------------透明图片-----------------------*/
+
+.cox{width:1200px;height:1000px;background:#CF9;}
+.cox1{width:300px;height:300px;float:left;background:url(../images/fwpng32.png) no-repeat;}
+.cox2{width:300px;height:300px;float:left;background:url(../images/png24ps_b.png) no-repeat;}
+.cox3{width:300px;height:300px;float:left;background:url(../images/fwpng24.png) no-repeat;}
+.cox4{width:300px;height:300px;float:left;background:url(../images/psgif.gif) no-repeat;}
+.cox5{width:300px;height:300px;float:left;background:url(../images/psjpg.jpg) no-repeat;}
+.cox6{width:300px;height:300px;float:left;background:url(../images/pspng24.png) no-repeat;}
+.cox7{width:300px;height:300px;float:left;background:url(../images/pspng8.png) no-repeat;}

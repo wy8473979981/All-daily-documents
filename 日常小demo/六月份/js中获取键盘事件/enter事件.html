@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>火狐和IE都支持的enter事件</title>
+		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			document.onkeydown = function(e) {
+				var theEvent = window.event || e;
+				var code = theEvent.keyCode || theEvent.which;
+				if (code == 13) {
+					$("#but1").click();
+				}
+			}
+			$(document).ready(function() {
+				$("#but1").click(function() {
+					alert("我是enter事件," + "text值:" + $("#text1").val());
+				})
+				$("#but2").click(function() {
+					alert("我是Jquery事件" + "text值:" + $("#text1").val());
+				})
+			});
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="text1" />
+		<input type="button" id="but1" value="确定(我是enter事件)" />
+		<input type="submit" id="but2" value="确定(我是Jquery事件)" />
+	</body>
+
+</html>

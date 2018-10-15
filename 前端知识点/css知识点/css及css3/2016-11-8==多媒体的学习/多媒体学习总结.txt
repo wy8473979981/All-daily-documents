@@ -1,0 +1,78 @@
+1、video的使用
+	1）<video src="url">您的浏览器不支持video标签，请使用google浏览器浏览</video>
+	2）加入要添加预加载图片，添加属性poster=“图片URL”
+		<video poster="图片的url">
+			<source src="视频URL"></source>
+			您的浏览器不支持video标签，请使用google浏览器浏览
+		</video>
+		注意：视频的格式不同，支持的浏览不同
+		常见的视频格式：ogg(ogv)/MPEG4(mp4)/WEBM(webm)
+		加入非要在不支持的浏览器上看效果，那么你得准备swf格式的视频
+		<video width="800" height="">
+			<source src="myvideo.mp4" type="video/mp4"></source>
+			<source src="myvideo.ogv" type="video/ogg"></source>
+			<source src="myvideo.webm" type="video/webm"></source>
+			<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+				<param name="movie" value="myvideo.swf" />
+				<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+			</object>
+			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+		</video>
+2、常见固有属性
+	autoPlay（加载完成自动播放）
+	controls（使用的时浏览器默认的控件）
+	loop(循环播放)
+	width（video的宽度）
+	height（video的高度）
+	src(视频的地址)
+	video.currentTime（当前视频的播放事件）
+	video.duration（视频播放的总时长）
+3、常见的事件（方法）
+	video.play()---播放视频
+	video.pause()---暂停视频播放
+	
+4、全屏设置：(注意设置全屏的时候，element的选取，不要加到video上面，否则全屏时会出现默认的控件，也有可能导致视频全屏时不可以看到画面，这里注意element一般时所有控制器与video标签最近的共同的父元素)
+	全屏：element.webkitRequestFullScreen();
+			element.mozRequestFullScreen();
+			element.requestFullScreen();
+	取消全屏：document.webkitCancelFullScreen();
+				document.mozCancelFullScreen();
+				document.cancelFullScreen();
+5、设置音量
+		video.volume  取值范围为0-1
+		如果使用input[type='range']时，可以设置range的min=0，max=10,在onchange事件时取得range的值除以10表示音量大小
+		eg:video.volume = $("input[type='range']").val()/10;
+		注：如果需要设置静音模式，直接将音量设置为0
+			video.volume = 0;
+6、播放进度
+	video.currentTime的改变是通过video的timeupdate事件而改变，所以在设置的时候，我们需要在值改变的时候，添加事件video.addEventListener("timeupdate",playTime,true);
+	eg1:
+	$("#playRange").on("change",function(){
+//				alert($(this).val())
+vdo.currentTime = $(this).val();
+					vdo.addEventListener("timeupdate",playTime,true);
+			})
+	eg2:
+	$("#playRange").on("mousedown",function(){
+				vdo.removeEventListener("timeupdate",playTime,true);
+				$(this).on("mouseup",function(){
+//					alert($(this).val())
+					vdo.currentTime = $(this).val();
+					vdo.addEventListener("timeupdate",playTime,true);
+				})
+			})
+			
+	playTime方法用来设置显示播放的事件，并且当前播放的进度和range匹配
+	function playTime(){
+				var nowTime = parseInt(vdo.currentTime);
+				$("#playRange").val(nowTime);
+				$(".playTime").html(nowTime+"/"+allTime);
+			}
+			
+7、弹性盒总结
+	第一步：写基本布局
+	第二步：给需要添加效果的元素的父元素设置
+		display：-webkit-box;display：-moz-box;
+	第三步：给需要添加样式的元素设置box-flex属性
+		注：这个属性的值可以随意设置，但是不可以带小数，它会自动将所有元素所占的比例相加，就是父元素分为了多少份，然后他们自己占了几份。
+	

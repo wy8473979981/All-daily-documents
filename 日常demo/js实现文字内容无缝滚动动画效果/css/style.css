@@ -1,0 +1,17 @@
+@charset "utf-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+a{color:#333;text-decoration:none;}
+a:hover{color:#ef9b11;text-decoration:underline;}
+
+
+/* scrolltext */
+.scrolltext{padding:57px 15px 0 14px;background:url(../images/h1-bg02.gif) no-repeat;width:189px;height:389px;overflow:hidden;margin:20px auto 0 auto;}
+.scrolltext ol li{padding-left:7px;width:182px;height:25px;font-size:13px;line-height:25px;border-bottom:2px solid #fff;}
+.scrolltext ol li a{color:#6f746e;display:block;width:172px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;}
+.scrolltext ol li a:hover{color:#ef9b11;text-decoration:none;}
+.scrolltext .part{width:100%;padding-top:20px;}
+.scrolltext .part span{margin-left:26px;cursor:pointer;}
+#breakNews{padding:0 0 0px 2px;}
+#breakNews .list6{height:330px;overflow:hidden;width:100%;}

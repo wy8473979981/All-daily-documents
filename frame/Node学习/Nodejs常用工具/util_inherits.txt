@@ -1,0 +1,1 @@
+util.inherits(constructor, superConstructor)是一个实现对象间原型继承 的函数

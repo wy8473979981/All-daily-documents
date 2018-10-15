@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				text-transform: uppercase;
+				font-size: 30px;
+				color: red;
+			}
+			
+			.oul1 li:only-child {
+				font-size: 36px;
+			}
+			
+			input[type="text"]:enabled {
+				background-color: yellow;
+			}
+			
+			input[type="text"]:disabled {
+				background-color: purple;
+			}
+			
+			input[type="checkbox"]:default {
+				outline: 2px solid blue;
+			}
+			
+			li::selection {
+				color: #f66
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			sadfasfasdf
+		</div>
+		<ul class="oul1">
+			<li>1111111</li>
+			<li>2222222</li>
+			<li>3333333</li>
+			<li>4444444</li>
+			<li>555555</li>
+			<li>666666</li>
+			<li>777777</li>
+			<li>8888888</li>
+			<li>9999999</li>
+			<li>0000000</li>
+		</ul>
+
+		<ul class="oul1">
+			<li>1111111</li>
+		</ul>
+		<form>
+			<input type="radio" id="radio1" name="radio" onchange="radio_onchange();">可用</radio>
+			<input type="radio" id="radio2" name="radio" onchange="radio_onchange();">不可用</radio><br/>
+			<input type=text id="text1" disabled />
+		</form>
+		<form>
+			兴趣:<input type="checkbox">阅读</input>
+			<input type="checkbox">旅游</input>
+			<input type="checkbox">看电影</input>
+			<input type="checkbox">上网</input>
+		</form>
+		<ul>
+			<li>11111</li>
+			<li>2222</li>
+			<li>3333</li>
+			<li>4444</li>
+			<li>5555</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		function radio_onchange() {
+			var radio = document.getElementById("radio1");
+			var text = document.getElementById("text1");
+			if(radio.checked) {
+				text.disabled = "";
+			} else {
+				text.value = "";
+				text.disabled = "disabled";
+			}
+		}
+	</script>
+
+</html>

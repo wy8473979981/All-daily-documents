@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul li:nth-child(n){
+				width: 200px;
+				padding:10px;
+				background-color:red;
+			}
+			ul li:nth-child(2n){
+				width: 200px;
+				padding:10px;
+				background-color:green;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="_ul">
+			<li>0</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+		</ul>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#_ul li").click(function(){
+			var currentIndex = $(this).index();
+			console.log($(this).index())
+			for(var i=0; i<=currentIndex; i++){
+				$("#_ul li").eq(i).css({"backgroundColor":"pink"});
+			}
+		})
+	</script>
+</html>

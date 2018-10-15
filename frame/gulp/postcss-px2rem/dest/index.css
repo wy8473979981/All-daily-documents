@@ -1,0 +1,31 @@
+div {
+  width: 2rem;
+  border: 1px solid #ddd;
+}
+
+[data-dpr="1"] div {
+  height: 32px;
+  font-size: 14px;
+}
+
+[data-dpr="2"] div {
+  height: 64px;
+  font-size: 28px;
+}
+
+[data-dpr="3"] div {
+  height: 96px;
+  font-size: 42px;
+}
+
+.index1 {
+  background-color: red;
+}
+
+.index2 {
+  background-color: black;
+}
+
+.index3 {
+  background-color: blue;
+}

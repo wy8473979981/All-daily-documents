@@ -1,0 +1,685 @@
+Ajax技术核心是XMLHttpRequest对象(简称XHR)，这是由微软首先引入的一个特性，其他浏览器提供商后来都提供了相同的实现。在XHR出现之前，Ajax式的通信必须借助一些hack手段来实现，大多数是使用隐藏的框架或内嵌框架。
+XHR的出现，提供了向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器获取更多的信息，这就意味着，用户只要触发某一事件，在不刷新网页的情况下，更新服务器最新的数据。
+虽然Ajax中的x代表的是XML，但Ajax通信和数据格式无关，也就是说这种技术不一定使用XML。
+
+IE7+、Firefox、Opera、Chrome和Safari都支持原生的XHR对象，在这些浏览器中创建XHR对象可以直接实例化XMLHttpRequest即可。
+如果是IE6及以下，那么我们必须还需要使用ActiveX对象通过MSXML库来实现。在低版本IE浏览器可能会遇到三种不同版本的XHR对象，即MSXML2.XMLHttp、MSXML2.XMLHttp.3.0、MSXML2.XMLHttp.6.0。我们可以编写一个函数
+1、创建XHR对象
+	如果不考虑兼容性
+	var xhr = new XMLHttpRequest();
+	如果需要考虑兼容性：
+	写一个方法:
+	function createXHR(){
+		if(typeof XMLHttpRequest != "undefined"){
+			return new XMLHttpRequest();
+		}else if(typeof ActiveXObject != "undefined"){
+			var version = [
+				"MSXML2.XMLHttp.6.0",
+				"MSXML2.XMLHttp.2.0",
+				"MSXML2.XMLHttp"
+			];
+			for(var i = 0;i<3;i++){
+				/*return new ActiveXObject(version[i]);*/
+				//使用try{}catch{}防止在创建对象时出错
+				try{
+					return new ActiveXObject(version[i]);
+				}catch(e){
+					//TODO handle the exception
+				}
+			}
+		}else{
+			//如果都不支持，则抛出异常
+			throw new Error("您老的浏览器实在是不行了")
+			//alert("您老的浏览器实在是不行了");
+		}
+	}
+2、调用open方法：准备发送请求（在使用xhr对象时，必须调用open方法）它接受三个参数：要发送的请求类型(get、post)、请求的URL和表示是否异步。open(method,url,async)
+	注：必须对get与post的区别
+	//准备发送请求，以get方式请求，同步（flase表示同步，true表示异步）
+	xhr.open("get","test.php",false);
+	test.php:
+	<?php
+		echo Date("Y-m-d H:i:s");
+	?>
+3、发送请求：get不需要数据提交，则填写为null；
+	//如果没有向服务器发送，则F12的network无发送提示，如果有，则有提示
+	
+4、得到反馈信息：当请求发送到服务器端，收到响应后，响应的数据会自动填充XHR对象的属性。那么一共有四个属性
+	
+	属性名			说明
+	responseText		作为响应主体被返回的文本
+	responseXML		如果响应主体内容类型是"text/xml"或"application/xml"，则返回包含响应数据的XML DOM文档
+	status			响应的HTTP状态
+	statusText		HTTP状态的说明;不可控
+	
+	
+	
+5、打印服务器端返回的数据：
+		xhr.responseText();
+	？每次是否在点击刷新才可以实现
+6、添加点击事件
+//通过点击事件不断的向服务器发送请求，服务器会实时返回最新数据，这就是ajax的功能
+//IE浏览器第一次会向服务器端发送请求，获取最新数据，而第二次他就默认获取的缓存数据，导致数据不是最新的
+//解决方案：加随机数"test.php?random="+Math.random()
+		document.addEventListener("click",function(){
+			var msg = document.getElementById("msg");
+			var xhr = createXHR();
+			xhr.open("GET","test.php?random="+Math.random(),false);
+			xhr.send(null);
+				msg.innerHTML = xhr.responseText;
+		})
+		
+7、接受响应之后，第一步检查status属性，以确定响应已经成功返回。一般而已HTTP状态代码为200作为成功的标志。除了成功的状态代码，还有一些别的：
+	
+	HTTP状态码		状态字符串				说明
+	200			OK					服务器成功返回了页面
+	400			Bad Request				语法错误导致服务器不识别
+	401			Unauthorized				请求需要用户认证
+	404			Not found				指定的URL在服务器上找不到
+	500			Internal Server Error			服务器遇到意外错误，无法完成请求
+	503			ServiceUnavailable			由于服务器过载或维护导致无法完成请求
+	
+	eg:
+		alert(xhr.responseText);
+		alert(xhr.status);
+		alert(xhr.statusText);
+		if(xhr.status == 200){
+			msg.innerHTML = xhr.responseText;
+		}else{
+			alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+		}
+	
+	我们判断HTTP状态值即可，不建议使用HTTP状态说明，因为在跨浏览器的时候，可能会不太一致。
+		
+	疑问：和非ajax的获取时间的不同之处在哪？
+	解决思路:
+	1)创建一个test2.php：
+	<script type="text/javascript">
+		document.addEventListener("click",function(){
+			alert("<?php echo Date('Y-m-d H:i:s')?>");
+		},false);
+	</script>
+	//注意到了吗？咱们每次必须点击刷新才可以
+
+8、使用异步方式：
+	同步调用固然简单，但使用异步调用才是我们真正常用的手段。使用异步调用的时候，
+	需要触发readystatechange事件，然后检测readyState（HTTP就绪状态）属性即可。这个属性有五个值：
+	
+	值	状态	说明
+	0	未初始化	尚未调用open()方法
+	1	启动	已经调用open()方法，但尚未调用send()方法
+	2	发送	已经调用send()方法，但尚未接受响应
+	3	接受	已经接受到部分响应数据
+	4	完成	已经接受到全部响应数据，而且可以使用
+	
+	eg：
+	document.addEventListener("click",function(){
+	var msg = document.getElementById("msg");
+	var xhr = createXHR();
+	xhr.onreadystatechange = function(){   
+		//alert(xhr.readyState)
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				msg.innerHTML = xhr.responseText;
+			}else{
+				alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+			}
+		}
+	};
+	xhr.open("GET","test.php?random="+Math.random(),true);
+	xhr.send(null);
+	
+	//使用abort()方法可以取消异步请求，放在send()方法之后会报错。放在responseText之前会得到一个空值。
+
+
+9、get与post
+	在提供服务器请求的过程中，有两种方式，分别是：GET和POST。在Ajax使用的过程中，GET的使用频率要比POST高。
+	//在普通web程序上，get一般是url提交请求,比如demo.php?name=wxx&sex=男
+	//post一般是web表单提交<form method = "post"><input type="text" name="name" value="wxx"/><input type="text" name="sex" value="男"/></form>
+	//在ajax中的区别不大，只是写法问题
+	在了解这两种请求方式前，我们先了解一下HTTP头部信息，包含服务器返回的响应头信息和客户端发送出去的请求头信息。	
+	响应头信息：服务器返回的信息，客户端可以获取，但是不可以设置
+	请求头信息：客户端发送的信息，可以设置但是不可以获取
+	我们只可以获取服务器返回回来响应头信息，无法获取向服务器提交的请求头信息，
+	自然自定义的请求头，在JavaScript端是无法获取到的
+	
+	//使用getAllResponseHeaders()获取整个响应头信息
+	alert(xhr.getAllResponseHeaders());
+	//Date: Mon, 21 Mar 2016 13:24:56 GMT Server: Apache/1.3.35 (Win32) PHP/5.2.12 Connection: Keep-Alive X-Powered-By: PHP/5.2.12 Transfer-Encoding: 	chunked Keep-Alive: timeout=15, max=94 Content-Type: text/html
+	//使用getResponseHeader()获取单个响应头信息
+	alert(xhr.getResponseHeader('Content-Type'));
+	
+	
+	//使用setRequestHeader()设置单个请求头信息
+	xhr.setRequestHeader("myheader","wxx1111");		
+	//放在open方法之后，send方法之前,一般没有用，在post提交请求时有用
+	
+9.1 get请求：
+	可以再php文件中通过print_r($_GET)来获取提交到服务器端的数据
+	<?php
+		print_r($_GET);
+	?>
+	//Array ( [random] => 0.0688955879304558 [name] => wxx )
+	<?php
+	if($_GET["name"]=="wxx"){
+		echo "吴勋勋";
+	}
+	?>
+	document.addEventListener("click",function(){
+		var msg = document.getElementById("msg");
+		var xhr = createXHR();
+		xhr.onreadystatechange = function(){
+			//alert(xhr.readyState)
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					msg.innerHTML = xhr.responseText;
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open("GET","test.php?random="+Math.random()+"&name=wxx",true);
+		xhr.send(null);
+	})
+	//使用该方式会有中文乱码问题（如果设置为BG2312）
+	//解决办法：
+	//1、ajax返回的数据其实是utf-8编码格式的
+	//特殊字符的问题
+	//解决办法
+	//需要通过encodeURIComponent来编码解决
+	var url = "test.p hp?random="+Math.random();
+		url = params(url,"name","wxx");
+		url = params(url,"sex","男");
+	xhr.open("GET",url,true);
+	//test.php?random=0.9803138924762607&name=wxx&sex=男
+		function params(url,name,value){
+			//判断url中是否有？，如果没有就加？，如果有就加&
+			url+=url.indexOf("?")==-1?"?":"&";
+			url+=name+"="+value;
+			return url;
+		}
+	//如果在name中wxx改为了w&xx，则显示为
+	test.php?random=0.6418986094649881&name=wx&x&sex=男
+	//所以需要在参数位置加encodeURIComponent
+	function params(url,name,value){
+			//判断url中是否有？，如果没有就加？，如果有就加&
+			url+=url.indexOf("?")==-1?"?":"&";
+			url+=encodeURIComponent(name)+"="+encodeURIComponent(value);
+			return url;
+		}
+9.2 post请求
+	POST请求可以包含非常多的数据，我们在使用表单提交的时候，很多就是使用的POST传输方式。
+	//第一步，发送方式改为post
+	xhr.open('post', 'demo.php', true);
+	//第二步，将需要的参数放入send方法中
+	//模拟表单提交
+	而发送POST请求的数据，不会跟在URL的尾巴上，而是通过send()方法向服务器提交数据。
+	一般来说，向服务器发送POST请求由于解析机制的原因，需要进行特别的处理。因为POST请求和Web表单提交是不同的，需要使用XHR来模仿表单提交。
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	
+	document.addEventListener("click",function(){
+		var msg = document.getElementById("msg");
+		var xhr = createXHR();
+		var url = "test.php?random="+Math.random();
+		xhr.onreadystatechange = function(){
+			//alert(xhr.readyState)
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					msg.innerHTML = xhr.responseText;
+				//	alert(xhr.responseText)
+				}else{
+				//	alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open("POST",url,true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send("name=wxx&sex='男'");
+			
+	});
+	
+	总结：从性能上来讲POST请求比GET请求消耗更多一些，用相同数据比较，GET最多比POST快两倍
+9.3 json回调
+		[
+ {
+	 "title":"A",
+	 "age":"100"
+ },
+ {
+	 "title":"B",
+	 "age":"101"
+ },
+ {
+	 "title":"C",
+	 "age":"102"
+ },
+ {
+	 "title":"D",
+	 "age":"103"
+ }
+ ]
+ 
+ 	document.addEventListener("click",function(){
+		var msg = document.getElementById("msg");
+		var xhr = createXHR();
+		var url = "demo.json?random="+Math.random();
+		xhr.onreadystatechange = function(){
+			//alert(xhr.readyState)
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+					//msg.innerHTML = xhr.responseText;
+					var box = JSON.parse(xhr.responseText);
+					msg.innerHTML = box;
+				//	alert(xhr.responseText)
+				}else{
+				//	alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open("GET",url,true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(null);
+			
+	});
+		
+10、封装ajax
+	因为Ajax使用起来比较麻烦，主要就是参数问题，比如到底使用GET还是POST；到底是使用同步还是异步等等，我们需要封装一个Ajax函数，来方便我们调用
+	1、封装和调用
+	function createXHR(){
+		if(typeof XMLHttpRequest != "undefined"){
+			return new XMLHttpRequest();
+		}else if(typeof ActiveXObject != "undefined"){
+			var version = [
+				"MSXML2.XMLHttp.6.0",
+				"MSXML2.XMLHttp.2.0",
+				"MSXML2.XMLHttp"
+			];
+			for(var i = 0;i<3;i++){
+				/*return new ActiveXObject(version[i]);*/
+				try{
+					return new ActiveXObject(version[i]);
+				}catch(e){
+					//TODO handle the exception
+				}
+			}
+		}else{
+			throw new Error("您老的浏览器实在是不行了")
+			//alert("您老的浏览器实在是不行了");
+		}
+	}
+	//封装ajax
+	function ajax(){
+		
+	}
+	//调用ajax
+	document.addEventListener("click",function(){
+		ajax();
+	})
+	2、先封装get方式
+	//封装ajax
+	function ajax(method,url,data,async){
+		var msg = document.getElementById("msg");
+		var xhr = createXHR();
+		url=url+"?random="+Math.random()+"&"+data;
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				alert(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(method,url,async);
+		xhr.send(null);
+	}
+	//调用ajax
+	document.addEventListener("click",function(){
+		
+		ajax("GET","test.php","name=wxx&sex=男",true);
+	})
+	//但是我们并不是需要在封装的那儿alert信息，我们需要在调用的地方取得他的值，所以我们需要返回值
+	if(xhr.status == 200){
+		return xhr.responseText
+	}
+	document.addEventListener("click",function(){
+		msg.innerHTML = ajax("GET","test.php","name=wxx&sex=男",true);
+	})
+	//？出现了underfined，为什么呢，作用域的问题
+	function a(){
+		function b(){
+			return "123";
+		}
+		return "456";
+	}
+	/如何去做呢？
+	//通过回调函数去解决
+	//封装ajax
+	function ajax(method,url,data,async,obj){
+	
+		var xhr = createXHR();
+		url=url+"?random="+Math.random()+"&"+data;
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(method,url,async);
+		xhr.send(null);
+	}
+	//调用ajax
+	document.addEventListener("click",function(){
+		ajax("GET","test.php","name=wxx&sex=男",true,{
+			success:function(text){
+				msg.innerHTML = text;
+			}
+		});
+	})
+	//那么，既然可以使用回调函数去解决参数问题，
+	
+	//封装ajax
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random()+"&"+obj.data;
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(obj.method,obj.url,obj.async);
+		xhr.send(null);
+	}
+	//调用ajax
+	document.addEventListener("click",function(){
+		ajax({
+			method:"get",
+			url:"test.php",
+			data:"name=wxx&sex=男",
+			async:true,
+			success:function(text){
+				msg.innerHTML = text;
+			}
+		});
+	})
+	//解决特殊字符问题，将name改为nam&e,将数据用键值对的形式传过去
+		//键值对转换为字符串
+	function params(data){
+		var arr = [];
+		for(var i in data){
+//			alert(i)//可以获取键值
+//			alert(data[i])//可以获取值
+			arr.push(i+"="+data[i]);
+		}
+		alert(arr);
+	}
+		//封装ajax
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random()+"&"+params(obj.data);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(obj.method,obj.url,obj.async);
+		xhr.send(null);
+	}
+	//调用ajax
+	document.addEventListener("click",function(){
+		ajax({
+			method:"get",
+			url:"test.php",
+//			data:"nam&e=wxx&sex=男",
+			data:{
+				"name":"wx&x",
+				"sex":"男"
+			},
+			async:true,
+			success:function(text){
+				msg.innerHTML = text;
+			}
+		});
+	})
+	//将数组转换为字符串：
+	alert(arr.join("&"));
+	//再对	arr.push(i+"="+data[i]);进行编码
+	arr.push(encodeURIComponent(i)+"="+encodeURIComponent(data[i]));
+	
+	
+	//考虑params(obj.data)的位置（get,post）
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random();
+		obj.data = params(obj.data);
+		if(obj.method == "get"){
+			obj.url=obj.url+"&"+obj.data; 
+		}
+		alert(obj.url)
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(obj.method,obj.url,obj.async);
+		xhr.send(null);
+	}
+	//如果此时去掉随机数,则显示就会出错，所以需要判断时候有?
+	obj.url = obj.url.indexOf("?")==-1?obj.url+"?"+obj.data:obj.url+"&"+obj.data;
+	//如果采用post
+	（if(obj.method == "post"){
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(obj.data);
+		}else{
+			xhr.send(null);
+		}）
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random();
+		obj.data = params(obj.data);
+		if(obj.method == "get"){
+			/*obj.url=obj.url+"&"+obj.data; */
+			obj.url = obj.url.indexOf("?")==-1?obj.url+"?"+obj.data:obj.url+"&"+obj.data;
+		}
+	//	alert(obj.url)
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+		xhr.open(obj.method,obj.url,obj.async);
+		if(obj.method == "post"){
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(obj.data);
+		}else{
+			xhr.send(null);
+		}
+		
+	}
+	
+	
+	//上面是同步，那么异步呢
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random();
+		obj.data = params(obj.data);
+		if(obj.method == "get"){
+			/*obj.url=obj.url+"&"+obj.data; */
+			obj.url = obj.url.indexOf("?")==-1?obj.url+"?"+obj.data:obj.url+"&"+obj.data;
+		}
+	//	alert(obj.url)
+	if(obj.async == true){
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+			}
+		};
+	}
+		
+		xhr.open(obj.method,obj.url,obj.async);
+		if(obj.method == "post"){
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(obj.data);
+		}else{
+			xhr.send(null);
+		}
+		if(obj.async == false ){
+			if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+		}
+	}
+	
+	可以优化代码
+	（if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}）重复多次
+	function ajax(obj){
+	
+		var xhr = createXHR();
+		obj.url=obj.url+"?random="+Math.random();
+		obj.data = params(obj.data);
+		if(obj.method == "get"){
+			/*obj.url=obj.url+"&"+obj.data; */
+			obj.url = obj.url.indexOf("?")==-1?obj.url+"?"+obj.data:obj.url+"&"+obj.data;
+		}
+	//	alert(obj.url)
+	if(obj.async == true){
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				callback()
+			}
+		};
+	}
+		
+		xhr.open(obj.method,obj.url,obj.async);
+		if(obj.method == "post"){
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(obj.data);
+		}else{
+			xhr.send(null);
+		}
+		if(obj.async == false ){
+			callback()
+		}
+		function callback(){
+			if(xhr.status == 200){
+				/*return xhr.responseText;*/
+				obj.success(xhr.responseText)
+				}else{
+					alert("获取数据错误，错误信息为："+xhr.status+"---"+xhr.statusText);
+				}
+		}
+	}
+	
+	
+	补充：//跨浏览器添加事件 
+		function addEvent(obj, type, fn) {
+			if (obj.addEventListener) {
+				obj.addEventListener(type, fn, false);
+			} else if (obj.attachEvent) {
+				obj.attachEvent('on' + type, function () {
+					fn.call(obj);
+				});
+			}
+		}
+	
+	base.js
+	
+	
+	代码:
+	
+//跨浏览器添加事件 
+function addEvent(obj, type, fn) {
+	if (obj.addEventListener) {
+		obj.addEventListener(type, fn, false);
+	} else if (obj.attachEvent) {
+		obj.attachEvent('on' + type, function () {
+			fn.call(obj);
+		});
+	}
+}
+
+//跨浏览器移除事件
+function removeEvent(obj, type, fn) {
+	if (obj.removeEventListener) {
+		obj.removeEventListener(type, fn, false);
+	} else if (obj.detachEvent) {
+		obj.detachEvent('on' + type, fn);
+	}
+}
+
+//跨浏览器阻止默认行为
+function preDef(evt) {
+	var e = evt || window.event;
+	if (e.preventDefault) {
+		e.preventDefault();
+	} else {
+		e.returnValue = false;
+	}
+}
+
+//跨浏览器获取目标对象
+function getTarget(evt) {
+	if (evt.target) {		//W3C
+		return evt.target;
+	} else if (window.event.srcElement) {		//IE
+		return window.event.srcElement;
+	}
+}
+
+//跨浏览器获取字符编码
+function getCharCode(evt) {
+	var e = evt || window.event;
+	if (typeof e.charCode == 'number') {
+		return e.charCode;
+	} else {
+		return e.keyCode;
+	}
+}
+	
+	
+	
+	
+	
+	

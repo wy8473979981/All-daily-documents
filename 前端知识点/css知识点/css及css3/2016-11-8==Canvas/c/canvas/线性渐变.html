@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</body>
+	
+	<script type="text/javascript">
+		draw25("myCanvas");
+	function draw25(id) {
+            var canvas = document.getElementById(id);
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext('2d');
+            var g1 = context.createLinearGradient(0, 0, 0, 300);
+
+            g1.addColorStop(0, 'rgb(255,0,0)'); //红  
+            g1.addColorStop(0.5, 'rgb(0,255,0)');//绿
+            g1.addColorStop(1, 'rgb(0,0,255)'); //蓝
+
+            //可以把lg对象理解成GDI中线性brush
+            context.fillStyle = g1;
+            //再用这个brush来画正方形
+            context.fillRect(0, 0, 400, 300);  
+        }
+	</script>
+</html>

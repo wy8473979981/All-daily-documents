@@ -1,0 +1,51 @@
+目标：
+1、了解cookie的不足之处，引入webstorage的概念
+2、学习并且掌握webstorage有哪两种
+3、学习并且掌握sessionStorage
+4、学习并且掌握localStorage
+5、反复练习localStorage的用法
+
+
+在HTML4中我们是使用cookies在客户端保存用户名等一些简单的用户信息
+	cookie的缺点：
+		1、大小限制在4KB左右
+		2、带宽浪费（随着http请求一起发送）
+		3、难以操作
+	为了解决这样的一些问题，在H5中重新提供了在客户端保存数据的功能，就是我们接下来要学习的“webStroage”
+	
+在H5中webStorage其实就是在web上存储数据，分为两种：
+	sessionStorage 在浏览器关闭时存储的数据将消失---临时存储
+	localStorage 可以一直存在 --- 永久存储
+	angular.js
+	写法:
+		1、储存：localStorage.setItem(key,value);
+				localStorage.key = value;//key、value为键值对形式，key作为唯一标识，value做位置，不建议使用这一种，但是别不认识
+				注：如果key存在时，更新value
+		2、获取数据：localStorage.getItem(key);
+					localStorage.key //不建议使用这一种，但是别不认识
+					注：如果key不存在返回null
+		3、删除：localStorage.removeItem(key);
+					注：一旦删除，key对应的数据将会全部删除
+		4、全部清除：localStorage.clear();
+				注：某些时候使用removeItem逐个删除太麻烦，可以使用clear,执行的后果是会清除所有localStorage对象保存的数据
+		5、遍历localStorage存储的key
+			.length 数据总量，例：localStorage.length
+			.key(index) 通过索引获取key值，例：var key=localStorage.key(index);
+		6、存储JSON格式数据
+			eg：存
+				var data= new Object;
+				data.name = value;//value标识的是某一个需要存储的值
+				data.password = value;
+				var str = JSON.stringify(data);
+				localStorage.setItem(key,str);//key就是你需要存储时的唯一的一个标识
+				取：
+				var info = localStorage.getItem(key);//key与存储时的那个key一致
+				var data = JSON.parse(info);
+				alert(data.name);
+				alert(data['name']);
+				alert(data.password);
+				alert(data['password']);
+			注：JSON.stringify(data) 将一个对象转换成JSON格式的数据串,返回转换后的串
+				JSON.parse(data) 将数据解析成对象，返回解析后的对象
+		总结：如果需要判断是否支持本地存储，可以通过window.sessionStorage或者window.localStorage去判断。
+			

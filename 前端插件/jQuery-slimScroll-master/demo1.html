@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 300px;
+				height: 100%;
+				border: 1px solid #ccc;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--width:'100px',//容器宽度,默认无
+			height:'100px',//容器高度,默认250px
+			size:'10px',//滚动条宽度,默认7px
+			position:'left',//滚动条位置,可选值:left,right,默认right
+			color:'#abc',//滚动条颜色,默认#000000
+			alwaysVisible:true,//是否禁用隐藏滚动条,默认false
+			distance:'10px,'//距离边框距离,位置由position参数决定,默认1px
+			start:'.p',//滚动条初始位置,可选值top,bottom,$(selector)--内容元素位置,默认top
+			wheelStep:'12px',滚动条滚动值,默认10px
+			railVisible:true,//滚动条背景轨迹,默认false
+			railColor:'#005612',//滚动条背景轨迹颜色,默认#333333
+			railOpacity:0.8,//滚动条背景轨迹透明度,默认0.2
+			allowPageScroll:true,//滚动条滚动到顶部或底部时是否允许页面滚动,默认false
+			scrollTo:'50px',//跳转到指定的滚动值。可以呼吁任何元素slimScroll已经启用了吗(没试过)
+			scrollBy:'50px'增加/减少当前滚动值由指定的数量(正面或负面)。可以呼吁任何元素slimScroll已经启用(没试过)
+			disableFadeOut:true,//是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
+			touchScrollStep:1000,//可以设置不同的触摸滚动事件的敏感性。负数反转方向滚动,默认200-->
+		<div class="box">
+			<div id="inner-content" data-height="auto">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus, felis interdum condimentum consectetur, nisl libero elementum eros, vehicula congue lacus eros non diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+					mus. Vivamus mauris lorem, lacinia id tempus non, imperdiet et leo. Cras sit amet erat sit amet lacus egestas placerat. Aenean ultricies ultrices mauris ac congue. In vel tortor vel velit tristique tempus ac id nisi. Proin quis lorem velit. Nunc
+					dui dui, blandit a ullamcorper vitae, congue fringilla lectus. Aliquam ultricies malesuada feugiat. Vestibulum placerat turpis et eros lobortis vel semper sapien pulvinar. Pellentesque rhoncus aliquet porta. Sed vel magna eu turpis pharetra consequat
+					ut vitae lectus. In molestie sollicitudin mi sit amet convallis. Aliquam erat volutpat. Nullam feugiat placerat ipsum eget malesuada. Nulla facilisis nunc non dolor vehicula pretium. Sed dui magna, sodales id pharetra non, ullamcorper eu sapien.
+					Mauris ac consectetur leo. Mauris consequat, lectus ut bibendum pulvinar, leo magna feugiat enim, eu commodo lacus sem vel ante. Sed tempus metus eget leo mollis vulputate. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+					himenaeos.
+				</p>
+			</div>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jQuery-slimScroll-master/jquery.slimscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			$("#inner-content").slimScroll({
+				
+			});
+		});
+	</script>
+
+</html>

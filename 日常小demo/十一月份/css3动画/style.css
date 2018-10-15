@@ -1,0 +1,30 @@
+body {
+	margin: 50px;
+	background-color: #2C3437;
+}
+
+.content {
+	display: inline-block;
+	width: 350px;
+	height: 239px;
+	margin-right: -4px;
+}
+
+.play {
+	cursor: pointer;
+	background-color: #060;
+}
+
+div>div {
+	display: block;
+	height: 20px;
+}
+
+div>div>div {
+	width: 16px;
+	height: 16px;
+	background-color: #FFF;
+	display: inline-block;
+	float: right;
+	margin: 2px;
+}

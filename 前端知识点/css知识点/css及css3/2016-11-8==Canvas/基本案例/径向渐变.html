@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="400" height="300" style="border: 1px solid #000;"></canvas>
+		<span style="display:inline-block;width: 20px;height: 20px;background: #ff8866;"></span>
+		<span style="display:inline-block;width: 20px;height: 20px;background: #666666;"></span>
+		<span style="display:inline-block;width: 20px;height: 20px;background: #000000;"></span>
+	</body>
+	<script type="text/javascript">
+		/*
+		 径向渐变（发散）
+var rg=context.createRadialGradient(xStart,yStart,radiusStart,xEnd,yEnd,radiusEnd)
+径向渐变（发散）颜色
+rg.addColorStop(offset,color)
+ xStart:发散开始圆心x坐标
+    yStart:发散开始圆心y坐标
+    radiusStart:发散开始圆的半径
+    xEnd:发散结束圆心的x坐标
+    yEnd:发散结束圆心的y坐标
+    radiusEnd:发散结束圆的半径
+
+    offset:设定的颜色离渐变结束点的偏移量(0~1)
+    color:绘制时要使用的颜色
+
+		 * */
+		
+	/*	var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		var rg = context.createRadialGradient(100,100,10,100,100,50);
+		rg.addColorStop("0","#ff8866");
+		rg.addColorStop("0.5","#666666");
+		rg.addColorStop("1","#000000");
+		context.fillStyle = rg;
+		context.arc(100,100,50,0,Math.PI*2,true);
+		context.fill();*/
+		
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		var rg = context.createRadialGradient(10,100,10,100,100,40);
+		/*如果咱们两个圆的参数不一致，将于咱们的所设置的框与两个圆组成一个新的图形，他们的交集将采用咱们自定的渐变样式*/
+		rg.addColorStop("0","#ff8866");
+			rg.addColorStop("0.5","#666666");
+		rg.addColorStop("1","#000000");
+		
+		context.moveTo(0,0);
+		context.lineTo(300,0);
+		context.lineTo(300,200);
+		context.lineTo(0,200);
+		context.fillStyle = rg;
+		context.fill();
+		context.stroke();
+		/*context.fillRect(0,0,400,300);*/
+	</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			div{
+				width: 500px;
+				height:500px;
+				margin:10px;
+				float: left;
+				border: 1px solid #f66;
+				background: -webkit-gradient(linear,0 0,0 50%,from(#f00),to(#0000FF));
+				background: -moz-gradient(linear,0 0,0 100%,from(#f00),to(#0000FF));
+			}
+				#box0{
+				width: 500px;
+				height:500px;
+				margin:10px;
+				float: left;
+				border: 1px solid #f66;
+				background:-webkit-gradient(linear,0% 0%,100% 100%,color-stop(0.1,rgb(255,0,0)),color-stop(0.5,rgb(255,255,0)),color-stop(1,rgb(0,0,255)));
+			}
+			
+			#box{
+				width: 500px;
+				height:500px;
+				margin:10px;
+				float: left;
+				/*background: -webkit-gradient(linear,0 0,0 100%,from(red),to(blue));*/
+				background: -webkit-linear-gradient(top,red,white,blue);
+				background: -moz-linear-gradient(top,red,white,blue);
+				filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#0000ff'); /* IE6,IE7 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#ff0000')"; /* IE8 */
+			}
+			#box1{
+				width: 500px;
+				height:500px;
+				float: left;
+				margin:10px;
+				background: -webkit-radial-gradient(50% 50%,black,white,blue);
+				background: -moz-radial-gradient(50% 50%,black,white,blue);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div id="box0">box0</div>
+		<div id="box">box</div>
+		<div id="box1">box1</div>
+	</body>
+</html>

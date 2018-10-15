@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				position:absolute;
+				left:0;
+				top: 0;
+				bottom: 0;
+				right:0;
+				margin:auto;
+				background:yellow;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="510" height="510"></canvas>
+		<script type="text/javascript">
+			var myCanvas = document.getElementById("myCanvas").getContext("2d");
+			var i = 10;
+			var time = null;
+			function run(){
+				myCanvas.clearRect(0,0,510,510);
+				i++;
+				if(i>=100){
+					clearInterval(time);
+				}
+				myCanvas.beginPath();
+				myCanvas.moveTo(10,500);
+				myCanvas.lineTo(10,10);
+				myCanvas.closePath();
+				myCanvas.stroke();
+				
+				myCanvas.beginPath();
+				myCanvas.moveTo(10,10);
+				myCanvas.lineTo(5,19);
+				myCanvas.lineTo(15,19);
+				myCanvas.lineTo(10,10);
+				myCanvas.closePath();
+				myCanvas.fill();
+				
+				myCanvas.beginPath();
+				myCanvas.moveTo(10,500);
+				myCanvas.lineTo(500,500);
+				myCanvas.closePath();
+				myCanvas.stroke();
+				
+				myCanvas.beginPath();
+				myCanvas.moveTo(500,500);
+				myCanvas.lineTo(491,495);
+				myCanvas.lineTo(491,505);
+				myCanvas.lineTo(500,500);
+				myCanvas.closePath();
+				myCanvas.fill();
+				
+	//			function mark(x1,y1,x2,y2){
+	//				myCanvas.beginPath();
+	//				myCanvas.moveTo(x1,y1);
+	//				myCanvas.lineTo(x2,y2);
+	//				myCanvas.lineWidth = 80;
+	//				myCanvas.closePath();
+	//				myCanvas.stroke();
+	//			}
+	//			
+	//			mark(100,500,100,210);
+	//			mark(200,500,200,310);
+	//			mark(300,500,300,10);
+	//			mark(400,500,400,110);
+	
+				function num(x,y){
+					myCanvas.beginPath();
+					myCanvas.moveTo(x,500);
+					myCanvas.lineTo(x,510-y);
+					myCanvas.lineWidth = 80;
+					myCanvas.closePath();
+					myCanvas.strokeStyle = "rgba(255,0,0,1)"
+					myCanvas.stroke();
+				}
+				
+				num(100,3*i);
+				num(200,4*i);
+				num(300,3*i);
+				num(400,1*i);
+				
+				function mark(y){
+					myCanvas.beginPath();
+					myCanvas.moveTo(10,y);
+					myCanvas.lineTo(20,y);
+					myCanvas.lineWidth = 1;
+					myCanvas.closePath();
+					myCanvas.stroke();
+					myCanvas.fillText(500-y,30,y);
+				}
+				mark(100);
+				mark(200);
+				mark(300);
+				mark(400);
+			}
+		time = setInterval(run,20);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+/*--------------------------------css新浪----------------------------------------------*/
+
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; } 
+fieldset, img { border:none; } 
+img{display: block;} 
+address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; } 
+ul, ol { list-style:none; } 
+body { color:#333; padding:5px 0; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA; background:#fff;/* overflow-y:scroll;*/ overflow-x:hidden;}
+a { color:#666; text-decoration:none; } 
+a:visited { color:#666; } 
+a:hover, a:active, a:focus { color:#ff8400; text-decoration:underline; } 
+
+
+
+
+
+/*-------------------------------------header------------------------------------------------*/
+
+
+/*-------------------------------------nav------------------------------------------------*/
+
+
+
+/*-------------------------------------banner-----------------------------------------------*/
+
+
+
+
+/*-------------------------------------bottom------------------------------------------------*/
+
+
+
+
+/*-------------------------------------footer------------------------------------------------*/
+
+
+#content{min-height:600px;height:auto!important;height:600px;s}
+#content:after{content:".";display:block;height:0;clear:both;overflow:hidden; visibility:hidden;}
+
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="p" id="p" value="" />
+
+		<div class="invoice dis_none dis_blo" id="invoice14" style="top: -29px;">
+			<div id="div14">
+				<div class="flo_left invoice_underline">文件名</div>
+				<div class="flo_left invoice_underline">上传时间</div>
+				<div class="flo_right">操作</div>
+				<div class="cl-both"></div>
+			</div>
+			<div class="right-triangle"></div>
+		</div>
+
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function escape2Html(str) {
+			var arrEntities = {
+				'lt': '<',
+				'gt': '>',
+				'nbsp': ' ',
+				'amp': '&',
+				'quot': '"'
+			};
+			return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function(all, t) {
+				return arrEntities[t];
+			});
+		}
+		$("#p").val("<");
+		'<td class="col-md-1">' + ((approvalStatus == null) ? ' ' : approvalStatus) + '</td>' +
+	</script>
+
+	<select class="ci_width_50 ci_border addDisabled selectedColor" style="height:22px;" id="dealerFormContractStatus" value="" onchange="changeContractStatus('dealerFormContractStatus','dealerForm');">
+		<option value="0">待审核</option>
+		<option value="1">审核通过</option>
+		<option value="2">审核未通过</option>
+	</select>
+
+</html>

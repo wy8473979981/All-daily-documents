@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var box = '[{"name" : "a","age" : 1},{"name" : "b","age" : 2}]';	//特别注意，键要用双引号
+		console.log(box);						
+		var json = JSON.parse(box);							//不是双引号，会报错
+		console.log(json);
+		var str = JSON.stringify(json, ['name', 'age'], 4);
+		console.log(str);
+		
+		
+		function createXHR(){
+			if(typeof XMLHttpRequest != "undefined"){
+				return new XMLHttpRequest();
+			}else if(typeof ActiveXObject != "undefined"){
+				var version = [
+				'MSXML2.XMLHttp.6.0',
+				'MSXML2.XMLHttp.2.0',
+				'MSXML2.MXLHttp'
+				];
+				for(var i=0;i<3;i++){
+					try{
+						return ActiveXObject(version[i]);
+					}catch{
+						
+					}
+				}
+				
+			}else{
+				throw new Error("");
+			}
+		}
+		
+	</script>
+</html>

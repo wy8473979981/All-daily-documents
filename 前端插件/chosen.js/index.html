@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="chosen_v1.6.1/chosen.css" />
+	</head>
+
+	<body>
+		<select data-placeholder="选择部门" style="width:150px;" multiple class="chzn-rtl dept_select1">
+			<option value="-1"></option>
+			<option value="部门1">部门1</option>
+			<option value="部门2">部门2</option>
+			<option value="部门3">部门3</option>
+			<option value="部门4">部门4</option>
+			<option value="部门5">部门5</option>
+		</select>
+
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="chosen_v1.6.1/chosen.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".dept_select1").chosen({
+			no_results_text: "没有找到",
+			max_selected_options: 1
+		});
+		//如果没有数据显示指定的提示，在select中添加   data-placeholder="没有可选择的仓库!"
+		//no_results_text: "没有找到",
+		//allow_single_de 是否容许作废选择
+		//max_ed_options 当为多选时，最多选择个数
+		//allow_single_deselect: true, //是否允许取消选择
+		//display_selected_options: false, //禁止重复选择
+		//max_selected_options: 2 //当select为多选时，最多选择个数
+
+		/*width: '200px',
+		placeholder_text : "My language message.", 
+		search_contains: true,*/
+		//disable_search_threshold: 10//禁用了搜索
+		//$("#updatesupplierId").trigger("chosen:updated");//可以动态更新select的值，例如回显的时候
+		//如果遇到回显是多个值，要把值放在数组里
+		//select的val的值是个数组
+	</script>
+
+</html>

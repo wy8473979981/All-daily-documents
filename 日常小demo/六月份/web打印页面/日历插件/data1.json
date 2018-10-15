@@ -1,0 +1,33 @@
+{
+	"persons": [
+		{
+			"id": 8,
+			"personName": "11wswsw",
+			"telephone": "13101171483",
+			"joinTime": "2016-06-08",
+			"activityId": 11,
+			"dealerId": 6,
+			"email": "1@qq.com",
+			"publishTime": "2016-06-28 00:00:00.0"
+		}
+	],
+	"activity": {
+		"id": 11,
+		"title": "swsws",
+		"startDate": "2016-06-02 00:00:00",
+		"endDate": "2016-06-24 00:00:00",
+		"contents": "swswsws",
+		"type": "0",
+		"disId": "6",
+		"reservationNumber": 1,
+		"proId": "4",
+		"color": "eventser",
+		"publishTime": "2016-06-28 16:17:20",
+		"start": "2016-06-02",
+		"end": "2016-06-24",
+		"starttime": 0,
+		"endtime": 0,
+		"count": 0,
+		"publishTimestr": "2016-06-28"
+	}
+}

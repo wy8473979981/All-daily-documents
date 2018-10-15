@@ -1,0 +1,9 @@
+body {
+	background-color: #3377DD;
+}
+
+@media screen and(min-width:480px){
+	body{
+		background-color: red;
+	}
+}

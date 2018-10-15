@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.textarea {
+				width: 400px;
+				min-height: 20px;
+				max-height: 80px;
+				_height: 120px;
+				margin: 0 auto;
+				outline: 0;
+				font-size: 12px;
+				line-height: 24px;
+				padding: 5px;
+				word-wrap: break-word;
+				overflow-x: hidden;
+				overflow-y: auto;
+				border: 1px solid #F7F7F7;
+				background: #F7F7F7;
+			}
+			
+			.textarea:focus {
+				background: #fff;
+			}
+			
+			.textarea .comment {
+				white-space: nowrap;
+				opacity: 0.5;
+				font-family: HelveticaNeue;
+				font-size: 10px;
+				color: #434343;
+				letter-spacing: 0;
+				text-align: right;
+				moz-user-select: -moz-none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				-khtml-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			
+			.textarea .user-name {
+				white-space: nowrap;
+				font-family: PingFangSC-Regular;
+				font-size: 14px;
+				color: #272727;
+				letter-spacing: 0;
+				text-align: justify;
+				margin: 0 5px;
+				moz-user-select: -moz-none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				-khtml-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			
+			textarea {
+				width: 100%;
+				height: 200px;
+				margin-top:50px;
+				border: 1px solid #F7F7F7;
+				background: #F7F7F7;
+			}
+			
+			textarea:focus {
+				background: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="textarea" contenteditable="true">
+			<span class="comment" contenteditable="false">回复</span><span class="user-name" contenteditable="false">三少爷的剑 :&nbsp;</span>
+		</div>
+		<textarea id="textarea"></textarea>
+		<button id="btn">回复</button>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#btn").click(function(){
+			$("#textarea").html("@三少爷的剑： ");
+		})
+	</script>
+
+</html>

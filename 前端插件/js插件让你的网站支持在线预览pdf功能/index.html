@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js插件让你的网站支持在线预览pdf功能</title>
+	<script src="http://www.lanrenzhijia.com/ajaxjs/pdfobject.js"></script>
+    <script>
+      window.onload = function (){
+        var myPDF = new PDFObject({ url: "http://demo.lanrenzhijia.com/2014/pdf1023/sample.pdf" }).embed();
+      };
+    </script>
+</head>
+<body>
+<p>如果没有正常显示，请<a href="http://demo.lanrenzhijia.com/2014/pdf1023/sample.pdf">点击下载pdf文档</a></p>
+</body>
+</html>

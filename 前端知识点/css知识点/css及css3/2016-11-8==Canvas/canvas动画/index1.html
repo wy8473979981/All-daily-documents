@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>canvas粒子动画</title>
+		<style type="text/css">
+			body{
+				background-color: #000000;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//1、创建canvas元素和2D上下文
+		var	canvas = document.createElement( 'canvas' ),
+  		context = canvas.getContext( '2d' );
+  		var canvasWidth = window.innerWidth; 
+  		canvasHeight = window.innerHeight;
+  		init();
+  		function init() {
+   			document.body.appendChild(canvas); 
+    		canvas.width = canvasWidth;
+    		canvas.height = canvasHeight; 
+  		}
+		</script>
+	</body>
+</html>

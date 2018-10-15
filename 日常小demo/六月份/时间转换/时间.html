@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>无标题文档</title>
+		<script type="text/javascript">
+			var newArray = [];
+			var startTime = '2017-08-02 00:00:00';
+			var endTime = '2017-08-03 23:00:00';
+			var temp;
+
+			getNowArray(startTime, endTime)
+
+			function getNowArray(start, end) {
+				debugger
+				start = start.replace(" ", "T");
+				end = end.replace(" ", "T");
+
+				var myStartTime = new Date(start);
+				var myEndTime = new Date(end);
+
+				//先判断开始时间是否小于结束时间
+				startTimes = myStartTime.getTime();
+				endTimes = myEndTime.getTime();
+
+				if(startTimes < endTimes) {
+					//array.push(start.replace("T"," "));
+					temp = startTimes + 60 * 60 * 1000;
+					getNowDate(temp);
+				}
+
+			}
+
+			function getNowDate(date) {
+				var myDate = new Date(date);
+				var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+				var month = myDate.getMonth(); //获取当前月份(0-11,0代表1月)
+				var day = myDate.getDate(); //获取当前日(1-31)
+				var hour = myDate.getHours();
+				var minute = myDate.getMinutes();
+				var time = formate(year) + "-" + formate(month + 1) + "-" + formate(day) + " " + formate(hour) + ":" + "00" + ":" + "00";
+				return time;
+			}
+
+			function formate(myDate) {
+				return myDate > 9 ? myDate : '0' + myDate;
+			}
+
+			function setDefaultSearchData() { //设置当月第一天和当月最后一天
+				var year, month;
+				year = new Date().getFullYear();
+				month = new Date().getMonth() + 1;
+				var firstdate = year + '-' + month + '-01';
+				/* var firstdate = year + '-' + month + '-01' + ' ' + '00' + ':' + '00' + ':' + '00';  */
+				var day = new Date(year, month, 0);
+				var lastdate = year + '-' + month + '-' + day.getDate(); //获取当月最后一天日期
+				/* var lastdate = year + '-' + month + '-' + day.getDate() + ' ' + '59' + ':' + '59' + ':' + '59';//获取当月最后一天日期 */
+				$("#startTime").val(firstdate);
+				$("#endTime").val(lastdate);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="test"></div>
+	</body>
+
+</html>

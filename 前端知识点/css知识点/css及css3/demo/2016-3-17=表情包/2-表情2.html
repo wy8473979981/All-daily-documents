@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+			}
+			#canvas{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<img src="rBACE1KBtMiRftiIAABJjjHzuXo146.png"/>
+		<canvas id="canvas" width="500" height="500"></canvas>
+		
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		
+		with(ctx){
+			
+			beginPath();
+			strokeStyle="rgb(0,0,0)";;
+			arc(200,250,100,0,Math.PI*2,true);
+			stroke();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(13,47,98)";
+			arc(250, 270, 15, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(13,47,98)";
+			arc(160, 280, 15, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(255,255,255)";
+			arc(154, 276, 6, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(255,255,255)";
+			arc(168, 286, 3, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(255,255,255)";
+			arc(243, 267, 6, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			fillStyle = "rgb(255,255,255)";
+			arc(258, 276, 3, 0, Math.PI*2,false);
+			fill();
+			closePath();
+			
+			beginPath();
+			strokeStyle = "red";
+			moveTo(193, 288);
+			bezierCurveTo(193, 288,197, 300, 210, 300);
+			stroke();
+			closePath();
+			
+		}
+		
+	</script>
+
+</html>

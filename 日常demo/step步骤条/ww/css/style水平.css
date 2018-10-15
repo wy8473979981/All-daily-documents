@@ -1,0 +1,13 @@
+.content{width:100%;margin-top: 8.5%; height:auto;overflow: hidden;margin-bottom: 15%;}
+.timeBlock{width: 100%;border-left: 0.026667rem solid #e3e3e3;margin: 0 0.266667rem;position: relative;padding-bottom: 0.4rem; }
+.timeRadius{width: 0.426667rem;height: 0.426667rem;background-color: #e3e3e3;border-radius: 50%;position: absolute;left:-2.5%;top:0;}
+.timeContent{width: 95%;height:auto;overflow: hidden; margin-left: 5%;}
+.timeConL,.timeConR{float: left;height: auto;overflow: hidden;}
+.timeConL{width: 78%;}
+.timeConL span{display: block;font-size: 32px;color: #ffac1e;}
+.timeConlT{margin-top:6.5%;}
+.timeConlT li p,.timeConlT li span{display: block;font-size: 24px;color: #999999;}
+.timeConlT li{margin-top: 1%;height: auto;overflow: hidden;}
+.timeConlT li p{float: left;}
+.timeConlT li span{width: 80%;float: right; word-break: break-all;word-wrap: break-word;}
+.timeConlT li img{object-fit:cover;margin-top:2%;width: 90%;}

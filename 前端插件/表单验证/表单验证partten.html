@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<form name="test" action="." method="post">
+			<input type="text" required pattern="^[0-9]*$" oninput="out(this)" placeholder="请输入代码">
+			<button type="submit">Check</button>
+		</form>
+		<script type="text/javascript">
+			function out(i) {
+				var v = i.validity;
+				if(true === v.valueMessing) {
+					i.setCustomValidity("请填写些字段");
+				} else {
+					if(true === v.patternMismatch) {
+						i.setCustomValidity("请输入4位数字的代码");
+					} else {
+						i.setCustomValidity("");
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

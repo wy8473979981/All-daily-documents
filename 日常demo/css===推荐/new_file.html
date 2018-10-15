@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.gray-text {
+				position: relative;
+				display: flex;
+				margin: 14px 5px;
+				color: #848689;
+				font-size: 14px;
+				justify-content: center;
+			}
+			
+			.gray-layout {
+				padding: 0 10px;
+				background-color: #f0f2f5;
+				z-index: 10;
+				position: relative;
+				display: block;
+			}
+			
+			.gray-text:after {
+				content: "";
+				height: 1px;
+				width: 100%;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				background-color: #cbcbcb;
+				-webkit-transform: scaleY(0.5);
+				transform: scaleY(0.5);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="gray-text">
+			<span class="gray-layout">
+				<span class="gray-text-img"></span>为您推荐
+			</span>
+		</div>
+	</body>
+
+</html>

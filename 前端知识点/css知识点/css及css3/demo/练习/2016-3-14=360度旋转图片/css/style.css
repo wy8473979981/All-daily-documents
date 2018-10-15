@@ -1,0 +1,28 @@
+@charset "utf-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+body,html{
+	background: #000;
+}
+#box{
+	width:133px;
+	height:200px;
+	border:1px solid #00FF00;
+	margin:200px auto 0;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: perspective(800px) rotateX(-30deg);
+	-moz-transform: perspective(800px) rotateX(-30deg);
+	-ms-transform: perspective(800px) rotateX(-30deg);
+	-o-transform: perspective(800px) rotateX(-30deg);
+	transform: perspective(800px) rotateX(-30deg);
+	position:relative;
+}
+#box img{
+	position: absolute;
+	-webkit-box-reflect:below 10px -webkit-linear-gradient(top,rgba(0,0,0,0) 50%,rgba(0,0,0,0.7) 100%);
+}

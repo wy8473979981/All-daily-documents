@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="fontawesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/audioface.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<header>
+				音乐播放器
+			</header>
+			<nav>
+				<a href="javascript:void(0);">歌曲</a>
+				<a href="javascript:void(0);">歌手</a>
+				<a href="javascript:void(0);">专辑</a>
+				<a href="javascript:void(0);">文件夹</a>
+			</nav>
+			<article>
+				<ul id="music-list">
+					<li path="music/许嵩 - 断桥残雪.mp3" name="断桥残雪" singer="许嵩">
+						<a href="javascript:void(0);">断桥残雪</a>
+						<a href="javascript:void(0);">许嵩</a>
+					</li>
+					<li path="music/任贤齐 - 我是一只鱼.mp3" name="我是一只鱼" singer="任贤齐">
+						<a href="javascript:void(0);">我是一只鱼</a>
+						<a href="javascript:void(0);">任贤齐</a>
+					</li>
+					<li path="music/邓超 - 超级英雄.mp3" name="超级英雄" singer="邓超">
+						<a href="javascript:void(0);">超级英雄</a>
+						<a href="javascript:void(0);">邓超</a>
+					</li>
+					<li path="music/邓紫棋 - 喜欢你.mp3" name="喜欢你" singer="邓紫棋">
+						<a href="javascript:void(0);">喜欢你</a>
+						<a href="javascript:void(0);">邓紫棋</a>
+					</li>
+				</ul>
+
+			</article>
+			<footer>
+				<div class="left" id="left">
+					<img src="images/disk.png" class="ui-disk" alt="" />
+				</div>
+				<div class="ui-opface">
+					<div class="top">
+						<div class="top-left">
+							<input type="range" name="audioTime" id="audioTime" value="0" min="0" max="" step="1" />
+						</div>
+						<div class="top-right">
+							<span id="time">
+								
+							</span>
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="prev" id="prev">
+							<i class="fa fa-step-backward"></i>
+						</div>
+						<div class="play" id="play">
+							<i class="fa fa-play"></i>
+						</div>
+						<div class="next" id="next">
+							<i class="fa fa-step-forward"></i>
+						</div>
+						<div class="sound" id="sound">
+							<i class="fa fa-volume-up"></i>
+
+						</div>
+						<audio id="audioFace" src=""></audio>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+	<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/audioface.js" type="text/javascript" charset="utf-8"></script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<body>
+<script type="text/javascript">
+function showImage()
+{
+    // 获取文件路径
+    var path = document.getElementById('upload').value;
+    // 显示文件路径
+    document.getElementById('imgName').innerHTML = path;
+    // 创建 img
+    var img = document.createElement('img');
+    // 载入图像
+    img.src = path;
+    // 插入图像到页面中
+    document.getElementById('imgPrev').appendChild(img);
+}
+</script>
+<table border="1" style="width:1000px" >
+        <tr class="midTable1td1" style="height:50px;"> 
+                  <td  align="center">图片描述</td>
+                  <td  align="center">图片</td>
+                  <td  align="center">操作</td>
+         </tr>
+         <tr class="midTable1td2" style="height:200px">           
+                  <td  id="imgName" class="inputContent" align="center" >显示图片名</td>
+                  <td  id="imgPrev" align="center">显示图片</td>
+                  <td  align="center"><input type="button" name="Submit2" value="删除" class="button"></td>
+         </tr> 
+</table>
+<form>
+<input type="file" id="upload" onChange="showImage()"/>
+</form>
+</body>
+</html>

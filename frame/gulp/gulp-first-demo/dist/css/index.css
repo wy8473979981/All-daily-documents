@@ -1,0 +1,28 @@
+.index1,
+.index2,
+.index3 {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+div {
+	width: 100%;
+	height: 200px;
+	margin-bottom: 10px
+}
+
+.index1 {
+	background-color: red;
+}
+
+.index2 {
+	background-color: #000
+}
+
+.index3 {
+	background-color: #00f;
+}

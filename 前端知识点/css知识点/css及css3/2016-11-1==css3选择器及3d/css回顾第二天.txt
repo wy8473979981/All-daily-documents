@@ -1,0 +1,188 @@
+css3 2D转换
+
+
+translate() 方法
+
+	通过 translate() 方法，元素从其当前位置移动，根据给定的
+ 	left（x 坐标） 和 top（y 坐标） 位置参数：
+ 	
+ 	div{
+	width:100px;
+	height:75px;
+	background-color:yellow;
+	border:1px solid black;
+	}
+	div#div2{
+	transform:translate(50px,100px);
+	-ms-transform:translate(50px,100px); /* IE 9 */
+	-moz-transform:translate(50px,100px); /* Firefox */
+	-webkit-transform:translate(50px,100px); /* Safari and Chrome */
+	-o-transform:translate(50px,100px); /* Opera */}
+	
+	<div>你好。这是一个 div 元素。</div>
+	<div id="div2">你好。这是一个 div 元素。</div>
+	
+	例、值 translate(50px,100px) 
+	把元素从左侧移动 50 像素，从顶端移动 100 像素
+
+rotate() 方法
+	单位：deg
+	通过 rotate() 方法，元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转
+	div{
+	width:100px;
+	height:75px;
+	background-color:yellow;
+	border:1px solid black;
+	}
+	div#div2{
+	transform:rotate(30deg);
+	-ms-transform:rotate(30deg); /* IE 9 */
+	-moz-transform:rotate(30deg); /* Firefox */
+	-webkit-transform:rotate(30deg); /* Safari and Chrome */
+	-o-transform:rotate(30deg); /* Opera */
+	}
+	值 rotate(30deg) 把元素顺时针旋转 30 度
+	
+	
+	
+	
+scale() 方法
+	通过 scale() 方法，元素的尺寸会增加或减少，
+	根据给定的宽度（X 轴）和高度（Y 轴）参数：
+	
+	div{
+	width:100px;
+	height:75px;
+	background-color:yellow;
+	border:1px solid black;
+	}
+	div#div2{
+	margin:100px;
+	transform:scale(2,4);
+	-ms-transform:scale(2,4); /* IE 9 */
+	-moz-transform:scale(2,4); /* Firefox */
+	-webkit-transform:scale(2,4); /* Safari and Chrome */
+	-o-transform:scale(2,4); /* Opera */
+	}
+	例、值 scale(2,4) 把宽度转换为原始尺寸的 2 倍，
+	把高度转换为原始高度的 4 倍
+	
+skew() 方法
+	通过 skew() 方法，元素翻转给定的角度，
+	根据给定的水平线（X 轴）和垂直线（Y 轴）参数
+	div{
+	width:100px;
+	height:75px;
+	background-color:yellow;
+	border:1px solid black;
+	}
+	div#div2{
+	transform:skew(30deg,20deg);
+	-ms-transform:skew(30deg,20deg); /* IE 9 */
+	-moz-transform:skew(30deg,20deg); /* Firefox */
+	-webkit-transform:skew(30deg,20deg); /* Safari and Chrome */
+	-o-transform:skew(30deg,20deg); /* Opera */
+	}
+	例、值 skew(30deg,20deg) 围绕 X 轴把元素
+	翻转 30 度，围绕 Y 轴翻转 20 度。
+	
+matrix() 方法
+	matrix() 方法把所有 2D 转换方法组合在一起。
+	matrix() 方法需要六个参数，包含数学函数，
+	允许您：旋转、缩放、移动以及倾斜元素。
+	引入矩阵概念
+	
+	div{
+	width:100px;
+	height:75px;
+	background-color:yellow;
+	border:1px solid black;
+	}
+	div#div2{
+	transform:matrix(0.866,0.5,-0.5,0.866,0,0);
+	-ms-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* IE 9 */
+	-moz-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* Firefox */
+	-webkit-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* Safari and Chrome */
+	-o-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* Opera */
+	}
+	计算cosθ=0.866       sinθ=0.5
+	-sinθ=-0.5	cosθ=0.866    θ=30
+	如何使用 matrix 方法将 div 元素旋转 30 度
+	
+	属性					描述							CSS
+	transform			向元素应用 2D 或 3D 转换。变换		3
+	transform-origin	允许你改变被转换元素的位置。中心点	3
+
+	2D Transform 方法	
+	函数	描述
+	matrix(n,n,n,n,n,n)		定义 2D 转换，		使用六个值的矩阵。
+	translate(x,y)			定义 2D 转换，		沿着 X 和 Y 轴移动元素。
+	translateX(n)			定义 2D 转换，		沿着 X 轴移动元素。
+	translateY(n)			定义 2D 转换，		沿着 Y 轴移动元素。
+	scale(x,y)				定义 2D 缩放转换，	改变元素的宽度和高度。
+	scaleX(n)				定义 2D 缩放转换，	改变元素的宽度。
+	scaleY(n)				定义 2D 缩放转换，	改变元素的高度。
+	rotate(angle)			定义 2D 旋转，		在参数中规定角度。
+	skew(x-angle,y-angle)	定义 2D 倾斜转换，	沿着 X 和 Y 轴。
+	skewX(angle)			定义 2D 倾斜转换，	沿着 X 轴。
+	skewY(angle)			定义 2D 倾斜转换，	沿着 Y 轴。
+	
+
+css3 过渡
+	应用于宽度属性的过渡效果，时长为 2 秒：
+
+	div{
+	
+	transition: width 2s;
+	
+	-moz-transition: width 2s;	/* Firefox 4 */
+	
+	-webkit-transition: width 2s;	/* Safari 和 Chrome */
+	
+	-o-transition: width 2s;	/* Opera */
+	}
+	注释：如果时长未规定，则不会有过渡效果，因为默认值是 0。
+	效果开始于指定的 CSS 属性改变值时。
+	CSS 属性改变的典型时间是鼠标指针位于元素上时：
+	
+	向宽度、高度和转换添加过渡效果
+	div{
+	width:100px;
+	height:100px;
+	background:yellow;
+	transition:width 2s, height 2s;
+	-moz-transition:width 2s, height 2s, -moz-transform 2s; /* Firefox 4 */
+	-webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* Safari and Chrome */
+	-o-transition:width 2s, height 2s, -o-transform 2s; /* Opera */
+	}
+	div:hover{
+	width:200px;
+	height:200px;
+	transform:rotate(180deg);
+	-moz-transform:rotate(180deg); /* Firefox 4 */
+	-webkit-transform:rotate(180deg); /* Safari and Chrome */
+	-o-transform:rotate(180deg); /* Opera */
+	<div>请把鼠标指针放到黄色的 div 元素上，来查看过渡效果。</div>
+	
+下面的表格列出了所有的转换属性：
+
+	属性			                        	描述	
+	transition		                               简写属性，用于在一个属性中设置四个过渡属性。	
+	transition-property	   		 规定应用过渡的 CSS 属性的名称。
+						                     指定过渡的性质，比如transition-property:backgrond 
+						                     就是只指定backgound参与这个过渡	
+	transition-duration	   		定义过渡效果花费的时间。默认是 0。	
+	transition-timing-function	规定过渡效果的时间曲线。默认是 "ease"。
+		指定过渡类型，有ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier
+		linear //线性过度
+		ease-in //由慢到快
+		ease-out //由快到慢
+		ease-in-out //由慢到快在到慢
+	
+	transition-delay		规定过渡效果何时开始。默认是 0。	
+	
+	-webkit-transition:all 2s ease-in-out;
+	all当前样式的所有属性
+	额外的些知识：timing-funciton的几种过度类型都是基于cubic-bezier的某些特定数值。
+	比如ease-in-out的类型它也可以写成cubic-bezier(0.42, 0, 0.58, 1.0)。参见这里。
+	transition还支持CSS伪类

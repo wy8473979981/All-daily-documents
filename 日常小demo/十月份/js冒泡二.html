@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				background-color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div" onclick="doSomething(this,event);">
+			<ul id="ul" onclick="doSomething(this,event);">
+				<!-- li在ul里，ul在div中，只要点击了li，也就是点击了ul,也就是点击了div。
+					在上面的函数中，先弹出 “我是li”然后弹出“我是ul”，最后弹出“我是div” 一层一层的冒泡，
+					而阻止冒泡的方式就是调用 事件的对象来调用stopPropagation()方法。这个事件的对象就是
+					函数的参数 e 这个e的名字可以随便取-->
+				<li id="li" onclick="doSomething(this,event);">请点击我</li>
+			</ul>
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function doSomething(obj, evt) {
+				alert(obj.id);
+				var e = (evt) ? evt : window.event;
+				if(window.event) {
+					e.cancelBubble = true;
+				} else {
+					//e.preventDefault();  
+					e.stopPropagation();
+				}
+			}
+	</script>
+
+</html>

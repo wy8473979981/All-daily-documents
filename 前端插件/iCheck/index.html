@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<form action="" >
+			<table border="" cellspacing="" cellpadding="" id="data" class="icheckbox">
+				<thead>
+					<tr>
+						<th><input class="icheck" type="checkbox" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="icheck" type="checkbox"  /></td>
+					</tr>
+					<tr>
+						<td><input class="icheck" type="checkbox"  /></td>
+					</tr>
+					<tr>
+						<td><input class="icheck" type="checkbox" /></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="icheck.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function() {
+			if ($.isFunction($.fn.iCheck)) {
+				$(".icheck").iCheck();
+			}
+		})();
+
+		function initCheckBox() {
+			var chkAll = $("#data th input[type='checkbox']");
+			chkAll.on("ifChecked", function(event) {
+				console.log('cccc');
+				$("#data tr").find("td:first").find("input[type='checkbox']").iCheck("check");
+			});
+			chkAll.on("ifUnchecked", function(event) {
+				console.log('unccc');
+				$("#data tr").find("td:first").find(" input[type='checkbox']").iCheck("uncheck");
+			});
+		}
+		
+		$(function(){
+			initCheckBox();
+		})
+	</script>
+
+</html>

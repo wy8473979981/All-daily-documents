@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+				div {
+				width: 100px;
+				height: 75px;
+				background-color: yellow;
+				border: 1px solid black;
+			}
+			
+			div#div2 {
+				transform: translate(50px, 100px);
+				-ms-transform: translate(50px, 100px);
+				/* IE 9 */
+				-moz-transform: translate(50px, 100px);
+				/* Firefox */
+				-webkit-transform: translate(50px, 100px);
+				/* Safari and Chrome */
+				-o-transform: translate(50px, 100px);
+				/* Opera */
+			}
+			
+			div {
+				width: 100px;
+				height: 75px;
+				background-color: yellow;
+				border: 1px solid black;
+			}
+			
+			div#div3 {
+				transform: rotate(30deg);
+				-ms-transform: rotate(30deg);
+				/* IE 9 */
+				-moz-transform: rotate(30deg);
+				/* Firefox */
+				-webkit-transform: rotate(30deg);
+				/* Safari and Chrome */
+				-o-transform: rotate(30deg);
+				/* Opera */
+			}
+			
+			.xo {
+				width: 100px;
+				height: 100px;
+				margin-top:120px;
+				background: yellow;
+				transition: width 2s, height 2s;
+				-moz-transition: width 2s, height 2s, -moz-transform 2s;
+				/* Firefox 4 */
+				-webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+				/* Safari and Chrome */
+				-o-transition: width 2s, height 2s, -o-transform 2s;
+				/* Opera */
+			}
+			
+			.xo:hover {
+				width: 200px;
+				height: 200px;
+				transform: rotate(180deg);
+				-moz-transform: rotate(180deg);
+				/* Firefox 4 */
+				-webkit-transform: rotate(180deg);
+				/* Safari and Chrome */
+				-o-transform: rotate(180deg);
+				/* Opera */
+		</style>
+	</head>
+
+	<body>
+		<p>translate() 方法，元素从其当前位置移动，根据给定的left（x 坐标） 和 top（y 坐标）</p>
+		<div>你好。这是一个 div 元素。</div>
+		<div id="div2">你好。这是一个 div 元素。</div>
+
+		<br />
+		<p style="margin-top:120px;">值 rotate(30deg) 把元素顺时针旋转 30 度</p>
+		<div>你好。这是一个 div 元素。</div>
+		<div id="div3">你好。这是一个 div 元素。</div>
+		<div class="xo">请把鼠标指针放到黄色的 div 元素上，来查看过渡效果。</div>
+	</body>
+
+</html>

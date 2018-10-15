@@ -1,0 +1,192 @@
+1、css3文本效果：
+	1）文本属性
+	1.1）text-shadow:5px 5px 5px #f66;
+	指定多个阴影：(参数形式为X坐标 Y坐标 阴影颜色)
+		text-shadow:10px 10px #f66,40px 35px #f00,70px 60px #000;
+	1.2）word-break:使用该属性自己决定自动换行的处理方法，通过对其的指定，不仅仅可以让浏览器实现半角空格或连字符后面的换行，而且可以让浏览器实现任意位置的换行。参数可以为normal/keep-all/break-all
+		normal:使用浏览器默认换行规则
+		keep-all:只能在半角空格或连接字符处换行
+		break-all:允许在单词内换行（对于标点符号来说，允许标点符号位于行首，不过在IE中是不可以的）
+	
+	
+	1.2）word-wrap：让长单词与URL地址自动换行
+	eg:<p class="test">This paragraph contains a very long word: 
+	thisisaveryveryveryveryveryverylongword. 
+	The long word will break and wrap to the next line.</p>
+	p.test
+	{
+	width:11em; 
+	border:1px solid #000000;
+	/*让长单词与url地址自动换行*/
+	word-wrap:break-word;
+	}
+	疑问：中文是否可以
+2、使用服务端字体
+	2.1）在网页上显示服务端字体
+		在CSS3中，使用@font-face属性来利用服务端的字体
+			用法：
+			@font-face{
+				font-family:WebFont;
+				src:url("fonts/Fontin_Sans_B_45b.otf") format("opentype");
+				font-weight:normal;
+			}
+			//WebFont用来声明使用服务端的字体。
+			//format用来声明字体文件的格式，可以省略文件格式的声明而单独使用src属性值。
+			疑问：字体文件的格式有哪些（OpenType与TrueType,前者的属性值为opentype，后者的属性值为truetype；前者的文件扩展名为.otf，后者的为.ttf）
+			注：在IE中使用时，只能使用微软自带的Embedded OpenType字体文件，扩展名为.eot，同时不需要使用format属性值，用法如下
+				@font-face{font-family:BorderWeb;
+					src:url(BORDERW0.eot);
+				}
+		在项目文件夹中的fonts文件内容分别包括粗体、斜体、粗斜体、小型大写字体
+3、与背景和边框相关样式
+	1）与背景相关的新增属性
+		background-clip   指定背景的显示范围 border   padding    content
+		background-origin  指定绘制背景图像时的起点
+		background-size		指定背景中图像的尺寸
+		background-break  指定内联元素的背景图像进行平铺时的循环方式，浏览器支持不友好，暂时不需要了解
+		注：兼容性，需要在前面加相关浏览器内核的标志
+		
+		1.1）background-clip 
+		熟悉概念：在HTML页面中，一个具有背景的元素通常由元素的内容，内部补白（padding），边框，外部补白（margin）构成（ppt page11）
+		定义3个div，添加文字，然后分别设定为border   padding    content看效果
+		1.2）background-origin  
+		1.3）background-size 设定为自己想要的尺寸，如果需要保持尺寸一致时，将另一个设为auto
+		1.4）background-break
+	2）在一个元素中添加多张背景图片
+		div{
+			background-image:url(flower-red.png), url(flower-green.png),url(sky.jpg);
+			background-repeat: no-repeat, repeat-x, no-repeat; 
+			background-position: 3% 98%,85%, center center,  top;        
+			width: 300px;        
+			padding: 90px 0px; 
+		}
+		注：第一个定义的背景图片在最上面的，最后定义的是在最下面的。使用background-repeat和background-position可以单独指定背景图像中某个文件的平铺方式与放置的位置
+4、border-raidus的用法
+	
+5、渐变背景色
+	/* Webkit语法，
+	-webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*)
+	/* 实际用法... */
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(red), to(blue));
+	background: -webkit-linear-gradient(top,#fff,#000);
+	background: -webkit-radial-gradient(50% 50%,#fff,#000);
+	不要担心这些语法会让你看花眼，我也是这样的！只要记得我们需要用一个逗号来隔开这个参数组。
+	渐变的类型? (linear)（radial径向渐变）
+	渐变开始的X Y 轴坐标(0 0 – 或者left-top)
+	渐变结束的X Y 轴坐标(0 100% 或者left-bottom)
+	开始的颜色? (from(red))
+	结束的颜色? (to(blue))
+
+	/* Mozilla语法， -moz-linear-gradient( [
+	<point> || <angle>,]? <stop>, <stop> [, <stop>]* )
+
+	/* 实际用法*/
+	background: -moz-linear-gradient(top, red, blue);
+	
+	请注意我们将渐变的类型——linear——放到了属性前缀中了
+	渐变从哪里开始? (top – 我们也可以使用度数，比如-45deg)
+	开始的颜色? (red)
+	结束的颜色? (blue)
+	
+	疑问：1）不要结束到100%呢：
+	background: -webkit-gradient(linear, 0 0, 0 8%, from(#dedede), to(white));
+	background: -moz-linear-gradient(top, red, blue 8
+	
+	2）IE支持吗？
+	IE并不支持CSS渐变，但是提供了渐变滤镜，可以实现最简单的渐变效果
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ff0000'); /* IE6,IE7 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ff0000')"; /* IE8 */
+		
+	总结：看下面这种简单的理解
+
+		一. Webkit浏览器
+
+		(1) 第一种写法：
+
+		background:-webkit-gradient(linear ,10% 10%，100% 100%，
+
+		color-stop(0.14,rgb(255,0,0)),
+
+		color-stop(0.5,rgb(255,255,0)),
+
+		color-stop(1,rgb(0,0,255)) );
+
+		第一个参数：表示的是渐变的类型
+
+		linear线性渐变
+
+		第二个参数：分别对应x，y方向渐变的起始位置
+
+		第三个参数：分别对应x，y方向渐变的终止位置
+
+		第四/五/N个参数：设置渐变的位置及颜色
+
+		(2)第二种写法：这种写法比较简单，而且效果比较自然
+
+		background:-webkit-gradient(linear, 0 0, 0 100%, from(＃2074af), to(＃2c91d2));
+
+		第一个参数：表示的是渐变的类型
+
+		linear线性渐变
+
+		第二个参数：分别对应x，y方向渐变的起始位置
+
+		第三个参数：分别对应x，y方向渐变的终止位置
+
+		第四个参数：设置了起始位置的颜色
+
+		第五个参数：设置了终止位置的颜色
+
+		二.Mozilla浏览器
+
+		(1)第一种写法：
+
+		background:-moz-linear-gradient(10 10 90deg,
+
+		rgb(25,0,0) 14%,
+
+		rgb(255,255,0) 50%,
+
+		rgb(0,0,255) 100%);
+
+		第一个参数：设置渐变起始位置及角度
+
+		第二/三/四/N个参数：设置渐变的颜色和位置
+
+		(2)第二种写法：这种写法比较简单，而且效果比较自然
+
+		background:-moz-linear-gradient(top, ＃FFC3C8,＃FF9298);
+
+		第一个参数：设置渐变的起始位置
+
+		第二个参数：设置起始位置的颜色
+
+		第三个参数：设置终止位置的颜色
+
+		三.IE 浏览器
+
+		IE浏览器实现渐变只能使用IE自己的滤镜去实现
+
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=＃00ffff,endColorstr=＃9fffff,grandientType=1);
+
+		第一个参数：渐变起始位置的颜色
+
+		第二个参数：渐变终止位置的颜色
+
+		第三个参数：渐变的类型
+
+		0 代表竖向渐变        1  代表横向渐变
+
+		P.S.这里设置背景的时候不需要给background设置，直接用filter即可，不要和其他的浏览器混淆
+6、使用图像边框
+	1）border-image:
+	代码在指定div元素的宽度中
+	语法：
+	border-image:url("url") A B C D/border-width
+	border-image 中必须至少指定5个参数，
+		第一个参数作为边框使用图像的路径，
+		后三个参数表示当浏览器自动吧边框所使用到的图像进行分隔时的上边距，右边距，下边距，左边距
+		border-width:表示边框的宽度
+		
+		border-image: url(borderimage.png) 25 25 25 25/5px stretch;
+		参考：http://www.qianduan.net/css3border-image-bian-kuang-tu-xiang-xiang-jie/

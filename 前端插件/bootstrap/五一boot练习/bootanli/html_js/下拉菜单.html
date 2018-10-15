@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>下拉菜单</title>
+		<link rel="stylesheet" href="../css/bootstrap.css">
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navmenu">
+			<a href="##" class="navbar-brand">W3cplus</a>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
+						<li role="presentation"><a href="##">CSS3</a></li>
+						<li role="presentation"><a href="##">HTML5</a></li>
+						<li role="presentation"><a href="##">Sass</a></li>
+					</ul>
+				</li>
+				<li><a href="##">前端论坛</a></li>
+				<li><a href="##">关于我们</a></li>
+			</ul>
+		</div>
+		
+		<ul class="nav nav-pills">
+    <li class="dropdown">
+    	<!--如果触发下拉菜单的元素是一个链接元素，为了避免点击链接，页面跳到顶部，可以使用data-target="#"来替代href="#"：-->
+    	
+        <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
+            <li role="presentation"><a href="##">CSS3</a></li>
+            <li role="presentation"><a href="##">HTML5</a></li>
+            <li role="presentation"><a href="##">Sass</a></li>
+        </ul>
+    </li>
+    <li class="active"><a href="##">前端论坛</a></li>
+    <li><a href="##">关于我们</a></li>
+</ul>
+		<script src="../js/jquery-1.11.0.js"></script>
+		<script src="../js/bootstrap.js"></script>
+	</body>
+
+</html>
