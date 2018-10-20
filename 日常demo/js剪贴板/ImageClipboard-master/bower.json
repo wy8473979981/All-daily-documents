@@ -1,0 +1,26 @@
+{
+  "name": "image-clipboard",
+  "version": "0.0.1",
+  "authors": [
+    "jorgenbs <jorgenbs@gmail.com>"
+  ],
+  "description": "Insert images from clipboard. Works on chrome, firefox and Opera",
+  "main": "ClipBoard.js",
+  "keywords": [
+    "clipboard",
+    "image",
+    "copy",
+    "paste"
+  ],
+  "homepage": "https://github.com/jorgenbs/ImageClipboard",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gulpfile.js",
+    "package.json"
+  ]
+}

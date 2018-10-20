@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ 
+<html>
+<head>
+	<title>Untitled</title>
+	<script>
+	var EventUtil = {
+	    addHandler: function (element, type, handler) {
+	        if (element.addEventListener) {
+	            element.addEventListener(type, handler, false);
+	        } else if (element.attachEvent) {
+	            element.attachEvent("on" + type, handler);
+	        } else {
+	            element["on" + type] = handler;
+	        }
+	    },
+	    getEvent: function (event) {
+	        return event ? event : window.event;
+	    },
+	    getClipboardText: function (event) {
+	        var clipboardData = (event.clipboardData || window.clipboardData);
+	        return clipboardData.getData("text");
+	    },
+	    setClipboardText: function (event, value) {
+	        if (event.clipboardData) {
+	            return event.clipboardData.setData("text/plain", value);
+	        } else if (window.clipboardData) {
+	            return window.clipboardData.setData("text", value);
+	        }
+	    },
+	    preventDefault: function (event) {
+	        if (event.preventDefault) {
+	            event.preventDefault();
+	        } else {
+	            event.returnValue = false;
+	        }
+	    }
+	};
+	</script>
+</head>
+ 
+<body>
+<form name="f1">
+文本框：<input type="text" name="textbox1" id="textbox1" value=""/>
+</form>
+</body>
+<script>
+var textbox = document.forms[0].elements["textbox1"]
+EventUtil.addHandler(textbox, "paste", function (event) {
+    event = EventUtil.getEvent(event);
+    var text = EventUtil.getClipboardText(event);
+    alert(text);
+    //if (!/^\d*$/.test(text)) {
+        //EventUtil.preventDefault(event);//非数字则取消粘贴
+    //}
+});
+ 
+</script>
+</html>

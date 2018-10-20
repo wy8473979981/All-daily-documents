@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Untitled</title>
+		<style type="text/css">
+			.editArea{
+				width:100%;
+				height:200px;
+			}
+		</style>
+		<script>
+			var EventUtil = {
+				addHandler: function(element, type, handler) {
+					if(element.addEventListener) {
+						element.addEventListener(type, handler, false);
+					} else if(element.attachEvent) {
+						element.attachEvent("on" + type, handler);
+					} else {
+						element["on" + type] = handler;
+					}
+				},
+				getEvent: function(event) {
+					return event ? event : window.event;
+				},
+				getClipboardText: function(event) {
+					var clipboardData = (event.clipboardData || window.clipboardData);
+					return clipboardData.getData("text");
+				},
+				setClipboardText: function(event, value) {
+					if(event.clipboardData) {
+						return event.clipboardData.setData("text/plain", value);
+					} else if(window.clipboardData) {
+						return window.clipboardData.setData("text", value);
+					}
+				},
+				preventDefault: function(event) {
+					if(event.preventDefault) {
+						event.preventDefault();
+					} else {
+						event.returnValue = false;
+					}
+				}
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="editArea" class="editArea" contenteditable="true"></div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var textbox = document.getElementById("editArea");
+		EventUtil.addHandler(textbox, "paste", function(event) {
+			event = EventUtil.getEvent(event);
+			var text = EventUtil.getClipboardText(event);
+			$("#editArea").html(text);
+		});
+	</script>
+
+</html>
