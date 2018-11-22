@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="switch.css"/>
+	</head>
+
+	<body>
+
+		<div id="root">
+			<vswitch 
+				:switchobj="switch1"
+				class="vswitch" 
+				@change-switch-child="changeSwitchParent">
+			</vswitch>
+		</div>
+
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="switch.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#root',
+				data: {
+					switch1:{
+						value:2,//0就绪  1免打扰   2忙  3锁定  4解锁 5离线
+					}
+				},
+				methods: {
+					changeSwitchParent(data) {
+						var self = this;
+						self.switch1.value = data;
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

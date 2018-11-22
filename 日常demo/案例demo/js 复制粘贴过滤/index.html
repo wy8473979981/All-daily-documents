@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="conversation-content" contenteditable="true" style="width:500px;height:300px;border:1px solid #ccc;">
+
+		</div>
+	</body>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function filterHtml(str, callback) {
+			var s = '';
+			var d = str.replace(/(&nbsp;)/ig, ''); //先过滤空格
+			debugger
+			var sd = d.replace(/<br([^<>]+|\s?)>/ig, '\n'); //替换br标签
+			debugger
+			var div = document.createElement('div');
+			div.id = 'cache_Id';
+			div.style.display = 'none';
+			div.innerHTML = sd;
+			document.body.appendChild(div);
+			var dssD = document.getElementById('cache_Id');
+			var text = dssD.innerText; //过滤html标签
+			text = text.replace(/\n/g, '<br>'); //还原br
+			try {
+				s = text;
+				var n = document.getElementById('cache_Id');
+				if(n && n.parentNode && n.tagName != 'BODY') {
+					n.parentNode.removeChild(n);
+				}
+				if(callback) {
+					callback(s);
+				}
+			} catch(e) {
+				console.log(e);
+			}
+		}
+		$('#conversation-content')[0].onpaste = function() {
+			setTimeout(function() {
+				filterHtml($('#conversation-content').html(), function(str) {
+					$('#conversation-content').html(str);
+				});
+			}, 20);
+		}
+	</script>
+
+</html>
