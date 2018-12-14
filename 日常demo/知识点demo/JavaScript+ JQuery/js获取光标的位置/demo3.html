@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" id="text" />
+		<input type="button" id="btn" value="复制" />
+	</body>
+	<script type="text/javascript">
+		//获取粘贴数据
+		document.getElementById('text').onpaste = function(e) {
+			e.preventDefault(); //可以阻止默认粘贴
+			var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+			console.log(text);
+		}
+		//获取复制数据
+		document.getElementById('text').oncopy = function() {
+			var text;
+			if(window.getSelection) {
+				text = window.getSelection().toString();
+			} else if(document.selection && document.selection.createRange) {
+				text = document.selection.createRange().text;
+			}
+			console.log(text);
+			alert('复制成功，请到需要的地方粘贴');
+		}
+		//点击复制按钮事件，想要兼容性好的可以搜索ZeroClipboard，利用swf的方法复制
+		document.getElementById('btn').onclick = function() {
+			document.getElementById('text').select();
+			alert('请按CTRL+C或者鼠标右键复制');
+		}
+	</script>
+
+</html>

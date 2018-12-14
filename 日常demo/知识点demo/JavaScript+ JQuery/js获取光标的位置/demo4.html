@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>复制粘贴，过滤文本，光标停在原本的位置</title>
+		<style>
+			.edit-div {
+				display: inline-block;
+				width: 225px;
+				border: 1px solid #decdcd;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div>
+			<label>可编辑div:</label>
+			<div contenteditable="true" class="edit-div" id="edit-div" onclick="getCursortPosition(event);"></div>
+			<span>光标位置:</span><span></span>
+		</div>
+		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			// 定义最后光标对象
+			var lastEditRange;
+
+			// 编辑框点击事件
+			$("#edit-div").click(function() {
+				// 获取选定对象
+				var selection = getSelection();
+				// 设置最后光标对象
+				lastEditRange = selection.getRangeAt(0);
+			});
+
+			// 编辑框按键弹起事件
+			$("#edit-div").keyup(function() {
+				// 获取选定对象
+				var selection = getSelection();
+				// 设置最后光标对象
+				lastEditRange = selection.getRangeAt(0);
+			});
+
+			function getCursortPosition(e) {
+				var eleP = e.target.parentNode; //获取父级元素
+				var pos = 0;
+				if(e.target.nodeName == "DIV") {
+					pos = getDivPosition(e.target);
+				} else {
+					pos = getPosition(e.target);
+				}
+
+				var spanEle = (eleP.childNodes)[7];
+				spanEle.innerText = pos;
+			}
+
+			//可编辑div获取坐标
+			var getDivPosition = function(element) {
+				console.log("111");
+				var caretOffset = 0;
+				var doc = element.ownerDocument || element.document;
+				var win = doc.defaultView || doc.parentWindow;
+				var sel;
+				if(typeof win.getSelection != "undefined") { //谷歌、火狐
+					sel = win.getSelection();
+					if(sel.rangeCount > 0) { //选中的区域
+						var range = win.getSelection().getRangeAt(0);
+						var preCaretRange = range.cloneRange(); //克隆一个选中区域
+						preCaretRange.selectNodeContents(element); //设置选中区域的节点内容为当前节点
+						preCaretRange.setEnd(range.endContainer, range.endOffset); //重置选中区域的结束位置
+						caretOffset = preCaretRange.toString().length;
+					}
+				} else if((sel = doc.selection) && sel.type != "Control") { //IE
+					var textRange = sel.createRange();
+					var preCaretTextRange = doc.body.createTextRange();
+					preCaretTextRange.moveToElementText(element);
+					preCaretTextRange.setEndPoint("EndToEnd", textRange);
+					caretOffset = preCaretTextRange.text.length;
+				}
+				return caretOffset;
+			}
+
+			$('#edit-div').on('paste', function(e) {
+				e.preventDefault(); //可以阻止默认粘贴
+				var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+				console.log(text);
+				setLastEditRanget(text);
+			});
+
+			function setLastEditRanget(pasteText) {
+				// 获取编辑框对象
+				var edit = document.getElementById('edit-div');
+
+				// 编辑框设置焦点
+				edit.focus();
+				// 获取选定对象
+				var selection = getSelection();
+				// 判断是否有最后光标对象存在
+				if(lastEditRange) {
+					// 存在最后光标对象，选定对象清除所有光标并添加最后光标还原之前的状态
+					selection.removeAllRanges();
+					selection.addRange(lastEditRange);
+				}
+				// 判断选定对象范围是编辑框还是文本节点
+				if(selection.anchorNode.nodeName != '#text') {
+					// 如果是编辑框范围。则创建表情文本节点进行插入
+					var emojiText = document.createTextNode(pasteText);
+
+					if(edit.childNodes.length > 0) {
+						// 如果文本框的子元素大于0，则表示有其他元素，则按照位置插入表情节点
+						for(var i = 0; i < edit.childNodes.length; i++) {
+							if(i == selection.anchorOffset) {
+								edit.insertBefore(emojiText, edit.childNodes[i]);
+							}
+						}
+					} else {
+						// 否则直接插入一个表情元素
+						edit.appendChild(emojiText);
+					}
+					// 创建新的光标对象
+					var range = document.createRange();
+					// 光标对象的范围界定为新建的表情节点
+					range.selectNodeContents(emojiText);
+					// 光标位置定位在表情节点的最大长度
+					range.setStart(emojiText, emojiText.length);
+					// 使光标开始和光标结束重叠
+					range.collapse(true);
+					// 清除选定对象的所有光标对象
+					selection.removeAllRanges();
+					// 插入新的光标对象
+					selection.addRange(range);
+				} else {
+					// 如果是文本节点则先获取光标对象
+					var range = selection.getRangeAt(0);
+					// 获取光标对象的范围界定对象，一般就是textNode对象
+					var textNode = range.startContainer;
+					// 获取光标位置
+					var rangeStartOffset = range.startOffset;
+					// 文本节点在光标位置处插入新的表情内容
+					textNode.insertData(rangeStartOffset, pasteText);
+					// 光标移动到到原来的位置加上新内容的长度
+					range.setStart(textNode, rangeStartOffset + pasteText.length);
+					// 光标开始和光标结束重叠
+					range.collapse(true);
+					// 清除选定对象的所有光标对象
+					selection.removeAllRanges();
+					// 插入新的光标对象
+					selection.addRange(range);
+				}
+				// 无论如何都要记录最后光标对象
+				lastEditRange = selection.getRangeAt(0);
+			}
+		</script>
+	</body>
+
+</html>
