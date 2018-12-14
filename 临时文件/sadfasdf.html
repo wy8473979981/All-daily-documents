@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<link type="text/css" rel="stylesheet" href="/isc_sso/css/loginb.css" />
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+
+		<title>ISC-SSO</title>
+		<script src="jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<SCRIPT>
+			
+		</SCRIPT>
+	</head>
+
+	<body onload="javascript:clearCookies();">
+		<div class="login_box">
+			<div class="logo"></div>
+			<div class="login_bg">
+				<form id="fm1" action="/isc_sso/login?service=http%3A%2F%2Flocalhost%3A9000%2FWEIKEFU" method="post">
+					<li>
+
+						<input id="username" name="username" class="login_input1" tabindex="1" accesskey="n" type="text" value="" size="25" autocomplete="false" />
+					</li>
+					<li style="padding-top: 5px;padding-top: 0px/0;*padding-top: 5px;"> <input id="password" name="password" class="login_input1" tabindex="2" onkeydown="javascript:butOnClick();" accesskey="p" type="password" value="" size="25" autocomplete="off" /></li>
+					<li class="login"><input type="button" id="submi" name="Submit" value="登录" onclick="doSubmit();" /> <input type="button" name="Submit2" value="重置" onclick="resetBtn();" /></li>
+					<li></li>
+
+					<input type="hidden" name="lt" value="LT-4314-wU46zsQYwoCHcCh5JzELPhCnpbWVry" />
+					<input type="hidden" name="execution" value="e2s1" />
+					<input type="hidden" name="_eventId" value="submit" />
+				</form>
+			</div>
+			<div class="login_link">
+				<a id="phonelink" href="javascript:phonelink();">目录运维通讯录</a>
+			</div>
+			<div class="login_info">Copyright&copy;2008-2012 国家电网公司</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function phonelink() {
+			var url = "/isc_sso/phone.html";
+			var name = "目录运维通讯录";
+			var iWidth = 900;
+			var iHeight = 400;
+			var itop = (window.screen.availHeight - 40 - iHeight) / 2;
+			var iLeft = (window.screen.availWidth - 20 - iWidth) / 2;
+			window.open(url, name, "height=" + iHeight + ",width=" + iWidth + ",top=" + itop + ",left=" + iLeft + ",scrollbars=yes,toolbar=no,menubar=no,resizable=no,location=no,status=no");
+		}
+
+		//在账号非法登录时发送邮件和短信安全预警
+		var msg;
+		if(document.getElementById("msg") != "" && document.getElementById("msg") != null) {
+			msg = document.getElementById("msg").innerHTML;
+		} else {
+			msg = "";
+		}
+		if(msg.indexOf("ip") > -1 || msg.indexOf("时间") > -1 || msg.indexOf("输错密码次数太多") > -1) {
+			$(function() {
+				//验证用户名和密码
+				jQuery.ajax({
+					url: "/isc_sso/servlet/vertifyIllegalLoginServlet",
+					type: "POST",
+					data: "loginName=" + $("#username").val() + "&msg=" + msg,
+					dataType: "text",
+					success: function(data) {
+						//document.getElementById("msg").innerHTML = "邮件服务器发送邮件成功！";
+					},
+					error: function(data) {
+						//document.getElementById("msg").innerHTML = "邮件服务器发送邮件失败！";
+					}
+				});
+			});
+		}
+	</script>
+
+</html>
