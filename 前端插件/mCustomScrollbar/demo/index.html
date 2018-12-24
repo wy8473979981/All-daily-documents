@@ -214,7 +214,7 @@
 				<p>测试数据.......还有很多很多</p>
 			</div>
 			<div>
-				<p>测试数据.......还有很多很多</p>
+				<p>到底了。。。。。</p>
 			</div>
 		</div>
 		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
@@ -226,7 +226,12 @@
 				$(window).load(function() {
 					$(".content").mCustomScrollbar({
 						autoHideScrollbar: true,
-						theme:"dark"
+						theme: "dark",
+						callbacks: {
+							onTotalScroll: function() {
+								debugger
+							}
+						}
 					});
 				});
 			})(jQuery);
