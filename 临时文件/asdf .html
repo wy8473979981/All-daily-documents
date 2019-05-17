@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<style type="text/css">
-			.swbrt-editor-top {
-				width: 500px;
-				height: 500px;
-				border: 1px solid #ccc;
-			}
-		</style>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .dom {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
 
-	<body>尔尔
-		<div class="swbrt-editor-top" contentEditable="true"></div>
-	</body>
+<body>
+    <div class="dom" style="margin:10px;"></div>
+    <div class="dom" style="margin:10px 20px;"></div>
+</body>
+<script>
+    console.log(a) //function a(){}
+    var a = 1;
+    console.log(a) //1
+    function a() {
+        console.log(a) //1
+    }
+    console.log(a) //1
+</script>
 
 </html>

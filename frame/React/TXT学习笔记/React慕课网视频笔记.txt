@@ -1,7 +1,0 @@
-Mounted : React Components 被render解析生成对应的DOM节点，并被插入浏览器的DoM结构的一个过程
-
-Update : 一个mounted的React Components被重新render的过程
-
-Unmounted : 一个mounted的React Components对应的DOM节点被从DOM结构中溢出的这样一个过程
-
-每一个状态都封装了对应的hook函数
