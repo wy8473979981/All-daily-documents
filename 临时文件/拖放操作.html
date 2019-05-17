@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>拖放操作</title>
+		<meta name="author" content="汪磊">
+		<link rel="stylesheet" href="bootstrap.css">
+		<style>
+			#target {
+				padding: 20px;
+				height: 300px;
+				border: 5px dashed #c0c0c0;
+				color: #e0e0e0;
+				font-size: 40px;
+				line-height: 260px;
+				text-align: center;
+				-webkit-user-select: none;
+				cursor: pointer;
+			}
+			
+			#target.actived {
+				border-color: #888;
+				color: #eaeaea;
+				box-shadow: 0 0 80px #e0e0e0 inset;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<h1>Drag&Drop</h1></div>
+			<div class="jumbotron">
+				<p>你好啊，你今年几岁啊，哈哈，我的今天在哪里</p>
+				<img src="toy.png" alt="">
+			</div>
+			<div id="target">
+				Drag something into here
+				<ul id="result" class="list-group"></ul>
+			</div>
+			<br>
+		</div>
+		<script>
+			(function() {
+				// 找到目标位置框框
+				var target = document.querySelector('#target');
+				var fileList = document.querySelector('#result');
+				// 注册拖拽进入
+				target.addEventListener('dragenter', function() {
+					this.classList.add('actived');
+				});
+				// 离开
+				target.addEventListener('dragleave', function() {
+					this.classList.remove('actived');
+				});
+
+				// 如果想要捕获drop事件 就一定得在该事件中阻止默认事件
+				target.addEventListener('dragover', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+				});
+
+				// 当元素放到该对象上
+				target.addEventListener('drop', function(e) {
+
+					if(e.dataTransfer.files.length) {
+						var files = e.dataTransfer.files;
+						for(var i = 0; i < files.length; i++) {
+							var li = document.createElement('li');
+							li.setAttribute('class', 'list-group-item');
+							// 创建信息的子节点
+							li.innerHTML = '<h5 class="list-group-item-heading">' + files[i].name + '</h5><p class="list-group-item-text">' + files[i].lastModifiedDate.toLocaleDateString() + ' ' + files[i].lastModifiedDate.toLocaleTimeString() + ' ' + (files[i].size / 1024).toFixed(2) + 'KB</p>';
+							fileList.appendChild(li);
+						}
+					} else {
+						// 短路运算
+						// var data = e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text/uri-list');
+						var data = e.dataTransfer.getData('text/plain');
+						if(data) {
+							// 拖入的是文本
+							target.innerHTML = data;
+						} else {
+							var img = document.createElement('img');
+							img.src = e.dataTransfer.getData('text/uri-list');
+							target.appendChild(img);
+						}
+					}
+
+					this.classList.remove('actived');
+
+					e.preventDefault();
+					e.stopPropagation();
+				});
+
+			})();
+		</script>
+	</body>
+
+</html>
