@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^2.1.0",
-    "jquery": "^2.2.3",
+    "jquery": "^3.5.0",
     "vuex": "^2.0.0",
     "vuex-router-sync": "^3.0.0",
     "bootstrap": "^3.3.7"
