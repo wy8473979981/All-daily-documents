@@ -1,0 +1,2 @@
+先启动mock npm run mock:start
+再启动项目  npm run serve
