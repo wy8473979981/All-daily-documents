@@ -1,0 +1,58 @@
+@import "./vars.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "PingFang SC",  "Source Han Sans", "Hiragino Sans GB", "Microsoft YaHei";
+  font-size: 14px;
+}
+
+// form-render
+.glp-form-render {
+  .el-form--label-top {
+    .el-form-item__label {
+      padding: 0 !important;
+    }
+  }
+  .el-form-item__label {
+    color: #666;
+  }
+
+  .glp-form-render-plain {
+    font-weight: 600;
+
+    & > .glp-text-secondary {
+      color: #333 !important;
+    }
+  }
+}
+
+// 类el-input
+.el-input__inner {
+  font-weight: 600 !important;
+
+  &::placeholder {
+    font-weight: 400 !important;
+  }
+}
+
+
+// el-select
+.el-select-dropdown__item.hover {
+  color: $color-primary;
+}
+
+// 表格
+.el-table--group, .el-table--border {
+  border-color: #ddd !important;
+}
+
+.el-table--border th{
+  background-color: #f1f3f4 !important;
+}
+
+
+// 公用底部
+#common-footer {
+  margin-top: 0 !important;
+}

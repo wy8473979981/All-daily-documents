@@ -1,0 +1,68 @@
+{
+  "name": "glp-web-factor-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build:prod": "vue-cli-service build",
+    "build:stg": "vue-cli-service build --mode staging",
+    "lint": "vue-cli-service lint",
+    "mock:start": "node-dev ./mock/index.js",
+    "docs:dev": "vuepress dev docs-src",
+    "docs:build": "vuepress build docs-src"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.157",
+    "ali-oss": "^6.9.1",
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "element-ui": "^2.13.1",
+    "express-http-proxy": "^1.6.0",
+    "glp-ui": "0.1.29",
+    "nprogress": "^0.2.0",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.1",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3",
+    "vuex-class": "^0.3.2",
+    "vuex-persist": "^2.2.0"
+  },
+  "devDependencies": {
+    "@pat-fet/mock-server": "1.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-typescript": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "glp-utils": "^1.0.2",
+    "lint-staged": "^9.5.0",
+    "mockjs": "^1.1.0",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "svg-sprite-loader": "^4.2.5",
+    "typescript": "~3.8.3",
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.4.1"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

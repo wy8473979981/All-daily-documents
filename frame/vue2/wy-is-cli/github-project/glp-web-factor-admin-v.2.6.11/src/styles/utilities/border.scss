@@ -1,0 +1,28 @@
+@import "../vars.scss";
+
+$border-base: 1px solid $border-color !important;
+
+.border {
+    border: $border-base;
+}
+
+.border-split {
+    border-color: $border-split-color !important;
+}
+
+.border-top {
+    border-top: $border-base;
+}
+
+.border-bottom {
+    border-bottom: $border-base;
+}
+
+.border-left {
+    border-left: $border-base;
+}
+
+.border-right {
+    border-right: $border-base;
+}
+

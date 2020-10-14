@@ -1,0 +1,65 @@
+@import './vars.scss';
+
+/* 改变主题色变量 */
+$--color-primary: $color-primary;
+
+$--color-text-primary: $text-heading-color;
+/// color|1|Font Color|2
+$--color-text-regular: $text-regular-color;
+/// color|1|Font Color|2
+$--color-text-secondary: $text-secondary-color;
+
+/// Button 
+$--button-small-font-size: 14px;
+/// padding||Spacing|3
+$--button-small-padding-vertical: 8px;
+
+/// Disabled
+$--disabled-fill-base: #f3f3f3;
+
+
+/// Input 
+$--input-font-color: $text-regular-color;
+$--input-border-color: #ddd;
+$--input-border-radius: 2px;
+$--input-placeholder-color: #c5c5c5;
+
+
+/* Select
+-------------------------- */
+$--select-option-hover-background: #f2faf5;
+
+/* Table
+-------------------------- */
+$--table-border-color:  #f3f3f3;
+$--table-font-color: #333;
+$--table-row-hover-background-color: #ebf5f0;
+$--table-current-row-background-color: #ebf5f0;
+$--table-header-background-color: #f1f3f4;
+
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+/* Break-point
+--------------------------*/
+$--xl: 1680px;
+
+// 重载 Element 样式
+
+//dropdown
+.el-dropdown{
+  color: $text-regular-color;
+  &>span{
+      height: 30px;
+      line-height: 30px;
+      cursor: pointer;
+  }
+}
+
+.el-dropdown-menu {
+  padding: 0;
+}
+

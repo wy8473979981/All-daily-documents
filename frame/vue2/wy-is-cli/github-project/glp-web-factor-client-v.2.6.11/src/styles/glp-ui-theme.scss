@@ -1,0 +1,11 @@
+@import './vars.scss';
+
+@import "~glp-ui/package/styles/index.scss";
+@import "~glp-ui/package/styles/icons/iconfont.css";
+
+.glp-data-table {
+  .el-button--text {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
