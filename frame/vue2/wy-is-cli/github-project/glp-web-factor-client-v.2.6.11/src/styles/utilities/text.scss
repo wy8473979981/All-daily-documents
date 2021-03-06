@@ -1,0 +1,45 @@
+@import "../vars.scss";
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left  !important;
+}
+
+.text-primary {
+  color: $color-primary !important;
+}
+
+.text-success {
+  color: $color-success !important;
+}
+
+.text-info {
+  color: $color-info !important;
+}
+
+.text-warning {
+  color: $color-warning !important;
+}
+
+.text-danger {
+  color: $color-danger !important;
+}
+
+.text-heading {
+  color: $text-heading-color !important;
+}
+
+.text-regular {
+  color: $text-regular-color !important;
+}
+
+.text-secondary {
+  color: $text-secondary-color !important;
+}

@@ -1,0 +1,202 @@
+ //覆盖一些element-ui样式
+.el-menu-item{
+    padding: 0px;
+}
+.el-menu-item, .el-submenu__title{
+    height: 40px;
+    line-height: 40px;
+}
+
+
+.main-container{
+     background:#F3F3F3;
+    /**表格*/
+    .el-table {
+      font-size  : 12px;
+    }
+    .el-table th{
+      font-size  : 13px;
+      font-weight: 700;
+      color      :#046C4F;
+      background : #E9F7EF;
+      text-align: left;
+    }   
+    .el-table td{
+        text-align:left;
+        padding:3px 0;
+    }
+    .el-table--medium th{
+        padding:9px 0;
+    }
+    /**form*/
+    .form-section{
+        .el-button+.el-button{
+            margin-left: 40px;
+        }
+    }
+    .el-form-item__label {
+        font-size  : 13px;
+        font-weight: 400;
+        color:#333333;
+    }
+    .block-form{
+        .el-form-item__label{
+            display: block;
+            text-align: left;
+        }
+    }
+    .el-input--small .el-input__inner{
+        width:260px;
+    }
+    .block-form-item{
+        width: 100%;
+        .el-form-item__content{
+            width: 100%;
+        }
+    }
+    .el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap>.el-form-item__label:before, .el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before{
+        content: "";
+        margin-left: 0px;
+    }
+    .el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap>.el-form-item__label:after, .el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:after{
+        content: "*";
+        color: #F56C6C;
+        margin-left: 3px;
+        margin-right: 2px;
+        vertical-align: middle;
+    }
+    .form-line:first-child{
+        margin-top:60px;
+    }
+    .form-line:last-child{
+        margin-top:33px;
+        text-indent:2em;
+    }
+    .form-text{
+        width:468px;
+    }
+    /**setp*/
+    .el-step__title{
+      font-size: 14px;
+    }
+
+    /**弹出层*/
+    .el-dialog__header{
+        background: none;
+    }
+    .el-dialog__headerbtn{
+        font-size: 20px;
+    }
+    .el-dialog__title{
+        font-size: 18px;
+        font-weight: 700;
+        text-align:center;
+        display:block;
+        color:#333333;
+    }
+    .el-dialog__close{
+        color:#888888;
+    }
+    .dialog-label .el-form-item__label{
+        display:block;
+        text-align:left;
+    }
+    .el-dialog__footer{
+        padding:0;
+    }
+    .el-dialog__footer button{
+        margin-top:10px;
+        margin-bottom: 20px;
+    }
+  
+    // 文件上传
+    .hidden-picture-card{
+        .el-upload--picture-card{
+            display: none;
+        }
+    }
+
+    // 按钮
+    .el-button.long-btn{
+        padding: 9px 12px;
+    }
+    .el-button.btn-twofont{
+        padding:6px 19px;
+        font-size:14px;
+        display:inline-block;
+        line-height:18px;
+    }
+   .color-primary-main{
+      color:#359C67;
+   }
+   .title{
+     color:#333333;
+   }
+   .el-dropdown-link{
+     border-radius:5px;
+     border:1px solid #2AB668;
+     color:#2AB668;
+    }
+    //分页
+    .el-pager li{
+        border:1px solid #D9D9D9;
+    }
+    //成功失败提示框
+    .dialog-tip{
+      text-align:center;
+      padding-bottom:50px;
+      color:#888888;
+      font-size:14px;
+    }
+    .dialog-tip i{
+       width:32px;
+       height:32px;
+    }
+    .dialog-tip h4{
+        color:#333333;
+        font-weight:bold;
+        font-size:18px;
+        line-height:32px;
+        margin-bottom:8px;
+    }
+    //进度条
+    .step-title{
+      font-weight: bold;
+      color:#333333;
+      font-size:16px;
+    }
+    .step-description{
+        text-align:center;
+        color:#000000;
+        margin-bottom:5px;
+    }
+    .step-fgreen{
+        color:#359C67;
+    }
+    .step-fred{
+        color:#FF6C6A;
+    }
+    .step-fsgreen{
+        color:#B8D87E;
+    }
+    .step-forange{
+        color:#FF9B6D;
+    }
+}
+
+
+.el-button--primary.is-plain{
+    background-color: #fff;
+}
+
+/**弹出层*/
+.el-dialog__header{
+    background: none;
+}
+.el-dialog__body{
+    padding:20px;
+}
+.el-dialog__footer button{
+    margin-top:10px;
+    margin-bottom: 20px;
+}

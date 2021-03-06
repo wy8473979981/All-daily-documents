@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <script>
+        const obj = {
+            a: {
+                c: {
+                    w: 2,
+                    r: {
+                        q: 4
+                    }
+                },
+                d: 1,
+                f: 2,
+                e: 3
+            },
+            b: {
+                h: 4,
+                i: {
+                    p: {
+                        q: 5
+                    }
+                }
+            }
+        };
+
+        const Find = (
+            key,
+            value,
+            currentValue = obj,
+            currentKey,
+            helper = { isFinded: false, result: [] }
+        ) => {
+            // console.log(currentValue,currentKey,'currentValue-currentKey')
+            if (currentKey === key && currentValue === value) {
+                helper.isFinded = true;
+            } else if (typeof currentValue === "object") {
+                // Object.keys(currentValue).some(
+                //     currentKey => Find(key, value, currentValue[currentKey], currentKey, helper).isFinded
+                // );
+
+                Object.keys(currentValue).some((currentKey) => {
+                    return Find(key, value, currentValue[currentKey], currentKey, helper).isFinded;
+                });
+            }
+
+            if (helper.isFinded && currentKey) {
+                console.log(currentKey, 'currentKey')
+                helper.result.unshift(currentKey);
+            }
+            return helper;
+        };
+
+        console.log(Find("q", 5), Find("d", 1));
+
+
+
+    </script>
+</body>
+
+</html>

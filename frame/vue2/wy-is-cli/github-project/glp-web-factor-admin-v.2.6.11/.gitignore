@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+/dist
+/mock/nas/**
+!/mock/nas/1.docx
+!/mock/nas/1.xlsx
+!/mock/nas/1.jpg
+!/mock/nas/2.jpg
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

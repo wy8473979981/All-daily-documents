@@ -1,0 +1,30 @@
+// 色彩
+
+$color-primary: #3AC082; // 主色调
+$color-primary-lighten-5: mix(#fff, $color-primary, 90%); // 暖色第5阶 (1-5)
+$color-primary-darken-1: #046c4f; // 冷色第1阶 (1-4)
+
+$color-success: #67c23a !default;
+$color-info: #909399 !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
+
+// 文字
+$text-regular-color: #666; // 常规字体颜色
+$text-secondary-color: #999; // 辅助字体颜色
+$text-heading-color: #333; // 标题字体颜色
+
+// 背景
+$bg-body-color: #F8FBFC; // body 背景色
+$bg-color: #fff; // 常规背景色
+$bg-head-color: #fbfbfb; // 头部背景色
+$bg-active-color: $color-primary-lighten-5; // 活跃背景色
+
+// 边框
+$border-color: #ebebeb; // 常规边框色
+$border-split-color: #f3f3f3; // 分割线边框色 
+
+
+// 菜单
+$menu-bg-color: #515050;
+

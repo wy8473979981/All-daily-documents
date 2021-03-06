@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>目录结构 | Glp Web 中文文档</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="reference of glp web.">
+    <link rel="preload" href="/glp-web/assets/css/0.styles.6f9c8977.css" as="style"><link rel="preload" href="/glp-web/assets/js/app.aced12ef.js" as="script"><link rel="preload" href="/glp-web/assets/js/2.2e6a985d.js" as="script"><link rel="preload" href="/glp-web/assets/js/8.8150ff07.js" as="script"><link rel="prefetch" href="/glp-web/assets/js/3.6fbb846a.js"><link rel="prefetch" href="/glp-web/assets/js/4.ef25595f.js"><link rel="prefetch" href="/glp-web/assets/js/5.7d412a63.js"><link rel="prefetch" href="/glp-web/assets/js/6.639a621c.js"><link rel="prefetch" href="/glp-web/assets/js/7.096515a4.js"><link rel="prefetch" href="/glp-web/assets/js/9.0eb93254.js">
+    <link rel="stylesheet" href="/glp-web/assets/css/0.styles.6f9c8977.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/glp-web/" class="home-link router-link-active"><!----> <span class="site-name">Glp Web 中文文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/glp-web/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/glp-web/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><a href="https://github.com/zhangyinag/glp-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/glp-web/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/glp-web/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><a href="https://github.com/zhangyinag/glp-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/glp-web/guide/" class="sidebar-link">介绍</a></li><li><a href="/glp-web/guide/quickstart.html" class="sidebar-link">快速上手</a></li><li><a href="/glp-web/guide/structure.html" class="active sidebar-link">目录结构</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="目录结构"><a href="#目录结构" class="header-anchor">#</a> 目录结构</h1> <p>GlpWeb 推荐目录如下:</p> <div class="language-text extra-class"><pre class="language-text"><code>.
+├─ docs   (文档)
+├─ mock   (模拟数据服务)
+│  ├─ index.js
+│  ├─ controllers
+│  └─ inits
+├─ public   (静态资源)
+├─ src
+│  ├─ api   (api目录)
+│  ├─ assets   (资源)
+│  ├─ components   (全局组件)
+│  ├─ config   (配置文件)
+│  │   ├─ dictionary
+│  │   ├─ home-page
+│  │   └─ page
+│  ├─ plugins   (插件)
+│  │  ├─ auth
+│  │  ├─ element-ui
+│  │  ├─ glp-ui
+│  │  ├─ http
+│  │  └─ svg
+│  ├─ router   (路由)
+│  ├─ store (vuex)
+│  │  ├─ index.ts
+│  │  └─ modules
+│  │     └─ app
+│  ├─ styles   (样式)
+│  │  ├─ utilities
+│  │  ├─ element-ui-theme.scss
+│  │  ├─ index.scss
+│  │  ├─ reboot.sccs
+│  │  └─ vars.scss
+│  ├─ types   (类型)
+│  ├─ utils   (辅助工具)
+│  ├─ views   (视图)
+│  │  ├─ error
+│  │  ├─ layout
+│  │  ├─ login
+│  │  └─ pages
+│  ├─ App.vue
+│  ├─ main.ts
+├─ .env
+├─ .env.development
+├─ .env.development.local
+├─ .env.production
+├─ .env.stagging
+├─ .eslintrc.js
+├─ .gitignore
+├─ .npmrc
+└─ .vue.config.js
+
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">命名规范</p> <p>一般的模块都是使用文件夹来导入， 模块入口(index.vue, index.js, index.ts, index.scss);
+局部组件都是放在相应层级的 <code>components</code> 文件夹中。</p></div> <ul><li><p><code>docs</code> : 文档目录， 此文档的储存目录</p></li> <li><p><code>mock</code> : 模拟数据相关， 储存路由， 初始化数据等</p></li> <li><p><code>public</code> : 静态资源， 不经过 webpack 打包</p></li> <li><p><code>src</code> : 源代码目录</p> <ul><li><p><code>api</code> ： api 声明集合， 所以的 http 请求都应使用 $http 插件</p></li> <li><p><code>assets</code> : 资源目录， 经 webpack 打包</p></li> <li><p><code>components</code> : 项目内公用全局组件</p></li> <li><p><code>config</code> : 项目配置文件</p> <ul><li><p><code>dictionary</code> : 字典配置， 目前全部为本地字典</p></li> <li><p><code>home-page</code> : 不同角色主页配置</p></li> <li><p><code>page</code> : 页面配置， 配置页面、菜单以及路由</p></li></ul></li> <li><p><code>plugins</code> : vue 插件</p> <ul><li><p><code>auth</code> : 认证及授权插件, 支持统一登录以及普通登录模式</p></li> <li><p><code>element-ui</code> : 引入 element-ui 插件</p></li> <li><p><code>glp-ui</code> : glp UI组件</p></li> <li><p><code>http</code> : http 插件</p></li> <li><p><code>svg</code> : svg 图片插件</p></li></ul></li> <li><p><code>router</code> : 路由相关</p></li> <li><p><code>store</code> : vuex 相关，请按模块添加</p></li> <li><p><code>styles</code> : 样式目录</p> <ul><li><p><code>utilities</code> : 工具样式集合</p></li> <li><p><code>element-ui-theme.scss</code> : element-ui 主题定制</p></li> <li><p><code>reboot.scss</code> : 浏览器一致性处理</p></li> <li><p><code>vars.scss</code> : 样式变量</p></li></ul></li> <li><p><code>types</code> : 类型引入</p></li> <li><p><code>utils</code> ： 工具函数集合</p></li> <li><p><code>views</code> : 视图页面</p> <ul><li><p><code>error</code> : 错误页面 404 403</p></li> <li><p><code>layout</code> : 布局页面， 包含侧边栏、头部、以及主题内容， pages 的所有页面都嵌套在主题内容中</p></li> <li><p><code>login</code> : 登录页面， 只有普通认证过模式下用到</p></li> <li><p><code>pages</code> : 页面，与 /config/page 中配置对应</p></li></ul></li> <li><p><code>App.vue</code> : 页面根节点</p></li> <li><p><code>main.ts</code> : 入口</p></li> <li><p><code>env.**</code> : 多环境配置文件</p></li> <li><p><code>vue.config.js</code> : vue/cli 脚手架相关配置</p></li></ul></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/glp-web/guide/quickstart.html" class="prev">
+        快速上手
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/glp-web/assets/js/app.aced12ef.js" defer></script><script src="/glp-web/assets/js/2.2e6a985d.js" defer></script><script src="/glp-web/assets/js/8.8150ff07.js" defer></script>
+  </body>
+</html>
