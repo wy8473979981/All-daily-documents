@@ -13,14 +13,18 @@ import { Component, Vue, Prop } from "vue-property-decorator"
 
 enum Sex {
   "男" = 0,
-  "女" = 1
+  "女" = 1,
 }
-
+interface IUser {
+  name: string;
+  age: number;
+  sex?: number;
+}
 @Component({
   name: "User"
 })
 export default class About extends Vue {
-  @Prop(Array) userList!: object;
+  @Prop(Array) userList!: Array<IUser>;
 
   SEX: any = Sex;
 }
