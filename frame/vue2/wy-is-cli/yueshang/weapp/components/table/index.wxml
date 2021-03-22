@@ -1,0 +1,53 @@
+<view class="app-table">
+
+  <view class="app-table-header">
+    <view class="app-table-header__items">
+      <view
+        class="app-table-header__item {{ columni < fixednum ? 'fixed' : '' }} {{ column.groupName ? 'in-group' : '' }} text-{{ column.align }} {{ column.sortable ? 'sortable' : '' }}"
+        wx:for="{{ component.columns }}" wx:for-item="column" wx:for-index="columni" wx:key="columni"
+        bind:tap="onHeadColumnClick" data-column="{{column}}" style="{{ column.$styles }}">
+        <!-- style="min-width:{{ column.width }}rpx;max-width:{{ column.width }}rpx;left:{{component.fixedList[columni]}}rpx;"> -->
+        <view class="app-table-header__item__group" wx:if="{{ column.groupName }}">
+          <view class="app-table-header__item__group-name">
+            {{ column.groupIndex === 0 ? column.groupName : '' }}
+          </view>
+        </view>
+        <view class="app-table-header__item__column-name">{{ column.label }}</view>
+        <image
+          wx:if="{{ column.sortable && component.sorted.key === column.key && component.sorted.direction === 'up' }}"
+          style="width:18rpx;height:21rpx;" src="../../assets/images/icon-sortup.png" />
+        <image
+          wx:elif="{{ column.sortable && component.sorted.key === column.key && component.sorted.direction === 'down' }}"
+          style="width:18rpx;height:21rpx;" src="../../assets/images/icon-sortdown.png" />
+        <image wx:elif="{{ column.sortable }}" style="width:18rpx;height:21rpx;"
+          src="../../assets/images/icon-sortable.png" />
+      </view>
+    </view>
+  </view>
+
+  <view class="app-table-rows">
+    <view class="app-table-rows__empty" wx:if="{{ component.rows.length === 0 }}">
+      {{ emptyText }}
+    </view>
+    <block wx:else>
+      <view class="app-table-row app-table-row--total" wx:if="{{ component.totalRow }}">
+        <view class="app-table-row__item {{ columni < fixednum ? 'fixed' : '' }} text-{{ column.align }}"
+          wx:for="{{ component.columns }}" wx:for-item="column" wx:for-index="columni" wx:key="columni"
+          style="{{ column.$styles }};">
+          <!-- style="min-width:{{ column.width }}rpx;max-width:{{ column.width }}rpx;left:{{component.fixedList[columni]}}rpx;"> -->
+          <text>{{ column.key ? component.totalRow[column.key] : '' }}</text>
+        </view>
+      </view>
+      <view class="app-table-row" wx:for="{{ component.rows }}" wx:for-item="row" wx:for-index="rowi" wx:key="rowi">
+        <view class="app-table-row__item {{ columni < fixednum ? 'fixed' : '' }} text-{{ column.align }}"
+          wx:for="{{ component.columns }}" wx:for-item="column" wx:for-index="columni" wx:key="columni"
+          bind:tap="onRowColumnClick" data-index="{{rowi}}" data-row="{{ row }}" data-column="{{ column }}"
+          style="{{ column.$styles }};color: {{ column.color }};">
+          <!-- style="min-width:{{ column.width }}rpx;max-width:{{ column.width }}rpx;left:{{component.fixedList[columni]}}rpx;"> -->
+          <text>{{ column.key ? row[column.key] : rowi + 1 }}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>

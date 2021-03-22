@@ -1,0 +1,9 @@
+.list-mode-item {
+  font-size: 28rpx;
+}
+
+.list-mode-item.active {
+  color: #3992BA;
+  font-size: 32rpx;
+  font-weight: bold;
+}

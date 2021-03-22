@@ -1,0 +1,21 @@
+<view class="zhibiao-xiangmupaiming">
+	<view class="zhibiao-header">
+		<view class=""> 全部 </view>
+		<view class="header-right-box">
+			<view class="header-right-select"> {{ yearMonth }} </view>
+		</view>
+	</view>
+	<app-section title="项目排名">
+		<view slot="head-actions">
+			<app-filter-dialog checkboxes="{{ allCols }}" maxnum="3" bindselected="bindselected" tip="筛选指标 （注：最多可选三项）">
+				<view class="select-indicator">
+					筛选指标
+					<image class="select-icon" src="../../assets/images/icon-filter-index.png"> </image>
+				</view>
+			</app-filter-dialog>
+		</view>
+		<app-table bind:sort="sort" values="{{ dataList }}" columns="{{ cols }}" totalRow="{{ totalRow }}" 
+		bind:row-column-click="clickRow"></app-table>
+	</app-section>
+	<image class="to-top" src="../../assets/images/icon-totpo.png" bindtap="toTop"> </image>
+</view>

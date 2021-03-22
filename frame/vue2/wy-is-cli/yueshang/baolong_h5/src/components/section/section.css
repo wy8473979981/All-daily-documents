@@ -1,0 +1,70 @@
+/* components/container/section.wxss */
+.app-section {
+	padding: 0.32rem 0.4rem;
+	margin-bottom: 0.4rem;
+	background-color: #ffffff;
+}
+
+.app-section .app-section__head {
+	display: flex;
+	align-items: center;
+}
+
+.app-section .app-section__head .app-section__head__title {
+	color: #333333;
+	font-size: 0.37rem;
+	font-weight: bold;
+	height: 0.42rem;
+	line-height: 0.42rem;
+	border-left: 3px solid #3992ba;
+	padding-left: 0.2rem;
+}
+
+.app-section .app-section__head .app-section__head__title .app-section__head__title__subtitle {
+	color: #7d7e80;
+	font-size: 0.32rem;
+}
+
+.app-section .app-section__head .app-section__head__actions_left {
+	flex: 1;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.app-section .app-section__head .app-section__head__actions {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.app-section .app-section__head .app-section__head__url {
+	margin-left: 0.28rem;
+	width: 0.35rem;
+	height: 0.2rem;
+	transform: rotate(-90deg);
+}
+
+.app-section .app-section__head .app-section__head__collapse {
+	margin-left: 0.28rem;
+	width: 0.3rem;
+	height: 0.2rem;
+	transform: rotate(180deg);
+	transition: transform 250ms;
+}
+
+.app-section .app-section__head .app-section__head__collapse.collapsed {
+	transform: rotate(0deg);
+}
+
+.app-section .app-section__body {
+	position: relative;
+	height: auto;
+	margin-top: 0.4rem;
+	overflow: hidden;
+	transition: all 500ms;
+}
+
+.app-section.collapsed .app-section__body {
+	margin-top: 0;
+	height: 0;
+}

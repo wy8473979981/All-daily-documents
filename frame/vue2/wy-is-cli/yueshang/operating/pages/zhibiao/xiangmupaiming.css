@@ -1,0 +1,41 @@
+/* pages/zhibiao/xiangmupaiming.wxss */
+.updata-time {
+	font-size: 22rpx;
+	line-height: 74rpx;
+	text-align: center;
+	color: #c5c5c5;
+}
+.select-indicator {
+	color: #3992ba;
+	font-size: 28rpx;
+	display: flex;
+	align-items: center;
+}
+.select-icon {
+	width: 24rpx;
+	height: 24rpx;
+	margin-left: 10rpx;
+}
+.zhibiao-header {
+	height: 100rpx;
+	width: 100%;
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 36rpx;
+	justify-content: space-between;
+}
+.header-right-box {
+	display: flex;
+}
+.header-right-select {
+	margin-left: 20px;
+}
+.to-top {
+	width: 80rpx;
+	height: 80rpx;
+	position: fixed;
+	right: 60rpx;
+	bottom: 60rpx;
+}

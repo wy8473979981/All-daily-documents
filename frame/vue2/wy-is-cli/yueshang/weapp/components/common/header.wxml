@@ -1,0 +1,20 @@
+<view class="app-header">
+  <view class="app-header__top">
+    <view class="app-header__top__left">
+      <slot></slot>
+    </view>
+    <view class="app-header__top__right">
+      <slot name="right"></slot>
+    </view>
+  </view>
+  <view class="app-header__bottom">
+    <slot name="bottom"></slot>
+    <view class="app-header__bottom__tabs" wx:if="{{ component.tabs.length }}">
+      <view class="app-header__bottom__tabs__item {{ component.tabActiveIndex === tabi ? 'active' : '' }}"
+        wx:for="{{ component.tabs }}" wx:for-index="tabi" wx:for-item="tab" wx:key="tabi"
+        data-value="{{ tab.value }}" data-index="{{ tabi }}" bindtap="onTabClick">
+        {{ tab.label }}
+      </view>
+    </view>
+  </view>
+</view>

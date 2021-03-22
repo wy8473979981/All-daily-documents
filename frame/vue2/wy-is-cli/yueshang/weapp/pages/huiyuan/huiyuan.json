@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText":"会员",
+  "usingComponents":  {
+    "app-echarts":"../../components/echarts/echarts",
+    "app-section": "../../components/container/section",
+    "app-header": "../../components/common/header",
+		"app-project-selector": "../../components/selector/project",
+		"app-picker": "../../components/selector/datepicker"
+  }
+}

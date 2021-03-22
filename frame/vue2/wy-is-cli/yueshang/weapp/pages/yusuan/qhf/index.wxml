@@ -1,0 +1,26 @@
+<!--pages/yusuan/qhf/index.wxml-->
+<!-- 企划费-->
+<view class="yusuan-qhf">
+  <app-header>
+    <app-project-selector selected="{{ {label: projectName} }}" bind:selected="onProjectSelected" />
+  </app-header>
+  <app-section>
+    <view slot="head-title">
+      <view class="selector" bindtap="openSelector">企划费<image src="../../../assets/images/icon-selector-arrow-blue.svg"></image></view>
+    </view>
+    <app-table columns="{{ page.table.columns }}" values="{{ page.table.rows }}"
+      total-row="{{ page.table.totalRow }}" />
+    <view slot="head-actions">
+      <view class="list-mode">
+        <text class="list-mode-item {{page.table.mode === 'dc' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="dc">地产支付</text>｜
+        <text class="list-mode-item {{page.table.mode === 'sy' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="sy">商业自筹</text>
+      </view>
+    </view>
+  </app-section>
+  <yusuan-dialog items="{{ menuItems }}" projectName="{{ projectName }}" projectId="{{ projectId }}" opened="{{ opened }}"
+    bind:closed="onSelectorClosed">
+  </yusuan-dialog>
+
+</view>

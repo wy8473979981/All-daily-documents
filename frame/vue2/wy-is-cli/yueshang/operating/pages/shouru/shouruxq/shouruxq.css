@@ -1,0 +1,77 @@
+.shouru-zujin.recovery {
+	padding-bottom: 120rpx;
+}
+
+.select-indicator {
+	display: flex;
+	justify-content: flex-end;
+}
+.line {
+	margin: 0 15rpx;
+}
+.active {
+	color: #3992ba;
+	font-weight: 600;
+}
+.header {
+	height: 100rpx;
+	width: 100%;
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 36rpx;
+	justify-content: space-between;
+}
+.header-right-box {
+	display: flex;
+}
+.header-right-select {
+	margin-left: 20px;
+}
+.tab-list-box {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	padding: 10rpx 100rpx 0 100rpx;
+	color: #cdcfd5;
+	font-size: 32rpx;
+}
+.tab-list-item {
+	border-bottom: 5rpx solid transparent;
+	padding-bottom: 20rpx;
+}
+.border-current {
+	border-color: #fff;
+	color: #fff;
+}
+.registered-channels {
+	width: 100%;
+	height: 100%;
+}
+
+.recovery-actions {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 20rpx;
+	background-color: #ffffff;
+}
+.recovery-actions .recovery-actions__action {
+	width: 250rpx;
+	font-weight: normal;
+	background-color: #c2c2c2;
+	color: #333333;
+	text-align: center;
+	padding: 20rpx;
+}
+
+.recovery-actions .recovery-actions__action--priamry {
+	flex: 1;
+	color: #ffffff;
+	background: linear-gradient(315deg, #1d5a87 0%, #3992ba 100%);
+	margin-left: 20rpx;
+}

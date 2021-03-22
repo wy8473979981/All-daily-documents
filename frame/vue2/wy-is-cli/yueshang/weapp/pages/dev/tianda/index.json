@@ -1,0 +1,5 @@
+{
+	"usingComponents": {
+		"app-table": "../../../components/table/table"
+	}
+}

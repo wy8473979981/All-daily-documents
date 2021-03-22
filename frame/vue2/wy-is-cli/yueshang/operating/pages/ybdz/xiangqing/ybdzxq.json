@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "押不抵租-项目",
+	"usingComponents": {
+    "app-header": "/components/common/header",
+		"app-section": "/components/container/section",
+		"app-table": "/components/table/index",
+    "app-project-selector": "/components/selector/project"
+	}
+}

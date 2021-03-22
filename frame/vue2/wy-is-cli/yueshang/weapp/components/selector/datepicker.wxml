@@ -1,0 +1,12 @@
+<view class="app-datepicker">
+  <picker mode="date" fields="{{fields}}" bindchange="onFromDateChanged" value="{{ fromDate }}">
+    {{ component.from || (range ? '开始日期' : '选择日期') }}
+  </picker>
+  <block wx:if="{{ range }}">
+    <text class="app-datepicker-split"> ~ </text>
+    <picker mode="date" fields="{{fields}}" bindchange="onToDateChanged" value="{{ toDate }}">
+      {{ component.to || '结束日期' }}
+    </picker>
+  </block>
+  <image class="app-datepicker-icon" src="../../assets/images/icon-calendar.png" />
+</view>

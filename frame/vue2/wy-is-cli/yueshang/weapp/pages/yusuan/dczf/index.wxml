@@ -1,0 +1,17 @@
+<!--pages/yusuan/dczf/index.wxml-->
+<!-- 地产支付物业款项统计 -->
+<view class="yusuan-dczf">
+  <app-header>
+    <app-project-selector selected="{{ {label: projectName} }}" bind:selected="onProjectSelected" />
+  </app-header>
+  <app-section>
+    <view slot="head-title">
+      <view class="selector" bindtap="openSelector">地产支付物业款项统计<image src="../../../assets/images/icon-selector-arrow-blue.svg"></image></view>
+    </view>
+    <app-table fixednum="2" columns="{{ page.table.columns }}" values="{{ page.table.rows }}"
+      total-row="{{ page.table.totalRow }}" />
+  </app-section>
+  <yusuan-dialog items="{{ menuItems }}" projectName="{{ projectName }}" projectId="{{ projectId }}" opened="{{ opened }}"
+    bind:closed="onSelectorClosed">
+  </yusuan-dialog>
+</view>

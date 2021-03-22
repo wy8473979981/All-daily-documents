@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "客流排名",
+  "usingComponents": {
+    "app-header": "../../../components/common/header",
+    "app-section": "../../../components/container/section",
+    "app-echarts":"../../../components/echarts/echarts",
+		"app-table": "../../../components/table/index",
+    "app-filter-dialog": "../../../components/filter/dialog",
+    "app-date-picker": "../../../components/selector/datepicker"
+  }
+}

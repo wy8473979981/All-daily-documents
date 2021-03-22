@@ -1,0 +1,22 @@
+<view class="app-filter app-filter--{{ type }}" bindtap="open">
+  <slot />
+</view>
+<view wx:if="{{ component.opened }}" class="app-filter-dialog overlay">
+  <view class="app-filter-dialog__main">
+    <image class="app-filter-dialog__main__close" src="../../../../assets/images/icon-close-ffffff.png"
+      bindtap="close" />
+    <view class="app-filter-dialog__main__body">
+      <view class="items__items">
+        <view
+          class="item-item {{ component.selectedId === item.value.budgetSheetId ? 'selected' : '' }}"
+          wx:for="{{ component.items }}" wx:for-index="itemi" wx:key="itemi" wx:for-item="item" bindtap="onItemClick"
+          data-value="{{ item.value }}">
+          {{ item.label }}
+        </view>
+      </view>
+    </view>
+    <view class="app-filter-dialog__main__actions" >
+      <button type="primary" bindtap="ok">确定</button>
+    </view>
+  </view>
+</view>

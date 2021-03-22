@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "客流监控",
+  "usingComponents": {
+    "app-section": "../../../components/container/section",
+    "app-echarts":"../../../components/echarts/echarts",
+    "app-table": "../../../components/table/index"
+  }
+}

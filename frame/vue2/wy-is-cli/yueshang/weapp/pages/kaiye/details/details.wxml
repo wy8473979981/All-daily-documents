@@ -1,0 +1,21 @@
+<!--pages/kaiye/index.wxml-->
+<view>
+  <app-header bind:tab-changed="onTabChanged">
+    <app-project-selector bindselected="onProjectSelected" selected="{{ selected }}"  />
+    <view slot="right" style="margin-left:20rpx">
+      <app-filter-dialog groups="{{ groups }}" bindselected="bindselected" title="筛选">
+      </app-filter-dialog>
+    </view>
+  </app-header>
+  <!-- <view class="updata-time">
+    数据更新时间：2020-04-10 数据来源系统：PMS系统</view> -->
+  <app-section  title="开业率(%)" >
+    <app-echarts  options="{{ page.charts.main.options }}" />
+  </app-section>
+  <view class="paiming">
+  <app-section title="每月数据">
+    <app-table values="{{ dataList }}" columns="{{ columns }}" totalRow="{{ totalRow }}"></app-table>
+  </app-section>
+  </view>
+  <view class="btm-btn" bindtap="skip">招商计划</view>
+</view>

@@ -1,0 +1,377 @@
+<wxs module="fn">
+  module.exports = {
+    absoluteValue:function(num){
+     if(typeof num ==='string'){
+       return ''
+     }
+      return Math.abs(num)
+    },
+    isEmpty:function(num){
+      return num  && num!=='-' && num!=='- '
+    }
+  }
+</wxs>
+
+<view class="index-main">
+  <app-header>
+    <app-project-selector bindselected="onProjectSelected" />
+    <view class="project-leader" wx:if='{{params.bisProjectId}}' bindtap='showLeaderDetail'>
+      <image class="leader-avatar" src="../../assets/images/leader.png" lazy-load="false"></image>
+      <view class="">项目总</view>
+    </view>
+    <view slot="right">
+      <app-picker bind:changed="onDateChanged" fields="month" fromDate='{{params.yearMonth}}' />
+    </view>
+  </app-header>
+  <view class="tab-list-box">
+    <view class="tab-list-item {{ item.code === params.storeType ? 'border-current' : '' }}" data-type="{{ item.code }}" wx:for="{{ tabList }}" wx:key="index" bindtap="changeTab">
+      {{ item.name }}
+    </view>
+  </view>
+  <!-- 整体情况 -->
+  <app-section title="整体情况">
+    <view class="index-item-box">
+      <view class="index-item-inner" wx:if='{{!params.bisProjectId}}'>
+        <view class="item-inner-label">项目总数</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.mallCount || '-'}}</view>
+          <view class="inner-data-unit" wx:if='{{dataDetail.mallCount}}'>个</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">总计租面积</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.allSquare || '-'}}</view>
+          <view class="inner-data-unit">万㎡</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">铺位总数</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.storeAllNum || '-'}}</view>
+          <view class="inner-data-unit">个</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当月开业率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.kyRate || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.kyRateTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.kyRate)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.kyRateTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.kyRateTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.kyRateTb) }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="租金收入" url='/pages/shouru/zujin?type=zj'>
+    <text class="title-unit" slot="head-title">（万元）</text>
+    <view class="index-item-box">
+      <view class="index-item-inner">
+        <view class="item-inner-label">当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.rentFactTotal || '-'}}</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年累计</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.rentFactTotalLj || '-'}}</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">年累计缴费率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.sjRateLj || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.sjRateLjTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.sjRateLjTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.sjRateLjTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.sjRateLjTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.sjRateLjTb) }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="物管收入" url='/pages/shouru/zujin?type=wg'>
+    <text class="title-unit" slot="head-title">（万元）</text>
+    <view class="index-item-box">
+      <view class="index-item-inner">
+        <view class="item-inner-label">物管当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.propFactTotal ||'-'}}</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年累计</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.propFactTotalLj || '-'}}</view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">年累计缴费率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.p_sjRateLj || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.p_sjRateLjTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.p_sjRateLjTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.p_sjRateLjTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.p_sjRateLjTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.p_sjRateLjTb) }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="客流" url='../keliu/paiming/paiming'>
+    <text class="title-unit" slot="head-title">（万人）</text>
+    <view class="index-item-box">
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">昨日</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.ipvaYesterday || '-'}}</view>
+          <view class="inner-data-comparison comparison-up">
+            <view class="comparison-dire">
+              <view class="inner-data-comparison {{dataDetail.ipvaYesterdayTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.ipvaYesterdayTb)}}">
+                <view class="comparison-dire">
+                  <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.ipvaYesterdayTb >= 0}}'></image>
+                  <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.ipvaYesterdayTb < 0}}'></image>
+                </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.ipvaYesterdayTb) }}</view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.ipvaNum || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.ipvaRate >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.ipvaRate)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.ipvaRate >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.ipvaRate < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.ipvaRate) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.ipvaNumLj || '-'}}</view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="销售" url='/pages/xiaoshou/paiming/paiming'>
+    <text class="title-unit" slot="head-title">（万元）</text>
+    <view class="index-item-box">
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">昨日</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.yesterdaySales || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.yesterdaySalesTb >= 0? 'comparison-up':'comparison-down'}}"  wx:if="{{fn.isEmpty(dataDetail.yesterdaySalesTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.yesterdaySalesTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.yesterdaySalesTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.yesterdaySalesTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.salesMonth || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.salesRateTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.salesRateTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.salesRateTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.salesRateTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.salesRateTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.salesToMonth || '-'}}</view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="招商" url='../kaiye/index'>
+    <view class="index-item-box">
+      <view class="index-item-inner">
+        <view class="item-inner-label">出租率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.czRate || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.czRateTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.czRateTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.czRateTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.czRateTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.czRateTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">空铺率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">-</view>
+          <view class="inner-data-comparison comparison-up">
+            <view class="comparison-dire"></view>
+            <view class="comparison-number"></view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">开业率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.kyRate || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.kyRateTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.kyRateTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.kyRateTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.kyRateTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.kyRateTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner1">
+        <view class="item-inner-label">平均租金</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.avgRent || '-'}}</view>
+          <view class="inner-data-unit">元/㎡/月</view>
+          <view class="inner-data-comparison {{dataDetail.avgRentTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.avgRentTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.avgRentTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.avgRentTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{dataDetail.avgRentTb }}%</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="车流" url='/pages/shuju/cheliu/paiming'>
+    <view class="index-item-box">
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">昨日</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.carNumberYesterday|| '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.carNumberYesterdayTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.carNumberYesterdayTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.carNumberYesterdayTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.carNumberYesterdayTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.carNumberYesterdayTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.carNumberMonth || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.carNumberMonthTb >= 0? 'comparison-up':'comparison-down'}}"  wx:if="{{fn.isEmpty(dataDetail.carNumberMonthTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.carNumberYesterdaytTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.carNumberMonthTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.carNumberMonthTb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.carNumberYear || '-'}}</view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="欠费" url='/pages/shuju/qiankuan/list'>
+    <view class="index-item-box">
+      <view class="index-item-inner">
+        <view class="item-inner-label">当月</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num comparison-down">{{dataDetail.oweMonthTotal || '-'}}</view>
+          <view class="inner-data-comparison {{dataDetail.oweMonthTotalTb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.oweMonthTotalTb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.oweMonthTotalTb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{dataDetail.oweMonthTotalTb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.oweMonthTotalTb) }}</view>
+          </view>
+          <view class="inner-data-comparison comparison-up">
+            <view class="comparison-dire"></view>
+            <view class="comparison-number"></view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">清欠率</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{dataDetail.oweRate}}</view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <app-section title="会员" url='/pages/huiyuan/huiyuan?bisProjectId={{params.bisProjectId}}&label={{label}}'   wx:if='{{params.bisProjectId}}'>
+    <view class="index-item-box">
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">昨日新增</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num ">{{memberDetail.yesterdayNewMemberNum || '-'}}</view>
+          <view class="inner-data-comparison {{memberDetail.yesterdayNewMemberNumHb >= 0? 'comparison-up':'comparison-down'}}" wx:if="{{fn.isEmpty(dataDetail.yesterdayNewMemberNumHb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{memberDetail.yesterdayNewMemberNumHb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{memberDetail.yesterdayNewMemberNumHb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (dataDetail.yesterdayNewMemberNumHb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner-1">
+        <view class="item-inner-label">当月新增</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num ">{{memberDetail.curMonthNewMemberNum || '-'}}</view>
+          <view class="inner-data-comparison {{memberDetail.curMonthNewMemberNumHb >= 0? 'comparison-up':'comparison-down'}}"  wx:if="{{fn.isEmpty(dataDetail.curMonthNewMemberNumHb)}}">
+            <view class="comparison-dire">
+              <image class="tb-icon" src="../../assets/images/tongbi-up.png" mode="widthFix" lazy-load="false" wx:if='{{memberDetail.curMonthNewMemberNumHb >= 0}}'></image>
+              <image class="tb-icon" src="../../assets/images/tongbi-down.png" mode="widthFix" lazy-load="false" wx:if='{{memberDetail.curMonthNewMemberNumHb < 0}}'></image>
+            </view>
+            <view class="comparison-number">{{fn.absoluteValue (memberDetail.curMonthNewMemberNumHb) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="index-item-inner">
+        <view class="item-inner-label">当年新增</view>
+        <view class="item-inner-data">
+          <view class="inner-data-num">{{memberDetail.curYearNewMemberNum || '-'}}</view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+  <!-- wx:if='{{params.bisProjectId}}' -->
+  <view class="project-leader-modal" wx:if='{{showLeader}}'>
+    <view class="leader-modal-inner" wx:if='{{leaderDetail}}'>
+      <view class="leader-name">{{leaderDetail.userName}}</view>
+      <view class="leader-title" wx:for='{{leaderDetail.resultList}}'>
+        {{item.workDuty}} ({{item.type===1?item.startDate:item.startDate +'-' + item.endDate}})
+      </view>
+      <view class="leader-title">入职：{{leaderDetail.attendWorkDate}}</view>
+      <view class="leader-close" bindtap='closeModal'>X</view>
+    </view>
+  </view>
+  <view class="flex">
+    <button type="primary" bind:tap="gotoYS">预算</button>
+    <button bind:tap="gotoZB">指标</button>
+  </view>
+</view>

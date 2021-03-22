@@ -1,0 +1,10 @@
+.app-project-selector {
+  display: flex;
+  align-items: center;
+}
+
+.app-project-selector .app-project-selector-icon {
+  margin-left: 10rpx;
+  width: 20rpx;
+  height: 10rpx;
+}

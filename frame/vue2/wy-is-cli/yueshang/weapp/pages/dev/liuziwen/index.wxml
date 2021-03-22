@@ -1,0 +1,6 @@
+<view>
+  <view class="root">
+  <app-echarts class="line" options="{{lineops}}"></app-echarts>
+  <button bindtap="change">change</button>
+</view>
+</view>

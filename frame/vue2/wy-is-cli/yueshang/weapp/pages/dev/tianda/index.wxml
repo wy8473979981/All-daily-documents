@@ -1,0 +1,7 @@
+<!--pages/dev/tianda/index.wxml-->
+<app-table
+	bind:sort="sort"
+	values="{{ dataList }}"
+	cols="{{ cols }}"
+	totalRow="{{ totalRow }}"
+></app-table>

@@ -1,0 +1,3 @@
+<view class="app-echarts" style="height: {{height}};">
+  <ec-canvas ec="{{ ec }}"></ec-canvas>
+</view>

@@ -1,0 +1,9 @@
+/* pages/dev/liuziwen/index.wxss */
+.root{
+  display: flex;
+  flex-direction: column;
+  
+}
+.line{
+  height: 600dpr;
+}

@@ -1,0 +1,17 @@
+<!--pages/yusuan/nhf/index.wxml-->
+<!-- 能耗费概况 -->
+<view class="yusuan-nhf">
+  <app-header>
+    <app-project-selector selected="{{ {label: projectName} }}" bind:selected="onProjectSelected" />
+  </app-header>
+  <app-section>
+    <view slot="head-title">
+      <view class="selector" bindtap="openSelector">能耗费概况<image src="../../../assets/images/icon-selector-arrow-blue.svg"></image></view>
+    </view>
+    <app-table fixednum="3" columns="{{ page.table.columns }}" values="{{ page.table.rows }}"
+      total-row="{{ page.table.totalRow }}" />
+  </app-section>
+  <yusuan-dialog items="{{ menuItems }}" projectName="{{ projectName }}" projectId="{{ projectId }}" opened="{{ opened }}"
+    bind:closed="onSelectorClosed">
+  </yusuan-dialog>
+</view>

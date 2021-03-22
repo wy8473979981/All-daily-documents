@@ -1,0 +1,26 @@
+<!--pages/zhaoshang/index.wxml-->
+<view>
+  <app-header tabs="{{tabList}}" bind:tab-changed="onTabChanged">
+    <!-- <app-project-selector bindselected="onProjectSelected" /> -->
+    <view slot="right">
+      <app-picker fromDate="{{params.yearMonth}}" fields="month" bind:changed="onDateChanged" />
+    </view>
+    <view slot="right" style="margin-left:20rpx">
+      <app-filter-dialog groups="{{ groups }}" bindselected="bindselected" title="筛选">
+      </app-filter-dialog>
+    </view>
+  </app-header>
+  <!-- <view class="updata-time">
+    数据更新时间：2020-04-10 数据来源系统：PMS系统</view> -->
+  <app-section title="项目排名">
+    <view slot="head-actions">
+      <view class="select-indicator">
+        <view class="mount {{ timeSpan === '0' ? 'active' : '' }}" bindtap="changeSpan" data-span="0"> 当月 </view>
+        <view class="line"> | </view>
+        <view class="year {{ timeSpan === '1' ? 'active' : '' }}" bindtap="changeSpan" data-span="1"> 累计 </view>
+      </view>
+    </view>
+    <app-table bind:sort="sort" values="{{ dataList }}" columns="{{ columns }}" totalRow="{{ totalRow }}"
+      bind:row-column-click="clickRow"></app-table>
+  </app-section>
+</view>

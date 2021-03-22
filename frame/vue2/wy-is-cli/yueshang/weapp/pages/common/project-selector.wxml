@@ -1,0 +1,7 @@
+<view class="common-project-selector">
+  <app-index-list list="{{ list }}" bind:selected="onSelected">
+    <view wx:if="{{ ready }}" class="index-group__item" catch:tap="onAllSelected">
+      全部
+    </view>
+  </app-index-list>
+</view>

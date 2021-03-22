@@ -1,0 +1,41 @@
+/* pages/shuju/keliu/paiming.wxss */
+
+.wrapper {
+	background-color: #fff;
+	padding-bottom: 10rpx;
+}
+
+/* .updata-time {
+	font-size: 22rpx;
+	line-height: 74rpx;
+	text-align: center;
+	color: #c5c5c5;
+} */
+
+.content {
+	display: flex;
+	font-size: 24rpx;
+	color: #7d7e80;
+}
+
+.left-header {
+	background-color: #f5f5f5;
+	padding: 10rpx 20rpx;
+}
+
+.left-item {
+	color: #333333;
+	padding: 20rpx;
+}
+
+.select-indicator {
+	color: #1890ff;
+	font-size: 28rpx;
+	display: flex;
+	align-items: center;
+}
+.select-icon {
+	width: 24rpx;
+	height: 24rpx;
+	margin-left: 10rpx;
+}

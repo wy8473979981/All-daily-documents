@@ -1,0 +1,88 @@
+<view class="root">
+	<app-header>
+    <app-project-selector bindselected="onProjectSelected" selected='{{selected}}' disabled-all/>
+    <view class="" wx:if='{{params.queryProjectId}}'>
+    </view>
+    <view slot="right">
+      <app-picker  bind:changed="onDateChanged"  range fields="day" from fromDate='{{params.queryStartTime}}' to toDate='{{params.queryEndTime}}'/>
+    </view>
+</app-header>
+
+  <!-- <view class="updata-time">数据更新时间：2020-11-10 数据来源系统：PMS系统</view> -->
+
+  <app-section title="{{global}}">
+    <view class="global-content">
+      <view class="global-title-content" wx:for="{{globalData}}" wx:key="title">
+        <view class="global-title">
+          {{item.title}}
+        </view>
+        <view class="global-value-content">
+          <view class="global-value">
+            {{item.value || '-'}}
+          </view>
+          <view class="global-unit">
+            {{item.unit}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </app-section>
+
+  <view>
+    <scroll-view class="top-scroll" scroll-x scroll-with-animation>
+      <view class="top-list">
+        <view id="registeredTitles{{index}}"
+          class="list-item {{currentRegisteredIndex==index?'list-item--selected':''}}" wx:for="{{registeredTitles}}"
+          wx:key="registered" bindtap="registered" data-index="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="registered-channels">
+      <app-echarts class="pie" options="{{registeredChannels}}"></app-echarts>
+    </view>
+  </view>
+  <view class="line-bg"></view>
+
+  <view>
+    <scroll-view class="top-scroll" scroll-x scroll-with-animation>
+      <view class="top-list">
+        <view id="membersTitles{{index}}" class="list-item {{currentMembersIndex==index?'list-item--selected':''}}"
+          wx:for="{{membersTitles}}" wx:key="registered" bindtap="membersTap" data-index="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="registered-channels">
+      <app-echarts class="pie" options="{{members}}" height="400rpx"></app-echarts>
+    </view>
+  </view>
+  <view class="line-bg"></view>
+
+  <app-section title="会员年龄分布">
+    <view class="members-bar">
+      <app-echarts class="bar" options="{{membersBar}}" height="400rpx"></app-echarts>
+    </view>
+  </app-section>
+  <view>
+    <scroll-view class="top-scroll" scroll-x scroll-with-animation>
+      <view class="top-list">
+        <view id="integralOutputTitles{{index}}"
+          class="list-item {{currentIntegralOutputIndex==index?'list-item--selected':''}}"
+          wx:for="{{integralOutputTitles}}" wx:key="registered" bindtap="integralOutputTap" data-index="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="integral-output">
+      <app-echarts class="pie" options="{{integralOutput}}" height="400rpx"></app-echarts>
+    </view>
+  </view>
+
+  <view class="line-bg"></view>
+  <app-section title="消费业态分布">
+    <view class="consumption-mod">
+      <app-echarts class="bar" options="{{consumptionMod}}" height="400rpx"></app-echarts>
+    </view>
+  </app-section>
+</view>

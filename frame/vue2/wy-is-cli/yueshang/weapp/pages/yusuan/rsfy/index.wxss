@@ -1,0 +1,11 @@
+.selector {
+  display: flex;
+  align-items: center;
+  color: #1890FF;
+}
+
+.selector image {
+  margin-left: 10rpx;
+  width: 24rpx;
+  height: 12rpx
+}

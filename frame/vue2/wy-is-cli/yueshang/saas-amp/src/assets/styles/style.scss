@@ -1,0 +1,66 @@
+body{
+  background-color:#f0f0f0;
+}
+.title-comp{
+  margin-bottom: 10px;
+}
+#goods-create .el-form-item{
+  margin-bottom: 0 !important;
+}
+section.page-create{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .form-create{
+    width: 70%;
+    min-height: 420px;
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    border: 1px solid $info;
+    section.form{
+      width: 700px;
+    }
+  }
+}
+
+button.el-button{
+  //color: white;
+}
+
+table.el-table__body{
+  tbody{
+    tr{
+      td{
+        padding: 4px 0;
+      }
+    }
+  }
+}
+
+button.el-button.el-button--default{
+  //color: #468CEB;
+}
+
+hr{
+  color: #909399;
+}
+
+.test-class{
+  color: red;
+  background: orange;
+}
+
+i.btn-close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 30px;
+}
