@@ -1,0 +1,4 @@
+<view class="app-project-selector" bindtap="onClick">
+  <view>{{ component.selected.label }}</view>
+  <image wx:if="{{ !disabled }}" class="app-project-selector-icon" src="../../assets/images/icon-selector-arrow.png" />
+</view>

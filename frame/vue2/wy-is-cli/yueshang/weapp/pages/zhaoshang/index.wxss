@@ -1,0 +1,50 @@
+/* pages/zhaoshang/index.wxss */
+.header {
+	height: 100rpx;
+	width: 100%;
+	background: linear-gradient(to right, #1c92ff 0%, #0071d9 100%);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 36rpx;
+	justify-content: space-between;
+}
+.header-right-box {
+	display: flex;
+}
+.header-right-select {
+	margin-left: 20px;
+}
+.tab-list-box {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	background: linear-gradient(to right, #1c92ff 0%, #0071d9 100%);
+	padding: 10rpx 150rpx 0 150rpx;
+	color: #fff;
+}
+.tab-list-item {
+	border-bottom: 5rpx solid transparent;
+	padding-bottom: 20rpx;
+}
+.border-current {
+	border-color: #fff;
+}
+.updata-time {
+	font-size: 22rpx;
+	line-height: 74rpx;
+	text-align: center;
+	color: #c5c5c5;
+}
+
+.select-indicator {
+	display: flex;
+	justify-content: flex-end;
+}
+.line {
+	margin: 0 15rpx;
+}
+.active {
+	color: #1890ff;
+	font-weight: 600;
+}

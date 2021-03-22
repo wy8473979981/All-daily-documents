@@ -1,0 +1,40 @@
+<view class="d-tabel">
+  <view class="d-row d-header">
+    <view class="d-col {{ item.width ? '' : 'd-flex' }}" wx:for="{{ colList }}" wx:key="index" data-sort="{{ item.sort }}" data-key="{{ item.key }}" bindtap="sort" style="width:{{ item.width }}">
+      <view class="d-col-inner {{ activeSort === item.key ? 'd-acive' : '' }}">
+        {{ item.label }}
+      </view>
+      <view class="d-col-sort" wx:if="{{ item.sort }}">
+        <image class="icon-image" wx:if="{{ !direction }}" src="../../assets/images/icon-sortable.png" />
+        <image class="icon-image" wx:if="{{ direction === 'up' && activeSort === item.key }}" src="../../assets/images/icon-sortup.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" />
+        <image class="icon-image" wx:if="{{ direction === 'down' && activeSort === item.key }}" src="../../assets/images/icon-sortdown.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" />
+      </view>
+    </view>
+  </view>
+  <view class="d-row d-total" wx:if="{{ total }}">
+    <view class="d-col {{ item.width ? '' : 'd-flex' }}" wx:for="{{ colList }}" wx:key="index" style="width:{{ item.width }};justify-content:{{ item.align }}">
+      <view class="d-col-inner">
+        {{ total[item.key] || total[item.standbyKey] }}
+        <text wx:if='{{total[item.key] || total[item.standbyKey]}}'>
+           {{ item.unit }}
+        </text>
+       
+      </view>
+    </view>
+  </view>
+  <view class="d-tbody">
+    <view class="d-row" wx:for="{{ dataList }}" wx:for-item="row" wx:key="index" wx:for-index="rowi">
+      <view class="d-col {{ item.width ? '' : 'd-flex' }} " wx:for="{{ colList }}" wx:key="index" style="width:{{ item.width }};color:{{ item.color || (item.action ? '#399CFF' : '') }}; justify-content:{{ item.align }}" data-id="{{ row[id] }}" data-action="{{ item.action }}" bindtap="bindtap">
+        <text wx:if='{{item.key}}'>
+          {{ row[item.key] || row[item.standbyKey] || '-' }}
+        </text>
+        <text  wx:if='{{!item.key}}' >
+          {{  rowi + 1 }}
+        </text>
+        <text wx:if='{{total[item.key] || total[item.standbyKey]}}'>
+          {{ item.unit }}
+       </text>
+      </view>
+    </view>
+  </view>
+</view>

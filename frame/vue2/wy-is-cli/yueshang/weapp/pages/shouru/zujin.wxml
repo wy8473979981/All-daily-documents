@@ -1,0 +1,35 @@
+<!--pages/shouru/zujin.wxml-->
+<view class="shouru-zujin">
+  <app-header>
+    <!-- 全部 -->
+    <view slot="right" class='slot-right'>
+      <app-picker  bind:changed="onDateChanged"   fields="month" fromDate='{{params.yearMonth}}'/>
+      <view class="header-right-select">
+				<app-filter-dialog groups="{{ groups }}" bindselected="bindselected" title="筛选" />
+			</view>
+    </view>
+</app-header>
+	<view class="tab-list-box">
+		<view class="tab-list-item {{ item.type === params.type ? 'border-current' : '' }}" data-type="{{ item.type }}" wx:for="{{ tabList }}" wx:key="index" bindtap="changeTab">
+			{{ item.label }}
+		</view>
+	</view>
+	<app-section title="收缴率" collapseable="{{ true }}"> 
+		<view class="registered-channels">
+			<app-echarts options="{{page.charts.main.options}}"></app-echarts>
+		</view>
+	</app-section>
+	<app-section title="项目排名">
+		<view slot="head-actions">
+			<view class="select-indicator">
+				<view class="mount {{ timeSpan === '0' ? 'active' : '' }}" bindtap="changeSpan" data-span="0"> 当月 </view>
+				<view class="line"> | </view>
+				<view class="year {{ timeSpan === '1' ? 'active' : '' }}" bindtap="changeSpan" data-span="1"> 年累计 </view>
+			</view>
+		</view>
+		<app-table  totalRow="{{ totalRow }}" values="{{ dataList }}" columns="{{ columns }}" clickRow="{{ totalRow }}" 
+		 bind:row-column-click="clickRow"
+		  ></app-table>
+	</app-section>
+	<image class="to-top" src="../../assets/images/icon-totpo.png" bindtap="toTop"> </image>
+</view>

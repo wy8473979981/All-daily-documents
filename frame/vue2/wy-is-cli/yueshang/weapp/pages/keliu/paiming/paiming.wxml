@@ -1,0 +1,35 @@
+<app-header>
+  <!-- <app-project-selector bindselected="onProjectSelected" /> -->
+  <view slot="right" style="display: flex;">
+    <app-date-picker fromDate="{{ queryModel.yearAndMonth }}" fields="month" bind:changed="onDateChanged" />
+    <app-filter-dialog style="margin-left: 32rpx;" groups="{{ options }}" title="筛选" bindselected="onSelectedChange"></app-filter-dialog>
+  </view>
+</app-header>
+
+<!-- <view class="updata-time">数据更新时间：{{ updateTime }} 数据来源系统：PMS系统</view> -->
+
+<view class="wrapper">
+  <app-section title="渗透率（人/天/m²）" collapseable="{{ collapseable }}">
+    <app-echarts height="400rpx" options="{{ lineops }}"></app-echarts>
+  </app-section>
+</view>
+
+<view class="wrapper" style="margin-top: 12rpx;">
+  <!-- <app-header tabs="{{ [{ label: '购物列表' }, { label: '项目排名' }] }}" bind:tab-changed="onTabChanged"></app-header> -->
+  <app-section title="项目排名">
+    <view slot="head-actions">
+      <view class="list-mode">
+        <text class="list-mode-item {{table.mode === 'month' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="month">当月</text>｜
+        <text class="list-mode-item {{table.mode === 'year' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="year">年累计</text>
+      </view>
+    </view>
+    <app-table
+      values="{{ table.dataList }}"
+      columns="{{ table.columns }}"
+      totalRow="{{ table.totalRow }}"
+      bind:row-column-click="onRowColumnClick">
+    </app-table>
+  </app-section>
+</view>

@@ -1,0 +1,18 @@
+<view class="app-section {{ collapsed ? 'collapsed' : '' }}" bind:tap="onSectionClick">
+  <view class="app-section__head" bindtap="toggleCollapse">
+    <view class="app-section__head__title">
+      {{ title }}<text class="app-section__head__title__subtitle">{{ subtitle }}</text><slot name="head-title" />
+    </view>
+    
+    <view class="app-section__head__actions">
+      <slot name="head-actions" />
+    </view>
+
+    <image wx:if="{{ url }}" class="app-section__head__url" src="../../assets/images/icon-arrow-down.png"></image>
+    <image wx:elif="{{ collapseable }}" class="app-section__head__collapse {{ collapsed ? 'collapsed' : '' }}" src="../../assets/images/icon-arrow-down.png"></image>
+    
+  </view>
+  <view class="app-section__body">
+    <slot />
+  </view>
+</view>

@@ -1,0 +1,21 @@
+{
+  "name": "weapp",
+  "version": "1.0.0",
+  "description": "宝龙驾驶舱小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.code.tencent.com:baoshen/baolong-jsc/weapp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@miniprogram-component-plus/index-list": "^1.0.0",
+    "echarts": "^3.8.5",
+    "regenerator-runtime": "^0.13.7",
+    "weui-miniprogram": "^1.0.6"
+  }
+}

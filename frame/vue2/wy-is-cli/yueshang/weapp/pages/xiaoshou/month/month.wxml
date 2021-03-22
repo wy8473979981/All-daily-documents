@@ -1,0 +1,31 @@
+<!--pages/xiaoshou/month/month.wxml-->
+<view>
+  <app-header>
+    <app-project-selector disabled-all selected="{{ selected }}" bindselected="onProjectSelected" />
+    <view slot="right">
+      <app-picker fromDate="{{params.year}}" fields="year" bind:changed="onDateChanged" />
+    </view>
+    <view slot="right" style="margin-left:20rpx">
+      <app-filter-dialog groups="{{ groups }}" bindselected="bindselected" title="筛选">
+      </app-filter-dialog>
+    </view>
+  </app-header>
+  <!-- <view class="updata-time">
+    数据更新时间：2020-04-10 数据来源系统：PMS系统</view> -->
+  <app-section title="平效（元/㎡）" collapseable="{{ true }}">
+    <app-echarts options="{{page.charts.main.options}}"></app-echarts>
+  </app-section>
+  <app-section title="业态销售额 " collapseable="{{ true }}">
+    <app-echarts options="{{page.charts.kind.options}}"></app-echarts>
+  </app-section>
+  <app-section title="月销售排名">
+    <view slot="head-actions">
+      <view class="select-indicator">
+        <view class="mount {{ timeSpan === '0' ? 'active' : '' }}" bindtap="changeSpan" data-span="0"> 当月 </view>
+        <view class="line"> | </view>
+        <view class="year {{ timeSpan === '1' ? 'active' : '' }}" bindtap="changeSpan" data-span="1"> 年累计 </view>
+      </view>
+    </view>
+    <app-table  values="{{ dataList }}" columns="{{ columns }}"></app-table>
+  </app-section>
+</view>

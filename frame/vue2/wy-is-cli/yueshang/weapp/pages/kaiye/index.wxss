@@ -1,0 +1,22 @@
+/* pages/kaiye/index.wxss */
+.updata-time {
+	font-size: 22rpx;
+	line-height: 74rpx;
+	text-align: center;
+	color: #c5c5c5;
+}
+.paiming{
+	padding-bottom: 120rpx;
+}
+.btm-btn{
+	position: fixed;
+	bottom: 30rpx;
+	left: calc(50% - 250rpx);
+	width: 500rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	color: white;
+	font-size: 35rpx;
+	text-align: center;
+background: linear-gradient(315deg, #0071D9 0%, #1C92FF 100%);
+}

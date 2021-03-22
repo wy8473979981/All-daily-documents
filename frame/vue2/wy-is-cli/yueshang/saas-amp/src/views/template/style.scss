@@ -1,0 +1,25 @@
+body{
+  background-color:#f0f0f0;
+}
+.title-comp{
+  margin-bottom: 10px;
+}
+#goods-create .el-form-item{
+  margin-bottom: 0 !important;
+}
+$red: red;
+
+.form-create{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form.el-form{
+    width: 100%;
+    div.el-form-item{
+      div.el-select{
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<view class="shuju-qiankuan-details">
+  <app-header tabs="{{ page.tabs }}" tabActiveIndex="{{ page.tabActiveIndex }}" bind:tab-changed="onTabChanged">
+    <app-project-selector disabled-all selected="{{ selected }}"  bind:selected="onProjectSelected" />
+    <view slot="right">
+      <app-picker fields="year" bind:changed="onDateChanged" from-date="{{ query.yearMonth }}" />
+    </view>
+  </app-header>
+
+  <app-section title="租金欠费（万元）" collapseable>
+    <app-echarts options="{{ page.charts.main.options }}" />
+  </app-section>
+
+  <app-section title="欠费排名">
+    
+    <app-table columns="{{ page.table.columns }}" values="{{ page.table.rows }}"
+      total-row="{{ page.table.totalRow }}" bind:clickRow="onRowClick" />
+
+    <view slot="head-actions">
+      <view class="list-mode">
+        <text class="list-mode-item {{page.table.mode === 'month' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="month">当月</text>｜
+        <text class="list-mode-item {{page.table.mode === 'year' ? 'active' : ''}}" bindtap="onListModeChanged"
+          data-value="year">年累计</text>
+      </view>
+    </view>
+  </app-section>
+</view>

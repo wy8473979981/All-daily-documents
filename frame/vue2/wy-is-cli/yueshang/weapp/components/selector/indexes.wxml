@@ -1,0 +1,3 @@
+<mp-indexList list="{{component.list}}" bindchoose="onSelected">
+  <slot />
+</mp-indexList>

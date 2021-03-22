@@ -1,0 +1,41 @@
+<view class="app-filter app-filter--{{ type }}" bindtap="open">
+  {{ title }}<image wx:if="title" class="app-filter-icon" src="../../assets/images/icon-filter.png" /><slot />
+</view>
+<view wx:if="{{ component.opened }}" class="app-filter-dialog overlay">
+  <view class="app-filter-dialog__main">
+    <image class="app-filter-dialog__main__close" src="../../assets/images/icon-close-ffffff.png" bindtap="close" />
+    <view class="app-filter-dialog__main__tip" wx:if="{{ tip }}">
+      {{ tip }}
+    </view>
+    <view class="app-filter-dialog__main__body">
+      <block wx:if="{{ component.groups.length }}">
+        <view class="group" wx:for="{{ component.groups }}" wx:for-index="groupi" wx:key="groupi" wx:for-item="group">
+          <view class="group__title">
+            {{ group.label }}
+          </view>
+          <view class="group__items">
+            <view
+              class="group-item {{ component.selected[item.value] ? 'selected' : '' }} {{ !component.selected[item.value] && (group.disabled || component.disabled) ? 'disabled' : '' }}"
+              wx:for="{{ group.items }}" wx:for-index="itemi" wx:key="itemi" wx:for-item="item"
+              bindtap="onGroupItemClick" data-value="{{ item.value }}" data-group="{{ group }}">
+              {{ item.label }}
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="checkbox-item" wx:for="{{ component.checkboxes }}" wx:for-index="itemi" wx:key="itemi"
+          wx:for-item="item">
+          <label class="checkbox" bindtap="onCheckboxClick" data-value="{{ item.value }}">
+            <checkbox checked="{{ component.selected[item.value] }}"
+              disabled="{{ !component.selected[item.value] && component.disabled }}" catchtap="onCheckboxClick"
+              data-value="{{ item.value }}" />{{ item.label }}
+          </label>
+        </view>
+      </block>
+    </view>
+    <view class="app-filter-dialog__main__actions">
+      <button type="primary" bindtap="ok">确定</button>
+    </view>
+  </view>
+</view>

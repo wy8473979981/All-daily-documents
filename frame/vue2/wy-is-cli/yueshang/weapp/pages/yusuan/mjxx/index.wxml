@@ -1,0 +1,17 @@
+<!--pages/yusuan/mjxx/index.wxml-->
+<!-- 基础信息-面积信息 -->
+<view class="yusuan-mjxx">
+  <app-header>
+    <app-project-selector selected="{{ {label: projectName} }}" bind:selected="onProjectSelected" />
+  </app-header>
+  <app-section>
+    <view slot="head-title">
+      <view class="selector" bindtap="openSelector">基础信息-面积信息<image src="../../../assets/images/icon-selector-arrow-blue.svg"></image></view>
+    </view>
+    <app-table fixednum="2" columns="{{ page.table.columns }}" values="{{ page.table.rows }}"
+      total-row="{{ page.table.totalRow }}" />
+  </app-section>
+  <yusuan-dialog items="{{ menuItems }}" projectName="{{ projectName }}" projectId="{{ projectId }}" opened="{{ opened }}"
+    bind:closed="onSelectorClosed">
+  </yusuan-dialog>
+</view>

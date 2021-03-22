@@ -1,0 +1,46 @@
+@import './packages/weui-wxss/style/weui.wxss';
+
+.index-group__item {
+  background-color: #ffffff;
+}
+
+.flex {
+  display: flex;
+}
+
+.block--right-20rpx {
+  margin-left: 20rpx;
+}
+
+.block--right-30rpx {
+  margin-left: 30rpx;
+}
+
+.block--right-40rpx {
+  margin-left: 40rpx;
+}
+
+page, view, text {
+  box-sizing: border-box;
+}
+
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+}
+
+button[type="primary"] {
+  background-color: #218FFF !important;
+}
+
+.wx-checkbox-input{
+  color:#fff !important;
+  font-size: 16rpx;
+  border-radius: 0 !important;
+}
+
+label .wx-checkbox-input-checked{
+  background-color: #218FFF;
+  border-color: #218FFF;
+}

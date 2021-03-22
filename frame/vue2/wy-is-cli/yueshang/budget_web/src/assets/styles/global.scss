@@ -1,0 +1,86 @@
+/* 字体颜色 */
+*{
+
+}
+a{
+  text-decoration: none;
+}
+
+.full-screen{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.f-c-c{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pd-v10{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pd-h10{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pd-v30{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.pd-h30{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.txt-large{
+  font-size: 28px;
+}
+.txt-big{
+  font-size: 20px;
+}
+.txt-small{
+  font-size: 12px;
+}
+
+.txt-ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.color-black{
+  color: black;
+}
+.color-grey{
+  color: grey;
+}
+.width-100{
+  width: 100%;
+}
+
+.test-class{
+  color: red;
+  background: orange;
+}
+
+.flex{
+  display: flex;
+}
+
+.common-box-shadow{
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.3);
+}
+
+// div.ql-editor{
+//   min-height: 300px !important;
+// }
