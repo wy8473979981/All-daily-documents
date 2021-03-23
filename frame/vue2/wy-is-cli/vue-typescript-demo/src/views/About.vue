@@ -8,7 +8,7 @@
     <p>{{ fullName }}</p>
     <button @click="modifyFull">修改fullName</button>
     <hr />
-    <User :user-list="userList"></User>
+    <User v-model="firstName" :user-list="userList" @on-remove="remove"></User>
 </div>
 </template>
 <script lang="ts">
@@ -16,6 +16,7 @@ import { Component, Vue, Watch } from "vue-property-decorator"
 import User from "@comps/User.vue"
 
 interface IUser {
+  id:number;
   name: string;
   age: number;
   sex?: number;
@@ -30,11 +31,13 @@ export default class About extends Vue {
   lastName = "san";
   userList: Array<IUser> = [
     {
+      id: 1,
       name: "张三",
       age: 10,
       sex: 0
     },
     {
+      id: 2,
       name: "李四",
       age: 10,
       sex: 1
@@ -65,6 +68,10 @@ export default class About extends Vue {
 
   modifyFull() {
     this.fullName = "li si"
+  }
+
+  remove(data: any) {
+    console.log(data)
   }
 }
 </script>
