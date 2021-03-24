@@ -9,11 +9,16 @@
     <button @click="modifyFull">修改fullName</button>
     <hr />
     <User v-model="firstName" :user-list="userList" @on-remove="remove"></User>
+
+    <p>{{ count }}</p>
+    <button @click="add">+1</button>
+     <p>{{ fliterList.join("-") }}</p>
 </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator"
 import User from "@comps/User.vue"
+import { AboutStore } from "../store/module/about"
 
 interface IUser {
   id:number;
@@ -56,6 +61,14 @@ export default class About extends Vue {
     this.lastName = arr[1]
   }
 
+  get count() {
+    return AboutStore.count
+  }
+
+  get fliterList() {
+    return AboutStore.list
+  }
+
   // 监听
   @Watch("firstName")
   onWatchFirstNameChange(newVal: string, oldVal: string) {
@@ -64,6 +77,7 @@ export default class About extends Vue {
 
   created() {
     this.fullName = "wang wu"
+    AboutStore.getList()
   }
 
   modifyFull() {
@@ -72,6 +86,10 @@ export default class About extends Vue {
 
   remove(data: any) {
     console.log(data)
+  }
+
+  add() {
+    AboutStore.updateCount(1)
   }
 }
 </script>

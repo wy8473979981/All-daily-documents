@@ -1,15 +1,25 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { IAboutState } from "./module/about"
+
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+interface IRootState{
+  about:IAboutState;
+}
+
+export default new Vuex.Store<IRootState>({
+
 })
+
+// export default new Vuex.Store({
+//   state: {
+//   },
+//   mutations: {
+//   },
+//   actions: {
+//   },
+//   modules: {
+//   }
+// })
