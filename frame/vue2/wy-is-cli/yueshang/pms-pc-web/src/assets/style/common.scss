@@ -1,0 +1,97 @@
+html, body {
+  color: $font-base-color;
+}
+
+.page {
+  padding: 20px;
+  padding-bottom: 0;
+  border-bottom: 20px solid transparent;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+
+  // ff
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2);
+
+  // chrome safari
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .page-list {
+    margin-bottom: 15px;
+  }
+
+  .page-echart {
+    height: 400px;
+    // margin-top: 20px;
+  }
+
+  .page-table {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .page-title {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: left;
+    height: 25px;
+    display: flex;
+    align-items: baseline;
+    
+    &__main {
+      font-size: $font-title-size;
+      line-height: 25px;
+    }
+
+    &__sub {
+      height: 20px;
+      font-size: $font-base-size;
+      color: #FD100E;
+      line-height: 20px;
+      padding-left: 20px;
+      margin-left: 12px;
+      background-image: url(~assets/images/error_tips.png);
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+      background-position: 1px center;
+    }
+  }
+}
+
+
+.one-ellipsis {
+  word-break: break-all;
+  overflow: hidden; // 超出的文本隐藏
+  text-overflow: ellipsis; // 溢出用省略号显示
+  white-space: nowrap; // 溢出不换行
+}
+
+@for $index from 2 to 100 {
+  .more-ellipsis-#{$index} {
+    overflow: hidden;
+    text-overflow: ellipsis; //文本溢出显示省略号
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-line-clamp: #{$index};
+    -webkit-box-orient: vertical;
+  }
+}

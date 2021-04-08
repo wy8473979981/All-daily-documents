@@ -1,0 +1,118 @@
+@import '~element-ui/lib/theme-chalk/index.css';
+
+.el-menu {
+  border-right: 0;
+  padding-left: 0px;
+}
+.el-menu-item {
+  padding-right: 10px !important;
+}
+
+.el-table__header,
+.el-table__header-wrapper,
+.el-table__fixed-header-wrapper {
+  // height: 36px;
+  line-height: 36px;
+  th {
+    font-size: $font-base-size;
+    color: $font-base-color;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 28px;
+    height: 28px;
+    background: #F2F4F6;
+    font-weight: 400;
+
+    .cell {
+      display: flex;
+      line-height: 36px;
+      align-items: center;
+    }
+  }
+  th.is-right .cell {
+    justify-content: flex-end;
+  }
+
+  th.is-right .cell{
+    padding-right: 15px;
+  }
+
+  // 自定义sort图标
+  th.is-sortable .cell .caret-wrapper {
+    // padding-right: 15px;
+    position: relative;
+    width: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 10px;
+      position: absolute;
+      top: 0;
+      right: -13px;
+      height: 100%;
+      background-image: url('~assets/images/sort.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: scale(.7);
+    }
+  }
+  th.is-sortable.ascending .cell .caret-wrapper {
+    &::after {
+      background-image: url('~assets/images/up.png');
+      transform: scale(1);
+    }
+  }
+
+  th.is-sortable.descending .cell .caret-wrapper {
+    &::after {
+      background-image: url('~assets/images/down.png');
+      transform: scale(1);
+    }
+  }
+
+}
+.el-table .cell {
+  line-height: 32px;
+}
+// 隐藏原始的sort图标
+.el-table .caret-wrapper .sort-caret {
+  display: none;
+}
+
+.el-table__body-wrapper,
+.el-table__fixed-body-wrapper {
+  td {
+    padding: 0;
+    line-height: 32px;
+  }
+
+  td.is-right .cell {
+    padding-right: 15px;
+  }
+}
+
+// 隐藏表格的border
+.el-table--border td,
+.el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+  border-right: none;
+}
+.el-table td,
+.el-table th.is-leaf {
+  border-bottom: none;
+}
+
+.el-form-item {
+  margin-bottom: 0;
+}
+
+// 
+input {
+  border-radius: 0!important;
+}
+
+//button
+.el-button--primary {
+  background: linear-gradient(298deg, #468CEB 0%, #35ABFF 100%);
+}
