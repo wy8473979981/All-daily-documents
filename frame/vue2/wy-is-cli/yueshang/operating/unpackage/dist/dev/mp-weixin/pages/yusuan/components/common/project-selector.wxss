@@ -1,0 +1,9 @@
+.selected {
+	padding: 20rpx 20rpx 20rpx;
+	border-bottom: 1px solid #cccccc;
+}
+.index-group__item {
+	padding: 30rpx 24rpx;
+	font-size: 30rpx;
+}
+

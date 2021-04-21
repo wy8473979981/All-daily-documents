@@ -1,0 +1,101 @@
+{
+	"pages": [
+		{
+			"path": "pages/zhaoshang/zsjd/zsjd",
+			"style": {
+				"navigationBarTitleText": "筹备招商进度",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/zhaoshang/zsjd/detail",
+			"style": {
+				"navigationBarTitleText": "筹备招商进度"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/cctj/cctj",
+			"style": {
+				"navigationBarTitleText": "筹备期全面抽成统计"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/bhl/bhl",
+			"style": {
+				"navigationBarTitleText": "筹备期网批驳回率统计"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/yjkh/yjkh",
+			"style": {
+				"navigationBarTitleText": "招商业绩考核"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/yjkh/khxm",
+			"style": {
+				"navigationBarTitleText": "招商业绩考核"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/yjkh/khpw",
+			"style": {
+				"navigationBarTitleText": "招商业绩考核"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/pwfj/pwfj",
+			"style": {
+				"navigationBarTitleText": "项目铺位分解"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/lfpp/lfpp",
+			"style": {
+				"navigationBarTitleText": "联发品牌"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/lfpp/detail",
+			"style": {
+				"navigationBarTitleText": "联发品牌"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/yzzj/yzzj",
+			"style": {
+				"navigationBarTitleText": "已招租金达成率柱状图"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/stjd/stjd",
+			"style": {
+				"navigationBarTitleText": "进场审图进度 - 品牌数"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/dky/dky",
+			"style": {
+				"navigationBarTitleText": "待开业项目招商进度 - 品牌数"
+			}
+		},
+		{
+			"path": "pages/common/project-selector",
+			"style": {
+				"navigationBarTitleText": "项目筛选"
+			}
+		}
+	],
+	"style": "v2",
+	"sitemapLocation": "sitemap.json",
+	"globalStyle": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "black"
+	},
+	"subPackages": []
+}

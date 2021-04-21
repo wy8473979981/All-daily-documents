@@ -1,0 +1,346 @@
+{
+	"pages": [
+		{
+			"path": "pages/zhibiao/index",
+			"style": {
+				"navigationBarTitleText": "运营分析（首页）",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "运营数据（首页）",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+
+		{
+			"path": "pages/yusuan/zyzb/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/dczf/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/components/common/project-selector",
+			"style": {
+				"navigationBarTitleText": "项目选择",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/dev/tianda/index",
+			"style": {}
+		},
+		{
+			"path": "pages/dev/liuziwen/index",
+			"style": {}
+		},
+		{
+			"path": "pages/shouru/zujin",
+			"style": {
+				"navigationBarTitleText": "收入 "
+			}
+		},
+		{
+			"path": "pages/zhibiao/xiangmupaiming",
+			"style": {
+				"navigationBarTitleText": "指标排名"
+			}
+		},
+		{
+			"path": "pages/dev/maliangjie/index",
+			"style": {}
+		},
+		{
+			"path": "pages/shouru/shouruxq/shouruxq",
+			"style": {
+				"navigationBarTitleText": "收入 - 项目排名"
+			}
+		},
+		{
+			"path": "pages/common/project-selector",
+			"style": {
+				"navigationBarTitleText": "项目选择（在营）",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/keliu/paiming/paiming",
+			"style": {
+				"navigationBarTitleText": "客流排名"
+			}
+		},
+		{
+			"path": "pages/keliu/month/month",
+			"style": {
+				"navigationBarTitleText": "月客流"
+			}
+		},
+		{
+			"path": "pages/keliu/jiankong/jiankong",
+			"style": {
+				"navigationBarTitleText": "客流监控"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/details/details",
+			"style": {
+				"navigationBarTitleText": "招商详情"
+			}
+		},
+		{
+			"path": "pages/zhaoshang/index",
+			"style": {
+				"navigationBarTitleText": "招商计划"
+			}
+		},
+		{
+			"path": "pages/shuju/cheliu/paiming",
+			"style": {
+				"navigationBarTitleText": "车流 - 项目排名"
+			}
+		},
+		{
+			"path": "pages/qianfei/qianfei",
+			"style": {}
+		},
+		{
+			"path": "pages/shuju/qiankuan/list",
+			"style": {
+				"navigationBarTitleText": "欠费 - 项目列表"
+			}
+		},
+		{
+			"path": "pages/shuju/qiankuan/details",
+			"style": {
+				"navigationBarTitleText": "欠费 - 单项月列表"
+			}
+		},
+		{
+			"path": "pages/kaiye/index",
+			"style": {
+				"navigationBarTitleText": "招商信息"
+			}
+		},
+		{
+			"path": "pages/kaiye/details/details",
+			"style": {
+				"navigationBarTitleText": "招商信息-项目"
+			}
+		},
+		{
+			"path": "pages/yusuan/xzfy/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+
+		{
+			"path": "pages/yusuan/mjxx/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/ryxx/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/xmxx/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/nhf/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/qhf/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/rsfy/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/rsgk/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/wyxzjf/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/zjjh/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/yusuan/zfgk/index",
+			"style": {
+				"navigationBarTitleText": "商业预算",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/xiaoshou/paiming/paiming",
+			"style": {
+				"navigationBarTitleText": "销售排名"
+			}
+		},
+		{
+			"path": "pages/xiaoshou/month/month",
+			"style": {
+				"navigationBarTitleText": "月销售"
+			}
+		},
+		{
+			"path": "pages/huiyuan/huiyuan",
+			"style": {
+				"navigationBarTitleText": "会员"
+			}
+		},
+		{
+			"path": "pages/zuyue/zuyue",
+			"style": {
+				"navigationBarTitleText": "租约到期"
+			}
+		},
+		{
+			"path": "pages/zuyue/xiangqing/zyxq",
+			"style": {
+				"navigationBarTitleText": "租约到期-项目"
+			}
+		},
+		{
+			"path": "pages/ybdz/ybdz",
+			"style": {
+				"navigationBarTitleText": "押不抵租"
+			}
+		},
+		{
+			"path": "pages/ybdz/xiangqing/ybdzxq",
+			"style": {
+				"navigationBarTitleText": "押不抵租-项目"
+			}
+		},
+		{
+			"path": "pages/shouru/duibi/duibi",
+			"style": {
+				"navigationBarTitleText": "对比"
+			}
+		},
+		{
+			"path": "components/table/lengthways",
+			"style": {
+				"component": true
+			}
+		},
+		{
+			"path": "pages/shouru/duibi/timeframe",
+			"style": {
+				"navigationBarTitleText": "时段客流对比"
+			}
+		},
+		{
+			"path": "pages/kaiye/kongpu/kongpu",
+			"style": {
+				"navigationBarTitleText": "空铺信息"
+			}
+		}
+	],
+	"navigateToMiniProgramAppIdList": ["wxa91ddcadeff6c927"],
+	"style": "v2",
+	"sitemapLocation": "sitemap.json",
+	"globalStyle": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "black"
+	},
+	"subPackages": []
+}

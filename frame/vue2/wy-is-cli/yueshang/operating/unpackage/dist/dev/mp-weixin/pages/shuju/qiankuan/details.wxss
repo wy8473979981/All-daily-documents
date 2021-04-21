@@ -1,0 +1,45 @@
+.list-mode-item {
+	font-size: 28rpx;
+}
+.list-mode-item.active {
+	color: #3992BA;
+	font-size: 32rpx;
+	font-weight: bold;
+}
+.qiankua-xiagnqing {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	padding: 28rpx 60rpx;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	background-color: #fff;
+	margin: 20rpx 0;
+}
+.qiankuan-item {
+	width: 40%;
+	margin-bottom: 15rpx;
+}
+.qiankuan-item-title {
+	color: #757575;
+	font-size: 24rpx;
+}
+.qiankuan-item-num {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.item-num {
+	color: #ff120d;
+	font-size: 36rpx;
+}
+.item-unit {
+	font-size: 20rpx;
+	padding-top: 10rpx;
+	color: #b0b0b0;
+	margin-left: 5rpx;
+}
+

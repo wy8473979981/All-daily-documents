@@ -1,0 +1,68 @@
+
+.index-group__item {
+	background-color: #ffffff;
+}
+.flex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.block--right-20rpx {
+	margin-left: 20rpx;
+}
+.block--right-30rpx {
+	margin-left: 30rpx;
+}
+.block--right-40rpx {
+	margin-left: 40rpx;
+}
+page,
+view,
+text {
+	box-sizing: border-box;
+}
+page {
+	width: 100%;
+	/* height: 100%; */
+	background-color: #f2f2f2;
+	padding-bottom: 40rpx;
+}
+page::after {
+	box-sizing: border-box;
+	display: block;
+	padding: 12rpx 0rpx 28rpx;
+	content: "宝龙商业系统 2020 V1.0\A周末客流数据默认含周五\A除客流数据按小时更新外，其他单元默认取前一日24:00数据";
+	font-size: 20rpx;
+	text-align: center;
+	color: #acacac;
+	white-space: pre;
+}
+button[type="primary"] {
+	background-color: #3a96bd !important;
+}
+.wx-checkbox-input {
+	color: #fff !important;
+	font-size: 16rpx;
+	border-radius: 0 !important;
+}
+label .wx-checkbox-input-checked {
+	background-color: #3a96bd;
+	border-color: #3a96bd;
+}
+
+/* 重写toast */
+uni-toast .uni-toast {
+	background: rgba(17,17,17,.45)!important;
+	width: 7em!important;
+	height: 7em!important;
+}
+uni-toast .uni-toast__content {
+	display: none!important;
+}
+uni-toast .uni-icon_toast.uni-loading {
+	margin: 2.4em 0 0;
+}
+

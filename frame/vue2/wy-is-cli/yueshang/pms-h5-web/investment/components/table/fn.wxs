@@ -1,0 +1,10 @@
+
+  module.exports = {
+    columnSelected: function(selected, row, column) {
+      return (selected.keysMap[row[selected.key]] || []).includes(column.key);
+    },
+    getPenoncel:function(value){
+      return parseInt(value) 
+    }
+
+  }

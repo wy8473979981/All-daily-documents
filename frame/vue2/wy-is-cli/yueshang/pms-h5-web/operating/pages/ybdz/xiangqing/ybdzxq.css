@@ -1,0 +1,27 @@
+.detail-box {
+	display: flex;
+	justify-content: space-between;
+	padding: 20rpx 30rpx;
+	background-color: #fff;
+	margin-bottom: 20rpx;
+}
+.detail-item-label {
+	font-size: 24rpx;
+	color: #7d7e80;
+}
+.item-num-box {
+	display: flex;
+	align-items: center;
+}
+.item-num {
+	color: #333;
+	font-size: 36rpx;
+}
+.red {
+	color: #ff120d;
+}
+.item-unit {
+	font-size: 20rpx;
+	margin-left: 5rpx;
+	color: #7d7e80;
+}

@@ -1,0 +1,53 @@
+.catalogue-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	z-index: 99999;
+}
+.catalogue-box {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+.catalogue-wrapper {
+	width: 100%;
+	background-color: #fff;
+
+	padding: 0 40rpx 40rpx;
+	color: #333;
+}
+.catalogue-item {
+	line-height: 100rpx;
+	border-bottom: 1px solid #eaeaea;
+	padding-left: 40rpx;
+}
+.catalogue-close-wrapper {
+	margin-bottom: 40rpx;
+}
+.catalogue-close {
+	width: 80rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	border-radius: 50%;
+	background-color: #fff;
+	text-align: center;
+}
+.active {
+	color: #3a96bd;
+}
+.catalogue-title {
+	display: flex;
+	align-items: center;
+}
+.arrow-img {
+	width: 16rpx;
+	height: 8rpx;
+	display: inline-block;
+	margin-left: 10rpx;
+}

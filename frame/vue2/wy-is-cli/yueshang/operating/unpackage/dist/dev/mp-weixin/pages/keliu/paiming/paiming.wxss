@@ -1,0 +1,31 @@
+/* pages/keliu/paiming.wxss */
+.wrapper {
+	background-color: #fff;
+}
+.updata-time {
+	font-size: 22rpx;
+	line-height: 74rpx;
+	text-align: center;
+	color: #c5c5c5;
+}
+.list-mode-item {
+	font-size: 28rpx;
+}
+.list-mode-item.active {
+	color: #3992BA;
+	font-size: 32rpx;
+	font-weight: bold;
+}
+.comparison {
+	width: 80rpx;
+	height: 80rpx;
+	position: fixed;
+	line-height: 80rpx;
+	right: 60rpx;
+	bottom: 60rpx;
+	border-radius: 50%;
+	background: #3992BA;
+	color: #fff;
+	text-align: center;
+}
+

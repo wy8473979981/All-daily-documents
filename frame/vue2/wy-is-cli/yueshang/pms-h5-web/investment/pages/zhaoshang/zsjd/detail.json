@@ -1,0 +1,10 @@
+{
+	"navigationBarTitleText": "筹备招商进度",
+	"usingComponents": {
+		"app-header": "/components/common/header",
+		"app-date-picker": "/components/selector/datepicker",
+		"app-table": "/components/table/index",
+		"app-section": "/components/container/section",
+		"app-project-selector": "/components/selector/project"
+	}
+}

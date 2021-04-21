@@ -1,0 +1,15 @@
+
+  module.exports = {
+    absoluteValue:function(num){
+     if(typeof num ==='-' || num === ''){
+       return ''
+     }
+      return Math.abs(num-0)+"%"
+    },
+    isEmpty:function(num){
+      if(num===0){
+        return true
+      }
+      return num  && num!=='-' && num!=='- '
+    }
+  }

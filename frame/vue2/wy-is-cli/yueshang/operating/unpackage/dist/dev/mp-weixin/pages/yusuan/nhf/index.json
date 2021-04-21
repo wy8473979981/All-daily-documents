@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "商业预算",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "app-header": "/components/common/header",
+    "app-section": "/components/container/section",
+    "app-project-selector": "/pages/yusuan/components/selector/project",
+    "app-table": "/components/table/index",
+    "yusuan-dialog": "/pages/yusuan/components/filter/dialog"
+  }
+}

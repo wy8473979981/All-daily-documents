@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "app-echarts": "/components/echarts/echarts"
+  }
+}

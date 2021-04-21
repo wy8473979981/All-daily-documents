@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "app-header": "/components/common/header",
+    "app-picker": "/components/selector/datepicker",
+    "app-section": "/components/container/section",
+    "app-filter-dialog": "/components/filter/dialog",
+    "app-project-selector": "/components/selector/project"
+  }
+}

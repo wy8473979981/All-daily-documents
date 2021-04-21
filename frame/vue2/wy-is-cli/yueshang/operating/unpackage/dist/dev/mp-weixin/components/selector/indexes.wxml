@@ -1,0 +1,1 @@
+<view style="width:100%;"><phone-directory style="width:100%;" vue-id="15891e5b-1" phones="{{component.list}}" data-event-opts="{{[['^paramClick',[['onSelected']]]]}}" bind:paramClick="__e" bind:__l="__l"></phone-directory></view>

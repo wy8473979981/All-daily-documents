@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['onClick',['$event']]]]]}}" class="app-project-selector" bindtap="__e"><view>{{component.selected.label||"全部"}}</view><block wx:if="{{!disabled}}"><image class="app-project-selector-icon" src="/static/assets/images/icon-selector-arrow.png"></image></block></view>

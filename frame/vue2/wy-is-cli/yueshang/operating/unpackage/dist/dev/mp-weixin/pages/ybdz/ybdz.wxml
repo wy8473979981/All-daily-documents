@@ -1,0 +1,1 @@
+<app-section vue-id="67d3f540-1" title="涉及商户" bind:__l="__l" vue-slots="{{['default']}}"><app-table vue-id="{{('67d3f540-2')+','+('67d3f540-1')}}" totalRow="{{totalRow}}" values="{{dataList}}" columns="{{columns}}" data-event-opts="{{[['^rowColumnClick',[['onRowColumnClick']]]]}}" bind:rowColumnClick="__e" bind:__l="__l"></app-table></app-section>

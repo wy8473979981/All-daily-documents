@@ -1,0 +1,1 @@
+<view class="common-project-selector"><block wx:if="{{ready}}"><view data-event-opts="{{[['tap',[['onAllSelected',['$event']]]]]}}" class="index-group__item" catchtap="__e">全部</view></block><app-index-list vue-id="aa372fa6-1" list="{{list}}" data-event-opts="{{[['^selected',[['onSelected']]]]}}" bind:selected="__e" bind:__l="__l"></app-index-list></view>

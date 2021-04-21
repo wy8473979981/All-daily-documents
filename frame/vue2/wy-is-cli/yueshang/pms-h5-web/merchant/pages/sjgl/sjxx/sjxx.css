@@ -1,0 +1,60 @@
+
+
+.merchant-infomation-item{
+    display: flex;
+    flex-direction: column;
+}
+.merchant-infomation-item-line{
+  width: 100%;
+  height: 1rpx;
+  background: #F6F6F6;
+}
+.merchant-infomation-item-content{
+  display: flex;
+  flex-direction: row;
+  padding: 15rpx;
+  align-items: center;
+}
+.merchant-infomation-item-content-title{
+  width: 222rpx;
+  font-size: 28rpx;
+  color: #333333;
+  white-space: nowrap;
+}
+.merchant-infomation-item-content-content{
+  font-size: 28rpx;
+  color: #333333;
+}
+.checkbox-checkwords{
+  /* color: #333333;
+  font-size: 28rpx; */
+  color: #333333;
+  font-size: 28rpx;
+  font-weight: bold;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+/*checkbox 选项框大小  */
+checkbox .wx-checkbox-input {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border-color: #3B96BE;
+  vertical-align: middle;
+}
+/*checkbox选中后样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background:#3B96BE;
+}
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ffffff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}

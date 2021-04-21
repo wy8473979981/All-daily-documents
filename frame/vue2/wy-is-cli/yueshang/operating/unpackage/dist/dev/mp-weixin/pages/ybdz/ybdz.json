@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "押不抵租",
+  "usingComponents": {
+    "app-section": "/components/container/section",
+    "app-table": "/components/table/index"
+  }
+}

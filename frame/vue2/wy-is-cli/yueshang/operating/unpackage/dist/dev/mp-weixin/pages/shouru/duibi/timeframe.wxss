@@ -1,0 +1,40 @@
+/* components/table/lengthways.wxss */
+.lengthways {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	color: #333;
+}
+.lengthways-label {
+	background-color: #f5f5f5;
+	font-weight: bold;
+	padding: 0 40rpx;
+}
+.label-item {
+	height: 80rpx;
+	line-height: 80rpx;
+	width: 100%;
+}
+.lengthways-content {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	overflow: auto;
+}
+.lengthways-item {
+	-webkit-flex-shrink: 0;
+	        flex-shrink: 0;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	text-align: right;
+	padding: 0 20rpx;
+	min-width: 240rpx;
+	border-right: 1px solid #eaeaea;
+}
+
+/* pages/shouru/duibi/timeframe.wxss */
+

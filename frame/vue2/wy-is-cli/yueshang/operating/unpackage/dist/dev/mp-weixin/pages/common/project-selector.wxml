@@ -1,0 +1,1 @@
+<view class="common-project-selector"><view class="selector-header"><view class="header-title">项目选择（在营）</view></view><app-index-list vue-id="4869d0f8-1" list="{{list}}" data-event-opts="{{[['^selected',[['onSelected']]]]}}" bind:selected="__e" bind:__l="__l"></app-index-list></view>

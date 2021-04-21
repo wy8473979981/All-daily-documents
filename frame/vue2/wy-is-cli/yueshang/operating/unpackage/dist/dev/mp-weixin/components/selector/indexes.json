@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "phone-directory": "/components/phone-directory/phone-directory"
+  }
+}
