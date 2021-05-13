@@ -47,6 +47,7 @@ export const constantRoutes = [
     path: '/',
     level: 'level-1',
     component: Layout,
+    alwaysShow: true,
     redirect: '/dashboard',
     name: 'dashboard',
     meta: {
@@ -62,6 +63,7 @@ export const constantRoutes = [
       }, {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        alwaysShow: true,
         name: 'menu1',
         meta: { title: '信息和审批' },
         children: [
@@ -77,7 +79,7 @@ export const constantRoutes = [
             level: 'level-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'menu1-3',
-            meta: { title: '邮件和信息' }
+            meta: { title: '网上审批' }
           }
         ]
       },
@@ -85,7 +87,7 @@ export const constantRoutes = [
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
         name: 'Raydata',
-        meta: { title: 'Raydata', icon: 'el-icon-s-help' }
+        meta: { title: 'Raydata', icon: 'el-icon-star-icon' }
       }
     ]
   },
@@ -93,6 +95,7 @@ export const constantRoutes = [
     path: '/example',
     level: 'level-1',
     component: Layout,
+    alwaysShow: true,
     redirect: '/example/table',
     name: 'Example',
     meta: { title: '基础数据', icon: '' },
@@ -124,7 +127,7 @@ export const constantRoutes = [
     alwaysShow: true,
     redirect: '/example1/table1',
     name: 'Example',
-    meta: { title: '基础数据(写字楼)', icon: 'el-icon-s-help' },
+    meta: { title: '基础数据(写字楼)', icon: 'el-icon-attention-icon' },
     children: [
       {
         path: 'table1',
@@ -145,12 +148,84 @@ export const constantRoutes = [
     children: [
       {
         path: 'table1',
-        name: 'Table',
+        name: 'Table1',
         component: () => import('@/views/table/index'),
         meta: { title: '招商平台', icon: '' }
       }
     ]
   },
+
+  {
+    path: '/example3',
+    level: 'level-1',
+    component: Layout,
+    alwaysShow: true,
+    redirect: '/example3/table3',
+    name: 'Example',
+    meta: { title: '营运管理', icon: '' },
+    children: [
+      {
+        path: 'table3',
+        name: 'Table3',
+        component: () => import('@/views/table/index'),
+        meta: { title: '营运管理', icon: '' }
+      }
+    ]
+  },
+
+  {
+    path: '/example4',
+    level: 'level-1',
+    component: Layout,
+    alwaysShow: true,
+    redirect: '/example4/table4',
+    name: 'Example',
+    meta: { title: '预算管理', icon: '' },
+    children: [
+      {
+        path: 'table4',
+        name: 'Table4',
+        component: () => import('@/views/table/index'),
+        meta: { title: '预算管理', icon: '' }
+      }
+    ]
+  },
+  {
+    path: '/example5',
+    level: 'level-1',
+    component: Layout,
+    alwaysShow: true,
+    redirect: '/example5/table5',
+    name: 'Example',
+    meta: { title: '财务管理', icon: '' },
+    children: [
+      {
+        path: 'table5',
+        name: 'Table5',
+        component: () => import('@/views/table/index'),
+        meta: { title: '财务管理', icon: '' }
+      }
+    ]
+  },
+  {
+    path: '/example6',
+    level: 'level-1',
+    component: Layout,
+    alwaysShow: true,
+    redirect: '/example6/table5',
+    name: 'Example',
+    meta: { title: '工程管理', icon: '' },
+    children: [
+      {
+        path: 'table6',
+        name: 'Table6',
+        component: () => import('@/views/table/index'),
+        meta: { title: '工程管理', icon: '' }
+      }
+    ]
+  },
+
+
   {
     path: '/form',
     level: 'level-1',
@@ -161,68 +236,6 @@ export const constantRoutes = [
         name: 'Form',
         component: () => import('@/views/form/index'),
         meta: { title: 'Form', icon: '' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    level: 'level-1',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: ''
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                level: 'level-4',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                level: 'level-4',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
       }
     ]
   },

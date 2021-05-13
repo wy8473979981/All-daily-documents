@@ -1,6 +1,9 @@
 <template>
   <div class="upload-excel-to-json">
-    <input type="file" id="input" />
+    <input
+      type="file"
+      id="input"
+    />
   </div>
 </template>
 
@@ -41,7 +44,8 @@ export default {
         data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) //转成 json 数据
         console.log(data)
         this.$emit('getJsonDataFunc', data)
-        this.downloadJson(data)
+        this.copyTxt(JSON.stringify(data))
+        // this.downloadJson(data)
       };
 
       reader.readAsBinaryString(file) //以二进制方式读取
@@ -53,6 +57,17 @@ export default {
       });
       saveAs(blob, filename || 'data.json');
     },
+    copyTxt (str) {
+      // 使用textarea 可以保留换行，input会取消换行
+      let oInput = document.createElement('textarea');
+      oInput.value = str;
+      document.body.appendChild(oInput);
+      oInput.select(); // 选择对象
+      document.execCommand('Copy'); // 执行浏览器复制命令
+      oInput.className = 'oInput';
+      oInput.style.display = 'none';
+      this.$message.success('复制成功');
+    }
   }
 }
 </script>

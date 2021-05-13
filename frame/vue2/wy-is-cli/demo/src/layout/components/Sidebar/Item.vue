@@ -18,7 +18,7 @@ export default {
 
     if (icon) {
       if (icon.includes('el-icon')) {
-        vnodes.push(<i class={[icon, 'sub-el-icon']} />)
+        vnodes.push(<i class={[icon]} />)
       } else {
         vnodes.push(<svg-icon icon-class={icon} />)
       }
@@ -39,5 +39,27 @@ export default {
   height: 1em;
   position: absolute;
   left: 15px;
+}
+.el-icon-star-icon {
+  background: url("../../../assets/images/star.png") no-repeat center top;
+  background-size: auto 100%;
+  background-origin: content-box;
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  left: 9px;
+  top: 4px;
+  margin-right: 0px;
+}
+.el-icon-attention-icon {
+  background: url("../../../assets/images/attention.png") no-repeat center top;
+  background-size: auto 100%;
+  background-origin: content-box;
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  left: 9px;
+  top: 5px;
+  margin-right: 0px;
 }
 </style>

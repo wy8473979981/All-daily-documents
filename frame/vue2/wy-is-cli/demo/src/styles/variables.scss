@@ -14,6 +14,23 @@ $subMenuHover:#001528;
 // $sideBarWidth: 210px;
 $sideBarWidth: 280px;
 
+
+/**   PMS菜单   开始  **/
+$sideBarWidth: 280px;
+$subMenuActiveHover:#1C4C7F;
+$subMenuColor:#848382;
+$subMenuBgColor:#FDFCFA;
+$subMenuItemBgColor:#E0DFDD;
+$white:#FFFFFF;
+$subMenuItemBorderColor:#D1CEC9;
+/**   PMS菜单   结束  **/
+
+
+
+
+
+
+
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
@@ -25,4 +42,10 @@ $sideBarWidth: 280px;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
+  subMenuActiveHover: $subMenuActiveHover;
+  white: $white;
+  subMenuColor:$subMenuColor;
+  subMenuBgColor:$subMenuBgColor;
+  subMenuItemBgColor:$subMenuItemBgColor;
+  subMenuItemBorderColor:$subMenuItemBorderColor;
 }

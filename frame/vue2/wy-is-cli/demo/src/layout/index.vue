@@ -1,10 +1,11 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
+  <div
+    :class="classObj"
+    class="app-wrapper"
+  >
     <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
 
-
     <sidebar class="sidebar-container" />
-
 
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
@@ -65,11 +66,15 @@ export default {
   height: 100%;
   width: 100%;
   background: #f6f5ee;
-  padding-left: 99px;
+  // overflow: hidden;
+  // padding-left: 99px;
   &.mobile.openSidebar {
     position: fixed;
     top: 0;
   }
+}
+.main-container{
+  overflow-y: auto;
 }
 .drawer-bg {
   background: #000;

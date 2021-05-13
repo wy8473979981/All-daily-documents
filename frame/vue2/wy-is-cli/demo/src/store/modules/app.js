@@ -10,6 +10,7 @@ const state = {
 
 const mutations = {
   TOGGLE_SIDEBAR: state => {
+    console.log(111)
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
     if (state.sidebar.opened) {

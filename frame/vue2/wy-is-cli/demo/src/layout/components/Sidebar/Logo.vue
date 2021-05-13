@@ -1,13 +1,16 @@
 <template>
-  <div class="sidebar-logo-container" :class="{'collapse':collapse}">
+  <div class="sidebar-logo-container">
     <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
-        <h1 v-else class="sidebar-title">{{ title }} </h1>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo">
-        <h1 class="sidebar-title">{{ title }} </h1>
+
+      <router-link
+        key="expand"
+        class="sidebar-logo-link"
+        to="/"
+      >
+        <img
+          src="../../../assets/images/logo.png"
+          class="sidebar-logo"
+        >
       </router-link>
     </transition>
   </div>
@@ -16,16 +19,8 @@
 <script>
 export default {
   name: 'SidebarLogo',
-  props: {
-    collapse: {
-      type: Boolean,
-      required: true
-    }
-  },
-  data() {
+  data () {
     return {
-      title: 'Vue Admin Template',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
 }
@@ -44,19 +39,22 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
-  background: #2b2f3a;
+  // height: 50px;
+  // line-height: 50px;
+  padding: 25px 0 0 18px;
+  margin-bottom: 6px;
+  background: #fdfcfa;
   text-align: center;
   overflow: hidden;
 
   & .sidebar-logo-link {
     height: 100%;
     width: 100%;
+    text-align: left;
 
     & .sidebar-logo {
-      width: 32px;
-      height: 32px;
+      width: 136px;
+      height: 64px;
       vertical-align: middle;
       margin-right: 12px;
     }
