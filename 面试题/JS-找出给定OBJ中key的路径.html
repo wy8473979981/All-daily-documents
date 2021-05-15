@@ -30,14 +30,8 @@
                 }
             }
         };
-
-        const Find = (
-            key,
-            value,
-            currentValue = obj,
-            currentKey,
-            helper = { isFinded: false, result: [] }
-        ) => {
+        const Find = (key, value, currentValue = obj, currentKey, helper = { isFinded: false, result: [], resultObj: [] }) => {
+            debugger
             // console.log(currentValue,currentKey,'currentValue-currentKey')
             if (currentKey === key && currentValue === value) {
                 helper.isFinded = true;
@@ -54,13 +48,12 @@
             if (helper.isFinded && currentKey) {
                 console.log(currentKey, 'currentKey')
                 helper.result.unshift(currentKey);
+                helper.resultObj.unshift(currentValue);
             }
             return helper;
         };
 
-        console.log(Find("q", 5), Find("d", 1));
-
-
+        console.log(Find("q", 5));
 
     </script>
 </body>
