@@ -14,6 +14,7 @@
 <script lang="ts">
 import AsyncShow from "../components/AsyncShow.vue";
 import GirlShow from "../components/GirlShow.vue";
+
 const app = {
   name: "App",
   components: { AsyncShow, GirlShow },

@@ -1,7 +1,10 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/Customize-Hooks">自定义Hooks</router-link> |
+    <router-link to="/Teleport">Teleport--任意门</router-link> |
+    
   </div>
   <router-view/>
 </template>

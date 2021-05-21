@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, ref, watch } from "vue";
+import { reactive, toRefs, ref, watch, watchEffect } from "vue";
 
 interface DataProps {
   girls: string[];
@@ -39,11 +39,26 @@ export default {
     const overAction = () => {
       overText.value = overText.value + "点餐完成 | ";
     };
-    watch([overText, () => data.selectGirl], (newValue, oldValue) => {
-      console.log(`new--->${newValue}`);
-      console.log(`old--->${oldValue}`);
-      document.title = newValue[0];
+    // const stopWatchRoom = watch(
+    //   [overText, () => data.selectGirl],
+    //   (newValue, oldValue) => {
+    //     console.log(`new--->${newValue}`);
+    //     console.log(`old--->${oldValue}`);
+    //     document.title = newValue[0];
+    //   }
+    // );
+
+    // stop 停止监听
+    // setTimeout(() => {
+    //   // 停止监听
+    //   stopWatchRoom();
+    // }, 3000);
+
+    watchEffect(() => {
+      console.log(data, 'data');
+      console.log(overText);
     });
+
     return { ...refData, overText, overAction };
   },
 };
