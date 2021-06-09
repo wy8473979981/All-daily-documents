@@ -248,6 +248,7 @@ export default {
   watch: {
     formData: {
       handler: function() {
+        console.log('formData', JSON.stringify(this.formData))
         Object.keys(this.formData).forEach(key => {
           this.$set(this.form, key, this.formData[key])
         })

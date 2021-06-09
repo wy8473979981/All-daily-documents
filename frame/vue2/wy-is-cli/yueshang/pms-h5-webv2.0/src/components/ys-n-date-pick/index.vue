@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="ys-n-date-pick">
-      <div class="date-label" @click="showDatePick = true">
+      <div class="date-label" @click="onChangeShowDatePick">
         <span class="label">{{ dateLabel }}</span>
         <van-image width="0.4rem" height="0.3733rem" :src="dataIcon" v-if="!range" />
       </div>
@@ -11,17 +11,18 @@
         <van-image width="0.4rem" height="0.4rem" :src="dataIcon" />
       </div>
     </div>
-    <van-popup v-model="showDatePick" position="bottom" :style="{ height: '60%' }">
+    <van-popup v-model="showDatePick" position="bottom" :style="{ height: '60%' }" @close="closePick">
       <van-datetime-picker v-model="currentDate" :type="pickType" :formatter="formatter" @cancel="cancel" @confirm="confirm" @click.stop v-if="pickType !== 'year'" />
       <van-picker show-toolbar :columns="columns" :default-index="defaultIndex" @confirm="confirmYear" v-if="pickType === 'year'" />
     </van-popup>
-    <van-popup v-model="showDatePickRange" position="bottom" :style="{ height: '60%' }" v-if="range">
+    <van-popup v-model="showDatePickRange" position="bottom" :style="{ height: '60%' }" v-if="range" @close="closePick">
       <van-datetime-picker v-model="currentDateRange" :type="pickType" :formatter="formatter" @cancel="cancelRange" @confirm="confirmRange" @click.stop />
     </van-popup>
   </div>
 </template>
 <script>
 import dataIcon from "../../assets/images/icon-calendar.png";
+import { mapGetters } from "vuex";
 export default {
   props: {
     selected: {
@@ -44,6 +45,9 @@ export default {
       type: Boolean,
       default: false
     },
+  },
+  computed: {
+    ...mapGetters(['getHasAuth']),
   },
   watch: {
     type: {
@@ -77,7 +81,7 @@ export default {
       deep: true,
     },
   },
-  data() {
+  data () {
     return {
       dateLabel: "",
       dateLabelRange: "",
@@ -91,9 +95,27 @@ export default {
       columns: ["2011年", "2012年", "2013年", "2014年", "2015年", "2016年", "2017年", "2018年", "2019年", "2020年", "2021年", "2022年", "2023年", "2024年", "2025年", "2026年", "2027年", "2028年", "2029年"],
     };
   },
-  mounted() { },
+  mounted () { },
   methods: {
-    confirm(value) {
+    touchstart(){
+      this.$emit('touchstart',{})
+    },
+    onChangeShowDatePick () {
+      if (!this.getHasAuth) {
+        return
+      }
+      this.showDatePick = true
+      this.touchstart()
+    },
+    confirm (value) {
+      // let startTime = new Date(this.value).getTime()
+      // let endTime = new Date(this.dateLabelRange).getTime()
+
+      // if (this.range && startTime > endTime) {
+      //   this.$Toast('开始日期不能晚于结束日期');
+      //   return
+      // }
+
       if (this.pickType === "date") {
         this.dateLabel = this.$dayjs(value).format("YYYY-MM-DD");
       } else if (this.pickType === "year-month") {
@@ -103,7 +125,16 @@ export default {
       this.$emit("selected", this.dateLabel);
     },
 
-    confirmRange(value) {
+    confirmRange (value) {
+
+      // let startTime = new Date(this.dateLabel).getTime()
+      // let endTime = new Date(value).getTime()
+
+      // if (startTime > endTime) {
+      //   this.$Toast('开始日期不能晚于结束日期');
+      //   return
+      // }
+
       if (this.pickType === "date") {
         this.dateLabelRange = this.$dayjs(value).format("YYYY-MM-DD");
       } else if (this.pickType === "year-month") {
@@ -113,16 +144,18 @@ export default {
       this.$emit("selectedRange", this.dateLabelRange);
     },
 
-    confirmYear(value) {
+    confirmYear (value) {
       this.dateLabel = value.replace(/年/, "");
       this.showDatePick = false;
       this.$emit("selected", this.dateLabel);
     },
+    closePick() {
+      this.$emit('close',{})
+    },
+    cancel () { this.showDatePick = false; this.closePick()},
+    cancelRange () { this.showDatePickRange = false; this.closePick()},
 
-    cancel() { this.showDatePick = false; },
-    cancelRange() { this.showDatePickRange = false; },
-
-    formatter(type, val) {
+    formatter (type, val) {
       if (type === 'year') {
         return `${val}年`;
       } else if (type === 'month') {
@@ -139,18 +172,18 @@ export default {
   display: flex;
   align-items: center;
   .separator {
-    margin: 0 5px;
+    margin: 0 5px 0 0;
   }
   .date-label {
-    // margin-right: 5px;
     display: flex;
-    align-items: center;
     .label {
       margin-right: 5px;
-      padding-right: 5px;
       vertical-align: middle;
-      font-size: 28px;
+      font-size: 30px;
     }
   }
+}
+::v-deep .van-image {
+  margin-left: 4px;
 }
 </style>

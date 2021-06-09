@@ -106,7 +106,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="80" label="3月" show-overflow-tooltip prop="budgetMarch" align="right">
+      <el-table-column min-width="80" label="3月" show-overflow-tooltip prop="budgetMar" align="right">
         <template slot-scope="scope">
           <el-popover placement="right" width="100" trigger="focus" popper-class="option-popper" v-if="returnTimeRowEdit(scope,9)">
             <div style="text-align: left; margin: 0">
@@ -145,7 +145,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="80" label="6月" show-overflow-tooltip prop="budgetJune" align="right">
+      <el-table-column min-width="80" label="6月" show-overflow-tooltip prop="budgetJun" align="right">
         <template slot-scope="scope">
           <el-popover placement="right" width="100" trigger="focus" popper-class="option-popper" v-if="returnTimeRowEdit(scope,12)">
             <div style="text-align: left; margin: 0">
@@ -171,7 +171,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="80" label="8月" show-overflow-tooltip prop="budgetAug" align="right">
+      <el-table-column min-width="80" label="8月" show-overflow-tooltip prop="budgetAugust" align="right">
         <template slot-scope="scope">
           <el-popover placement="right" width="100" trigger="focus" popper-class="option-popper" v-if="returnTimeRowEdit(scope,14)">
             <div style="text-align: left; margin: 0">
@@ -223,14 +223,14 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="80" label="12月" show-overflow-tooltip prop="budgetDece" align="right">
+      <el-table-column min-width="80" label="12月" show-overflow-tooltip prop="budgetDec" align="right">
         <template slot-scope="scope">
           <el-popover placement="right" width="100" trigger="focus" popper-class="option-popper" v-if="returnTimeRowEdit(scope,18)">
             <div style="text-align: left; margin: 0">
-              <el-button size="mini" type="primary" class="el-button-btn" :disabled="!returnBol" @click="save(scope,'budgetDece')">保存</el-button>
-              <el-button size="mini" type="text" class="el-button-btn" @click="cancel(scope,'budgetDece')">取消</el-button>
+              <el-button size="mini" type="primary" class="el-button-btn" :disabled="!returnBol" @click="save(scope,'budgetDec')">保存</el-button>
+              <el-button size="mini" type="text" class="el-button-btn" @click="cancel(scope,'budgetDec')">取消</el-button>
             </div>
-            <el-input slot="reference" v-filter-check-input maxlength="12" v-model="scope.row.budgetDece" @input="valueChange(scope,'budgetDec')" @focus="focus(scope,'budgetDec')" @blur="blur(scope,'budgetDec')" placeholder="请输入" size="mini"></el-input>
+            <el-input slot="reference" v-filter-check-input maxlength="12" v-model="scope.row.budgetDec" @input="valueChange(scope,'budgetDec')" @focus="focus(scope,'budgetDec')" @blur="blur(scope,'budgetDec')" placeholder="请输入" size="mini"></el-input>
           </el-popover>
           <p v-else @click="showInput(scope.$index)" :class="{ isInput: monthHasInput(scope.row.subjectSerial) }">{{ monthHasInput(scope.row.subjectSerial)?returnValue(scope.row,'budgetDec',true,true):['1','2'].includes(scope.row.subjectSerial)?'/':returnValue(scope.row,'budgetDec',true,false) }}</p>
         </template>
@@ -338,7 +338,7 @@ import GlobalApi from '@/apis/apis/global'
 import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   mixins: [handle_paginator],
-  data() {
+  data () {
     return {
       returnBol: false,
       selectIndex: null,//行
@@ -377,7 +377,7 @@ export default {
   computed: {
     ...mapState(["viewInstanceId"])
   },
-  created() {
+  created () {
     this.routerQuery = this.$route.query;
     this.query.instanceId = this.viewInstanceId;
     this.dateBol = this.getNowFormatDate().substr(5) < '11-01' ? true : false;
@@ -386,7 +386,7 @@ export default {
     this.getList();
 
   },
-  mounted() {
+  mounted () {
     // this.dom = this.$refs.table.bodyWrapper;
     // this.dom.addEventListener('scroll', () => {
     //   this.scrollTop = this.dom.scrollTop;// 滚动距离
@@ -402,15 +402,15 @@ export default {
     // ]),
     getNowFormatDate,
     returnValue,
-    getRowKeys(row) {
+    getRowKeys (row) {
       return row.id;
     },
-    search() {
+    search () {
       this.scrollTop = 0;
       this.getList();
     },
     // 查询列表数据
-    async getList() {
+    async getList () {
       try {
         const params = {
           ...this.query,
@@ -429,11 +429,11 @@ export default {
                   ...arr[index],
                   showSubjectSerial: showSubjectSerial == 0 ? '' : showSubjectSerial,
                   subjectLevel: showSubjectSerial == 0 ? 0 : subjectLevel,
-                  budgetCurrentYear: this.getValueIsNumber(budgetCurrentYear) ? this.getValueToUnit(budgetCurrentYear) : budgetCurrentYear,
-                  budgetCurrentYearComplete: this.getValueIsNumber(budgetCurrentYearComplete) ? this.getValueToUnit(budgetCurrentYearComplete) : budgetCurrentYearComplete,
-                  threeQaActual: this.getValueIsNumber(threeQaActual) ? this.getValueToUnit(threeQaActual) : threeQaActual,
-                  lastQaPredict: this.getValueIsNumber(lastQaPredict) ? this.getValueToUnit(lastQaPredict) : lastQaPredict,
-                  budgetNextYear: this.getValueIsNumber(budgetNextYear) ? this.getValueToUnit(budgetNextYear) : budgetNextYear,
+                  budgetCurrentYear: this.getValueIsNumber(budgetCurrentYear) ? this.getValueToUnit(budgetCurrentYear, showSubjectSerial, '%') : budgetCurrentYear,//上年预算指标
+                  budgetCurrentYearComplete: this.getValueIsNumber(budgetCurrentYearComplete) ? this.getValueToUnit(budgetCurrentYearComplete, showSubjectSerial, '%') : budgetCurrentYearComplete,//上年预计完成
+                  threeQaActual: this.getValueIsNumber(threeQaActual) ? this.getValueToUnit(threeQaActual, showSubjectSerial, '%') : threeQaActual,
+                  lastQaPredict: this.getValueIsNumber(lastQaPredict) ? this.getValueToUnit(lastQaPredict, showSubjectSerial, '%') : lastQaPredict,
+                  budgetNextYear: this.getValueIsNumber(budgetNextYear) ? this.getValueToUnit(budgetNextYear, showSubjectSerial, '%') : budgetNextYear,//本年预算
                   budgetJan: this.getValueIsNumber(budgetJan) ? this.getValueToUnit(budgetJan) : budgetJan,
                   budgetFeb: this.getValueIsNumber(budgetFeb) ? this.getValueToUnit(budgetFeb) : budgetFeb,
                   budgetMar: this.getValueIsNumber(budgetMar) ? this.getValueToUnit(budgetMar) : budgetMar,
@@ -446,8 +446,8 @@ export default {
                   budgetOct: this.getValueIsNumber(budgetOct) ? this.getValueToUnit(budgetOct) : budgetOct,
                   budgetNov: this.getValueIsNumber(budgetNov) ? this.getValueToUnit(budgetNov) : budgetNov,
                   budgetDec: this.getValueIsNumber(budgetDec) ? this.getValueToUnit(budgetDec) : budgetDec,
-                  budgetNextTwoYear: this.getValueIsNumber(budgetNextTwoYear) ? this.getValueToUnit(budgetNextTwoYear) : budgetNextTwoYear,
-                  budgetNextThreeYear: this.getValueIsNumber(budgetNextThreeYear) ? this.getValueToUnit(budgetNextThreeYear) : budgetNextThreeYear,
+                  budgetNextTwoYear: this.getValueIsNumber(budgetNextTwoYear) ? this.getValueToUnit(budgetNextTwoYear, showSubjectSerial, '%') : budgetNextTwoYear,//次年
+                  budgetNextThreeYear: this.getValueIsNumber(budgetNextThreeYear) ? this.getValueToUnit(budgetNextThreeYear, showSubjectSerial, '%') : budgetNextThreeYear,//第三年
                   completeBudget1: this.getValueIsNumber(completeBudget1) ? this.getValueToUnit(completeBudget1) : completeBudget1,
                   completeBudget2: this.getValueIsNumber(completeBudget2) ? this.getValueToUnit(completeBudget2) : completeBudget2
                 }
@@ -480,13 +480,13 @@ export default {
         console.log(e)
       }
     },
-    searchLevel() {
+    searchLevel () {
       this.scrollTop = 0;
       this.tableData = [];
       this.expands = [];
       this.getList();
     },
-    getExpands() {
+    getExpands () {
       try {
         this.treeForeach(this.tableData, node => {
           this.$nextTick(function () {
@@ -500,20 +500,20 @@ export default {
         console.log(e)
       }
     },
-    treeForeach(tree, func) {
+    treeForeach (tree, func) {
       let node, list = [...tree]
       while (node = list.shift()) {
         func(node)
         node.children && list.push(...node.children)
       }
     },
-    treeFilter(tree, func) {
+    treeFilter (tree, func) {
       return tree.map(node => ({ ...node })).filter(node => {
         node.children = node.children && this.treeFilter(node.children, func)
         return func(node) || (node.children && node.children.length)
       })
     },
-    treeFind(tree, func) {
+    treeFind (tree, func) {
       for (const data of tree) {
         if (func(data)) return data
         if (data.children) {
@@ -523,7 +523,7 @@ export default {
       }
       return null
     },
-    expandChange(row, index, e) {
+    expandChange (row, index, e) {
       try {
         this.expands = [];
         if (index && index.fixed) {
@@ -536,13 +536,22 @@ export default {
         console.log(e)
       }
     },
-    getValueIsNumber(value) {
-      return (isNaN(value) || [null, undefined, '', 0, '0'].includes(value)) ? false : true
+    getValueIsNumber (value) {
+      return (isNaN(value) || [null, undefined, ''].includes(value)) ? false : true
     },
-    getValueToUnit(value) {
-      return (Number(value) / 10000).toFixed(2)
+    getValueToUnit (value, serial, unit) {
+      var showSubjectSerial = ['7.1.1.3', '7.1.1.4', '7.1.1.5']
+      if (unit) {
+        if (showSubjectSerial.includes(serial)) {
+          return (Number(value) * 100).toFixed(2) + unit
+        } else {
+          return (Number(value) / 10000).toFixed(2)
+        }
+      } else {
+        return (Number(value) / 10000).toFixed(2)
+      }
     },
-    async getSelectList(type) {
+    async getSelectList (type) {
       const params = {
         selectType: type
       }
@@ -556,7 +565,7 @@ export default {
         }
       })
     },
-    returnRowEdit(scope, cellIndex) {
+    returnRowEdit (scope, cellIndex) {
       // 判断当前单元格是否可编辑
       const { row, $index } = scope
       const { subjectSerial } = row
@@ -567,7 +576,7 @@ export default {
         return false
       }
     },
-    returnTimeRowEdit(scope, cellIndex) {
+    returnTimeRowEdit (scope, cellIndex) {
       // 判断当前单元格是否可编辑
       const { row, $index } = scope
       const { subjectSerial } = row
@@ -577,7 +586,7 @@ export default {
         return false
       }
     },
-    returnMarkRowEdit(scope, cellIndex) {
+    returnMarkRowEdit (scope, cellIndex) {
       // 判断当前单元格是否可编辑
       const { row, $index } = scope
       const { subjectSerial } = row
@@ -587,7 +596,7 @@ export default {
         return false
       }
     },
-    hasInput(subjectSerial) {
+    hasInput (subjectSerial) {
       // 判断当前列是否有输入框
       const mallType = this.query.mallType;
       if (this.subjectSerialAry.includes(subjectSerial) && ![5, 6, 7].includes(mallType)) {
@@ -596,17 +605,17 @@ export default {
         return false
       }
     },
-    monthHasInput(subjectSerial) {
+    monthHasInput (subjectSerial) {
       // 判断月份是否有输入框
       const mallType = this.query.mallType;
       return subjectSerial == '2.7' && ![5, 6, 7].includes(mallType)
     },
-    yearHasInput(subjectSerial) {
+    yearHasInput (subjectSerial) {
       // 判断年是否有输入框
       const mallType = this.query.mallType;
       return ['1.2.5', '2.7'].includes(subjectSerial) && ![5, 6, 7].includes(mallType)
     },
-    reset() {
+    reset () {
       this.tableData = [];
       this.expands = [];
       this.query = { ...this.query, mallType: 7 };
@@ -614,17 +623,17 @@ export default {
       this.scrollTop = 0;
       this.getList()
     },
-    getCell(row, column, cell, event) {
+    getCell (row, column, cell, event) {
       this.cellIndex = cell.cellIndex;
     },
-    showInput(index) {
+    showInput (index) {
       if ((this.selectIndex || this.cellIndex) && this.currentNewCellValue) {
         this.resetIndex();
       }
       // 获取当前单元格 行的下标
       this.selectIndex = index
     },
-    valueChange(scope, type) {
+    valueChange (scope, type) {
       // 当前输入框数据变更，保存 按钮可以点击使用
       if (scope.row[type] != '' && scope.row[type] != null) {
         this.returnBol = true;
@@ -633,16 +642,16 @@ export default {
         this.returnBol = false;
       }
     },
-    focus(scope, type) {
+    focus (scope, type) {
       // 获取焦点时，保存原始值
       // console.log(scope.row[type], 'focus')
       this.currentOldCellValue = scope.row[type];
     },
-    blur(scope, type) {
+    blur (scope, type) {
       // console.log(scope.row[type], 'blur')
       scope.row[type] = null
     },
-    save(scope, type) {
+    save (scope, type) {
       try {
         if (this.returnBol) {
           scope.row[type] = this.currentNewCellValue
@@ -671,17 +680,17 @@ export default {
         console.log(e);
       }
     },
-    cancel(scope, type) {
+    cancel (scope, type) {
       this.resetIndex();
       // this.tableData = JSON.parse(this.oldTableData);
       scope.row[type] = this.currentOldCellValue
     },
-    resetIndex() {
+    resetIndex () {
       this.selectIndex = null;
       this.cellIndex = null;
       this.returnBol = false;
     },
-    returnPercentageValue(scope, key) {
+    returnPercentageValue (scope, key) {
       // 添加百分比
       let precise = 2;
       let value = scope[key];

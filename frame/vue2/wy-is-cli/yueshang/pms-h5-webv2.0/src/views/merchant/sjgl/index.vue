@@ -1,9 +1,9 @@
 <template>
   <div class="sjgl-list" v-webTitle :data-title="`商家管理`">
-    <div class="header-top">
+    <div class="header-top header-top-padding-top">
       <div class="app-header">
-        <div class="app-header-container">
-          <ys-n-tree-select @onSelect="onSelectTreeId" @onMerchantName="onMerchantName" />
+        <div class="app-header-container" @click="closeSjlbFunc">
+          <ys-n-tree-select @touchstart="touchPick" @onSelect="onSelectTreeId" @onMerchantName="onMerchantName" ref="treeSelect" />
         </div>
       </div>
     </div>
@@ -16,62 +16,32 @@
         </div>
       </div>
     </div>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="商家管理" :hasTable="true">
 
-    <ys-n-section title="商家管理" :hasTable="true">
+        <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onReachBottom">
+          <ys-n-table :fixednum="2" :totalRow="page.merchantTable.totalRow" :values="page.merchantTable.rows" :columns="dealerColumns" @row-column-click="onRowClick"></ys-n-table>
+        </van-list>
 
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onReachBottom">
-        <ys-n-table :fixednum="2" :totalRow="page.merchantTable.totalRow" :values="page.merchantTable.rows" :columns="dealerColumns" @row-column-click="onRowClick"></ys-n-table>
-      </van-list>
+      </ys-n-section>
+    </van-pull-refresh>
 
-    </ys-n-section>
-    <div class="comparison" @click="goToComparison">对比</div>
+    <div @click="closeTreeSelectFunc">
+      <Sjlb :query="query" ref="Sjlb" @touchstart="touchPick"></Sjlb>
+    </div>
+    <!-- <ys-n-to-top /> -->
   </div>
 </template>
 
 <script>
-
-import { mapMutations, mapGetters } from "vuex";
-const dealerColumns = [
-  {
-    label: '序号',
-    width: '1.3333rem'
-  }, {
-    label: '商家名',
-    key: 'merchantsChineseName',
-    color: '#3B96BE',
-    width: '2.1333rem',
-    align: 'left'
-  }, {
-    label: '业态',
-    key: 'thirdlyFormats',
-    color: '#333333',
-    width: '2rem',
-    align: 'left'
-  }, {
-    label: '店型',
-    key: 'storeType',
-    color: '#333333',
-    width: '1.8667rem',
-    align: 'left',
-  }, {
-    label: '欠费(万)',
-    key: 'owe',
-    color: '#E93743',
-    align: 'right',
-    width: '2rem',
-    sortable: true
-  }, {
-    label: '合作项目数',
-    key: 'cooperativeProjectsNumber',
-    align: 'right',
-    width: '2.4rem',
-    sortable: true
-  },
-];
-
+import { mapMutations } from "vuex";
+import { dealerColumns } from './config';
+import Sjlb from '../components/sjlb/index';
 export default {
-  data() {
+  data () {
     return {
+      open: false,
+      isLoading: false, isLoadingCount: 0,
       selected: {},
       selector: false,
       dealerColumns: dealerColumns,
@@ -81,10 +51,6 @@ export default {
           rows: []
         }
       },
-      // merchantTable: {
-      //   columns: [],
-      //   rows: []
-      // },
       showModal: true,
       selectedList: [],
       selectedListDefault: [],
@@ -103,27 +69,48 @@ export default {
     };
   },
 
-  components: {},
+  components: { Sjlb },
   props: {},
-  mounted() {
-    this.loadData();
-    this.getDataList();
+  mounted () {
+    try {
+      this.loadData(true);
+      this.getDataList();
+    } catch (e) {
+      console.log(e)
+    }
   },
   methods: {
     ...mapMutations([
       'setMerchantList',
     ]),
-    onSelectTreeId(treeSelect) {
-      this.setData({
-        ['query.limit']: 100,
-        ['query.bisShopSortId']: treeSelect.bisShopSortId.join(','),
-        selectedList: treeSelect.selectedList,
-        // selectedListDefault: JSON.parse(JSON.stringify(this.selectedList))
-      });
-      console.log(treeSelect, 'treeSelect')
-      this.loadData();
+    closeSjlbFunc () {
+      this.$refs.Sjlb.showModal = false
     },
-    onMerchantName(data) {
+    closeTreeSelectFunc () {
+      this.$refs.treeSelect.showModal = false
+    },
+    touchPick () {
+      try {
+        this.$util.showTabStatus('false', 'false')
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    onSelectTreeId (treeSelect) {
+      try {
+        this.$util.showTabStatus('true', 'true')
+        this.setData({
+          ['query.limit']: 100,
+          ['query.bisShopSortId']: treeSelect.bisShopSortId.join(','),
+          selectedList: treeSelect.selectedList,
+          // selectedListDefault: JSON.parse(JSON.stringify(this.selectedList))
+        });
+        this.loadData();
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    onMerchantName (data) {
       this.setData({
         selector: false,
         ['query.limit']: 100,
@@ -131,11 +118,41 @@ export default {
       });
       this.loadData();
     },
-    loadData: async function () {
+    onRefresh () {
+      setTimeout(() => {
+        // 如果接口有问题，5s后关闭下拉刷新loading
+        this.isLoading = false
+      }, 0)
+      this.loadData(true)
+    },
+    addIsLoadingCount (isUse = true) {
+      // isUse 表示下拉刷新是否真实使用
+      if (!isUse) {
+        return false;
+      }
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount (isUse = true) {
+      // isUse 表示下拉刷新是否真实使用
+      if (!isUse) {
+        return false;
+      }
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    loadData: async function (isUse = false) {
       try {
         this.query.offset = 1;
-        await this.$axios.externalLinkServe.getMerchantList(this.query, false).then(res => {
+        this.addIsLoadingCount(isUse)
+        await this.$axios.merchantServe.getMerchantList(this.query, true).then(res => {
           if (res.code == 200) {
+            this.decreaseIsLoadingCount(isUse)
             const { data } = res;
             const rows = data.list.map(item => {
               return {
@@ -168,7 +185,7 @@ export default {
         if (this.query.hasNext) {
           this.query.limit = 50;
           this.query.offset = this.query.offset + 1;
-          await this.$axios.externalLinkServe.getMerchantList(this.query, false).then(res => {
+          await this.$axios.merchantServe.getMerchantList(this.query, false).then(res => {
             if (res.code == 200) {
               const { data } = res
               this.loading = false;
@@ -205,19 +222,13 @@ export default {
       }
     },
     onRowClick: function (e) {
-
-      this.$router.push({
-        path: '/merchant/sjxx',
-        query: {
-          bisShopId: e.detail.row.bisShopId
-        }
-      })
+      this.$util.pageGo('/merchant/sjxx', { bisShopId: e.detail.row.bisShopId })
     },
 
     // 获取所有的列表
-    async getDataList() {
+    async getDataList () {
       try {
-        await this.$axios.externalLinkServe.getFormatList().then(res => {
+        await this.$axios.merchantServe.getFormatList().then(res => {
           if (res.code == 200) {
             this.setData({
               merchantList: res.data.list,
@@ -230,10 +241,12 @@ export default {
         console.log(e)
       }
     },
-    goToComparison() {
-      let params = Object.assign({}, this.query);
+    goToComparison () {
+      // let params = Object.assign({}, this.query);
 
-      this.$router.push({ path: "/merchant/sjlb", query: params });
+      // this.$router.push({ path: "/merchant/sjlb", query: params });
+
+      this.open = true
     },
 
   }

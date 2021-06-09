@@ -1,0 +1,55 @@
+<view id='ys-broadcast-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap note-info'>
+    <application-info info='{{info}}'/>
+  </view>
+  <view class='ys-block ys-block-gap date'>
+    <view>
+      <label style='width:200rpx;'>广播日期</label>
+      <text>{{date[0]}}</text>
+    </view>
+    <view>
+      <label style='width:200rpx;'>期望播放时间</label>
+      <text>{{date[1]}}</text>
+    </view>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>附件</label>
+    <view class='img-wrapper' wx:for='{{items.images}}' wx:key='{{item.id}}'>
+      <!-- <view style="display: block;">{{globalData.path+item}}</view> -->
+      <image class='icon' src='{{globalData.path+item}}'></image>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap remarks'>
+    <label>广播内容</label>
+    <view class='content'>{{items.specialNotes}}</view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view wx:for='{{items.processes}}' wx:key="items.id" class='list'>
+        <image class='icon' src='../../../static/images/icon_finish.png' wx:if='{{item.result == "0"}}'></image>
+        <image class='icon' src='../../../static/images/icon_wait.png' wx:if='{{item.result == "1"}}'></image>
+        <image class='icon' src='../../../static/images/icon_remark.png' wx:if='{{item.result == "2"}}'></image>
+        <image class='icon' src='../../../static/images/icon_warn.png' wx:if='{{item.result == "3"}}'></image>
+        <view class='header'>
+          <text class='title'>{{item.segment}}</text>
+          <text class='name'>{{item.processor}}</text>
+        </view>
+        <view class='date'>
+          <text>{{item.finishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view><!-- 
+        7/22放开
+        <view class='ys-fixed-footer' wx:if="{{items.allowUrge === '0'}}">
+        
+      <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap="urge">催办</button>
+    </view>
+         -->
+        
+    <view class='ys-fixed-footer' wx:if='{{statusCode == 3}}'>
+    <!-- <button wx:if='{{btnSta}}' class='ys-btn ys-footer-btn ys-btn-powderred submit' bindtap='urge'>催办</button> -->
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='goUrl'>去评价</button>
+  </view>
+</view>

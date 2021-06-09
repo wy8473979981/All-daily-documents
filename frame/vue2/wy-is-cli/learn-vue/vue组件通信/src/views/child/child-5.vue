@@ -31,11 +31,11 @@ export default {
       default: ""
     }
   },
-  data () {
+  data() {
     return {};
   },
   methods: {
-    change () {
+    change() {
       //   this.$emit("input", "hello");
       this.$emit("setValue", "hello");
     }

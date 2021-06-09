@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
   } else {
     baseApi.getAllEnum().then(res => {
       Store.commit('base/modifyEnum', res)
-      setSession('enumList', JSON.stringify(res))
+      setSession('enumList', JSON.stringify(res), false)
     }).finally(() => {
       next()
     })

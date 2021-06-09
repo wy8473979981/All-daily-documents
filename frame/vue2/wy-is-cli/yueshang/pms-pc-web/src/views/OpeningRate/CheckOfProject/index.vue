@@ -33,12 +33,8 @@ export default {
 
       requestConfig: {
         query: {
-          api: openingRate.getListByAreaOfProject
+          api: openingRate.getListByCheckOfProject
         },
-
-        export: {
-          type: 'exportOfOrCheckProject',
-        }
       },
     }
   },

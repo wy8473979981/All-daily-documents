@@ -1,90 +1,43 @@
 import { Api } from 'utils/api'
+
+export const exportConfig = {
+  'or-ranking-headquarters': '/plpms-report/bis/zs/exportOpenRateProjectList', // 开业率排名 总部
+  'or-ranking-project': '/plpms-report/bis/zs/exportOpenRateProjectDetailsList', // 开业率排名 项目
+  'or-summary-headquarters': '/plpms-report/bis/zs/exportOpenRateProjectSumList', // 开业率汇总排名 总部
+  'or-summary-project': '/plpms-report/bis/zs/exportOpenRateProjectDetailsSumList', // 开业率汇总排名 项目
+  'or-check-project': '/plpms-report/bis/zs/exportOpenRateContDetailsList', // 考核开业面积明细 项目
+  'or-floor-project': '/plpms-report/bis/zs/exportOpenRateFloorList', // 开业率楼层明细 项目
+  'or-area-project': '/plpms-report/bis/zs/exportQcOpenRateContDetailsList', // 开业率面积明细 项目
+  'or-rent-project': '/plpms-report/bis/zs/exportCoverRentDetailsList', // 押不低租面积明细 项目
+
+  'lr-lease-headquarters': '/plpms-report/bis/zs/exportQueryLeaseRateProjectList', // 出租率排名 总部
+  'lr-report-project': '/plpms-report/bis/zs/exportQueryLeaseRateProjectList', // 出租率排名 项目汇总
+  'lr-check-project': '/plpms-report/bis/occupancyRate4PC/queryProjectCheckRentalDetailsExport', // 项目考核出租面积明细
+  'lr-area-project': '/plpms-report/bis/zs/exportStoreSquareDetailsList', // 项目总面积明细
+  'lr-realsearea-project': '/plpms-report/bis/occupancyRate4PC/queryQcProjectRentalDetailsExport', // 项目出租面积明细
+  'lr-rent-project': '/plpms-report/bis/occupancyRate4PC/queryProjectCoverRentDetailsExport', // 项目押不低租面积明细
+
+
+  'sv-ranking-headquarters': '/plpms-report/bis/sale-project/querySalesRankingExport', // 销售排名 总部
+  'sv-analysis-project': '/plpms-report/bis/sale-project/queryProjectSalesAnalysisExport', // 销售分析 项目
+
+
+  'pf-ranking-headquarters': '/plpms-report/bis/passengerFlow4PC/queryPassengerFlowRankingExport', // 客流排名 总部
+  'pf-analysis-project': '/plpms-report/bis/passengerFlow4PC/queryPassengerFlowAnalysisExport', // 客流分析 总部
+
+
+  'income-rent-headquarters': '/plpms-report/bis/rent-fee/queryRentAllProjectListExport', // 租金收缴率 总部
+  'income-rent-project': '/plpms-report/bis/rent-fee/queryRentProjectListExport', // 租金收缴率 项目
+  'income-properymanagement-headquarters': '/plpms-report/bis/rent-fee/queryFeeAllProjectListExport', // 物管收缴率 总部
+  'income-properymanagement-project': '/plpms-report/bis/rent-fee/queryFeeProjectListExport', // 物管收缴率 项目
+  'income-arrears-project': '/plpms-report/bis/oweFee4PC/queryProjectOweFeeDetailExport', // 欠费查询
+
+  'ar-average-headquarters': '/plpms-report/bis/avgRentFee/queryAllAveRentFeeExport', // 平均租金 总部
+  'ar-average-project': '/plpms-report/bis/avgRentFee/queryProjectAveRentFeeExport', // 平均租金 项目
+}
 export class ExportExcel extends Api {
-  // 开业率排名 总部 
-  exportOfOrRankingHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/zs/exportOpenRateProjectList', params, { responseType: 'arraybuffer' })
-  }
-  // 开业率排名 项目 
-  exportOfOrRankingProject = (params) => {
-    return this.post('/plpms-report/bis/zs/exportOpenRateProjectDetailsList', params, { responseType: 'arraybuffer' })
-  }
-  // 开业率汇总排名 总部
-  exportOfOrSummaryHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/zs/exportOpenRateProjectSumList', params, { responseType: 'arraybuffer' })
-  }
-  // 开业率汇总排名 项目
-  exportOfOrSummaryProject = (params) => {
-    return this.post('/plpms-report/bis/zs/exportOpenRateProjectDetailsSumList', params, { responseType: 'arraybuffer' })
-  }
-  // 考核开业面积明细 项目 
-  exportOfOrCheckProject = (params) => {
-    return this.post('/plpms-report/bis/zs/exportOpenRateContDetailsList', params, { responseType: 'arraybuffer' })
-  }
-
-
-  // 出租率排名 总部 项目汇总
-  exportOfLrLeaseHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/zs/exportQueryLeaseRateProjectList', params, { responseType: 'arraybuffer' })
-  }
-  // 出租率排名 项目汇总
-  // exportOfLrReportProject = (params) => {
-  //   return this.post('/plpms-report/bis/zs/exportQueryLeaseRateProjectList', params, { responseType: 'arraybuffer' })
-  // }
-  // 项目考核出租面积明细
-  exportOfLrCheckProject = (params) => {
-    return this.post('/plpms-report/bis/occupancyRate4PC/queryProjectCheckRentalDetailsExport', params, { responseType: 'arraybuffer' })
-  }
-
-
-  // 销售排名 总部 
-  exportOfSvRankingHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/sale-project/querySalesRankingExport', params, { responseType: 'arraybuffer' })
-  }
-  // 销售分析 项目 
-  exportOfSvAnalysisProject = (params) => {
-    return this.post('/plpms-report/bis/sale-project/queryProjectSalesAnalysis', params, { responseType: 'arraybuffer' })
-  }
-
-
-  // 客流排名 总部 
-  exportOfPfRankingHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/passengerFlow4PC/queryPassengerFlowRankingExport', params, { responseType: 'arraybuffer' })
-  }
-  // 客流分析 项目 
-  exportOfPfAnalysisProject = (params) => {
-    return this.post('/plpms-report/bis/passengerFlow4PC/queryPassengerFlowAnalysisExport', params, { responseType: 'arraybuffer' })
-  }
-
-
-  // 租金收缴率 总部 
-  exportOfIncomeRentHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/rent-fee/queryRentAllProjectListExport', params, { responseType: 'arraybuffer' })
-  }
-  // 租金收缴率 项目 
-  exportOfIncomeRentProject = (params) => {
-    return this.post('/plpms-report/bis/rent-fee/queryRentProjectListExport', params, { responseType: 'arraybuffer' })
-  }
-  // 物管收缴率 总部 
-  exportOfIncomeProperymanagementHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/rent-fee/queryFeeAllProjectListExport', params, { responseType: 'arraybuffer' })
-  }
-  // 物管收缴率 项目 
-  exportOfIncomeProperymanagementtProject = (params) => {
-    return this.post('/plpms-report/bis/rent-fee/queryFeeProjectListExport', params, { responseType: 'arraybuffer' })
-  }
-  // 欠费查询 
-  exportOfIncomeArrearsProject = (params) => {
-    return this.post('/plpms-report/bis/oweFee4PC/queryProjectOweFeeDetailExport', params, { responseType: 'arraybuffer' })
-  }
-
-
-  // 平均租金 总部 
-  exportOfArAverageHeadquarters = (params) => {
-    return this.post('/plpms-report/bis/avgRentFee/queryAllAveRentFeeExport', params, { responseType: 'arraybuffer' })
-  }
-  // 平均租金 项目 
-  exportOfArAverageProject = (params) => {
-    return this.post('/plpms-report/bis/avgRentFee/queryProjectAveRentFeeExport', params, { responseType: 'arraybuffer' })
+  exportApi = (url, params) => {
+    return this.post(url, params, { responseType: 'arraybuffer' })
   }
 }
 

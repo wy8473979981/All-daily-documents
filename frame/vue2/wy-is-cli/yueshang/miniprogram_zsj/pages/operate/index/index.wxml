@@ -1,0 +1,51 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+<view id='ys-operate'>
+  <!-- <view class='ys-block'>
+    <view class='title'>
+      <text>近七日销售额</text>
+    </view>
+  </view> -->
+  <!-- <canvas id='canvas' canvas-id='canvas'></canvas> -->
+  <view class='ys-block'>
+    <view class='title'>
+      <text>销售提报单</text>
+    </view>
+  </view>
+  <view class='ys-block-items'>
+    <view class='items' wx:for="{{items}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+      <view class='header'>
+        <text>{{num.add(item.key,1)}}</text>
+      </view>
+      <!-- <view class='item' wx:key="idx" wx:for="{{item.newArr}}" data-type='2' bindtap="detail" wx:for-index="idx" wx:for-item="item" data-item="{{item}}"> -->
+	  <view class='item' bindtap="detail" data-item="{{item.newArr}}">
+        <view class='list'>
+          <view class='date'>
+            {{num.getMonthDay(item.newArr.saleYm,'-')}}
+          </view>
+          <view class='sale'>
+            <view class='title'>销售额(元)</view>
+            <view class='value'>{{num.filterNum(item.newArr.sale)}}</view>
+          </view>
+          <view class='amount'>
+            <view class='title'>销售笔数(笔)</view>
+            <view class='value'>{{item.newArr.count}}</view>
+          </view>
+          <view class='single-price'>
+            <view class='title'>客单价(元)</view>
+            <view class='value'>{{num.singlePrice(item.newArr.sale, item.newArr.count)}}</view>
+          </view>
+          <!-- <view class='average-area'>
+            <view class='title'>每平米销售额</view>
+            <view class='value'>暂无数据</view>
+          </view> -->
+          <!-- <text>销售额(元)：{{num.filterNum(item.sale)}}</text>
+          <text>销售笔数(笔)：{{item.count}}</text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='noData' wx:if="{{items.length == 0}}">
+      <image src='{{icon_no_data}}'></image>
+      <text>您还没有销售记录哦！</text>
+    </view>
+</view>

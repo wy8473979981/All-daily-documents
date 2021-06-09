@@ -169,7 +169,8 @@
 						...column
 					}) => {
 						const $styles = [];
-						const item = { ...column
+						const item = {
+							...column
 						};
 						const itemWidth = width ? parseInt(width.toString().replace('rpx', '')) : null;
 
@@ -190,7 +191,7 @@
 						};
 					});
 				}
-
+				console.log(setColumns, 'setColumns')
 				if (selected) {
 					const {
 						key,
@@ -242,7 +243,8 @@
 								$styles.push(`left:${fixedList[columni]}rpx`);
 							}
 
-							return { ...column,
+							return {
+								...column,
 								groupName,
 								groupIndex: groupItems.length - 1,
 								$styles
@@ -258,7 +260,8 @@
 					setdata['component.columns'] = setColumns.map(({
 						$styles,
 						...column
-					}) => ({ ...column,
+					}) => ({
+						...column,
 						$styles: ($styles || ['']).join(';')
 					}));
 				}
@@ -283,7 +286,8 @@
 		methods: {
 			buildRows(rows = [], columns) {
 				return rows.map(row => {
-					const result = { ...row
+					const result = {
+						...row
 					};
 					const selectedOptions = this.component.selected;
 

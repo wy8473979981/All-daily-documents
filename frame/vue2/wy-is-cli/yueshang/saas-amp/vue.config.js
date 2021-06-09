@@ -68,7 +68,8 @@ module.exports = {
         // target: 'http://192.168.120.150:8889/',//赵士国
         // target: 'http://192.168.121.229:803/', // 华发
         // target: 'http://192.168.121.229:801/', // 宝龙old
-        target: 'http://192.168.121.229:801/ampsaas_bl/', // 宝龙new
+        // target: 'http://192.168.121.229:801/ampsaas_bl/', // 宝龙new
+        target: 'http://amptest.yueworld.cn/ampsaas_bl/',
         // target: 'http://192.168.120.162/ampsaas/', // 春川
         // target: 'http://ampsaas-bl.test/index.php/', // 傲强
         // false为http访问，true为https访问

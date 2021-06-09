@@ -1,7 +1,6 @@
 import { Toast } from 'vant'
 import _ from 'lodash';
 let needLoadingRequestCount = 0;
-let loading;
 
 function startLoading() {
   Toast.loading({

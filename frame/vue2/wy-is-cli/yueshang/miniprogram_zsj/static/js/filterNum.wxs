@@ -1,0 +1,69 @@
+// 千分位
+var filterNum = function (val) {
+  if (val === undefined || val === null) return ''
+  var num = val.toString().split('.')[0]
+  var dec = val.toString().split('.')[1] || '00'
+  var arr = [],
+  str = num + '',
+  count = str.length;
+  while (count >= 3) {
+    arr.unshift(str.slice(count - 3, count));
+    count -= 3;
+  }
+  str.length % 3 && arr.unshift(str.slice(0, str.length % 3));
+  return arr.toString() + '.' + dec;
+}
+// 截取服务清单的状态最后一位
+var statusCode = function (val, num) {
+  var code = val.slice(num)
+  return code
+}
+// 截取服务清单的状态倒数第三位
+var statusCodeType = function(val, num, local) {
+  var code = val.slice(num, local)
+  return code
+}
+// 经营首页 获取时间的月和日
+var getDay = function (val, type) {
+  var month = val.slice(4,6)
+  var day = val.slice(6,8)
+  return month + type + day
+}
+// 经营首页 获取客单价
+var singlePrice = function (dividend, divisor) {
+  if (divisor == 0) return '0.00';
+  var val = (dividend/divisor).toFixed(2)
+  var num = val.toString().split('.')[0]
+  var dec = val.toString().split('.')[1] || '00'
+  var arr = [],
+    str = num + '',
+    count = str.length;
+  while (count >= 3) {
+    arr.unshift(str.slice(count - 3, count));
+    count -= 3;
+  }
+  str.length % 3 && arr.unshift(str.slice(0, str.length % 3));
+  return arr.toString() + '.' + dec; 
+}
+// sliceName
+var sliceName = function (val) {
+  return val.slice(0, 1)
+}
+var add = function(x,y){
+	return parseInt(x) + parseInt(y)
+}
+var getMonthDay = function (val, type) {
+	var month = val.substring(5,7)
+	var day = val.substring(8)
+	return month + type + day
+}
+module.exports = {
+  filterNum: filterNum,
+  statusCode: statusCode,
+  statusCodeType: statusCodeType,
+  getDay: getDay,
+  getMonthDay: getMonthDay,
+  add: add,
+  singlePrice: singlePrice,
+  sliceName: sliceName
+}

@@ -36,13 +36,13 @@ export const FormConfig = [
 
 export const TableConfig = [
   {
-    key: 'projectName',
+    key: 'shortName',
     label: '项目',
     minWidth: 160,
     fixed: true
   },
   {
-    key: 'chargeType',
+    key: 'storeType',
     label: '物业类型',
     minWidth: 140,
     sortable: 'custom'

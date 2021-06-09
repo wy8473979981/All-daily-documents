@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       values: {},
     };
@@ -32,13 +32,13 @@ export default {
       deep: true,
     },
   },
-  mounted() {
+  mounted () {
     this.getEchartData(this.values);
 
   },
 
   methods: {
-    getEchartData(option) {
+    getEchartData (option) {
       let that = this;
       const chart = this.$refs.chart;
       if (chart) {
@@ -79,10 +79,11 @@ export default {
             padding: [8, 10, 8, 10],
             formatter: function (params) {
               let res, tb, num1, num2;
+
               if (params[0]) {
-                res = params[0].name + "\n<br/>";
+                res = "<span style='font-weight: bold;'>" + params[0].name + "</span>" + "\n<br/>";
               } else if (params[1]) {
-                res = params[1].name + "\n<br/>";
+                res = "<span style='font-weight: bold;'>" + params[1].name + "</span>" + "\n<br/>";
               }
 
               if (params[0] && params[0].data && params[1] && params[1].data) {
@@ -107,6 +108,7 @@ export default {
                 }
 
               }
+              // console.log(res,'res')
               return res;
             },
           },
@@ -180,7 +182,7 @@ export default {
         myChart.setOption(options);
       }
     },
-    formatNumber(value = "0", currencyType = "", precision = 2) {
+    formatNumber (value = "0", currencyType = "", precision = 2) {
       var text = Number(value).toFixed(precision);
       var bit = text.indexOf('.') < 0 ? '' : text.substr(text.indexOf('.'));
       let res = text.replace(/\..*$/, '').split('').reverse().join('').replace(/(\d{3})\B/g, function (_, c) { return _ + ','; }).split('').reverse().join('') + bit;

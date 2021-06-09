@@ -1,0 +1,85 @@
+page{
+  background: #efefef;
+  color: #777;
+  font-size: 24rpx;
+}
+view.page-container{
+  padding-bottom: 100rpx;
+}
+.title{
+  color: #262626;
+  font-size: 38rpx;
+}
+view.page-box image{
+  width: 100%;
+  height: 400rpx;
+}
+.summary{
+  margin-bottom: 20rpx;
+}
+.summary, .list, .expire-time{
+  background: white;
+}
+.summary view.tag-box, .summary view.title{
+  margin-bottom: 20rpx;
+}
+.list{
+  margin-bottom: 100rpx;
+}
+.list .list-item{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.list .list-item .title{
+  font-size: 38rpx;
+  margin-bottom: 20rpx;
+}
+view.expire{
+  background-color: #bbb;
+}
+
+.list-box >view.list-box-item:not(:last-child){
+  border-bottom: 1px solid #ddd;
+}
+.list-box .list-box-item>view{
+  display: flex;
+  justify-content: space-between;
+}
+.list-box-item view.item-detail>view.title-box{
+  display: flex;
+  align-items: flex-start;
+}
+.list-box-item view.item-detail>view.title-box>.title{
+  margin-right: 20rpx;
+  max-width: 500rpx;
+}
+.list-box-item view.item-detail input.remark-input{
+  border-bottom: 1px solid #bbb;
+}
+.list-box .list-box-item view.icon{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.list-box .list-box-item image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.list-box .list-box-item view.item-detail{
+  width: 600rpx;
+  display: flex;
+  flex-direction: column;
+}
+.list-box .list-box-item view.item-detail > text{
+  margin-bottom: 15rpx;
+}
+
+.list-box .list-box-item view.item-detail textarea{
+  margin-bottom: 15rpx;
+  border-bottom: 1px solid #bbb;
+  line-height: 25rpx;
+  width: 550rpx;
+}

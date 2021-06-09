@@ -74,7 +74,7 @@ export const TableConfig = [
     sortable: 'custom'
   },
   {
-    key: 'storeRentSquare',
+    key: 'rentSquare',
     label: '总面积(㎡)',
     type: 'area',
     minWidth: 160,

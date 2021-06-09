@@ -80,6 +80,7 @@ const dayColumns = [
         label: "昨日环比",
         key: "growth",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ];

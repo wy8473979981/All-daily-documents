@@ -28,7 +28,7 @@
           <span>{{ scope.row.status | filterStatus }}</span>
         </template>
       </el-table-column>
-      <el-table-column min-width="100" label="最后编辑人" show-overflow-tooltip prop="updaterName">
+      <!-- <el-table-column min-width="100" label="最后编辑人" show-overflow-tooltip prop="updaterName">
         <template slot-scope="scope">
           <span>{{ scope.row.updaterName || '-' }}</span>
         </template>
@@ -37,7 +37,7 @@
         <template slot-scope="scope">
           <span>{{rTime(scope.row.updateTime|| '-')}}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column fixed="right" width="100" label="操作">
         <template slot-scope="scope">
           <el-button type="text" size="mini" @click="goDetail(scope.row)">详情</el-button>
@@ -97,7 +97,7 @@ export default {
           return '已提交'
           break
         case 3:
-          return '审核通过'
+          return '已生效'
           break
         case 4:
           return '驳回'

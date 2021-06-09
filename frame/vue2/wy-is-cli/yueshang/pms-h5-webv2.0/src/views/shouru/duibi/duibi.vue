@@ -13,17 +13,18 @@
         </div>
       </div>
     </div>
-
-    <ys-n-section title="项目排名">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
-          <span class="line"> | </span>
-          <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="项目排名">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+          </div>
         </div>
-      </div>
-      <ys-n-length-ways :values="dataList" :cross="cross"></ys-n-length-ways>
-    </ys-n-section>
+        <ys-n-length-ways :values="dataList" :cross="cross"></ys-n-length-ways>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -31,8 +32,9 @@
 
 import { yueColumns, nianColumns } from '../columns/duibiColumns'
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       routerParams: this.$route.query,
       timeSpan: "0",
       dataList: [],
@@ -50,7 +52,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       let cross = cross = this.yueColumns
       this.setData({ params: this.routerParams, cross, });
@@ -61,7 +63,24 @@ export default {
     }
   },
   methods: {
-    dateSelected(date) {
+    onRefresh () {
+      this.getProjectData();
+      this.getTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    dateSelected (date) {
       try {
         this.setData({ ["params.yearMonth"]: date, });
         this.getTableData();
@@ -70,7 +89,7 @@ export default {
         console.log(e)
       }
     },
-    changeSpan(e) {
+    changeSpan (e) {
       try {
         const span = e.currentTarget.dataset.span;
         let dataList = JSON.parse(JSON.stringify(this.dataList));
@@ -91,11 +110,13 @@ export default {
       }
     },
 
-    async getTableData() {
+    async getTableData () {
       let projectIdList = this.params.ids.split(',')
       try {
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryRentFeeProjectList({ ...this.params, projectIdList: projectIdList })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               if (res.data && res.data.length > 0) {
                 let projectList = res.data.map((item, index) => {
@@ -117,10 +138,12 @@ export default {
         console.log(e)
       }
     },
-    async getProjectData() {
+    async getProjectData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryRentFeeProjectList({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               if (res.data && res.data.length > 0) {
                 let projectList = res.data.map((item, index) => {
@@ -136,7 +159,7 @@ export default {
         console.log(e)
       }
     },
-    showComparisonList(e) {
+    showComparisonList (e) {
       try {
         if (e.detail.length < 2) {
           this.$Toast.fail('最少选两项');
@@ -151,7 +174,7 @@ export default {
         /* let result = this.allDataList.filter((item) => {
           return this.params.ids.includes(item.id);
         });
-		
+  	
         this.setData({ dataList: result, }); */
       } catch (e) {
         console.log(e)

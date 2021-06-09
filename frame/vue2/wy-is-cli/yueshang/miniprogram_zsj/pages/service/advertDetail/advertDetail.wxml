@@ -1,0 +1,81 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-goods-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap note-info'>
+    <view>
+      <label>单据号</label>
+      <text>ASDF78348228383</text>
+      <text class='status'>待审核</text>
+    </view>
+    <view>
+      <label>编号</label>
+      <text>AD-W-1</text>
+    </view>
+    <view>
+      <label>位置</label>
+      <text>户外楼体外墙-西立面外墙广告位1</text>
+    </view>
+    <view>
+      <label>尺寸</label>
+      <text>5.58x9.5m</text>
+    </view>
+    <view>
+      <label>申请时间</label>
+      <text>2018/12/12~2019/01/12</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap admin'>
+    <view>
+      <label>商户联系人</label>
+      <text>陈小姐</text>
+    </view>
+    <view>
+      <label>联系电话</label>
+      <text>1736483764</text>
+    </view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>商户提交</text>
+          <text class='name'>刘伟</text>
+        </view>
+        <view class='date'>
+          <text>2018年3月15日 18:00</text>
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>运营审核</text>
+          <text class='name'>陈小帅</text>
+        </view>
+        <view class='date'>
+          <text>2018年3月15日 18:00</text>
+        </view>
+        <view class='content'>
+          您的提交已审核通过，我们将会在两个工作日内联系您，请务必保证手机电话通畅，感谢您的配合！
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>工程物业部审核</text>
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>评价</text>
+          <text class='name'></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button wx:if='{{btnSta}}' class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='urge'>催办</button>
+    <button wx:if='{{!btnSta}}' data-path="/pages/service/evaluate/evaluate" class='ys-btn ys-footer-btn ys-btn-powderred submit' bindtap='goUrl'>去评价</button>
+  </view>
+</view>

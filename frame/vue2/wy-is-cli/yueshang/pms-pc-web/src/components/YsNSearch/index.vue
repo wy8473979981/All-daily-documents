@@ -5,7 +5,7 @@
     </section>
     <section class="x-search__btn">
       <el-button type="primary" size="mini" @click="handleClick">查询</el-button>
-      <el-button v-show="showExportBtn" type="primary" size="mini" @click="handleExport">导出</el-button>
+      <el-button v-show="showExport" type="primary" size="mini" @click="handleExport">导出</el-button>
       <el-button type="text" size="mini" @click="handleSpread" v-if="formItemLength > 4">
         {{ isSpread ? "收起" : "更多"}}
         <i :class="[isSpread ? 'el-icon-caret-top' : 'el-icon-caret-bottom']"></i>
@@ -20,18 +20,20 @@ export default {
   name: 'YsNSearch',
 
   model: {
-    prop: 'data',
+    prop: 'value',
     event: 'input'
   },
 
   props: {
     config: Array,
 
-    data: Object,
+    value: Object,
 
     update: Number,
 
     requestConfig: Object, // 接口请求配置
+
+    showExport: Boolean, // 展示导出
   },
 
   data () {
@@ -42,7 +44,7 @@ export default {
 
       formData: {},
 
-      isSpread: false, // 是否展开
+      isSpread: true, // 是否展开
 
       defaultFormData: {}, // 默认的form数据
     }
@@ -69,15 +71,11 @@ export default {
         return cur.type === 'dateRange' ? (pre + 2) : (pre + 1)
       }, 0)
     },
-
-    showExportBtn() {
-      return this.requestConfig && this.requestConfig.export && this.requestConfig.export.type
-    }
   },
 
   created() {
-    this.formData = {...this.data};
-    this.defaultFormData = {...this.data}
+    this.formData = {...this.value};
+    this.defaultFormData = {...this.value}
   },
 
   methods: {
@@ -109,8 +107,8 @@ export default {
     update: {
       deep: true,
       handler: function () {
-        console.log('data', this.data)
-        this.formData = this.data;
+        console.log('formData search update', JSON.stringify(this.value))
+        this.formData = this.value;
       }
     }
   }

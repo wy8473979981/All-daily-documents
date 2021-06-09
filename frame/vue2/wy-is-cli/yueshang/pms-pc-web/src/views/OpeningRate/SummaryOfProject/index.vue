@@ -23,7 +23,7 @@ export default {
     return {
       formConfig: FormConfig,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         projectId: '',
@@ -38,24 +38,31 @@ export default {
         query: {
           api: openingRate.getListBySummaryOfProject
         },
-
-        export: {
-          type: 'exportOfOrSummaryProject',
-        }
       },
     }
   },
 
   methods: {
     handleLinkClick(data) {
+      this.handleToOther(data, 'or-check-project')
+    },
+    handleLinkClickToRent(data) {
+      this.handleToOther(data, 'or-rent-project')
+    },
+
+    handleLinkClickToArea(data) {
+      this.handleToOther(data, 'or-area-project')
+    },
+
+    handleToOther(data, url) {
       if (data.row.id && data.row.id !== '合计') {
         const formData = {
           projectId: data.row.id,
           chargeType: this.currentFormData.chargeType,
           squareFlag: this.currentFormData.squareFlag,
-          yearMonth: this.currentFormData.yearMonth,
+          yearMonth: data.row.yearMonth,
         }
-        setSession.call(this, 'or-check-project', formData)
+        setSession.call(this, url, formData)
       }
     },
 

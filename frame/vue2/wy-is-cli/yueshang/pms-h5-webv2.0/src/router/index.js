@@ -10,6 +10,7 @@ import makeBusiness from './makeBusiness'
 import huiyuan from "./huiyuan";
 import zhaoshang from "./zhaoshang"
 import merchant from "./merchant"
+import yusuan from "./yusuan"
 Vue.use(VueRouter);
 //解决编程式路由往同一地址跳转时会报错的情况
 /* const originalPush = VueRouter.prototype.push
@@ -24,12 +25,32 @@ VueRouter.prototype.replace = function push(location, onResolve, onReject) {
     if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
     return originalReplace.call(this, location).catch(err => err)
 } */
+let home = {
+    path: "/",
+    name: "operateHome",
+    component: null,
+    meta:{
+        keepAlive:true
+    }
+}
+if(process) {
+    console.log("process.env.NODE_ENV==43==",process.env.VUE_APP_ENV)
+    if(process.env.VUE_APP_ENV === "prod") {
+        home.component = () => import("../views/operateHome/index.vue")
+    }else if(process.env.VUE_APP_ENV === "prodSyys") {
+        home.component = () => import("../views/yusuan/index.vue")
+    }else if(process.env.VUE_APP_ENV === "prodZsfx") {
+        home.component = () => import("../views/zhaoshang/process/index.vue")
+    }else if(process.env.VUE_APP_ENV === "prodSjfx") {
+        home.component = () => import("../views/merchant/sjgl/index.vue")
+    }else {
+        home.component = () => import("../views/operateHome/index.vue")
+    }
+}else {
+    home.component = () => import("../views/operateHome/index.vue")
+}
 const routes = [
-    {
-        path: "/",
-        name: "operateHome",
-        component: () => import("../views/operateHome/index.vue"),
-    },
+    home,
     {
         path: "/cheliu/paiming",
         name: "cheliuPaiming",
@@ -48,6 +69,7 @@ const routes = [
     ...makeBusiness,
     ...zhaoshang,
     ...merchant,
+    ...yusuan,
 ];
 const router = new VueRouter({
     routes

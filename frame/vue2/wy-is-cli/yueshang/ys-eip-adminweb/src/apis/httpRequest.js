@@ -1,0 +1,10 @@
+import commonServe from './apis/common'
+import loginServe from './apis/login'
+import logManageServe from './apis/logManage'
+import appManageServe from './apis/appManage'
+import systemManageServe from './apis/systemManageServe'
+import systemServe from './apis/systemServe'
+import homeServe from './apis/homeServe'
+import httpLimiteServe from './apis/httpLimiteServe'
+import httpRequestServe from './apis/httpRequestServe'
+export { commonServe, loginServe, logManageServe, appManageServe, systemManageServe, systemServe, homeServe, httpLimiteServe, httpRequestServe }

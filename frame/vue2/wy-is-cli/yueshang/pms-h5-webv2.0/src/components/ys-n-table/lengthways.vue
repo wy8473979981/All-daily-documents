@@ -7,7 +7,7 @@
     </div>
     <div class="lengthways-content">
       <div v-for="(row, index) in component.list" :key="index" class="lengthways-item">
-        <div v-for="(item, index2) in component.rows" :key="index2" class="label-item" :style="'font-weight: ' + ( index === 0 ? 'bold' : 'bold' )">
+        <div v-for="(item, index2) in component.rows" :key="index2" class="label-item" :style="'font-weight: ' + ( index2 === 0 ? 'bold' : '' )">
           <!-- <span v-if="!isNaN(row[item.key] - 0)">
             {{ row[item.key] }}
           </span>
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       component: {
         list: [
@@ -56,7 +56,7 @@ export default {
   },
   watch: {
     cross: {
-      handler(newVal) {
+      handler (newVal) {
         this.setData({
           'component.rows': newVal
         });
@@ -66,7 +66,7 @@ export default {
       deep: true,
     },
     values: {
-      handler(newVal) {
+      handler (newVal) {
         this.setData({
           'component.list': this.buildRows(newVal, this.component.rows),
         });
@@ -76,11 +76,11 @@ export default {
     },
   },
 
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    numberFormat(value, options = {}) {
+    numberFormat (value, options = {}) {
       //value:number | string,//options:{ precision: number; unit: string } 
       const newValue = value.toString().replace(/[^\d.-]/g, '');
       if (isNaN(newValue) || ['', null, undefined].includes(newValue)) {
@@ -100,14 +100,14 @@ export default {
 
       return `${format}${bit}${options.unit || ''}`;
     },
-    buildRows(rows = [], columns) {
+    buildRows (rows = [], columns) {
       // 根据 表格数据 、 表头， 转换数据
       return rows.map(row => {
         const result = { ...row };
         (columns || this.component.columns).map(column => {
           const { key, defaultValue, numberFormat, numberPrecision, unit, changeNum } = column;
           result[key] = row[key];
-          if ([null, undefined, '','-','/'].includes(result[key])) {
+          if ([null, undefined, '', '-', '/'].includes(result[key])) {
             result[key] = defaultValue || '-';
           } else {
             if (numberFormat) {
@@ -158,7 +158,7 @@ export default {
   flex: 1;
   text-align: right;
   padding: 0 20px;
-  min-width: 240px;
+  min-width: 3rem;
   border-right: 1px solid #eaeaea;
   width: 150px;
 }

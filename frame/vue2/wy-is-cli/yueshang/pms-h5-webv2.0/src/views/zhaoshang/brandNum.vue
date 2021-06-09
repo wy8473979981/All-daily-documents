@@ -5,27 +5,27 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :dilogShow="false"  :disabledAll="true"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'zhaoshang'" :selected="selected" @projeSelected="projeSelected" :dilogShow="false" :disabledAll="true"></ys-n-project-select>
           </div>
           <div class="app-header-right">
-            <ys-n-date-pick :type="`year-month`" @selected="dateSelected" :selected="params.queryDate"></ys-n-date-pick>
+            <ys-n-date-pick :type="`year-month`" @selected="dateSelected" :selected="params.queryDate">
+            </ys-n-date-pick>
           </div>
         </div>
       </div>
     </div>
-    <ys-n-section :title="chartsTitle" :collapseable="collapseable">
-      <div class="head-actions_left_view" slot="head-actions_left">
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <ys-n-filter-chart-dialog :searchList="searchTypeList" @search="searchType" :leftLink="true" @linkUrl="goLink"></ys-n-filter-chart-dialog>
-      </div>
-      <ys-n-echart :options="options" canvasId="completId"></ys-n-echart>
-    </ys-n-section>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section :collapseable="collapseable" :hasTable="true">
+        <div class="head-actions_left_view" slot="head-actions_left">
+          <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchTypeList" @search="searchType" @linkUrl="goLink" :type="'zhaoshang'"></ys-n-filter-chart-dialog>
+        </div>
+        <ys-n-echart :options="options" canvasId="completId"></ys-n-echart>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
 const columnList = [{
   label: '序号',
   width: '1.5rem',
@@ -35,7 +35,8 @@ const columnList = [{
   key: 'bisProjectName',
   width: '2rem',
   color: '#3B96BE',
-  align: 'left'
+  align: 'left',
+  fixed: true
 }, {
   label: '实际计租面积(㎡)',
   key: 'rentArea',
@@ -63,8 +64,9 @@ const columnList = [{
 }]
 export default {
   name: "Home",
-  data() {
+  data () {
     return {
+      isLoading: false,
       searchTypeList: [{
         label: "",
         key: "wylx",
@@ -72,38 +74,42 @@ export default {
         values: [{
           name: "筹备招商进度",
           url: "/zhaoshang/process/index",
+          code: 1
         },
         {
           name: "筹备期网批驳回率统计",
           url: "/zhaoshang/reject",
+          code: 2
         },
         {
           name: "筹备期全面抽成统计",
           url: "/zhaoshang/commissionTotal",
-        }, // {
-        // 	label: "项目铺位分解",
-        // 	url: "/pages/zhaoshang/pwfj/pwfj"
-        // },
+          code: 3
+        },
         {
           name: "招商业绩考核",
           url: "/zhaoshang/perfCheck/index",
+          code: 4
         },
         {
           name: "总部联发品牌数据监控",
           url: "/zhaoshang/linkBrand/index",
+          code: 5
         },
         {
           name: "已招租金达成率柱状图",
-          url: "/zhaoshang/yzzj/yzzj",
+          url: "/zhaoshang/rentCompletRate",
+          code: 6
         },
         {
           name: "进场审图进度-品牌数",
           url: "/zhaoshang/brandNum",
-          code: 6
+          code: 7
         },
         {
           name: "待开业项目招商进度-品牌数",
           url: "/zhaoshang/noMakebusinessBrandNum",
+          code: 8
         },
         ],
       }],
@@ -114,28 +120,35 @@ export default {
         label: this.$route.query.projectName || "全部",
       },
       params: {
-        queryDate: this.$route.query.yearAndMonth || new Date().getFullYear() + '-' + (new Date().getMonth() + 1),
-        projectId:this.$route.query.projectId || '',
-		projectName:this.$route.query.projectName,
-		yearAndMonth:this.$route.query.yearAndMonth || ''
+        queryDate: this.$route.query.yearAndMonth || this.$util.getDefaultDate("month"),
+        projectId: this.$route.query.projectId || '',
+        projectName: this.$route.query.projectName,
+        yearAndMonth: this.$route.query.yearAndMonth || ''
       },
       options: {},
     }
   },
-  created() {
+  created () {
     this.getEchartData()
   },
   methods: {
-    dateSelected(date) {
+    onRefresh () {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false
+      }, 0)
+      this.getEchartData()
+    },
+    dateSelected (date) {
       console.log(date);
       this.setData({
         ["params.queryDate"]: date,
-		["params.yearAndMonth"]:date
+        ["params.yearAndMonth"]: date
       });
       this.getEchartData()
       // },
     },
-    projeSelected(item) {
+    projeSelected (item) {
       console.log(item);
       this.setData({
         ["params.projectId"]: (item && item.projectId) || "",
@@ -143,9 +156,10 @@ export default {
       });
       this.getEchartData()
     },
-    searchType(item) { },
-    async getEchartData() {
+    searchType (item) { },
+    async getEchartData () {
       let res = await this.$axios.zhaoshangServe.getBrandNum(this.params)
+      this.isLoading = false
       let chartData = res.data.list;
       console.log(chartData);
       let titleData = [],
@@ -172,12 +186,18 @@ export default {
         'options': {
           color: ['#4EABD3', '#32B667'],
           legend: {
-			selectedMode: true,
-			padding: [30, 0, 0, 0],
-			itemWidth: 12,
-			itemHeight: 12,
-			itemGap: 12,
-			data:[  {name:'进场',icon:'rect'}, {name:'审图',icon:'rect'}],
+            selectedMode: true,
+            padding: [30, 0, 0, 0],
+            itemWidth: 12,
+            itemHeight: 12,
+            itemGap: 12,
+            data: [{
+              name: '进场',
+              icon: 'rect'
+            }, {
+              name: '审图',
+              icon: 'rect'
+            }],
           },
           grid: {
             left: '0%',
@@ -259,7 +279,7 @@ export default {
                   position: 'top',
                   fontSize: 9,
 
-                  formatter(value) {
+                  formatter (value) {
                     return value.data + '%';
                   }
 
@@ -298,7 +318,7 @@ export default {
                   position: 'top',
                   fontSize: 9,
 
-                  formatter(value) {
+                  formatter (value) {
                     return value.data + '%';
                   }
 
@@ -310,8 +330,10 @@ export default {
       };
       this.setData(setData);
     },
-    goLink(url) {
-      this.$router.push({ path: url, query: this.params })
+    goLink (url) {
+
+      this.$router.push({ path: url, query: { ...this.params } })
+
     }
   },
 }

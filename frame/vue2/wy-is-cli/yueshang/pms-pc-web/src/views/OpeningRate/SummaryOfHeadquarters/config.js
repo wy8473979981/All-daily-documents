@@ -85,10 +85,10 @@ export function TableConfig(method) {
       sortable: 'custom'
     },
     {
-      key: 'openRentSquare',
+      key: 'openRentSquareQc',
       label: '开业面积(㎡)',
       type: 'area',
-      minWidth: 110,
+      minWidth: 130,
       sortable: 'custom'
     },
     {
@@ -99,10 +99,10 @@ export function TableConfig(method) {
       sortable: 'custom'
     },
     {
-      key: 'openRentSquareQc',
+      key: 'storeRentSquare',
       label: '总面积(㎡)',
       type: 'area',
-      minWidth: 110,
+      minWidth: 130,
       sortable: 'custom'
     },
     {

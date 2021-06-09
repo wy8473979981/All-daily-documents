@@ -250,7 +250,7 @@ export default {
   computed: {
     ...mapState(['userInfo'])
   },
-  created() {
+  created () {
     this.developmentCycleList = [1, 2, 3, 4, 5, 6].map(item => {
       return { value: item, label: item }
     })
@@ -260,7 +260,7 @@ export default {
     this.getProvince() // 省
     // this.getCity() // 市、区
   },
-  mounted() {
+  mounted () {
     try {
       this.getProjectList()
       if (this.routerQuery.flag === 'add') {
@@ -275,7 +275,7 @@ export default {
     }
   },
   methods: {
-    async getProjectList() {
+    async getProjectList () {
       // 项目列表
       try {
         await CalculationApi.getProjectList().then(res => {
@@ -324,7 +324,7 @@ export default {
         console.log(e)
       }
     },
-    submitForm(formName, type) {
+    submitForm (formName, type) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           if (type === 'save') {
@@ -344,13 +344,13 @@ export default {
             if (oldFormData == ruleForm) {// 判断当前页面没有修改，step属于当前值时
               let res = await this.saveCreate();
               if (res.code === 200) {
-                const { result: { projectResultId } } = res;
-                this.ruleForm = { ...this.ruleForm, projectResultId: projectResultId };
-                this.$message.success('保存成功');
+                const { result: { projectResultId } } = res
+                this.ruleForm = { ...this.ruleForm, projectResultId: projectResultId }
+                this.$message.success('保存成功')
                 this.$emit('update:step', 2)
                 this.$emit('update:formData', this.ruleForm)
               } else {
-                this.$message.error(res.msg);
+                this.$message.error(res.msg)
               }
             } else {
               this.$confirm('是否保存当前页面录入数据?', '提示', {
@@ -379,7 +379,7 @@ export default {
         }
       })
     },
-    async saveCreate() {
+    async saveCreate () {
       try {
         const params = {
           ...this.ruleForm,
@@ -399,7 +399,7 @@ export default {
         console.log(e)
       }
     },
-    next() {
+    next () {
       this.$emit('update:step', 2)
     },
     async getProvince() {

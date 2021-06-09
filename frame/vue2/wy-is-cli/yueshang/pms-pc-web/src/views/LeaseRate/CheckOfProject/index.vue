@@ -36,10 +36,6 @@ export default {
         query: {
           api: leaseRate.getListByCheckOfProject
         },
-
-        export: {
-          type: 'exportOfLrCheckProject',
-        },
       },
     }
   },

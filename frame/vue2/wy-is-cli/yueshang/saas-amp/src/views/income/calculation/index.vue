@@ -53,14 +53,14 @@
       </el-col>
       <el-col :span="4" style="text-align: right;">
         <el-button @click="exportExcel" size="mini" >导出Excel</el-button>
-        <el-button @click="createFunc()" size="mini" type="success">新增</el-button>
+        <el-button v-if="permission.indexOf('amp_yzsy_add') > -1" @click="createFunc()" size="mini" type="success">新增</el-button>
       </el-col>
     </el-row>
     <ys-table :tableData="tableData" :checkboxBol="true" :serialNumberBol="true" :columns="columns" @update:tableData="refreshTableData" @update:checkboxChangeFunc="checkboxChangeFunc" :maxHeight="this.$store.state.tableHeight">
       <el-table-column slot="operate" label="操作" fixed="right" min-width="200">
         <template slot-scope="scope">
           <el-button type="text" size="mini" @click="goDetailFunc(scope.row)">查看测算详情</el-button>
-          <el-button type="text" size="mini" class="delete-btn" @click="doDeleteFunc(scope.row)">删除</el-button>
+          <el-button v-if="permission.indexOf('amp_yzsy_del') > -1" type="text" size="mini" class="delete-btn" @click="doDeleteFunc(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </ys-table>
@@ -77,7 +77,7 @@ import CalculationApi from '@/apis/apis/income/calculation/calculationApi'
 import Global from '@/apis/apis/global'
 export default {
   mixins: [handlePaginator],
-  data() {
+  data () {
     return {
       state: '',
       timeout: null,
@@ -88,21 +88,21 @@ export default {
       },
       report_time: null,
       query: {
-        createUser: null,//创建人
-        departOrgCds: [],//部门org_cd多选列表
-        projectIds: [],//项目id多选列表
-        startAt: null,//开始月份时间戳
-        endAt: null,//结束月份时间戳
-        layout: null,//项目业态
-        limit: null,//每页显示条数
-        page: null,//第几页
-        status: null,//状态
-        type: null,//项目属性
+        createUser: null, // 创建人
+        departOrgCds: [], // 部门org_cd多选列表
+        projectIds: [], // 项目id多选列表
+        startAt: null, // 开始月份时间戳
+        endAt: null, // 结束月份时间戳
+        layout: null, // 项目业态
+        limit: null, // 每页显示条数
+        page: null, // 第几页
+        status: null, // 状态
+        type: null// 项目属性
       },
-      businessList: [],//事业部
-      projectNameList: [],//项目名称
-      layoutList: [],//业态
-      projectPropertyList: [],//项目属性
+      businessList: [], // 事业部
+      projectNameList: [], // 项目名称
+      layoutList: [], // 业态
+      projectPropertyList: [], // 项目属性
       statusList: [
         {
           value: 1,
@@ -112,7 +112,7 @@ export default {
           value: 2,
           label: '未完成'
         }
-      ],//状态
+      ], // 状态
       creatorList: [
         {
           value: 1,
@@ -122,7 +122,7 @@ export default {
           value: 2,
           label: '李四'
         }
-      ],//创建人
+      ], // 创建人
       tableData: [],
       downUrl: '/projectDetail/down',
       fast: false,
@@ -132,9 +132,9 @@ export default {
       business_tech_status: null,
       business_operation_status: null,
       project_verify_id: null,
-      big_layout_id: 1, //大业态
+      big_layout_id: 1, // 大业态
       permission: `${localStorage.getItem('ys_contract_permission')}`,
-      attachment_upload: [],// 附件类型
+      attachment_upload: [], // 附件类型
       columns: [
         {
           label: '地产开发事业部',
@@ -143,7 +143,7 @@ export default {
           fixed: 'left',
           type: null,
           hasEditFn: (key, row, index) => {
-            return false;
+            return false
           }
         },
         {
@@ -152,7 +152,7 @@ export default {
           width: '150px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return false;
+            return false
           }
         },
         {
@@ -161,7 +161,7 @@ export default {
           width: '150px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -170,7 +170,7 @@ export default {
           width: '150px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -179,7 +179,7 @@ export default {
           width: '150px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -188,7 +188,7 @@ export default {
           width: '100px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -197,7 +197,7 @@ export default {
           width: '100px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -206,7 +206,7 @@ export default {
           width: '180px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         {
@@ -215,11 +215,12 @@ export default {
           width: '180px',
           type: null,
           hasEditFn: (key, row, index) => {
-            return true;
+            return true
           }
         },
         { slot: 'operate' }// 操作列
       ],
+      projectResultIds: []
     }
   },
   components: {
@@ -227,39 +228,38 @@ export default {
   watch: {
 
   },
-  created() {
-    this.getProjectList();
-    this.getLayoutList();// 业态
-    this.getDictionary(1);//事业部
-    this.getDictionary(2);//项目属性
-    this.getList();
+  created () {
+    this.getProjectList()
+    this.getLayoutList()// 业态
+    this.getDictionary(1)// 事业部
+    this.getDictionary(2)// 项目属性
+    this.getList()
   },
-  mounted() {
+  mounted () {
   },
   // 日期转换格式
   filters: {
-    formatDate(time) {
+    formatDate (time) {
       return time ? new Date(parseInt(time)).format('yyyy-MM-dd hh:mm:ss') : ''
     }
   },
   methods: {
-    refreshTableData() {
-
+    refreshTableData () {
 
     },
-    goDetailFunc(row) {
+    goDetailFunc (row) {
       // 详情
-      let routeUrl = this.$router.resolve({
-        path: "/calculationCreate",
+      const routeUrl = this.$router.resolve({
+        path: '/calculationCreate',
         query: { flag: 'edit', projectResultId: row.projectResultId, status: row.statusNumber }
-      });
-      window.open(routeUrl.href, '_blank');
+      })
+      window.open(routeUrl.href, '_blank')
     },
-    async doDeleteFunc(row) {
+    async doDeleteFunc (row) {
       try {
         // 项目测算删除
         let params = {
-          "ids": [row.projectId]
+          "ids": [row.projectResultId]
         }
         this.$confirm('是否继续删除?', '提示', {
           distinguishCancelAndClose: true,
@@ -275,31 +275,39 @@ export default {
         console.log(e)
       }
     },
-    checkboxChangeFunc(data) {
+    checkboxChangeFunc (data) {
       // 复选框
+      console.log('=====data=', data)
+      this.projectResultIds = []
+      if (data && data.length > 0) {
+        data.forEach(item => {
+          this.projectResultIds.push(item.projectResultId)
+        })
+      }
+      console.log('=====projectResultIds=', this.projectResultIds)
     },
-    async getList() {
+    async getList () {
       try {
         const params = {
           ...this.query,
           // departOrgCds: this.query.departOrgCds && this.query.departOrgCds.join(),//部门org_cd多选列表
           // projectIds: this.query.projectIds && this.query.projectIds.join(),//项目id多选列表
           layout: this.query.layout && this.query.layout[1],
-          startAt: this.report_time && this.report_time[0] || null,//开始月份时间戳
-          endAt: this.report_time && this.report_time[1] || null,//结束月份时间戳
-          limit: this.pageInfo.page_size,//每页显示条数
-          page: this.pageInfo.page,//第几页
+          startAt: this.report_time && this.report_time[0] || null, // 开始月份时间戳
+          endAt: this.report_time && this.report_time[1] || null, // 结束月份时间戳
+          limit: this.pageInfo.page_size, // 每页显示条数
+          page: this.pageInfo.page// 第几页
         }
         await CalculationApi.getList(params).then(res => {
           if (res.code === 200) {
-            const { result } = res;
+            const { result } = res
             this.tableData = result.list.map(item => {
-              let createdTime = item.createdTime ? item.createdTime.replace('T', ' ') : '';
-              let updatedTime = item.updatedTime ? item.updatedTime.replace('T', ' ') : '';
-              let type = this.projectPropertyList.find(member => {
+              const createdTime = item.createdTime ? item.createdTime.replace('T', ' ') : ''
+              const updatedTime = item.updatedTime ? item.updatedTime.replace('T', ' ') : ''
+              const type = this.projectPropertyList.find(member => {
                 return member.value == item.type
               })
-              let status = this.statusList.find(member => {
+              const status = this.statusList.find(member => {
                 return member.value == item.status
               })
               return {
@@ -311,119 +319,122 @@ export default {
                 status: status && status.label || '-',
                 statusNumber: item.status
               }
-            });
-            this.pageInfo.sum_num = result.total;
+            })
+            this.pageInfo.sum_num = result.total
             getDynamicTableHeight(this)
           }
         })
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-    async getProjectList() {
+    async getProjectList () {
       // 项目列表
       try {
         await CalculationApi.getProjectList().then(res => {
           if (res.code === 200) {
-            const { result: { list } } = res;
+            const { result: { list } } = res
             this.projectNameList = list.map(item => {
               return { label: item.name, value: item.projectId }
             })
           }
         })
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-    async getLayoutList() {
+    async getLayoutList () {
       // 业态集合
       try {
         await CalculationApi.getLayoutList().then(res => {
           if (res.code === 200) {
-            const { result: { list } } = res;
-            let serverArray = (arr) => {
-              let newArr = [];
+            const { result: { list } } = res
+            const serverArray = (arr) => {
+              const newArr = []
               for (let i = 0; i < arr.length; i++) {
-                newArr.push({ value: arr[i]['layoutId'], label: arr[i]['name'] })
+                newArr.push({ value: arr[i].layoutId, label: arr[i].name })
                 if (arr[i].children && arr[i].children.length > 0) {
                   newArr[i].children = serverArray(arr[i].children)
                 }
               }
               return newArr
             }
-            this.layoutList = serverArray(list);
+            this.layoutList = serverArray(list)
           }
         })
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-    async getDictionary(type) {
+    async getDictionary (type) {
       // 字典表
       try {
-        const params = { type: type };
+        const params = { type: type }
         await Global.getDictionary(params).then(res => {
-          const { code, result: { list } } = res;
+          const { code, result: { list } } = res
           if (code === 200) {
-            let ary = list.map(item => {
+            const ary = list.map(item => {
               return { label: item.name, value: item.id }
             })
             if (type == 1) {
-              this.businessList = ary;
+              this.businessList = ary
             } else if (type == 2) {
-              this.projectPropertyList = ary;
+              this.projectPropertyList = ary
             }
           }
         })
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-    getListChange() {
+    getListChange () {
       // 重新选择搜索项重置页码
       this.pageInfo.page = 1
       this.getList()
     },
-    reset() {
+    reset () {
       // 重置
       this.pageInfo = {
         page_size: 20,
         page: 1,
         sum_num: 0
-      };
+      }
       this.query = {
-        createUser: null,//创建人
-        departOrgCds: [],//部门org_cd多选列表
-        projectIds: [],//项目id多选列表
-        startAt: null,//开始月份时间戳
-        endAt: null,//结束月份时间戳
-        layout: null,//项目业态
-        limit: null,//每页显示条数
-        page: null,//第几页
-        status: null,//状态
-        type: null,//项目属性
-      };
+        createUser: null, // 创建人
+        departOrgCds: [], // 部门org_cd多选列表
+        projectIds: [], // 项目id多选列表
+        startAt: null, // 开始月份时间戳
+        endAt: null, // 结束月份时间戳
+        layout: null, // 项目业态
+        limit: null, // 每页显示条数
+        page: null, // 第几页
+        status: null, // 状态
+        type: null// 项目属性
+      }
       this.getList()
     },
-    createFunc() {
+    createFunc () {
       // 创建
-      let routeUrl = this.$router.resolve({
-        path: "/calculationCreate",
+      const routeUrl = this.$router.resolve({
+        path: '/calculationCreate',
         query: { flag: 'add' }
-      });
-      window.open(routeUrl.href, '_blank');
+      })
+      window.open(routeUrl.href, '_blank')
     },
-    handleSelect() {
-      console.log(item);
+    handleSelect (item) {
+      console.log(item)
     },
-    exportExcel() {
+    exportExcel () {
+      if (!this.projectResultIds || this.projectResultIds.length === 0) {
+        this.$message.error('未勾选项目！')
+        return
+      }
       // 导出
       const token = localStorage.getItem('ys_contract_token')
       if (token) {
-        // excel_type = 1 导出总表明细， =2 导出项目明细
-        window.location.href = `../${this.$baseURL}/projectDetail/export_list_all?token=${token}&project_config_id=${this.query.project_config_id}&type=${this.big_layout_id}&report_time=${this.query.report_time}&excel_type=2`
+        window.location.href = `../${this.$baseURL}/api/project/calculate/export?token=${token}&projectResultIds[]=${this.projectResultIds}`
       }
-    },
+    }
   }
 }
 </script>
@@ -434,5 +445,8 @@ export default {
 }
 .delete-btn {
   color: red;
+}
+.list-page {
+  height: auto!important;
 }
 </style>

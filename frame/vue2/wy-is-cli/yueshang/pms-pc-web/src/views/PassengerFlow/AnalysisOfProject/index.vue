@@ -24,7 +24,7 @@ export default {
     return {
       formConfig: FormConfig,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         projectId: '',
@@ -37,10 +37,6 @@ export default {
       requestConfig: {
         query: {
           api: passengerFlow.getListByAnalysisOfProject
-        },
-
-        export: {
-          type: 'exportOfPfAnalysisProject',
         },
       }
     }

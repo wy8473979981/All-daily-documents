@@ -7,7 +7,7 @@
         <div v-show="recovery.show" class="redress_error_edit"> 纠错编辑 </div>
         <div class="app-header-container" v-show="!recovery.show">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'yysj'" :selected="selected" @projeSelected="projeSelected"></ys-n-project-select>
           </div>
           <div class="app-header-right">
             <ys-n-date-pick :type="`year`" @selected="dateSelected" :selected="params.year"></ys-n-date-pick>
@@ -20,24 +20,24 @@
         <ys-n-tab :tabList="tabList" :currentTab="currentTab" @selected="tabClickFunc"></ys-n-tab>
       </div>
     </div>
-
-    <ys-n-section title="收缴率" :collapseable="true" v-if="!recovery.show">
-      <div class="registered-channels">
-        <ys-n-echart :options="lineops"></ys-n-echart>
-      </div>
-    </ys-n-section>
-
-    <ys-n-section title="本年收入" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
-          <span class="line"> | </span>
-          <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="收缴率" :collapseable="true" v-if="!recovery.show">
+        <div class="registered-channels">
+          <ys-n-echart :options="lineops"></ys-n-echart>
         </div>
-      </div>
-      <ys-n-table :mode="timeSpan" :fixednum="1" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
-    </ys-n-section>
+      </ys-n-section>
 
+      <ys-n-section title="本年收入" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+          </div>
+        </div>
+        <ys-n-table :mode="timeSpan" :fixednum="1" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
     <div class="recovery-actions" v-if="recovery.show">
       <div class="recovery-actions__action" @click="cancelRecovery">取消</div>
       <div class="recovery-actions__action recovery-actions__action--priamry" @click="postRecovery">提交</div>
@@ -51,8 +51,9 @@ import { mapMutations, mapGetters } from "vuex";
 
 import { yueProjectColumnsZJ, nianProjectColumnsZJ, yueProjectColumnsWG, nianProjectColumnsWG, yueProjectColumnsDJ, nianProjectColumnsDJ } from '../columns/zujinColumns'
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       recovery: {
         show: false,
         selected: {},
@@ -141,7 +142,7 @@ export default {
   },
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       let { projectName, projectId, chargeType, yearMonth, feeType } = this.routerParams;
       let selected = { label: projectName, projectId: projectId, };
@@ -171,7 +172,24 @@ export default {
     }
   },
   methods: {
-    dateSelected(date) {
+    onRefresh () {
+      this.getEchartData();
+      this.getProjectTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    dateSelected (date) {
       try {
         this.setData({ ["params.year"]: date, });
         this.getEchartData();
@@ -180,7 +198,7 @@ export default {
         console.log(e)
       }
     },
-    projeSelected(item) {
+    projeSelected (item) {
       try {
         console.log(item);
         if (item.shortName !== "全部") {
@@ -195,7 +213,7 @@ export default {
         console.log(e)
       }
     },
-    async tabClickFunc(data) {
+    async tabClickFunc (data) {
       try {
         let span = this.timeSpan; // 当tab为多经收入时，取不同的columns
         if (data == 1) {
@@ -249,16 +267,20 @@ export default {
       }
     },
 
-    async getEchartData() {
+    async getEchartData () {
       try {
         // 查询具体项目数据 传递 projectId
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryCollectionRateList({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let previousYearData = [];
               let currentYearData = [];
               res.data.map(item => {
-                currentYearData.push(item.fixedContCollectionRate);
+                if (item.fixedContCollectionRate || item.fixedContCollectionRate === 0) {
+                  currentYearData.push(item.fixedContCollectionRate);
+                }
                 previousYearData.push(item.fixedContCollectionRateLast);
               });
               let label = this.params.year;
@@ -274,16 +296,17 @@ export default {
                     name: legendData[0],
                     data: currentYearData,
                     areaStyle: {
-                      //color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: "#CFDFFE", }, { offset: 1, color: "#FFFFFF", }]), 
+                      //color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: "#CFDFFE", }, { offset: 1, color: "#FFFFFF", }]),
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
-                          //渐变色 
+                          //渐变色
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#2D9FCB'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -301,11 +324,13 @@ export default {
         console.log(e)
       }
     },
-    async getProjectTableData() {
+    async getProjectTableData () {
       try {
         // 具体项目的table数据
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryRentFeeProjectDetailsList({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               if (res.data && res.data.length > 0) {
                 let result = res.data.map((item, index) => {
@@ -321,7 +346,7 @@ export default {
         console.log(e)
       }
     },
-    async changeSpan(e) {
+    async changeSpan (e) {
       try {
         const span = e.currentTarget.dataset.span;
         let feeType = this.params.feeType;
@@ -371,7 +396,7 @@ export default {
     },
 
 
-    bindselected(e) {
+    bindselected (e) {
       try {
         e.detail.forEach((item) => {
           let temp = item.split("-");
@@ -396,7 +421,7 @@ export default {
       }
     },
 
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       try {
         const { show, selected } = this.recovery;
 
@@ -424,7 +449,7 @@ export default {
       }
     },
 
-    onRecoveryClick() {
+    onRecoveryClick () {
       try {
         this.setData({
           "recovery.show": true,
@@ -437,7 +462,7 @@ export default {
       }
     },
 
-    postRecovery() {
+    postRecovery () {
       const { bisProjectId, type: pageType, chargeType } = this.params;
       const selectedMap = this.recovery.selected;
       const markInfos = Object.keys(selectedMap)
@@ -465,7 +490,7 @@ export default {
         });
     },
 
-    cancelRecovery(reset = true) {
+    cancelRecovery (reset = true) {
       const setdata = {
         "recovery.show": false,
         "recovery.selected": this.tableSelected.keysMap,

@@ -1,0 +1,22 @@
+/* pages/service/copyerList/copyList.wxss */
+#ys-goods-type{
+  font-size: 30rpx;
+  background: #F5F5F5;
+}
+.title{
+  border-bottom: 30rpx solid #f5f5f5;
+  padding: 0 30rpx;
+}
+.item{
+  display: flex;
+  height: 106rpx;
+  padding: 0 25rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  line-height: 106rpx;
+  background: #fff;
+  color: #999;
+}
+.item .name{
+  color: #333;
+  margin-left: 20rpx;
+}

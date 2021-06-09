@@ -23,7 +23,7 @@ export default {
     return {
       formConfig: FormConfig,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -41,10 +41,6 @@ export default {
         query: {
           api: salesVolume.getListByRankingOfHeadquarters,
           reponseKey: ''
-        },
-
-        export: {
-          type: 'exportOfSvRankingHeadquarters',
         },
       }
     }

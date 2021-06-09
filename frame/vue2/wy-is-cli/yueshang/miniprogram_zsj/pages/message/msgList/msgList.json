@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "navigationBarTitleText": "消息",
+  "backgroundColor": "#eee",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "msg-item": "./msgItem/msgItem"
+  }
+}

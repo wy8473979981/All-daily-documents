@@ -6,7 +6,7 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selectedProj" @projeSelected="onProjectSelected"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'yysj'" :selected="selectedProj" @projeSelected="onProjectSelected"></ys-n-project-select>
           </div>
           <div class="app-header-right">
             <ys-n-date-pick :type="`year`" @selected="onDateChanged" :selected="queryModel.year"></ys-n-date-pick>
@@ -15,29 +15,29 @@
       </div>
     </div>
     <!-- <div class="updata-time">数据更新时间：{{ updateTime }} 数据来源系统：PMS系统</div> -->
-
-    <div class="wrapper">
-      <ys-n-section :collapseable="collapseable">
-        <div class="head-actions_left_view" slot="head-actions_left">
-          <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="onChartSelectedChange"> </ys-n-filter-chart-dialog>
-        </div>
-        <ys-n-echart :options="lineops"></ys-n-echart>
-      </ys-n-section>
-    </div>
-
-    <div class="wrapper" style="margin-top: 12px; margin-bottom: 120px">
-      <ys-n-section title="月客流排名（单位：万人）" :hasTable="true">
-        <div slot="head-actions">
-          <div class="list-mode">
-            <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
-            <span class="line"> | </span>
-            <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <div class="wrapper">
+        <ys-n-section :collapseable="collapseable">
+          <div class="head-actions_left_view" slot="head-actions_left">
+            <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="onChartSelectedChange"> </ys-n-filter-chart-dialog>
           </div>
-        </div>
-        <ys-n-table :fixednum="1" :values="table.dataList" :columns="table.columns" :mode="table.mode"> </ys-n-table>
-      </ys-n-section>
-    </div>
+          <ys-n-echart :options="lineops"></ys-n-echart>
+        </ys-n-section>
+      </div>
 
+      <div class="wrapper" style="margin-top: 12px; margin-bottom: 120px">
+        <ys-n-section title="月客流排名（单位：万人）" :hasTable="true">
+          <div slot="head-actions">
+            <div class="list-mode">
+              <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
+              <span class="line"> | </span>
+              <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+            </div>
+          </div>
+          <ys-n-table :fixednum="1" :values="table.dataList" :columns="table.columns" :mode="table.mode"> </ys-n-table>
+        </ys-n-section>
+      </div>
+    </van-pull-refresh>
     <div class="bottom-bar">
       <div class="bottom-button" @click="gotoJiankong">客流监控</div>
     </div>
@@ -48,8 +48,9 @@
 
 import { yearColumns, monthColumns } from '../columns/monthColumns'
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       routerParams: this.$route.query,
       chartsType: "xm",
       chartsTitle: "项目客流(人)",
@@ -105,7 +106,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.setData({
         selectedProj: {
@@ -123,11 +124,30 @@ export default {
     }
   },
   methods: {
-    async getEchartData() {
+    onRefresh () {
+      this.getEchartData();
+      this.getTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getEchartData () {
       try {
         // 查询具体项目数据 传递 projectId
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryPassengerFlowLineChart({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let previousData = [];
               let currentData = [];
@@ -169,12 +189,13 @@ export default {
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                           //渐变色 
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#2D9FCB'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -193,10 +214,12 @@ export default {
         console.log(e)
       }
     },
-    async getTableData() {
+    async getTableData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryMonthlyPassengerFlowRanking({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let { mode } = this.table;
               let dataList = [];
@@ -217,7 +240,7 @@ export default {
       }
     },
 
-    onProjectSelected(item) {
+    onProjectSelected (item) {
       try {
         if (item.shortName !== "全部") {
           this.setData({
@@ -231,7 +254,7 @@ export default {
         console.log(e)
       }
     },
-    onDateChanged(e) {
+    onDateChanged (e) {
       try {
         this.setData({
           "queryModel.year": e,
@@ -242,7 +265,7 @@ export default {
         console.log(e)
       }
     },
-    onListModeChanged(e) {
+    onListModeChanged (e) {
       try {
         const mode = e.target.dataset.value;
         const { yearlyPassengerFlow, monthlyPassengerFlow } = this.tableData;
@@ -257,7 +280,7 @@ export default {
         console.log(e)
       }
     },
-    gotoJiankong() {
+    gotoJiankong () {
       try {
         let { chargeType, yearMonth, yearMonthDay } = this.routerParams;
         let { projectId, projectName, year } = this.queryModel;
@@ -269,7 +292,7 @@ export default {
     },
 
     //图表左上角切换选项
-    async onChartSelectedChange(e) {
+    async onChartSelectedChange (e) {
       try {
         console.log(e);
         let selected = null;

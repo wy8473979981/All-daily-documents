@@ -16,21 +16,22 @@
         <ys-n-tab :tabList="tabList" :currentTab="currentTab" @selected="tabClickFunc"></ys-n-tab>
       </div>
     </div>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section :title="activeTab" collapseable>
+        <ys-n-echart :options="lineops"></ys-n-echart>
+      </ys-n-section>
 
-    <ys-n-section :title="activeTab" collapseable>
-      <ys-n-echart :options="lineops"></ys-n-echart>
-    </ys-n-section>
-
-    <ys-n-section title="欠费排名" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
-          <span class="line"> | </span>
-          <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+      <ys-n-section title="欠费排名" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+          </div>
         </div>
-      </div>
-      <ys-n-table :fixednum="2" :columns="listColumns" :values="table.dataList" :totalRow="table.totalRow" @row-column-click="onRowColumnClick" :mode="table.mode"></ys-n-table>
-    </ys-n-section>
+        <ys-n-table :fixednum="2" :columns="listColumns" :values="table.dataList" :totalRow="table.totalRow" @row-column-click="onRowColumnClick" :mode="table.mode"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -39,8 +40,9 @@
 import { listColumns } from '../columns/listColumns'
 import { mapMutations, mapGetters } from "vuex";
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       query: {
         chargeType: "",//物业类型,1购物中心,2商业街,0全部
         feeType: "1",//费项,1租金,2物管,3多经
@@ -78,7 +80,7 @@ export default {
   },
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.setData({
         "query.yearMonth": this.routerParams.yearMonth,
@@ -93,12 +95,30 @@ export default {
     }
   },
   methods: {
-
-    async getEchartData() {
+    onRefresh () {
+      this.getEchartData();
+      this.getTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getEchartData () {
       try {
         // 查询具体项目数据 传递 projectId
+        this.addIsLoadingCount()
         await this.$axios.qianfeiServe.queryOweFeeLineChart({ ...this.query })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let oweContList = res.data.oweContList.map(item => {
                 return item / 10000;
@@ -127,12 +147,13 @@ export default {
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                           //渐变色 
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#FF4954'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -154,10 +175,12 @@ export default {
       }
     },
 
-    async getTableData() {
+    async getTableData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.qianfeiServe.queryOweFeeRanking({ ...this.query })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               this.tableData = res.data;
               let { oweFeeRankingWhenMonth, oweFeeRankingWhenYear } = this.tableData;
@@ -179,19 +202,19 @@ export default {
       }
     },
 
-    bindopen() {
+    bindopen () {
       this.setData({
         show: false
       });
     },
 
-    bindclose() {
+    bindclose () {
       this.setData({
         show: true
       });
     },
 
-    async tabClickFunc(data) {
+    async tabClickFunc (data) {
       try {
         if (data == 1) {
           this.setData({
@@ -213,7 +236,7 @@ export default {
       }
     },
 
-    onDateChanged(data) {
+    onDateChanged (data) {
       try {
         this.setData({
           "query.yearMonth": data,
@@ -225,32 +248,29 @@ export default {
       }
     },
 
-    onListModeChanged(e) {
+    onListModeChanged (e) {
       try {
-        const mode = e.target.dataset.value;
-
-        if (this.table.mode !== mode) {
-          let { oweFeeRankingWhenMonth, oweFeeRankingWhenYear } = this.tableData;
-          if (this.table.mode == 'month') {
-            this.setData({
-              "table.mode": mode,
-              "table.dataList": oweFeeRankingWhenMonth.slice(0, -1),
-              "table.totalRow": oweFeeRankingWhenMonth.slice(-1)[0]
-            });
-          } else {
-            this.setData({
-              "table.mode": mode,
-              "table.dataList": oweFeeRankingWhenYear.slice(0, -1),
-              "table.totalRow": oweFeeRankingWhenYear.slice(-1)[0]
-            });
-          }
+        const mode = e.currentTarget.dataset.value;
+        let { oweFeeRankingWhenMonth, oweFeeRankingWhenYear } = this.tableData;
+        if (mode == 'month') {
+          this.setData({
+            "table.mode": mode,
+            "table.dataList": oweFeeRankingWhenMonth.slice(0, -1),
+            "table.totalRow": oweFeeRankingWhenMonth.slice(-1)[0]
+          });
+        } else {
+          this.setData({
+            "table.mode": mode,
+            "table.dataList": oweFeeRankingWhenYear.slice(0, -1),
+            "table.totalRow": oweFeeRankingWhenYear.slice(-1)[0]
+          });
         }
       } catch (e) {
         console.log(e)
       }
     },
 
-    bindselected(e) {
+    bindselected (e) {
       try {
         e.detail.forEach((item) => {
           let temp = item.split("-");
@@ -269,7 +289,7 @@ export default {
       }
     },
 
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       try {
         let params = {
           projectId: e.detail.row.id,

@@ -12,156 +12,31 @@
         </div>
       </div>
     </div>
-
-    <ys-n-section>
-      <div slot="head-title">
-        <!-- <ys-n-filter-chart-dialog :title="title" :items="itemList" @chartselected="bindchartselected"></ys-n-filter-chart-dialog> -->
-        <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="bindchartselected"> </ys-n-filter-chart-dialog>
-      </div>
-      <div class="registered-channels">
-        <ys-n-echart :options="options"></ys-n-echart>
-      </div>
-    </ys-n-section>
-    <ys-n-section title="商家信息对比">
-      <ys-n-length-ways :values="dataList" :cross="cross"></ys-n-length-ways>
-    </ys-n-section>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section>
+        <div slot="head-title">
+          <!-- <ys-n-filter-chart-dialog :title="title" :items="itemList" @chartselected="bindchartselected"></ys-n-filter-chart-dialog> -->
+          <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="bindchartselected"> </ys-n-filter-chart-dialog>
+        </div>
+        <div class="registered-channels">
+          <ys-n-echart :options="options"></ys-n-echart>
+        </div>
+      </ys-n-section>
+      <ys-n-section title="商家信息对比">
+        <ys-n-length-ways :values="dataList" :cross="cross"></ys-n-length-ways>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-const searchList = [
-  {
-    label: "",
-    key: "detail",
-    selectedCode: 'rentMoney',
-    values: [
-      {
-        name: "当月租金",
-        code: "rentMoney",
-        value: "rentMoney",
-        unit: "万元",
-      },
-      {
-        name: "当月物管",
-        code: "managementMoney",
-        value: "managementMoney",
-        unit: "万",
-      },
-      {
-        name: "上月销售",
-        code: "sales",
-        value: "sales",
-        unit: "万",
-      },
-      {
-        name: "月平效",
-        code: "monthsEffect",
-        value: "monthsEffect",
-        unit: "元",
-      },
-      {
-        name: "总欠费",
-        code: "totalOwe",
-        value: "totalOwe",
-        unit: "万",
-      },
-      {
-        name: "租售比",
-        code: "rentRatio",
-        value: "rentRatio",
-        unit: "%",
-      },
-    ],
-  }
-];
-const options = {
-  color: ['#EA6B00', '#1890FF', '#02DFFF', '#FFCE49', '#1EFBB8'],
-  legend: {
-    selectedMode: true,
-    data: [],
-    itemHeight: 12,
-    y: 'bottom',
-    bottom: '0',
-    type: 'scroll'
-  },
-  tooltip: {
-    trigger: 'axis',
-    formatter: function (params, ticket, callback) {
-      let res = '';
-
-      if (params.length > 0) {
-        res += params[0].axisValue + '\n<br/>';
-      }
-
-      for (var i = 0, l = params.length; i < l; i++) {
-        if (!(params[i].value == null)) {
-          res += params[i].seriesName + ' : ' + params[i].value + '\n<br/>';
-        } else {
-          res += params[i].seriesName + ' : -' + '\n<br/>';
-        }
-      }
-
-      return res;
-    },
-    padding: [8, 10, 8, 10],
-    borderColor: 'rgba(45, 159, 203, 1)',
-    borderWidth: 1,
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    textStyle: {
-      color: '#333333',
-      fontSize: 11
-    }
-  },
-  grid: {
-    right: '5%',
-    bottom: '15%'
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    splitLine: {
-      show: true,
-      lineStyle: {
-        type: 'dashed'
-      }
-    },
-    axisPointer: {
-      type: 'shadow'
-    },
-    axisLabel: {
-      show: true,
-      textStyle: {
-        fontSize: '12'
-      },
-      interval: 0
-    },
-    axisLine: {
-      show: false
-    },
-    nameLocation: 'end' //坐标轴名称显示位置。
-
-  },
-  yAxis: {
-    type: 'value',
-    splitLine: {
-      show: false
-    },
-    axisLine: {
-      show: false
-    },
-    axisTick: {
-      //y轴刻度线
-      show: false
-    }
-  },
-  series: []
-};
-
+import { searchList, options } from './config';
 export default {
-  data() {
+  data () {
     return {
-      searchList,
+      isLoading: false, isLoadingCount: 0,
+      options: options,
+      searchList: searchList,
       chartsType: "rentMoney",
       chartsTitle: "当月租金(万)",
       routerParams: this.$route.query,
@@ -195,30 +70,57 @@ export default {
         offset: 1,
         queryDate: this.$util.getDefaultDate('month')
       },
-      options: options,
       chartHeight: '500px'
     };
   },
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     let ids = this.routerParams.ids;
     console.log(ids);
     this.setData({
       'params.bisShopId': ids
     });
-    setTimeout(_ => {
-      this.getDataList();
-      this.getChartList('rentMoney');
-    });
+    this.getDataList(true);
+    this.getChartList('rentMoney');
   },
   methods: {
-    async getDataList(bisShopId) {
+    onRefresh () {
+      setTimeout(() => {
+        // 如果接口有问题，5s后关闭下拉刷新loading
+        this.isLoading = false
+      }, 0)
+      this.getDataList(true)
+    },
+    addIsLoadingCount (isUse = true) {
+      // isUse 表示下拉刷新是否真实使用
+      if (!isUse) {
+        return false;
+      }
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount (isUse = true) {
+      // isUse 表示下拉刷新是否真实使用
+      if (!isUse) {
+        return false;
+      }
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getDataList (isUse = false) {
       try {
         let params = this.params;
-        await this.$axios.externalLinkServe.getMerchantCompareDetail(params, false).then(res => {
+        this.addIsLoadingCount(isUse)
+        await this.$axios.merchantServe.getMerchantCompareDetail(params, true).then(res => {
           if (res.code == 200) {
+            this.decreaseIsLoadingCount(isUse)
             this.setData({
               dataList: res.data.list
             });
@@ -229,9 +131,9 @@ export default {
       }
     },
 
-    async getChartList(value) {
+    async getChartList (value) {
       try {
-        await this.$axios.externalLinkServe.getListLineChart(this.params, false).then(res => {
+        await this.$axios.merchantServe.getListLineChart(this.params, false).then(res => {
           if (res.code == 200) {
             const { list } = res.data;
             let shopList = [], seriesInfo = {}, seriesList;
@@ -271,14 +173,14 @@ export default {
       }
     },
 
-    onDateChanged(date) {
+    onDateChanged (date) {
       this.setData({
         'params.queryDate': date
       });
       this.getDataList();
     },
 
-    bindchartselected(e) {
+    bindchartselected (e) {
       try {
         console.log(e);
         let selected = null;
@@ -306,4 +208,5 @@ export default {
 .registered-channels {
   background-color: #fff;
 }
+
 </style>

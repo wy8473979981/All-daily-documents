@@ -1,0 +1,85 @@
+<view id='ys-goods' class='ys-block-fixed-footer'>
+    <my-warning id='warningComp'/>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>铺位号</text>
+      <text class='content'>{{globalData.storeNo}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人</text>
+      <text class='content'>{{globalData.clerkName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人电话</text>
+      <text class='content'>{{globalData.bindTel}}</text>
+    </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <radio-group class="radio-group" bindchange="radioChange1">
+      <label class="radio" wx:for="{{type1}}" wx:key="item.id">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
+      </label>
+    </radio-group>
+    </view>
+    <view class='ys-block-gap ys-block-gap-top' wx:if="{{showRadio}}" style='border-top:none;'>
+    <radio-group  class="radio-group" bindchange="radioChange2">
+      <label class="radio" wx:for="{{type2}}" wx:key="item.id">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <!-- overtime -->
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='select-wrapper'>
+      <label>进出场日期</label>
+      <view class='picker-wrapper'>
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='select-wrapper'>
+      <label>预计时间</label>
+      <view class='picker-wrapper'>
+        <picker mode="time" value="{{startTime}}" start="{{startTimeBegin}}" end="24:00" bindchange="startTime">
+          <view class="picker">
+            {{startTime}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='select-wrapper' bindtap='goUrl'>
+      <label>物品类别</label>
+      <view class='picker-wrapper'>
+        <text class='goodsType'>{{goodsName}}</text>
+        <image src='../../../static/images/icon_arrow_right.png'></image>
+      </view>
+    </view>
+    <view class='input-wrapper'>
+      <label>物品总数量</label>
+      <input type='number' bindinput='inputGoodsNum' value='{{goodsNum}}' placeholder='请填写' placeholder-class='placeholder'></input>
+    </view>
+  </view>
+    <!-- 备注 -->
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='textarea'>
+      <label>申请说明</label>
+      <textarea placeholder="请列出物品名称和数量 如：货架x2,收款机x1" value='{{remark}}' bindinput='bindKeyInput' data-key='remark' name="textarea" />
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button bindtap='submit' class='ys-btn ys-footer-btn ys-btn-powderblue'> 提交 </button>
+  </view>
+</view>

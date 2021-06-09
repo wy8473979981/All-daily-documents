@@ -1,3 +1,4 @@
+
 import appProjectSelect from "./ys-n-project-select/index.vue";
 import appDatePick from "./ys-n-date-pick/index.vue";
 import appSection from "./ys-n-section/index.vue";
@@ -14,6 +15,7 @@ import redressError from './ys-n-redress-error/index.vue'
 import navBar from './ys-n-nav-bar/index.vue'
 import filterDialog from './ys-n-filter-dialog/dialog.vue'
 import treeSelect from './ys-n-tree-select/index.vue'
+import watermark from './ys-n-watermark/watermark'
 const Plugin = {
 	install: function (Vue) {
 		Vue.component("ys-n-project-select", appProjectSelect);
@@ -32,6 +34,7 @@ const Plugin = {
 		Vue.component('ys-n-filter-dialog', filterDialog);
 		Vue.component("ys-n-filter-chart-dialog", filterChartDialog);
 		Vue.component("ys-n-tree-select", treeSelect);
+		Vue.component("ys-n-watermark", watermark);
 	},
 };
 export default Plugin;

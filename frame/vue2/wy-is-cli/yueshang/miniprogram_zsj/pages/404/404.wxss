@@ -1,0 +1,21 @@
+/* pages/404/404.wxss */
+#page-404{
+  position:relative;
+}
+
+#page-404 .image-wrapper{
+  position: absolute;
+  display: block;
+  width:410rpx;
+  height:390rpx;
+  top:210rpx;
+  left:50%;
+  margin-left:-196rpx;
+}
+
+#page-404 .image-wrapper .info{
+  margin-top:40rpx;
+  text-align:center;
+  font-size:28rpx;
+  color:#999;
+}

@@ -49,7 +49,8 @@
       <el-table-column fixed min-width="140" label="地产房号" :show-overflow-tooltip="!isEdit" prop="roomNum" align="right">
         <template slot-scope="scope">
           <el-input v-if="isEdit && scope.$index == selectIndex" v-model="scope.row.roomNum" placeholder="请输入" size="mini"></el-input>
-          <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'roomNum',true,false,'bizType',0) }}</p>
+          <!-- <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'roomNum',true,false,'bizType',0) }}</p> -->
+          <p v-else @click="showInput(scope.$index)">{{ scope.row.roomNum || '-' }}</p>
         </template>
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>

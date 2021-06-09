@@ -1,0 +1,118 @@
+/* pages/service/requestNote/requestNote.wxss */
+page{
+  font-size: 30rpx;
+  color: #333;
+  background: #f5f5f5;
+  margin-bottom: 100rpx;
+}
+.ys-block{
+  line-height: 60rpx;
+  padding: 30rpx 25rpx;
+  background: #fff;
+}
+.ys-block .item-wrapper{
+  position: relative;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.ys-block .item-wrapper label{
+  position: absolute;
+  width: 180rpx;
+  left: 0;
+  font-size: 32rpx;
+}
+.ys-block .item-wrapper text{
+  position: absolute;
+  left: 180rpx;
+  right: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #999;
+
+}
+.ys-block .item-wrapper .status{
+  position: absolute;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  background: #f8b710;
+  color: #fff;
+}
+.chao-song{
+  background: #fff;
+  overflow: hidden;
+}
+.chao-song label{
+  display: block;
+  line-height: 80rpx;
+  padding-left: 25rpx;
+  font-size: 30rpx;
+}
+.img-wrapper{
+  float: left;
+  width: 20%;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  margin-bottom: 30rpx;
+  color: #999;
+}
+.img-wrapper .icon{
+  display: block;
+  height: 80rpx;
+  width: 80rpx;
+  margin: 0 auto;
+  border-radius: 8rpx;
+}
+.ys-block .content{
+  color: #999;
+}
+.ys-title{
+  padding: 30rpx 25rpx;
+  color: #999;
+  background: #f5f5f5;
+}
+.list .header{
+  line-height: 0;
+}
+.list .title{
+  font-size: 32rpx;
+  color: #333;
+}
+.list .name{
+  font-size: 28rpx;
+  color: #666;
+}
+.list .date{
+  /* height: 40rpx; */
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+button{
+  font-size: 30rpx;
+  line-height: 99rpx;
+}
+.ballon-tips{
+  position: relative;
+  padding:4rpx 20rpx;
+  display:inline-block;
+  border-radius: 4rpx;
+  margin-top: 20rpx;
+  background:#f5f5f5;
+}
+.ballon-tips .triangle {
+  display:block;
+  width:0;
+  height:0;
+  border-width:0 16rpx 16rpx;
+  border-style:solid;
+  border-color:transparent transparent #f5f5f5;
+  position:absolute;
+  top:-13rpx;
+  left:10rpx;
+}

@@ -1,0 +1,76 @@
+page{
+  font-size: 30rpx;
+  color: #333;
+  background: #f5f5f5;
+  margin-bottom: 100rpx;
+}
+.ys-block{
+  line-height: 60rpx;
+  padding: 30rpx 25rpx;
+  background: #fff;
+}
+.ys-block label{
+  display: inline-block;
+  width: 180rpx;
+  font-size: 32rpx;
+}
+.ys-block text{
+  color: #999;
+}
+.ys-block .status{
+  float: right;
+  padding: 0 10rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  background: #f8b710;
+  color: #fff;
+}
+.ys-block .content{
+  color: #999;
+}
+.qrcode{
+  height: 60rpx;
+  overflow: hidden;
+}
+.qrcode text{
+  float: left;
+  width: 180rpx;
+}
+.qrcode .icon{
+  height: 60rpx;
+  width: 60rpx;
+}
+.qrcode .arrow{
+  float: right;
+  height: 50rpx;
+  width: 50rpx;
+  margin-top: 5rpx;
+}
+.ys-title{
+  padding: 30rpx 25rpx;
+  color: #999;
+  background: #f5f5f5;
+}
+.list .header{
+  line-height: 0;
+}
+.list .title{
+  font-size: 32rpx;
+  color: #333;
+}
+.list .name{
+  font-size: 28rpx;
+  color: #666;
+}
+.list .date{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.submit {
+  font-size: 30rpx;
+  line-height: 99rpx;
+}

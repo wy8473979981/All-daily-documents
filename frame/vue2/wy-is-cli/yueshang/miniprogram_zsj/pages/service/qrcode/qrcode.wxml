@@ -1,0 +1,16 @@
+<!--pages/service/qrcode/qrcode.wxml-->
+<view id='ys-qrcode'>
+  <view class='ys-block'>
+    <view class='title'>加班二维码</view>
+    <view class='img-wrapper'>
+      <image class='qrcode' src='../../../static/images/icon_op_blue.png'></image>
+      <view class='cover'>
+        <image class='icon' src='../../../static/images/icon_op_blue.png'></image>
+        <text>已失效</text>
+      </view>
+    </view>
+    <text class='tips'>有效时间至</text>
+    <text class='date'>2018.06.30 18:00</text>
+    <text class='bottom'>扫描二维码可通过放行</text>
+  </view>
+</view>

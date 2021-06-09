@@ -57,7 +57,7 @@ export const FormConfig = [
 
 export const X = new Array(12).fill(1).map((i, idx) => `${idx + 1}月`)
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -72,8 +72,8 @@ export function TableConfig(method) {
       minWidth: 120,
       fixed: true,
       props: {
-        click(data) {
-          method(data)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       }
     },

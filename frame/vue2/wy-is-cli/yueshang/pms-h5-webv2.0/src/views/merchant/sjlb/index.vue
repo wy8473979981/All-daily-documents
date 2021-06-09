@@ -15,7 +15,7 @@
     <div class="project-list">
       <van-checkbox-group v-model="selectResult" @change="checkboxChange">
 
-        <van-checkbox v-for="(item, index) in projectList" :name="item.value" :key="index" shape="square" checked-color="#3A96BD" class="weui-cell weui-check__label">{{ item.name }}</van-checkbox>
+        <van-checkbox v-for="(item, index) in projectList" :name="item.value" :key="index" shape="square" checked-color="#3A96BD" icon-size="16px" class="weui-cell weui-check__label">{{ item.name }}</van-checkbox>
       </van-checkbox-group>
 
     </div>
@@ -30,7 +30,7 @@
 <script>
 
 export default {
-  data() {
+  data () {
     return {
       routerParams: this.$route.query,
       selectResult: [],
@@ -45,7 +45,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     let params = this.routerParams; // params.bisShopSortId = params.bisShopSortId && params.bisShopSortId.split(",");
 
     this.setData({
@@ -54,7 +54,7 @@ export default {
     this.getDataList();
   },
   methods: {
-    checkboxChange(value) {
+    checkboxChange (value) {
       let values = value;
       let result = this.projectList.filter((item) => {
         return values.indexOf(item.value) > -1;
@@ -70,9 +70,9 @@ export default {
       });
     },
 
-    async getDataList() {
+    async getDataList () {
       try {
-        await this.$axios.externalLinkServe.getMerchantList(this.params, false).then(res => {
+        await this.$axios.merchantServe.getMerchantList(this.params, false).then(res => {
           if (res.code == 200) {
             let result = res.data.list.map((item) => {
               return {
@@ -89,7 +89,7 @@ export default {
         console.log(e)
       }
     },
-    remove(item) {
+    remove (item) {
       let value = item.value;
       let data = this.projectList;
       let result = this.selectedList.filter((item) => {
@@ -112,7 +112,7 @@ export default {
       });
     },
 
-    reset() {
+    reset () {
       let data = this.projectList;
       data.forEach((item) => {
         item.checked = false;
@@ -124,7 +124,7 @@ export default {
       });
     },
 
-    cancel() {
+    cancel () {
       this.reset();
       if (window.WebViewJavascriptBridge) {
         window.WebViewJavascriptBridge.callHandler("goBack", { param: "返回" }, function (responseData) { });
@@ -135,7 +135,7 @@ export default {
       }
     },
 
-    confirm() {
+    confirm () {
       let list = this.selectedList.map((item) => item.value);
       let ids = list.join(",");
 
@@ -188,6 +188,7 @@ export default {
   height: calc(100% - 346px);
   background-color: #fff;
   overflow: auto;
+  font-size: 0.35rem;
 }
 .button-box {
   padding: 30px;
@@ -213,8 +214,8 @@ export default {
 }
 
 .weui-cell {
-  padding: 32px;
-  font-size: 32px;
+  padding: 22px 32px;
+  font-size: 0.35rem;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;

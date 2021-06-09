@@ -1,0 +1,65 @@
+<view id='ys-goods-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap note-info'>
+    <application-info info='{{info}}'/>
+  </view>
+  <!-- <view class='ys-block ys-block-gap qrcode' hover-class="navigator-hover" data-path='/pages/service/qrcode/qrcode' bindtap="goUrl">
+      <text>二维码</text>
+      <image class='icon' src='{{qrcode}}'></image>
+      <image class='arrow' src='{{arrow_right}}'></image>
+  </view> -->
+  <view class='ys-block ys-block-gap admin'>
+    <view>
+      <label>进出场时间</label>
+      <text>{{items.applyStart}}</text>
+    </view>
+    <!-- <view>
+      <label>进出场时间</label>
+      <text>{{items.applyEnd}}</text>
+    </view> -->
+    <view>
+      <label>进出类型</label>
+      <text wx:if='{{items.type == 1}}'>进场</text>
+      <text wx:if='{{items.type == 2}}'>出场</text>
+    </view>
+    <view>
+      <label>货物类别</label>
+      <text wx:for='{{goodsType}}' wx:for-item="item" wx:key='idx'>
+        <text wx:if='{{item == 1}}'>货品 </text>
+        <text wx:if='{{item == 2}}'>道具 </text>
+        <text wx:if='{{item == 3}}'>建材 </text>
+        <text wx:if='{{item == 4}}'>废料 </text>
+      </text>
+    </view>
+    <view>
+      <label>货物总数量</label>
+      <text>{{items.goodsCount}}</text>
+    </view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view wx:for='{{items.processes}}' wx:key="items.id" class='list'>
+        <image class='icon' src='../../../static/images/icon_finish.png' wx:if='{{item.result == "0"}}'></image>
+        <image class='icon' src='../../../static/images/icon_wait.png' wx:if='{{item.result == "1"}}'></image>
+        <image class='icon' src='../../../static/images/icon_remark.png' wx:if='{{item.result == "2"}}'></image>
+        <image class='icon' src='../../../static/images/icon_warn.png' wx:if='{{item.result == "3"}}'></image>
+        <view class='header'>
+          <text class='title'>{{item.segment}}</text>
+          <text class='name'>{{item.processor}}</text>
+        </view>
+        <view class='date'>
+          <text>{{item.finishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+      <!-- 
+        7/22放开
+        <view class='ys-fixed-footer' wx:if="{{items.allowUrge === '0'}}">
+      <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap="urge">催办</button>
+    </view>
+       -->
+  <view class='ys-fixed-footer' wx:if='{{statusCode == 3}}'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='goUrl'>去评价</button>
+  </view>
+</view>

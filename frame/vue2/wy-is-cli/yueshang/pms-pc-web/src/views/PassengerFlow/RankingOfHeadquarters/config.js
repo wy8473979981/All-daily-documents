@@ -43,7 +43,7 @@ export const FormConfig = [
   },
 ]
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -56,8 +56,8 @@ export function TableConfig(method) {
       label: '项目',
       type: 'link',
       props: {
-        click(scope) {
-          method(scope)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       },
       minWidth: 120,

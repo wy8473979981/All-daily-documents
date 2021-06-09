@@ -517,15 +517,15 @@
             <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'dece') }}</p>
           </template>
         </el-table-column>
-      </el-table-column>
-      <el-table-column width="5" class-name="common-column-line"></el-table-column>
-      <el-table-column :label="`${getBudgetYear}年人工福利(总额)`" align="center">
         <el-table-column min-width="140" label="年合计" :show-overflow-tooltip="!isEdit" prop="ytd" align="right">
           <template slot-scope="scope">
             <el-input v-if="isEdit && scope.$index == selectIndex" v-model="scope.row.ytd" v-filter-check-input maxlength="12" placeholder="请输入" size="mini"></el-input>
             <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'ytd') }}</p>
           </template>
         </el-table-column>
+      </el-table-column>
+      <el-table-column width="5" class-name="common-column-line"></el-table-column>
+      <el-table-column :label="`${getBudgetYear}年人工福利(总额)`" align="center">
         <el-table-column min-width="140" label="工资" :show-overflow-tooltip="!isEdit" prop="preSalaryYtd" align="right">
           <template slot-scope="scope">
             <el-input v-if="isEdit && scope.$index == selectIndex" v-model="scope.row.preSalaryYtd" v-filter-check-input maxlength="12" placeholder="请输入" size="mini"></el-input>
@@ -570,7 +570,7 @@ import FeeScheduleApi from '@/apis/apis/feeScheduleApi'
 import { mapGetters } from "vuex"
 export default {
   mixins: [handle_paginator],
-  data() {
+  data () {
     return {
       isEdit: false,
       selectIndex: 0,
@@ -594,7 +594,7 @@ export default {
   watch: {},
   computed: {
     ...mapGetters(['getBudgetYear']),
-    exportParams() {
+    exportParams () {
       return {
         params: {
           bean: {
@@ -606,35 +606,35 @@ export default {
         exportUrl: '/bizHrfee/excelExport',
       }
     },
-    importParams() {
+    importParams () {
       return {
         importUrl: '/bizTrain/excelImport',
         budgetInstanceSheetId: this.routerQuery.budgetInstanceSheetId
       }
     }
   },
-  created() {
+  created () {
     this.routerQuery = this.$route.query
     this.getBizTypeList()
     this.getSelectList()
     this.getList()
   },
-  mounted() {
+  mounted () {
 
   },
   // 日期转换格式
   filters: {
-    formatDate(time) {
+    formatDate (time) {
       return time ? new Date(parseInt(time)).format('yyyy-MM-dd') : ''
     },
-    formatVal(val) {
+    formatVal (val) {
       return toThousandsClean(val)
     }
   },
   methods: {
     returnValue,
     // 获取业态列表
-    getBizTypeList() {
+    getBizTypeList () {
       GlobalApi.getSelectList({ selectType: 'bizFormat' }).then(res => {
         if (res.code == 0) {
           res.data.forEach((item, index) => {
@@ -645,7 +645,7 @@ export default {
       })
     },
     // 获取级别列表
-    getSelectList() {
+    getSelectList () {
       GlobalApi.getSelectList({ selectType: 'bizTypeLevel' }).then(res => {
         if (res.code == 0) {
           this.levelList = res.data
@@ -653,7 +653,7 @@ export default {
       })
     },
     // 查询
-    async getList() {
+    async getList () {
       const params = {
         ...this.pageInfo,
         bean: {
@@ -672,16 +672,16 @@ export default {
       })
     },
     // 重新选择搜索项重置页码
-    getListChange() {
+    getListChange () {
       this.isEdit = false
       this.pageInfo.pageNum = 1
       this.getList()
     },
     // 选择一行显示input
-    showInput(index) {
+    showInput (index) {
       this.selectIndex = index
     },
-    reset() {
+    reset () {
       this.query = {
         bizTypeId: null,
         department: null,
@@ -691,12 +691,12 @@ export default {
       this.getList()
     },
     // 编辑
-    edit() {
+    edit () {
       this.isEdit = true
       this.tableData.shift()
     },
     // 取消
-    cancel() {
+    cancel () {
       let tableData = JSON.stringify(this.tableData)
       if (this.oldTableData == tableData) {
         this.getList()
@@ -715,7 +715,7 @@ export default {
       }
     },
     // 保存
-    save() {
+    save () {
       this.selectIndex = 0
       const params = {
         budgetInstanceSheetId: this.routerQuery.budgetInstanceSheetId,

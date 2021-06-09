@@ -25,8 +25,9 @@ export default {
       tableConfig: TableConfig,
 
       formData: {
-        chargeType: null,
-        squareFlag: null,
+        chargeType: '',
+        squareFlag: '',
+        projectId: '',
         yearMonth: parseTime(new Date(), '{y}-{m}'),
       },
 

@@ -5,7 +5,13 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build:dev": "vue-cli-service build --mode dev",
+		"build:devSyys": "vue-cli-service build --mode devSyys",
+		"build:devSjfx": "vue-cli-service build --mode devSjfx",
+		"build:devZsfx": "vue-cli-service build --mode devZsfx",
 		"build:prod": "vue-cli-service build --mode prod",
+		"build:prodSyys": "vue-cli-service build --mode prodSyys",
+		"build:prodSjfx": "vue-cli-service build --mode prodSjfx",
+		"build:prodZsfx": "vue-cli-service build --mode prodZsfx",
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
@@ -31,13 +37,18 @@
 		"@vue/cli-plugin-vuex": "~4.5.0",
 		"@vue/cli-service": "~4.5.0",
 		"@vue/eslint-config-prettier": "^6.0.0",
+		"autoprefixer": "^8.0.0",
 		"babel-eslint": "^10.1.0",
+		"css-loader": "^5.2.1",
 		"eslint": "^6.7.2",
 		"eslint-plugin-prettier": "^3.1.3",
 		"eslint-plugin-vue": "^6.2.2",
 		"node-sass": "^4.12.0",
+		"postcss": "^8.2.10",
+		"postcss-loader": "^5.2.0",
 		"prettier": "^1.19.1",
 		"sass-loader": "^8.0.2",
+		"style-loader": "^2.0.0",
 		"vue-template-compiler": "^2.6.11"
 	},
 	"eslintConfig": {
@@ -67,6 +78,9 @@
 	"browserslist": [
 		"> 1%",
 		"last 2 versions",
-		"not dead"
+		"not ie <= 8",
+		"iOS >= 8",
+		"Firefox >= 20",
+		"Android >= 4.4"
 	]
 }

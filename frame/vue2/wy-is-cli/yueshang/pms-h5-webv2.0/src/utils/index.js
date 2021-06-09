@@ -1,4 +1,6 @@
 import router from "../router";
+const ua = navigator.userAgent.toLowerCase();
+const isWxwork = ua.match(/wxwork/i) == 'wxwork'
 const getDefaultDate = (type) => {
     let date = new Date();
     let year = date.getFullYear();
@@ -22,7 +24,6 @@ const getDefaultDate = (type) => {
 
 const numberFormat = (value, options = { precision: 2, unit: '', type: true }) => {
     //value:number | string,//options:{ precision: number, unit: string, type: Boolean }
-
     if (isNaN(value) || ['', null, undefined].includes(value)) {
         return '-';
     }
@@ -31,7 +32,7 @@ const numberFormat = (value, options = { precision: 2, unit: '', type: true }) =
         value = value / 10000;
     }
     const newValue = value.toString().replace(/[^\d.-]/g, '');
-    
+
     const text = Number(newValue).toFixed(options.precision);
     const bit = text.indexOf('.') < 0 ? '' : text.substr(text.indexOf('.'));
     const format = text.replace(/\..*$/, '').split('').reverse().join('').replace(/\d{3}\B/g, function (_, c) {
@@ -40,11 +41,17 @@ const numberFormat = (value, options = { precision: 2, unit: '', type: true }) =
     return `${format}${bit}${options.unit || ''}`;
 }
 
-const absoluteValue = (num) => {
+const absoluteValue = (num, precision) => {
     if (isNaN(num) || ['', null, undefined].includes(num)) {
         return '-';
     }
-    return Math.abs(num - 0) + "%";
+    if (precision) {
+        let abs = Math.abs(num - 0)
+        return abs.toFixed(precision) + "%";
+    } else {
+        return Math.abs(num - 0) + "%";
+    }
+
 }
 const isEmpty = (num) => {
     if (num === 0) {
@@ -54,10 +61,10 @@ const isEmpty = (num) => {
 }
 // app交互-跳转
 const pageGo = (url, param, title) => {
-    if (window.WebViewJavascriptBridge) {
-        window.WebViewJavascriptBridge.callHandler('gotoDetail', { 'param': '详情', 'url': url + '?' + getUrl(param) }, function (responseData) { });
+    if (window.WebViewJavascriptBridge && !isWxwork) {
+        window.WebViewJavascriptBridge.callHandler('gotoDetail', { 'param': '详情', 'url': url + '?' + getUrl(param) }, function () { });
         return
-    } else if (window.webkit && window.webkit.messageHandlers) {
+    } else if (window.webkit && window.webkit.messageHandlers && !isWxwork) {
         window.webkit.messageHandlers.gotoDetail.postMessage({ title: '详情', url: url + '?' + getUrl(param) })
         return
     }
@@ -65,7 +72,24 @@ const pageGo = (url, param, title) => {
     router.push({ path: url, query: param })
 
 }
+// app交互-tab显示、隐藏
+const showTabStatus = (showBottomTab = 'true', showTopTab = 'true') => {
+    return
+    if (window.WebViewJavascriptBridge && !isWxwork) {
+        window.WebViewJavascriptBridge.callHandler('showTabStatus', { 'showBottomTab': showBottomTab, 'showTopTab': showTopTab }, function () {});
+    } else if (window.webkit && window.webkit.messageHandlers && !isWxwork) {
+        if(showBottomTab === 'true') {
+            window.webkit.messageHandlers.tabShow.postMessage({})
+        } else {
+            window.webkit.messageHandlers.tabHidden.postMessage({})
+        }
+    }
+}
+
 const getUrl = (data) => {
+    if(!data){
+        return ''
+    }
     let newData = deepCloneTofieldNull(data);
     let url = ''
     Object.keys(newData).forEach(item => {
@@ -92,6 +116,45 @@ const deepCloneTofieldNull = (obj) => {
     }
     return newObj;
 }
+const getUrlParamsCode = (codeName) => {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == codeName) { return pair[1]; }
+    }
+    return (false);
+}
+// 获取url参数值
+const getQueryString = (name,str) => {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    // console.log(window.location.search,'-----window.location.search');
+    let r = ''
+    if(str){
+        str = encodeURI(str)
+        str = '?'+str.split('?')[1]
+        r = str.substr(1).match(reg);
+    }else{
+        r = window.location.search.substr(1).match(reg);
+    }
+    var context = "";
+    if (r != null)
+        context = r[2];
+    reg = null;
+    r = null;
+    return context == null || context == "" || context == "undefined" ? "" : context;
+}
+// 打开文件
+const openFile = (url, name) => {
+    if (window.WebViewJavascriptBridge && !isWxwork) {
+        window.WebViewJavascriptBridge.callHandler('downloadFile', { param: "详情", url: process.env.VUE_APP_URL + url, fileName: name }, function () {});
+        return
+    } else if (window.webkit && window.webkit.messageHandlers && !isWxwork) {
+        window.webkit.messageHandlers.downloadFile.postMessage({ param: '详情', url: process.env.VUE_APP_URL + url, fileName: name })
+        return
+    }
+    window.open(url)
+}
 
 export default {
     getDefaultDate,
@@ -100,5 +163,9 @@ export default {
     isEmpty,
     pageGo,
     getUrl,
-    deepCloneTofieldNull
+    deepCloneTofieldNull,
+    getUrlParamsCode,
+    getQueryString,
+    showTabStatus,
+    openFile
 }

@@ -1,0 +1,35 @@
+function tagStatus (val) {
+  var enumObj = {
+    '1': 'success',
+    '3': 'info',
+    '2': 'danger',
+    '4': 'warning'
+  }
+  return enumObj[val]
+}
+
+function registrationStatus(val) {
+  var enumObj = {
+    '1': '已报名',
+    '2': '未报名',
+    '3': '已取消',
+    '4': '已驳回',
+    '5': '已审核'
+  }
+  return enumObj[val]
+}
+
+function cancelStatus(val) {
+  var enumObj = {
+    '1': '取消报名',
+    '2': '已取消',
+    '3': '取消报名',
+    '4': '活动已结束',
+    '5': '活动已驳回'
+  }
+  return enumObj[val]
+}
+
+module.exports = {
+  tagStatus: tagStatus, registrationStatus: registrationStatus, cancelStatus: cancelStatus
+}

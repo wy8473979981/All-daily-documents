@@ -23,7 +23,7 @@ export default {
     return {
       formConfig: FormConfig,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       // 曲鹏翰跟梁天沟通了下，客流排名（总部）这里，默认日期改成昨天。其它接口默认还是当天。因为数仓那边客流日表，一天一更新，所以查今天的话，是没数据的，看起来不好看
       formData: {
@@ -39,10 +39,6 @@ export default {
       requestConfig: {
         query: {
           api: passengerFlow.getListByRankingOfHeadquarters
-        },
-
-        export: {
-          type: 'exportOfPfRankingHeadquarters',
         },
       }
     }

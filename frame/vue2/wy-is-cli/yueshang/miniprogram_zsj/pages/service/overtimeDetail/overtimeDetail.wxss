@@ -1,0 +1,73 @@
+/* pages/service/requestNote/requestNote.wxss */
+page{
+  font-size: 30rpx;
+  color: #333;
+  background: #f5f5f5;
+  margin-bottom: 100rpx;
+}
+.ys-block{
+  line-height: 60rpx;
+  padding: 30rpx 25rpx;
+  background: #fff;
+}
+.ys-block .item-wrapper{
+  position: relative;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.ys-block .item-wrapper label{
+  position: absolute;
+  width: 180rpx;
+  left: 0;
+  font-size: 32rpx;
+}
+.ys-block .item-wrapper text{
+  position: absolute;
+  left: 180rpx;
+  right: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #999;
+
+}
+.ys-block .item-wrapper .status{
+  position: absolute;
+  right: 0;
+  padding: 0 10rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  background: #f8b710;
+  color: #fff;
+}
+.ys-block .content{
+  color: #999;
+}
+.ys-title{
+  padding: 30rpx 25rpx;
+  color: #999;
+  background: #f5f5f5;
+}
+.list .header{
+  line-height: 0;
+}
+.list .title{
+  font-size: 32rpx;
+  color: #333;
+}
+.list .name{
+  font-size: 28rpx;
+  color: #666;
+}
+.list .date{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+button{
+  font-size: 30rpx;
+  line-height: 99rpx;
+}

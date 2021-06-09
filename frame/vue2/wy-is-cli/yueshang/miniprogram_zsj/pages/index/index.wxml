@@ -1,0 +1,52 @@
+ <!--pages/index/index.wxml-->
+<view class="ys-block" id="page-index">
+<view class="ys-section" style='padding:0 20rpx;'>
+    <view class='toogle' bindtap='goShops'>
+      <image class='local' src='/static/images/location.png'></image>
+      <text class='shop'>{{global.shortName}}</text>
+      <text class='shop'>{{global.brandName || ''}}</text>
+      <text class="shop">{{global.storeNo}}</text>
+      <image class='arrow' src='/static/images/arrow-down.png'></image>
+    </view>
+    <view class="panel-image-wrapper">
+        <image style="width:100%;height:280rpx;" src="/static/images/assets/banner.png"  mode="aspectFill"></image>
+    </view>
+  </view><!--ys-section-->
+
+    <!-- <form class="form-id" bindsubmit="submit" report-submit='true' >
+      <button form-type="submit" type="default" size="mini"></button>
+    </form> -->
+    <view class="ys-section">
+      <view class="ys-grid-list ys-grid-navs">
+        <form class="ys-grid-item" bindsubmit="submit" data-type='{{item.type}}' data-link="{{item.link}}" report-submit='true' wx:for= "{{gridNavs}}" wx:key='{{item.id}}' >
+          <view class="grid-item-wrapper">
+            <button form-type="submit"></button>
+            <view slot="icon" class="ys-icon ys-icon-navlogo">
+              <image src="{{item.icon}}" mode="aspectFill" style="width:100%;height:100%;"></image>
+            </view>
+            <text  class="ys-grid-label">{{item.name}}</text>
+          </view>
+        </form>
+          <!-- <view class="ys-grid-item"  wx:for= "{{gridNavs}}" wx:key='{{item.id}}'>
+            <view class="grid-item-wrapper" bindtap="goUrl" data-type='{{item.type}}' data-link="{{item.link}}">
+              <view slot="icon" class="ys-icon ys-icon-navlogo">
+                <image src="{{item.icon}}" mode="aspectFill" style="width:100%;height:100%;"></image>
+              </view>
+              <text  class="ys-grid-label">{{item.name}}</text>
+            </view>
+          </view> -->
+          
+          <!-- <view class="ys-grid-item">
+            <view class="grid-item-wrapper" >
+              <navigator url="plugin-private://wxf1c914ae975dffca/pages/index">
+                <view slot="icon" class="ys-icon ys-icon-navlogo">
+                  <image src="/static/images/assets/p7.png" mode="aspectFill" style="width:100%;height:100%;"></image>
+                </view>
+              </navigator>
+              <text  class="ys-grid-label">卡券核销</text>
+            </view>
+          </view> -->
+
+      </view><!--ys-grid-list-->
+   </view><!--ys-section-->
+</view>

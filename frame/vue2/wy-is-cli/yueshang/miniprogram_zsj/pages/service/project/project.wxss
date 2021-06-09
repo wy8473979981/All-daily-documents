@@ -1,0 +1,11 @@
+/* pages/service/overtime/overtime.wxss */
+page{
+  background: #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 100rpx;
+}
+
+.ys-block-gap{
+  background: #fff;
+}

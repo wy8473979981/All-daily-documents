@@ -5,7 +5,7 @@ const merchant = [
         name: "sjgl",
         component: () => import("../views/merchant/sjgl/index.vue"),
         meta: {
-            goback: 1
+            keepAlive: true
         }
     },
     {
@@ -13,7 +13,7 @@ const merchant = [
         name: "sjxx",
         component: () => import("../views/merchant/sjxx/index.vue"),
         meta: {
-            goback: 2
+            goback: 1
         }
     },
     {
@@ -21,7 +21,7 @@ const merchant = [
         name: "sjlb",
         component: () => import("../views/merchant/sjlb/index.vue"),
         meta: {
-            goback: 2
+            goback: 1
         }
     },
     {
@@ -29,7 +29,7 @@ const merchant = [
         name: "sjbj",
         component: () => import("../views/merchant/sjbj/index.vue"),
         meta: {
-            goback: 3
+            goback: 1
         }
     },
 

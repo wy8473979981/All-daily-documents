@@ -1,0 +1,13 @@
+.btn-box{
+  background: #ddd;
+  color:white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}

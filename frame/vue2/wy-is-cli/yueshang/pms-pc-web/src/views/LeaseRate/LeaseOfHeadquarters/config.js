@@ -70,7 +70,7 @@ export const FormConfig = [
 
 export const X = new Array(12).fill(1).map((i, idx) => `${idx + 1}月`)
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -85,8 +85,8 @@ export function TableConfig(method) {
       fixed: true,
       type: 'link',
       props: {
-        click(data) {
-          method(data)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       }
     },
@@ -147,7 +147,7 @@ export function TableConfig(method) {
       sortable: 'custom'
     },
     {
-      key: 'coverRentSquare',
+      key: 'leaseCoverRentSquare',
       label: '押不抵租面积(㎡)',
       type: 'area',
       minWidth: 135,
@@ -155,9 +155,9 @@ export function TableConfig(method) {
     },
     {
       key: 'twoSignNum',
-      label: '新增双签数量',
-      type: 'number',
-      width: 110,
+      label: '新增双签数(个)',
+      align: 'right',
+      width: 130,
       sortable: 'custom'
     },
     {
@@ -169,9 +169,9 @@ export function TableConfig(method) {
     },
     {
       key: 'failContNum',
-      label: '新增解约数量',
-      type: 'number',
-      width: 110,
+      label: '新增解约数(个)',
+      align: 'right',
+      width: 130,
       sortable: 'custom'
     },
     {

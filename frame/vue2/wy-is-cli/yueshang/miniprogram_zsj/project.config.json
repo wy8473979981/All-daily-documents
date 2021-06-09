@@ -1,0 +1,107 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.7.7",
+  "appid": "wx95145c9c0c00d0f0",
+  "projectname": "miniprogram_zsj",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/operate/daily/daily",
+          "pathName": "pages/operate/daily/daily",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/operate/dailyList/dailyList",
+          "pathName": "pages/operate/dailyList/dailyList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/operate/dailyEdit/dailyEdit",
+          "pathName": "pages/operate/dailyEdit/dailyEdit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/operate/dailyDetail/dailyDetail",
+          "pathName": "pages/operate/dailyDetail/dailyDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/operate/daily/daily",
+          "pathName": "pages/operate/daily/daily",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/operate/daily/daily",
+          "pathName": "pages/operate/daily/daily",
+          "query": "saleYmd=20210325",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

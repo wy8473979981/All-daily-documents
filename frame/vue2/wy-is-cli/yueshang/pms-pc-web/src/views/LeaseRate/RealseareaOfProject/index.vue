@@ -34,7 +34,7 @@ export default {
 
       requestConfig: {
         query: {
-          api: leaseRate.getListByLeaseOfHeadquarters,
+          api: leaseRate.getListByRealseareaOfProject,
         }
       }
     }

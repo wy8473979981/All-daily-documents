@@ -60,7 +60,7 @@ export const FormConfig = [
   },
 ]
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -73,8 +73,8 @@ export function TableConfig(method) {
       label: '项目',
       type: 'link',
       props: {
-        click(scope) {
-          method(scope)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       },
       minWidth: 120,
@@ -137,7 +137,7 @@ export function TableConfig(method) {
       sortable: 'custom'
     },
     {
-      key: 'workdayDaliySales	',
+      key: 'workdayDaliySales',
       label: '工作日日均(万元)',
       type: 'ten-thousand',
       minWidth: 160,

@@ -1,0 +1,12 @@
+.warning{
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  font-size: 30rpx;
+  width: 100%;
+  background: #d8014a;
+  color: #fff;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+}

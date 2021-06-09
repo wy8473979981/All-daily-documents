@@ -1,0 +1,42 @@
+/* 模版公共样式 */
+.template-wrapper {
+  .template-content {
+    padding: 10px;
+    background: #f6f6ee;
+    border-bottom: 10px solid #ECF0F2;
+    .h2-title {
+      font-size: 16px;
+      height: 16px;
+      line-height: 16px;
+      padding-left: 5px;
+      margin: 0 0 10px;
+      font-weight: 400;
+      color: #333333;
+      border-left: 3px solid#468CEB;
+    }
+    p {
+      font-size: 14px;
+      display: flex;
+      margin-bottom: 8px;
+      line-height: 20px;
+      .span-title {
+        flex: none;
+        display: block;
+        width: 108px;
+        color: #757575;
+      }
+      .span-value {
+        flex: 1;
+        color: #333333;
+        word-break: break-all;
+      }
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+    .van-icon-info {
+      color: #F5A623;
+      padding: 0 2px;
+    }
+  }
+}

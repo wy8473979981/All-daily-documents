@@ -346,7 +346,7 @@
         </el-table-column>
         <el-table-column show-overflow-tooltip label="11月" align="right" min-width="140" v-if="headerFilter(3,3)">
           <template slot-scope="scope">
-            <p>{{scope.row.novZj | blank}}</p>
+            <p>{{scope.row.novZj | micrometerLevel}}</p>
             <!-- <p>{{scope.row.novWg  | micrometerLevel}}</p> -->
           </template>
         </el-table-column>
@@ -722,7 +722,7 @@ import LeaseApi from '@/apis/apis/leaseApi'
 import WsnApi from '@/apis/apis/wsnApi'
 export default {
   mixins: [handle_paginator],
-  data() {
+  data () {
     let Vue = this
     var checkTime = function (rule, value, callback) {
       const field = rule.field.split(".");
@@ -757,7 +757,23 @@ export default {
     return {
       annual: parseInt(this.$route.query.annual),
       statData: [],
-      stat: '',
+      stat: {
+        multiTotal: 0,
+        areaTotal: 0,
+        amountTotal: 0,
+        janZj: 0,
+        febZj: 0,
+        marchZj: 0,
+        aprilZj: 0,
+        mayZj: 0,
+        juneZj: 0,
+        julyZj: 0,
+        augZj: 0,
+        sepZj: 0,
+        octZj: 0,
+        novZj: 0,
+        deceZj: 0,
+      },
       timeCover: [],
       showMore: false,
       isAdjustTime: {
@@ -1076,7 +1092,7 @@ export default {
   },
 
   filters: {
-    initialStatus(val) {
+    initialStatus (val) {
       switch (val) {
         case 2:
           return '经营中'
@@ -1088,12 +1104,12 @@ export default {
           return '-'
       }
     },
-    contractName(val) {
+    contractName (val) {
       let level = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
       return level[val]
     },
     //时间转换
-    timeYearMathDay(val) {
+    timeYearMathDay (val) {
       if (val) {
         var date = new Date(val);
         return date.format("yyyy-MM-dd")
@@ -1104,7 +1120,7 @@ export default {
   },
   watch: {
     'headerList': {
-      handler(newName, oldName) {
+      handler (newName, oldName) {
         this.$nextTick(() => {
           this.$refs.table.doLayout(); //解决表格错位
         })
@@ -1112,12 +1128,12 @@ export default {
       immediate: true,
       deep: true
     },
-    checkList(newValue, oldValue) {
+    checkList (newValue, oldValue) {
       this.$nextTick(() => {
         this.$refs.table.doLayout(); //解决表格错位
       });
     },
-    contractEdit(newValue, oldValue) {
+    contractEdit (newValue, oldValue) {
       if (!newValue && this.$refs.editContractForm) {
         this.$refs.editContractForm.resetFields()
         this.editContractForm = {
@@ -1129,25 +1145,25 @@ export default {
         }
       }
     },
-    editDebts(newValue, oldValue) {
+    editDebts (newValue, oldValue) {
       if (!newValue) {
         this.clearForm.editOwingMoneyList = []
       }
     }
   },
   components: { drawer, excel },
-  created() {
+  created () {
     this.routerQuery = this.$route.query;
     this.getList();
     this.headerList = JSON.parse(JSON.stringify(this.tableHeaders))
   },
-  mounted() {
+  mounted () {
 
   },
   methods: {
     rTime,
     //编辑的合同月份是否已有合同已覆盖
-    getTimeCover(month) {
+    getTimeCover (month) {
       let flog = true;
       let monthDays = 0;
       if (this.editContractForm.budgetInstanceBizLeaseVOS.length > 0) {
@@ -1171,7 +1187,7 @@ export default {
       return flog
     },
     //已有合同大于预算年限,调铺才可以编辑合同
-    constructEditShow() {
+    constructEditShow () {
       let list = [];
       this.editContractForm.budgetInstanceBizLeaseVOS.map(item => {
         list.push(new Date(item.contEndDate).getTime())
@@ -1183,13 +1199,13 @@ export default {
       }
       return true
     },
-    editRowClassName({ row, rowIndex }) {
+    editRowClassName ({ row, rowIndex }) {
       if (row.updateType === 1) {
         return 'editedWsn'
       }
     },
     //判断是否空铺
-    async isEmptyType() {
+    async isEmptyType () {
       console.log(this.editContractForm)
       let params = {
         date: this.editContractForm.operateStore.finishDate,
@@ -1204,7 +1220,7 @@ export default {
       })
     },
     //调铺时间限制
-    isAdjustTimeImit(time) {
+    isAdjustTimeImit (time) {
       let list = [];
       this.editContractForm.budgetInstanceBizLeaseVOS.map(item => {
         list.push(new Date(item.contEndDate).getTime())
@@ -1213,7 +1229,7 @@ export default {
       let maxTime = Math.max(...list)
       return time.getTime() > maxTime || time.getTime() < minTime
     },
-    contractTimeImit(time) {
+    contractTimeImit (time) {
       let list = [];
       this.editContractForm.leaseContracts.map(item => {
         list.push(new Date(item.contEndDate).getTime())
@@ -1226,7 +1242,7 @@ export default {
         return time.getTime() < finishDateTime
       }
     },
-    compare(property) {
+    compare (property) {
       return function (a, b) {
         var value1 = a[property];
         var value2 = b[property];
@@ -1234,7 +1250,7 @@ export default {
       }
     },
     //多经遍历展示
-    getMultiType(multiType, arr) {
+    getMultiType (multiType, arr) {
       if (arr.indexOf(Number(multiType)) != -1) {
         return true
       } else {
@@ -1242,7 +1258,7 @@ export default {
       }
     },
     //商户切换
-    getUserName(obj, val, type) {
+    getUserName (obj, val, type) {
       if (type == 'edit') {
         obj.newShopConnId = val;
       }
@@ -1250,13 +1266,13 @@ export default {
       this.userList = [];
     },
     //filterSave
-    filterSave(data) {
+    filterSave (data) {
       this.display = data;
       this.headerList = JSON.parse(JSON.stringify(this.tableHeaders))
       //this.headerList = Object.assign([], this.tableHeaders);
     },
     //过滤
-    headerFilter(parentId, id) {
+    headerFilter (parentId, id) {
       let arr = this.headerList.filter(item => item.id == parentId);
       if (arr[0].list) {
         let list = arr[0].list;
@@ -1264,7 +1280,7 @@ export default {
       }
     },
     //起始时间更改
-    timeChange(obj, type, edit) {
+    timeChange (obj, type, edit) {
       switch (type) {
         case 'rentFree':
           this.$set(obj, 'freeStart', obj.rentFree[0]);
@@ -1298,7 +1314,7 @@ export default {
       }
     },
     //删除合同
-    async deleteContractVo(list, i, item) {
+    async deleteContractVo (list, i, item) {
       if (item.contractId && item.contractId != 0) {
         await WsnApi.deleteContract({ contractId: item.contractId }).then(res => {
           if (res.code === 0 && res.data) {
@@ -1309,11 +1325,11 @@ export default {
       list.splice(i, 1)
     },
     //新增合同
-    addContractVo(splitNew) {
+    addContractVo (splitNew) {
       splitNew.multiContracts.push({ storeId: this.editContractForm.operateStore.storeId, multiType: this.editContractForm.operateStore.multiType })
     },
     //新增用户
-    async addUser(item, name) {
+    async addUser (item, name) {
       let params = {
         merchantName: name
       }
@@ -1332,7 +1348,7 @@ export default {
       })
     },
     //新签用户
-    async getNewuser(query) {
+    async getNewuser (query) {
       if (query !== '') {
         this.userLoading = true;
         let params = {
@@ -1355,7 +1371,7 @@ export default {
       }
     },
     //编辑
-    async editContract(item) {
+    async editContract (item) {
       this.contractEdit = true;
       await WsnApi.editDetail({ storeId: item.storeId }).then(res => {
 
@@ -1379,12 +1395,12 @@ export default {
       })
     },
     //查询
-    checkFilter() {
+    checkFilter () {
       this.pageInfo.pageNum = 1;
       this.getList()
     },
     //重置
-    clearFilter() {
+    clearFilter () {
       this.pageInfo = {
         pageSize: 10,
         page: 1,
@@ -1403,14 +1419,14 @@ export default {
       this.getList()
     },
     // 查询列表
-    async getList() {
+    async getList () {
       const params = {
         ...this.pageInfo
       }
       await WsnApi.find(params).then(res => {
-        if (res.code === 0 && res.data && res.data.page) {
-          this.tableData = res.data.page.list;
-          this.pageInfo.total = res.data.page.total;
+        if (res.code === 0 && res.data) {
+          this.tableData = res.data.page && res.data.page.list;
+          this.pageInfo.total = res.data.page && res.data.page.total;
           this.stat = res.data.stat;
           getDynamicTableHeight(this);
         } else {
@@ -1420,11 +1436,11 @@ export default {
       })
     },
     // 多选
-    handelSelecte(val) {
+    handelSelecte (val) {
       this.selectItem = val
     },
     // 扩展
-    toggle(v) {
+    toggle (v) {
       this.headerList.map(item => {
         let status = item.selected;
         if (item.id == v) {
@@ -1439,7 +1455,7 @@ export default {
       this.tableHeaders = JSON.parse(JSON.stringify(this.headerList))
     },
     //弹窗关闭
-    dialogVisibles(v) {
+    dialogVisibles (v) {
       console.log(v)
       this.spliteFormShop = v;
       this.splitShop = v;
@@ -1455,7 +1471,7 @@ export default {
       this.mergeInfo = v;
     },
     //欠费信息
-    async getOwingMoney(item) {
+    async getOwingMoney (item) {
       let params = {
         contId: item.contId,
         id: item.id
@@ -1467,7 +1483,7 @@ export default {
       })
     },
     //添加/编辑欠费信息
-    async getEditOwingMoney(item) {
+    async getEditOwingMoney (item) {
       this.lease = item;
       this.editDebts = true;
       let params = {
@@ -1495,13 +1511,13 @@ export default {
       })
     },
     //编辑更新列表数据
-    updatTarget(data) {
+    updatTarget (data) {
       this.lease.clearTarget = data;
       this.editDebts = false;
     },
     //
     //
-    updateClearChange(val) {
+    updateClearChange (val) {
       if (val.selected) {
         val.selected = false
       } else {
@@ -1510,7 +1526,7 @@ export default {
       this.clearForm.editOwingMoneyListSlected = val;
     },
     //修改欠费清单
-    async updateBizClear() {
+    async updateBizClear () {
       let flog = false;
       console.log(this.$refs[form]);
       /* this.$nextTick(() => { */
@@ -1560,7 +1576,7 @@ export default {
       }
     },
     //查看清欠checkBizClearowe
-    async checkBizClear(item) {
+    async checkBizClear (item) {
       this.checkDebts = true;
       this.getOwingMoney(item);
       this.lease = item;
@@ -1577,11 +1593,11 @@ export default {
         }
       }) */
     },
-    update() {
+    update () {
       this.checkDebts = false;
       this.getEditOwingMoney(this.lease)
     },
-    async contractEditSure(form) {
+    async contractEditSure (form) {
       let flog = false;
       console.log(this.$refs[form]);
       /* this.$nextTick(() => { */
@@ -1619,7 +1635,7 @@ export default {
         })
       }
     },
-    async getStatAll(multiType) {
+    async getStatAll (multiType) {
       let params = {
         "annual": this.$route.query.annual,
         "multiType": multiType ? multiType : '',

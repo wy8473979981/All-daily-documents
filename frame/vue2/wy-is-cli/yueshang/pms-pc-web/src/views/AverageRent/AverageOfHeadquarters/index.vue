@@ -32,7 +32,7 @@ export default {
 
       x: X,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -59,10 +59,6 @@ export default {
 
         list: {
           responseKey: ''
-        },
-
-        export: {
-          type: 'exportOfArAverageHeadquarters',
         },
       },
     }

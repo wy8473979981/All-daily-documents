@@ -2,7 +2,8 @@
 const yueColumnsZJ = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -13,7 +14,7 @@ const yueColumnsZJ = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoney",
+        key: "qzMustMoney",//权责
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -23,7 +24,7 @@ const yueColumnsZJ = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoney",
+        key: "fixedQzFactMoney",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -38,6 +39,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -47,6 +49,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -56,6 +59,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -65,6 +69,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -74,6 +79,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -83,6 +89,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -92,6 +99,7 @@ const yueColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -99,7 +107,8 @@ const yueColumnsZJ = [
 const nianColumnsZJ = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -110,7 +119,7 @@ const nianColumnsZJ = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoneyYtd",
+        key: "qzMustMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -120,7 +129,7 @@ const nianColumnsZJ = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoneyYtd",
+        key: "fixedQzFactMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -135,6 +144,7 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -144,6 +154,7 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -153,6 +164,7 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -162,6 +174,7 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -171,15 +184,17 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
         label: "同比",
-        key: "qzCollectionRateTbYtd",
+        key: "fixedQzCollectionRateTbYtd",
         width: "1.6rem",
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -189,6 +204,7 @@ const nianColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -197,7 +213,8 @@ const nianColumnsZJ = [
 const yueColumnsWG = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -208,7 +225,7 @@ const yueColumnsWG = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoney",
+        key: "qzMustMoney",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -218,7 +235,7 @@ const yueColumnsWG = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoney",
+        key: "fixedQzFactMoney",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -233,6 +250,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -242,6 +260,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -251,6 +270,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -260,6 +280,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -269,6 +290,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -278,6 +300,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -287,6 +310,7 @@ const yueColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -294,7 +318,8 @@ const yueColumnsWG = [
 const nianColumnsWG = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -305,7 +330,7 @@ const nianColumnsWG = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoneyYtd",
+        key: "qzMustMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -315,7 +340,7 @@ const nianColumnsWG = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoneyYtd",
+        key: "fixedQzFactMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -330,6 +355,7 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -339,6 +365,7 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -348,6 +375,7 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -357,6 +385,7 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -366,15 +395,17 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
         label: "同比",
-        key: "qzCollectionRateTbYtd",
+        key: "fixedQzCollectionRateTbYtd",
         width: "1.6rem",
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -384,6 +415,7 @@ const nianColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -392,7 +424,8 @@ const nianColumnsWG = [
 const yueColumnsDJ = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -403,7 +436,7 @@ const yueColumnsDJ = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoney",
+        key: "qzMustMoney",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -413,7 +446,7 @@ const yueColumnsDJ = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoney",
+        key: "fixedQzFactMoney",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -428,6 +461,7 @@ const yueColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -437,6 +471,7 @@ const yueColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -446,6 +481,7 @@ const yueColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -455,6 +491,7 @@ const yueColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -462,7 +499,8 @@ const yueColumnsDJ = [
 const nianColumnsDJ = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -473,7 +511,7 @@ const nianColumnsDJ = [
     },
     {
         label: "应收(万)",
-        key: "contMustMoneyYtd",
+        key: "qzMustMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -483,7 +521,7 @@ const nianColumnsDJ = [
     },
     {
         label: "收入(万)",
-        key: "fixedFactMoneyYtd",
+        key: "fixedQzFactMoneyYtd",
         width: "2.2rem",
         sortable: true,
         align: "right",
@@ -498,6 +536,7 @@ const nianColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -507,15 +546,17 @@ const nianColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
         label: "同比",
-        key: "contCollectionRateTbYtd",
+        key: "fixedQzCollectionRateTbYtd",
         width: "1.6rem",
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -525,6 +566,7 @@ const nianColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     }
 ]
@@ -547,6 +589,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -556,6 +599,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -565,6 +609,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -574,6 +619,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -583,6 +629,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -592,6 +639,7 @@ const yueProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -610,6 +658,7 @@ const nianProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -619,6 +668,7 @@ const nianProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -628,6 +678,7 @@ const nianProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -637,6 +688,7 @@ const nianProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -646,15 +698,17 @@ const nianProjectColumnsZJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
         label: "同比",
-        key: "fixedQzCompletionRateTbYtd",
+        key: "fixedQzCollectionRateTbYtd",
         width: "1.6rem",
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -674,6 +728,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -683,6 +738,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -692,6 +748,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -701,6 +758,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -710,6 +768,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -719,6 +778,7 @@ const yueProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -737,6 +797,7 @@ const nianProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -746,6 +807,7 @@ const nianProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -755,6 +817,7 @@ const nianProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -764,6 +827,7 @@ const nianProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -773,15 +837,17 @@ const nianProjectColumnsWG = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
         label: "同比",
-        key: "fixedQzCompletionRateTbYtd",
+        key: "fixedQzCollectionRateTbYtd",
         width: "1.6rem",
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -802,6 +868,7 @@ const yueProjectColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -810,6 +877,7 @@ const yueProjectColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -827,6 +895,7 @@ const nianProjectColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -835,6 +904,7 @@ const nianProjectColumnsDJ = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]

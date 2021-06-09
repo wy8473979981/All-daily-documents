@@ -1,14 +1,15 @@
 <template>
   <div class="home" v-webTitle :data-title="`招商进度`">
-    <div class="header-top">
-      <ys-n-nav-bar :title="`招商进度`" />
+    <div class="header-top header-top-padding-top">
+      <!-- <ys-n-nav-bar :title="`招商进度`" /> -->
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :dilogShow="false" :disabledAll="true"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'zhaoshang'" :selected="selected" @touchstart="touchPick" @projeSelected="projeSelected" :disabledAll="true">
+            </ys-n-project-select>
           </div>
           <div class="app-header-right">
-            <ys-n-date-pick :type="`year-month`" @selected="dateSelected" :selected="params.realCompletedYm">
+            <ys-n-date-pick :type="`year-month`" @touchstart="touchPick" @close="closePick" @selected="dateSelected" :selected="params.realCompletedYm">
             </ys-n-date-pick>
           </div>
         </div>
@@ -17,38 +18,48 @@
         <ys-n-tab :tabList="tabList" :currentTab="currentTab" @selected="tabClickFunc"></ys-n-tab>
       </div>
     </div>
-    <ys-n-section :title="chartsTitle" :collapseable="collapseable">
-      <div class="head-actions_left_view" slot="head-actions_left">
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <ys-n-filter-chart-dialog :searchList="searchTypeList" @search="searchType" :leftLink="true" @linkUrl="goLink"></ys-n-filter-chart-dialog>
-      </div>
-      <div slot="head-actions" class="head-actions">
-        <div class="list-mode-header">
-          <span :class="'list-mode-item ' + (table.mode == '2' ? 'active' : '')" @click="onListModeChanged" data-value="2">建筑面积</span>
-          <span :class="'list-mode-item ' + (table.mode == '3' ? 'active' : '')" @click="onListModeChanged" data-value="3">计租面积</span>
-          <span :class="'list-mode-item ' + (table.mode == '1' ? 'active' : '')" @click="onListModeChanged" data-value="1">品牌数量</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section :collapseable="collapseable" :hasTable="true">
+        <div class="head-actions_left_view" slot="head-actions_left">
+          <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
+          <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
+          <ys-n-filter-chart-dialog :label="chartsTitle" @touchstart="touchPick" :searchList="searchTypeList" @search="searchType" @linkUrl="goLink" :type="'zhaoshang'"></ys-n-filter-chart-dialog>
         </div>
-      </div>
-      <ys-n-table :fixednum="1" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="table.mode" @row-column-click="onRowColumnClick"></ys-n-table>
-    </ys-n-section>
+        <div slot="head-actions" class="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (table.mode == '2' ? 'active' : '')" @click="onListModeChanged" data-value="2">建筑面积</span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (table.mode == '3' ? 'active' : '')" @click="onListModeChanged" data-value="3">计租面积</span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (table.mode == '1' ? 'active' : '')" @click="onListModeChanged" data-value="1">品牌数量</span>
+          </div>
+        </div>
+        <ys-n-table :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="table.mode" @row-column-click="onRowColumnClick"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
+import { mapMutations, mapGetters } from "vuex";
 const columnList = [{
+  label: "序号",
+  width: "1.3rem",
+  align: "left",
+  fixed: true
+}, {
   label: "项目",
   key: "projectName",
   width: "2rem",
   color: "#3B96BE",
   align: "left",
+  fixed: true
 },
 {
   label: "开业时间",
   key: "openDate",
-  width: "2.5rem",
-  align: "right",
+  width: "2.7rem",
+  align: "left",
   sortable: true,
 },
 {
@@ -213,7 +224,7 @@ const columnList = [{
 },
 {
   label: "实际",
-  key: "startBusinessA",
+  key: "initialChargeA",
   width: "2rem",
   group: "前期费用",
   align: "right",
@@ -221,7 +232,7 @@ const columnList = [{
 },
 {
   label: "目标",
-  key: "startBusinessT",
+  key: "initialChargeT",
   width: "2rem",
   group: "前期费用",
   align: "right",
@@ -229,7 +240,7 @@ const columnList = [{
 },
 {
   label: "差异",
-  key: "startBusinessC",
+  key: "initialChargeC",
   width: "2rem",
   group: "前期费用",
   align: "right",
@@ -238,51 +249,58 @@ const columnList = [{
 ]
 export default {
   name: "Home",
-  data() {
+  data () {
     return {
+      isLoading: false,
       projectList: [],
-      searchTypeList: [{
-        label: "",
-        key: "wylx",
-        selectedCode: 1,
-        values: [{
-          name: "筹备招商进度",
-          url: "/zhaoshang/process/index",
-          code: 1,
-        },
+      searchTypeList: [
         {
-          name: "筹备期网批驳回率统计",
-          url: "/zhaoshang/reject",
-        },
-        {
-          name: "筹备期全面抽成统计",
-          url: "/zhaoshang/commissionTotal",
-        }, // {
-        // 	label: "项目铺位分解",
-        // 	url: "/pages/zhaoshang/pwfj/pwfj"
-        // },
-        {
-          name: "招商业绩考核",
-          url: "/zhaoshang/perfCheck/index",
-        },
-        {
-          name: "总部联发品牌数据监控",
-          url: "/zhaoshang/linkBrand/index",
-        },
-        {
-          name: "已招租金达成率柱状图",
-          url: "/zhaoshang/rentCompletRate",
-        },
-        {
-          name: "进场审图进度-品牌数",
-          url: "/zhaoshang/brandNum",
-        },
-        {
-          name: "待开业项目招商进度-品牌数",
-          url: "/zhaoshang/noMakebusinessBrandNum",
-        },
-        ],
-      }],
+          label: "",
+          key: "wylx",
+          selectedCode: 1,
+          values: [{
+            name: "筹备招商进度",
+            url: "/zhaoshang/process/index",
+            code: 1
+          },
+          {
+            name: "筹备期网批驳回率统计",
+            url: "/zhaoshang/reject",
+            code: 2
+          },
+          {
+            name: "筹备期全面抽成统计",
+            url: "/zhaoshang/commissionTotal",
+            code: 3
+          },
+          {
+            name: "招商业绩考核",
+            url: "/zhaoshang/perfCheck/index",
+            code: 4
+          },
+          {
+            name: "总部联发品牌数据监控",
+            url: "/zhaoshang/linkBrand/index",
+            code: 5
+          },
+          {
+            name: "已招租金达成率柱状图",
+            url: "/zhaoshang/rentCompletRate",
+            code: 6
+          },
+          {
+            name: "进场审图进度-品牌数",
+            url: "/zhaoshang/brandNum",
+            code: 7
+          },
+          {
+            name: "待开业项目招商进度-品牌数",
+            url: "/zhaoshang/noMakebusinessBrandNum",
+            code: 8
+          },
+          ],
+        }
+      ],
       collapseable: false,
       chartsTitle: "筹备招商进度",
       selected: {
@@ -295,7 +313,7 @@ export default {
         limit: 200,
         conditionType: 1,
         menuType: 1,
-        realCompletedYm: this.$route.query.yearAndMonth ? this.$route.query.yearAndMonth : new Date().getFullYear() + '-' + (new Date().getMonth() + 1)
+        realCompletedYm: this.$route.query.yearAndMonth ? this.$route.query.yearAndMonth : this.$util.getDefaultDate("month")
       },
       tabList: [{
         name: '累计招商',
@@ -314,58 +332,59 @@ export default {
       },
     }
   },
-  created() {
+  created () {
     this.getDataList()
     this.getProjectList()
   },
+
   methods: {
-    async getProjectList() {
+    ...mapMutations(['setProjectInfo']),
+    onRefresh () {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false
+      }, 0)
+      this.getDataList()
+    },
+    async getProjectList () {
       try {
         let params = {
           operStatus: 1
         }
-        let res = await this.$axios.externalLinkServe.getMakeBusnessProjectList(params, false)
-        let data = res.data
-        localStorage.setItem("projectList", JSON.stringify(data));
-        this.getProjectListFormat(data);
+        let res = await this.$axios.zhaoshangServe.getMakeBusnessProjectList(params, false)
+        // this.setProjectInfo({ projectList: res.data, grade: 0 })
+        this.$store.commit("setZsProjectInfo", { projectList: res.data, grade: 0 })
       } catch (e) {
         console.log(e)
       }
     },
-    getProjectListFormat(data) {
+    closePick () {
       try {
-        let result = [{
-          key: "#",
-          children: [{
-            shortName: "全部",
-          },],
-        },];
-        data.forEach((item) => {
-          let key = item.projectShortName.slice(0, 1);
-          let temp = result.find((v) => v.key === key);
-          if (temp) {
-            temp.children.push(item);
-          } else {
-            result.push({
-              key: key,
-              children: [item],
-            });
-          }
-        });
-        this.projectList = result;
+        this.$util.showTabStatus('true', 'true')
       } catch (e) {
         console.log(e)
       }
     },
-    projeSelected(item) {
-      console.log(item);
-      this.setData({
-        ["params.projectId"]: (item && item.projectId) || "",
-        ["params.projectName"]: (item && item.shortName) || "",
-      });
-      this.getDataList()
+    touchPick () {
+      try {
+        this.$util.showTabStatus('false', 'false')
+      } catch (e) {
+        console.log(e)
+      }
     },
-    dateSelected(date) {
+    projeSelected (item) {
+      try {
+        this.$util.showTabStatus('true', 'true')
+        this.setData({
+          ["params.projectId"]: (item && item.projectId) || "",
+          ["params.projectName"]: (item && item.shortName) || "",
+        });
+        this.getDataList()
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    dateSelected (date) {
       console.log(date);
       this.setData({
         ["params.realCompletedYm"]: date,
@@ -373,46 +392,46 @@ export default {
       this.getDataList()
       // },
     },
-    tabClickFunc(data) {
+    tabClickFunc (data) {
       this.currentTab = data
       this.params.menuType = parseInt(data)
       this.getDataList()
     },
-    searchType(item) { },
-    onListModeChanged(e) {
+    searchType (item) { },
+    onListModeChanged (e) {
       const mode = e.target.dataset.value;
       console.log(mode)
       this.table.mode = mode
       this.params.conditionType = parseInt(mode)
       this.getDataList()
     },
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       if (e.detail.column.key == "projectName") {
-        this.$router.push({
-          path: '/zhaoshang/process/detail',
-          query: {
-            ...this.params,
-            projectId: e.detail.row.bisProjectId,
-            projectName: e.detail.row.projectName
-          }
+        this.$util.pageGo('/zhaoshang/process/detail', {
+          ...this.params,
+          projectId: e.detail.row.bisProjectId,
+          projectName: e.detail.row.projectName
         })
       }
     },
-    async getDataList() {
+    async getDataList () {
       let res = await this.$axios.zhaoshangServe.getTableData(this.params)
+      this.isLoading = false
       this.setData({
         "table.dataList": res.data.list.slice(0, -1),
         "table.totalRow": res.data.list.slice(-1)[0],
       });
     },
-    goLink(url) {
-      this.$router.push({
-        path: url,
-        query: {
+    goLink (url) {
+      try {
+        this.$util.showTabStatus('true', 'true')
+        this.$util.pageGo(url, {
           ...this.params,
           yearAndMonth: this.params.realCompletedYm
-        }
-      })
+        })
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
 }

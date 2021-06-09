@@ -98,7 +98,7 @@ export default {
           return '提交'
           break
         case 3:
-          return '审核通过'
+          return '已生效'
           break
         case 4:
           return '驳回'

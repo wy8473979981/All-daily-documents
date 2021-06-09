@@ -14,7 +14,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="12" style="text-align:right">
-          <el-button type="primary" size="mini">导出</el-button>
+          <el-button @click="exportExcel" type="primary" size="mini">导出</el-button>
         </el-col>
       </el-row>
     </el-form>
@@ -57,7 +57,8 @@
     <el-row :gutter="20" class="margin-b">
       <el-col :span="24" style="text-align:right" v-if="!projectStatus">
         <el-button type="primary" @click="previousSaveFunc('save')" size="mini">上一步</el-button>
-        <el-button type="primary" @click="finishFunc('next')" size="mini">完成</el-button>
+        <el-button type="primary" @click="jumpFunc()" size="mini">保存</el-button>
+        <el-button type="primary" @click="finishFunc('next')" size="mini">提交</el-button>
       </el-col>
       <el-col :span="24" style="text-align:right" v-else>
         <el-button type="primary" @click="previousFunc" size="mini">上一步</el-button>
@@ -82,13 +83,13 @@ export default {
     projectStatus: {
       type: Boolean,
       default: false
-    },
+    }
   },
-  data() {
+  data () {
     return {
       projectId: null,
       projectResultId: null,
-      openYear: null,//开业年
+      openYear: null, // 开业年
       routerQuery: this.$route.query,
       key10Ary: [],
       key11Ary: [],
@@ -98,10 +99,10 @@ export default {
         projectName: null,
         address: null,
         sharePrincipleName: null,
-        projectResultId: null,
+        projectResultId: null
       },
       tableData: [],
-      tableShowNullObj: {//不显示列的标识
+      tableShowNullObj: { // 不显示列的标识
         5: [],
         10: [],
         11: ['year0', 'year1', 'year2', 'year3', 'year4', 'year5', 'year6', 'year7', 'year8', 'year9', 'year10', 'year11', 'year12', 'year13', 'year14',
@@ -162,62 +163,62 @@ export default {
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         15: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         20: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         21: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         22: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         30: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         31: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         32: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         33: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         34: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         40: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         41: ['minusYear1',
           'minusYear2',
           'minusYear3',
           'minusYear4',
-          'minusYear5', 'year0',],
+          'minusYear5', 'year0'],
         42: ['minusYear1',
           'minusYear2',
           'minusYear3',
@@ -401,140 +402,143 @@ export default {
           'year18',
           'year19',
           'year20',
-          'year21'],
+          'year21']
       }
-    };
+    }
   },
   filters: {},
-  create() { },
-  mounted() {
-    this.projectId = this.formData.projectId;
-    this.projectResultId = this.formData.projectResultId;
-    this.getProjectCalculateDetail();
-    this.getCalculateTableData();
-    this.maxHeight = (document.getElementsByClassName('measureResultsComponent')[0].offsetHeight - 149) + 'px';
+  create () { },
+  mounted () {
+    this.projectId = this.formData.projectId
+    this.projectResultId = this.formData.projectResultId
+    this.getProjectCalculateDetail()
+    this.getCalculateTableData()
+    this.maxHeight = (document.getElementsByClassName('measureResultsComponent')[0].offsetHeight - 149) + 'px'
   },
   methods: {
-    thousands(scope, key, unit = '', precise = 2) {
-      let value = scope.row[key];
-      let isNegativeBol = value >= 0 ? false : true;
-      let unitAry = [71, 101];//元为单位
-      let percentAry = [41, 42, 80, 110];//百分号为单位
-      let calculateSubject = scope.row['calculateSubject'];
+    thousands (scope, key, unit = '', precise = 2) {
+      let value = scope.row[key]
+      const isNegativeBol = !(value >= 0)
+      const unitAry = [71, 101]// 元为单位
+      const percentAry = [41, 42, 80, 110]// 百分号为单位
+      const calculateSubject = scope.row.calculateSubject
       if (this.tableShowNullObj[calculateSubject].includes(key)) {
-        return '';
+        return ''
       }
-      if (isNaN(value) || [null, undefined, ''].includes(value)) { return '-'; }
-      value = Math.abs(value);
+      if (isNaN(value) || [null, undefined, ''].includes(value)) { return '-' }
+      value = Math.abs(value)
       if (!unitAry.includes(calculateSubject)) {
-        precise = 0;
-        unit = '';
+        precise = 0
+        unit = ''
       }
       if (percentAry.includes(calculateSubject)) {
-        precise = 2;
-        unit = '%';
+        precise = 2
+        unit = '%'
       }
-      var text = Number(value).toFixed(precise);
-      var bit = text.indexOf('.') < 0 ? '' : text.substr(text.indexOf('.'));
-      var f = text.replace(/\..*$/, '').split('').reverse().join('').replace(/(\d{3})\B/g, function (_, c) { return _ + ','; }).split('').reverse().join('') + bit;
-      return isNegativeBol ? `(${f + unit})` : f + unit;
+      var text = Number(value).toFixed(precise)
+      var bit = text.indexOf('.') < 0 ? '' : text.substr(text.indexOf('.'))
+      var f = text.replace(/\..*$/, '').split('').reverse().join('').replace(/(\d{3})\B/g, function (_, c) { return _ + ',' }).split('').reverse().join('') + bit
+      return isNegativeBol ? `(${f + unit})` : f + unit
     },
-    isNegativeFunc(value) {
-      return Number(value) >= 0 ? true : false;
+    isNegativeFunc (value) {
+      return Number(value) >= 0
     },
-    async getProjectCalculateDetail() {
+    async getProjectCalculateDetail () {
       try {
-        let params = {
+        const params = {
           projectResultId: this.projectResultId
         }
         await CalculationApi.getProjectCalculateDetail(params).then(res => {
           if (res.code === 200) {
-            const { result } = res;
+            const { result } = res
             this.ruleForm = {
               ...result,
               address: `${result.provinceName}${result.cityName}${result.countyName}`
-            };
-            this.openYear = new Date(result.openTime).getFullYear();
-            this.createTableFourHeader();
+            }
+            this.openYear = new Date(result.openTime).getFullYear()
+            this.createTableFourHeader()
           }
         })
       } catch (e) {
         console.log(e)
       }
     },
-    async getCalculateTableData() {
+    async getCalculateTableData () {
       try {
-        let params = {
+        const params = {
           projectResultId: this.projectResultId
         }
         await CalculationApi.getCalculateTableData(params).then(res => {
           if (res.code === 200) {
-            const { result } = res;
-            this.tableData = result.list;
+            const { result } = res
+            this.tableData = result.list
           }
         })
       } catch (e) {
         console.log(e)
       }
     },
-    createTableFourHeader() {
+    createTableFourHeader () {
       // 进度及其他假设 表头
-      this.key10Ary = [];
-      this.key11Ary = [];
-      this.yearAry = [];
-      let devCycle = Number(this.ruleForm.devCycle);
-      let signOutYears = Number(this.ruleForm.signOutYears);
+      this.key10Ary = []
+      this.key11Ary = []
+      this.yearAry = []
+      const devCycle = Number(this.ruleForm.devCycle)
+      const signOutYears = Number(this.ruleForm.signOutYears)
       for (let i = 1; i < devCycle; i++) {
-        let number = i - devCycle;
-        let obj = {
+        const number = i - devCycle
+        const obj = {
           year: this.openYear + number,
           number: number
         }
-        this.key10Ary.push(obj);
-        this.yearAry.push(`${this.openYear + number}`);
+        this.key10Ary.push(obj)
+        this.yearAry.push(`${this.openYear + number}`)
       }
       for (let i = 0; i <= signOutYears; i++) {
-        let obj = {
+        const obj = {
           year: this.openYear + i,
           number: i
         }
-        this.key11Ary.push(obj);
-        this.yearAry.push(`${this.openYear + i}`);
+        this.key11Ary.push(obj)
+        this.yearAry.push(`${this.openYear + i}`)
       }
     },
-    changeTableValue(scope) {
+    changeTableValue (scope) {
     },
-    previousFunc() {
-      this.$emit('update:step', 3);
+    previousFunc () {
+      this.$emit('update:step', 3)
     },
-    previousSaveFunc(type) {
-      this.$emit('update:step', 3);
+    previousSaveFunc (type) {
+      this.$emit('update:step', 3)
     },
-    nextFunc() {
-      let routeUrl = this.$router.resolve({
-        path: "/income/comparison",
+    nextFunc () {
+      const routeUrl = this.$router.resolve({
+        path: '/income/comparison',
         query: { projectId: this.projectId }
-      });
-      window.open(routeUrl.href, "_self");
-      return false;
+      })
+      window.open(routeUrl.href, '_self')
+      return false
     },
-    async finishFunc(type) {
+    jumpFunc () {
+      this.$router.push({ path: '/income' })
+    },
+    async finishFunc (type) {
       try {
         this.$confirm('是否完成本次测算并提交结果至对比分析？注意：点击确认后将无法修改假设参数。', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          this.saveFunc(type);
-        }).catch(() => { });
+          this.saveFunc(type)
+        }).catch(() => { })
       } catch (e) {
         console.log(e)
       }
     },
-    async saveFunc(type) {
+    async saveFunc (type) {
       try {
-        let returnRateObj = this.tableData[4].children[0];//业主收益回报率
-        let returnRateAry = [
+        const returnRateObj = this.tableData[4].children[0]// 业主收益回报率
+        const returnRateAry = [
           returnRateObj.minusYear5,
           returnRateObj.minusYear4,
           returnRateObj.minusYear3,
@@ -561,57 +565,86 @@ export default {
           returnRateObj.year18,
           returnRateObj.year19,
           returnRateObj.year20
-        ];
-        let index = returnRateAry.indexOf(Math.max(...returnRateAry));
-        let firstReachingStandard = this.yearAry[index];
-        let ixYearsAsset = this.tableData[5].year4;//6年末资产价值
-        let tenYearsAsset = this.tableData[5].year10;//10年末资产价值
-        let sixYearsIRR = this.tableData[11].calculatedValue;//6年IRR
-        let subsidyIRR = this.tableData[10].children[0].calculatedValue;//补贴-IRR
-        let tenYearsIRR = this.tableData[8].calculatedValue;//10年IRR
-        let tenYearsYOC = this.tableData[4].children[0].calculatedValue;//10年YOC
-        let params = {
-          firstReachingStandard: firstReachingStandard,//首次达标年
-          projectResultId: this.projectResultId,//项目测算ID
-          sixYearsAsset: ixYearsAsset,//6年末资产价值
-          sixYearsIRR: sixYearsIRR,//6年IRR
-          subsidyIRR: subsidyIRR,//补贴-IRR
-          tenYearsAsset: tenYearsAsset,//10年末资产价值
-          tenYearsIRR: tenYearsIRR,//10年IRR
-          tenYearsYOC: tenYearsYOC,//10年YOC
+        ]
+        const index = returnRateAry.indexOf(Math.max(...returnRateAry))
+        const firstReachingStandard = this.yearAry[index]
+        const ixYearsAsset = this.tableData[5].year4// 6年末资产价值
+        const tenYearsAsset = this.tableData[5].year10// 10年末资产价值
+        const sixYearsIRR = this.tableData[11].calculatedValue// 6年IRR
+        const subsidyIRR = this.tableData[10].children[0].calculatedValue// 补贴-IRR
+        const tenYearsIRR = this.tableData[8].calculatedValue// 10年IRR
+        const tenYearsYOC = this.tableData[4].children[0].calculatedValue// 10年YOC
+        const params = {
+          firstReachingStandard: firstReachingStandard, // 首次达标年
+          projectResultId: this.projectResultId, // 项目测算ID
+          sixYearsAsset: ixYearsAsset, // 6年末资产价值
+          sixYearsIRR: sixYearsIRR, // 6年IRR
+          subsidyIRR: subsidyIRR, // 补贴-IRR
+          tenYearsAsset: tenYearsAsset, // 10年末资产价值
+          tenYearsIRR: tenYearsIRR, // 10年IRR
+          tenYearsYOC: tenYearsYOC// 10年YOC
         }
         await CalculationApi.calculateStatusUpdate(params).then(res => {
           if (res.code === 200) {
-            const { result } = res;
-            this.$message.success('保存成功');
+            const { result } = res
+            this.$message.success('保存成功')
             if (type == 'save') {
-              this.$emit('update:step', 3);
+              this.$emit('update:step', 3)
             } else if (type == 'next') {
-              let routeUrl = this.$router.resolve({
-                path: "/income/comparison",
+              const routeUrl = this.$router.resolve({
+                path: '/income/comparison',
                 query: { projectId: this.projectId }
-              });
-              window.open(routeUrl.href, "_self");
+              })
+              window.open(routeUrl.href, '_self')
             }
           } else {
-            this.$message.error(res.msg);
+            this.$message.error(res.msg)
           }
         })
       } catch (e) {
         console.log(e)
       }
     },
-    key3Style(column) {
+    key3Style (column) {
       if ([7, 10, 15].includes(column.rowIndex)) {
-        return "background: #ccc !important;"
+        return 'background: #ccc !important;'
       } else if ([2, 3, 4, 5, 6].includes(column.rowIndex)) {
-        return "font-weight: inherit !important;"
+        return 'font-weight: inherit !important;'
       } else if ([0, 24, 25, 28].includes(column.rowIndex)) {
         if ([0].includes(column.columnIndex)) {
-          return "padding-left: 20px;"
+          return 'padding-left: 20px;'
         }
       }
     },
+    async exportExcel () {
+      // try {
+      //   let res = null
+      //   const req = { projectResultIds: this.projectResultId, showTypeList: showTypeList }
+      //   res = await CalculationApi.excelExport(req, '/api/project/calculate/export')
+      //   if (res) {
+      //     var blob = new Blob([res], { type: 'application/vnd.ms-excel' })
+      //     var url = window.URL.createObjectURL(blob)
+      //     var a = document.createElement('a')
+      //     document.body.appendChild(a)
+      //     a.setAttribute('style', 'display:none')
+      //     a.setAttribute('href', url)
+      //     var filename = this.ruleForm.projectName + '列表.xlsx'
+      //     a.setAttribute('download', filename)
+      //     a.click()
+      //     window.URL.revokeObjectURL(url)
+      //     this.$message({ message: '导出成功!', type: 'success' })
+      //   } else {
+      //     this.$message({ message: '导出失败!', type: 'error' })
+      //   }
+      // } catch (e) {
+      //   console.log(e)
+      // }
+      // 导出
+      const token = localStorage.getItem('ys_contract_token')
+      if (token) {
+        window.location.href = `../${this.$baseURL}/api/project/calculate/export?token=${token}&projectResultIds[]=${this.projectResultId}`
+      }
+    }
   }
 }
 </script>

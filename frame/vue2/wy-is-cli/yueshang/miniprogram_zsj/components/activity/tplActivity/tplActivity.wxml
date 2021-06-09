@@ -1,0 +1,11 @@
+<view class='tpl-activity pd-h pd-v'>
+  <image src='{{data.imgUrl}}'class='pic' mode='aspectFill'></image>
+  <view class='detail'>
+    <text class='title'>{{data.title}}</text>
+    <view class='tag-box'>
+      <tag statusStr='{{data.statusStr}}' status='{{data.status}}'/>
+    </view>
+    <view>活动类型:{{data.type}}</view>
+    <view>活动时间:{{data.time}}</view>
+  </view>
+</view>

@@ -1,0 +1,596 @@
+.app-page-main {
+    ::v-deep.caret-wrapper {
+      display: none;
+    }
+    .spancolor {
+      color: #6f120c;
+    }
+    width: 1112px;
+    height: 820px;
+    padding: 0 24px;
+    margin: 0 auto;
+    background: #f6f5ee;
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
+    }
+    ::v-deep.el-dialog__title {
+      font-size: 18px;
+      font-family: MicrosoftYaHei;
+      color: #050101;
+      line-height: 18px;
+    }
+    ::v-deep.el-radio__input.is-checked + .el-radio__label {
+      color: #000000;
+    }
+    ::v-deep.el-dialog {
+      border-radius: 20px;
+    }
+    ::v-deep.el-radio__input.is-checked .el-radio__inner {
+      background: none;
+      border-color: #dcdfe6;
+    }
+    ::v-deep .el-radio__input.is-checked .el-radio__inner::after {
+      background: #1c4c7f;
+      width: 8px;
+      height: 8px;
+    }
+    ::v-deep.dialog-footer .el-button {
+      width: 86px;
+      height: 32px;
+      background: #e5e2de;
+      border-radius: 16px;
+      line-height: 0;
+    }
+  
+    ::v-deep.dialog-footer .el-button--primary {
+      width: 86px;
+      height: 32px;
+      background: #1c4c7f;
+      border-radius: 16px;
+    }
+  
+    ::v-deep.el-radio {
+      margin-left: 8px;
+      margin-top: 36px;
+      margin-bottom: 66px;
+    }
+    ::v-deep.el-dialog__header {
+      padding: 24px 0 0 24px;
+    }
+    .dialoga {
+      ::v-deep .el-dialog__footer {
+        position: absolute;
+        bottom: 0;
+        z-index: 99999;
+        right: 0;
+      }
+      ::v-deep .el-dialog {
+        height: 317px !important;
+        background: #fdfcfa;
+      }
+      ::v-deep.el-radio {
+        margin-bottom: 33px;
+      }
+      p {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #848382;
+        margin-bottom: 8px;
+      }
+      ::v-deep.el-input__inner {
+        width: 200px;
+        height: 32px;
+        background: #f6f5ed;
+        border-radius: 16px;
+      }
+      ::v-deep.el-icon-arrow-up:before {
+        content: "\e78f";
+      }
+    }
+    .dialoge {
+      ::v-deep .el-dialog__footer {
+        position: absolute;
+        bottom: 0;
+        z-index: 99999;
+        right: 0;
+      }
+      ::v-deep .el-dialog {
+        height: 229px !important;
+        background: #fdfcfa;
+      }
+      ::v-deep.el-radio {
+        margin-bottom: 33px;
+      }
+      p {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #848382;
+        margin-bottom: 8px;
+      }
+      ::v-deep.el-input__inner {
+        width: 200px;
+        height: 32px;
+        background: #f6f5ed;
+        border-radius: 16px;
+      }
+      ::v-deep.el-icon-arrow-up:before {
+        content: "\e78f";
+      }
+    }
+    .dialogb {
+      ::v-deep .el-dialog {
+        height: 317px !important;
+        background: #fdfcfa;
+      }
+    }
+    .dialogf {
+      ::v-deep .el-dialog {
+        height: 317px !important;
+        background: #fdfcfa;
+      }
+    }
+    .dialogc {
+      
+       ::v-deep.el-date-picker__time-header{
+          display:none  !important ;
+      }
+      ::v-deep.el-button--medium {
+        padding: 10px 13px;
+      }
+      ::v-deep .el-dialog {
+        height: 513px !important;
+        background: #fdfcfa;
+      }
+      ::v-deep.el-icon-arrow-up:before {
+        content: "\e78f";
+      }
+      p {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #848382;
+        margin-top: 33px;
+        padding-left: 8px;
+        margin-bottom: 8px;
+      }
+      ::v-deep .el-input__inner {
+        width: 200px;
+        height: 32px;
+        background: #f6f5ed;
+        border-radius: 16px;
+      }
+      ::v-deep .el-table td {
+        background: #f6f5ee;
+      }
+      ::v-deep .el-table tr:nth-child(1) {
+        font-weight: bold;
+      }
+  
+      ::v-deep.el-table th {
+        background: #e5e2de !important;
+        padding: 0;
+      }
+      ::v-deep.el-table th:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep .cell .el-button span {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #1c4c7f;
+      }
+      // ::v-deep .cell .el-button span:hover{
+      //    color: #48a0c3  !important;
+      // }
+      ::v-deep.cell {
+        height: 32px;
+        line-height: 32px;
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #050101;
+        img {
+          vertical-align: middle;
+        }
+      }
+      ::v-deep.el-table tr {
+        background: #f6f5ee;
+      }
+      ::v-deep.has-gutter {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background: #e5e2de;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:nth-last-child(1) {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: #e5e2de;
+        //  color: #48A0C3  !important ;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td {
+        background-color: #e5e2de;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td > .cell {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td
+        > .cell
+        span {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-transition .el-table__body td {
+        transition: background-color -1s ease;
+      }
+      ::v-deep .el-table__header-wrapper {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep.el-table,
+      .el-table__expanded-cell {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table td,
+      .el-table th {
+        padding: 0;
+      }
+      ::v-deep.el-table__row td .cell {
+        height: 36px !important;
+        line-height: 36px;
+      }
+    }
+    .dialogd {
+      ::v-deep.el-dialog__footer {
+        margin-top: 45px;
+      }
+      ::v-deep.el-button--medium {
+        padding: 10px 13px;
+      }
+      ::v-deep .el-dialog {
+        height: 443px !important;
+        background: #fdfcfa;
+      }
+      ::v-deep.el-icon-arrow-up:before {
+        content: "\e78f";
+      }
+      p {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #848382;
+        margin-top: 33px;
+        padding-left: 8px;
+        margin-bottom: 8px;
+      }
+      ::v-deep .el-input__inner {
+        width: 200px;
+        height: 32px;
+        border-radius: 16px;
+      }
+      ::v-deep .el-table td {
+        background: #fdfcfa;
+      }
+      ::v-deep .el-table tr:nth-child(1) {
+        font-weight: bold;
+      }
+  
+      ::v-deep.el-table th {
+        background: #e5e2de !important;
+        padding: 0;
+      }
+      ::v-deep.el-table th:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep .cell .el-button span {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #1c4c7f;
+      }
+      // ::v-deep .cell .el-button span:hover{
+      //    color: #48a0c3  !important;
+      // }
+      ::v-deep.cell {
+        height: 32px;
+        line-height: 32px;
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #050101;
+        img {
+          vertical-align: middle;
+        }
+      }
+      ::v-deep.has-gutter {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:nth-last-child(1) {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+  
+        //  color: #48A0C3  !important ;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td {
+        background-color: #e5e2de;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td > .cell {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td
+        > .cell
+        span {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-transition .el-table__body td {
+        transition: background-color -1s ease;
+      }
+      ::v-deep .el-table__header-wrapper {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep.el-table,
+      .el-table__expanded-cell {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table td,
+      .el-table th {
+        padding: 0;
+      }
+      ::v-deep.el-table__row td .cell {
+        height: 36px !important;
+        line-height: 36px;
+      }
+    }
+    ::v-deep .el-dialog__body {
+      padding: 0 24px 0 16px;
+    }
+    .icon {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      color: #485f47;
+    }
+    .pp {
+      p {
+        text-align: center;
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #848382;
+      }
+      h4 {
+        margin-top: 30px;
+        margin-bottom: 16px;
+        font-size: 18px;
+        font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+        font-weight: bold;
+        color: #050101;
+        text-align: center;
+      }
+    }
+    ::v-deep.el-icon-success {
+      font-size: 80px;
+      margin: 0 auto;
+    }
+    ::v-deep.el-divider--horizontal {
+      padding: 0;
+      margin: 8px;
+    }
+    .budget-total {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      ::v-deep.el-icon-arrow-up:before {
+        content: "\e78f";
+      }
+      ::v-deep.el-select .el-input .el-select__caret {
+        line-height: 32px;
+      }
+      ::v-deep.el-input__inner {
+        &::placeholder {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #050101;
+        }
+      }
+      .budgets {
+        display: flex;
+      }
+      .budget {
+        width: 139px;
+        height: 32px;
+        cursor: pointer;
+        background: #1c4c7f;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #ffffff;
+          line-height: 14px;
+        }
+      }
+      .budget:nth-child(1) {
+        cursor: pointer;
+        width: 139px;
+        height: 32px;
+        margin-right: 8px;
+        background: #1c4c7f;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #ffffff;
+          line-height: 14px;
+        }
+      }
+      ::v-deep.el-input__inner {
+        height: 32px !important;
+        width: 150px;
+        line-height: 32px;
+        border-radius: 16px;
+      }
+    }
+    .budget-table {
+      ::v-deep .el-table td {
+        background: #f6f5ee;
+      }
+  
+      ::v-deep.el-table th {
+        background: #e5e2de !important;
+        padding: 0;
+      }
+      ::v-deep.el-table th:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep .cell .el-button span {
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #1c4c7f;
+      }
+      // ::v-deep .cell .el-button span:hover{
+      //    color: #48a0c3  !important;
+      // }
+      ::v-deep.cell {
+        height: 32px;
+        line-height: 32px;
+        font-size: 14px;
+        font-family: MicrosoftYaHei;
+        color: #050101;
+        img {
+          vertical-align: middle;
+        }
+      }
+      ::v-deep.el-table tr {
+        background: #f6f5ee;
+      }
+      ::v-deep.has-gutter {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:first-child {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background: #e5e2de;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td:nth-last-child(1) {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: #e5e2de;
+        //  color: #48A0C3  !important ;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td {
+        background-color: #e5e2de;
+      }
+      ::v-deep.el-table--enable-row-hover .el-table__body tr:hover > td > .cell {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-hover
+        .el-table__body
+        tr:hover
+        > td
+        > .cell
+        span {
+        color: #48a0c3 !important;
+      }
+      ::v-deep.el-table--enable-row-transition .el-table__body td {
+        transition: background-color -1s ease;
+      }
+      ::v-deep .el-table__header-wrapper {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      ::v-deep.el-table,
+      .el-table__expanded-cell {
+        background: #f6f5ee;
+      }
+      ::v-deep.el-table td,
+      .el-table th {
+        padding: 0;
+      }
+      ::v-deep.el-table__row td .cell {
+        height: 36px !important;
+        line-height: 36px;
+      }
+      .solt-icon {
+        i {
+          margin-left: 8px;
+        }
+      }
+    }
+    .paging {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .paging-data {
+        p {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #848382;
+        }
+      }
+      .paging-option {
+        display: flex;
+        ::v-deep .el-input__inner {
+          padding: 0;
+          height: 24px;
+          width: 80px;
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #050101;
+          background: #f6f5ee;
+          border: none;
+          padding-top: 4px;
+        }
+        ::v-deep.el-input__icon {
+          line-height: 24px;
+        }
+        ::v-deep.el-pager li {
+          height: 24px;
+          line-height: 24px;
+        }
+        ::v-deep.el-pagination button,
+        .el-pagination span:not([class*="suffix"]) {
+          height: 24px;
+          line-height: 24px;
+        }
+      }
+      ::v-deep.el-pagination button {
+        background: #f6f5ee;
+      }
+      ::v-deep.number {
+        background: #f6f5ee !important ;
+      }
+    }
+  }

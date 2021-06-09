@@ -1,0 +1,91 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-overtime-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap'>
+  <application-info info='{{info}}'/>
+    <!-- <view class='item-wrapper'>
+      <label>单据号</label>
+      <text>{{items.applicationNo}}</text>
+      <view class='status'>{{items.statusName}}</view>
+    </view>
+    <view class='item-wrapper'>
+      <label>商户</label>
+      <text>{{globalData.detailInfo.brandName}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>铺位号</label>
+      <text>{{globalData.detailInfo.storeNo}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>申请人</label>
+      <text>{{globalData.detailInfo.clerkName}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>申请人电话</label>
+      <text>{{globalData.detailInfo.bindTel}}</text>
+    </view> -->
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <view class='item-wrapper'>
+      <label>现场负责人</label>
+      <text>{{items.personInCharge}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>联系电话</label>
+      <text>{{items.phoneNumber}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>人数</label>
+      <text>{{items.overtimePersonNum}}人</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <view class='item-wrapper'>
+      <label>开始时间</label>
+      <text>{{items.overtimeBegin}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>结束时间</label>
+      <text>{{items.overtimeEnd}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>加班类型</label>
+      <text wx:if='{{items.overtimeType == "1"}}'>打扫卫生</text>
+      <text wx:if='{{items.overtimeType == "2"}}'>盘货</text>
+      <text wx:if='{{items.overtimeType == "3"}}'>维修</text>
+      <text wx:if='{{items.overtimeType == "4"}}'>做报表</text>
+      <text wx:if='{{items.overtimeType == "5"}}'>其他</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <label>申请说明</label>
+    <view class='content'>{{items.remark}}</view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+  
+    <view class='lists'>
+      <view wx:for='{{items.processes}}' wx:key="items.id" class='list'>
+        <image class='icon' src='../../../static/images/icon_finish.png' wx:if='{{item.result == "0"}}'></image>
+        <image class='icon' src='../../../static/images/icon_wait.png' wx:if='{{item.result == "1"}}'></image>
+        <image class='icon' src='../../../static/images/icon_remark.png' wx:if='{{item.result == "2"}}'></image>
+        <image class='icon' src='../../../static/images/icon_warn.png' wx:if='{{item.result == "3"}}'></image>
+        <view class='header'>
+          <text class='title'>{{item.segment}}</text>
+          <text class='name'>{{item.processor}}</text>
+        </view>
+        <view class='date'>
+          <text>{{item.finishTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+    <!-- 
+      7/22放开
+      <view class='ys-fixed-footer' wx:if="{{items.allowUrge === '0'}}">
+      <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap="urge">催办</button>
+    </view>
+     -->
+    <view class='ys-fixed-footer' wx:if='{{statusCode == 3}}'>
+      <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='goUrl'>去评价</button>
+    </view>
+</view>

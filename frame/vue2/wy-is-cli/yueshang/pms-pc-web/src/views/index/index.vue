@@ -1,55 +1,51 @@
 <template>
-  <div class="index">
-    <div>1223</div>
-    <el-select
-      v-model="value"
-      multiple
-      filterable
-      remote
-      :remote-method="remoteMethod"
-      placeholder="请选择文章标签">
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value">
-      </el-option>
-      <template slot="empty">
-        <el-button type="primary">添加</el-button>
-      </template>
-    </el-select>
+  <!-- 首页列表模板 -->
+  <div class="app-page-main">
+    <h1>Demo - Home</h1>
+    <el-button type="success" @click="handleClick">show Loading1</el-button>
+    <el-button type="success" @click="handleClick2">show Loading2</el-button>
+    <el-button type="success" @click="handleClick3">show Loading3</el-button>
   </div>
 </template>
-
 <script>
+
 export default {
-  name: 'Index',
-  
   data() {
     return {
-      options: [],
-      value: []
-    }
-  },
 
-  mounted() {
+    };
   },
+  watch: {
 
+  },
+  created() {
+
+  },
   methods: {
-    remoteMethod(query) {
-      console.log('query', query)
-      if (query !== '') {
-        setTimeout(() => {
-          this.options.push({
-            value: 1,
-            label: '二姐'
-          })
-
-        }, 200);
-      } else {
-        this.options = [];
-      }
+    handleClick() {
+      const l = this.$ysnloading()
+      setTimeout(() => {
+        l.close()
+      }, 3000);
+    },
+    handleClick2() {
+      const l = this.$ysnloading({
+        color: '#16406D'
+      })
+      setTimeout(() => {
+        l.close()
+      }, 3000);
+    },
+    handleClick3() {
+      const l = this.$ysnloading({
+        color: '#004948'
+      })
+      setTimeout(() => {
+        l.close()
+      }, 3000);
     }
   }
-}
+};
 </script>
+<style lang="scss" scoped>
+</style>

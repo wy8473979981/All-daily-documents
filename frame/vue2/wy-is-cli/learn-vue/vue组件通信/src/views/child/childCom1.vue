@@ -3,7 +3,7 @@
   <div>
     <p>foo: {{ foo }}</p>
     <p>childCom1的$attrs: {{ $attrs }}</p>
-    <!-- <button @click="onHnadle">触发listeners</button> -->
+    <button @click="onHnadle">触发listeners</button>
     <child-com2 v-bind="$attrs" v-on="$listeners"></child-com2>
   </div>
 </template>
@@ -17,14 +17,15 @@ export default {
   props: {
     foo: String // foo作为props属性绑定
   },
-  created () {
-    console.log(this.$attrs,); // { "boo": "Html", "coo": "CSS", "doo": "Vue", "title": "前端工匠" }
-    // console.log(this.$listeners)
+  created() {
+    console.log(this.$attrs); // { "boo": "Html", "coo": "CSS", "doo": "Vue", "title": "前端工匠" }
+    console.log(this.$listeners, "this.$listeners");
   },
-  methods:{
-    // onHnadle(){
-    //   this.$listeners.change()
-    // }
+  methods: {
+    onHnadle() {
+      this.$listeners.export("111");
+      console.log("childCom1");
+    }
   }
 };
 </script>

@@ -1,7 +1,8 @@
 const yearColumns = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -51,7 +52,8 @@ const yearColumns = [
 const monthColumns = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -101,7 +103,8 @@ const monthColumns = [
 const dayColumns = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left",
         fixed: true,
     },
     {
@@ -139,6 +142,7 @@ const dayColumns = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ];

@@ -147,14 +147,21 @@ export default {
 <template>
   <div>
     <h2>浪里行舟</h2>
-    <child-com1 :foo="foo" :boo="boo" :coo="coo" :doo="doo" title="前端工匠" @export="change"></child-com1>
+    <child-com1
+      :foo="foo"
+      :boo="boo"
+      :coo="coo"
+      :doo="doo"
+      title="前端工匠"
+      @export="change"
+    ></child-com1>
   </div>
 </template>
 <script>
 const childCom1 = () => import("./child/childCom1.vue");
 export default {
   components: { childCom1 },
-  data () {
+  data() {
     return {
       foo: "Javascript",
       boo: "Html",
@@ -163,8 +170,8 @@ export default {
     };
   },
   methods: {
-    change (data) {
-      console.log(data)
+    change(data) {
+      console.log(data, "parent");
     }
   }
 };

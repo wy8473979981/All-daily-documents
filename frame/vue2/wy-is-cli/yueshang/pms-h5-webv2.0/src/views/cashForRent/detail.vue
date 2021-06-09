@@ -5,7 +5,7 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :disabledAll="false">
+            <ys-n-project-select :moduleName="'yysj'" :selected="selected" @projeSelected="projeSelected" :disabledAll="false">
 
             </ys-n-project-select>
             <!-- <ys-n-dialog :projectId="params.projectId"></ys-n-dialog> -->
@@ -13,29 +13,31 @@
         </div>
       </div>
     </div>
-    <ul class="total">
-      <li>
-        <p>累计比例</p>
-        <p>{{total.shopRate}}<span class="unit">%</span></p>
-      </li>
-      <li>
-        <p>户数</p>
-        <p>{{total.countNum}}</p>
-      </li>
-      <li>
-        <p>累计差额</p>
-        <p><span class="red">{{total.blanceSubOwe}}</span><span class="unit">万元</span></p>
-      </li>
-    </ul>
-    <ys-n-section title="涉及商户" :hasTable="true">
-     <!-- <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (params.dateType == 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
-          <span :class="'list-mode-item ' + (params.dateType == 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
-        </div>
-      </div> -->
-      <ys-n-table :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="params.dateType.toString()"></ys-n-table>
-    </ys-n-section>
+	<van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+		<ul class="total">
+		  <li>
+			<p>累计比例</p>
+			<p>{{table.totalRow.qzShopRate}}<span class="unit">%</span></p>
+		  </li>
+		  <li>
+			<p>户数</p>
+			<p>{{table.totalRow.qzCountNum  ? table.totalRow.qzCountNum : '-'}}</p>
+		  </li>
+		  <li>
+			<p>累计差额</p>
+			<p><span class="red">{{$util.numberFormat(table.totalRow.qzBlanceSubOwe)}}</span><span class="unit">万元</span></p>
+		  </li>
+		</ul>
+		<ys-n-section title="涉及商户" :hasTable="true">
+		 <!-- <div slot="head-actions">
+			<div class="list-mode">
+			  <span :class="'list-mode-item ' + (params.dateType == 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
+			  <span :class="'list-mode-item ' + (params.dateType == 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
+			</div>
+		  </div> -->
+		  <ys-n-table :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="params.dateType.toString()"></ys-n-table>
+		</ys-n-section>
+	</van-pull-refresh>
   </div>
 </template>
 
@@ -45,6 +47,7 @@ import Utils from '@/utils/index'
 export default {
   data() {
     return {
+	  isLoading:false,
       leaderDetail: {},
       params: {
         queryType: 3,
@@ -59,7 +62,8 @@ export default {
         columns: [
           {
             label: "序号",
-            width: "1.2rem"
+            width: "1.3rem",
+            align: "left"
           }, {
             label: "商户",
             key: "name",
@@ -67,7 +71,7 @@ export default {
             align: "left"
           }, {
             label: "押金余额(万元)",
-            key: "blance",
+            key: "qzBlance",
             color: "#FF120D",
             width: "2.9rem",
             sortable: true,
@@ -78,7 +82,7 @@ export default {
 
           }, {
             label: "欠费(万元)(权责)",
-            key: "owe",
+            key: "qzOwe",
             color: "#FF120D",
             width: "3.2rem",
             sortable: true,
@@ -88,17 +92,17 @@ export default {
             changeNum: 10000
           }, {
             label: "累计差额(万元)(权责)",
-            key: "blanceSubOwe",
-            width: "3.7rem",
+            key: "qzBlanceSubOwe",
+            width: "3.9rem",
             sortable: true,
             align: "right",
             numberFormat: true,
             numberPrecision: 2,
             changeNum: 10000
           },
-		  {
+		  /* {
 		    label: "欠费(万元)(合同)",
-		    key: "qzOwe",
+		    key: "owe",
 		    color: "#FF120D",
 		    width: "3.2rem",
 		    sortable: true,
@@ -108,14 +112,14 @@ export default {
 		    changeNum: 10000
 		  }, {
 		    label: "累计差额(万元)(合同)",
-		    key: "qzBlanceSubOwe",
-		    width: "3.7rem",
+		    key: "blanceSubOwe",
+		    width: "3.9rem",
 		    sortable: true,
 		    align: "right",
 		    numberFormat: true,
 		    numberPrecision: 2,
 		    changeNum: 10000
-		  }
+		  } */
         ]
       },
       selected: {
@@ -127,9 +131,16 @@ export default {
   },
   created() {
     this.getTableData()
-    this.getTotalData()
+    //this.getTotalData()
   },
   methods: {
+	onRefresh() {
+	   this.isLoading = true
+	   this.getTableData()
+	},
+	setIsLoading () {
+	  this.isLoading = false;
+	},
     projeSelected(item) {
       this.setData({
         ["params.projectId"]: (item && item.projectId) || "",
@@ -138,7 +149,6 @@ export default {
         ["selected.label"]: (item && item.shortName) || "",
       });
       this.getTableData()
-      this.getTotalData()
     },
     async getTotalData() {
       let res = await this.$axios.cashForRentServe.getTotalData(this.params)
@@ -151,12 +161,13 @@ export default {
       let dataList = []
 	  if(res.data && res.data.length > 0 ) {
 		  res.data.map(item => {
-			if (item.id) {
-			  dataList.push(item)
-			} else {
+			if (item.name == '合计') {
 			  this.table.totalRow = item
+			} else {
+			  dataList.push(item)
 			}
 		  })
+		   this.$lodash.debounce(this.setIsLoading, 300)()
 	  }
       this.table.dataList = dataList
     },

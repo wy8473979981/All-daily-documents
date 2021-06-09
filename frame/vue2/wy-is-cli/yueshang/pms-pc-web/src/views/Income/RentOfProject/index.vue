@@ -3,7 +3,8 @@
     :formConfig="formConfig"
     showChart
     :chartX="x"
-    chartTitle="租金收缴率(%)"
+    chartTitle="租金收缴率"
+    chartUnit="%"
     :tableConfig="tableConfig"
     :request-config="requestConfig"
     :formData="formData"
@@ -49,10 +50,6 @@ export default {
         echarts: {
           api: income.getChart,
           keys: { currYear: 'yearCurr', lastYear: 'yearLast', currData: 'contCollectionRate', lastData: 'contCollectionRateLast' }
-        },
-
-        export: {
-          type: 'exportOfIncomeRentProject',
         },
       },
     }

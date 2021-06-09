@@ -1,0 +1,44 @@
+<wxs module='wIndex' src='../../index.wxs'/>
+<view class='page-container page-box'>
+  <image class='banner' src='{{info.imgUrl}}' bindtap='preview' data-src="{{info.imgUrl}}"></image>
+  <view class='summary pd-v pd-h'>
+    <view class='title'>{{info.title}}</view>
+    <view class='tag-box'>
+      <tag statusStr='{{info.statusStr}}' status='{{info.status}}'/>
+    </view>
+    <view>活动类型：{{info.type}}</view>
+    <view>活动时间：{{info.time}}</view>
+  </view>
+  <view class='expire-time pd-v pd-h'>报名截止时间：{{info.expire}}</view>
+  <view class='pd-v pd-h'>活动内容</view>
+  <view class='list'>
+    <view class='list-box'>
+      <view class='list-box-item' wx:for='{{list}}' wx:key='index'>
+        <view class='pd-h pd-v'>
+          <image src='../../static/images/choosed.png' wx:if="{{info.cancelStatus === '1' && item.registrationStatus2 === '2'}}" data-item="{{item}}" bindtap='onChoose'></image>
+          <view class='icon' wx:elif="{{info.cancelStatus === '1' && (item.registrationStatus2 === '1' || item.registrationStatus2 === '5')}}" data-item="{{item}}" bindtap='onChoose'></view>
+          <image src='../../static/images/hasChoosed.png' wx:else></image>
+          <!-- <view>{{info.cancelStatus}}</view>
+          <view>{{item.registrationStatus2}}</view> -->
+          <!-- <view wx:if="{{['1','5'].includes(item.registrationStatus2)}}">{{item.registrationStatus2}}</view>
+          <view wx:else>{{item.registrationStatus2}}</view> -->
+          <view class='item-detail'>
+            <view class='title-box'>
+              <text class='title'>{{item.title}}</text>
+              <tag
+                status='{{item.tagStatus}}'
+                statusStr='{{wIndex.registrationStatus(item.registrationStatus)}}'
+              />
+            </view>
+            <text>时间：{{item.time}}</text>
+            <text>{{item.content}}</text>
+            <!-- <textarea placeholder='请输入备注' bindinput='bindTextAreaInput' auto-height data-item="{{item}}"></textarea> -->
+            <input maxlength='20' value='{{item.remark}}' placeholder='您没有设置过备注哦' disabled='{{true}}' class='remark-input'/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='sticky-button' wx:if='{{info.cancelStatus === "1"}}' bindtap='onQuit'>{{wIndex.cancelStatus(info.cancelStatus)}}</view>
+  <view class='sticky-button expire' wx:else>{{wIndex.cancelStatus(info.cancelStatus)}}</view>
+</view>

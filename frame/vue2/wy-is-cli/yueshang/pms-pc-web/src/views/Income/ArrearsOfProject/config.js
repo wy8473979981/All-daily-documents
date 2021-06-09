@@ -29,7 +29,7 @@ export const FormConfig = [
     label: '',
     type: 'input',
     props: {
-      placeholder: '租户/铺位号',
+      placeholder: '品牌/铺位号',
       suffixIcon: 'el-icon-search'
     }
   },
@@ -67,53 +67,67 @@ export const FormConfig = [
 ]
 
 
-export const TableConfig = [
-  {
-    key: 'shopName',
-    label: '商户品牌',
-    minWidth: 140,
-    fixed: true
-  },
-  {
-    key: 'statusCd',
-    label: '经营转态',
-    minWidth: 120,
-  },
-  {
-    key: 'mustType',
-    label: '费用类型',
-    minWidth: 120,
-  },
-  {
-    key: 'mustDate',
-    label: '应缴日期',
-    minWidth: 140,
-    sortable: 'custom'
-  },
-  {
+export function TableConfig() {
+  let dateConfig = {
     key: 'qzMonth',
     label: '权责月',
     minWidth: 140,
     sortable: 'custom'
-  },
-  {
-    key: 'oweFee',
-    label: '欠费金额(元)',
-    minWidth: 140,
-    type: 'money',
-    props: {
-      style: {
-        color: 'red'
-      }
+  }
+  if (this.currentFormData.caliberType === '2') {
+    dateConfig = {
+      key: 'mustDate',
+      label: '应缴日期',
+      minWidth: 140,
+      sortable: 'custom'
+    }
+  }
+  return [
+    {
+      key: "shopName",
+      label: "商户品牌",
+      minWidth: 140,
+      fixed: true,
     },
-    sortable: 'custom'
-  },
-  {
-    key: 'oweFeeDayNum',
-    label: '欠费日期(天)',
-    minWidth: 140,
-    align: 'right',
-    sortable: 'custom'
-  },
-  
-]
+    {
+      key: "contNo",
+      label: "合同号",
+      minWidth: 160,
+    },
+    {
+      key: "storeNo",
+      label: "商铺号",
+      minWidth: 160,
+    },
+    {
+      key: "statusCd",
+      label: "经营转态",
+      minWidth: 120,
+    },
+    {
+      key: "mustType",
+      label: "费用类型",
+      minWidth: 120,
+    },
+    dateConfig,
+    {
+      key: "oweFee",
+      label: "欠费金额(元)",
+      minWidth: 140,
+      type: "money",
+      props: {
+        style: {
+          color: "red",
+        },
+      },
+      sortable: "custom",
+    },
+    {
+      key: "oweFeeDayNum",
+      label: "欠费日期(天)",
+      minWidth: 140,
+      align: "right",
+      sortable: "custom",
+    },
+  ];
+}

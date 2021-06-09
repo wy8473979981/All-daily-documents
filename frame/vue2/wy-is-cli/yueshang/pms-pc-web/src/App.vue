@@ -20,7 +20,7 @@ export default {
   },
 
   created() {
-    this.isTest = !window.location.hash.includes('type=pd')
+    this.isTest = window.location.hash.includes('env=localhost') || window.location.host.includes('localhost')
   },
 
   methods: {

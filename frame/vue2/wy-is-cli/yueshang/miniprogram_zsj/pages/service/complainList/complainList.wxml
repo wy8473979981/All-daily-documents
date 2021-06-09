@@ -1,0 +1,33 @@
+<!--pages/message.wxml-->
+<view id="message">
+  <view class='ys-swiper-tab'>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == 1 ? 'active':''}}" data-current="1" bindtap="clickTab">已处理
+      </view>
+    </view>
+    <text class='swiper-tab-line'></text>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == 0 ? 'active':''}}" data-current="0" bindtap="clickTab">未处理
+      </view>
+    </view>
+  </view>
+  <view class='ys-block-items'>
+    <view class='items'>
+      <view class='item' wx:key="idx" wx:for="{{items}}" bindtap="goLink" wx:for-index="idx" wx:for-item="item" data-item="{{item}}">
+        <view class='header'>{{item.advise}}</view>
+        <view class='bottom'>
+          <view class='left-side'>
+            <text class='date'>{{item.createDateStr}}</text>
+            <!-- <image src='../../../static/images/icon_photo.png'></image> 
+                 <text class='num'>{{item.imgNum}}张</text> -->
+          </view>
+          <view class="status {{(item.contentStatus==2 && item.isAccept == 0)?'':'status-active'}}">{{item.statusName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-no-data' wx:if="{{items.length == 0}}">
+    <image src='../../../static/images/icon_no_data.png'></image>
+    <text>暂无数据</text>
+  </view>
+</view>

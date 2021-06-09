@@ -29,9 +29,9 @@
       <el-table-column label="欠费类型" show-overflow-tooltip prop="oweTypeName"></el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
       <el-table-column label="租金欠费期间" show-overflow-tooltip prop="contNo" align="center">
-        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" prop="oweZj1" min-width="160">
+        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" prop="oweZjAll4" min-width="160">
           <template slot-scope="scope">
-            <span>{{scope.row.oweZj1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweZjAll4  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column :label="`${getBudgetYear-3}年欠费`" align="right" show-overflow-tooltip prop="oweZj3" min-width="140">
@@ -44,14 +44,14 @@
             <span>{{scope.row.oweZj2  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweZjAll1" min-width="140">
+        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweZj1" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.oweZjAll1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweZj1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweZjAll4" min-width="170">
+        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweZjAll1" min-width="170">
           <template slot-scope="scope">
-            <span>{{scope.row.oweZjAll4  | micrometerLevel}}</span>
+            <span>{{scope.row.oweZjAll1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
       </el-table-column>
@@ -74,7 +74,7 @@
         </el-table-column>
         <el-table-column label="4月" align="right" show-overflow-tooltip prop="aprilZj" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.janZj  | micrometerLevel}}</span>
+            <span>{{scope.row.aprilZj  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column label="5月" align="right" show-overflow-tooltip prop="mayZj" min-width="140">
@@ -141,9 +141,9 @@
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
       <el-table-column label="物管费欠费期间" show-overflow-tooltip align="center">
-        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" show-overflow-tooltip prop="oweWg1" min-width="160">
+        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" show-overflow-tooltip prop="oweWgAll4" min-width="160">
           <template slot-scope="scope">
-            <span>{{scope.row.oweWg1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweWgAll4  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column :label="`${getBudgetYear-3}年欠费`" align="right" show-overflow-tooltip prop="oweWg3" min-width="140">
@@ -156,14 +156,14 @@
             <span>{{scope.row.oweWg2  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweWgAll1" min-width="140">
+        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweWg1" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.oweWgAll1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweWg1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweWgAll4" min-width="170">
+        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweWgAll1" min-width="170">
           <template slot-scope="scope">
-            <span>{{scope.row.oweWgAll4  | micrometerLevel}}</span>
+            <span>{{scope.row.oweWgAll1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
       </el-table-column>
@@ -191,7 +191,7 @@
         </el-table-column>
         <el-table-column label="5月" align="right" show-overflow-tooltip prop="mayWg" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.deceZj  | micrometerLevel}}</span>
+            <span>{{scope.row.mayWg  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column label="6月" align="right" show-overflow-tooltip prop="juneWg" min-width="140">
@@ -206,7 +206,7 @@
         </el-table-column>
         <el-table-column label="8月" align="right" show-overflow-tooltip prop="augWg" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.deceZj  | micrometerLevel}}</span>
+            <span>{{scope.row.augWg  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column label="9月" align="right" show-overflow-tooltip prop="sepWg" min-width="140">
@@ -253,9 +253,9 @@
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
       <el-table-column label="能源欠费期间" show-overflow-tooltip align="center">
-        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" show-overflow-tooltip prop="oweNy1" min-width="160">
+        <el-table-column :label="`${getBudgetYear-4}及以前年度欠费`" align="right" show-overflow-tooltip prop="oweNyAll4" min-width="160">
           <template slot-scope="scope">
-            <span>{{scope.row.oweNy1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweNyAll4  | micrometerLevel}}</span>
           </template>
         </el-table-column>
         <el-table-column :label="`${getBudgetYear-3}年欠费`" align="right" show-overflow-tooltip prop="oweNy3" min-width="140">
@@ -268,14 +268,14 @@
             <span>{{scope.row.oweNy2  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweNyAll1" min-width="140">
+        <el-table-column :label="`${getBudgetYear-1}年欠费`" align="right" show-overflow-tooltip prop="oweNy1" min-width="140">
           <template slot-scope="scope">
-            <span>{{scope.row.oweNyAll1  | micrometerLevel}}</span>
+            <span>{{scope.row.oweNy1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweNyAll4" min-width="170">
+        <el-table-column :label="`截至${getBudgetYear-1}年底欠费合计`" align="right" show-overflow-tooltip prop="oweNyAll1" min-width="170">
           <template slot-scope="scope">
-            <span>{{scope.row.oweNyAll4  | micrometerLevel}}</span>
+            <span>{{scope.row.oweNyAll1  | micrometerLevel}}</span>
           </template>
         </el-table-column>
       </el-table-column>
@@ -343,7 +343,6 @@
         </el-table-column>
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
-      <el-table-column width="5" class-name="common-column-line"></el-table-column>
       <el-table-column :label="`${getBudgetYear}年清欠目标`" align="right" show-overflow-tooltip prop="clearOweNy1" min-width="140">
         <template slot-scope="scope">
           <span>{{scope.row.clearOweNy1  | micrometerLevel}}</span>
@@ -361,18 +360,66 @@
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
       <el-table-column :label="`${getBudgetYear}年月累计清欠率`" show-overflow-tooltip align="center">
-        <el-table-column label="1月" align="right" show-overflow-tooltip prop="janRate" min-width="140"></el-table-column>
-        <el-table-column label="2月" align="right" show-overflow-tooltip prop="febRate" min-width="140"></el-table-column>
-        <el-table-column label="3月" align="right" show-overflow-tooltip prop="marchRate" min-width="140"></el-table-column>
-        <el-table-column label="4月" align="right" show-overflow-tooltip prop="aprilRate" min-width="140"></el-table-column>
-        <el-table-column label="5月" align="right" show-overflow-tooltip prop="mayRate" min-width="140"></el-table-column>
-        <el-table-column label="6月" align="right" show-overflow-tooltip prop="juneRate" min-width="140"></el-table-column>
-        <el-table-column label="7月" align="right" show-overflow-tooltip prop="julyRate" min-width="140"></el-table-column>
-        <el-table-column label="8月" align="right" show-overflow-tooltip prop="augRate" min-width="140"></el-table-column>
-        <el-table-column label="9月" align="right" show-overflow-tooltip prop="sepRate" min-width="140"></el-table-column>
-        <el-table-column label="10月" align="right" show-overflow-tooltip prop="octRate" min-width="140"></el-table-column>
-        <el-table-column label="11月" align="right" show-overflow-tooltip prop="novRate" min-width="140"></el-table-column>
-        <el-table-column label="12月" align="right" show-overflow-tooltip prop="deceRate" min-width="140"></el-table-column>
+        <el-table-column label="1月" align="right" show-overflow-tooltip prop="janRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.janRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="2月" align="right" show-overflow-tooltip prop="febRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.febRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="3月" align="right" show-overflow-tooltip prop="marchRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.marchRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="4月" align="right" show-overflow-tooltip prop="aprilRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.aprilRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="5月" align="right" show-overflow-tooltip prop="mayRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.mayRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="6月" align="right" show-overflow-tooltip prop="juneRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.juneRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="7月" align="right" show-overflow-tooltip prop="julyRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.julyRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="8月" align="right" show-overflow-tooltip prop="augRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.augRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="9月" align="right" show-overflow-tooltip prop="sepRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.sepRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="10月" align="right" show-overflow-tooltip prop="octRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.octRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="11月" align="right" show-overflow-tooltip prop="novRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.novRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="12月" align="right" show-overflow-tooltip prop="deceRate" min-width="140">
+          <template slot-scope="scope">
+            <span>{{scope.row.deceRate  | micrometerLevel}}</span>
+          </template>
+        </el-table-column>
       </el-table-column>
     </el-table>
     <ys-paginator :page-info="pageInfo" @handle_paginator="handle_paginator" />
@@ -380,135 +427,135 @@
 </template>
 
 <script>
-  import excel from './components/excle.vue'
-  import Import from '@/components/import.vue'
-  import { handle_paginator } from '@mixins'
-  import { toThousandsClean, getDynamicTableHeight, rTime } from '@/utils/index'
-  import LeaseApi from '@/apis/apis/leaseApi'
-  import { mapGetters } from "vuex";
-  export default {
-    mixins: [handle_paginator],
-    data() {
-      return {
-        storeChargeType:'',
-        tableData:[],
-        routerQuery: this.$route.query,
-        pageInfo: {
-          importUrl:'/bizClearoweZx/excelImport',
-          pageSize: 10,
-          pageNum: 1,
-          total: 0,
-          bean: {
-            "annual": this.$route.query.annual,
-            "budgetInstanceSheetId": this.$route.query.budgetInstanceSheetId,
-            "chargeType": '',//物业类型
-            //"contType": "",//"1","现有合同" "2","新增交房" "3","地产支付" "3","地产支付" "4","政策减免" "5","营销减免"
-            "shopName": "",//租户名称
-            "oweType":''
-          },
+import excel from './components/excle.vue'
+import Import from '@/components/import.vue'
+import { handle_paginator } from '@mixins'
+import { toThousandsClean, getDynamicTableHeight, rTime } from '@/utils/index'
+import LeaseApi from '@/apis/apis/leaseApi'
+import { mapGetters } from "vuex";
+export default {
+  mixins: [handle_paginator],
+  data () {
+    return {
+      storeChargeType: '',
+      tableData: [],
+      routerQuery: this.$route.query,
+      pageInfo: {
+        importUrl: '/bizClearoweZx/excelImport',
+        pageSize: 10,
+        pageNum: 1,
+        total: 0,
+        bean: {
+          "annual": this.$route.query.annual,
+          "budgetInstanceSheetId": this.$route.query.budgetInstanceSheetId,
+          "chargeType": '',//物业类型
+          //"contType": "",//"1","现有合同" "2","新增交房" "3","地产支付" "3","地产支付" "4","政策减免" "5","营销减免"
+          "shopName": "",//租户名称
+          "oweType": ''
         },
-      }
-    },
-    created() {
-      this.routerQuery = this.$route.query;
-      this.getList();
-    },
-    components: {excel, Import},
-    computed: {
-      ...mapGetters([
-        'multiTypeList',
-        'contTypeList',
-        'oweTypeList',
-        'storeChargeTypeList',
-        'chargeTypeList',
-        'getBudgetYear'
-      ])
-    },
-    methods:{
-      //重置
-      clearFilter() {
-         this.pageInfo = {
-          importUrl:'/bizClearoweZx/excelImport',
-          pageSize: 10,
-          pageNum: 1,
-          total: 0,
-          bean: {
-            "annual": this.$route.query.annual,
-            "budgetInstanceSheetId": this.$route.query.budgetInstanceSheetId,
-            "chargeType": '',//物业类型
-            //"contType": "",//"1","现有合同" "2","新增交房" "3","地产支付" "3","地产支付" "4","政策减免" "5","营销减免"
-            "shopName": "",//租户名称
-            "oweType":''
-          },
-        }
-        this.getList()
-      },
-      //查询
-      checkFilter() {
-        this.pageInfo.pageNum = 1;
-        this.getList()
-      },
-      // 查询列表
-      async getList() {
-        const params = {
-          ...this.pageInfo
-        }
-        await LeaseApi.bizClearoweZxFind(params).then(res => {
-          if (res.code === 0 && res.data) {
-            this.tableData = res.data.list;
-            this.pageInfo.total = res.data.total;
-            getDynamicTableHeight(this);
-          }
-        })
       },
     }
+  },
+  created () {
+    this.routerQuery = this.$route.query;
+    this.getList();
+  },
+  components: { excel, Import },
+  computed: {
+    ...mapGetters([
+      'multiTypeList',
+      'contTypeList',
+      'oweTypeList',
+      'storeChargeTypeList',
+      'chargeTypeList',
+      'getBudgetYear'
+    ])
+  },
+  methods: {
+    //重置
+    clearFilter () {
+      this.pageInfo = {
+        importUrl: '/bizClearoweZx/excelImport',
+        pageSize: 10,
+        pageNum: 1,
+        total: 0,
+        bean: {
+          "annual": this.$route.query.annual,
+          "budgetInstanceSheetId": this.$route.query.budgetInstanceSheetId,
+          "chargeType": '',//物业类型
+          //"contType": "",//"1","现有合同" "2","新增交房" "3","地产支付" "3","地产支付" "4","政策减免" "5","营销减免"
+          "shopName": "",//租户名称
+          "oweType": ''
+        },
+      }
+      this.getList()
+    },
+    //查询
+    checkFilter () {
+      this.pageInfo.pageNum = 1;
+      this.getList()
+    },
+    // 查询列表
+    async getList () {
+      const params = {
+        ...this.pageInfo
+      }
+      await LeaseApi.bizClearoweZxFind(params).then(res => {
+        if (res.code === 0 && res.data) {
+          this.tableData = res.data.list;
+          this.pageInfo.total = res.data.total;
+          getDynamicTableHeight(this);
+        }
+      })
+    },
   }
+}
 </script>
 
 <style type="text/css" lang="scss"  scoped>
 @import "~@styles/common.scss";
-  .rentClearMassage {
-    .el-input-group__append {
-      padding: 0;
-      height: 25px;
-      width: 29px;
-      border-radius: 0;
-      border-color: #468ceb;
-      background: linear-gradient(
-        298deg,
-        rgba(70, 140, 235, 1) 0%,
-        rgba(53, 171, 255, 1) 100%
-      );
-    }
-    .operation {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    ::v-deep .import-input .el-input__inner {
-        border-right-color: #468ceb;
-      }
-      ::v-deep .el-input-group__append {
-        padding: 0;
-        height: 25px;
-        width: 29px;
-        border-radius: 0;
-        border-color: #468ceb;
-        background: linear-gradient(
-          298deg,
-          rgba(70, 140, 235, 1) 0%,
-          rgba(53, 171, 255, 1) 100%
-        );
-      }
-      ::v-deep .el-input-group__append button.el-button {
-        padding: 0px;
-      }
-      ::v-deep .tool-bar .el-icon-search::before {
-        position: absolute;
-        top: 4px;
-        left: 5px;
-        color: #fff;
-        font-size: 20px;
-      }
+.rentClearMassage {
+  .el-input-group__append {
+    padding: 0;
+    height: 25px;
+    width: 29px;
+    border-radius: 0;
+    border-color: #468ceb;
+    background: linear-gradient(
+      298deg,
+      rgba(70, 140, 235, 1) 0%,
+      rgba(53, 171, 255, 1) 100%
+    );
   }
+  .operation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  ::v-deep .import-input .el-input__inner {
+    border-right-color: #468ceb;
+  }
+  ::v-deep .el-input-group__append {
+    padding: 0;
+    height: 25px;
+    width: 29px;
+    border-radius: 0;
+    border-color: #468ceb;
+    background: linear-gradient(
+      298deg,
+      rgba(70, 140, 235, 1) 0%,
+      rgba(53, 171, 255, 1) 100%
+    );
+  }
+  ::v-deep .el-input-group__append button.el-button {
+    padding: 0px;
+  }
+  ::v-deep .tool-bar .el-icon-search::before {
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    color: #fff;
+    font-size: 20px;
+  }
+}
 </style>

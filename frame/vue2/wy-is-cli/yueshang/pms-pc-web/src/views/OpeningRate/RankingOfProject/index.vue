@@ -3,7 +3,8 @@
     :formConfig="formConfig"
     showChart
     :chartX="x"
-    chartTitle="考核开业率(%)"
+    chartTitle="考核开业率"
+    chartUnit="%"
     :tableConfig="tableConfig"
     :request-config="requestConfig"
     :formData="formData"
@@ -32,7 +33,7 @@ export default {
 
       x: X,
 
-      tableConfig: TableConfig,
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -50,15 +51,22 @@ export default {
           api: openingRate.getListByQueryOpenRateList,
           keys: { currYear: 'yearCurr', lastYear: 'yearLast', currData: 'openRate', lastData: 'openRateLast' }
         },
-
-        export: {
-          type: 'exportOfOrRankingProject',
-        }
       },
     }
   },
 
   methods: {
+    handleLinkClick(data) {
+      if (data.row.id && data.row.id !== '合计') {
+        const formData = {
+          projectId: data.row.id,
+          chargeType: this.currentFormData.chargeType,
+          squareFlag: this.currentFormData.squareFlag,
+          yearMonth: data.row.yearMonth,
+        }
+        setSession.call(this, 'or-floor-project', formData)
+      }
+    },
     asyncBeforeSearch(data) {
       this.currentFormData = data;
       return data;

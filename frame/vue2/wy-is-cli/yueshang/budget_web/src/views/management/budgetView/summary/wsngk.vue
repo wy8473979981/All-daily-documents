@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column show-overflow-tooltip fixed label="点位数" prop="multiTotal" min-width="100">
         <template slot-scope="scope">
-          <p>{{ returnValue(scope.row,'multiTotal',true,false,'multiTypeName') }}</p>
+          <p>{{ returnValue(scope.row,'multiTotal',true,false,'multiTypeName',0) }}</p>
         </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip fixed label="总面积（㎡）" align="right" prop="areaTotal" min-width="120">
@@ -28,17 +28,17 @@
       </el-table-column>
       <el-table-column show-overflow-tooltip label="已编制点位数" align="right" prop="editCount" min-width="120">
         <template slot-scope="scope">
-          <p>{{ returnValue(scope.row,'editCount',true,false,'multiTypeName') }}</p>
+          <p>{{ returnValue(scope.row,'editCount',true,false,'multiTypeName',0) }}</p>
         </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip label="未编制点位数" align="right" prop="notEditCount" min-width="120">
         <template slot-scope="scope">
-          <p>{{ returnValue(scope.row,'notEditCount',true,false,'multiTypeName') }}</p>
+          <p>{{ returnValue(scope.row,'notEditCount',true,false,'multiTypeName',0) }}</p>
         </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip label="获得收益点位数" align="right" prop="multiTotalProfit" min-width="120">
         <template slot-scope="scope">
-          <p>{{ returnValue(scope.row,'multiTotalProfit',true,false,'multiTypeName') }}</p>
+          <p>{{ returnValue(scope.row,'multiTotalProfit',true,false,'multiTypeName',0) }}</p>
         </template>
       </el-table-column>
       <el-table-column show-overflow-tooltip label="出租率" align="right" prop="rentalRate" min-width="120">
@@ -154,7 +154,7 @@ import { mapGetters } from 'vuex'
 import { toThousandsClean, getDynamicTableHeight, rTime, returnValue } from '@/utils/index'
 import WsnApi from '@/apis/apis/wsnApi'
 export default {
-  data() {
+  data () {
     return {
       annual: parseInt(this.$route.query.annual),
       bizTypeId: '',
@@ -163,7 +163,7 @@ export default {
     }
   },
   props: ['showMore', 'owingMoneyList'],
-  created() {
+  created () {
     this.wsngkList(this.chargeType)
   },
   computed: {
@@ -173,10 +173,10 @@ export default {
   },
   methods: {
     returnValue,
-    checkFilter() {
+    checkFilter () {
       this.wsngkList(this.chargeType)
     },
-    async wsngkList() {
+    async wsngkList () {
       let params = {
         "bizTypeId": this.bizTypeId,
         "budgetInstanceSheetId": this.$route.query.budgetInstanceSheetId

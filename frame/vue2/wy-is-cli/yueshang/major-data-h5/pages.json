@@ -1,0 +1,349 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "重大事项",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/balance/index/index",
+			"style": {
+				"navigationBarTitleText": "资金效能考核",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/balance/division/index",
+			"style": {
+				"navigationBarTitleText": "资金效能考核",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/arrears/index/index",
+			"style": {
+				"navigationBarTitleText": "欠款回款考核",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/available/index/index",
+			"style": {
+				"navigationBarTitleText": "动态货值",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/available/division/index",
+			"style": {
+				"navigationBarTitleText": "动态货值",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/available/ranking/index",
+			"style": {
+				"navigationBarTitleText": "动态货值",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/available/project/index",
+			"style": {
+				"navigationBarTitleText": "动态货值",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/available/list/project",
+			"style": {
+				"navigationBarTitleText": "动态货值",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/sign/index/index",
+			"style": {
+				"navigationBarTitleText": "动态签约",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/sign/division/index",
+			"style": {
+				"navigationBarTitleText": "动态签约",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/sign/ranking/index",
+			"style": {
+				"navigationBarTitleText": "动态签约",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/sign/project/index",
+			"style": {
+				"navigationBarTitleText": "动态签约",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/payment/index/index",
+			"style": {
+				"navigationBarTitleText": "动态回款",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/payment/division/index",
+			"style": {
+				"navigationBarTitleText": "动态回款",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/payment/ranking/index",
+			"style": {
+				"navigationBarTitleText": "动态回款",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/payment/project/index",
+			"style": {
+				"navigationBarTitleText": "动态回款",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/supply/index/index",
+			"style": {
+				"navigationBarTitleText": "动态供货",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/supply/list/project",
+			"style": {
+				"navigationBarTitleText": "动态供货",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/supply/division/index",
+			"style": {
+				"navigationBarTitleText": "动态供货",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/supply/ranking/index",
+			"style": {
+				"navigationBarTitleText": "动态供货",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/supply/project/index",
+			"style": {
+				"navigationBarTitleText": "动态供货",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/landscape/index/index",
+			"style": {
+				"navigationBarTitleText": "横屏测试页面",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/value/index/index",
+			"style": {
+				"navigationBarTitleText": "库存(一年以上)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/value/division/index",
+			"style": {
+				"navigationBarTitleText": "库存(一年以上)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/value/ranking/index",
+			"style": {
+				"navigationBarTitleText": "库存(一年以上)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/value/allProject/index",
+			"style": {
+				"navigationBarTitleText": "库存(一年以上)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/business/division/index",
+			"style": {
+				"navigationBarTitleText": "库存(商业)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/business/ranking/index",
+			"style": {
+				"navigationBarTitleText": "库存(商业)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/business/allProject/index",
+			"style": {
+				"navigationBarTitleText": "库存(商业)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/parking/division/index",
+			"style": {
+				"navigationBarTitleText": "库存(车位)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/parking/ranking/index",
+			"style": {
+				"navigationBarTitleText": "库存(车位)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/parking/allProject/index",
+			"style": {
+				"navigationBarTitleText": "库存(车位)去化",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+			// "van-action-sheet": "/wxcomponents/vant/dist/action-sheet/index"
+		}
+	}
+	// "easycom": {
+	// 	"autoscan": true,
+	// 	"custom": {
+	// 		"van-(.*)": "@/wxcomponents/vant/dist/$1/index.vue"
+	// 	}
+	// }
+}

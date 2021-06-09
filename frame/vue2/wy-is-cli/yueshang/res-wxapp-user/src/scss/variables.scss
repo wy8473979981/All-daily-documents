@@ -1,0 +1,148 @@
+// ------ public ------
+
+// 颜色
+$ui-color-red:#F36C60;
+$ui-color-blue: #26a2ff;
+$ui-color-black: #304455;
+$ui-color-grey: rgba(black, 0.3);
+$ui-color-disabled: rgba(black, .24);
+$ui-color-orange: #ff6c00;
+$ui-color-green: #4ad48f;
+$ui-color-yellow: #ffaf40;
+$ui-color-purple: #c7b1e2;
+
+// 主色
+$ui-color-primary: $ui-color-blue;
+
+// 背景
+$ui-bg-grey:rgb(243, 245, 247);
+
+// 边框
+$ui-border: 1px solid rgba(#d9d9d9, .3);
+$ui-border-radius: 4px;
+
+// 单位转换
+@function rem($px) {
+  @return $px / 20px * 1rem;
+}
+
+// 文本溢出样式，clamp到多少行溢出时显示缩略字符
+@mixin text-clamp($clamp:1) {
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $clamp;
+  overflow: hidden;
+  line-height: normal;
+}
+
+// 图片盒名称渐变背景
+@mixin linear-background() {
+  $bg: rgba($ui-color-primary, .9);
+  background: linear-gradient(to left, darken($bg, 10%), lighten($bg, 10%));
+}
+
+@mixin box-shadow-bottom {
+  box-shadow: 0 1px 1px rgba($color: black, $alpha: .1);
+}
+
+@mixin box-shadow {
+  box-shadow: 0 .0625rem .375rem rgba(0, 0, 0, .117647), 0 .0625rem .25rem rgba(0, 0, 0, .117647)
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin img-circle($size, $autoType:"") {
+  height: $size;
+  width: $size;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+
+  >img {
+    @if $autoType=='width' {
+      width: $size;
+    }
+
+    @if $autoType=='height' {
+      height: $size;
+    }
+
+    @if $autoType=='' {
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+/* 全局button样式修改 */
+.van-button--info {
+  height: 40px;
+  background: linear-gradient(298deg, #468CEB 0%, #35ABFF 100%);
+  border: 0;
+  font-size: 16px;
+  border-radius: 2px;
+}
+.van-button--plain.van-button--info {
+  background: #FFFFFF;
+  border: 1px solid #468CEB;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0 10px;
+}
+.van-button--danger {
+  height: 40px;
+  background-color: rgba(239, 41, 65, 0.1);;
+  border: 1px solid #EF2941;
+  color: #EF2941;
+  font-size: 16px;
+  border-radius: 2px;
+}
+/* 全局toast样式修改 */
+.van-toast {
+  width: auto;
+}
+/* 全局element-ui table样式 */
+.el-table td, .el-table th {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 5px 0;
+}
+.el-table th {
+  background-color: #F4F5F5;
+  color: #818181;
+}
+.el-table td {
+  color: #333333;
+}
+.el-table td, .el-table th.is-leaf {
+  border: 0;
+}
+.el-table__empty-text {
+  font-size: 12px;
+  color: #818181;
+}
+/* 全局文本域样式修改 */
+.van-field {
+  padding: 0;
+  border: 1px solid #D1D4D8;
+}
+.van-field__control {
+  padding: 0 5px;
+}
+.van-field__word-limit {
+  padding: 0 5px;
+}
+/* 全局骨架屏样式 */
+.van-skeleton {
+  padding: 10px;
+  border-bottom: 10px solid #F4F5F5;
+}

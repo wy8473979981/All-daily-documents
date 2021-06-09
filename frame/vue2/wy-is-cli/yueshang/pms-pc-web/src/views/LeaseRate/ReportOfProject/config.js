@@ -1,4 +1,5 @@
 import store from '@/store'
+import { formatNumber } from 'utils/utils'
 
 let enumList = store.getters.enumList;
 
@@ -81,7 +82,7 @@ export const FormConfig = [
 
 export const X = new Array(12).fill(1).map((i, idx) => `${idx + 1}月`)
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -94,19 +95,20 @@ export function TableConfig(method) {
       label: '项目',
       minWidth: 120,
       fixed: true,
-      type: 'link',
-      props: {
-        click(data) {
-          method(data)
-        }
-      }
     },
     {
       key: 'storeRentSquare',
       label: '总面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 120,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClick(data, 'lr-area-project')
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
       key: 'leaseRateQc',
@@ -146,29 +148,50 @@ export function TableConfig(method) {
     {
       key: 'rentSquareQc',
       label: '出租面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 120,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClick(data, 'lr-realsearea-project')
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
       key: 'rentSquare',
       label: '考核出租面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 135,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClick(data, 'lr-check-project')
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
-      key: 'coverRentSquare',
+      key: 'leaseCoverRentSquare',
       label: '押不抵租面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 135,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClick(data, 'lr-rent-project')
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
       key: 'twoSignNum',
-      label: '新增双签数量',
-      type: 'number',
-      width: 110,
+      label: '新增双签数(个)',
+      align: 'right',
+      width: 130,
       sortable: 'custom'
     },
     {
@@ -180,9 +203,9 @@ export function TableConfig(method) {
     },
     {
       key: 'failContNum',
-      label: '新增解约数量',
-      type: 'number',
-      width: 110,
+      label: '新增解约数(个)',
+      align: 'right',
+      width: 130,
       sortable: 'custom'
     },
     {

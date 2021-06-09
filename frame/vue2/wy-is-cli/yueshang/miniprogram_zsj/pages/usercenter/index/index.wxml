@@ -1,0 +1,50 @@
+<!--pages/usercenter/index/index.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num" />
+
+<view id='user-center-index'>
+	<view class='ys-figure-wrapper '>
+		<view class="ys-figure">
+			<view wx:if="{{global.clerkRole == '1'}}" class="ys-figure-avatar" style='background:#6cbbff;'>{{num.sliceName(global.clerkName)}}</view>
+			<view wx:if="{{global.clerkRole == '2'}}" class="ys-figure-avatar" style='background:#0fcbbc;'>{{num.sliceName(global.clerkName)}}</view>
+			<view class="ys-figure-info">{{global.clerkName}}({{global.clerkRole == '1' ? '店长': '店员'}})</view>
+		</view>
+	</view>
+
+	<view class="ys-block ys-block-gap">
+		<view class="ys-nav-wrapper">
+			<navigator class="ys-nav-item" url="/pages/usercenter/employee/employee" hover-class="navigator-hover">
+				<image class="ys-icon ys-icon-user" src='../../../static/images/icon_staff.png'></image>
+				<text class="nav-text">我的员工</text>
+				<view class="nav-arrow"></view>
+			</navigator>
+			<view class="ys-nav-item" bindtap="loginOut" hover-class="navigator-hover">
+				<image class="ys-icon ys-icon-user" src='../../../static/images/icon_gift.png'></image>
+				<text class="nav-text">退出</text>
+				<view class="nav-arrow"></view>
+			</view>
+			<!-- <navigator class="ys-nav-item" url="/components/activity/activity?isEnroled=1"   hover-class="navigator-hover">
+          <image class="ys-icon ys-icon-user" src='../../../static/images/icon_gift.png'></image>
+          <text class="nav-text">我的活动</text>
+          <view class="nav-arrow"></view>  
+        </navigator> -->
+			<!-- <navigator class="ys-nav-item" url="/pages/usercenter/shopList/shopList"   hover-class="navigator-hover">
+          <image class="ys-icon ys-icon-user" src='../../../static/images/icon_staff.png'></image>
+          <text class="nav-text">切换商铺</text>
+          <view class="nav-arrow"></view>
+        </navigator> -->
+			<!-- <navigator class="ys-nav-item" url="/pages/404/404"  hover-class="navigator-hover">
+            <image class="ys-icon ys-icon-user" src='../../../static/images/icon_gift.png'></image>
+            <text class="nav-text">我的活动</text>
+            <view class="nav-arrow"></view>  
+        </navigator>
+
+
+        <navigator class="ys-nav-item" url="/pages/404/404"  hover-class="navigator-hover">
+            <image class="ys-icon ys-icon-user" src='../../../static/images/icon_bill.png'></image>
+            <text class="nav-text">违约单</text>
+            <view class="nav-arrow"></view>     
+        </navigator> -->
+
+		</view>
+	</view>
+</view>

@@ -25,14 +25,14 @@ export default {
       tableConfig: TableConfig,
 
       formData: {
-        chargeType: null,
-        projectId: null,
-        date: parseTime(new Date(), '{y}-{m}'),
+        chargeType: '',
+        projectId: '',
+        yearMonth: parseTime(new Date(), '{y}-{m}'),
       },
 
       requestConfig: {
         query: {
-          api: openingRate.getListByRankingOfHeadquarters
+          api: openingRate.getListByFloorOfProject
         }
       },
     }

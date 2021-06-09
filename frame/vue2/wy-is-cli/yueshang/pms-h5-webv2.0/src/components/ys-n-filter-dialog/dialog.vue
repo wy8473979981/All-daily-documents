@@ -1,7 +1,8 @@
 <template>
   <div>
     <div :class="'app-filter app-filter--' + type" @click="open">
-      {{ title }}<img v-if="title" class="app-filter-icon" src="../../assets/images/icon-filter.png" />
+      <span>{{ title }}</span>
+      <img v-if="title" class="app-filter-icon" src="../../assets/images/icon-filter.png" />
       <slot></slot>
     </div>
     <div v-if="component.opened" class="app-filter-dialog overlay">
@@ -15,16 +16,14 @@
           <template v-if="component.checkboxes.length">
             <div v-for="(item, itemi) in component.checkboxes" :key="itemi" class="checkbox-item">
               <label class="checkbox" @click="onCheckboxClick(item)" :data-value="item.value">
-               <span :class="component.selected[item.value] ? 'active':''"></span>{{ item.label }}
-              <!-- <van-checkbox v-model="component.selected[item.value]" :disabled="!component.selected[item.value] && component.disabled"  :data-value="item.value" shape="square" checked-color="#3A96BD">{{ item.label }}</van-checkbox> -->
+                <span :class="component.selected[item.value] ? 'active':''"></span>{{ item.label }}
+                <!-- <van-checkbox v-model="component.selected[item.value]" :disabled="!component.selected[item.value] && component.disabled"  :data-value="item.value" shape="square" checked-color="#3A96BD">{{ item.label }}</van-checkbox> -->
               </label>
             </div>
           </template>
           <template v-else>
             <div v-for="(group, groupi) in component.groups" :key="groupi" class="group">
-              <div class="group__title">
-                {{ group.label }}
-              </div>
+              <!-- <div class="group__title"> {{ group.label }}</div> -->
               <div class="group__items">
                 <div v-for="(item, itemi) in group.items" :key="itemi" :class="
 		  										'group-item ' +
@@ -53,7 +52,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       component: {
         opened: false,
@@ -100,15 +99,15 @@ export default {
   watch: {
     checkboxes: {
       handler: function (items) {
-		if(this.$route.query.ids) {
-			let idList = this.$route.query.ids.split(',')
-			items.map(item => {
-				if(idList.includes(item.id)) {
-					this.component.selected[JSON.stringify(item)] = true
-				}
-			})
-		}
-        console.log(this.component.selected, 'this.component.selected')
+        if (this.$route.query.ids) {
+          let idList = this.$route.query.ids.split(',')
+          items.map(item => {
+            if (idList.includes(item.id)) {
+              this.component.selected[JSON.stringify(item)] = true
+            }
+          })
+        }
+        // console.log(this.component.selected, 'this.component.selected')
         this.setData({
           "component.checkboxes": items.map((item) => {
             return {
@@ -123,56 +122,58 @@ export default {
     },
     groups: {
       handler: function (groups) {
-        const selected = {};
-        // console.log(this.component.checkboxes.length, this.$route.query.chargeType, 'sddsds')
-        const newGroups = groups.map((group, groupi) => {
-          return {
-            maxnum: 1,
-            id: `group-${groupi}`,
-            ...group,
-            items: group.items.map((item) => {
-              const value = item.value || item;
-              if (this.$route.query.chargeType == item.code || item.selected === true) {
-                item.selected == true
-                selected[value] = `group-${groupi}`;
-              }
+        if (groups && groups.length > 0) {
+          const selected = {};
+          // console.log(this.component.checkboxes.length, this.$route.query.chargeType, 'sddsds')
+          const newGroups = groups.map((group, groupi) => {
+            return {
+              maxnum: 1,
+              id: `group-${groupi}`,
+              ...group,
+              items: group.items.map((item) => {
+                const value = item.value || item;
+                if (this.$route.query.chargeType == item.code || item.selected === true) {
+                  item.selected == true
+                  selected[value] = `group-${groupi}`;
+                }
 
-              return {
-                label: item.label,
-                value,
-              };
-            }),
-            $index: groupi,
-          };
-        });
-        this.setData({
-          "component.groups": newGroups,
-          "component.selected": selected,
-        });
+                return {
+                  label: item.label,
+                  value,
+                };
+              }),
+              $index: groupi,
+            };
+          });
+          this.setData({
+            "component.groups": newGroups,
+            "component.selected": selected,
+          });
+        }
       },
       immediate: true,
       deep: true,
     },
   },
   mounted: function () {
-	
+
   },
   methods: {
-    open() {
+    open () {
       this.setData({
         "component.opened": true,
       });
       this.$emit("open");
     },
 
-    close() {
+    close () {
       this.setData({
         "component.opened": false,
       });
       this.$emit("close");
     },
 
-    onGroupItemClick(e) {
+    onGroupItemClick (e) {
       const selected = this.component.selected;
       const group = JSON.parse(e.target.dataset.group);
       const value = JSON.parse(e.target.dataset.value);
@@ -213,7 +214,7 @@ export default {
       this.$forceUpdate();
     },
 
-    onCheckboxClick(item) {
+    onCheckboxClick (item) {
       const selected = this.component.selected;
       const value = item.value;
 
@@ -235,10 +236,10 @@ export default {
         "component.disabled": this.maxnum > 1 && Object.keys(selected).length >= this.maxnum,
         "component.selected": selected,
       });
-	  this.$forceUpdate()
+      this.$forceUpdate()
     },
 
-    ok() {
+    ok () {
       this.close();
       this.$emit("selected", {
         detail: Object.keys(this.component.selected).map((item) => {
@@ -271,8 +272,8 @@ app-filter-dialog + app-filter-dialog {
 
 .app-filter .app-filter-icon {
   margin-left: 10px;
-  width: 34px;
-  height: 28px;
+  width: 0.4rem;
+  height: 0.3733rem;
 }
 
 .app-filter.app-filter--info {
@@ -300,7 +301,8 @@ app-filter-dialog + app-filter-dialog {
   bottom: 0;
   width: 100%;
   max-height: 80%;
-  padding: 30px 30px;
+  // padding: 30px 30px;
+  padding: 0 80px;
   box-sizing: border-box;
   background-color: #ffffff;
   z-index: 1;
@@ -309,7 +311,7 @@ app-filter-dialog + app-filter-dialog {
 
 .app-filter-dialog .app-filter-dialog__main .app-filter-dialog__main__close {
   position: absolute;
-  top: -120px;
+  top: -100px;
   left: 50%;
   width: 80px;
   height: 80px;
@@ -319,14 +321,17 @@ app-filter-dialog + app-filter-dialog {
 }
 
 .app-filter-dialog .app-filter-dialog__main__tip {
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
+  height: 68px;
+  line-height: 68px;
   font-size: 28px;
   color: #757575;
 }
 
 .app-filter-dialog .app-filter-dialog__main__body {
   flex: 1;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
+  padding-bottom: 174px;
   overflow: auto;
 }
 
@@ -334,24 +339,27 @@ app-filter-dialog + app-filter-dialog {
   margin-bottom: 30px;
 }
 .app-filter-dialog .app-filter-dialog__main__body .checkbox-item span {
-	background-color: #fff;
-	border: solid 1px #ccc;
-	width: 40px;
-	height: 40px;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 30px;
-	line-height: 40px !important;
-	text-align: center;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+  line-height: 40px !important;
+  text-align: center;
 }
 .app-filter-dialog .app-filter-dialog__main__body .checkbox-item span.active {
-	background-color: #1890FF !important;
-	font: normal normal normal 28px/1 vant-icon;
-	color: #fff;
-	position: relative;
+  background-color: #3992ba !important;
+  font: normal normal normal 28px/1 vant-icon;
+  color: #fff;
+  position: relative;
 }
-.app-filter-dialog .app-filter-dialog__main__body .checkbox-item span.active::before {
-    content: '\F0C8';
+.app-filter-dialog
+  .app-filter-dialog__main__body
+  .checkbox-item
+  span.active::before {
+  content: "\F0C8";
 }
 .app-filter-dialog .app-filter-dialog__main__body .group__title {
   padding: 10px;
@@ -362,24 +370,38 @@ app-filter-dialog + app-filter-dialog {
 .app-filter-dialog .app-filter-dialog__main__body .group__items {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .app-filter-dialog .app-filter-dialog__main__body .group__items .group-item {
+  // white-space: nowrap;
+  // padding: 10px 20px;
+  // margin-right: 20px;
+  // margin-bottom: 20px;
+  // background-color: #e3e3e3;
+  // color: #333333;
+
+  width: 100%;
+  font-size: 28px;
   white-space: nowrap;
-  padding: 10px 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  background-color: #e3e3e3;
   color: #333333;
+  text-align: center;
+  padding: 0;
+  line-height: 95px;
+  font-weight: 500;
+  &:not(:last-child) {
+    border-bottom: 1px solid #f5f5f5;
+  }
 }
 
 .app-filter-dialog
   .app-filter-dialog__main__body
   .group__items
   .group-item.selected {
-  background-color: #3a96bd;
-  color: #ffffff;
+  // background-color: #3a96bd;
+  // color: #ffffff;
+  color: #3a96bd;
+  font-size: 32px;
 }
 
 .app-filter-dialog
@@ -407,16 +429,17 @@ app-filter-dialog + app-filter-dialog {
   width: 100%;
   left: 0;
   background-color: #fff;
-  padding-bottom: 42px;
-  padding:15px 0 42px;
+  padding: 40px 80px 60px 80px;
+  // padding-bottom: 42px;
+  // padding: 15px 0 42px;
 }
 .confirm-btn {
-  background: linear-gradient(360deg, #44aedb 0%, #2e6395 100%);
-  margin: 0 36px;
+  background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+  // margin: 0 36px;
   text-align: center;
-  line-height: 1rem;
-  font-size: 28px;
-  border-radius: 5px;
+  line-height: 75px;
+  font-size: 32px;
+  border-radius: 0;
   color: #fff;
 }
 </style>

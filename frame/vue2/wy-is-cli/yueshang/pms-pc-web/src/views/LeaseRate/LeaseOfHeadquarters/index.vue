@@ -5,7 +5,8 @@
     :formConfig="formConfig"
     showChart
     :chartX="x"
-    chartTitle="考核出租率(%)"
+    chartTitle="考核出租率"
+    chartUnit="%"
     chartSubTitle="按月统计出租率（例：8月出租率为8月31日出租率）"
     :tableConfig="tableConfig"
     :request-config="requestConfig"
@@ -36,7 +37,7 @@ export default {
 
       x: X,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -66,9 +67,6 @@ export default {
         },
         list: {
           responseKey: 'list',
-        },
-        export: {
-          type: 'exportOfLrLeaseHeadquarters',
         },
       },
     };
@@ -106,16 +104,9 @@ export default {
           endDate: this.currentFormData.endDate,
           chargeType: this.currentFormData.chargeType,
           squareFlag: this.currentFormData.squareFlag,
-          areaId:
-            this.currentFormData.areaId === 0
-              ? ''
-              : this.currentFormData.areaId,
-          province:
-            this.currentFormData.province === 0
-              ? ''
-              : this.currentFormData.province,
-          stage:
-            this.currentFormData.stage === 0 ? '' : this.currentFormData.stage,
+          areaId: this.currentFormData.areaId,
+          province: this.currentFormData.province,
+          stage: this.currentFormData.stage,
         };
         setSession.call(this, 'lr-report-project', formData);
       }

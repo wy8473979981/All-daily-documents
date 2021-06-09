@@ -1,0 +1,33 @@
+page{
+  color: #777;
+  font-size: 24rpx;
+}
+text.title{
+  color: #262626;
+  font-size: 36rpx;
+}
+.tpl-activity{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tpl-activity image{
+  width: 250rpx;
+  height: 200rpx;
+  margin-right: 40rpx;
+}
+.tpl-activity .detail{
+  flex: 1;
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+.tpl-activity .detail>text{
+  margin-bottom: 20rpx;
+}
+.tpl-activity .detail>view.tag-box{
+  margin-bottom: 10rpx;
+}
+.tpl-activity .detail text.title{
+  margin-bottom: 10rpx;
+}

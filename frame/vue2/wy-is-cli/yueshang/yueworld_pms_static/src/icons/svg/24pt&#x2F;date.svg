@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>EA905CDC-2F17-4D2A-BEB3-DB1D6D7027B9</title>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="24pt/date" stroke="#848382">
+            <rect id="矩形" x="5" y="7" width="14" height="12" rx="0.75"></rect>
+            <line x1="4.5" y1="10.5" x2="19.5" y2="10.5" id="路径"></line>
+            <line x1="4.5" y1="15" x2="19.5" y2="15" id="路径"></line>
+            <g id="编组" transform="translate(9.500000, 5.500000)">
+                <line x1="0.1875" y1="0" x2="0.1875" y2="3" id="路径"></line>
+                <line x1="4.6875" y1="0" x2="4.6875" y2="3" id="路径"></line>
+            </g>
+            <g id="编组-2" transform="translate(9.500000, 11.000000)">
+                <line x1="0.25" y1="0" x2="0.25" y2="8" id="路径"></line>
+                <line x1="4.75" y1="0" x2="4.75" y2="8" id="路径"></line>
+            </g>
+        </g>
+    </g>
+</svg>

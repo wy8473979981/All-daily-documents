@@ -50,17 +50,17 @@ export const TableConfig = [
   },
   {
     key: 'a1',
-    label: '平均租金(小商铺)',
+    label: '平均租金(全部)',
     align: 'right',
     children: [
       {
-        key: 'avgRentFeeForSmallStore',
+        key: 'avgRentFeeForAll',
         label: '平均(元/㎡)',
-        align: 'right',
+        type: 'money',
         minWidth: 100,
       },
       {
-        key: 'yearOnYearForSmallStore',
+        key: 'yearOnYearForAll',
         label: '同比',
         type: 'rate',
         minWidth: 100,
@@ -69,17 +69,36 @@ export const TableConfig = [
   },
   {
     key: 'a1',
-    label: '平均租金(全部)',
+    label: '平均租金(主次力店)',
     align: 'right',
     children: [
       {
-        key: 'avgRentFeeForAll',
+        key: 'avgRentFeeForMainStore',
         label: '平均(元/㎡)',
-        align: 'right',
+        type: 'money',
         minWidth: 100,
       },
       {
-        key: 'yearOnYearForAll',
+        key: 'yearOnYearForMainStore',
+        label: '同比',
+        type: 'rate',
+        minWidth: 100,
+      }
+    ]
+  },
+  {
+    key: 'a1',
+    label: '平均租金(中小商铺)',
+    align: 'right',
+    children: [
+      {
+        key: 'avgRentFeeForSmallStore',
+        label: '平均(元/㎡)',
+        type: 'money',
+        minWidth: 100,
+      },
+      {
+        key: 'yearOnYearForSmallStore',
         label: '同比',
         type: 'rate',
         minWidth: 100,

@@ -1,0 +1,85 @@
+<!--pages/usercenter/breach-detail/breach-detail.wxml-->
+<view class="ys-block" id="breach-detail">
+  <view class="ys-section ys-section-gap">
+    <view class="ys-info-panel">
+      <view class="ys-cell">
+          <view class="ys-cell-label">单据号</view>
+          <view class="ys-cell-content">
+              <text>ASDF439898623264</text>
+               <view class="ys-badge ys-badge-sm ys-badge-normal" wx:if="{{paymentStatus=='unpay'}}">未缴纳</view>
+               <view class="ys-badge ys-badge-sm ys-badge-disable" wx:if="{{paymentStatus=='paid'}}">已缴纳</view>
+          </view>
+      </view><!--cell-->
+
+      <view class="ys-cell">
+          <view class="ys-cell-label">商户</view>
+          <view class="ys-cell-content">
+              <text>张三</text>
+          </view>
+      </view><!--cell-->
+
+       <view class="ys-cell">
+          <view class="ys-cell-label">铺位号</view>
+          <view class="ys-cell-content">
+              <text>B1507</text>
+          </view>
+      </view><!--cell-->
+
+       <view class="ys-cell">
+          <view class="ys-cell-label">品牌</view>
+          <view class="ys-cell-content">
+              <text>肯德基</text>
+          </view>
+      </view><!--cell-->
+
+    </view>
+      
+  </view><!--ys-section-->
+
+
+    <view class="ys-section ys-section-gap">
+    <view class="ys-info-panel">
+      <view class="ys-cell">
+          <view class="ys-cell-label">首款项目</view>
+          <view class="ys-cell-content">
+              <text>运营罚款</text>
+          </view>
+      </view><!--cell-->
+
+      <view class="ys-cell">
+          <view class="ys-cell-label">罚款金额</view>
+          <view class="ys-cell-content">
+              <text>537.00元</text>
+          </view>
+      </view><!--cell-->
+
+       <view class="ys-cell">
+          <view class="ys-cell-label">罚款原因</view>
+          <view class="ys-cell-content">
+              <text>在2018/05/26提前关店</text>
+          </view>
+      </view><!--cell-->
+
+       <view class="ys-cell">
+          <view class="ys-cell-label">应收日期</view>
+          <view class="ys-cell-content">
+              <text>2018/05/26</text>
+          </view>
+      </view><!--cell-->
+
+    </view>
+      
+  </view><!--ys-section-->
+
+  
+
+    <view class="ys-section ys-section-gap">
+      <view class="ys-section-title">备注</view>
+      <view class="ys-section-content">
+        <text class="comments">正常营业时间段在10:30-22:30，请注意您的营业时间，感谢您的配合！</text>
+      </view>
+   </view><!--ys-section-->
+
+  
+
+</view>

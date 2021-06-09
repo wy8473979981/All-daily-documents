@@ -26,15 +26,15 @@ export const FormConfig = [
 
 
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'projectName',
       label: '项目',
       type: 'link',
       props: {
-        click(scope) {
-          method(scope)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       },
       minWidth: 120,
@@ -56,9 +56,9 @@ export function TableConfig(method) {
     },
     {
       key: 'lastYearActualFlow',
-      label: '去年累计',
-      type: 'money',
-      minWidth: 100,
+      label: '去年累计(万人)',
+      type: 'ten-thousand',
+      minWidth: 140,
       sortable: 'custom'
     },
     {
@@ -91,16 +91,16 @@ export function TableConfig(method) {
     },
     {
       key: 'workdayAverageActualFlow',
-      label: '工作日日均',
-      type: 'money',
-      minWidth: 100,
+      label: '工作日日均(万人)',
+      type: 'ten-thousand',
+      minWidth: 140,
       sortable: 'custom'
     },
     {
       key: 'holidayAverageActualFlow',
-      label: '周末日均',
-      type: 'money',
-      minWidth: 100,
+      label: '周末日均(万人)',
+      type: 'ten-thousand',
+      minWidth: 140,
       sortable: 'custom'
     }
   ]

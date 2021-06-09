@@ -1,3 +1,30 @@
+// 第三方接口API
+// let blMain1 = 'http://pms.powerlong.com/PowerDesk'
+// let blMain2 = 'http://proservice.powerlong.com'
+// let blMain3 = 'http://pms.powerlong.com'
+// if (process.env.NODE_ENV === "production") {
+//     blMain1 = 'https://pd.powerlong.com'
+//     blMain2 = 'https://proservice.powerlong.com'
+//     blMain3 = 'https://pms.powerlong.com'
+// }
+
+
+let blMain1 = 'https://pms.powerlong.com/PowerDesk'
+let blMain2 = 'https://proservice.powerlong.com'
+let blMain3 = 'http://pmstest.powerlong.com'
+// let blMain4 = 'https://apipre.powerlong.com'// 会员测试
+let blMain4 = 'https://proservice.powerlong.com'// 会员生产
+if (process.env.NODE_ENV === "production") {
+    blMain1 = 'http://pd.powerlong.com'
+    blMain2 = 'https://proservice.powerlong.com'
+    blMain3 = 'http://pms.powerlong.com'
+    blMain4 = 'https://proservice.powerlong.com'
+}
+
+// https://demo.powerlong.com/PowerDesk ----- https://pd.powerlong.com
+// https://proservice.powerlong.com -------  https://proservice.powerlong.com
+// https://pmstest.powerlong.com  ---------  https://pms.powerlong.com
+
 const URL = {
     homeURL: {
         // 营运数据 - 首页
@@ -7,12 +34,14 @@ const URL = {
         queryCarFlowData: "/plpms-report/bis/carFlow/queryCarFlowData", // 查询车流模块汇总数据
         queryZsTotal: "/plpms-report/bis/zs/queryZsTotal", // 招商 首页 汇总数据
         queryOweFeeData: "/plpms-report/bis/oweFeeProject/queryOweFeeData", // 查询欠费模块汇总数据
+        getYunYingGeneralMemberInfo: '/plpms-report/bis/member/queryMember',// 获取会员汇总信息
+        getMemberList: blMain4 + '/pms/statistics/memberStatistics/basicMemberData/rank',// 获取会员列表信息
         queryLeaseExpiresTotal: "/plpms-report/bis/lease-expires/queryTotal", // 租约到期 根据物业类型查询,租约到期汇总数据
         queryCoverRentTotal: "/plpms-report/bis/cover-rent/queryTotal", // 押不抵租 根据物业类型查询,押不抵租汇总数据
     },
     keliuURL: {
         queryPassengerFlowLineChart: "/plpms-report/bis/monthlyPassengerFlowDetailsOfProject/queryPassengerFlowLineChart", // 客流排名 - 查询项目客流、客流密度折线图
-        queryPassengerFlowForPassengerFlowRanking: "/plpms-report/bis/passengerFlowRanking/queryPassengerFlowForPassengerFlowRanking",  // 客流排名 - 查询项目排名
+        queryPassengerFlowForPassengerFlowRanking: "/plpms-report/bis/passengerFlowRanking/queryPassengerFlowForPassengerFlowRanking", // 客流排名 - 查询项目排名
         queryMonthlyPassengerFlowRanking: "/plpms-report/bis/monthlyPassengerFlowDetailsOfProject/queryMonthlyPassengerFlowRanking", // 月客流 - 查询项目的月客流排名
         queryTotalDailyPassengerFlowInRecentSevenDays: "/plpms-report/bis/passengerFlowMonitoring/queryTotalDailyPassengerFlowInRecentSevenDays", // 客流监控 - 查询最近7天客流折线图
         queryPassengerFlowRecentThreeYears: "/plpms-report/bis/passengerFlowMonitoring/queryPassengerFlowRecentThreeYears", //客流监控 - 查询最近3年客流柱状图
@@ -27,7 +56,7 @@ const URL = {
     },
     qianfeiURL: {
         queryOweFeeLineChart: "/plpms-report/bis/oweFeeProject/queryOweFeeLineChart", // 欠费 - 欠费折线图
-        queryOweFeeRanking: "/plpms-report/bis/oweFeeProject/queryOweFeeRanking",  // 欠费 - 欠费排名
+        queryOweFeeRanking: "/plpms-report/bis/oweFeeProject/queryOweFeeRanking", // 欠费 - 欠费排名
         queryOweFeeAging: "/plpms-report/bis/oweFeeProject/queryOweFeeAging", // 欠费 - 当前欠费账龄
     },
     cashForRentURL: {
@@ -61,35 +90,56 @@ const URL = {
     },
     externalLinkURL: {
         // 外链 接口
-        pdWx: "http://pms.powerlong.com/PowerDesk/open/bis-mini-app!pdWx.action", // 获取所有的项目列表
-        getYunYingGeneralMemberInfo: "http://pd.powerlong.com/open/bis-open-statistics!getYunYingGeneralMemberInfo.action", // 获取会员汇总信息
-        basicMemberData: "https://proservice.powerlong.com/pms/statistics/memberStatistics/basicMemberData", // 会员--整体概况
-        memberRatio: "https://proservice.powerlong.com/pms/statistics/memberStatistics/memberRatio", // 注册渠道占比、会员性别占比、会员等级占比
-        memberFeature: "https://proservice.powerlong.com/pms/statistics/memberStatistics/memberFeature", // 获取会员pie
-        memberAge: "https://proservice.powerlong.com/pms/statistics/memberStatistics/memberAge", // 获取会员年龄分布
-        pointsRatio: "https://proservice.powerlong.com/pms/statistics/memberStatistics/pointsRatio", // 积分产出占比
-        consumeCategoryDistribution: "https://proservice.powerlong.com/pms/statistics/memberStatistics/consumeCategoryDistribution", // 消费业态分布
-        bisProjectPrincipalInfo: "http://demo.powerlong.com/PowerDesk/open/bis-open-report!bisProjectPrincipalInfo.action", //项目总弹窗信息
-        login: "http://demo.powerlong.com/PowerDesk/wap/pd-app!login.action", //登录接口
-        merchansList: "http://pms.powerlong.com/merchant_applets_web/api/v1/report/bis/merchans/formats/bigs/list", // 获取 商家管理 列表
-        merchansFormatList: "http://pms.powerlong.com/merchant_applets_web/api/v1/report/bis/formats/bigs/list", // 获取 商家管理-业态 列表
-        bismerchanformatsbigsList: "http://pms.powerlong.com/merchant_applets_web/api/v1/report/shangguans/bismerchanformatsbigs/list", // 获取 商家管理-商家信息
-        bismerchantsummarybigsList: "http://pms.powerlong.com/merchant_applets_web/api/v1/report/shangguans/bismerchantsummarybigs/list", // 获取 商家管理-商家比较列表
-        bismerchantsummarybigsListLineChart: "http://pms.powerlong.com/merchant_applets_web/api/v1/report/shangguans/bismerchantsummarybigs/listLineChart", // 获取 商家管理-商家比较echart
-        selectProjectList: "http://pd.powerlong.com/open/bis-open-dict!selectProjectList.action", //获取招商进度的项目
+        pdWx: blMain1 + "/open/bis-mini-app!pdWx.action", // 获取所有的项目列表
+        // getYunYingGeneralMemberInfo: blMain1 + "/open/bis-open-statistics!getYunYingGeneralMemberInfo.action", // 获取会员汇总信息
+        basicMemberData: blMain2 + "/pms/statistics/memberStatistics/basicMemberData", // 会员--整体概况
+        memberRatio: blMain2 + "/pms/statistics/memberStatistics/memberRatio", // 注册渠道占比、会员性别占比、会员等级占比
+        memberFeature: blMain2 + "/pms/statistics/memberStatistics/memberFeature", // 获取会员pie
+        memberAge: blMain2 + "/pms/statistics/memberStatistics/memberAge", // 获取会员年龄分布
+        pointsRatio: blMain2 + "/pms/statistics/memberStatistics/pointsRatio", // 积分产出占比
+        consumeCategoryDistribution: blMain2 + "/pms/statistics/memberStatistics/consumeCategoryDistribution", // 消费业态分布
+        bisProjectPrincipalInfo: blMain1 + "/open/bis-open-report!bisProjectPrincipalInfo.action", //项目总弹窗信息
+        login: blMain1 + "/wap/pd-app!login.action", //登录接口
+    },
+    makeBusiness: {
+        selectProjectList: blMain1 + "/open/bis-open-dict!selectProjectList.action", //获取招商进度的项目
+
+        investmentList: blMain3 + "/plan_web/api/v1/report/bis/attract/investment/total/bigs/list",
+        investmentsList: blMain3 + "/plan_web/api/v1/report/bis/attracts/investments/deatils/bigs/list",
+        rejectList: blMain3 + "/plan_web/api/v1/report/bis/commissions/rejects/rates/bigs/rejectList",
+        extractList: blMain3 + "/plan_web/api/v1/report/bis/commissions/rejects/rates/bigs/extractList",
+        summariesList: blMain3 + "/plan_web/api/v1/report/bis/investments/performances/assessments/summaries/bigs/list",
+        assessmentsProjectsList: blMain3 + "/plan_web/api/v1/report/bis/investments/performances/assessments/projects/bigs/list",
+        monitoringList: blMain3 + "/plan_web/api/v1/report/bis/headquarters/brand/monitoring/detail/bigs/list",
+        rentcompleteratetList: blMain3 + "/plan_web/api/v1/report/bis/rentcompleterate/bigs/list",
+        jcstlist: blMain3 + "/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/jcstlist",
+        htbslist: blMain3 + "/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/htbslist",
+        swqplist: blMain3 + "/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/swqplist",
+    },
+    merchant: {
+        merchansList: blMain3 + "/plan_web/api/v1/report/bis/merchans/formats/bigs/list", // 获取 商家管理 列表
+        merchansFormatList: blMain3 + "/plan_web/api/v1/report/bis/formats/bigs/list", // 获取 商家管理-业态 列表
+        bismerchanformatsbigsList: blMain3 + "/plan_web/api/v1/report/shangguans/bismerchanformatsbigs/list", // 获取 商家管理-商家信息
+        bismerchantsummarybigsList: blMain3 + "/plan_web/api/v1/report/shangguans/bismerchantsummarybigs/list", // 获取 商家管理-商家比较列表
+        bismerchantsummarybigsListLineChart: blMain3 + "/plan_web/api/v1/report/shangguans/bismerchantsummarybigs/listLineChart", // 获取 商家管理-商家比较echart
+    },
+    yusuanURL: {
+        getZfgkSheet: blMain3 + "/budget/open/collectrate/queryPage",
+        getZyzbSheet: blMain3 + "/budget/open/collecttarget/queryPage",
+        getZjjhSheet: blMain3 + "/budget/open/capitalPlan/queryPage",
+        getMjxxSheet: blMain3 + "/budget/open/collectbase/queryPage",
+        getRsfySheet: blMain3 + "/budget/open/collectEmpfee/queryPage",
+        getXzfySheet: blMain3 + "/budget/open/tmp/data/costsurvey/query",
+        getRyxxSheet: blMain3 + "/budget/open/collectbaseEmp/queryPage",
 
 
-        investmentList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/attract/investment/total/bigs/list",
-        investmentsList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/attracts/investments/deatils/bigs/list",
-        rejectList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/commissions/rejects/rates/bigs/rejectList",
-        extractList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/commissions/rejects/rates/bigs/extractList",
-        summariesList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/investments/performances/assessments/summaries/bigs/list",
-        assessmentsProjectsList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/investments/performances/assessments/projects/bigs/list",
-        monitoringList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/headquarters/brand/monitoring/detail/bigs/list",
-        rentcompleteratetList: "https://pms.powerlong.com/plan_web/api/v1/report/bis/rentcompleterate/bigs/list",
-        jcstlist: "https://pms.powerlong.com/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/jcstlist",
-        htbslist: "https://pms.powerlong.com/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/htbslist",
-        swqplist: "https://pms.powerlong.com/plan_web/api/v1/report/bis/tobeopens/projects/merchantsteps/bigs/swqplist",
+        getBudgetInstanceSheet: blMain3 + "/budget/open/getBudgetInstanceSheet",
+        getQhfSheet: blMain3 + "/budget/open/tmp/data/qhf/query",
+        getEnergySheet: blMain3 + "/budget/open/tmp/data/energy/query",
+        getCollectEmpSheet: blMain3 + "/budget/open/collectEmp/queryPage",
+        getProjectSheet: blMain3 + "/budget/open/collectbaseProject/queryPage",
+        getJfSheet: blMain3 + "/budget/open/tmp/data/deliverystat/query",
+        getDcSheet: blMain3 + "/budget/open/tmp/data/propertystat/query"
     }
 
 

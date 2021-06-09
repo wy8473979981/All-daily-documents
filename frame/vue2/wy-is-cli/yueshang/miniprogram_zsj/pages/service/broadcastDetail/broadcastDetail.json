@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "广播申请单",
+  "usingComponents": {
+    "application-info": "../../../components/applicationInfo/applicationInfo"
+  }
+}

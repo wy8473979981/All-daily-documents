@@ -172,10 +172,12 @@ export default {
           // this.$router.push({
           //   path: '/'
           // })
+          localStorage.setItem('sso—login-error', '0')
           setTimeout(() => {
             window.location.href = window.location.href.split('#')[0]
           }, 200)
         } else {
+          localStorage.setItem('sso—login-error', '1')
           this.$router.push({ name: 'login' })
         }
       })

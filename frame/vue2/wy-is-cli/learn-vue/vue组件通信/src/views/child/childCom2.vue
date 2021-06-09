@@ -17,12 +17,12 @@ export default {
   props: {
     boo: String
   },
-  created () {
+  created() {
     console.log(this.$attrs); // {"coo": "CSS", "doo": "Vue", "title": "前端工匠" }
   },
   methods: {
-    onHnadle(){
-      this.$emit('export','孙子组件里触发爷爷组件方法')
+    onHnadle() {
+      this.$emit("export", "孙子组件里触发爷爷组件方法");
     }
   }
 };

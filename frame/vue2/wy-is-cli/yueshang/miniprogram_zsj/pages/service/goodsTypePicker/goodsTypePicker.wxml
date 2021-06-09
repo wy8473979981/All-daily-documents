@@ -1,0 +1,12 @@
+<view id="ys-goods-type">
+  <view class='ys-block ys-block-gap'>
+    <view class="title">请选择进出货品类型</view>
+    <view class='item' wx:for='{{items}}' wx:key="idx">
+      <checkbox size="20" checked="{{item.status}}" data-item='{{item}}' bindtap='checkboxChange'/>
+      <text class='name'>{{item.name}}</text>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 确认 </button>
+  </view>
+</view>

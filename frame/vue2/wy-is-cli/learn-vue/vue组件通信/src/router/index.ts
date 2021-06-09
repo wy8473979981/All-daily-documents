@@ -3,7 +3,7 @@
  * @Date: 2020-07-19 13:13:28
  * @LastEditTime: 2020-07-19 13:19:27
  * @LastEditors: user
- * @Description: 
+ * @Description:
  * @FilePath: \usedemolist\src\router\index.ts
  */
 import Vue from "vue";

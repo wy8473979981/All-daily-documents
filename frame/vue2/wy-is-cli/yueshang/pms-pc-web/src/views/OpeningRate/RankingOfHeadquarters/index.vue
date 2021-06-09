@@ -5,7 +5,8 @@
     :formConfig="formConfig"
     showChart
     :chartX="x"
-    chartTitle="考核开业率(%)"
+    chartTitle="考核开业率"
+    chartUnit="%"
     :tableConfig="tableConfig"
     :request-config="requestConfig"
     :formData="formData"
@@ -37,7 +38,7 @@ export default {
 
       x: X,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -64,9 +65,6 @@ export default {
             currData: 'openRate',
             lastData: 'openRateLast',
           },
-        },
-        export: {
-          type: 'exportOfOrRankingHeadquarters',
         },
         list: {
           responseKey: 'list',

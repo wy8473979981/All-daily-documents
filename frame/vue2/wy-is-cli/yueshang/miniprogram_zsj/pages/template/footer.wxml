@@ -1,0 +1,4 @@
+<!-- footer.wxml -->
+<template name="footer">
+  <text>{{footInfo}}</text>
+</template>

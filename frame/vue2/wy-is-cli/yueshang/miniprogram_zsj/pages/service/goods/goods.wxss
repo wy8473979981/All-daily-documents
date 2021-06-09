@@ -1,0 +1,40 @@
+page {
+  background: #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 100rpx;
+}
+.select-wrapper .picker-wrapper {
+  text-align:right;
+}
+.radio{
+  width: 50%;
+  display: inline-block;
+}
+radio {
+  transform:scale(0.8);
+}
+
+.ys-block-gap{
+  background: #fff;
+}
+.title{
+  height: 76rpx;
+  margin-bottom: -30rpx;
+  line-height: 76rpx;
+  color: #999;
+  background: #f5f5f5;
+}
+.title .icon{
+  float: left;
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 18rpx;
+  margin-right: 20rpx;
+}
+.goodsType{
+  color: #999;
+}
+.placeholder{
+  color: #999;
+}

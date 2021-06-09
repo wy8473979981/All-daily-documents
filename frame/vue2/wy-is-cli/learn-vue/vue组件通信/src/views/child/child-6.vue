@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     childChange(data) {
-      console.log(data)
+      console.log(data);
       this.childData += data;
     },
     send() {

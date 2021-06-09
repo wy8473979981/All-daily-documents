@@ -12,31 +12,31 @@
         </div>
       </div>
     </div>
-
-    <div class="wrapper" v-if="!show">
-      <ys-n-section :collapseable="collapseable">
-        <div class="head-actions_left_div" slot="head-actions_left">
-          <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="onChartSelectedChange"> </ys-n-filter-chart-dialog>
-        </div>
-        <ys-n-echart :options="lineops"></ys-n-echart>
-      </ys-n-section>
-    </div>
-
-    <div class="wrapper" style="margin-top: 12px">
-      <ys-n-section title="项目排名" :hasTable="true">
-        <div slot="head-actions">
-          <div class="list-mode">
-            <span :class="'list-mode-item ' + (table.mode === 'day' ? 'active' : '')" @click="onListModeChanged" data-value="day">当日</span>
-            <span class="line"> | </span>
-            <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
-            <span class="line"> | </span>
-            <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <div class="wrapper" v-if="!show">
+        <ys-n-section :collapseable="collapseable">
+          <div class="head-actions_left_div" slot="head-actions_left">
+            <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchList" @search="onChartSelectedChange"> </ys-n-filter-chart-dialog>
           </div>
-        </div>
-        <ys-n-table :fixednum="2" :values="table.dataList" :columns="table.columns" :totalRow="table.totalRow" @row-column-click="onRowColumnClick" :mode="table.mode"> </ys-n-table>
-      </ys-n-section>
-    </div>
+          <ys-n-echart :options="lineops"></ys-n-echart>
+        </ys-n-section>
+      </div>
 
+      <div class="wrapper" style="margin-top: 12px">
+        <ys-n-section title="项目排名" :hasTable="true">
+          <div slot="head-actions">
+            <div class="list-mode">
+              <span :class="'list-mode-item ' + (table.mode === 'day' ? 'active' : '')" @click="onListModeChanged" data-value="day">当日</span>
+              <span class="line"> | </span>
+              <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>
+              <span class="line"> | </span>
+              <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+            </div>
+          </div>
+          <ys-n-table :fixednum="2" :values="table.dataList" :columns="table.columns" :totalRow="table.totalRow" @row-column-click="onRowColumnClick" :mode="table.mode"> </ys-n-table>
+        </ys-n-section>
+      </div>
+    </van-pull-refresh>
     <ys-n-filter-dialog :checkboxes="table.dataList" @selected="showComparisonList" tip="注意：最少选两项" @open="bindopen">
       <div class="comparison"> 对比 </div>
     </ys-n-filter-dialog>
@@ -48,8 +48,9 @@
 import { yearColumns, monthColumns, dayColumns } from '../columns/columns'
 
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       routerParams: this.$route.query,
       chartsType: "xm",
       chartsTitle: "项目客流(人)",
@@ -113,7 +114,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.setData({
         "queryModel.yearMonth": this.routerParams.yearMonth,
@@ -130,12 +131,30 @@ export default {
     }
   },
   methods: {
-
-    async getEchartData() {
+    onRefresh () {
+      this.getEchartData();
+      this.getTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getEchartData () {
       try {
         // 查询具体项目数据 传递 projectId
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryPassengerFlowLineChart({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let previousData = [];
               let currentData = [];
@@ -176,12 +195,13 @@ export default {
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                           //渐变色 
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#2D9FCB'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -200,39 +220,67 @@ export default {
         console.log(e)
       }
     },
-    async getTableData() {
+    async getTableData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryPassengerFlowForPassengerFlowRanking({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
-              let { mode } = this.table;
-              let dataList = [];
               this.tableData = res.data;
-              if (mode == 'year') {
-                this.setData({
-                  "table.dataList": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(0, -1),
-                  "table.totalRow": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(-1)[0],
-                });
-              } else if (mode == 'month') {
-                this.setData({
-                  "table.dataList": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(0, -1),
-                  "table.totalRow": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(-1)[0],
-                });
-              } else if (mode == 'day') {
-                this.setData({
-                  "table.dataList": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(0, -1),
-                  "table.totalRow": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(-1)[0],
-                });
-              }
+              // if (mode == 'year') {
+              //   this.setData({
+              //     "table.dataList": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(0, -1),
+              //     "table.totalRow": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(-1)[0],
+              //   });
+              // } else if (mode == 'month') {
+              //   this.setData({
+              //     "table.dataList": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(0, -1),
+              //     "table.totalRow": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(-1)[0],
+              //   });
+              // } else if (mode == 'day') {
+              //   this.setData({
+              //     "table.dataList": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(0, -1),
+              //     "table.totalRow": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(-1)[0],
+              //   });
+              // }
+              let newTableDataAry = this.disposeTableData()
+              this.setData({
+                "table.dataList": newTableDataAry[0],
+                "table.totalRow": newTableDataAry[1],
+              });
+
             }
-            console.log(this.table.dataList, 'table.dataList')
+            // console.log(this.table.dataList, 'table.dataList')
           });
       } catch (e) {
         console.log(e)
       }
     },
+    disposeTableData () {
+      let { mode } = this.table;
+      let dataList = [];
+      let totalRow = null;
+      let allTable = [];
+      if (mode == 'year') {
+        allTable = this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList;
+      } else if (mode == 'month') {
+        allTable = this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList;
+      } else if (mode == 'day') {
+        allTable = this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList;
+      }
+      allTable.map(item => {
+        if (item.isSummary) {
+          totalRow = item;
+        } else {
+          dataList.push(item)
+        }
+      })
+      // console.log([dataList, totalRow],'22')
+      return [dataList, totalRow];
+    },
     //图表左上角切换选项
-    async onChartSelectedChange(e) {
+    async onChartSelectedChange (e) {
       try {
         console.log(e);
         let selected = null;
@@ -252,7 +300,7 @@ export default {
         console.log(e)
       }
     },
-    onDateChanged(e) {
+    onDateChanged (e) {
       try {
         // console.log(e)
         this.setData({
@@ -265,7 +313,7 @@ export default {
         console.log(e)
       }
     },
-    onListModeChanged(e) {
+    onListModeChanged (e) {
       try {
         const mode = e.target.dataset.value;
         if (this.table.mode !== mode) {
@@ -273,31 +321,37 @@ export default {
             this.setData({
               "table.mode": mode,
               "table.columns": yearColumns,
-              "table.dataList": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(0, -1),
-              "table.totalRow": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(-1)[0],
+              // "table.dataList": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(0, -1),
+              // "table.totalRow": this.tableData.passengerFlowWhenCurYearForPassengerFlowComparisonList.slice(-1)[0],
             });
           } else if (mode == 'month') {
             this.setData({
               "table.mode": mode,
               "table.columns": monthColumns,
-              "table.dataList": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(0, -1),
-              "table.totalRow": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(-1)[0],
+              // "table.dataList": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(0, -1),
+              // "table.totalRow": this.tableData.passengerFlowWhenCurMonthForPassengerFlowComparisonList.slice(-1)[0],
             });
           } else if (mode == 'day') {
             this.setData({
               "table.mode": mode,
               "table.columns": dayColumns,
-              "table.dataList": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(0, -1),
-              "table.totalRow": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(-1)[0],
+              // "table.dataList": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(0, -1),
+              // "table.totalRow": this.tableData.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(-1)[0],
             });
           }
+
+          let newTableDataAry = this.disposeTableData()
+          this.setData({
+            "table.dataList": newTableDataAry[0],
+            "table.totalRow": newTableDataAry[1],
+          });
         }
       } catch (e) {
         console.log(e)
       }
     },
     // 对比操作
-    showComparisonList(e) {
+    showComparisonList (e) {
       try {
         if (e.detail.length < 2) {
           this.$Toast.fail('最少选两项');
@@ -312,7 +366,7 @@ export default {
       }
     },
 
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       try {
         // 跳转到月客流 页面
         // console.log(e)
@@ -332,7 +386,7 @@ export default {
     },
 
 
-    bindopen() {
+    bindopen () {
       try {
         let dataList = this.table.dataList.map((item, index) => {
           return {

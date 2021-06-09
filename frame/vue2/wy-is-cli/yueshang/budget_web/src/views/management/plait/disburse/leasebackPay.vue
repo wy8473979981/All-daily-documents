@@ -49,7 +49,8 @@
       <el-table-column fixed min-width="140" label="地产房号" :show-overflow-tooltip="!isEdit" prop="roomNum" align="right">
         <template slot-scope="scope">
           <el-input v-if="isEdit && scope.$index == selectIndex" v-model="scope.row.roomNum" placeholder="请输入" size="mini"></el-input>
-          <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'roomNum',true,false,'bizType',0) }}</p>
+          <!-- <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'roomNum',true,false,'bizType',0) }}</p> -->
+          <p v-else @click="showInput(scope.$index)">{{ scope.row.roomNum || '-' }}</p>
         </template>
       </el-table-column>
       <el-table-column width="5" class-name="common-column-line"></el-table-column>
@@ -323,7 +324,7 @@ import FeeScheduleApi from '@/apis/apis/feeScheduleApi'
 import { mapGetters, mapState } from "vuex";
 export default {
   mixins: [handle_paginator],
-  data() {
+  data () {
     return {
       isEdit: false,
       selectIndex: 0,
@@ -356,14 +357,14 @@ export default {
     }
   },
   watch: {},
-  created() {
+  created () {
     this.routerQuery = this.$route.query
     this.getBizTypeList()
     this.getList()
   },
   computed: {
     ...mapGetters(['getBudgetYear']),
-    exportParams() {
+    exportParams () {
       return {
         params: {
           bean: {
@@ -375,29 +376,29 @@ export default {
         exportUrl: '/bizLeaseback/excelExport',
       }
     },
-    importParams() {
+    importParams () {
       return {
         importUrl: '/bizLeaseback/excelImport',
         budgetInstanceSheetId: this.routerQuery.budgetInstanceSheetId
       }
     }
   },
-  mounted() {
+  mounted () {
 
   },
   // 日期转换格式
   filters: {
-    formatDate(time) {
+    formatDate (time) {
       return time ? new Date(parseInt(time)).format('yyyy-MM-dd') : ''
     },
-    formatVal(val) {
+    formatVal (val) {
       return toThousandsClean(val)
     }
   },
   methods: {
     returnValue,
     // 获取业态列表
-    getBizTypeList() {
+    getBizTypeList () {
       GlobalApi.getSelectList({ selectType: 'otherIncomeRent' }).then(res => {
         if (res.code == 0) {
           res.data.forEach((item, index) => {
@@ -408,7 +409,7 @@ export default {
       })
     },
     // 查询
-    async getList() {
+    async getList () {
       const params = {
         ...this.pageInfo,
         bean: {
@@ -427,21 +428,21 @@ export default {
       })
     },
     // 重新选择搜索项重置页码
-    getListChange() {
+    getListChange () {
       this.isEdit = false
       this.pageInfo.pageNum = 1
       this.getList()
     },
     // 选择业态赋值name
-    bizTypeIdChange(index, val) {
+    bizTypeIdChange (index, val) {
       let obj = this.bizTypeIdList.find(item => item.dictCd == val)
       this.tableData[index].bizType = obj.dictName
     },
     // 选择一行显示input
-    showInput(index) {
+    showInput (index) {
       this.selectIndex = index
     },
-    reset() {
+    reset () {
       this.query = {
         bizTypeId: null,
         ownerName: null
@@ -449,7 +450,7 @@ export default {
       this.getList()
     },
     // 添加培训项
-    add() {
+    add () {
       this.createIndex++
       let newInvalid = {
         createIndex: this.createIndex,
@@ -472,12 +473,12 @@ export default {
       }
       this.tableData.unshift(newInvalid)
     },
-    handleSelectionChange(val) {
+    handleSelectionChange (val) {
       this.selectData = []
       this.selectData = val
     },
     // 删除
-    del() {
+    del () {
       if (!this.selectData[0]) return this.$message.error('请选择要删除的数据')
       // 删除
       this.$confirm(`确认要删除吗？`).then(() => {
@@ -515,11 +516,11 @@ export default {
       })
     },
     // 编辑
-    edit() {
+    edit () {
       this.isEdit = true
     },
     // 取消
-    cancel() {
+    cancel () {
       let tableData = JSON.stringify(this.tableData)
       if (this.oldTableData == tableData) {
         this.getList()
@@ -538,7 +539,7 @@ export default {
       }
     },
     // 保存
-    save() {
+    save () {
       for (let key in this.tableData) {
         if (!this.tableData[key].bizTypeId) return this.$message.error('请选择业态')
         if (!this.tableData[key].project) return this.$message.error('请填写项目公司')
@@ -569,7 +570,7 @@ export default {
 }
 </script>
 <style type="text/css" lang="scss" >
-@import "~@styles/common.scss";
+@import '~@styles/common.scss';
 .leasebackPay {
   .import-input .el-input__inner {
     border-right-color: #468ceb;

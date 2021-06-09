@@ -36,10 +36,6 @@ export default {
         query: {
           api: salesVolume.getListByAnalysisOfProject
         },
-
-        export: {
-          type: 'exportOfSvAnalysisProject',
-        },
       }
     }
   },

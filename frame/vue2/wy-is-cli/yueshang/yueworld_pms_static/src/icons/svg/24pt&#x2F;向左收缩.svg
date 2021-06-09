@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>E2BFF08C-C6D3-4EB1-81F6-28FC8C35D240</title>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组" stroke="#848382" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) translate(5.000000, 5.000000)">
+            <rect id="矩形" x="0.5" y="0.5" width="13" height="13"></rect>
+            <line x1="9.75" y1="0.1875" x2="9.75" y2="13.6875" id="路径"></line>
+            <polyline id="路径" points="4.25 4.9375 6.25 6.9375 4.25 8.9375"></polyline>
+        </g>
+    </g>
+</svg>

@@ -5,7 +5,8 @@
     :formConfig="formConfig"
     showChart
     :chartX="x"
-    chartTitle="租金收缴率(%)"
+    chartTitle="租金收缴率"
+    chartUnit="%"
     :tableConfig="tableConfig"
     :request-config="requestConfig"
     :formData="formData"
@@ -33,7 +34,7 @@ export default {
 
       x: X,
 
-      tableConfig: TableConfig(this.handleLinkClick),
+      tableConfig: TableConfig.call(this),
 
       formData: {
         chargeType: '',
@@ -58,10 +59,6 @@ export default {
 
         list: {
           responseKey: 'list'
-        },
-
-        export: {
-          type: 'exportOfIncomeRentHeadquarters',
         },
       },
     }

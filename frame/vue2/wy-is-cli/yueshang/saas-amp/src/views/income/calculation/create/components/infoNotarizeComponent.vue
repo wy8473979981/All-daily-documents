@@ -315,7 +315,7 @@ export default {
             this.tableData1 = [];
             const { result } = res;
             if (this.versionChangeBol) {
-              oldTableData1.map(oldItem => {
+              this.oldTableData1.map(oldItem => {
                 result.subjects.map(item => {
                   if (oldItem.costSubject == item.costSubject) {
                     let obj = {

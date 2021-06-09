@@ -10,32 +10,36 @@ export const RateConfig = [
     type: 'money'
   },
   {
-    key: 'avgRentFeeOfClothes',
-    label: '服装(元/m²)'
+    key: 'avgRentFeeOfSuperMarket',
+    label: '超市(元/m²)'
   },
   {
-    key: 'avgRentFeeOfMatching',
-    label: '配套(元/m²)'
+    key: 'avgRentFeeOfCinema',
+    label: '影院(元/m²)'
+  },
+  {
+    key: 'avgRentFeeOfDepartment',
+    label: '次主力店(元/m²)'
   },
   {
     key: 'avgRentFeeOfFood',
     label: '餐饮(元/m²)'
   },
   {
+    key: 'avgRentFeeOfClothes',
+    label: '服装(元/m²)'
+  },
+  {
     key: 'avgRentFeeOfChildren',
     label: '儿童(元/m²)'
   },
   {
-    key: 'avgRentFeeOfSuperMarket',
-    label: '超市(元/m²)'
+    key: 'avgRentFeeOfMatching',
+    label: '零售配套(元/m²)'
   },
   {
-    key: 'avgRentFeeOfDepartment',
-    label: '百货(元/m²)'
-  },
-  {
-    key: 'avgRentFeeOfCinema',
-    label: '影院(元/m²)'
+    key: 'avgRentFeeOfLife',
+    label: '生活配套(元/m²)'
   },
 ]
 
@@ -99,7 +103,7 @@ export const FormConfig = [
 
 export const X = new Array(12).fill(1).map((i, idx) => `${idx + 1}月`)
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'sortIndex',
@@ -114,8 +118,8 @@ export function TableConfig(method) {
       fixed: true,
       type: 'link',
       props: {
-        click(data) {
-          method(data)
+        click: (data) => {
+          this.handleLinkClick(data)
         }
       }
     },
@@ -134,7 +138,7 @@ export function TableConfig(method) {
         {
           key: 'avgRentFeeForAll',
           label: '平均(元/㎡)',
-          align: 'right',
+          type: 'money',
           minWidth: 100,
         },
         {
@@ -147,17 +151,17 @@ export function TableConfig(method) {
     },
     {
       key: 'a1',
-      label: '平均租金(主力店)',
+      label: '平均租金(主次力店)',
       align: 'right',
       children: [
         {
           key: 'avgRentFeeForMainStore',
           label: '平均(元/㎡)',
-          align: 'right',
+          type: 'money',
           minWidth: 100,
         },
         {
-          key: 'avgRentFeeForSmallStore',
+          key: 'yearOnYearForMainStore',
           label: '同比',
           type: 'rate',
           minWidth: 100,
@@ -166,13 +170,13 @@ export function TableConfig(method) {
     },
     {
       key: 'a1',
-      label: '平均租金(小商铺)',
+      label: '平均租金(中小商铺)',
       align: 'right',
       children: [
         {
-          key: 'yearOnYearForMainStore',
+          key: 'avgRentFeeForSmallStore',
           label: '平均(元/㎡)',
-          align: 'right',
+          type: 'money',
           minWidth: 100,
         },
         {

@@ -21,14 +21,15 @@
         v-model="currentFormData"
         :update="updateForm"
         :config="formConfig"
-        :requestConfig="requestConfig"
+        :showExport="showExport"
         @search="handleSearch"
         @reset="handleReset"
         @export="handleExport"
+        @change="handleFormChange"
       />
     </div>
 
-    <div class="page-echart" v-if="showChart">
+    <div class="page-echart" v-if="showChart && pageHeight">
       <ys-n-chart
         :type="chartType"
         :x="chartX"
@@ -36,6 +37,7 @@
         :title="chartTitle"
         :subTitle="chartSubTitle"
         :legend="chartLegend"
+        :unit="chartUnit"
       />
     </div>
 
@@ -54,6 +56,7 @@
         mouseMove
         :hasPagination="hasPagination"
         :totals="totals"
+        :initialize="initialize"
         @sort-change="sortChange"
         @table-page-change="tablePageChange"
         :max-height="pageHeight"
@@ -63,25 +66,20 @@
 </template>
 
 <script>
-import cloneDeep from 'lodash/cloneDeep';
-import { exportEexcel } from 'api/export'
-import { exportData, getSession } from 'utils/utils'
-import { mapGetters } from 'vuex'
+import cloneDeep from 'lodash/cloneDeep'
+import queryFormatterMixins from '@/mixins/queryFormatterMixins'
 export default {
   name: 'YsNContainer',
 
-  props: {
-    subTitle: String, // 主标题后的辅助标题，辅助说明，额外信息显示
+  mixins: [queryFormatterMixins],
 
+  props: {
     showList: {
       // 是否有列表组件
       type: Boolean,
       default: false,
     },
     rateConfig: Array, // 列表组件配置
-
-    formConfig: Array, // 查询组件配置
-    formData: Object, // 查询组件的数据
 
     showChart: {
       // 是否有图表组件
@@ -91,20 +89,18 @@ export default {
     chartX: Array, // 图表组件 x轴 配置
     chartTitle: String, // 图表组件 标题
     chartSubTitle: String, // 图表组件 标题辅助说明文字
-    chartType: {
-      // 图表组件类型
+    chartType: { // 图表组件类型
       type: String,
       default: 'line',
+    },
+    chartUnit: { // 图表组件数据单位
+      type: String,
+      default: ''
     },
 
     tableConfig: Array, // 表格组件配置
     tableData: Array, // 表格组件数据
     hasPagination: Boolean, // 是否需要分页
-
-    requestConfig: Object, // 接口请求配置
-
-    asyncBeforeSearch: Function, // 查询接口发送数据之前，需要处理的函数
-    asyncBefortTableUpdate: Function, // 接口获取到数据之后，需要处理的函数
   },
 
   data() {
@@ -114,43 +110,23 @@ export default {
       chartLegend: [],
       chartData: [],
 
-      currentFormData: {},
-
       currentTableData: [],
       originTableData: [],
-
-      loading: true,
-      loadingLock: true, // 加载时页面loading画面固定
 
       pageHeight: 0, // table 默认高度
 
       isFull: false, // 是否全屏
-      updateForm: 1,
       // isPostMessage: false, // 是否使用了postmessage
 
       totals: 0, // 总页数
+      initialize: 1, // 更新table
     };
-  },
-
-  computed: {
-    ...mapGetters(['enumKeys'])
   },
 
   created() {
     console.log('created')
-    this.getInitFormData()
 
-    this.currentFormData.currentPage = 1;
-
-    if (window.location.hash.includes('type=pd')) {
-      // window.addEventListener('message', this.getMessage, false)
-      const formData = JSON.parse(this.$route.query.data).formData
-      this.currentFormData = Object.assign(this.currentFormData, this.getQueryDataAddModify(formData));
-      this.updateForm++;
-      this.fecthData()
-    } else {
-      this.fecthData(); // 本地调试使用
-    }
+    this.handleDataBefortLoad();
   },
 
   beforeDestroy() {
@@ -183,7 +159,7 @@ export default {
     fecthData() {
       this.loading = true;
       this.loadingLock = true;
-      const sendData = this.beforeSearchModifyFormData(this.beforeSearch(this.currentFormData));
+      const sendData = this.beforeSearchModifyFormData(this.beforeSearch(cloneDeep(this.currentFormData)));
 
       let requestArr = [this.requestConfig.query.api(sendData)];
       if (this.requestConfig.echarts && this.requestConfig.echarts.api) {
@@ -273,55 +249,24 @@ export default {
       ];
     },
 
-    // 搜索之前需要特殊处理
-    beforeSearch(data) {
-      return this.asyncBeforeSearch ? this.asyncBeforeSearch(cloneDeep(data)) : data;
-    },
-
     // 搜索
     handleSearch() {
-      this.currentFormData.currentPage = 1;
+      this.defaultTableAction()
       this.fecthData();
     },
 
     // 重置
     handleReset() {
-      this.currentFormData.currentPage = 1;
+      this.defaultTableAction()
       this.fecthData();
     },
 
-
-    // 导出excel
-    handleExport() {
-      const exportConfig = this.requestConfig.export
-      if (!exportConfig) {
-        return
-      }
-      this.loading = true;
-      this.loadingLock = true;
-
-      const type = exportConfig.type;
-      let params = {
-        ...this.currentFormData,
-        responseType: 'blob'
-      }
-
-      exportEexcel[type](params)
-        .then((data) => {
-          // 处理返回值
-          if (data) {
-            exportData(data)
-            this.$message({ message: '导出成功！', type: 'success' })
-          } else {
-            this.$message.error('出错了，请稍后重试')
-          }
-        })
-        .finally(() => {
-          this.loading = false;
-          setTimeout(() => {
-            this.loadingLock = false;
-          }, 200);
-        });
+    // table 默认行为
+    defaultTableAction() {
+      if (!this.hasPagination) return
+      this.currentFormData.currentPage = 1;
+      this.currentFormData.pageSize = 300;
+      this.initialize++
     },
 
     // 有汇总的，汇总排第一行
@@ -389,57 +334,7 @@ export default {
       }
       this.isFull = false;
     },
-
-    // 获取初始formData
-    getInitFormData() {
-      const pathKey = this.$route.path.split('/')[1];
-      
-      let formData = {};
-
-      for (const [key, value] of Object.entries(this.formData)) {
-        let val = getSession(pathKey)[key] || value;
-        formData[key] = val;
-      }
-
-      this.currentFormData = formData
-    },
-
-    // 接受老项目跳转传值后重新修改formData
-    getQueryDataAddModify(data) {
-      let formData = {};
-      for (const [key, value] of Object.entries(data)) {
-        let val = value;
-        if (this.enumKeys.includes(key) && value === '') {
-          val = 'empty';
-        }
-        formData[key] = val;
-      }
-
-      return formData;
-    },
-
-    // 请求前修改formData
-    beforeSearchModifyFormData(data) {
-      let formData = {};
-      for (const [key, value] of Object.entries(data)) {
-        let val = value;
-        if (this.enumKeys.includes(key) && value === 'empty') {
-          val = '';
-        }
-        formData[key] = val;
-      }
-
-      return formData;
-    }
   },
-
-  watch: {
-    currentFormData: {
-      handler: function (val) {
-        this.$emit('update:formData', cloneDeep(val))
-      }
-    }
-  }
 };
 </script>
 

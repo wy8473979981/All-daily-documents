@@ -1,0 +1,62 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num" />
+<view id="dailyList">
+	<view class='ys-block-gap ys-block-gap-top'  wx:for="{{dataList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+		<view class='info-wrapper'>
+			<text class='label daily-type'>销售额(元)</text>
+			<text class='status status-success'>{{item.status}}</text>
+		</view>
+		<view class='info-wrapper'>
+			<text class='label mony'>{{num.filterNum(item.incomeMney)}}</text>
+		</view>
+		<view class='info-wrapper'>
+			<text class='label'>货号: {{item.goodsName ? item.goodsName : '-'}}</text>
+		</view>
+		<view class='info-wrapper'>
+			<text class='label'>销售日期: {{item.salesDate}}</text>
+		</view>
+		<view class='info-wrapper'>
+			<text class='label'>笔数(笔): {{item.incomeCount}}</text>
+			<view class='to-detail' bindtap='detail' data-value="{{item.status}}" data-goodsname="{{item.goodsName}}">查看详情<image class="arrows"
+					src='../../../static/images/arrow-right.png'></image>
+			</view>
+		</view>
+	</view>
+	<!-- <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label daily-type'>销售额(元)</text>
+      <text class='status status-error'>未提交</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label mony'>{{num.filterNum(3020.30)}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>货号: 3020.30</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>销售日期: 2021-03-23</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>笔数(笔): 1</text>
+      <view class='to-detail' bindtap='detail'>查看详情<image class="arrows" src='../../../static/images/arrow-right.png'></image></view>
+    </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label daily-type'>销售额(元)</text>
+      <text class='status status-error'>未提交</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label mony'>{{num.filterNum(3020.30)}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>货号: 3020.30</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>销售日期: 2021-03-23</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>笔数(笔): 1</text>
+      <view class='to-detail' bindtap='detail'>查看详情<image class="arrows" src='../../../static/images/arrow-right.png'></image></view>
+    </view>
+  </view> -->
+</view>

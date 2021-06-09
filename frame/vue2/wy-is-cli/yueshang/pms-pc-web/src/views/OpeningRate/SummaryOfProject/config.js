@@ -34,7 +34,7 @@ export const FormConfig = [
 ]
 
 
-export function TableConfig(method) {
+export function TableConfig() {
   return [
     {
       key: 'yearMonth',
@@ -57,11 +57,18 @@ export function TableConfig(method) {
       sortable: 'custom'
     },
     {
-      key: 'openRentSquare',
+      key: 'openRentSquareQc',
       label: '开业面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 120,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClickToArea(data)
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
       key: 'openRentSquare',
@@ -72,8 +79,8 @@ export function TableConfig(method) {
       type: 'link',
       align: 'right',
       props: {
-        click(data) {
-          method(data)
+        click: (data) => {
+          this.handleLinkClick(data)
         },
         formatter: (value) => formatNumber(value),
       }
@@ -81,9 +88,16 @@ export function TableConfig(method) {
     {
       key: 'coverRentSquare',
       label: '押不抵租面积(㎡)',
-      type: 'area',
+      type: 'link',
       minWidth: 160,
-      sortable: 'custom'
+      align: 'right',
+      sortable: 'custom',
+      props: {
+        click: (data) => {
+          this.handleLinkClickToRent(data)
+        },
+        formatter: (value) => formatNumber(value),
+      }
     },
     {
       key: 'storeRentSquare',

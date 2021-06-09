@@ -4,31 +4,34 @@
       <ys-n-nav-bar :title="`车流-项目排名`" />
       <div class="app-header">
         <div class="app-header-right">
-          <ys-n-date-pick @selected="dateSelected" :selected="params.yearMonth" type="year-month"></ys-n-date-pick>
+          <ys-n-date-pick @selected="dateSelected" :selected="params.yearMonth" type="year-month">
+          </ys-n-date-pick>
         </div>
       </div>
     </div>
-    <ys-n-section title="车流量" :collapseable="true" v-if="show">
-      <ys-n-echart :options="mainOps" canvasId="cheliu1"></ys-n-echart>
-    </ys-n-section>
-    <ys-n-section title="项目排名" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (table.mode === 'day' ? 'active' : '')" @click="onListModeChanged" data-value="day">昨日</span>｜
-          <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>｜
-          <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="车流量" :collapseable="true" v-if="show">
+        <ys-n-echart :options="mainOps" canvasId="cheliu1"></ys-n-echart>
+      </ys-n-section>
+      <ys-n-section title="项目排名" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (table.mode === 'day' ? 'active' : '')" @click="onListModeChanged" data-value="day">昨日</span>｜
+            <span :class="'list-mode-item ' + (table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>｜
+            <span :class="'list-mode-item ' + (table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+          </div>
         </div>
-      </div>
-      <ys-n-table :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="table.mode"></ys-n-table>
-    </ys-n-section>
+        <ys-n-table :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" :mode="table.mode"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
 const fixedColumns = [{
   label: "序号",
-  width: "1.2rem"
+  width: "1.3rem",
+  align: "left"
 }, {
   label: "项目",
   key: "shortName",
@@ -36,7 +39,8 @@ const fixedColumns = [{
 }];
 const monthColumns = [{
   label: "序号",
-  width: "1.2rem",
+  width: "1.3rem",
+  align: "left",
   fixed: true,
 },
 {
@@ -65,12 +69,15 @@ const monthColumns = [{
   /* width: "2.2rem", */
   align: "right",
   sortable: true,
+  numberFormat: true,
+  numberPrecision: 2,
   unit: '%'
 }
 ];
 const yearColumns = [{
   label: "序号",
-  width: "1.2rem",
+  width: "1.3rem",
+  align: "left",
   fixed: true,
 },
 {
@@ -91,10 +98,12 @@ const yearColumns = [{
   sortable: true,
   numberFormat: true,
   numberPrecision: 0,
-}];
+}
+];
 const yesterdayColumns = [{
   label: "序号",
-  width: "1.2rem",
+  width: "1.3rem",
+  align: "left",
   fixed: true,
 }, {
   label: "项目",
@@ -117,8 +126,10 @@ const yesterdayColumns = [{
   unit: '%'
 }];
 export default {
-  data() {
+  data () {
     return {
+      isLoadingCount: 0,
+      isLoading: false,
       monthTotalRow: '',
       yearTotalRow: '',
       yesterdayTotalRow: '',
@@ -161,12 +172,13 @@ export default {
             normal: { //自定义颜色，渐变色填充折线图区域
               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                 //渐变色 
+                //渐变色
                 [{
                   offset: 0,
-                  color: '#2D9FCB'
+                  color: 'rgba(45, 159, 203, 0.2)'
                 }, {
                   offset: 0.62,
-                  color: "#ffffff"
+                  color: 'rgba(255, 255, 255, 0.48)'
                 }]),
             }
           }
@@ -176,12 +188,30 @@ export default {
       },
     }
   },
-  created() {
+  created () {
     this.echartData();
     this.getTableData()
   },
   methods: {
-    onListModeChanged(e) {
+    onRefresh () {
+      this.isLoading = true
+      this.echartData();
+      this.getTableData()
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    onListModeChanged (e) {
       const mode = e.target.dataset.value;
       if (mode != this.table.mode) {
         this.table.mode = mode
@@ -207,16 +237,18 @@ export default {
         }
       }
     },
-    dateSelected(date) {
+    dateSelected (date) {
       this.params.yearMonth = date;
       this.echartData();
       this.getTableData()
     },
-    async echartData() {
+    async echartData () {
+      this.addIsLoadingCount()
       //console.log(this.params)
       ///this.params.yearMonth = this.$route.query.yearMonth
       console.log(this.params)
       let res = await this.$axios.cheliuServe.echartData(this.params)
+      this.decreaseIsLoadingCount()
       const year = this.$route.query.yearMonth.split("-")[0];
       const lastYear = String(year - 1);
       const legendData = [year.substring(2) + "年度", lastYear.substring(2) + "年度"];
@@ -236,8 +268,10 @@ export default {
         "mainOps.series[1].data": carFlowTwo
       });
     },
-    async getTableData() {
+    async getTableData () {
+      this.addIsLoadingCount()
       let res = await this.$axios.cheliuServe.tableData(this.params)
+      this.decreaseIsLoadingCount()
       let monthDataList = []
       let yearDataList = []
       let yesterdayDataList = []

@@ -1,0 +1,25 @@
+/* pages/usercenter/index/index.wxss */
+page {
+  background-color: #eee;
+}
+
+#user-center-index{
+  background-color:#fff;
+}
+
+#user-center-index .ys-figure-wrapper{
+  background-color:#fff;
+}
+
+#user-center-index .ys-figure-wrapper .ys-figure-info{
+  color:#333;
+}
+.ys-nav-item .ys-icon{
+  background: #fff;
+}
+.ys-figure-avatar{
+  color: #fff;
+  line-height: 124rpx;
+  text-align: center;
+  font-size: 60rpx;
+}

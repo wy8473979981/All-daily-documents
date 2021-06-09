@@ -67,7 +67,7 @@ export const TableConfig = [
   },
   {
     key: 'daliyMoney',
-    label: '平均租金(元/㎡/月)',
+    label: '平均租金(元/㎡/天)',
     type: 'money',
     minWidth: 150,
     sortable: 'custom'
@@ -83,7 +83,7 @@ export const TableConfig = [
     key: 'rentalSalesRatio',
     label: '租售比',
     type: 'rate',
-    minWidth: 70,
+    minWidth: 90,
     sortable: 'custom'
   },
   {
@@ -122,7 +122,7 @@ export const TableConfig = [
     sortable: 'custom'
   },
   {
-    key: 'holidayDaliySales	',
+    key: 'holidayDaliySales',
     label: '周末日均(万元)',
     type: 'ten-thousand',
     minWidth: 135,

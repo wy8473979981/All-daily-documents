@@ -2,7 +2,8 @@
 const listColumns = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "项目",
@@ -20,19 +21,19 @@ const listColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
-    {
-        label: "历史欠费(合同)",
-        key: "historyOweFeeCont",
-        width: "3.4rem",
-        sortable: true,
-        align: "right",
-        numberFormat: true,
-        changeNum: 10000,
-        numberPrecision: 2,
-		color:"#FF4954"
-    },
+    // {
+    //     label: "历史欠费(合同)",
+    //     key: "historyOweFeeCont",
+    //     width: "3.4rem",
+    //     sortable: true,
+    //     align: "right",
+    //     numberFormat: true,
+    //     changeNum: 10000,
+    //     numberPrecision: 2,
+    // 	color:"#FF4954"
+    // },
     {
         label: "欠费(权责)",
         key: "oweFeeQz",
@@ -42,7 +43,7 @@ const listColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
     {
         label: "欠费(合同)",
@@ -53,7 +54,7 @@ const listColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
     {
         label: "清欠率(权责)",
@@ -62,6 +63,7 @@ const listColumns = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -71,6 +73,7 @@ const listColumns = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]
@@ -80,7 +83,8 @@ const listColumns = [
 const detailColumns = [
     {
         label: "序号",
-        width: "1.2rem",
+        width: "1.3rem",
+        align: "left"
     },
     {
         label: "商家名",
@@ -98,19 +102,19 @@ const detailColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
-    {
-        label: "历史欠费(合同)",
-        key: "historyOweFeeCont",
-        width: "3.4rem",
-        sortable: true,
-        align: "right",
-        numberFormat: true,
-        changeNum: 10000,
-        numberPrecision: 2,
-		color:"#FF4954"
-    },
+    // {
+    //     label: "历史欠费(合同)",
+    //     key: "historyOweFeeCont",
+    //     width: "3.4rem",
+    //     sortable: true,
+    //     align: "right",
+    //     numberFormat: true,
+    //     changeNum: 10000,
+    //     numberPrecision: 2,
+    // 	color:"#FF4954"
+    // },
     {
         label: "欠费(权责)",
         key: "oweFeeQz",
@@ -120,7 +124,7 @@ const detailColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
     {
         label: "欠费(合同)",
@@ -131,7 +135,7 @@ const detailColumns = [
         numberFormat: true,
         changeNum: 10000,
         numberPrecision: 2,
-		color:"#FF4954"
+        color: "#FF4954"
     },
     {
         label: "清欠率(权责)",
@@ -140,6 +144,7 @@ const detailColumns = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
     {
@@ -149,6 +154,7 @@ const detailColumns = [
         sortable: true,
         align: "right",
         unit: '%',
+        numberFormat: true,
         numberPrecision: 2,
     },
 ]

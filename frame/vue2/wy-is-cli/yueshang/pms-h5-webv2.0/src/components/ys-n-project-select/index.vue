@@ -3,8 +3,7 @@
     <div class="project-select-label" @click="showPrejectList" v-if="projectListBol">
       <div class="project-select-name ellipsis">{{ component.label }}</div>
       <img src="../../assets/images/icon-selector-arrow.png">
-      <!-- <van-image width="10" height="5" :src="component.arrowDown" /> -->
-      <div class="project-leader" @click.stop="showLeaderManage" v-if="component.projectId && dilogShow">
+      <div class="project-leader" @click.stop="showLeaderManage" v-if="component.projectId">
         <van-image width="0.7rem" height="0.7rem" :src="component.leaderImgUrl" />
         <div class="leader-manager">项目总</div>
       </div>
@@ -22,7 +21,7 @@
           <div class="leader-modal-inner-content" v-if="leaderDetail">
             <div class="leader-name">{{ leaderDetail.userName }}</div>
             <div v-for="(item, index) in leaderDetail.resultList" :key="index" class="leader-title">
-              {{ item.workDuty }} ({{item.startDate + "-" + item.endDate }})
+              {{ item.workDuty }} ({{ item.type === 1 ? item.startDate : item.startDate + "-" + item.endDate }})
             </div>
             <div class="leader-title">入职：{{ leaderDetail.attendWorkDate }}</div>
             <div class="leader-title">
@@ -36,18 +35,23 @@
         </div>
       </div>
     </van-overlay>
-    <div class="project-list" v-if="showProjectList">
-      <projectList @projeSelected="projeSelected"></projectList>
+
+    <div v-if="showProjectList">
+      <van-overlay :show="showProjectList" class="project-list-content" :lock-scroll="false" :z-index="9999999999">
+        <div class="header">{{this.moduleName=='all'?'项目选择(在营)':'项目选择'}}</div>
+        <projectList @projeSelected="projeSelected" :moduleName="moduleName"></projectList>
+      </van-overlay>
     </div>
+
   </div>
 </template>
 <script>
 import arrowDown from "../../assets/images/icon-selector-arrow.png";
 import leader from "../../assets/images/leader.png";
-import projectList from "./project-list";
-import { mapMutations, mapGetters } from "vuex";
+import projectList from "./projectList";
+import { mapGetters } from "vuex";
 export default {
-  data() {
+  data () {
     return {
       projectListBol: true,
       component: {
@@ -88,9 +92,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    dilogShow: {
-      type: Boolean,
-      default: true
+    moduleName: {
+      // 区分招商分析（zhaoshang）和其他模块
+      type: String,
+      default: 'all',
     }
   },
   watch: {
@@ -99,40 +104,51 @@ export default {
         this.component.label = newValue.label || "全部";
         this.component.projectId = newValue.projectId;
 
-        if (this.getPprojectInfo) {
-          let projectInfo = this.getPprojectInfo
+        let projectInfo = this.$store.state.projectInfo;
+        let zsProjectInfo = this.$store.state.zsProjectInfo;
+
+        if (this.moduleName == 'all' && projectInfo) {
+
           let { projectList } = projectInfo
           if (projectList.length == 1) {
+            // 项目列表只有一条数据
             this.projectListBol = false
-            // console.log(this.projectListBol, 'projectListBol')
           } else {
             this.projectListBol = true
-            // console.log(this.projectListBol, 'projectListBol')
           }
-        }
 
+        } else if (this.moduleName == 'zhaoshang' && zsProjectInfo) {
+
+          let { projectList } = zsProjectInfo
+          if (projectList.length == 1) {
+            // 项目列表只有一条数据
+            this.projectListBol = false
+          } else {
+            this.projectListBol = true
+          }
+
+        }
       },
       immediate: true,
       deep: true,
     },
-    $route(to, from) {
+    $route (to, from) {
       console.log(to, from);
     },
-
   },
   computed: {
-    ...mapGetters(['getPprojectInfo']),
-  },
-  mounted() {
-
+    ...mapGetters(['getHasAuth']),
   },
   methods: {
-    showLeaderManage() {
+    touchstart () {
+      this.$emit('touchstart', {})
+    },
+    showLeaderManage () {
       if (this.component.projectId) {
         this.getProjectInfo()
       }
     },
-    calling(phone) {
+    calling (phone) {
       console.log(phone);
       // if (window.WebViewJavascriptBridge) {
       // 	window.WebViewJavascriptBridge.callHandler("phoneAction", { param: "打电话", phone }, function(responseData) {});
@@ -142,27 +158,40 @@ export default {
       // 	return;
       // }
     },
-    showPrejectList() {
-      this.showProjectList = true;
+    showPrejectList () {
+      try {
+        let productType = this.$route.path.indexOf('zhaoshang') == -1 ? true : false//招商进度项目列表不通过登录获取
+        if (!this.getHasAuth && productType) {
+          return
+        }
+        this.touchstart()
+        this.showProjectList = true;
+      } catch (e) {
+        console.log(e)
+      }
     },
-    projeSelected(item) {
-      if (this.disabledAll) {
-        this.showProjectList = false;
-        this.component.label = item.shortName;
-        this.component.projectId = item.projectId;
-        this.$emit("projeSelected", item);
-      } else {
-        if (item.shortName == "全部") {
-          this.$Toast('不能选择全部');
-        } else {
+    projeSelected (item) {
+      try {
+        if (this.disabledAll) {
           this.showProjectList = false;
           this.component.label = item.shortName;
           this.component.projectId = item.projectId;
           this.$emit("projeSelected", item);
+        } else {
+          if (item.shortName == "全部") {
+            this.$Toast('不能选择全部');
+          } else {
+            this.showProjectList = false;
+            this.component.label = item.shortName;
+            this.component.projectId = item.projectId;
+            this.$emit("projeSelected", item);
+          }
         }
+      } catch (e) {
+        console.log(e)
       }
     },
-    async getProjectInfo() {
+    async getProjectInfo () {
       let res = await this.$axios.externalLinkServe.projectInfo({ bisProjectId: this.component.projectId }, true)
       this.leaderDetail = res.data
       this.component.showLeaderDetail = true;
@@ -171,16 +200,20 @@ export default {
   components: {
     projectList,
   },
-
+  mounted () { },
 };
 </script>
 <style lang="scss" scoped>
+.van-overlay {
+  z-index: 99999999;
+}
 .project-select-label {
   display: flex;
   align-items: center;
+  line-height: 1;
   .project-select-name {
-    max-width: 1.7rem;
-    padding-right: 3px;
+    max-width: 3rem;
+    // padding-right: 3px;
     font-size: 32px;
   }
   img {
@@ -197,12 +230,13 @@ export default {
     }
   }
 }
+
 /* 项目总 */
 .leader-modal-inner {
   position: absolute;
   width: 100%;
   opacity: 0.9;
-  top: 21%;
+  top: 20%;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -243,22 +277,31 @@ export default {
   border-radius: 50%;
   margin-top: 35px;
 }
-.van-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 10000000;
+.leader-close {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-top: 35px;
 }
-.project-list {
-  position: absolute;
-  top: 0px;
-  left: 0;
+.header {
   width: 100%;
-  height: 100%;
+  height: 88px;
+  // position: relative;
+  // top: 0px;
+  // left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   overflow: hidden;
-  z-index: 200;
+  background-color: #fff;
+  border-bottom: 2px solid #ccc;
+  font-size: 32px;
+  color: #323233;
+  z-index: 9999999999;
+}
+.project-list-content {
+  z-index: 9999999999;
 }
 </style>

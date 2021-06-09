@@ -1,0 +1,1 @@
+<view class='btn-box' bindtap='onTap' style='background: {{bgColor}}'>{{txt}}</view>

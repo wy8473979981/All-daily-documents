@@ -1,0 +1,76 @@
+<!--pages/message.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+<view id="record">
+  <view class='ys-swiper-tab'>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == '0' ? 'active':''}}" data-current="0" bindtap="clickTab">进行中</view>
+    </view>
+    <text class='swiper-tab-line'></text>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == '1' ? 'active':''}}" data-current="1" bindtap="clickTab">已完成</view>
+    </view>
+  </view>
+  <view class='ys-block-items'>
+    <scroll-view class='items' scroll-y bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-top="{{scrollTop}}">
+      <view class='list' wx:for="{{items}}" wx:key="idx">
+        <view class='left-side' data-type='{{item.serviceType}}' data-serviceId='{{item.serviceId}}' bindtap="goUrl">
+          <view class='top'>
+            <text class='name'>{{item.serviceTypeName}}</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 1  && num.statusCodeType(item.statusCode, 3, 4) < 5}}" style='color:#ffa300;'>待审核</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 2  && num.statusCodeType(item.statusCode, 3, 4) < 5}}" style='color:#ffa300;'>审核中</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 3  && num.statusCodeType(item.statusCode, 3, 4) < 5}}" style='color:#ffa300;'>待评价</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 4  && num.statusCodeType(item.statusCode, 3, 4) < 5}}" style='color:#3e9309;'>已完成</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 5  && num.statusCodeType(item.statusCode, 3, 4) < 5}}" style='color:#ff0000;'>已驳回</text>
+
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 1 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#ffa300;'>租户报修</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 2 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#ffa300;'>已接单</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 3 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#ffa300;'>已派工</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 4 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#ff0000;'>已关闭</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 5 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#ffa300;'>待评价</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 6 &&  num.statusCodeType(item.statusCode, 3, 4) == 5}}" style='color:#3e9309;'>已完成</text>
+
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 0  && num.statusCodeType(item.statusCode, 3, 4) == 6}}" style='color:#ffa300;'>待审核</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 1  && num.statusCodeType(item.statusCode, 3, 4) == 6}}" style='color:#ffa300;'>审核中</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 2  && num.statusCodeType(item.statusCode, 3, 4) == 6}}" style='color:#ffa300;'>待评价</text>
+            <text class='status' wx:if="{{num.statusCode(item.statusCode, 5) == 3  && num.statusCodeType(item.statusCode, 3, 4) == 6}}" style='color:#3e9309;'>已完成</text>
+          </view>
+          <view class='bottom'>
+            <text class='user'>申请人{{item.clerkName}}</text>
+            <text class='date'>{{item.createDate}}</text>
+          </view>
+        </view>
+        <view class='right-side'>
+          <view wx:if="{{num.statusCode(item.statusCode, 5) != 3 && num.statusCodeType(item.statusCode, 3, 4) < 5}}">
+            <image src='../../../static/images/unlaud.png'></image>
+            <text style='color: #999;'>服务评价</text>
+          </view>
+          <view wx:if="{{num.statusCode(item.statusCode, 5) != 5 && num.statusCodeType(item.statusCode, 3, 4) == 5}}">
+            <image src='../../../static/images/unlaud.png'></image>
+            <text style='color: #999;'>服务评价</text>
+          </view>
+          <view wx:if="{{num.statusCode(item.statusCode, 5) != 2 && num.statusCodeType(item.statusCode, 3, 4) == 6}}">
+            <image src='../../../static/images/unlaud.png'></image>
+            <text style='color: #999;'>服务评价</text>
+          </view>
+
+          <view bindtap='goEvaluate' data-id='{{item.serviceId}}' wx:if="{{num.statusCode(item.statusCode, 5) == 3 && num.statusCodeType(item.statusCode, 3, 4) < 5}}">
+            <image src='../../../static/images/laud.png'></image>
+            <text>服务评价</text>
+          </view>
+          <view bindtap='goEvaluate' data-id='{{item.serviceId}}' wx:if="{{num.statusCode(item.statusCode, 5) == 5 && num.statusCodeType(item.statusCode, 3, 4) == 5}}">
+            <image src='../../../static/images/laud.png'></image>
+            <text>服务评价</text>
+          </view>
+          <view bindtap='goEvaluate' data-id='{{item.serviceId}}' wx:if="{{num.statusCode(item.statusCode, 5) == 2 && num.statusCodeType(item.statusCode, 3, 4) == 6}}">
+            <image src='../../../static/images/laud.png'></image>
+            <text>服务评价</text>
+          </view>
+        </view>
+      </view>
+      <view class='noData' wx:if="{{noData}}">
+        <image src='{{icon_no_data}}'></image>
+        <text>您还没有申请单哦！</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

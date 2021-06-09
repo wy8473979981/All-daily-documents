@@ -202,10 +202,10 @@
             <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'profitNov') }}</p>
           </template>
         </el-table-column>
-        <el-table-column min-width="140" label="12月" :show-overflow-tooltip="!isEdit" prop="profitDece" align="right">
+        <el-table-column min-width="140" label="12月" :show-overflow-tooltip="!isEdit" prop="profitDec" align="right">
           <template slot-scope="scope">
-            <el-input v-if="isEdit && scope.$index == selectIndex" v-filter-check-input maxlength="12" v-model="scope.row.profitDece" placeholder="请输入" size="mini"></el-input>
-            <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'profitDece') }}</p>
+            <el-input v-if="isEdit && scope.$index == selectIndex" v-filter-check-input maxlength="12" v-model="scope.row.profitDec" placeholder="请输入" size="mini"></el-input>
+            <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'profitDec') }}</p>
           </template>
         </el-table-column>
       </el-table-column>
@@ -282,10 +282,10 @@
             <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'payNov') }}</p>
           </template>
         </el-table-column>
-        <el-table-column min-width="140" label="12月" :show-overflow-tooltip="!isEdit" prop="payDece" align="right">
+        <el-table-column min-width="140" label="12月" :show-overflow-tooltip="!isEdit" prop="payDec" align="right">
           <template slot-scope="scope">
-            <el-input v-if="isEdit && scope.$index == selectIndex" v-filter-check-input maxlength="12" v-model="scope.row.payDece" placeholder="请输入" size="mini"></el-input>
-            <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'payDece') }}</p>
+            <el-input v-if="isEdit && scope.$index == selectIndex" v-filter-check-input maxlength="12" v-model="scope.row.payDec" placeholder="请输入" size="mini"></el-input>
+            <p v-else @click="showInput(scope.$index)">{{ returnValue(scope.row,'payDec') }}</p>
           </template>
         </el-table-column>
       </el-table-column>
@@ -295,9 +295,9 @@
           <p @click="showInput(scope.$index)">{{ returnValue(scope.row,'nextRate') }}</p>
         </template>
       </el-table-column>
-      <el-table-column min-width="140" :label="`${getBudgetYear+1}年营业额`" show-overflow-tooltip prop="nextRatnextTurnovere" align="right">
+      <el-table-column min-width="140" :label="`${getBudgetYear+1}年营业额`" show-overflow-tooltip prop="nextTurnover" align="right">
         <template slot-scope="scope">
-          <p @click="showInput(scope.$index)">{{ returnValue(scope.row,'nextRatnextTurnovere') }}</p>
+          <p @click="showInput(scope.$index)">{{ returnValue(scope.row,'nextTurnover') }}</p>
         </template>
       </el-table-column>
       <el-table-column min-width="150" :label="`${getBudgetYear+1}年联营支出`" show-overflow-tooltip prop="nextPay" align="right">

@@ -20,8 +20,9 @@ export default {
 			for (const [key, obj] of Object.entries(data)) {
 				enumList[key] = obj.children.map(item => {
 					return {
+						...item,
 						key: item.code === '' ? 'empty' : item.code,
-						label: item.detail
+						label: item.detail,
 					}
 				})
 				enumKeys.push(obj.key)

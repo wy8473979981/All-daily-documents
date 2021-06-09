@@ -5,33 +5,36 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :disabledAll="false"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'yysj'" :selected="selected" @projeSelected="projeSelected" :disabledAll="false">
+            </ys-n-project-select>
             <!-- <ys-n-dialog :projectId="params.projectId"></ys-n-dialog> -->
           </div>
         </div>
       </div>
     </div>
-    <ys-n-section title="涉及商户" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (params.dateType == 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
-          <span :class="'list-mode-item ' + (params.dateType == 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="涉及商户" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (params.dateType == 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
+            <span :class="'list-mode-item ' + (params.dateType == 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
+          </div>
         </div>
-      </div>
-      <ys-n-table :mode="params.dateType.toString()" :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns"></ys-n-table>
-    </ys-n-section>
+        <ys-n-table :mode="params.dateType.toString()" :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false,
       leaderDetail: {},
       params: {
         queryType: 3,
-        dateType: this.$route.query.dateType ? this.$route.query.dateType : 1 ,
+        dateType: this.$route.query.dateType ? this.$route.query.dateType : 1,
         chargeType: this.$route.query.chargeType,
         projectId: this.$route.query.projectId,
         projectName: this.$route.query.projectName
@@ -39,36 +42,38 @@ export default {
       table: {
         totalRow: {},
         dataList: [],
-        columns: [
-          {
-            label: "序号",
-            width: "1.2rem"
-          }, {
-            label: "商户名",
-            key: "name",
-            width: "2.5rem",
-            align: "left"
-          },/* {
-            label: "到期租户数量",
-            key: "contNum",
-            color: "#FF120D",
-            width: "2.9rem",
-            sortable: true,
-            align: "right"
-          }, */{
-            label: "到期面积",
-            key: "rentSquare",
-            sortable: true,
-            align: "right",
-            numberFormat: true,
-            numberPrecision: 2,
-          },
-		  {
-		    label: "到期日",
-		    key: "contEndDate",
-		    align: "left",
-			sortable: true,
-		  }
+        columns: [{
+          label: "序号",
+          width: "1.3rem",
+          align: "left"
+        }, {
+          label: "商户名",
+          key: "name",
+          width: "2.5rem",
+          align: "left"
+        },
+        /* {
+						label: "到期租户数量",
+						key: "contNum",
+						color: "#FF120D",
+						width: "2.9rem",
+						sortable: true,
+						align: "right"
+					}, */
+        {
+          label: "到期面积(m²)",
+          key: "rentSquare",
+          sortable: true,
+          align: "right",
+          numberFormat: true,
+          numberPrecision: 2,
+        },
+        {
+          label: "到期日",
+          key: "contEndDate",
+          align: "left",
+          sortable: true,
+        }
         ]
       },
       selected: {
@@ -77,11 +82,18 @@ export default {
       },
     }
   },
-  created() {
+  created () {
     this.getTableData()
   },
   methods: {
-    projeSelected(item) {
+    onRefresh () {
+      this.isLoading = true
+      this.getTableData()
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    projeSelected (item) {
       this.setData({
         ["params.projectId"]: (item && item.projectId) || "",
         ["params.projectName"]: (item && item.shortName) || "",
@@ -90,7 +102,7 @@ export default {
       });
       this.getTableData()
     },
-    async getTableData() {
+    async getTableData () {
       let res = await this.$axios.rentServe.getTotalDetailData(this.params)
       let dataList = []
       if (res.data && res.data.length > 0) {
@@ -103,12 +115,13 @@ export default {
         })
       }
       this.table.dataList = dataList
+      this.$lodash.debounce(this.setIsLoading, 300)()
     },
-    onListModeChanged(type) {
+    onListModeChanged (type) {
       this.params.dateType = type
       this.getTableData()
     },
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       let projectId = null;
       let projectName = null;
       let params = this.params;
@@ -120,7 +133,9 @@ export default {
       params.projectName = projectName;
       this.$router.push({
         path: '/rent/detail',
-        query: { ...params }
+        query: {
+          ...params
+        }
       })
     }
   },
@@ -131,6 +146,7 @@ export default {
 .app-header-left {
   display: flex;
 }
+
 .list-mode-item {
   font-size: 28px;
 

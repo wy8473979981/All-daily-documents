@@ -1,0 +1,13 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-goods-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block note-info'>
+    <text>请选择</text>
+  </view>
+  <view class='ys-block list' wx:for="{{items}}" wx:key="idx" bindtap='select' data-id='{{item.clerkId}}'>
+    <text class='list'>
+      <text>{{item.shortName}}</text>
+      <text style='margin-left:20rpx;'>{{item.brandName}}</text>
+      <text style='margin-left:20rpx;'>{{item.storeNos}}</text>
+    </text>
+  </view>
+</view>

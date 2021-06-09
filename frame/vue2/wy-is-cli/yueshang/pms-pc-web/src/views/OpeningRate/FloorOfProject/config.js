@@ -25,7 +25,7 @@ export const FormConfig = [
   {
     label: '',
     type: 'date',
-    key: 'date',
+    key: 'yearMonth',
     props: {
       valueFormat: 'yyyy-MM',
       type: 'month'
@@ -36,54 +36,55 @@ export const FormConfig = [
 
 export const TableConfig = [
   {
-    key: 'key1',
+    key: 'name',
     label: '楼层',
+    width: 120,
     fixed: true
   },
   {
-    key: 'key2',
+    key: 'storeNum',
     label: '总铺位数',
-    type: 'number',
-    minWidth: 120,
+    align: 'right',
+    minWidth: 80,
     sortable: 'custom'
   },
   {
-    key: 'key3',
+    key: 'storeRentSquare',
     label: '总面积(㎡)',
     type: 'area',
     minWidth: 160,
     sortable: 'custom'
   },
   {
-    key: 'key5',
+    key: 'rentSquareQc',
     label: '开业面积(㎡)',
     type: 'area',
     minWidth: 160,
     sortable: 'custom'
   },
   {
-    key: 'key8',
+    key: 'coverRentSquare',
     label: '押不抵租面积(㎡)',
     type: 'area',
     minWidth: 160,
     sortable: 'custom'
   },
   {
-    key: 'key6',
+    key: 'rentSquare',
     label: '考核开业面积(㎡)',
     type: 'area',
     minWidth: 160,
     sortable: 'custom'
   },
   {
-    key: 'key7',
+    key: 'openRateQc',
     label: '开业率',
     type: 'rate',
     minWidth: 100,
     sortable: 'custom'
   },
   {
-    key: 'key8',
+    key: 'openRate',
     label: '考核开业率',
     type: 'rate',
     minWidth: 120

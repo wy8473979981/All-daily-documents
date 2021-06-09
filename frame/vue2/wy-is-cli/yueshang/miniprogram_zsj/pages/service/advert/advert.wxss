@@ -1,0 +1,23 @@
+page{
+  font-size: 30rpx;
+  color: #333;
+  background: #f5f5f5;
+}
+#ys-advert .tips {
+  background: #d8014a;
+  color: #fff;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.ys-block-gap{
+  padding: 30rpx 25rpx;
+  background: #fff;
+}
+.select-wrapper{
+  border-bottom: 0;
+}
+.descript{
+  line-height: 40rpx;
+  color: #999;
+}

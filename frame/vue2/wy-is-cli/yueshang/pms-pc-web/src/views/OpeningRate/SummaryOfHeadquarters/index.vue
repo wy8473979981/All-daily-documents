@@ -38,10 +38,6 @@ export default {
         query: {
           api: openingRate.getListBySummaryOfHeadquarters
         },
-
-        export: {
-          type: 'exportOfOrSummaryHeadquarters',
-        }
       },
     }
   },

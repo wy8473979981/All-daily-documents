@@ -15,6 +15,7 @@ import objectUtil from './utils/params.js'
 import Common from './utils/common.js'
 import myCharts from './plugins/echarts/myCharts.js'
 import './icons' // icon
+import { getDynamicTableHeight } from '@/utils/index'
 
 Vue.use(comps)
 Vue.use(ElementUI)
@@ -25,6 +26,7 @@ Vue.prototype.$enums = enums
 Vue.prototype.$timeoutRouter = timeoutRouter
 Vue.prototype.$objectUtil = objectUtil
 Vue.prototype.$common = Common
+Vue.prototype.$getDynamicTableHeight = getDynamicTableHeight
 
 // 导入全局指令
 importDirective(Vue)

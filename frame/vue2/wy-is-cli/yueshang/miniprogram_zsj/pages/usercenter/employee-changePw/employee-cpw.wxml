@@ -1,0 +1,32 @@
+<!-- pages/usercenter/employee-changePw/employee-cpw.wxml -->
+
+<view class="ys-block ys-block-fixed-footer">
+    <my-warning id='warningComps'/>
+	<form bindsubmit="formSubmit" >
+	    <view class="ys-section ys-section-gap">
+			<view class="ys-cell request">
+			  <view class="ys-cell-label">旧密码</view>
+			  <view class="ys-cell-content">
+				  <input type='password' placeholder='请输入旧密码' value='{{oldPassword}}' data-key='oldPawssword' bindinput="bindKeyInput" />
+			  </view>
+			</view>
+
+			<view class="ys-cell request">
+			  <view class="ys-cell-label">新密码</view>
+			  <view class="ys-cell-content">
+				  <input type='password' placeholder='请输入新密码' value='{{newPassword}}'  data-key='newPawssword' bindinput="bindKeyInput" />
+			  </view>
+			</view><!--ys-cell-->
+
+			<view class="ys-cell request">
+			  <view class="ys-cell-label">确认新密码</view>
+			  <view class="ys-cell-content">
+				  <input type='password' placeholder='请再次输入新密码' value='{{secondNewPassword}}'  data-key='secondNewPawssword' bindinput="bindKeyInput" />
+			  </view>
+			</view>
+	    </view>
+	</form>
+    <view class="ys-fixed-footer">
+        <button class="ys-btn ys-footer-btn ys-btn-powderblue" bindtap='changePWSub'>提交</button>
+    </view><!--ys-fixed-footer-->
+</view>

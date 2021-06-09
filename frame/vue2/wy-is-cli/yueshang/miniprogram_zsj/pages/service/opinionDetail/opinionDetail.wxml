@@ -1,0 +1,74 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-opinion-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap note-info'>
+    <view>
+      <label>单据号</label>
+      <text>ASDF78348228383</text>
+      <text class='status'>待审核</text>
+    </view>
+    <view>
+      <label>类型</label>
+      <text>环境卫生</text>
+    </view>
+    <view>
+      <label>内容</label>
+      <text>场内无信号导致店铺无法为顾客进行买单操作，z致使顾客只能现金支付，引起客户投诉。</text>
+    </view>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>附件</label>
+    <view class='img-wrapper'>
+      <image class='icon' src='../../../static/images/icon_op_blue.png'></image>
+    </view>
+    <view class='img-wrapper'>
+      <image class='icon' src='../../../static/images/icon_op_blue.png'></image>
+    </view>
+    <view class='img-wrapper' data-path='/pages/service/copyer/copyer' bindtap='goUrl'>
+    </view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>商户发起</text>
+          <text class='name'>刘伟</text>
+        </view>
+        <view class='date'>
+          <text>2018年3月15日 18:00</text>
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>运营负责人受理</text>
+          <text class='name'>陈小帅</text>
+        </view>
+        <view class='date'>
+          <text>2018年3月15日 18:00</text>
+        </view>
+        <view class='content'>
+          您的提交已审核通过，我们将会在两个工作日内联系您，请务必保证手机电话通畅，感谢您的配合！
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>运营负责人出来反馈</text>
+        </view>
+      </view>
+      <view class='list'>
+        <image class='icon'></image>
+        <view class='header'>
+          <text class='title'>商户确认结果</text>
+          <text class='name'></text>
+        </view>
+      </view>
+    </view>
+  </view>
+    <view class='ys-fixed-footer'>
+    <button wx:if='{{btnSta}}' class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='urge'>催办</button>
+    <button wx:if='{{!btnSta}}' data-path="/pages/service/evaluate/evaluate" class='ys-btn ys-footer-btn ys-btn-powderred submit' bindtap='goUrl'>去评价</button>
+  </view>
+</view>

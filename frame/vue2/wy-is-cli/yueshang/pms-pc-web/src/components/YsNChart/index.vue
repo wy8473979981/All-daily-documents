@@ -13,6 +13,7 @@
 </template>
 <script>
 import * as echarts from "echarts";
+import { formatNumber } from 'utils/utils'
 export default {
   name: "YsNChart",
 
@@ -35,6 +36,10 @@ export default {
     }, // 配置颜色
     legend: Array, // 配置种类
     x: Array,
+    unit: {
+      type: String,
+      default: ''
+    }, // 数据的单位
   },
   data() {
     return {
@@ -161,7 +166,7 @@ export default {
           // },
           grid: {
             left: "0",
-            right: "3%",
+            right: "4.8",
             bottom: "0",
             containLabel: true,
           },
@@ -173,6 +178,17 @@ export default {
                 show: true,
               },
             },
+            formatter:(params) => {
+              const line1Unit = formatNumber(params[0].data) === '-' ? '' : this.unit
+              const line2Unit = formatNumber(params[1].data) === '-' ? '' : this.unit
+              return `
+                <span>${params[0].axisValue}</span>
+                <br/>
+                ${params[0].marker} ${params[0].seriesName} <span style="display: inline-block; min-width: 60px; text-align: right;">${formatNumber(params[0].data)}${line1Unit}</span>
+                <br/>
+                ${params[1].marker} ${params[1].seriesName} <span style="display: inline-block; min-width: 60px; text-align: right;">${formatNumber(params[1].data)}${line2Unit}</span>
+              `
+            }
           },
           xAxis: [
             {
@@ -197,7 +213,7 @@ export default {
       if (this.legend) {
         option.legend = {
           data: this.legend,
-          right: "10%",
+          right: "0",
           top: "1%",
           icon: "circle",
         };

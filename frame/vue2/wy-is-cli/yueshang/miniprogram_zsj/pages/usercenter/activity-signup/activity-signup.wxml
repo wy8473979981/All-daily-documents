@@ -1,0 +1,63 @@
+<!--pages/usercenter/activity-signup/activity-signup.wxml-->
+<view class="ys-block ys-block-fixed-footer" id="activity-signup">
+  <view class="ys-section">
+    <view class="list-item">
+          <view class="ys-list-info col-left">
+            <image src="../../../static/images/assets/figure.jpg"   mode="aspectFill" lazy-load='true' ></image>        
+          </view>
+
+          <view class="ys-list-info col-right col-flex-column">
+                   <view class="title">
+                      甜蜜七夕节,给你宠爱！
+                    </view>
+                  
+                    <view class="sub-title">
+                      活动类型:促销活动
+                    </view>
+                    <view class="sub-title">
+                      活动时间:2018.03.24 ～ 2018.03.30
+                    </view>
+          </view>
+
+     </view>     
+  </view>
+
+ <view class="section-separate section-separate-title">
+    <text>选择活动项</text>
+ </view>
+
+ <view class="section" id="activity-select-wrapper">
+
+     <scroll-view class="ys-list-wrapper" scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower">
+     <checkbox-group bindchange="checkboxChange">
+      <view class="list-item" data-index="{{index}}" wx:for="{{items}}" wx:key="" 
+      bindtap="selectActivity" data-id="{{item.id|'id'}}">
+          <view class="ys-list-info col-left">
+            <label class="checkbox">
+              <checkbox value="{{item.name}}" checked="{{item.checked}}"/>
+            </label>    
+          </view>
+
+          <view class="ys-list-info col-right col-flex-column">
+                   <view class="title">
+                     {{item.name}}
+                    </view>
+                    <view class="sub-title">
+                      活动时间:{{item.activityStart}} ～ {{item.activityEnd}}
+                    </view>
+
+                    <view class="comments">
+                      <text>{{item.desc}}</text>
+                    </view>
+          </view>
+    </view>
+
+    </checkbox-group>
+    </scroll-view><!--ys-list-wrapper-->
+ </view>
+
+   
+  <view class="ys-fixed-footer">
+      <button class="ys-btn ys-footer-btn ys-btn-powderblue" bindtap='signup'>报名</button>
+  </view><!--ys-fixed-footer-->
+</view>

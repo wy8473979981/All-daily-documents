@@ -8,80 +8,105 @@
         <div class="app-header-container" v-show="!recovery.show">
           <div class="app-header-left"></div>
           <div class="app-header-right">
-            <ys-n-date-pick :type="`date`" @selected="dateSelected" :selected="params.yearMonthDay"></ys-n-date-pick>
+            <ys-n-date-pick :type="`date`" @selected="dateSelected" :selected="params.yearMonthDay">
+            </ys-n-date-pick>
             <ys-n-filter-dialog :groups="groups" @selected="bindselected" title="筛选" @open="bindopen" @close="bindclose"></ys-n-filter-dialog>
             <!-- <ys-n-redress-error :type="params.feeType" @onRecoveryClick="onRecoveryClick" v-show="params.feeType !== '3'"></ys-n-redress-error> -->
           </div>
         </div>
       </div>
     </div>
-    <ys-n-section title="开业率%" :collapseable="true" v-show="!recovery.show && !show">
-      <div class="registered-channels">
-        <ys-n-echart :options="lineops"></ys-n-echart>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="开业率(%)" :collapseable="true" v-show="!recovery.show && !show">
+        <div class="registered-channels">
+          <ys-n-echart :options="lineops"></ys-n-echart>
+        </div>
+      </ys-n-section>
+      <ys-n-section title="项目排名" :hasTable="true">
+        <ys-n-table :fixednum="2" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
+      </ys-n-section>
+      <div class="recovery-actions" v-if="recovery.show">
+        <!-- 纠错编辑 取消 和 提交 -->
+        <div class="recovery-actions__action" @click="cancelRecovery">取消</div>
+        <div class="recovery-actions__action recovery-actions__action--priamry" @click="postRecovery">提交</div>
       </div>
-    </ys-n-section>
-    <ys-n-section title="项目排名" :hasTable="true">
-      <ys-n-table :fixednum="2" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
-    </ys-n-section>
-    <div class="recovery-actions" v-if="recovery.show">
-      <!-- 纠错编辑 取消 和 提交 -->
-      <div class="recovery-actions__action" @click="cancelRecovery">取消</div>
-      <div class="recovery-actions__action recovery-actions__action--priamry" @click="postRecovery">提交</div>
-    </div>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
-import { mapMutations, mapGetters } from "vuex";
-const columns = [{
-  label: "序号",
-  width: "1.2rem",
-}, {
-  label: "项目",
-  key: "name",
-  color: "#3992BA",
-  width: "2.9rem",
-  align: "left"
-}, {
-  label: "计租面积(㎡)",
-  key: "storeRentSquare",
-  sortable: true,
-  align: "right",
-  width: "2.6rem",
-  numberFormat:true,
-  numberPrecision:2
-}, {
-  label: "出租率",
-  key: "leaseRate",
-  width: "2rem",
-  sortable: true,
-  align: "right",
-  unit:'%'
-}, {
-  label: "开业率",
-  key: "openRate",
-  width: "2rem",
-  sortable: true,
-  align: "right",
-  unit:'%'
-}, {
-  label: "开业率指标",
-  key: "openRateIndex",
-  width: "2.6rem",
-  sortable: true,
-  align: "right"
-}, {
-  label: "达成率",
-  key: "openRateIndexFinish",
-  width: "2rem",
-  sortable: true,
-  align: "right",
-  unit:'%'
-}];
+import {
+  mapMutations,
+  mapGetters
+} from "vuex";
+const columns = [
+  {
+    label: "序号",
+    width: "1.3rem",
+    align: "left"
+  }, {
+    label: "项目",
+    key: "name",
+    color: "#3992BA",
+    width: "2.9rem",
+    align: "left"
+  },
+  {
+    label: "计租面积(㎡)",
+    key: "storeRentSquare",
+    sortable: true,
+    align: "right",
+    width: "2.8rem",
+    numberFormat: true,
+    numberPrecision: 2
+  }, {
+    label: "空铺面积(㎡)",
+    key: "emptyRentSquare",
+    sortable: true,
+    align: "right",
+    width: "2.7rem",
+    numberFormat: true,
+    numberPrecision: 2
+  },
+  {
+    label: "出租率",
+    key: "leaseRate",
+    width: "2rem",
+    sortable: true,
+    align: "right",
+    numberFormat: true,
+    numberPrecision: 2,
+    unit: '%'
+  }, {
+    label: "开业率",
+    key: "openRate",
+    width: "2rem",
+    sortable: true,
+    align: "right",
+    numberPrecision: 2,
+    numberFormat: true,
+    unit: '%'
+  }, {
+    label: "开业率指标",
+    key: "openRateIndex",
+    width: "2.6rem",
+    sortable: true,
+    align: "right"
+  }, {
+    label: "达成率",
+    key: "openRateIndexFinish",
+    width: "2rem",
+    sortable: true,
+    align: "right",
+    numberFormat: true,
+    numberPrecision: 2,
+    unit: '%'
+  }];
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false,
+      isLoadingCount: 0,
       totalRow: {},
       dataList: [],
       columns: columns,
@@ -110,13 +135,14 @@ export default {
           areaStyle: {
             normal: { //自定义颜色，渐变色填充折线图区域
               color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
-                //渐变色 
+                //渐变色
+                //渐变色
                 [{
                   offset: 0,
-                  color: '#2D9FCB'
+                  color: 'rgba(45, 159, 203, 0.2)'
                 }, {
                   offset: 0.62,
-                  color: "#ffffff"
+                  color: 'rgba(255, 255, 255, 0.48)'
                 }]),
             }
           },
@@ -133,7 +159,7 @@ export default {
         chargeType: this.$route.query.chargeType, //物业类型,1购物中心,2商业街,0全部
         stage: this.$route.query.stage,
         yearMonth: this.$route.query.yearMonth, //年月,格式yyyy-MM
-		yearMonthDay:this.$route.query.yearMonth
+        yearMonthDay: this.$util.getDefaultDate('day')
       },
       recovery: {
         show: false,
@@ -148,17 +174,36 @@ export default {
   computed: {
     ...mapGetters(['getGroups']),
   },
-  created() {
+  created () {
     this.getEchartData();
     this.getTableData();
   },
-  mounted() {
+  mounted () {
     this.setData({
       "groups": [this.getGroups]
     });
+    console.log(this.groups)
   },
   methods: {
-    dateSelected(date) {
+    onRefresh () {
+      this.isLoading = true
+      this.getEchartData();
+      this.getTableData();
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    dateSelected (date) {
       this.setData({
         ["params.yearMonthDay"]: date
       });
@@ -169,7 +214,7 @@ export default {
       this.getTableData();
       console.log(date);
     },
-    bindselected(e) {
+    bindselected (e) {
       e.detail.forEach((item) => {
         let temp = item.split("-");
         let key = temp[0];
@@ -189,13 +234,13 @@ export default {
       this.getEchartData();
       this.getTableData();
     },
-    bindopen() {
+    bindopen () {
       this.show = true;
     },
-    bindclose() {
+    bindclose () {
       this.show = false;
     },
-    onRecoveryClick() {
+    onRecoveryClick () {
       this.setData({
         "recovery.show": true,
         "recovery.current": JSON.parse(JSON.stringify(this.recovery.selected)),
@@ -203,15 +248,20 @@ export default {
       this.getEchartData();
       this.getTableData();
     },
-    async getEchartData() {
+    async getEchartData () {
+      this.addIsLoadingCount()
       const year = this.params.yearMonth.split("-")[0];
       const lastYear = String(year - 1);
       const legendData = [year.substring(2) + "年度", lastYear.substring(2) + "年度"];
+      this.params.squareFlag = 1
       let res = await this.$axios.makeBusinessServe.geteEchartData(this.params)
+      this.decreaseIsLoadingCount()
       let openRates = []
       let openRateLasts = []
       res.data.map(item => {
-        openRates.push(item.openRate)
+        if (item.openRate || item.openRate === 0) {
+          openRates.push(item.openRate)
+        }
         openRateLasts.push(item.openRateLast)
       })
 
@@ -221,18 +271,20 @@ export default {
         "lineops.series[0].name": legendData[0],
         "lineops.series[0].data": openRates, //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         "lineops.series[1].name": legendData[1],
-        "lineops.series[1].data": openRateLasts, //[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1] 
+        "lineops.series[1].data": openRateLasts, //[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
       })
     },
-    async getTableData() {
+    async getTableData () {
+      this.addIsLoadingCount()
       let res = await this.$axios.makeBusinessServe.getTotalTable(this.params)
+      this.decreaseIsLoadingCount()
       let data = res.data
       /* this.totalRow = {} */
-      this.dataList = data.filter(item => item.name != '合计')
-      this.totalRow = data.filter(item => item.name === '合计')[0]
+      this.dataList = data.filter(item => !item.summary)
+      this.totalRow = data.filter(item => item.summary)[0]
 
     },
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       const {
         show,
         selected
@@ -260,6 +312,9 @@ export default {
       if (column.key === "name") {
         let projectId = e.detail.row.id;
         let projectName = e.detail.row.name;
+        if (this.params.yearMonthDay.split('-').length < 3) {
+          delete this.params['yearMonthDay']
+        }
         this.$router.push({
           path: '/makeBusiness/detail',
           query: {
@@ -288,7 +343,7 @@ export default {
       let currentColumn = column.key;
       return;
     },
-    postRecovery() {
+    postRecovery () {
       // 纠错 提交按钮 事件
       const {
         projectId,
@@ -323,7 +378,7 @@ export default {
           this.cancelRecovery(false);
         });
     },
-    cancelRecovery(reset = true) {
+    cancelRecovery (reset = true) {
       // 纠错 取消按钮 事件
       const setdata = {
         "recovery.show": false,

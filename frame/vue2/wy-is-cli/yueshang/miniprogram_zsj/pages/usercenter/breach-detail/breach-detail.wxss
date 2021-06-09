@@ -1,0 +1,9 @@
+/* pages/usercenter/breach-detail/breach-detail.wxss */
+#breach-detail{
+
+}
+
+#breach-detail .comments{
+  font-size:28rpx;
+  color:#999;
+}

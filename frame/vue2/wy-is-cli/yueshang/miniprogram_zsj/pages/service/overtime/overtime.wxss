@@ -1,0 +1,40 @@
+/* pages/service/overtime/overtime.wxss */
+page{
+  background: #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 100rpx;
+}
+
+.ys-block-gap{
+  background: #fff;
+}
+
+.switch-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.switch-wrapper .left-side{
+  width: 70%;
+}
+.switch-wrapper .left-side .title{
+  display: block;
+  line-height: 50rpx;
+  color: #333;
+}
+.switch-wrapper .left-side .content{
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}
+.switch-wrapper .right-side{
+  width: 30%;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.switch-wrapper .right-side switch-wrapper{
+  float: right;
+  margin-top: 10rpx;
+}

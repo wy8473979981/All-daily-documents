@@ -6,6 +6,7 @@
     :request-config="requestConfig"
     :formData="formData"
     :asyncBefortTableUpdate="asyncBefortTableUpdate"
+    :asyncBeforeSearch="asyncBeforeSearch"
     :hasPagination="true"
   ></ys-n-container>
 </template>
@@ -26,9 +27,17 @@ export default {
       subTitle: '欠费合计(万元)：-(其中租金：-/物管费：-)',
 
       formConfig: FormConfig,
-      tableConfig: TableConfig,
 
       formData: {
+        projectId: '',
+        chargeType: '',
+        accountAgeType: '',
+        shopNameOrStoreNo: '',
+        feeTypeList: ['1', '2'],
+        caliberType: '1',
+      },
+
+      currentFormData: {
         projectId: '',
         chargeType: '',
         accountAgeType: '',
@@ -42,18 +51,22 @@ export default {
           api: income.getListByArrearsOfProject,
           responseKey: 'shopOweFeeList'
         },
-
-        export: {
-          type: 'exportOfIncomeArrearsProject',
-        },
       },
     };
   },
 
-  created() {
+  computed: {
+    tableConfig() {
+      return TableConfig.call(this)
+    }
   },
 
   methods: {
+    asyncBeforeSearch(data) {
+      this.currentFormData = data;
+      return data
+    },
+
     asyncBefortTableUpdate(data = {}) {
       // console.log('data', data);
       const subTitle = `欠费合计(万元)：${formatNumber(data.allOweFee, 'ten-thousand')}(其中租金：${formatNumber(data.zjOweFee, 'ten-thousand')}/物管费：${formatNumber(data.wgOweFee, 'ten-thousand')})`

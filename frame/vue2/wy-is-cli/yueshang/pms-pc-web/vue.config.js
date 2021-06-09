@@ -1,16 +1,20 @@
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 const resolve = dir => path.join(__dirname, dir);
 
 const publicPath = process.env.VUE_BASE_PATH || '';
 const name = 'PMS';
 const devPort = '8080';
+const timeStamp = new Date().getTime()
 
 module.exports = {
   outputDir: 'dist',
   publicPath,
   lintOnSave: true,
+  /* 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存，你可以通过将这个选项设为 false 来关闭文件名哈希。(false的时候就是让原来的文件名不改变) */
+  filenameHashing: true,
   productionSourceMap: false,
   devServer: {
     port: devPort,
@@ -38,7 +42,7 @@ module.exports = {
       // },
     }
   },
-  
+
   css: {
     loaderOptions: {
       // 设置 scss 公用变量文件 https://cli.vuejs.org/zh/guide/css.html#%E5%90%91%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-loader-%E4%BC%A0%E9%80%92%E9%80%89%E9%A1%B9
@@ -48,9 +52,22 @@ module.exports = {
     }
   },
 
-  configureWebpack() {
+  configureWebpack: (config) => {
     const plugins = []
     plugins.push(new LodashModuleReplacementPlugin())
+    plugins.push(new WebpackMd5Hash())
+    // 环境变量
+    config.resolve = {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': resolve('src'),
+      },
+    }
+
+    // 开启 source-map 方便调试
+    if (process.env.NODE_ENV === 'development') {
+      config.devtool = 'source-map'
+    }
 
     return {
       plugins,
@@ -68,6 +85,10 @@ module.exports = {
           views: resolve('src/views'),
           'OpeningRate': resolve('src/views/OpeningRate'),
         }
+      },
+      output: {
+        filename: `js/[name].[hash]${timeStamp}.js`,
+        chunkFilename: `js/[name].[hash].${timeStamp}.js`
       }
     }
   },
@@ -83,10 +104,12 @@ module.exports = {
       .use('vue-loader')
       .loader('vue-loader')
       .tap(options => {
-        options.transformAssetUrls = {
-          avatar: 'img-src'
+        return {
+          ...options
+          // transformAssetUrls: {
+          //   avatar: ['img-src']
+          // }
         }
-        return options
       })
 
     config

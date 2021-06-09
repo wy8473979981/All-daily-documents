@@ -23,7 +23,7 @@
 <script>
 import arrowDown from "../../assets/images/icon-arrow-down.png";
 export default {
-  data() {
+  data () {
     return {
       collapsed1: false,
       arrowDown: arrowDown,
@@ -76,7 +76,7 @@ export default {
   },
   watch: {
     collapsed: {
-      handler(newValue) {
+      handler (newValue) {
         this.setData({
           collapsed1: newValue
         })
@@ -86,11 +86,11 @@ export default {
     }
   },
   methods: {
-    toggleCollapse() {
+    toggleCollapse () {
       if (!this.collapseable) return;
       this.collapsed1 = !this.collapsed1;
     },
-    onSectionClick() {
+    onSectionClick () {
       if (this.url && this.url !== "#" && (!this.type || !this.skip)) {
         this.$util.pageGo(this.url)
       } else {
@@ -104,15 +104,18 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
 /* components/container/section.wxss */
 .ys-n-section {
   padding: 0.32rem 0.4rem;
-  margin-bottom: 19px;
+  margin-top: 19px;
   background-color: #ffffff;
+  box-shadow: 2px 1px 3px 0px rgba(171, 185, 190, 0.25);
 }
+
 .ys-n-section-table {
   padding-right: 0px;
+  padding-bottom: 0px;
 }
 .ys-n-section .app-section__head {
   display: flex;
@@ -121,7 +124,19 @@ export default {
 .ys-n-section-table-head {
   padding-right: 0.4rem;
 }
-
+.search-title {
+  margin-right: 0.16rem;
+  line-height: 1;
+  display: inline-block;
+  color: #2d9fcb;
+  font-size: 0.373333rem;
+  font-weight: bold;
+}
+.van-image {
+  width: 16px;
+  height: 8px;
+  // margin-top: 0.1rem;
+}
 .ys-n-section .app-section__head .app-section__head__title {
   color: #333333;
   font-size: 0.37rem;
@@ -157,15 +172,15 @@ export default {
 }
 .ys-n-section .app-section__head .app-section__head__url {
   margin-left: 0.28rem;
-  width: 0.35rem;
-  height: 0.2rem;
+  width: 27px;
+  height: 14px;
   transform: rotate(-90deg);
 }
 
 .ys-n-section .app-section__head .app-section__head__collapse {
   margin-left: 0.28rem;
-  width: 0.3rem;
-  height: 0.2rem;
+  width: 27px;
+  height: 14px;
   transform: rotate(180deg);
   transition: transform 250ms;
 }

@@ -45,10 +45,6 @@ export default {
           keys: { currYear: 'yearCurr', lastYear: 'yearLast', currData: 'avgRentFee', lastData: 'avgRentFeeLast' },
           responseKey: 'monthlyAvgRentFeeOfCurYearAndLastYearList'
         },
-
-        export: {
-          type: 'exportOfArAverageProject',
-        },
       },
     }
   },

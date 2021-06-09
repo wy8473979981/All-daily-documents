@@ -1,5 +1,5 @@
 <template>
-  <van-nav-bar class="navbar" :title="title" left-text="" right-text="" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+  <van-nav-bar v-if="showNav" class="navbar" :title="title" left-text="" right-text="" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
     <template #title>
       <span class="title">{{title}}</span>
     </template>
@@ -20,16 +20,19 @@ export default {
   computed: {
     ...mapGetters(['getProjectIdBol']),
   },
-  data() {
+  data () {
     return {
+      showNav: false
     }
   },
   watch: {},
-  mounted() {
-
+  mounted () {
+    if (!this.$isWxwork) {
+      this.showNav = true
+    }
   },
   methods: {
-    onClickLeft() {
+    onClickLeft () {
       try {
 
 
@@ -37,9 +40,9 @@ export default {
 
         if (this.$route.meta.goback == 1) {
           // 首页 下的 二级页面
-          if (window.WebViewJavascriptBridge) {
+          if (window.WebViewJavascriptBridge && !this.$isWxwork) {
             window.WebViewJavascriptBridge.callHandler("goBack", { param: "返回" }, function (responseData) { });
-          } else if (window.webkit && window.webkit.messageHandlers) {
+          } else if (window.webkit && window.webkit.messageHandlers && !this.$isWxwork) {
             window.webkit.messageHandlers.goBack.postMessage({ param: "返回" });
           } else {
 
@@ -51,9 +54,9 @@ export default {
           if (projectIdBol === 1 && this.$route.meta.goback == 2) {
             // 首页选择了项目，从项目详情跳转到首页
 
-            if (window.WebViewJavascriptBridge) {
+            if (window.WebViewJavascriptBridge && !this.$isWxwork) {
               window.WebViewJavascriptBridge.callHandler("goBack", { param: "返回" }, function (responseData) { });
-            } else if (window.webkit && window.webkit.messageHandlers) {
+            } else if (window.webkit && window.webkit.messageHandlers && !this.$isWxwork) {
               window.webkit.messageHandlers.goBack.postMessage({ param: "返回" });
             } else {
               window.history.go(-1)
@@ -71,25 +74,25 @@ export default {
         window.history.go(-1)
       }
     },
-    onClickRight() {
+    onClickRight () {
       this.$Toast('按钮');
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-// ::v-deep .van-tabs__nav {
-//   background-color: transparent;
-//   .van-tab--active {
-//     color: #fff;
-//   }
-//   .van-tab {
-//     color: #fff;
-//   }
-//   .van-tabs__line {
-//     background-color: #fff;
-//   }
-// }
+.van-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 0.4rem;
+  z-index: 9999999;
+  background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+}
+::v-deep .van-nav-bar__content {
+  height: 96px;
+}
 .van-hairline--bottom::after {
   border: none;
 }
@@ -106,7 +109,9 @@ export default {
 .title {
   color: #fff !important;
 }
-
+::v-deep .van-nav-bar__title {
+  font-size: 36px;
+}
 .tab-list-box {
   display: -webkit-box;
   display: -webkit-flex;

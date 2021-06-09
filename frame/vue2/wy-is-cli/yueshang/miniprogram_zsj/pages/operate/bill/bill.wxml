@@ -1,0 +1,97 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num" />
+<view class="select_menus">
+  <view class="top_views">
+    <view>本期{{pNum}}份合同累计账单</view>
+    <view>
+      <text style="display:inline-block;width:50%">当前总额：{{allNum}}</text>
+      <text>历史欠费：{{totalAmountHistory}}</text>
+    </view>
+  </view>
+  <view class="select_box">
+    <view class="select_show {{selectStatus? 'active': ''}}" bindtap="toggleSelect">
+      <text>{{selectName}}</text>
+      <image src="../../../static/images/arrow-down.png"></image>
+    </view>
+    <view class="select_ul {{selectStatus? 'active': ''}}">
+      <view class="list_item {{selectIndex==item.contNo?'active':''}}" wx:for="{{ulData}}" data-item="{{item}}" bindtap="selectIt">{{item.contNo}} {{item.brandName}} {{item.storeNos}}</view>
+    </view>
+  </view>
+  <view class='ys-swiper-tab'>
+    <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; display: flex">
+      <view wx:for="{{tabs}}" wx:key="idx" class="swiper-tab-items {{item.feeNo == currentTab ? 'active':''}}" data-current="{{item.feeNo}}" bindtap="clickTab">{{item.feeName}}</view>
+    </scroll-view>
+  </view>
+</view>
+
+<view class='container'>
+  <view class='papel'>
+    <text class="tips">最迟应付日期：{{lists.mustDate}}</text>
+    <view class='bill'>
+      <view class='label'>本期账单金额</view>
+      <text class="money">￥{{num.filterNum(lists.mustMoney)}}</text>
+    </view>
+    <view class='side'>
+      <view class='left'>
+        <view class='label'>本期已付</view>
+        <text class='money'>￥{{num.filterNum(lists.factMoney)}}</text>
+      </view>
+      <view class='right'>
+        <view class='label'>当期未付</view>
+        <text class='money'>￥{{num.filterNum(lists.oweMoneyTotal)}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='ys-block list'>
+    <view class='querybar side'>
+      <!-- <view class="title left">
+        <text>历史账单</text>
+      </view> -->
+      <view class='left ys-swiper-tab' style="height:90rpx;line-height:84rpx;">
+        <scroll-view scroll-x="true" scroll-with-animation="true" style="white-space: nowrap; display: flex">
+          <view wx:for="{{minTabs}}" wx:key="idx" class="swiper-tab-items {{item.idx == activeMinTab ? 'active':''}}" data-idx="{{item.idx}}" bindtap="clickMinTabs">{{item.name}}</view>
+        </scroll-view>
+      </view>
+      <view class="right" hidden="{{activeMinTab===1}}">
+        <view bindtap="showType1" hidden='{{false}}' class="information-type-item btn-show {{showTypeList1? '': 'remove-border'}}">
+          <text>{{typeName}}</text>
+          <image src="../../../static/images/arrow-down.png" class="arrow-down {{showTypeList1? 'reversed': ''}}"></image>
+        </view>
+        <view class="information-type-list" hidden='{{!showTypeList1}}'>
+          <view wx:for='{{typeList1}}' wx:key='index' data-item='{{item}}' class="information-type-item {{showTypeId===item.id?'active':''}}" bindtap='select'>
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class='items'>
+      <view class='item' wx:for="{{lists.historyBill}}" wx:for-index="idx" wx:for-item="item">
+        <view class='item-info'>
+          <view class='type'>
+            <label>类型:</label>
+            <text>{{item.typeName}}</text>
+          </view>
+          <view class='money'>
+            <label>金额:</label>
+            <text>{{num.filterNum(item.mustMoney)}}</text>
+          </view>
+          <view class='status'>
+            <label>状态:</label>
+            <text style='color:#02d7c0;' wx:if="{{item.oweMoney == 0}}">已缴清</text>
+            <text style='color:#ffa300;' wx:if="{{item.oweMoney != 0}}">未缴清</text>
+          </view>
+        </view>
+        <view class='date-list'>
+          <view>
+            <label>账期:</label>
+            <text>{{item.startDate}}~{{item.endDate}}</text>
+          </view>
+          <view>
+            <label>最迟缴费日期:</label>
+            <text>{{item.mustDate}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

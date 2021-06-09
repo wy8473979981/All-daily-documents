@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script src="./js/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div id="app" class="home" v-cloak>
+        <div class="header">
+            <div class="logo">
+                <img src="./images/logo.png" alt="">
+                <span>宝龙集团</span>
+            </div>
+            <div class="tab-header">
+                <div class="tab-btn">
+                    <el-tabs v-model="storeType" @tab-click="handleClick">
+                        <el-tab-pane label="购物中心" name="1"></el-tab-pane>
+                        <el-tab-pane label="商业街" name="2"></el-tab-pane>
+                        <el-tab-pane label="全部" name="0"></el-tab-pane>
+                    </el-tabs>
+                </div>
+                <div class="date-report">
+                    <!-- <span class="report" @click="showDrawer">报表</span> -->
+                    <span class="time">
+                        <span class="value">
+                            {{yearMonth}}
+                        </span>
+                        <span class="time-icon">
+                            <el-date-picker v-model="yearMonth" type="month" placeholder="选择月" :clearable="false"
+                                format="yyyy-MM" value-format="yyyy-MM" @change="yearMonthChange">
+                            </el-date-picker>
+                        </span>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="ztgk">
+                <!-- 整体概况 -->
+                <div class="ztgk-left">
+                    <p class="title">整体概况</p>
+                    <div class="card">
+                        <div class="card-col">
+                            <div><span>项目数量(个)</span><span>{{totalInfo.mallCount}}</span></div>
+                            <div><span>总计租面积(万㎡)</span><span>{{totalInfo.allSquare}}</span></div>
+                            <div><span>铺位总数(个)</span><span>{{totalInfo.storeAllNum}}</span></div>
+                            <div><span>开业率(%)</span><span>{{totalInfo.kyRate}}</span></div>
+                        </div>
+                        <div class="card-col">
+                            <div><span>出租率(%)</span><span>{{totalInfo.czRate}}</span></div>
+                            <div><span>空铺率(%)</span><span>{{totalInfo.emptyRate}}</span></div>
+                            <div><span>平均租金(元/㎡)</span><span>{{totalInfo.avgRent}}</span></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ztgk-right">
+                    <div class="tab-box">
+                        <div class="tab">
+                            <span :class="[isActive==0 ? 'line active' : 'line']" @click="tabFunc(0)">待办</span>
+                            <span :class="[isActive==1 ? 'line active' : 'line']" @click="tabFunc(1)">指令</span>
+                            <span :class="[isActive==2 ? 'active' : '']" @click="tabFunc(2)">督办</span>
+                        </div>
+                        <!-- <div class="more">更多</div> -->
+                    </div>
+                    <div class="card" v-if="isActive==0">
+                        <ul>
+                            <li v-for="item in instructionSheet" :key="item.id">
+                                <div><span>{{item.waterNumber}}</span><span>{{item.responsiblePerson}}</span></div>
+                                <div><span>{{item.business}}</span><span>{{item.createdDate}}</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card" v-if="isActive==1">
+                        <ul>
+                            <li v-for="item in instructionSheet" :key="item.id">
+                                <div><span>{{item.waterNumber}}</span><span>{{item.responsiblePerson}}</span></div>
+                                <div><span>{{item.business}}</span><span>{{item.createdDate}}</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card" v-if="isActive==2">
+                        <ul>
+                            <li v-for="item in instructionSheet" :key="item.id">
+                                <div><span>{{item.waterNumber}}</span><span>{{item.responsiblePerson}}</span></div>
+                                <div><span>{{item.business}}</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="yyfx">
+                <!-- 营运分析 -->
+                <div class="title">营运分析</div>
+                <div class="yyfx-content">
+                    <div class="info-box">
+                        <div class="info-title">客流(万人)</div>
+                        <div class="info-detail">
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">昨日</span>
+                                    <span class="category-value ">
+                                        {{currYesterday.ipvaYesterday}}
+                                        <span
+                                            :class="[currYesterday.yesterdaySalesTb > 0 ? 'up':'down']">{{currYesterday.yesterdaySalesTb
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.yesterdaySalesTb > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right"><span class="category">当日</span><span
+                                        class="category-value">{{currYesterday.currFlow}}</span></div>
+                            </div>
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">当月</span>
+                                    <span class="category-value ">
+                                        {{currYesterday.ipvaNum}}
+                                        <span
+                                            :class="[currYesterday.ipvaRate > 0 ? 'up':'down']">{{currYesterday.ipvaRate
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.ipvaRate > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right"><span class="category">当年</span><span
+                                        class="category-value">{{currYesterday.ipvaNumLj}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">销售(万元)</div>
+                        <div class="info-detail">
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">昨日</span>
+                                    <span class="category-value">
+                                        {{totalInfo.yesterdaySales}}
+                                        <span
+                                            :class="[currYesterday.yesterdaySalesTb > 0 ? 'up':'down']">{{totalInfo.yesterdaySalesTb
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.yesterdaySalesTb > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right">
+                                    <!-- <span class="category">当日</span><span
+                                        class="category-value">211.41</span> -->
+                                </div>
+                            </div>
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">当月</span>
+                                    <span class="category-value">
+                                        {{totalInfo.salesMonth}}
+                                        <span
+                                            :class="[currYesterday.salesRateTb > 0 ? 'up':'down']">{{totalInfo.salesRateTb
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.salesRateTb > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right"><span class="category">当年</span><span
+                                        class="category-value">{{totalInfo.salesToMonth}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">车流(辆)</div>
+                        <div class="info-detail">
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">昨日</span>
+                                    <span class="category-value">
+                                        {{totalInfo.carNumberYesterday}}
+                                        <span
+                                            :class="[currYesterday.carNumberYesterdayTb > 0 ? 'up':'down']">{{totalInfo.carNumberYesterdayTb
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.yesterdaySalesTb > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right"><span class="category">当日</span><span
+                                        class="category-value">{{totalInfo.currCarFol}}</span></div>
+                            </div>
+
+                            <div class="detail-col">
+                                <div class="detail-left">
+                                    <span class="category">当月</span>
+                                    <span class="category-value">
+                                        {{totalInfo.carNumberMonth}}
+                                        <span
+                                            :class="[currYesterday.carNumberMonthTb > 0 ? 'up':'down']">{{totalInfo.carNumberMonthTb
+                                            | percent}}</span>
+                                        <img v-if="currYesterday.yesterdaySalesTb > 0" :src="up" alt="">
+                                        <img v-else :src="down" alt="">
+                                    </span>
+                                </div>
+                                <div class="detail-right"><span class="category">当年</span><span
+                                        class="category-value">{{totalInfo.carNumberYear}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="info-box">
+                        <div class="info-title">会员(人)</div>
+                        <div class="info-detail">
+                            <div class="detail-col">
+                                <div class="detail-left"><span class="category">当月</span><span
+                                        class="category-value">2,467</span></div>
+                                <div class="detail-right"><span class="category">当年</span><span
+                                        class="category-value">28,532</span></div>
+                            </div>
+                            <div class="detail-col">
+                                <div class="detail-left"><span class="category">累计</span><span
+                                        class="category-value">54,653</span></div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="sr">
+                <!-- 收入 -->
+                <div class="title">收入</div>
+                <div class="sr-content">
+                    <div class="info-box">
+                        <div class="info-title">租金收入</div>
+                        <div class="info-detail">
+                            <div class="category-content">
+                                <div class="category-box">
+                                    <div class="category-name">当月收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.rentFactTotal}}</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-name">当年收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.rentFactTotalLj}}</div>
+                                </div>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-box">
+                                    <div class="progress-info">
+                                        <div class="progress-title">预算达成率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="20"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.zjComRate)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-info">
+                                        <div class="progress-title">合同收缴率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="60"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.sjHtRateLj)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-info">
+                                        <div class="progress-title">权责收缴率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="50"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.sjRateLj)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">物管收入</div>
+                        <div class="info-detail">
+                            <div class="category-content">
+                                <div class="category-box">
+                                    <div class="category-name">当月收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.propFactTotal}}</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-name">当年收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.propFactTotalLj}}</div>
+                                </div>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-box">
+                                    <div class="progress-info">
+                                        <div class="progress-title">预算达成率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="35"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.wgComRate)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-info">
+                                        <div class="progress-title">合同收缴率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="21"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.wgHtRateLj)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-info">
+                                        <div class="progress-title">权责收缴率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="47"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.p_sjRate)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">多经收入</div>
+                        <div class="info-detail">
+                            <div class="category-content">
+                                <div class="category-box">
+                                    <div class="category-name">当月收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.djFactMonth}}</div>
+                                </div>
+                                <div class="category-box">
+                                    <div class="category-name">当年收入(万元)</div>
+                                    <div class="category-value">{{totalInfo.djFactYtd}}</div>
+                                </div>
+                            </div>
+                            <div class="progress-content">
+                                <div class="progress-box">
+                                    <div class="progress-info">
+                                        <div class="progress-title">预算达成率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="12"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.djComRate)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="progress-info">
+                                        <div class="progress-title">合同收缴率(%)</div>
+                                        <div class="progress-detail">
+                                            <span class="name">当月</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.djComRate)"
+                                                    :class="status1|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                        <div class="progress-detail">
+                                            <span class="name">年累计</span>
+                                            <span class="progress-line">
+                                                <el-progress type="line" :percentage="format(totalInfo.djHtRateLj)"
+                                                    :class="status2|showProgressColor">
+                                                </el-progress>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="qianfei">
+                <!-- 欠费 -->
+                <div class="title">欠费</div>
+                <div class="qianfei-content">
+                    <div class="info-box">
+                        <div class="info-title">租金欠费(万元)</div>
+                        <div class="info-detail">
+                            <div class="detail-col text">
+                                <div class="detail-left">
+                                    <span class="category">当月历史欠费</span>
+                                    <span class="category-value">{{totalInfo.beforeYearOweTotalZj}}</span>
+                                </div>
+                                <div class="detail-left"><span class="category">年累计欠费</span><span
+                                        class="category-value">{{totalInfo.oweYearTotalZj}}</span></div>
+                            </div>
+                            <div class="detail-col circle">
+                                <div style="width: 116px;height: 116px;position: relative;">
+                                    <div
+                                        style="position: absolute;top: 50%; left: 50%;transform: translateX(-50%) translateY(-50%);">
+                                        <p style="font-size: 12px;text-align: center;">清欠率</p>
+                                        <p style="font-size: 24px;">{{totalInfo.oweRateZj}}</p>
+                                    </div>
+                                    <svg width="116px" height="116px" class="svg">
+                                        <defs>
+                                            <linearGradient id="blue1" x1="100%" y1="100%" x2="-100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#50E3C2;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#3096EF;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle r="55" cy="58" cx="58" stroke-width="5" stroke="#EAEFF4"
+                                            stroke-linejoin="round" stroke-linecap="round" fill="none" />
+                                        <circle class="progress" r="55" cy="58" cx="58" stroke-width="5"
+                                            stroke="url(#blue1)" stroke-linejoin="round" stroke-linecap="round"
+                                            fill="none" :stroke-dashoffset="strokeDasharray1+'px'"
+                                            stroke-dasharray="345.4px" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">物管欠费(万元)</div>
+                        <div class="info-detail">
+                            <div class="detail-col text">
+                                <div class="detail-left">
+                                    <span class="category">当月历史欠费</span>
+                                    <span class="category-value">{{totalInfo.beforeYearOweTotalWg}}</span>
+                                </div>
+                                <div class="detail-left"><span class="category">年累计欠费</span><span
+                                        class="category-value">{{totalInfo.oweYearTotalWg}}</span></div>
+                            </div>
+                            <div class="detail-col circle">
+                                <div style="width: 116px;height: 116px;position: relative;">
+                                    <div
+                                        style="position: absolute;top: 50%; left: 50%;transform: translateX(-50%) translateY(-50%);">
+                                        <p style="font-size: 12px;text-align: center;">清欠率</p>
+                                        <p style="font-size: 24px;">{{totalInfo.oweRateWg}}</p>
+                                    </div>
+                                    <svg width="116px" height="116px" class="svg">
+                                        <defs>
+                                            <linearGradient id="blue2" x1="100%" y1="100%" x2="-100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#50E3C2;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#3096EF;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle r="55" cy="58" cx="58" stroke-width="5" stroke="#EAEFF4"
+                                            stroke-linejoin="round" stroke-linecap="round" fill="none" />
+                                        <circle class="progress" r="55" cy="58" cx="58" stroke-width="5"
+                                            stroke="url(#blue2)" stroke-linejoin="round" stroke-linecap="round"
+                                            fill="none" :stroke-dashoffset="strokeDasharray2+'px'"
+                                            stroke-dasharray="345.4px" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="yujing">
+                <!-- 预警 -->
+                <div class="title">预警</div>
+                <div class="yujing-content">
+                    <div class="info-box">
+                        <div class="info-title">租约到期</div>
+                        <div class="info-detail">
+                            <div class="detail-col-top">
+                                <div class="detail-item">
+                                    <span class="category">三个月内到期数(个)</span>
+                                    <span class="category-value">{{totalInfo.expireContNum}}</span>
+                                </div>
+                            </div>
+                            <div class="detail-col-bottom">
+                                <div class="detail-item">
+                                    <span class="category">到期总面积(㎡)</span>
+                                    <span class="category-value">{{totalInfo.expireContSquare}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">空铺</div>
+                        <div class="info-detail">
+                            <div class="detail-col-top">
+                                <div class="detail-item">
+                                    <span class="category">空铺面积(㎡)</span>
+                                    <span class="category-value">{{emptyShopList.emptySquare}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="category">本月去化</span>
+                                    <span class="category-value">{{emptyShopList.subSquare}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="category">本月新增</span>
+                                    <span class="category-value">{{emptyShopList.addSquare}}</span>
+                                </div>
+                            </div>
+                            <div class="detail-col-bottom">
+                                <div class="detail-item">
+                                    <span class="category">空铺数</span>
+                                    <span class="category-value">{{emptyShopList.emptyNum}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="category">当月去化</span>
+                                    <span class="category-value">{{emptyShopList.subNum}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="category">本月新增</span>
+                                    <span class="category-value">{{emptyShopList.addNum}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">押不抵租</div>
+                        <div class="info-detail">
+                            <div class="detail-col-top">
+                                <div class="detail-item">
+                                    <span class="category">累计比例</span>
+                                    <span class="category-value">{{totalInfo.oweVsBondRate}}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="category">累计差额</span>
+                                    <span class="category-value">{{totalInfo.oweVsBondSub}}</span>
+                                </div>
+                            </div>
+                            <div class="detail-col-bottom">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            copyright©上海悦商科技
+        </div>
+        <!-- 表头筛选 -->
+        <drawer title="我是一个抽屉组件" direction="rtl" :display.sync="display" @save="filterSave" :width="drawerWidth"
+            :mask="true" footerBtnSave="确定" footerBtnCancel="取消" :header="tableHeaders">
+
+        </drawer>
+    </div>
+
+
+</body>
+<script src="./js/drawer.js"></script>
+<script>
+
+    (function (win) {
+        var Request = axios.create({
+            timeout: 10000
+        })
+        // let path = window.location.protocol + '//' + window.location.host;
+
+        // let domain = path == 'http://demo.powerlong.com' ? 'http://demo.powerlong.com' : 'http://pd.powerlong.com';
+
+        // Request.defaults.baseURL = domain;
+
+
+        //	设置
+        // Request.withCredentials = true;
+        Request.defaults.withCredentials = true;
+
+        //	或者这样设置
+        // Request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+        // Request.defaults.crossDomain = true;
+        // Request.defaults.withCredentials = true;  //设置cross跨域 并设置访问权限 允许跨域携带cookie信息
+        // Request.defaults.headers.common['Authorization'] = ''; // 设置请求头为 Authorization
+
+        // document.cookie = "token=1234;domain='192.168.120.124';path=/;";
+
+
+        Request.interceptors.request.use((config) => {
+            let Cookie= 'JSESSIONID=D1E104A3961DC8DBA3EDB0F16D7BDF37; userBefore=feedback; network=';
+            config.headers['Cookie'] = Cookie;
+            // console.log(config,'config')
+            return config;
+        })
+        Request.interceptors.response.use((response) => {
+            // console.log(response);
+            return response;
+        }, (err) => {
+            console.log(err);
+            return err;
+        })
+        win.$request = Request
+    })(window);
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                up: './images/up.png',
+                down: './images/down.png',
+                storeType: '0',
+                isActive: 0,
+                totalInfo: {},
+                currYesterday: {},
+                emptyShopList: {},
+                instructionSheet: {},//指令
+                visible: false,
+                value1: null,
+                yearMonth: null,
+                status1: '进行中',
+                status2: '失败',
+                progress1: 25,
+                progress2: 100,
+                strokeDasharray1: null,
+                strokeDasharray2: null,
+                display: false,
+                drawerWidth: '500px',
+                tableHeaders: [
+                    {
+                        value: '基础信息',
+                        selected: true,
+                        indeterminate: false,
+                        list: []
+                    },
+                    {
+                        value: '收租率',
+                        selected: true,
+                        indeterminate: false,
+                        list: []
+                    },
+                    {
+                        value: '收入',
+                        selected: true,
+                        indeterminate: false,
+                        list: [
+                            {
+                                value: '租金收入',
+                                selected: true,
+                            },
+                            {
+                                value: '物管收入',
+                                selected: true,
+                            },
+                            {
+                                value: '收缴率(合同)',
+                                selected: true,
+                            },
+                            {
+                                value: '收缴率(权责)',
+                                selected: true,
+                            },
+                        ]
+                    },
+                    {
+                        value: '客流',
+                        selected: true,
+                        indeterminate: false,
+                        list: [
+
+                            {
+                                value: '当日客流',
+                                selected: true,
+                            },
+                            {
+                                value: '昨日客流',
+                                selected: true,
+                            },
+                            {
+                                value: '客流密度',
+                                selected: true,
+                            },
+                            {
+                                value: '累计客流(万人)',
+                                selected: true,
+                            },
+                        ]
+                    },
+                    {
+                        value: '销售',
+                        selected: true,
+                        indeterminate: false,
+                        list: [
+                            {
+                                value: '月销售额',
+                                selected: true,
+                            },
+                            {
+                                value: '月平效',
+                                selected: true,
+                            },
+                            {
+                                value: '年累计',
+                                selected: true,
+                            }
+                        ],
+                    },
+                    {
+                        value: '车流',
+                        selected: true,
+                        indeterminate: false,
+                        list: [
+                            {
+                                value: '当日车流',
+                                selected: true,
+                            },
+                            {
+                                value: '昨日车流',
+                                selected: true,
+                            },
+                            {
+                                value: '周转率',
+                                selected: true,
+                            }
+                        ],
+                    }
+                ],
+            }
+        },
+        filters: {
+            showProgressColor: function (val) {
+                if (val == '进行中') {
+                    return val = 'el-bg-inner-curMonth';
+                } else if (val == '失败') {
+                    return val = 'el-bg-inner-yearTotal'
+                }
+            },
+            percent: function (val) {
+                if ([null, undefined, '', '-'].includes(val)) {
+                    return '-';
+                } else {
+                    return val ? Math.abs(val) + '%' : '-';
+                }
+            },
+        },
+        create() {
+        },
+        mounted() {
+            let curYear = new Date().getFullYear();
+            let curMonth = new Date().getMonth() + 1;
+            curMonth = curMonth < 10 ? `0${curMonth}` : curMonth;
+            this.yearMonth = `${curYear}-${curMonth}`;
+            this.getTotalInfo();
+            this.getCurrYesterday();
+            this.getEmptyShopList();
+            this.getInstructionSheet(0);
+
+        },
+        methods: {
+            handleClick: function (tab, event) {
+                this.storeType = tab.name;
+                this.getTotalInfo();
+                console.log(tab, event);
+            },
+            tabFunc: function (index) {
+                this.isActive = index;
+                this.getInstructionSheet(index);
+            },
+            filterSave: function (data) {
+                this.display = data;
+                this.headerList = JSON.parse(JSON.stringify(this.tableHeaders));
+                console.log(this.headerList);
+            },
+            showDrawer: function () {
+                this.display = true;
+            },
+            format: function (val) {
+                if ([null, undefined, '', '-'].includes(val)) {
+                    return 0;
+                } else {
+                    return val ? Number(val.replace('%', '')) : 0;
+                }
+            },
+            yearMonthChange: function (time) {
+                this.yearMonth = time;
+                this.getTotalInfo();
+                this.getCurrYesterday();
+                this.getEmptyShopList();
+                this.getInstructionSheet(0);
+            },
+            getTotalInfo: function () {
+                $request.get(`http://192.168.120.124:8080/PowerDesk/open/bis-open-statistics!getTotalInfo.action?yearMonth=${this.yearMonth}&storeType=${this.storeType}`)
+                    .then(res => {
+                        this.totalInfo = res.data.data;
+                        let oweRateZj = Number(this.totalInfo.oweRateZj.replace('%', ''));
+                        let oweRateWg = Number(this.totalInfo.oweRateWg.replace('%', ''));
+                        this.strokeDasharray1 = Number((oweRateZj * 3.454).toFixed(2)) - 345.4;
+                        this.strokeDasharray2 = Number((oweRateWg * 3.454).toFixed(2)) - 345.4;
+                        console.log(this.totalInfo, 'totalInfo')
+                    })
+            },
+            getCurrYesterday: function () {
+                $request.get(`http://192.168.120.124:8080/PowerDesk/open/bis-open-statistics!getCurrYesterday.action?yearMonth=${this.yearMonth}&storeType=${this.storeType}`)
+                    .then(res => {
+                        this.currYesterday = res.data.data;
+                        console.log(this.currYesterday, 'currYesterday')
+                    })
+            },
+            getEmptyShopList: function () {
+                $request.get(`http://192.168.120.124:8080/PowerDesk/open/bis-open!emptyShopList.action?queryMonth=${this.yearMonth}&storeType=${this.storeType}`)
+                    .then(res => {
+                        this.emptyShopList = res.data.data;
+                        console.log(this.emptyShopList, 'emptyShopList')
+                    })
+            },
+            getInstructionSheet: function (type) {
+                if (type == 0) {
+                    // let url = `http://192.168.120.124:8080/PowerDesk/desk2/desk-schedule!resApproveData.action?module=resApprove&pageNo=1&pageSize=10&km=db`;
+                    let url = `http://192.168.120.124:8080/PowerDesk/desk2/desk-schedule!resApproveData.action?module=resApprove&pageNo=1&pageSize=10&km=db`;
+
+                    $request.get(url, {
+                        // withCredentials: true,
+                        // headers: {
+                        //     'Cookie': 'jsessionid=AEE04A93305FFE9BDEDCA766B0F9A131'
+                        // }
+                    }).then(res => {
+                        let instructionSheet = [
+                            {
+                                id: 1,
+                                waterNumber: 'huangjian-002',//编号
+                                business: 'TEST延期功能',//事项
+                                responsiblePerson: 'huangjian'//接单人
+                            },
+                            {
+                                id: 2,
+                                waterNumber: 'huangjian-002',//编号
+                                business: 'TEST延期功能',//事项
+                                responsiblePerson: 'huangjian'//接单人
+                            },
+                            {
+                                id: 3,
+                                waterNumber: 'huangjian-002',//编号
+                                business: 'TEST延期功能',//事项
+                                responsiblePerson: 'huangjian'//接单人
+                            }
+                        ];
+                        this.instructionSheet = res.data.result.length > 0 ? res.data.result : instructionSheet;
+
+                        console.log(this.instructionSheet, 'instructionSheet')
+                    })
+                } else if (type == 1) {
+                    $request.get(`http://192.168.120.124:8080/PowerDesk/instruction/instruction-sheet!resultData.action?uiid=wangjt2&token=226e2233ddacd84c5d817af4fde391dd`)
+                        .then(res => {
+                            let instructionSheet = [
+                                {
+                                    id: 1,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                },
+                                {
+                                    id: 2,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                },
+                                {
+                                    id: 3,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                }
+                            ];
+                            this.instructionSheet = res.data.result.length > 0 ? res.data.result : instructionSheet;
+
+                            console.log(this.instructionSheet, 'instructionSheet')
+                        })
+                } else if (type == 2) {
+                    $request.get(`http://pms.powerlong.com/PowerDesk/instruction/instruction-sheet!resultData.action?uiid=wangjt2&token=226e2233ddacd84c5d817af4fde391dd`)
+                        .then(res => {
+                            let instructionSheet = [
+                                {
+                                    id: 1,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                },
+                                {
+                                    id: 2,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                },
+                                {
+                                    id: 3,
+                                    waterNumber: 'huangjian-002',//编号
+                                    business: 'TEST延期功能',//事项
+                                    responsiblePerson: 'huangjian'//接单人
+                                }
+                            ];
+                            this.instructionSheet = res.data.result.length > 0 ? res.data.result : instructionSheet;
+
+                            console.log(this.instructionSheet, 'instructionSheet')
+                        })
+                }
+            }
+        }
+    })
+</script>
+
+</html>

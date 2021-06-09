@@ -1,0 +1,15 @@
+<view class="ys-block-items">
+  <view class='item' wx:key="index" wx:for="{{items}}" bindtap="goLink" data-item="{{item}}">
+    <view class='right-side'>
+     
+      <view class='header'>
+        <text class='title'>{{item.theme}}</text>
+        <text class='date'>{{item.createDate}}</text>
+      </view>
+      <view class='body'>
+        <text class='content'>{{item.content}}</text>
+        <text wx:if='{{item.isView === "0"}}' class='ys-badge-red badge'></text>
+      </view>
+    </view>
+  </view>
+</view>

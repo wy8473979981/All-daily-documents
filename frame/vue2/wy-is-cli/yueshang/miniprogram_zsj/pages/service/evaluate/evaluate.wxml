@@ -1,0 +1,41 @@
+<!--pages/service/evaluate/evaluate.wxml-->
+<view id='ys-evaluate' class='ys-block-gap ys-block-fixed-footer'>
+  <view class='ys-block header'>
+    <!-- <view class='ys-avatar'>
+      <image src='../../../static/images/usercenter_avatar.png'></image>
+    </view>
+    <view class='name'>张三（维修工程师）</view> -->
+    <view class='divider'>评价</view>
+    <view class='ys-evaluate-items'>
+      <view class='ys-evaluate-item'>
+        <label>响应速度</label>
+        <view class='img-group'>
+          <image wx:for='{{score1}}' data-id='{{index}}' data-type='1' bindtap='rating' wx:key='item.id' src='{{item}}'></image>
+        </view>
+      </view>
+      <view class='ys-evaluate-item'>
+        <label>服务质量</label>
+        <view class='img-group'>
+          <image wx:for='{{score2}}' data-id='{{index}}' data-type='2' bindtap='rating' wx:key='item.id' src='{{item}}'></image>
+        </view>
+      </view>
+      <view class='ys-evaluate-item'>
+        <label>服务态度</label>
+        <view class='img-group'>
+          <image wx:for='{{score0}}' data-id='{{index}}' data-type='0' bindtap='rating' wx:key='item.id' src='{{item}}'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks'>
+    <label>备注</label>
+    <textarea placeholder="您对此次服务还想说点什么呢..." name="textarea" value='{{remark}}' bindinput="bindKeyInput" />
+  </view>
+  <view class='tips'>
+    <text>请对我们的服务进行评价</text>
+    <text>您的评价将帮助我们提示服务质量</text>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 提交 </button>
+  </view>
+</view>

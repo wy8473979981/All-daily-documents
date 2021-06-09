@@ -20,9 +20,24 @@ export class OpeningRateApi extends Api {
     return this.post('/plpms-report/bis/zs/queryOpenRateProjectDetailsSumList', params)
   }
 
-  // 开业率面积明细 考核开业面积明细 项目
-  getListByAreaOfProject = (params) => {
+  // 考核开业面积明细 项目
+  getListByCheckOfProject = (params) => {
     return this.post('/plpms-report/bis/zs/queryOpenRateContDetailsList', params)
+  }
+
+  // 开业率楼层明细 项目
+  getListByFloorOfProject = (params) => {
+    return this.post('/plpms-report/bis/zs/queryOpenRateFloorList', params)
+  }
+
+  // 开业率面积明细 项目
+  getListByAreaOfProject = (params) => {
+    return this.post('/plpms-report/bis/zs/queryQcOpenRateContDetailsList', params)
+  }
+
+  // 押不低租面积明细 项目
+  getListByRentOfProject = (params) => {
+    return this.post('/plpms-report/bis/zs/queryCoverRentDetailsList', params)
   }
 
   // 查询两年开业率列表  图表 两个通用，项目的给个项目id

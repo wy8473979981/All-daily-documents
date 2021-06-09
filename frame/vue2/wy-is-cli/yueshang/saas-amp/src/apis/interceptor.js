@@ -52,8 +52,11 @@ http.interceptors.request.use(
       }
       config.params.token = token
     } else {
-      console.log('请求时没有token了')
-      router.push({ name: 'login' })
+      console.log('请求时没有 jwtToken 了')
+      if (config.url !== '/login_bl_sso' && config.url !== '/imgCode') {
+        localStorage.setItem('sso—login-error', '2')
+        router.push({ name: 'login' })
+      }
       localStorage.clear()
     }
     if (jwtToken) {
@@ -65,7 +68,7 @@ http.interceptors.request.use(
     //   if (loadingType === 'loading') showLoading()
     // }, 800)
     if (config.useScreenLoadingBol) {
-      showFullScreenLoading();
+      showFullScreenLoading()
     }
     return config
   },
@@ -91,13 +94,13 @@ http.interceptors.response.use(
       }
     }
     // hideLoading()
-    tryHideFullScreenLoading();
+    tryHideFullScreenLoading()
     return Promise.resolve(response)
   },
   error => {
     loadingType = 'over'
     // hideLoading()
-    tryHideFullScreenLoading();
+    tryHideFullScreenLoading()
     return Promise.reject(error)
   }
 )
@@ -107,9 +110,9 @@ const conType = {
   FORM: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }
 }
 
-export function get(url, params, responseType = 'JSON', useScreenLoadingBol = true) {
+export function get (url, params, responseType = 'JSON', useScreenLoadingBol = true) {
   return new Promise((resolve, reject) => {
-    let req = { params, responseType, timeout: 6000000, headers: conType[responseType], useScreenLoadingBol };
+    const req = { params, responseType, timeout: 6000000, headers: conType[responseType], useScreenLoadingBol }
     http.get(url, req).then(res => {
       resolve(res.data)
     }).catch(err => {
@@ -118,7 +121,7 @@ export function get(url, params, responseType = 'JSON', useScreenLoadingBol = tr
   })
 }
 
-export function post(url, params = { timeout: 6000000 }, contype = 'FORM', useScreenLoadingBol = true) {
+export function post (url, params = { timeout: 6000000 }, contype = 'FORM', useScreenLoadingBol = true) {
   // console.log(params, '----[post入参 start]----')
   return new Promise((resolve, reject) => {
     const paramsHandle = {
@@ -133,7 +136,7 @@ export function post(url, params = { timeout: 6000000 }, contype = 'FORM', useSc
         headers: conType[contype],
         timeout: params.timeout,
         useScreenLoadingBol
-      },
+      }
     )
       .then(res => {
         resolve(res.data)

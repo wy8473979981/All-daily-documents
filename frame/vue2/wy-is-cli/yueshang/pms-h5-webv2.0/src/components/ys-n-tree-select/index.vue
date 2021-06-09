@@ -17,7 +17,7 @@
         <div class="selected-list">
           <div v-for="(item, index) in selectedList" :key="index" class="selected-item" @click="remove(item)" :data-id="item.bisShopSortId">
             <div class="item-name">{{item.sortName}}</div>
-            <div class="item-clear">X</div>
+            <div class="item-clear"></div>
           </div>
         </div>
       </div>
@@ -31,14 +31,14 @@
 
         <div class="filter-box-right">
           <div v-for="(item, index) in currentItem.child" :key="index" class="filter-child-box">
-            <div class="checkbox" @click="parentChange(item)" :data-id="item.bisShopSortId">
+            <div class="checkbox" @click="parentChange(item)" :data-id="item.bisShopSortId" style="font-weight:bold;">
 
-              <van-checkbox v-model="item.checked" shape="square" checked-color="#3A96BD">{{item.sortName}}</van-checkbox>
+              <van-checkbox v-model="item.checked" shape="square" checked-color="#3A96BD" icon-size="16px">{{item.sortName}}</van-checkbox>
             </div>
             <div class="checkbox-group">
               <div v-for="(child, index2) in item.child" :key="index2" class="weui-cell weui-check__label" @click="checkboxChange(child)" :data-id="child.bisShopSortId">
                 <div class="weui-cell__hd">
-                  <van-checkbox v-model="child.checked" shape="square" checked-color="#3A96BD">{{child.sortName}}</van-checkbox>
+                  <van-checkbox v-model="child.checked" shape="square" checked-color="#3A96BD" icon-size="16px">{{child.sortName}}</van-checkbox>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default {
   computed: {
     ...mapGetters(['getMmerchantList']),
   },
-  data() {
+  data () {
     return {
       showModal: false,
       selector: false,
@@ -78,7 +78,7 @@ export default {
     }
   },
   watch: {},
-  mounted() {
+  mounted () {
     this.merchantList = this.getMmerchantList;
     this.currentItem = this.merchantList[0];
   },
@@ -86,7 +86,7 @@ export default {
     ...mapMutations([
       'setMerchantList',
     ]),
-    remove(item) {
+    remove (item) {
       let id = item.bisShopSortId;
       let selectedList = this.selectedList;
       let { parent, child } = this.findRoot(id);
@@ -98,14 +98,14 @@ export default {
         selectedList: selectedList
       });
     },
-    merchantClick(item) {
+    merchantClick (item) {
       let id = item.bisShopSortId;
       let result = this.merchantList.find(v => v.bisShopSortId === id);
       this.setData({
         currentItem: result
       });
     },
-    parentChange(item) {
+    parentChange (item) {
       // 点击父类
       let id = item.bisShopSortId;
       let selectedList = this.selectedList;
@@ -127,7 +127,7 @@ export default {
         selectedList: selectedList
       });
     },
-    checkboxChange(item) {
+    checkboxChange (item) {
       let id = item.bisShopSortId;
       let selectedList = this.selectedList;
       let { parent, child } = this.findParent(id);
@@ -145,7 +145,7 @@ export default {
         selectedList: selectedList
       });
     },
-    findParent(id) {
+    findParent (id) {
       let currentItem = this.currentItem;
       let parent = null;
       let child = null;
@@ -161,7 +161,7 @@ export default {
       });
       return { parent, child };
     },
-    findRoot(id) {
+    findRoot (id) {
       let child = null;
       let parent = null;
       this.merchantList.forEach(item => {
@@ -178,7 +178,7 @@ export default {
       });
       return { child, parent };
     },
-    defaultChecked() {
+    defaultChecked () {
       let merchantList = this.merchantList;
       let currentItem = this.currentItem;
       let selectedListDefault = this.selectedListDefault;
@@ -202,7 +202,7 @@ export default {
     searchConfirm: function (e) {
       this.$emit("onMerchantName", this.merchantName);
     },
-    bindKeyInput(e) {
+    bindKeyInput (e) {
       // this.setData({
       //   merchantName: e.detail.value
       // })
@@ -217,19 +217,19 @@ export default {
         selector: false
       });
     },
-    statusFilter() {
+    statusFilter () {
       this.defaultChecked();
       this.setData({
         showModal: !this.showModal
       });
     },
-    cancel() {
+    cancel () {
       this.reset();
       this.setData({
         showModal: false
       });
     },
-    reset() {
+    reset () {
       this.merchantList.forEach(item => {
         item.child.forEach(v => {
           if (v && v.child) {
@@ -246,7 +246,7 @@ export default {
         selectedList: []
       });
     },
-    confirm() {
+    confirm () {
       let bisShopSortId = [];
       this.selectedList.forEach(item => {
         bisShopSortId.push(item.bisShopSortId);
@@ -267,6 +267,7 @@ export default {
 .tree-select {
   width: 100%;
   display: flex;
+  align-items: center;
 }
 .search-solt {
   flex: 1;
@@ -275,6 +276,7 @@ export default {
   margin-right: 20px;
   display: flex;
   align-items: center;
+  font-size: 28px;
 }
 .icon-selector-arrow {
   width: 24px;
@@ -313,7 +315,7 @@ export default {
   position: fixed;
   top: 140px;
   left: 0;
-  z-index: 200;
+  z-index: 201;
   color: #000;
 }
 
@@ -346,11 +348,16 @@ export default {
 }
 .item-clear {
   margin-left: 10px;
-  height: 0.3rem;
+  height: 0.25rem;
+  width: 0.25rem;
+  background-image: url(../../assets/images/icon-close-blue.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .filter-box {
-  height: 800px;
+  height: calc(100% - 240px);
   width: 100%;
   display: flex;
 }
@@ -381,11 +388,14 @@ export default {
   padding: 30px;
   border-bottom: 1px solid #f5f5f5;
 }
+.filter-child-box:last-child {
+  border: none;
+}
 .checkbox-group {
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 .weui-cell {
-  padding: 10px 0;
+  padding: 44px 0 0 0;
 }
 .comparison {
   width: 80px;
@@ -420,7 +430,7 @@ export default {
   opacity: 0.5;
 }
 .confirm {
-  background: linear-gradient(350deg, #37acdd 0%, #1e5385 100%);
+  background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
   color: #fff;
 }
 ::v-deep .van-checkbox__icon--checked .van-icon {

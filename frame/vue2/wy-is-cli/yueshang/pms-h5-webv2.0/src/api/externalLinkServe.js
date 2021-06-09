@@ -6,9 +6,9 @@ class externalLink {
         return await get(URL.externalLinkURL.pdWx, p, showLoading)
     }
     // 获取会员汇总信息
-    async getYunYingGeneralMemberInfo(p, showLoading = false) {
-        return await get(URL.externalLinkURL.getYunYingGeneralMemberInfo, p, showLoading)
-    }
+    // async getYunYingGeneralMemberInfo(p, showLoading = false) {
+    //     return await get(URL.externalLinkURL.getYunYingGeneralMemberInfo, p, showLoading)
+    // }
     // 会员--整体概况
     async basicMemberData(p, showLoading = false) {
         return await get(URL.externalLinkURL.basicMemberData, p, showLoading)
@@ -40,30 +40,6 @@ class externalLink {
     //登录接口
     async getToken(p, showLoading = false) {
         return await get(URL.externalLinkURL.login, p, showLoading)
-    }
-    // 获取 商家管理 列表
-    async getMerchantList(p, showLoading = false) {
-        return await get(URL.externalLinkURL.merchansList, p, showLoading)
-    }
-    // 获取 商家管理-业态 列表
-    async getFormatList(p, showLoading = false) {
-        return await get(URL.externalLinkURL.merchansFormatList, p, showLoading)
-    }
-    // 获取 商家管理-商家信息
-    async getMerchantDetail(p, showLoading = false) {
-        return await get(URL.externalLinkURL.bismerchanformatsbigsList, p, showLoading)
-    }
-    // 获取 商家管理-商家比较列表
-    async getMerchantCompareDetail(p, showLoading = false) {
-        return await get(URL.externalLinkURL.bismerchantsummarybigsList, p, showLoading)
-    }
-    // 获取 商家管理-商家比较echart
-    async getListLineChart(p, showLoading = false) {
-        return await get(URL.externalLinkURL.bismerchantsummarybigsListLineChart, p, showLoading)
-    }
-    //获取招商进度的项目
-    async getMakeBusnessProjectList(p, showLoading = false) {
-        return await get(URL.externalLinkURL.selectProjectList, p, showLoading)
     }
 }
 const externalLinkServe = new externalLink()

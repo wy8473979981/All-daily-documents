@@ -3,23 +3,25 @@
     <div class="header-top">
       <ys-n-nav-bar :title="`租约到期`" />
     </div>
-    <ys-n-section title="涉及商户" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (params.dateType === 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
-          <span :class="'list-mode-item ' + (params.dateType === 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="涉及商户" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (params.dateType === 1 ? 'active' : '')" @click="onListModeChanged(1)" data-value="day">3月内</span>｜
+            <span :class="'list-mode-item ' + (params.dateType === 2 ? 'active' : '')" @click="onListModeChanged(2)" data-value="month">3-6月</span>
+          </div>
         </div>
-      </div>
-      <ys-n-table :mode="params.dateType.toString()" :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" @row-column-click="onRowColumnClick"></ys-n-table>
-    </ys-n-section>
+        <ys-n-table :mode="params.dateType.toString()" :fixednum="2" :totalRow="table.totalRow" :values="table.dataList" :columns="table.columns" @row-column-click="onRowColumnClick"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false,
       params: {
         dateType: 1,
         chargeType: this.$route.query.chargeType,
@@ -28,59 +30,66 @@ export default {
       table: {
         totalRow: {},
         dataList: [],
-        columns: [
-          {
-            label: "序号",
-            width: "1.2rem"
-          }, {
-            label: "项目",
-            key: "name",
-            width: "2.5rem",
-            color: "#3992BA",
-            align: "left"
-          }, {
-            label: "到期租户数量",
-            key: "contNum",
-            color: "#FF120D",
-            width: "2.9rem",
-            sortable: true,
-            align: "right"
-          }, {
-            label: "到期面积",
-            key: "rentSquare",
-            sortable: true,
-            align: "right",
-            numberFormat: true,
-            numberPrecision: 2,
-          }
-        ]
+        columns: [{
+          label: "序号",
+          width: "1.3rem",
+          align: "left"
+        }, {
+          label: "项目",
+          key: "name",
+          width: "2.5rem",
+          color: "#3992BA",
+          align: "left"
+        }, {
+          label: "到期租户数量",
+          key: "contNum",
+          color: "#FF120D",
+          width: "2.9rem",
+          sortable: true,
+          align: "right"
+        }, {
+          label: "到期面积(m²)",
+          key: "rentSquare",
+          sortable: true,
+          align: "right",
+          numberFormat: true,
+          numberPrecision: 2,
+        }]
       },
 
     }
   },
-  created() {
+  created () {
     this.getTableData()
   },
   methods: {
-    async getTableData() {
+    onRefresh () {
+      this.isLoading = true
+      this.getTableData();
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getTableData () {
       let res = await this.$axios.rentServe.getTotalDetailData(this.params)
       let dataList = []
-	  if(res.data && res.data.length > 0 ) {
-		  res.data.map(item => {
-			if (item.id) {
-			  dataList.push(item)
-			} else {
-			  this.table.totalRow = item
-			}
-		  })
-	  }
+      if (res.data && res.data.length > 0) {
+        res.data.map(item => {
+          if (item.id) {
+            dataList.push(item)
+          } else {
+            this.table.totalRow = item
+          }
+        })
+      }
       this.table.dataList = dataList
+      this.$lodash.debounce(this.setIsLoading, 300)()
     },
-    onListModeChanged(type) {
+    onListModeChanged (type) {
       this.params.dateType = type
       this.getTableData()
     },
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       let projectId = null;
       let projectName = null;
       let params = this.params;
@@ -91,7 +100,10 @@ export default {
       if (e.detail.column.key == 'name') {
         params.projectId = projectId;
         params.projectName = projectName;
-        this.$router.push({path:'/rent/detail', query: params})
+        this.$router.push({
+          path: '/rent/detail',
+          query: params
+        })
       }
     }
   }

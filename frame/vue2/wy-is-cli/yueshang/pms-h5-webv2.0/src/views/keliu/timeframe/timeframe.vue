@@ -13,20 +13,23 @@
         </div>
       </div>
     </div>
-    <ys-n-section title="项目客流(人)" v-if="show">
-      <ys-n-echart :options="options"></ys-n-echart>
-    </ys-n-section>
-    <ys-n-section title="项目排名" :hasTable="true">
-      <ys-n-table :values="dataList" :columns="columns"></ys-n-table>
-    </ys-n-section>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="项目客流(人)" v-if="show">
+        <ys-n-echart :options="options"></ys-n-echart>
+      </ys-n-section>
+      <ys-n-section title="项目排名" :hasTable="true">
+        <ys-n-table :values="dataList" :columns="columns"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
 
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       routerParams: this.$route.query,
       show: true,
       params: {
@@ -120,7 +123,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.setData({
         ["params.projectIdList"]: this.routerParams.ids.split(',')
@@ -144,20 +147,40 @@ export default {
     }
   },
   methods: {
-    bindopen() {
+    onRefresh () {
+      this.getDataDetail();
+      this.getTableData();
+      this.getAllTableData()
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    bindopen () {
       this.setData({
         show: false
       });
     },
 
-    bindclose() {
+    bindclose () {
       this.setData({
         show: true
       });
     },
-    async getDataDetail() {
+    async getDataDetail () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryTheNumberOfPassengersPerPeriodWithinTheDateRange(this.params).then((res) => {
+          this.decreaseIsLoadingCount()
           if (res.code == 1) {
             let legend = [];
             let series = [];
@@ -170,7 +193,7 @@ export default {
               });
             });
             this.setData({
-              ["options.xAxis.data"]: ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00"],
+              ["options.xAxis.data"]: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
               ["options.legend.data"]: legend,
               ["options.series"]: series
             });
@@ -180,10 +203,12 @@ export default {
         console.log(e)
       }
     },
-    async getTableData() {
+    async getTableData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryRankingOfItemsInDateRange({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               this.setData({
                 "dataList": res.data,
@@ -195,15 +220,17 @@ export default {
       }
     },
 
-    async getAllTableData() {
+    async getAllTableData () {
       try {
         let queryModel = {
           chargeType: this.routerParams.chargeType,//物业类型,1购物中心,2商业街,0全部
           yearMonth: this.$util.getDefaultDate("month"),
           yearMonthDay: this.$util.getDefaultDate("day"),
         };
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryPassengerFlowForPassengerFlowRanking({ ...queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let data = res.data.passengerFlowWhenCurDayForPassengerFlowComparisonList.slice(0, -1);
               let dataList = data.map((item, index) => {
@@ -223,7 +250,7 @@ export default {
       }
     },
 
-    onDateChanged(time) {
+    onDateChanged (time) {
       try {
         this.setData({
           "params.startDate": time
@@ -237,7 +264,7 @@ export default {
       }
     },
 
-    onRangeDateChanged(time) {
+    onRangeDateChanged (time) {
       try {
         this.setData({
           "params.endDate": time
@@ -251,7 +278,7 @@ export default {
       }
     },
 
-    bindselected(e) {
+    bindselected (e) {
       try {
         let ids = e.detail.map(item => item.projectId);
         this.setData({

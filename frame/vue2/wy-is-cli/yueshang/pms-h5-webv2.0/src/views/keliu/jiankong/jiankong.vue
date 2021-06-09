@@ -4,29 +4,30 @@
       <ys-n-nav-bar :title="`客流监控`" />
       <!-- <div class="updata-time">数据更新时间：2020-11-10 数据来源系统：PMS系统</div> -->
     </div>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <div class="wrapper">
+        <ys-n-section title="最近7天客流" :subtitle="workDayAvg ? '（工作日均' + workDayAvg + '/周末日均' + holidayAvg + ')' : ''" :collapseable="collapseable">
+          <ys-n-echart :options="lineops" canvasId="jiankong1"></ys-n-echart>
+        </ys-n-section>
+        <ys-n-section title="同比（单位：万人）">
+          <ys-n-echart :options="barops" canvasId="jiankong2"></ys-n-echart>
+        </ys-n-section>
+      </div>
 
-    <div class="wrapper">
-      <ys-n-section title="最近7天客流" :subtitle="workDayAvg ? '（工作日均' + workDayAvg + '/周末日均' + holidayAvg + ')' : ''" :collapseable="collapseable">
-        <ys-n-echart :options="lineops" canvasId="jiankong1"></ys-n-echart>
-      </ys-n-section>
-      <ys-n-section title="同比（单位：万人）">
-        <ys-n-echart :options="barops" canvasId="jiankong2"></ys-n-echart>
-      </ys-n-section>
-    </div>
-
-    <div class="wrapper" style="margin-top: 0.16rem">
-      <ys-n-section title="考核指标" :hasTable="true">
-        <div class="content">
-          <div style="width: 2.1333rem">
-            <div class="left-header">项目</div>
-            <div class="left-item">{{ bisProjectShortName }}</div>
-            <div class="left-header" style="font-size: 0.24rem">商场面积</div>
-            <div class="left-item" style="font-size: 0.24rem">{{ area }}</div>
+      <div class="wrapper" style="margin-top: 0.16rem">
+        <ys-n-section title="考核指标" :hasTable="true">
+          <div class="content">
+            <div style="width: 2.1333rem">
+              <div class="left-header">项目</div>
+              <div class="left-item">{{ bisProjectShortName }}</div>
+              <div class="left-header" style="font-size: 0.24rem">商场面积</div>
+              <div class="left-item" style="font-size: 0.24rem">{{ area }}</div>
+            </div>
+            <ys-n-table style="flex: 1;" :values="dataList" :columns="columns" :totalRow="totalRow"></ys-n-table>
           </div>
-          <ys-n-table style="flex: 1;" :values="dataList" :columns="columns" :totalRow="totalRow"></ys-n-table>
-        </div>
-      </ys-n-section>
-    </div>
+        </ys-n-section>
+      </div>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -36,8 +37,9 @@
 import { columns } from '../columns/jiankongColumns'
 import { Form } from 'vant';
 export default {
-  data() {
+  data () {
     return {
+      isLoading: false, isLoadingCount: 0,
       queryModel: {},
       routerParams: this.$route.query,
       updateTime: null,
@@ -56,7 +58,7 @@ export default {
 
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.setData({ queryModel: this.routerParams });
 
@@ -68,11 +70,31 @@ export default {
     }
   },
   methods: {
-    async getSevenDayData() {
+    onRefresh () {
+      this.getSevenDayData();
+      this.getThreeYearsData();
+      this.queryEvaluationIndex()
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    async getSevenDayData () {
       try {
         // 客流监控 - 查询最近7天客流折线图
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryTotalDailyPassengerFlowInRecentSevenDays({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let xAxis = [];
               let lineData = [];
@@ -93,12 +115,13 @@ export default {
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                           //渐变色 
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#2D9FCB'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -111,11 +134,13 @@ export default {
         console.log(e)
       }
     },
-    async getThreeYearsData() {
+    async getThreeYearsData () {
       try {
         // 客流监控 - 查询最近3年客流柱状图
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryPassengerFlowRecentThreeYears({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let xAxis = [];
               let lineData = [];
@@ -154,11 +179,13 @@ export default {
         console.log(e)
       }
     },
-    async queryEvaluationIndex() {
+    async queryEvaluationIndex () {
       try {
         // 客流监控 - 查询项目客流考核指标
+        this.addIsLoadingCount()
         await this.$axios.keliuServe.queryEvaluationIndex({ ...this.queryModel })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let { data } = res
               this.dataList = data.dailyPassengerFlowDataOfTheMonths
@@ -170,62 +197,9 @@ export default {
         console.log(e)
       }
     },
-    onSelectedColsOption(e) {
+    onSelectedColsOption (e) {
       console.log(e);
     },
-
-    queryData() {
-      app.globalData.request.options({
-        loading: true
-      }).get("/open/bis-open-report!ipvaPassengerFlowProject.action", this.queryModel).then(res => {
-        const data = res.data;
-        const ipvaLinePic = data.ipvaLinePic;
-        const ipvaColumnPic = data.ipvaColumnPic.data;
-        const xAxisData = [];
-        const seriesData = [];
-        ipvaColumnPic.forEach(item => {
-          const a1 = item[0];
-          const y1 = a1[0] + "/" + a1[1];
-          xAxisData.push(y1);
-          const a2 = item[1];
-          seriesData.push(a2 === 0 ? 0 : (a2 / 10000).toFixed(2));
-        });
-        const sum = data.sums[0];
-        const daysDetail = data.daysDetail;
-        daysDetail.forEach(item => {
-          const passengerFlow = item.passengerFlow;
-          item.passengerFlow = passengerFlow.substring(0, passengerFlow.indexOf("-"));
-        });
-        const length = ipvaLinePic.projectData.data.length;
-
-        if (length > 0) {
-          const projectData = ipvaLinePic.projectData.data[0];
-          this.setData({
-            workDayAvg: projectData.holidayAvg,
-            holidayAvg: projectData.holidayAvg,
-            bisProjectShortName: projectData.bisProjectShortName
-          });
-        }
-
-        this.setData({
-          area: data.days[0].area,
-          "lineops.xAxis.data": ipvaLinePic.lineX.map(item => {
-            return item + "日";
-          }),
-          "lineops.series[0].data": ipvaLinePic.lineY,
-          "barops.xAxis.data": xAxisData,
-          "barops.series[0].data": seriesData,
-          totalRow: {
-            passengerFlow: sum.sumNum,
-            targetNowNum: sum.targetSum,
-            targetStr: sum.sumTargetStr,
-            penetrationStr: sum.sumPenetrationStr
-          },
-          dataList: daysDetail
-        });
-      });
-    }
-
   }
 };
 </script>

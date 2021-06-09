@@ -5,19 +5,19 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :dilogShow="false" :disabledAll="true"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'zhaoshang'" :selected="selected" @projeSelected="projeSelected" :dilogShow="false" :disabledAll="true"></ys-n-project-select>
           </div>
         </div>
       </div>
     </div>
-    <ys-n-section :title="chartsTitle" :collapseable="collapseable">
-      <div class="head-actions_left_view" slot="head-actions_left">
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <!-- <image class="head-actions_left" src="@/assets/images/icon-arrow-down.png" catchtap="onActionsLeftCatch"/> -->
-        <ys-n-filter-chart-dialog :searchList="searchTypeList" @search="searchType" :leftLink="true" @linkUrl="goLink"></ys-n-filter-chart-dialog>
-      </div>
-      <ys-n-echart :options="options" canvasId="completId"></ys-n-echart>
-    </ys-n-section>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section :collapseable="collapseable" :hasTable="true">
+        <div class="head-actions_left_view" slot="head-actions_left">
+          <ys-n-filter-chart-dialog :label="chartsTitle" :searchList="searchTypeList" @search="searchType" @linkUrl="goLink" :type="'zhaoshang'"></ys-n-filter-chart-dialog>
+        </div>
+        <ys-n-echart :options="options" canvasId="completId"></ys-n-echart>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -60,8 +60,9 @@ const columnList = [{
 }]
 export default {
   name: "Home",
-  data() {
+  data () {
     return {
+      isLoading: false,
       searchTypeList: [{
         label: "",
         key: "wylx",
@@ -69,38 +70,42 @@ export default {
         values: [{
           name: "筹备招商进度",
           url: "/zhaoshang/process/index",
+          code:1
         },
         {
           name: "筹备期网批驳回率统计",
           url: "/zhaoshang/reject",
+          code:2
         },
         {
           name: "筹备期全面抽成统计",
           url: "/zhaoshang/commissionTotal",
-        }, // {
-        // 	label: "项目铺位分解",
-        // 	url: "/pages/zhaoshang/pwfj/pwfj"
-        // },
+          code:3
+        }, 
         {
           name: "招商业绩考核",
           url: "/zhaoshang/perfCheck/index",
+          code:4
         },
         {
           name: "总部联发品牌数据监控",
           url: "/zhaoshang/linkBrand/index",
+          code: 5
         },
         {
           name: "已招租金达成率柱状图",
-          url: "/zhaoshang/yzzj/yzzj",
-          code: 5
+          url: "/zhaoshang/rentCompletRate",
+          code:6
         },
         {
           name: "进场审图进度-品牌数",
           url: "/zhaoshang/brandNum",
+          code:7
         },
         {
           name: "待开业项目招商进度-品牌数",
           url: "/zhaoshang/noMakebusinessBrandNum",
+          code:8
         },
         ],
       }],
@@ -111,30 +116,38 @@ export default {
         label: this.$route.query.projectName || "全部",
       },
       params: {
-        bisProjectId:this.$route.query.projectId || '',
-		yearAndMonth:'',
-		projectId:'',
-		projectName:''
+        bisProjectId: this.$route.query.projectId || '',
+        yearAndMonth: '',
+        projectId: '',
+        projectName: ''
       },
       options: {},
     }
   },
-  created() {
+  created () {
     this.getEchartData()
   },
   methods: {
-    projeSelected(item) {
+    onRefresh () {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false
+      }, 0)
+      this.getEchartData()
+    },
+    projeSelected (item) {
       console.log(item);
       this.setData({
         ["params.projectId"]: (item && item.projectId) || "",
-		["params.bisProjectId"]: (item && item.projectId) || "",
+        ["params.bisProjectId"]: (item && item.projectId) || "",
         ["params.projectName"]: (item && item.shortName) || "",
       });
       this.getEchartData()
     },
-    searchType(item) { },
-    async getEchartData() {
+    searchType (item) { },
+    async getEchartData () {
       let res = await this.$axios.zhaoshangServe.getRentCompleteRate(this.params)
+      this.isLoading = false
       let chartData = res.data;
       let titleData = [],
         //底部文字
@@ -220,7 +233,7 @@ export default {
                     show: true,
                     position: "top",
 
-                    formatter(value) {
+                    formatter (value) {
                       return value.data + "%";
                     },
                   },
@@ -232,8 +245,8 @@ export default {
       };
       this.setData(setData);
     },
-    goLink(url) {
-      this.$router.push({ path: url, query: this.params })
+    goLink (url) {
+      this.$router.push({ path: url, query: { ...this.params } })
     }
   },
 }

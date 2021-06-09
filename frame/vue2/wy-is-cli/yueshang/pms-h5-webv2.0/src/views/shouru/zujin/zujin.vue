@@ -18,22 +18,24 @@
       </div>
     </div>
 
-    <ys-n-section title="收缴率" :collapseable="true" v-show="!recovery.show && !show">
-      <div class="registered-channels">
-        <ys-n-echart :options="lineops"></ys-n-echart>
-      </div>
-    </ys-n-section>
-
-    <ys-n-section title="项目排名" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
-          <span class="line"> | </span>
-          <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="收缴率" :collapseable="true" v-show="!recovery.show && !show">
+        <div class="registered-channels">
+          <ys-n-echart :options="lineops"></ys-n-echart>
         </div>
-      </div>
-      <ys-n-table :mode="timeSpan" :fixednum="2" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
-    </ys-n-section>
+      </ys-n-section>
+
+      <ys-n-section title="项目排名" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (timeSpan === '0' ? 'active' : '')" @click="changeSpan" data-span="0"> 当月 </span>
+            <span class="line"> | </span>
+            <span :class="'list-mode-item ' + (timeSpan === '1' ? 'active' : '')" @click="changeSpan" data-span="1"> 年累计 </span>
+          </div>
+        </div>
+        <ys-n-table :mode="timeSpan" :fixednum="2" :totalRow="totalRow" :values="dataList" :columns="columns" :selected="tableSelected" @row-column-click="onRowColumnClick"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
 
     <div class="recovery-actions" v-if="recovery.show">
       <!-- 纠错编辑 取消 和 提交 -->
@@ -55,9 +57,9 @@ import { mapMutations, mapGetters } from "vuex";
 import { yueColumnsZJ, nianColumnsZJ, yueColumnsWG, nianColumnsWG, yueColumnsDJ, nianColumnsDJ } from '../columns/zujinColumns'
 
 export default {
-  data() {
+  data () {
     return {
-      canca: false,
+      isLoading: false, isLoadingCount: 0,
       currentTab: '1',// tab 默认选中值
       params: {
         chargeType: "",//物业类型,1购物中心,2商业街,0全部
@@ -140,7 +142,7 @@ export default {
   },
   components: {},
   props: {},
-  mounted() {
+  mounted () {
     try {
       this.params = {
         ...this.params,
@@ -168,7 +170,24 @@ export default {
     }
   },
   methods: {
-    dateSelected(date) {
+    onRefresh () {
+      this.getEchartData();
+      this.getTableData();
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    dateSelected (date) {
       try {
         this.setData({ ["params.yearMonth"]: date, });
         this.getEchartData();
@@ -178,7 +197,7 @@ export default {
         console.log(e)
       }
     },
-    onRowColumnClick(e) {
+    onRowColumnClick (e) {
       try {
         const { show, selected } = this.recovery;
         const { row, column } = e.detail;
@@ -218,7 +237,7 @@ export default {
         console.log(e)
       }
     },
-    postRecovery() {
+    postRecovery () {
       // 纠错 提交按钮 事件
       const { projectId, type: pageType, chargeType } = this.params;
       const selectedMap = this.recovery.selected;
@@ -249,7 +268,7 @@ export default {
           this.cancelRecovery(false);
         });
     },
-    cancelRecovery(reset = true) {
+    cancelRecovery (reset = true) {
       // 纠错 取消按钮 事件
       const setdata = {
         "recovery.show": false,
@@ -265,16 +284,20 @@ export default {
       this.getEchartData();
       this.getTableData();
     },
-    async getEchartData() {
+    async getEchartData () {
       try {
         // 查询具体项目数据 传递 projectId
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryCollectionRateList({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             if (res.code == 1) {
               let previousYearData = [];
               let currentYearData = [];
               res.data.map(item => {
-                currentYearData.push(item.fixedContCollectionRate);
+                if (item.fixedContCollectionRate || item.fixedContCollectionRate === 0) {
+                  currentYearData.push(item.fixedContCollectionRate);
+                }
                 previousYearData.push(item.fixedContCollectionRateLast);
               });
               let label = (this.params.yearMonth && this.params.yearMonth.split("-")[0]) || "2020";
@@ -293,16 +316,17 @@ export default {
                     },
                     data: currentYearData,
                     areaStyle: {
-                      //color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: "#CFDFFE", }, { offset: 1, color: "#FFFFFF", }]), 
+                      //color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: "#CFDFFE", }, { offset: 1, color: "#FFFFFF", }]),
                       normal: { //自定义颜色，渐变色填充折线图区域
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
-                          //渐变色 
+                          //渐变色
+                          //渐变色
                           [{
                             offset: 0,
-                            color: '#2D9FCB'
+                            color: 'rgba(45, 159, 203, 0.2)'
                           }, {
                             offset: 0.62,
-                            color: "#ffffff"
+                            color: 'rgba(255, 255, 255, 0.48)'
                           }]),
                       }
                     },
@@ -323,10 +347,12 @@ export default {
         console.log(e)
       }
     },
-    async getTableData() {
+    async getTableData () {
       try {
+        this.addIsLoadingCount()
         await this.$axios.shouruServe.queryRentFeeProjectList({ ...this.params })
           .then((res) => {
+            this.decreaseIsLoadingCount()
             this.dataList = [];
             if (res.code == 1) {
               if (res.data && res.data.length > 0) {
@@ -353,7 +379,7 @@ export default {
     },
 
     //切换 年月筛选
-    async changeSpan(e) {
+    async changeSpan (e) {
       try {
         const span = e.currentTarget.dataset.span;
         let feeType = this.params.feeType;
@@ -402,13 +428,13 @@ export default {
       }
     },
 
-    bindopen() {
+    bindopen () {
       this.show = true;
     },
-    bindclose() {
+    bindclose () {
       this.show = false;
     },
-    async tabClickFunc(data) {
+    async tabClickFunc (data) {
       try {
         let span = this.timeSpan; // 当tab为多经收入时，取不同的columns
         if (data == "1") {
@@ -465,7 +491,7 @@ export default {
       }
     },
 
-    bindselected(e) {
+    bindselected (e) {
       try {
         e.detail.forEach((item) => {
           let temp = item.split("-");
@@ -489,7 +515,7 @@ export default {
         console.log(e)
       }
     },
-    onProjectSelected(e) {
+    onProjectSelected (e) {
       if (e.detail.value) {
         let id = e.detail.value.projectId;
         uni.navigateTo({
@@ -498,14 +524,14 @@ export default {
       }
     },
 
-    onDateChanged(e) {
+    onDateChanged (e) {
       this.setData({
         ["params.yearMonth"]: e.detail.value,
       });
       this.getDataList();
     },
 
-    onRecoveryClick() {
+    onRecoveryClick () {
       this.setData({
         "recovery.show": true,
         "recovery.current": JSON.parse(JSON.stringify(this.recovery.selected)),
@@ -515,7 +541,7 @@ export default {
     },
 
     // 对比操作
-    showComparisonList(e) {
+    showComparisonList (e) {
       try {
         if (e.detail.length < 2) {
           this.$Toast.fail('最少选两项');

@@ -1,0 +1,21 @@
+<!--pages/msgDetail/msgDetail.wxml-->
+<view id='msg-detail'>
+  <view class='ys-block ys-block-gap'>
+    <view class='item'>
+      <!-- <view class='left-side'>
+        <image class='icon' src="{{item.icon}}"></image>
+      </view> -->
+      <view class='right-side'>
+        <view class='title'>
+          <text class='name'>{{item.theme}}</text>
+          <!-- <text class="badge">待提取</text> -->
+        </view>
+        <text class='date'>{{item.sendTime}}</text>
+      </view>
+      <view class='content'>{{data.content}}</view>
+    </view>
+  </view>
+  <!-- // 0627隐藏
+  <button class='ys-btn-powderblue' bindtap='goUrl' wx:if='{{msgType==="1"}}'>查看详情</button> -->
+  <button class='ys-btn-powderblue' bindtap='goUrl' wx:if="{{msgType === '1'}}">查看详情</button>
+</view>

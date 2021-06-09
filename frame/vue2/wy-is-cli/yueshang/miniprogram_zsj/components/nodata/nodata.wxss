@@ -1,0 +1,15 @@
+.no-data-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100rpx;
+}
+.no-data-wrapper image{
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 10rpx;
+}
+.no-data-wrapper text{
+  font-size: 26rpx;
+  color: #777;
+}

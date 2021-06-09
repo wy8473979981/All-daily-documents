@@ -89,6 +89,7 @@ export default {
 
       // 滑动table
       className: '',
+      headerClassName: '',
       moveDom: null,
       startX: 0,
       endX: 0,
@@ -102,12 +103,14 @@ export default {
     this.id = new Date().getTime();
     // table-area+this.id el-table__body-wrapper
     this.className = `.table-area${this.id} .el-table__body-wrapper`;
+    this.headerClassName = `.table-area${this.id} .el-table__body-wrapper`;
     this.getTableData();
   },
 
   mounted() {
     if(this.mouseMove) {
       this.moveDom = document.querySelector(this.className);
+      this.moveHeaderDom = document.querySelector(this.headerClassName);
       this.moveDom.addEventListener('mousedown', this.handleMousedown);
       this.moveDom.style.cursor = 'pointer';
       this.moveDom.style.userSelect = 'none';
@@ -185,7 +188,8 @@ export default {
       const currnetLeft = this.moveDom.scrollLeft;
       const dis = this.endX - this.startX;
 
-      this.moveDom.scrollLeft = currnetLeft - dis * 1.5;
+      this.moveDom.scrollLeft = currnetLeft - dis;
+      this.moveHeaderDom.scrollLeft = currnetLeft - dis;
 
       this.startX = this.endX;
     },
@@ -208,7 +212,7 @@ export default {
     formatterValue(v, type) {
       if (v === null || v === undefined) return '-'
       let value = v
-      if (value) {
+      if (value !== '') {
         if (type === 'money') {
           value = formatNumber(value)
         } else if (type === 'ten-thousand') {

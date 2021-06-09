@@ -1,0 +1,55 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-project-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap'>
+    <application-info info='{{info}}'/>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <label>故障描述</label>
+    <view class='content'>{{items.repairDesc}}</view>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>附件</label>
+    <view class='img-wrapper' wx:for='{{images}}' wx:key='{{item.id}}'>
+      <image bindtap='previewImage' data-src='{{item}}' class='icon' src='{{item}}'></image>
+    </view>
+  </view>
+  <view class='ys-title'>维修详情</view>
+  <view class='ys-block note-info'>
+    <view>
+      <label>维修人员</label>
+      <text>{{items.repairerName || ''}}</text>
+    </view>
+    <view>
+      <label>联系电话</label>
+      <text>{{items.mantenancePhone || ''}}</text>
+    </view>
+    <view>
+      <label>维修类型</label>
+      <!-- 1 -电类  2 -水类  3 -空调  4 -自有设备故障类   5 -其它 -->
+      <text wx:if='{{items.repairType == 1}}'>电类</text>
+      <text wx:if='{{items.repairType == 2}}'>水类</text>
+      <text wx:if='{{items.repairType == 3}}'>空调</text>
+      <text wx:if='{{items.repairType == 4}}'>自有设备故障类</text>
+      <text wx:if='{{items.repairType == 5}}'>其它</text>
+    </view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view wx:for='{{items.merRepairProcessesList}}' wx:key="items.id" class='list'>
+        <image class='icon' src='../../../static/images/icon_finish.png'></image>
+        <view class='header'>
+          <text class='title'>{{item.flowName}}</text>
+          <text class='name'>{{item.processor}}</text>
+        </view>
+        <view class='date'>
+          <text>{{item.effectiveTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer' wx:if='{{statusCode == 5}}'>
+    <!-- <button wx:if='{{btnSta}}' class='ys-btn ys-footer-btn ys-btn-powderred submit' bindtap='urge'>催办</button> -->
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='goUrl'>去评价 </button>
+  </view>
+</view>

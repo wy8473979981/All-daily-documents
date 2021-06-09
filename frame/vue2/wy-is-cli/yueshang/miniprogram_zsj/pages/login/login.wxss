@@ -1,0 +1,129 @@
+/* pages/login/login.wxss */
+#login{
+  padding:240rpx 116rpx;
+  padding-bottom:0;
+}
+#login .notify{
+  height:88rpx;
+  line-height: 88rpx;
+  font-size:24rpx;
+  color:#02d6c0;
+}
+
+#login .ys-cell-wrapper{
+  display: flex;
+
+}
+#login .ys-cell{
+  height:84rpx;
+  border:solid 2rpx #f4f4f4;
+  border-radius:6rpx;
+  background-color:#f4f4f4;
+
+}
+#login .ys-cell.focus{
+  border:solid 2rpx #02d6c0;
+}
+#login .ys-cell .ys-cell-content input {
+  width:100%;
+  text-align:left;
+}
+
+#login .ys-cell .ys-cell-label {
+  position:relative;
+  width:48rpx;
+  padding-right:10rpx;
+  font-size:30rpx;
+  color:#333;
+}
+#login .ys-cell .ys-icon{
+  width:44rpx;
+  height:44rpx;
+  display: block;
+}
+#login .ys-cell .ys-icon image{
+  width:44rpx;
+  height:44rpx;
+}
+#login .ys-cell-wrapper + .ys-cell-wrapper{
+    margin-top:30rpx;
+}
+#login .clear{
+  margin-left:10rpx;
+}
+#login .ys-btn{
+  border-radius:6rpx;
+}
+
+
+#js-veri-code{
+  flex-basis:180rpx;
+  flex-shrink: 0;
+  flex-grow: 0;
+  height:88rpx;
+  margin-left:20rpx;
+  line-height: 88rpx;
+  text-align:center;
+
+  background-color:#cdf7f3;
+  color:#02d6c0;
+  font-size:24rpx;
+
+  border-radius:6rpx;
+}
+
+#js-veri-code.disabled{
+  background-color:#f4f4f4;
+  color:#999;
+}
+
+
+.ys-modal{}
+.ys-modal .ys-modal-dialog{
+  width:72%;
+  padding-bottom:112rpx;
+  opacity:0;
+  transform: translateY(-100px);
+}
+
+.ys-modal .ys-modal-content{
+  padding:0 30rpx;
+}
+.ys-modal .ys-modal-content .title{
+    padding:0;
+    height:106rpx;
+    line-height:106rpx;
+    border-bottom:solid 2rpx #ececec;
+    font-size:36rpx;
+    text-align: center;
+    color:#333;
+}
+.ys-modal .ys-modal-content .content{
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  color:#333;
+  line-height: 1.4;
+}
+.ys-modal .ys-modal-content .content text{
+  display: block;
+}
+.ys-modal .modal-close-btn{
+    display: block;
+    position:absolute;
+    bottom:0;
+    left:50%;
+    margin-left:-40rpx;
+    width:80rpx;
+    height:80rpx;
+    border-radius:50%;
+    background-color:#fff;
+}
+.ys-modal .modal-close-btn image{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:36rpx;
+  height:36rpx;
+}
+

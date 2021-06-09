@@ -23,19 +23,19 @@ export default {
     }
   },
   computed: {
-    tabActive() {
+    tabActive () {
       return this.currentTab
     }
   },
-  data() {
+  data () {
     return {}
   },
   watch: {},
-  mounted() {
+  mounted () {
 
   },
   methods: {
-    onClick(value) {
+    onClick (value) {
       console.log('tab切换:', value);
       this.$emit("selected", value);
     },
@@ -63,20 +63,20 @@ export default {
   -webkit-justify-content: space-between;
   justify-content: space-between;
   width: 100%;
-  font-size: 28px;
+  // font-size: 32px;
   // background: -webkit-linear-gradient(right, #1e5385 0%, #3a96bd 100%);
   // background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
-  padding: 0 163px 0 142px;
-  color: #cdcfd5;
+  padding: 0 133px 0 112px;
+  color: rgb(164, 189, 203);
   .tab-list-item {
     border-bottom: 6px solid transparent;
-    padding-bottom: 22px;
-    font-size: 28px;
+    padding-bottom: 18px;
+    font-size: 32px;
   }
   .border-current {
     border-color: #fff;
     color: #fff;
-    font-size: 32px;
+    font-size: 36px;
   }
 }
 </style>

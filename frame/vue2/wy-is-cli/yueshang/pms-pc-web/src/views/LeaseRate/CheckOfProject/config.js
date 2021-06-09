@@ -46,125 +46,131 @@ export const FormConfig = [
 export function TableConfig() {
   return [
     {
-      key: 'sortIndex',
-      label: '序号',
+      key: "sortIndex",
+      label: "序号",
       width: 60,
-      fixed: true
+      fixed: true,
     },
     {
-      key: 'projectName',
-      label: '项目名',
+      key: "projectName",
+      label: "项目名",
       minWidth: 120,
-      fixed: true
+      fixed: true,
     },
     {
-      key: 'contNo',
-      label: '合同号',
+      key: "cooperativeBrand",
+      label: "品牌名",
+      minWidth: 160,
+    },
+    {
+      key: "contNo",
+      label: "合同号",
       minWidth: 140,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contractNo',
-      label: '合同文本库号',
+      key: "contractNo",
+      label: "合同文本库号",
       minWidth: 130,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'attachNum',
-      label: '上传合同签署件数',
+      key: "attachNum",
+      label: "上传合同签署件数(个)",
       // type: 'link',
       // props: {
       //   click: (scope) => {
       //     console.log('line', scope)
       //   }
       // },
-      width: 135,
-      sortable: 'custom'
+      align: "right",
+      width: 165,
+      sortable: "custom",
     },
     {
-      key: 'storeNo',
-      label: '铺位号',
+      key: "storeNo",
+      label: "铺位号",
       minWidth: 130,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'storeRentSquare',
-      label: '计租面积(㎡)',
-      type: 'area',
+      key: "storeRentSquare",
+      label: "计租面积(㎡)",
+      type: "area",
       minWidth: 120,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'statusCd',
-      label: '合同状态',
+      key: "statusCd",
+      label: "合同状态",
       minWidth: 100,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contStartDate',
-      label: '合同开始时间',
-      type: 'date-d',
+      key: "contStartDate",
+      label: "合同开始时间",
+      type: "date-d",
       width: 110,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contEndDate',
-      label: '合同结束时间',
-      type: 'date-d',
+      key: "contEndDate",
+      label: "合同结束时间",
+      type: "date-d",
       width: 110,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contToFailDate',
-      label: '合同解约时间',
-      type: 'date-d',
+      key: "contToFailDate",
+      label: "合同解约时间",
+      type: "date-d",
       width: 110,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contBalanceZj',
-      label: '租金保证金(元)',
-      type: 'money',
+      key: "contBalanceZj",
+      label: "租金保证金(元)",
+      type: "money",
       minWidth: 120,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contBalanceWg',
-      label: '物管保证金(元)',
-      type: 'money',
+      key: "contBalanceWg",
+      label: "物管保证金(元)",
+      type: "money",
       minWidth: 120,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contOweFeeZj',
-      label: '租金欠费(元)',
-      type: 'money',
+      key: "contOweFeeZj",
+      label: "租金欠费(元)",
+      type: "money",
       props: {
         style: {
-          color: 'red'
-        }
+          color: "red",
+        },
       },
       minWidth: 110,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'contOweFeeWg',
-      label: '物管欠费(元)',
-      type: 'money',
+      key: "contOweFeeWg",
+      label: "物管欠费(元)",
+      type: "money",
       props: {
         style: {
-          color: 'red'
-        }
+          color: "red",
+        },
       },
       minWidth: 110,
-      sortable: 'custom'
+      sortable: "custom",
     },
     {
-      key: 'accumulatedDifference',
-      label: '累计差额(元)',
-      type: 'money',
+      key: "accumulatedDifference",
+      label: "累计差额(元)",
+      type: "money",
       minWidth: 110,
-      sortable: 'custom'
-    }
-  ]
+      sortable: "custom",
+    },
+  ];
 }

@@ -5,7 +5,8 @@
       <div class="app-header">
         <div class="app-header-container">
           <div class="app-header-left">
-            <ys-n-project-select :selected="selected" @projeSelected="projeSelected" :disabledAll="false"></ys-n-project-select>
+            <ys-n-project-select :moduleName="'yysj'" :selected="selected" @projeSelected="projeSelected" :disabledAll="false">
+            </ys-n-project-select>
             <!-- <ys-n-dialog :projectId="params.projectId"></ys-n-dialog> -->
           </div>
           <div class="app-header-right">
@@ -15,98 +16,104 @@
         </div>
       </div>
     </div>
-    <ys-n-section title="平效（元/㎡）" :collapseable="true" v-if="show">
-      <ys-n-echart :options="page.mainOps" canvasId="xiaoshou1"></ys-n-echart>
-    </ys-n-section>
-    <ys-n-section title="业态" v-if="show">
-      <span class="title-unit" slot="head-title" v-if="mode === 'xse'">（万元）</span>
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + (mode === 'xse' ? 'active' : '')" data-value="xse" @click="onModeChanged">销售额</span>｜
-          <span :class="'list-mode-item ' + (mode === 'zlb' ? 'active' : '')" data-value="zlb" @click="onModeChanged">租售比</span>
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <ys-n-section title="平效（元/㎡）" :collapseable="true" v-if="show">
+        <ys-n-echart :options="page.mainOps" canvasId="xiaoshou1"></ys-n-echart>
+      </ys-n-section>
+      <ys-n-section title="业态" v-if="show">
+        <span class="title-unit" slot="head-title" v-if="mode === 'xse'">（万元）</span>
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + (mode === 'xse' ? 'active' : '')" data-value="xse" @click="onModeChanged">销售额</span>｜
+            <span :class="'list-mode-item ' + (mode === 'zlb' ? 'active' : '')" data-value="zlb" @click="onModeChanged">租售比</span>
+          </div>
         </div>
-      </div>
-      <ys-n-echart :options="page.kindOps" canvasId="xiaoshou2"></ys-n-echart>
-    </ys-n-section>
-    <ys-n-section title="商家销售排名" :hasTable="true">
-      <div slot="head-actions">
-        <div class="list-mode">
-          <span :class="'list-mode-item ' + ( page.table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>｜
-          <span :class="'list-mode-item ' + ( page.table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+        <ys-n-echart :options="page.kindOps" canvasId="xiaoshou2"></ys-n-echart>
+      </ys-n-section>
+      <ys-n-section title="商家销售排名" :hasTable="true">
+        <div slot="head-actions">
+          <div class="list-mode">
+            <span :class="'list-mode-item ' + ( page.table.mode === 'month' ? 'active' : '')" @click="onListModeChanged" data-value="month">当月</span>｜
+            <span :class="'list-mode-item ' + ( page.table.mode === 'year' ? 'active' : '')" @click="onListModeChanged" data-value="year">年累计</span>
+          </div>
         </div>
-      </div>
-      <ys-n-table :fixednum="1" :totalRow="page.table.totalRow" :mode="page.table.mode" :values="page.table.dataList" :columns="page.table.columns" @row-click="onRowClick"></ys-n-table>
-    </ys-n-section>
+        <ys-n-table :fixednum="1" :totalRow="page.table.totalRow" :mode="page.table.mode" :values="page.table.dataList" :columns="page.table.columns" @row-click="onRowClick"></ys-n-table>
+      </ys-n-section>
+    </van-pull-refresh>
   </div>
 </template>
 
 <script>
-
-import { mapMutations, mapGetters } from "vuex";
-const monthColumns = [
-  {
-    label: "商家",
-    key: "shopName",
-    width: "3.5rem",
-    fixed: true,
-    align: "left",
-    color: '#3B96BE'
-  }, {
-    label: "平效",
-    key: "benefitsPerSquareMeter",
-    sortable: true,
-    width: "1.5rem",
-    align: "right"
-  }, {
-    label: "租售比",
-    key: "rentalSalesRatio",
-    unit: "",
-    width: "1.8rem",
-    sortable: true,
-    align: "right"
-  }, {
-    label: "销售额(万元)",
-    key: "sales",
-    width: "2.7rem",
-    sortable: true,
-    align: "right",
-    numberFormat: true,
-    numberPrecision: 2,
-    changeNum: 10000
-  }];
-const yearColumns = [
-  {
-    label: "商家",
-    key: "shopName",
-    width: "3.5rem",
-    fixed: true,
-    align: "left",
-    color: '#3B96BE'
-  }, {
-    label: "销售额(万元)",
-    key: "sales",
-    width: "2.6rem",
-    sortable: true,
-    align: "right",
-    numberFormat: true,
-    numberPrecision: 2,
-    changeNum: 10000
-  }, {
-    label: "同比",
-    key: "yearOnYear",
-    width: "1.7rem",
-    align: "right"
-  }, {
-    label: "销售额完成率",
-    key: "achievementRate",
-    width: "2.7rem",
-    sortable: true,
-    align: "right"
-  }];
+import {
+  mapMutations,
+  mapGetters
+} from "vuex";
+const monthColumns = [{
+  label: "商家",
+  key: "shopName",
+  width: "3.5rem",
+  fixed: true,
+  align: "left",
+  color: '#3B96BE'
+}, {
+  label: "平效",
+  key: "benefitsPerSquareMeter",
+  sortable: true,
+  width: "1.5rem",
+  align: "right",
+  numberFormat: true,
+  numberPrecision: 2,
+}, {
+  label: "租售比",
+  key: "rentalSalesRatio",
+  unit: "",
+  width: "1.8rem",
+  sortable: true,
+  align: "right"
+}, {
+  label: "销售额(万元)",
+  key: "sales",
+  width: "2.7rem",
+  sortable: true,
+  align: "right",
+  numberFormat: true,
+  numberPrecision: 2,
+  changeNum: 10000
+}];
+const yearColumns = [{
+  label: "商家",
+  key: "shopName",
+  width: "3.5rem",
+  fixed: true,
+  align: "left",
+  color: '#3B96BE'
+}, {
+  label: "销售额(万元)",
+  key: "sales",
+  width: "2.6rem",
+  sortable: true,
+  align: "right",
+  numberFormat: true,
+  numberPrecision: 2,
+  changeNum: 10000
+}, {
+  label: "同比",
+  key: "yearOnYear",
+  width: "1.7rem",
+  align: "right"
+}, {
+  label: "销售额完成率",
+  key: "achievementRate",
+  width: "2.7rem",
+  sortable: true,
+  align: "right"
+}];
 export default {
   name: "Home",
-  data() {
+  data () {
     return {
+      isLoadingCount: 0,
+      isLoading: false,
       salesRatio: [], //业态销售比
       sales: [], //业态销售额
       mode: "xse",
@@ -152,12 +159,13 @@ export default {
               normal: { //自定义颜色，渐变色填充折线图区域
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, //变化度
                   //渐变色
+                  //渐变色
                   [{
                     offset: 0,
-                    color: '#2D9FCB'
+                    color: 'rgba(45, 159, 203, 0.2)'
                   }, {
                     offset: 0.62,
-                    color: "#ffffff"
+                    color: 'rgba(255, 255, 255, 0.48)'
                   }]),
               }
             }
@@ -170,7 +178,8 @@ export default {
           grid: {
             bottom: 60,
           },
-          color: ["#EA6B00", "#1890FF", "#02DFFF", "#FFCE49", "#1EFBB8", "#AAAAAA", "#770077", "#FF77FF", "#9F88FF",
+          color: ["#EA6B00", "#1890FF", "#02DFFF", "#FFCE49", "#1EFBB8", "#AAAAAA", "#770077", "#FF77FF",
+            "#9F88FF",
             "#77FF00"
           ],
           legend: {
@@ -220,16 +229,41 @@ export default {
   computed: {
     ...mapGetters(['getGroups']),
   },
-  created() {
+  created () {
     //this.getStoreType();
     this.loadData();
     this.getlayouEchartData();
     this.businessSortEchartData();
     //this.getDilogInfo();
   },
+  mounted () {
+    this.setData({
+      "groups": [this.getGroups]
+    });
+    console.log(this.groups)
+  },
   methods: {
+    onRefresh () {
+      this.isLoading = true
+      this.loadData();
+      this.getlayouEchartData();
+      this.businessSortEchartData();
+    },
+    setIsLoading () {
+      this.isLoading = false;
+    },
+    addIsLoadingCount () {
+      this.isLoadingCount++;
+    },
+    decreaseIsLoadingCount () {
+      if (this.isLoadingCount <= 0) return;
+      this.isLoadingCount--;
+      if (this.isLoadingCount === 0) {
+        this.$lodash.debounce(this.setIsLoading, 300)()
+      }
+    },
     //获取筛选类型
-    bindselected(e) {
+    bindselected (e) {
       e.detail.forEach((item) => {
         let temp = item.split("-");
         let key = temp[0];
@@ -249,10 +283,10 @@ export default {
       this.queryData();
       this.getTable();
     },
-    bindopen() {
+    bindopen () {
       //this.show = true;
     },
-    bindclose() {
+    bindclose () {
       //this.show = false;
     },
     //获取弹窗信息
@@ -262,14 +296,14 @@ export default {
       });
       this.leaderDetail = res.data
     }, */
-    onRowClick(e) {
-      let url = '../sjfx/index.html#/pages/sjgl/sjxx/sjxx?bisShopId=' + e.detail.row.shopId
+    onRowClick (e) {
+      let url = './sjfx/index.html#/merchant/sjxx?bisShopId=' + e.detail.row.shopId
       window.location.href = url
     },
     /**
      * 切换 当月/年累计
      */
-    onListModeChanged(e) {
+    onListModeChanged (e) {
       const mode = e.target.dataset.value;
       if (this.page.table.mode !== mode) {
         if (mode === "month") {
@@ -290,7 +324,7 @@ export default {
       }
     },
     //业态类型选择
-    onModeChanged(e) {
+    onModeChanged (e) {
       console.log(this.layoutSalesArr);
       this.mode = e.target.dataset.value;
       if (this.mode === "xse") {
@@ -325,8 +359,10 @@ export default {
     /**
      * 按年图表
      */
-    async loadData() {
+    async loadData () {
+      this.addIsLoadingCount()
       let res = await this.$axios.saleServe.pxEchartData(this.params)
+      this.decreaseIsLoadingCount()
       const year = this.params.year;
       const lastYear = String(year - 1);
       const legendData = [year.substring(2) + "年度", lastYear.substring(2) + "年度"]; // 当年平效
@@ -339,8 +375,10 @@ export default {
       });
     },
     //获取业态数据
-    async getlayouEchartData() {
+    async getlayouEchartData () {
+      this.addIsLoadingCount()
       let res = await this.$axios.saleServe.layouEchartData(this.params)
+      this.decreaseIsLoadingCount()
       let legendData = []
       let sales = []
       let salesRatio = []
@@ -394,12 +432,14 @@ export default {
       }
     },
     //获取商家排名
-    async businessSortEchartData() {
+    async businessSortEchartData () {
+      this.addIsLoadingCount()
       let monthlyRanking = [];
       let yearlyRanking = [];
       let monthTotleRow = '';
       let yearTotleRow = '';
       let res = await this.$axios.saleServe.businessSortData(this.params)
+      this.decreaseIsLoadingCount()
       res.data.monthlyRanking.map(item => {
         if (item.shopId) {
           monthlyRanking.push(item)
@@ -420,20 +460,21 @@ export default {
       this.yearTotleRow = yearTotleRow
       this.page.table.totalRow = monthTotleRow
       this.page.table.dataList = monthlyRanking
+      this.$lodash.debounce(this.setIsLoading, 300)()
     },
     //获取年份
-    getYear(year) {
+    getYear (year) {
       if (year) {
         return year.split("-")[0];
       }
     },
-    search(item) {
+    search (item) {
       this.params.chargeType = item.storeType;
       this.loadData();
       this.getlayouEchartData();
       this.businessSortEchartData();
     },
-    projeSelected(item) {
+    projeSelected (item) {
       console.log(item);
       this.setData({
         ["params.projectId"]: (item && item.projectId) || "",
@@ -445,7 +486,7 @@ export default {
       this.getlayouEchartData();
       this.businessSortEchartData();
     },
-    dateSelected(date) {
+    dateSelected (date) {
       this.params.year = date;
       this.loadData();
       this.getlayouEchartData();

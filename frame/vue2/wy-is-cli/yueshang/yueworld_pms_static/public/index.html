@@ -1,0 +1,40 @@
+<!--
+ * @Author: fhj
+ * @LastEditors: fhj
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--        <meta name="x5-orientation" content="portrait || andscape">-->
+        <!-- QQ强制竖屏 -->
+<!--        <meta name="x5-orientation" content="andscape">-->
+        <!--		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1.0,maximum=scale=1.0" />-->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=yes">
+		<link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+        <!-- 强制Chromium内核，作用于360浏览器、QQ浏览器等国产双核浏览器 -->
+        <meta name="renderer" content="webkit"/>
+        <!-- 强制Chromium内核，作用于其他双核浏览器 -->
+        <meta name="force-rendering" content="webkit"/>
+        <!-- 如果有安装 Google Chrome Frame 插件则强制为Chromium内核，否则强制本机支持的最高版本IE内核，作用于IE浏览器 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+		<title><%= htmlWebpackPlugin.options.title %></title>
+		<style>
+			body{
+				width: 1440px;
+				margin: 0 auto  !important;
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
+	</body>
+</html>
