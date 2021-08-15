@@ -1,0 +1,43 @@
+{
+  attachmentList:[
+    {
+      name: name, // 附件文件名称                      
+      curAbbImgBase64code: curAbbImgBase64code,// 附件文件缩略图
+      currentPage: 1,// 当前附件 当前页                                                                     
+      totalPage: totalPage,// 当前附件 总页数
+      success: false,// 表示该附件的签约方都盖了一组章（章+日期、签名+日期）,完成盖章 默认false
+      roles: [// 签约方信息
+        {
+          userInfo: {
+            enterpriseName: "上海宝龙", 
+          },
+          userType: "ENTERPRISE",// 签约方 类型
+          stampChecked: stampChecked,// 该签约方完成盖章（章+日期、签名+日期）需要区分 签约方类型，默认false
+          qfzChecked: qfzChecked,// 签约方 是否勾选骑缝章 true:勾选，默认false
+        }
+      ],
+      attachmentDetailList: [// 附件图片详情
+        {
+          order: order,//表示附件详情的页数，从1开始计算
+          attachmentDetailItemImgUrl:attachmentDetailItemImgUrl,//附件图片详情链接
+          dragList: [// 存放 盖章、签名、日期、骑缝章
+            {
+              id: Math.random().toString().substr(2),
+              roleName: roleName,// 当前签约方类型：ENTERPRISE、
+              currentQyfIndex: currentQyfIndex,// 当前签约方下标
+              currentQyfName: currentQyfName,// 当前签约方名称
+              pageNumber: pageNumber,// 当前盖章、签名、日期、骑缝章所在附件详情的页码
+              dragType: dragType,// 当前盖章：gz、签名: qm、日期: rq、骑缝章: qfz 的类型
+              x: 0,// 当前盖章 x 坐标
+              y: 0,// 当前盖章 y 坐标
+              w: w,// 当前盖章 宽
+              h: h,// 当前盖章 高
+              parentW: parentW, // 当前盖章 可移动宽度
+              parentH: parentH  // 当前盖章 可移动高度
+            },
+          ],
+        },
+      ],
+    }
+  ]
+}
