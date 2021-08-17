@@ -1,9 +1,0 @@
-.DS_Store
-node_modules
-.gitignore
-.babel.config.js
-package.json
-package.*.json
-vue.config.js
-yarn.*
-public
