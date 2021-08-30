@@ -1,0 +1,19 @@
+
+  module.exports = {
+    columnSelected: function(selected, row, column) {
+      return (selected.keysMap[row[selected.key]] || []).includes(column.key);
+    },
+    getPenoncel:function(value){
+      return parseInt(value) 
+    },
+    ntoS:function(value, column) {
+      if (~[null, undefined, ''].indexOf(value)) {
+        return "-";
+      }
+      var unit = column.unit;
+      if (unit) {
+        value = value.toString().replace(unit, '') + unit
+      }
+      return value
+    }
+  }

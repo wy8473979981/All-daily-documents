@@ -1,0 +1,11 @@
+{
+	"navigationBarTitleText": "招商业绩考核",
+	"usingComponents": {
+		"app-header": "/components/common/header",
+		"app-project-selector": "/components/selector/project",
+		"app-date-picker": "/components/selector/datepicker",
+		"app-section": "/components/container/section",
+		"app-catalogue": "/components/catalogue/index",
+		"app-table": "/components/table/index"
+	}
+}

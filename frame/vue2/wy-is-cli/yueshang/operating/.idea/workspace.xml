@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="600a24af-aed0-4ac6-b8ca-789971da69e6" name="Default Changelist" comment="Merge branch '20210101' into dev&#10;&#10;* 20210101:&#10;  项目中不可以切换全部；Echarts显示今日x轴显示问题；&#10;  ios、android，webview跳转优化；&#10;  修复客流日月切换；店铺跳转详情；&#10;  本地代码，再次编译；loading修复；page底部文字变更；项目客流、客流密度；request；&#10;&#10;# Conflicts:&#10;#&#9;operating/App.vue&#10;#&#9;operating/app.css&#10;#&#9;operating/components/common/header.css&#10;#&#9;operating/components/pageFooter/pageFooter.vue&#10;#&#9;operating/components/selector/project.vue&#10;#&#9;operating/pages.json&#10;#&#9;operating/pages/index/index.css&#10;#&#9;operating/pages/index/index.vue&#10;#&#9;operating/pages/shouru/duibi/duibi.css&#10;#&#9;operating/pages/shouru/shouruxq/shouruxq.css&#10;#&#9;operating/pages/shouru/shouruxq/shouruxq.vue&#10;#&#9;operating/pages/shouru/zujin.css&#10;#&#9;operating/pages/shouru/zujin.vue&#10;#&#9;operating/pages/xiaoshou/month/month.css&#10;#&#9;operating/pages/yusuan/components/common/project-selector.css&#10;#&#9;operating/pages/yusuan/components/common/project-selector.json&#10;#&#9;operating/pages/yusuan/components/common/project-selector.vue&#10;#&#9;operating/pages/yusuan/components/selector/datepicker.css&#10;#&#9;operating/pages/yusuan/components/selector/datepicker.json&#10;#&#9;operating/pages/yusuan/components/selector/datepicker.vue&#10;#&#9;operating/pages/yusuan/components/selector/indexes.json&#10;#&#9;operating/pages/yusuan/components/selector/indexes.vue&#10;#&#9;operating/pages/yusuan/components/selector/project.css&#10;#&#9;operating/pages/yusuan/components/selector/project.json&#10;#&#9;operating/pages/yusuan/components/selector/project.vue&#10;#&#9;operating/pages/zhaoshang/index.css&#10;#&#9;operating/pages/zhibiao/xiangmupaiming.css&#10;#&#9;operating/utils/request.js" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1maenlKpP7A4ctqnAanRmHCj2cH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="600a24af-aed0-4ac6-b8ca-789971da69e6" name="Default Changelist" comment="" />
+      <created>1609736297315</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609736297315</updated>
+      <workItem from="1609736298522" duration="577000" />
+      <workItem from="1609808864194" duration="196000" />
+      <workItem from="1609817761429" duration="3000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

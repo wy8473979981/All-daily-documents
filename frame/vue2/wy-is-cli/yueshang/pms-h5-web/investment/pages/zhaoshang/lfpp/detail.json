@@ -1,0 +1,8 @@
+{
+	"navigationBarTitleText": "联发品牌",
+	"usingComponents": {
+		"app-section": "/components/container/section",
+		"app-catalogue": "/components/catalogue/index",
+		"app-table": "/components/table/index"
+	}
+}

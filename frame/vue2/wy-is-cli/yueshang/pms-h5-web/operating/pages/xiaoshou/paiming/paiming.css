@@ -1,0 +1,25 @@
+/* pages/xiaoshou/paiming/paiming.wxss */
+
+.wrapper {
+  background-color: #fff;
+}
+
+.list-mode-item {
+  font-size: 28rpx;
+}
+
+.list-mode-item.active {
+  color: #3992BA;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.head-actions_left_view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+.head-actions_left{
+  width: 26rpx;
+  height: 14rpx;
+}

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "运营分析（首页）",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "app-section": "/components/container/section",
+    "app-header": "/components/common/header",
+    "app-project-selector": "/components/selector/project",
+    "app-picker": "/components/selector/datepicker",
+    "app-echarts": "/components/echarts/echarts"
+  }
+}

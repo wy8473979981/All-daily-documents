@@ -1,0 +1,88 @@
+.app-project-selector {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.app-project-selector .app-project-selector-icon {
+	margin-left: 10rpx;
+	width: 20rpx;
+	height: 10rpx;
+}
+.project-leader {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	margin-left: 20rpx;
+}
+.project-leader-modal {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 99999999;
+}
+
+/* 项目总 */
+.leader-modal-inner {
+	position: absolute;
+	/* width: 480rpx; */
+	width: 100%;
+	opacity: 0.9;
+	top: 20%;
+	left: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.leader-modal-inner-content{
+	background: #ffffff;
+	padding: 48rpx;
+	width: 480rpx;
+	box-shadow: 3rpx 3rpx 6rpx 0rpx rgba(0, 0, 0, 0.18);
+}
+.leader-name {
+	font-size: 40rpx;
+	font-weight: 600;
+	color: rgb(70, 67, 67);
+	margin-bottom: 25rpx;
+}
+.leader-avatar {
+	width: 52rpx;
+	height: 52rpx;
+	margin-right: 14rpx;
+}
+.leader-title {
+	font-size: 28rpx;
+	line-height: 2;
+	color:#333;
+	width:100%
+}
+.leader-close {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	background-color: #fff;
+	line-height: 80rpx;
+	text-align: center;
+	color: rgb(70, 67, 67);
+	margin-top:30rpx
+}
+

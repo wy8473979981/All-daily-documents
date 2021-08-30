@@ -1,0 +1,44 @@
+{
+  "_from": "@miniprogram-component-plus/sticky",
+  "_id": "@miniprogram-component-plus/sticky@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-HYZ/PCm8KjUSQYwMLG61bhHBKU8s9aDx5Tl2BvruAku8bvEbyd8A3Povpb9V6lPPvsD/oXp2R7/GmgsCgDuI4g==",
+  "_location": "/@miniprogram-component-plus/sticky",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@miniprogram-component-plus/sticky",
+    "name": "@miniprogram-component-plus/sticky",
+    "escapedName": "@miniprogram-component-plus%2fsticky",
+    "scope": "@miniprogram-component-plus",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@miniprogram-component-plus/sticky/-/sticky-1.0.1.tgz",
+  "_shasum": "32c4098c2a98422da1c8b8febfa39d6ecfcf847c",
+  "_spec": "@miniprogram-component-plus/sticky",
+  "_where": "D:\\miniProgramWorkspace\\baolongsjgl",
+  "author": {
+    "name": "sanfordsun"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "",
+  "keywords": [
+    "sticky",
+    "miniprogram"
+  ],
+  "license": "ISC",
+  "main": "miniprogram_dist/index.js",
+  "name": "@miniprogram-component-plus/sticky",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}

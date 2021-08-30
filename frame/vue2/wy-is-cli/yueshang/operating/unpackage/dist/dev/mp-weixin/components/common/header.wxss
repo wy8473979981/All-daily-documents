@@ -1,0 +1,59 @@
+.app-header {
+	padding: 20rpx 30rpx;
+	background: -webkit-linear-gradient(right, #1e5385 0%, #3a96bd 100%);
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	color: #ffffff;
+	font-size: 32rpx;
+}
+.app-header .app-header__top {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.app-header .app-header__top__left {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.app-header .app-header__top__right {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+.app-header .app-header__top__right {
+	margin-left: 20rpx;
+}
+.app-header .app-header__bottom__tabs {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 100rpx;
+	margin-top: 20rpx;
+}
+.app-header .app-header__bottom__tabs .app-header__bottom__tabs__item {
+	position: relative;
+	padding: 0rpx 20rpx;
+	opacity: 0.7;
+}
+.app-header .app-header__bottom__tabs .app-header__bottom__tabs__item.active {
+	opacity: 1;
+}
+.app-header .app-header__bottom__tabs .app-header__bottom__tabs__item.active::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -20rpx;
+	width: 100%;
+	height: 3px;
+	background-color: #ffffff;
+}
+

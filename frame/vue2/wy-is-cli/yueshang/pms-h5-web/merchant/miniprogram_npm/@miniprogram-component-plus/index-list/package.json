@@ -1,0 +1,45 @@
+{
+  "_from": "@miniprogram-component-plus/index-list",
+  "_id": "@miniprogram-component-plus/index-list@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-IYKQfGRxfna2HPKzaR4wKASkXq0=",
+  "_location": "/@miniprogram-component-plus/index-list",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@miniprogram-component-plus/index-list",
+    "name": "@miniprogram-component-plus/index-list",
+    "escapedName": "@miniprogram-component-plus%2findex-list",
+    "scope": "@miniprogram-component-plus",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/@miniprogram-component-plus/index-list/download/@miniprogram-component-plus/index-list-1.0.0.tgz",
+  "_shasum": "2182907c64717e76b61cf2b3691e302804a45ead",
+  "_spec": "@miniprogram-component-plus/index-list",
+  "_where": "/Users/leon/Projects/baoshen/bljsc/weapp",
+  "author": {
+    "name": "sanfordsun"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "",
+  "keywords": [
+    "index",
+    "list",
+    "miniprogram"
+  ],
+  "license": "ISC",
+  "main": "miniprogram_dist/index.js",
+  "name": "@miniprogram-component-plus/index-list",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

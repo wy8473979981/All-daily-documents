@@ -1,0 +1,153 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": true,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.0",
+  "appid": "wxd8bcddd9d81f662c",
+  "projectname": "weapp",
+  "cloudfunctionTemplateRoot": "",
+  "watchOptions": {
+    "ignore": []
+  },
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "收入 - 租金",
+          "pathName": "pages/shouru/zujin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "指标首页",
+          "pathName": "pages/zhibiao/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 0,
+          "name": "子文 - index",
+          "pathName": "pages/dev/liuziwen/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "田达 - index",
+          "pathName": "pages/dev/tianda/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/huiyuan/huiyuan",
+          "pathName": "pages/huiyuan/huiyuan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 5,
+          "name": "pages/shouru/shouruxq/shouruxq",
+          "pathName": "pages/shouru/shouruxq/shouruxq",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "马亮杰 - index",
+          "pathName": "pages/dev/maliangjie/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "客流排名",
+          "pathName": "pages/keliu/paiming/paiming",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "欠款",
+          "pathName": "pages/shuju/qiankuan/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "欠款 - 详情",
+          "pathName": "pages/shuju/qiankuan/details",
+          "query": "id=C068924639924123480EBEB52D6E002E",
+          "scene": null
+        },
+        {
+          "name": "销售排名",
+          "pathName": "pages/xiaoshou/paiming/paiming",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "地产支付物业款项统计 ",
+          "pathName": "pages/yusuan/dczf/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "数据 - 车流",
+          "pathName": "pages/shuju/cheliu/paiming",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

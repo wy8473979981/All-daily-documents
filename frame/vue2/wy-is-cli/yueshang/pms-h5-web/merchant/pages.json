@@ -1,0 +1,50 @@
+{
+	"pages": [
+		{
+			"path": "pages/sjgl/sjgl",
+			"style": {
+				"navigationBarTitleText": "商家管理",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/sjlb/sjlb",
+			"style": {
+				"navigationBarTitleText": "商家管理"
+			},
+			"h5": {
+				"titleNView": false
+			}
+		},
+		{
+			"path": "pages/sjgl/sjxx/sjxx",
+			"style": {
+				"navigationBarTitleText": "商家信息"
+			},
+			"h5": {
+				"titleNView": false
+			}
+		},
+		{
+			"path": "pages/sjbj/sjbj",
+			"style": {
+				"navigationBarTitleText": "商家信息对比"
+			},
+			"h5": {
+				"titleNView": false
+			}
+		}
+	],
+	"style": "v2",
+	"sitemapLocation": "sitemap.json",
+	"globalStyle": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "black"
+	},
+	"subPackages": []
+}

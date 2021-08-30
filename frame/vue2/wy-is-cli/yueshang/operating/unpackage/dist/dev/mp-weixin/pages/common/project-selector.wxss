@@ -1,0 +1,37 @@
+.selected {
+  padding: 20rpx 20rpx 20rpx;
+  border-bottom: 1px solid #cccccc;
+}
+.index-group__item {
+  padding: 30rpx 24rpx;
+  font-size: 30rpx;
+}
+.common-project-selector {
+	padding-top: 45px;
+}
+.selector-header{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	line-height: 44px;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #DCDCDC;
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+.header-title {
+}
+.header-cancel{
+	color: #1890FF;
+	position: absolute;
+	right: 20px;
+}
+

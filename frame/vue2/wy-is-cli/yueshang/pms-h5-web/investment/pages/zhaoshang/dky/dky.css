@@ -1,0 +1,9 @@
+/* pages/zhaoshang/dky/dky.wxss */
+.table-wrapper {
+	margin-top: 60rpx;
+}
+.contract-wrapper {
+	background-color: #fff;
+	padding: 20rpx 30rpx;
+	margin-bottom: 20rpx;
+}

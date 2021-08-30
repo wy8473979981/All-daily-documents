@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "招商详情",
+  "usingComponents": {
+    "app-section": "/components/container/section",
+    "app-table": "/components/table/index",
+    "app-filter-dialog": "/components/filter/dialog",
+    "app-project-selector": "/components/selector/project",
+    "app-picker": "/components/selector/datepicker",
+    "app-header": "/components/common/header"
+  }
+}

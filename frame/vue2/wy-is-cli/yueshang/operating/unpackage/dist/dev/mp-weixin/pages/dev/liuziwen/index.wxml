@@ -1,0 +1,1 @@
+<view><view class="root"><app-echarts class="line" vue-id="7cdefaf7-1" options="{{lineops}}" bind:__l="__l"></app-echarts><button data-event-opts="{{[['tap',[['change',['$event']]]]]}}" bindtap="__e">change</button></view></view>

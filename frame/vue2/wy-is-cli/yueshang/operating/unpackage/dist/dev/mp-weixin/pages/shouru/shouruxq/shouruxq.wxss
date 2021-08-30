@@ -1,0 +1,98 @@
+.shouru-zujin.recovery {
+	padding-bottom: 120rpx;
+}
+.select-indicator {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
+}
+.line {
+	margin: 0 15rpx;
+}
+.active {
+	color: #3992ba;
+	font-weight: 600;
+}
+.header {
+	height: 100rpx;
+	width: 100%;
+	background: -webkit-linear-gradient(right, #1e5385 0%, #3a96bd 100%);
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	color: #fff;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 36rpx;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.header-right-box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.header-right-select {
+	margin-left: 20px;
+}
+.tab-list-box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	width: 100%;
+	background: -webkit-linear-gradient(right, #1e5385 0%, #3a96bd 100%);
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	padding: 10rpx 100rpx 0 100rpx;
+	color: #cdcfd5;
+	font-size: 32rpx;
+}
+.tab-list-item {
+	border-bottom: 5rpx solid transparent;
+	padding-bottom: 20rpx;
+}
+.border-current {
+	border-color: #fff;
+	color: #fff;
+}
+.registered-channels {
+	width: 100%;
+	height: 100%;
+}
+.recovery-actions {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 20rpx;
+	background-color: #ffffff;
+}
+.recovery-actions .recovery-actions__action {
+	width: 250rpx;
+	font-weight: normal;
+	background-color: #c2c2c2;
+	color: #333333;
+	text-align: center;
+	padding: 20rpx;
+}
+.recovery-actions .recovery-actions__action--priamry {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	color: #ffffff;
+	background: -webkit-linear-gradient(135deg, #1d5a87 0%, #3992ba 100%);
+	background: linear-gradient(315deg, #1d5a87 0%, #3992ba 100%);
+	margin-left: 20rpx;
+}
+

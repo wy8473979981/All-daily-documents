@@ -1,0 +1,140 @@
+miniprogram to uni-app 转换日志
+
+---基本信息---
+时间: 2020-12-22 10:20:26
+语言: Javascript
+转换模式: Hbuilder X
+是否转换wxs文件: false
+
+---小程序基本信息---
+name: weapp
+version: 1.0.0
+description: 宝龙驾驶舱小程序
+appid: wxa4579c0d5f5b651a
+projectname: 
+compileType: miniprogram
+author: 
+
+---目录信息---
+sourceFolder: C:\Users\15855\Desktop\zhaoshang
+targetFolder: C:\Users\15855\Desktop\zhaoshang_uni
+outputFolder: C:\Users\15855\Desktop\zhaoshang_uni
+miniprogramRoot: C:\Users\15855\Desktop\zhaoshang
+
+---日志信息---
+Convert wxs file ..\zhaoshang_uni\miniprogram_npm\weui-miniprogram\slideview\slideview.wxs success!
+Convert wxs file ..\zhaoshang_uni\node_modules\weui-miniprogram\miniprogram_dist\slideview\slideview.wxs success!
+Convert App.vue success!
+Convert component utils\request.js success!
+Convert component utils\runtime.js success!
+Convert component utils\util.js success!
+Convert component assets\images\index.js success!
+Convert components\catalogue\index.vue success!
+Convert components\common\header.vue success!
+Convert components\container\section.vue success!
+Convert components\echarts\echarts.vue success!
+Convert components\filter\dialog.vue success!
+Convert components\pageFooter\pageFooter.vue success!
+Convert components\selector\datepicker.vue success!
+Convert components\selector\indexes.vue success!
+Convert components\selector\project.vue success!
+Convert components\table\index.vue success!
+Convert components\table\lengthways.vue success!
+Convert components\table\table.vue success!
+Convert components\tablecomponents\index.vue success!
+Convert component miniprogram_npm\regenerator-runtime\index.js success!
+Convert component miniprogram_npm\weui-miniprogram\index.js success!
+Convert component node_modules\regenerator-runtime\path.js success!
+Convert component node_modules\regenerator-runtime\runtime.js success!
+Convert pages\common\project-selector.vue success!
+Convert packages\ec-canvas\ec-canvas.vue success!
+Convert packages\ec-canvas\echarts.js success!
+[Error] targetFilePath: C:\Users\15855\Desktop\zhaoshang_uni\packages\ec-canvas\echarts.js 内容为空！！！ r
+
+Convert component packages\ec-canvas\wx-canvas.js success!
+Convert miniprogram_npm\@miniprogram-component-plus\index-list\index.vue success!
+Convert miniprogram_npm\weui-miniprogram\actionsheet\actionsheet.vue success!
+Convert miniprogram_npm\weui-miniprogram\badge\badge.vue success!
+Convert miniprogram_npm\weui-miniprogram\cell\cell.vue success!
+Convert miniprogram_npm\weui-miniprogram\cells\cells.vue success!
+Convert miniprogram_npm\weui-miniprogram\checkbox\checkbox.vue success!
+Convert miniprogram_npm\weui-miniprogram\dialog\dialog.vue success!
+Convert miniprogram_npm\weui-miniprogram\checkbox-group\checkbox-group.vue success!
+Convert miniprogram_npm\weui-miniprogram\form\form.vue success!
+Convert miniprogram_npm\weui-miniprogram\gallery\gallery.vue success!
+Convert miniprogram_npm\weui-miniprogram\form-page\form-page.vue success!
+Convert miniprogram_npm\weui-miniprogram\grids\grids.vue success!
+Convert miniprogram_npm\weui-miniprogram\half-screen-dialog\half-screen-dialog.vue success!
+Convert miniprogram_npm\weui-miniprogram\icon\icon.vue success!
+Convert miniprogram_npm\weui-miniprogram\loading\loading.vue success!
+Convert miniprogram_npm\weui-miniprogram\msg\msg.vue success!
+Convert miniprogram_npm\weui-miniprogram\navigation-bar\navigation-bar.vue success!
+Convert miniprogram_npm\weui-miniprogram\searchbar\searchbar.vue success!
+Convert miniprogram_npm\weui-miniprogram\slideview\slideview.vue success!
+Convert miniprogram_npm\weui-miniprogram\toptips\toptips.vue success!
+Convert miniprogram_npm\weui-miniprogram\tabbar\tabbar.vue success!
+Convert miniprogram_npm\weui-miniprogram\uploader\uploader.vue success!
+Convert component node_modules\weui-miniprogram\miniprogram_dist\index.js success!
+Convert pages\zhaoshang\bhl\bhl.vue success!
+Convert pages\zhaoshang\cctj\cctj.vue success!
+Convert pages\zhaoshang\dky\dky.vue success!
+Convert pages\zhaoshang\pwfj\pwfj.vue success!
+Convert pages\zhaoshang\lfpp\detail.vue success!
+Convert pages\zhaoshang\lfpp\lfpp.vue success!
+Convert pages\zhaoshang\stjd\stjd.vue success!
+Convert pages\zhaoshang\yjkh\khpw.vue success!
+Convert pages\zhaoshang\yjkh\khxm.vue success!
+Convert pages\zhaoshang\yjkh\yjkh.vue success!
+Convert pages\zhaoshang\yzzj\yzzj.vue success!
+Convert pages\zhaoshang\zsjd\detail.vue success!
+Convert pages\zhaoshang\zsjd\zsjd.vue success!
+Convert node_modules\@miniprogram-component-plus\index-list\miniprogram_dist\index.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\actionsheet\actionsheet.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\badge\badge.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\cell\cell.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\cells\cells.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\checkbox\checkbox.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\checkbox-group\checkbox-group.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\dialog\dialog.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\form\form.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\form-page\form-page.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\gallery\gallery.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\grids\grids.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\half-screen-dialog\half-screen-dialog.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\icon\icon.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\navigation-bar\navigation-bar.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\loading\loading.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\msg\msg.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\slideview\slideview.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\searchbar\searchbar.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\tabbar\tabbar.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\toptips\toptips.vue success!
+Convert node_modules\weui-miniprogram\miniprogram_dist\uploader\uploader.vue success!
+Convert packages\weui-wxss\style\weui.css.wxss success!
+Convert packages\weui-wxss\style\icon\weui-icon.css.wxss success!
+[命名替换]:  _showErrors  -->  showErrorsFun    file: miniprogram_npm\weui-miniprogram\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: miniprogram_npm\weui-miniprogram\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: miniprogram_npm\weui-miniprogram\form\form.js
+[命名替换]:  _showAllErrors  -->  showAllErrorsFun    file: miniprogram_npm\weui-miniprogram\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: miniprogram_npm\weui-miniprogram\form\form.js
+[命名替换]:  _showErrors  -->  showErrorsFun    file: node_modules\weui-miniprogram\miniprogram_dist\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: node_modules\weui-miniprogram\miniprogram_dist\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: node_modules\weui-miniprogram\miniprogram_dist\form\form.js
+[命名替换]:  _showAllErrors  -->  showAllErrorsFun    file: node_modules\weui-miniprogram\miniprogram_dist\form\form.js
+[命名替换]:  _showError  -->  showErrorFun    file: node_modules\weui-miniprogram\miniprogram_dist\form\form.js
+
+转换完成: 
+耗时：6653ms
+当前转换模式：【Hbuilder X】，生成HbuilderX项目。
+优点：上手快，项目结构较简单；
+缺点：资源路径会因为表达式而无法全部被修复(“可能”需手动修复)
+
+注意：
+1.当看到"image漏网之鱼"，意味着您"可能"，“可能”，记住是“可能”，但不一定需要手动调整对应代码(以实际编译运行为准)，当image标签的src属性是含变量或表达式，工具还无法做到100%转换，需要手动修改为相对/static目录的路径
+
+
+日志说明：
+1. image漏网之鱼 --> 为HbuilderX模式时，需要将资源移动到static，并且修复相应文件路径，有可能src为网络文件，有可能为变量或表达式，可能会导致转换后文件找不到，因此提示一下
+修复提示：编译时，如有报错就将对应位置修复即可(虽然目前uni-app有类似的支持，似乎并不完善)
+
+2. 命名替换 --> 小程序里对于属性名基本没什么限制，如id能做属性名，data下面的变量和函数名还能重名，但这些在uni-app里是不支持的，因此做了相关替换，并记录日志，也许组件在外部调用时，函数名被改而因此报错时，请查看答疑文档

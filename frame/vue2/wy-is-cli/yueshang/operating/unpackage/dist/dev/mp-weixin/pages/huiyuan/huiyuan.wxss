@@ -1,0 +1,138 @@
+.updata-time {
+  font-size: 22rpx;
+  line-height: 74rpx;
+  text-align: center;
+  color: #c5c5c5;
+}
+.global-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+          justify-content: start;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.global-title-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  width: 33%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding: 10rpx;
+}
+.global-title {
+  color: #757575;
+  font-size: 24rpx;
+}
+.global-value-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+          align-items: baseline;
+}
+.global-value {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333333;
+  font-size: 32rpx;
+}
+.global-unit {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  white-space: nowrap;
+  color: #B0B0B0;
+  font-size: 20rpx;
+  padding: 5rpx;
+}
+.line-bg {
+  width: 100%;
+  height: 20rpx;
+}
+.registered-channels {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.members-bar {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.integral-output {
+  width: 100%;
+  /* height: 500rpx; */
+  padding: 20rpx;
+  background-color: #fff;
+}
+.consumption-mod {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.top-scroll {
+  background-color: #fff;
+}
+.top-list {
+  background-color: #fff;
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+}
+.top-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 28rpx;
+}
+.list-item {
+  padding: 0 20rpx;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 24rpx;
+}
+.list-item--selected {
+  font-size: 30rpx;
+  color: #3992BA;
+}
+.header-right-select {
+  margin-left: 20px;
+}
+.slot-right {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+

@@ -1,0 +1,51 @@
+.kaiye-details {
+  padding-bottom: 120rpx;
+}
+.updata-time {
+    font-size: 22rpx;
+    line-height: 74rpx;
+    text-align: center;
+    color: #c5c5c5;
+}
+.btm-btn {
+    position: fixed;
+    bottom: 30rpx;
+    left: calc(50% - 250rpx);
+    width: 500rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: white;
+    font-size: 35rpx;
+    text-align: center;
+    background: -webkit-linear-gradient(135deg, #1D5A87 0%, #3992BA 100%);
+    background: linear-gradient(315deg, #1D5A87 0%, #3992BA 100%);
+}
+.recovery-actions {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+.recovery-actions .recovery-actions__action {
+  width: 250rpx;
+  font-weight: normal;
+  background-color: #c2c2c2;
+  color: #333333;
+  text-align: center;
+  padding: 20rpx;
+}
+.recovery-actions .recovery-actions__action--priamry {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  color: #ffffff;
+  background: -webkit-linear-gradient(135deg, #1D5A87 0%, #3992BA 100%);
+  background: linear-gradient(315deg, #1D5A87 0%, #3992BA 100%);
+  margin-left: 20rpx;
+}
+

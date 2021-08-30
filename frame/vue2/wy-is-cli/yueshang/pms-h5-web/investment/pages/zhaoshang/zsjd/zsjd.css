@@ -1,0 +1,34 @@
+/* pages/zhaoshang/zsjd/zsjd.wxss */
+.action-box {
+	display: flex;
+	align-items: center;
+}
+.action-item {
+	margin-left: 10rpx;
+	color: #333;
+	font-size: 24rpx;
+}
+.action-item.active {
+	font-size: 32rpx;
+	color: #3b96be;
+}
+.span-box {
+	display: flex;
+	align-items: center;
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+	color: #dcdcdc;
+	font-size: 32rpx;
+	padding: 30rpx 150rpx 0;
+	justify-content: space-between;
+}
+.span-item {
+	line-height: 40rpx;
+	padding: 0 15rpx;
+	padding-bottom: 24rpx;
+	border-bottom: 4rpx solid transparent;
+}
+.span-item.active {
+	color: #fff;
+	border-bottom-color: #fff;
+	font-size: 36rpx;
+}

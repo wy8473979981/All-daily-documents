@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "销售排名",
+  "usingComponents": {
+    "app-header": "/components/common/header",
+    "app-project-selector": "/components/selector/project",
+    "app-section": "/components/container/section",
+    "app-echarts": "/components/echarts/echarts",
+    "app-table": "/components/table/index",
+    "app-filter-dialog": "/components/filter/dialog",
+    "app-date-picker": "/components/selector/datepicker",
+    "app-filter-chartdialog": "/components/filter/chartdialog"
+  }
+}

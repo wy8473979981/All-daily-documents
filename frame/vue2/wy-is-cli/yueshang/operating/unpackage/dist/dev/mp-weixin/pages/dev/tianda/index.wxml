@@ -1,0 +1,1 @@
+<app-table vue-id="70a32d51-1" values="{{dataList}}" cols="{{cols}}" totalRow="{{totalRow}}" data-event-opts="{{[['^sort',[['sort']]]]}}" bind:sort="__e" bind:__l="__l"></app-table>

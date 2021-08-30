@@ -1,0 +1,23 @@
+.list-mode-item {
+  font-size: 28rpx;
+}
+.list-mode-item.active {
+  color: #3992BA;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.selector {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #3992BA;
+}
+.selector image {
+  margin-left: 10rpx;
+  width: 24rpx;
+  height: 12rpx
+}
+

@@ -1,0 +1,14 @@
+.app-datepicker {
+  display: flex;
+  align-items: center;
+}
+
+.app-datepicker .app-datepicker-split {
+  padding: 0 10rpx;
+}
+
+.app-datepicker .app-datepicker-icon {
+  margin-left: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}

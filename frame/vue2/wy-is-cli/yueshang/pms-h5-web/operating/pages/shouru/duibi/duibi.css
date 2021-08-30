@@ -1,0 +1,28 @@
+/* pages/shouru/duibi/duibi.wxss */
+.slot-right {
+	display: flex;
+}
+.header-right-select {
+	margin-left: 20rpx;
+}
+.select-indicator {
+	display: flex;
+	justify-content: flex-end;
+}
+.line {
+	margin: 0 15rpx;
+}
+.active {
+	color: #3992ba;
+	font-weight: 600;
+}
+.button-tran {
+	width: 570rpx;
+	height: 80rpx;
+	margin: 80rpx auto 0;
+	color: #fff;
+	font-size: 34rpx;
+	line-height: 80rpx;
+	text-align: center;
+	background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
+}

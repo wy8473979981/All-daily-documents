@@ -1,0 +1,12 @@
+/* pages/zuyue/zuyue.wxss */
+.select-indicator {
+	display: flex;
+	justify-content: flex-end;
+}
+.line {
+	margin: 0 15rpx;
+}
+.active {
+	color: #3992BA;
+	font-weight: 600;
+}

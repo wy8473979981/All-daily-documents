@@ -1,0 +1,14 @@
+.app-project-selector {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.app-project-selector .app-project-selector-icon {
+  margin-left: 10rpx;
+  width: 20rpx;
+  height: 10rpx;
+}
+

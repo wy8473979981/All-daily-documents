@@ -1,0 +1,7 @@
+
+  module.exports = {
+    columnSelected: function(selected, row, column) {
+      console.log(selected, row, column)
+      return (selected.keysMap[row[selected.key]] || []).includes(column.key);
+    }
+  }

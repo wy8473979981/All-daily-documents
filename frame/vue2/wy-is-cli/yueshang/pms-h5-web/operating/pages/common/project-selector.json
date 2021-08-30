@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "项目选择（在营）",
+  "usingComponents": {
+    "app-index-list": "@/components/selector/indexes"
+  }
+}

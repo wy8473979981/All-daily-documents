@@ -1,0 +1,12 @@
+{
+	"navigationBarTitleText": "时段客流对比",
+	"usingComponents": {
+		"app-header": "/components/common/header",
+		"app-picker": "/components/selector/datepicker",
+		"app-echarts": "/components/echarts/echarts",
+		"app-lengthways": "/components/table/lengthways",
+		"app-table": "/components/table/index",
+		"app-section": "@/components/container/section",
+		"app-filter-dialog": "/components/filter/dialog"
+	}
+}

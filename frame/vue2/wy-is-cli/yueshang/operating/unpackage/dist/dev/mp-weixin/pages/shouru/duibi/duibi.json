@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "对比",
+  "usingComponents": {
+    "app-section": "/components/container/section",
+    "app-filter-dialog": "/components/filter/dialog",
+    "app-header": "/components/common/header",
+    "app-lengthways": "/components/table/lengthways",
+    "app-picker": "/components/selector/datepicker"
+  }
+}
