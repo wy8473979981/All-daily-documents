@@ -13,6 +13,7 @@ $(function(){
 	var scale = $bigImg.width() / sImgWidth;
 	var $sCursorLeft, $sCursorTop; //表示小放大镜的left和top
 	$smallImg.on("mousemove", function(evt) {
+		console.log("mousemove")
 		var sImgLeft = evt.pageX - $(this).offset().left;//pageX鼠标相对于document的坐标；offset是当前对象相对于文档的坐标
 		
 		var sImgTop = evt.pageY - $(this).offset().top;
@@ -31,6 +32,7 @@ $(function(){
 		});
 	});
 	$smallImg.on("mouseout", function() {
+		console.log("mouseout")
 		$smallCursor.css({
 			"display": "none"
 		});
