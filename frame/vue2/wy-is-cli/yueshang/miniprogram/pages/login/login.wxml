@@ -1,0 +1,78 @@
+<!--pages/login/login.wxml-->
+<view id='login'>
+<!--
+  <view class='ys-figure-wrapper '>
+      <view class="ys-figure">
+        <view class="ys-figure-avatar">
+          <image mode="aspectFill" src="{{figure}}"></image>
+        </view>
+      </view>
+  </view>
+-->
+  <view class="ys-block">
+    <form bindsubmit="formSubmit" >
+      <view class="ys-section">
+        <view class="ys-cell-wrapper">
+            <view class="ys-cell {{cellphoneFocus==true?'focus':''}}" style='width:100%;' >
+                <view class="ys-cell-label">
+                  <view class="ys-icon ys-icon-cellphone">
+                    <image src="../../static/images/icons/icon_phone.png" mode="aspectFit"></image>
+                  </view>
+                </view>
+                <view class="ys-cell-content">
+                    <input type='number' placeholder='请填写' value='' bindinput='phoneInput' bindfocus="setFocus" disabled='{{disabledInput}}' bindblur="setBlur" data-type='cellphone'/>
+                </view>
+                <icon class="clear" type="clear" size="16" wx:if="{{false}}"/>
+            </view><!--ys-cell-->
+
+        </view><!--ys-cell-wrapper-->
+         
+         <view class="ys-cell-wrapper">
+             <view class="ys-cell {{veriCodeFocus==true?'focus':''}}">
+               
+              <view class="ys-cell-label">
+                <view class="ys-icon ys-icon-lock">
+                   <image src="../../static/images/icons/icon_lock.png" mode="aspectFit"></image>
+                </view>
+              </view>
+              <view class="ys-cell-content">
+                  <input placeholder='请填写' value='' maxlength='11' bindfocus="setFocus"  bindblur="setBlur"  bindinput='veriCodeInput' data-type='vericode'/>
+              </view>
+               <icon class="clear" type="clear" size="16" wx:if="{{false}}"/>
+          </view><!--ys-cell-->
+
+          <view id="js-veri-code" bindtap='sendVeriCode' class="{{veriBtnDisabled==true?'disabled':''}}" data-disabled="{{veriBtnDisabled==true?'disabled':''}}">
+                <text>{{veriBtnText}}</text>
+            </view>
+         </view><!--ys-cell-wrapper-->
+        
+        </view><!--ys-section-->
+
+        <view class="notify">
+          <text bindtap="showHowtoModal">获取账号</text>
+        </view>
+        <view class="ys-btn-wrapper">
+          <button class="ys-btn ys-btn-powderblue" bindtap="login">登录</button>
+        </view>
+    </form>
+  </view>   
+</view>
+
+ <view class="ys-modal {{modalShow == true ? 'show':''}}" tabindex="-1" >
+    <view class="ys-modal-dialog" animation="{{modalAnim}}" bindtransitionend="closeHowtoModal" data-show="{{modalStatus}}">
+        <view class="ys-modal-content">
+           <view class="title">获取帐号</view>
+           <view class="content">
+            <text>{{getAccount}}</text>
+              <!-- <text>请使用商户账号登录</text> -->
+              <!-- <text>帐号申请:请先用手机号码注册滴滴卡会员</text> -->
+           </view>
+        </view>
+
+        <view class="modal-close-btn" bindtap="modalAnimReset">
+          <image src="../../static/images/popup-close.png"></image>
+        </view>
+    </view>
+ </view>
+
+ 

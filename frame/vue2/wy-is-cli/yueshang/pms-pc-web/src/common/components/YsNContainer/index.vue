@@ -16,12 +16,16 @@
       <ys-n-list :config="rateConfig" :list="rateList" />
     </div>
 
+    <!-- 顶部其他扩展业务 -->
+    <slot name="topOrder"></slot>
+
     <div class="page-search">
       <ys-n-search
         v-model="currentFormData"
         :update="updateForm"
         :config="formConfig"
         :showExport="showExport"
+        :exprotLeft="exprotLeft"
         @search="handleSearch"
         @reset="handleReset"
         @export="handleExport"
@@ -60,6 +64,9 @@
         @sort-change="sortChange"
         @table-page-change="tablePageChange"
         :max-height="pageHeight"
+        :isDisTable="isDisTable"
+        :newUi="newUi"
+        v-bind="{...tableOrder}"
       ></ys-n-table>
     </div>
   </div>
@@ -101,10 +108,31 @@ export default {
     tableConfig: Array, // 表格组件配置
     tableData: Array, // 表格组件数据
     hasPagination: Boolean, // 是否需要分页
+
+    // 是否二维表格
+    isDisTable:{
+      type:Boolean,
+      default:false
+    },
+    // 是否为新ui
+    newUi:{
+      type:Boolean,
+      default:false
+    },
+    tableOrder:{
+      type:Object,
+      default:()=>{}
+    },
+
+    exprotLeft:{ //导出按钮方向 默认在左  招商需求要求放在右边
+      type:Boolean,
+      default:true
+    }
   },
 
   data() {
     return {
+   
       rateList: {},
 
       chartLegend: [],
@@ -134,6 +162,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.showExport)
     this.pageHeight = document.querySelector('#page').offsetHeight - 20 || 300;
 
     // window.onresize = function() {
@@ -165,7 +194,6 @@ export default {
       if (this.requestConfig.echarts && this.requestConfig.echarts.api) {
         requestArr.push(this.requestConfig.echarts.api(sendData));
       }
-
       Promise.all(requestArr)
         .then(([queryData, echartsList]) => {
           // 处理返回值
@@ -176,10 +204,8 @@ export default {
           // 处理tablelist
           let rk = this.requestConfig.query.responseKey || '';
           let tableData = (rk ? responeData[rk] : responeData) || [];
-
           this.currentTableData = this.sortTable(tableData);
           this.originTableData = cloneDeep(this.currentTableData);
-
           this.$emit('update:tableData', cloneDeep(this.currentTableData))
 
           // 分页
@@ -293,10 +319,12 @@ export default {
       let tableData = cloneDeep(this.currentTableData);
       if (order) {
         tableData.sort((pre, cur) => {
+          const p = pre[prop] === null ? '' : pre[prop]
+          const c = cur[prop] === null ? '' : cur[prop]
           if (order === 'ascending') {
-            return pre[prop] > cur[prop] ? 1 : '-1';
+            return p > c ? 1 : '-1';
           } else {
-            return cur[prop] > pre[prop] ? 1 : '-1';
+            return c > p ? 1 : '-1';
           }
         });
         this.currentTableData = this.sortTable(tableData);
@@ -341,6 +369,8 @@ export default {
 <style lang="scss" scoped>
 .page.overflow-hidden {
   overflow: hidden;
+  padding-bottom: 20px;
+  border-bottom: 0;
 }
 
 .page-table {

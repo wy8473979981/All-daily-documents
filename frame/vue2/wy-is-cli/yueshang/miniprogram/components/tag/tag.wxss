@@ -1,0 +1,25 @@
+text.tag-container{
+  display: inline-block;
+  background: #ccc;
+  color: #555;
+  padding: 10rpx;
+  font-size: 22rpx;
+  text-align: center;
+}
+text.tag-container.info{
+  color: #3789bb;
+  background: skyblue;
+}
+text.tag-container.success{
+  color: #69e88c;
+  background: #c3fbd2;
+}
+
+text.tag-container.danger{
+  color: #f50303;
+  background: #ec5858;
+}
+text.tag-container.warning{
+  color: #e6d819;
+  background: #dbec58;
+}

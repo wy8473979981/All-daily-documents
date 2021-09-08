@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "物品放行单",
+  "usingComponents": {
+    "application-info": "../../../components/applicationInfo/applicationInfo"
+  }
+}

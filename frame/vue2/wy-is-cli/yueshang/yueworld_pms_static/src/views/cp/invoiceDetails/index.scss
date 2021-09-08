@@ -1,0 +1,49 @@
+.center {
+    width: 100%;
+    height: calc(100% - 100px);
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: #f6f5ee;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .ranking-infor {
+        width: 100%;
+
+        .zhubj {
+            height: 300px;
+            padding: 30px 0 50px 0;
+            display: grid;
+            grid-template-columns: 33.33% 33.33% 33.33%;
+            grid-template-rows: 33.33% 33.33% 33.33%;
+
+            .every {
+                p {
+                    color: #050101;
+                    &:first-child {
+                        font-size: 14px;
+                    }
+
+                    &:last-child {
+                        font-size: 18px;
+                        margin-top: 6px;
+                    }
+                }
+            }
+        }
+    }
+}

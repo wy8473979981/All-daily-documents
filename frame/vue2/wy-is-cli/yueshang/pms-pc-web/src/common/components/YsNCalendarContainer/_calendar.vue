@@ -107,7 +107,7 @@ export default {
     displayList() {
       let length = 0;
       if (this.currentList.length === 0) return []
-      if (this.startWeek === 7) {
+      if (this.weekStart === 7) {
         length = this.currentList[0].dayOfWeek
         if (length === 7) length = 0
       } else {
@@ -157,6 +157,7 @@ export default {
       padding-right: 30px;
       text-align: right;
       line-height: 34px;
+      background: #FBFBFB;
     }
   }
 
@@ -182,6 +183,7 @@ export default {
       flex-direction: column;
       padding-bottom: 5px;
       position: relative;
+      background: #FBFBFB;
 
       &-today {
         font-weight: bolder;
@@ -232,7 +234,7 @@ export default {
   }
 
   .isHoliday {
-    background: #FBFBFB;
+    background: transparent;
   }
 }
 </style>

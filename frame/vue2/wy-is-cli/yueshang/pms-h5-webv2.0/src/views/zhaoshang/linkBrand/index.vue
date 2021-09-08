@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-webTitle :data-title="`总部联发品牌数据监控 `">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`总部联发品牌数据监控 `" />
     </div>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">

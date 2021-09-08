@@ -5,13 +5,14 @@
     </section>
     <section class="x-search__btn">
       <el-button type="primary" size="mini" @click="handleClick">查询</el-button>
-      <el-button v-show="showExport" type="primary" size="mini" @click="handleExport">导出</el-button>
+      <el-button v-show="showExport&&exprotLeft" type="primary" size="mini" @click="handleExport">导出</el-button>
       <el-button type="text" size="mini" @click="handleSpread" v-if="formItemLength > 4">
         {{ isSpread ? "收起" : "更多"}}
         <i :class="[isSpread ? 'el-icon-caret-top' : 'el-icon-caret-bottom']"></i>
       </el-button>
       <el-button class="reset-btn" type="text" size="mini" @click="handleReset">重置</el-button>
     </section>
+    <el-button v-show="showExport&&!exprotLeft"  style="margin-left: auto;" type="primary" size="mini" @click="handleExport">导出</el-button>
   </div>
 </template>
 
@@ -34,6 +35,11 @@ export default {
     requestConfig: Object, // 接口请求配置
 
     showExport: Boolean, // 展示导出
+
+    exprotLeft:{ //导出按钮方向 默认在左  招商需求要求放在右边
+      type:Boolean,
+      default:true
+    }
   },
 
   data () {
@@ -89,7 +95,9 @@ export default {
 
     handleReset () {
       this.formData = { ...this.defaultFormData };
-      this.$emit('reset', { ...this.formData })
+      this.$nextTick(()=>{
+        this.$emit('reset', { ...this.formData })
+      })
     },
 
     handleExport() {
@@ -141,7 +149,7 @@ export default {
   &__btn {
     height: 40px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
   ::v-deep .reset-btn.el-button--text {
     color: #898989;

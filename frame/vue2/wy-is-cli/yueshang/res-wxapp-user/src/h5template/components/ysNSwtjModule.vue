@@ -3,13 +3,13 @@
   <div class="module-content">
     <ysSection :collapseable="true">
       <div slot="head-title">
-        <customTags :data="{mainText:'商务条件',subText:'',secondText:'对比上一份合同单价'}"  :height="`24px`" link :mianTextStyle="{width:'80px',fontSize:'14px'}"/>
+        <customTags :data="{mainText:'商务条件',subText:'',secondText:'对比上一份合同单价'}"  :height="`24px`" link :mianTextStyle="{width:'80px',fontSize:'14px'}" @handleClick="handClick"/>
       </div>
       <div class="list-content">
         <div class="list-item">
           <div class="item-left">品牌</div>
           <div class="item-right">
-            <span class="tag-box">
+            <span class="tag-box main-text-range">
               <customTags :data="{mainText:'MUJI无印良品',subText:'',secondText:'优衣库'}"  :className="'red'" :mianTextStyle="{width:'94px',justifyContent:'flex-start'}" />
             </span>
           </div>
@@ -17,7 +17,7 @@
         <div class="list-item">
           <div class="item-left">业态</div>
           <div class="item-right">
-            <span class="tag-box">
+            <span class="tag-box main-text-range">
               <customTags :data="{mainText:'零售配套',subText:'',secondText:'服装'}"  :className="'red'" :mianTextStyle="{width:'94px',justifyContent:'flex-start'}" />
             </span>
           </div>
@@ -25,7 +25,7 @@
         <div class="list-item">
           <div class="item-left">计租面积(m²)</div>
           <div class="item-right">
-            <span class="main-text">80</span>
+            <span class="main-text main-text-range">80</span>
           </div>
         </div>
         <div class="list-item">
@@ -34,14 +34,14 @@
             <span class="main-text">2年0个月0天</span>
             <span class="sub-text">免租60天</span>
             <span class="tag-box">
-              <customTags :data="{mainText:'有批注',subText:'',secondText:''}"  :className="'gray'" :mianTextStyle="{width:'52px',color:'#333333FF'}" />
+              <customTags :data="{mainText:'有批注',subText:'',secondText:''}"  :className="'gray'" :mianTextStyle="{width:'52px',color:'#333333FF'}" @mianHandleClick="handPzClick"/>
             </span>
           </div>
         </div>
         <div class="list-item">
           <div class="item-left">交付日期</div>
           <div class="item-right">
-            <span class="tag-box">
+            <span class="tag-box main-text-range">
               <customTags :data="{mainText:'2021-05-29',subText:'',secondText:'2021-04-01'}"  :className="'red'" :mianTextStyle="{width:'94px',justifyContent:'flex-start'}" />
             </span>
           </div>
@@ -55,28 +55,71 @@
         <div class="list-item">
           <div class="item-left">租金起计日</div>
           <div class="item-right">
-            <span class="main-text">2021-05-29</span>
+            <span class="main-text main-text-range">2021-05-29</span>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="item-left">产权属性</div>
+          <div class="item-right">
+            <span class="main-text main-text-range">销售/返租到期日 2024-05-31</span>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="item-left">签约类型</div>
+          <div class="item-right">
+            <span class="main-text main-text-range">续签</span>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="item-left">空置期(天)</div>
+          <div class="item-right">
+            <span class="main-text main-text-range">30</span>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="item-left">租押方式</div>
+          <div class="item-right">
+            <span class="main-text main-text-range">押2付3</span>
           </div>
         </div>
       </div>
 
     </ysSection>
+	<centerPopup :showPopup.sync='showPopup' :content="content" :type="type" :title="title"></centerPopup>
   </div>
 </template>
 <script>
+import centerPopup from '../../pages/details/components/centerPopup' // 头部按钮组件
 export default {
   name: 'ysNSwtjModule',
   components: {
+	  centerPopup
   },
   data () {
     return {
-      dataList: []
+      dataList: [],
+	  showPopup:false,
+	  type:'',
+	  content:'',
+	  title:''
     }
   },
   computed: {},
   created () { },
   mounted () { },
-  methods: {}
+  methods: {
+	  handClick() {
+		  this.showPopup = true
+		  this.type = 'db'
+		  this.title = '对比上一份合同单价'
+	  },
+	  handPzClick() {
+		this.showPopup = true
+		this.type = ''
+		this.title = '商务批注'
+		this.content = '具体的批注内容，内容较多可滚动查看'  
+	  }
+  }
 };
 </script>
 <style lang="scss" scoped>

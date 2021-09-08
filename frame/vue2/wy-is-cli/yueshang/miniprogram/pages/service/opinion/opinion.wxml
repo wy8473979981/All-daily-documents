@@ -1,0 +1,36 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-opinion' class='ys-block-fixed-footer'>
+  <!-- 备注 -->
+  <view class='ys-block-gap'>
+    <view class='select-wrapper'>
+      <label>类型</label>
+      <view class='picker-wrapper'>
+        <picker bindchange="bindPickerChange" value="{{typeIndex}}" range="{{array}}">
+          <view class="picker">
+            {{array[typeIndex]}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='textarea'>
+      <label>意见反馈</label>
+      <textarea placeholder="请填写您要反馈的内容，我们会竭诚为您服务..." name="textarea" />
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap'>
+    <view class='select-person'>
+      <label>附件</label>
+      <view class='img-wrapper' wx:for="{{imgList}}" wx:key="index">
+        <image class='icon' src='{{item}}'></image>
+      </view>
+      <view class='img-wrapper' bindtap='upload'>
+        <view class='add'>+</view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 提交 </button>
+  </view>
+</view>

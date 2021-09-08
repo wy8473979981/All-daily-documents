@@ -1,8 +1,12 @@
 <script>
 import isFunction from 'lodash/isFunction'
+import cloneDeep from 'lodash/cloneDeep'
 import { copyTxt, formatNumber } from 'utils/utils'
+import YsNSelect from '../YsNSelect/index.vue'
 export default {
   name: 'YsNTable',
+
+  components: { YsNSelect },
 
   model: {
     prop: 'data',
@@ -31,7 +35,7 @@ export default {
     },
 
     height: { // table表格的高度
-      type: Number
+      type: [Number, String]
     },
 
     maxHeight: Number, // table最大高度
@@ -73,18 +77,43 @@ export default {
     },
 
     totals: [Number, String], // 传递过来的总数
+
+    // 是否二维表格
+    isDisTable:{
+      type:Boolean,
+      default:false
+    },
+    // 是否为新ui
+    newUi:{
+      type:Boolean,
+      default:false
+    },
+
+    pageSize: {
+      type: Number,
+      default: 300
+    },
+
+    pagerCount: {
+      type: Number,
+      default: 7
+    },
+
+    pageLayout: {
+      type: String,
+      default: 'total, prev, pager, next, jumper'
+    }
   },
 
   data() {
     return {
       loading: false,
 
-      currentData: JSON.parse(JSON.stringify(this.data)),
-
+      currentData: cloneDeep(this.data),
+      currentConfig: cloneDeep(this.config),
       pageSizes: [10, 25, 30, 50],
-      currentPageSize: 300,
+      currentPageSize: this.pageSize,
       currentPage: 1,
-      pageLayout: 'total, prev, pager, next, jumper',
       pageTotal: 0,
 
       // 滑动table
@@ -94,7 +123,7 @@ export default {
       startX: 0,
       endX: 0,
       distance: 0,
-
+      tableKey: 1
       // customFormatterArr: ['number', 'area', 'money', 'ten-thousand', 'rate'], // 默认自动处理的数据格式，自动增加formatter
     }
   },
@@ -108,14 +137,7 @@ export default {
   },
 
   mounted() {
-    if(this.mouseMove) {
-      this.moveDom = document.querySelector(this.className);
-      this.moveHeaderDom = document.querySelector(this.headerClassName);
-      this.moveDom.addEventListener('mousedown', this.handleMousedown);
-      this.moveDom.style.cursor = 'pointer';
-      this.moveDom.style.userSelect = 'none';
-    }
-    
+   this.setMouseMove()
   },
 
   beforeDestroy() {
@@ -125,8 +147,21 @@ export default {
   },
 
   methods: {
+     //重新设置监听
+    setMouseMove(){
+      if(this.mouseMove) {
+        this.moveDom && this.moveDom.removeEventListener('mousedown', this.handleMousedown);
+        this.moveDom = document.querySelector(this.className);
+        this.moveHeaderDom = document.querySelector(this.headerClassName);
+
+        this.moveDom.addEventListener('mousedown', this.handleMousedown);
+        this.moveDom.style.cursor = 'pointer';
+        this.moveDom.style.userSelect = 'none';
+      }
+      this.$nextTick(() => this.setTableStyle())
+    },
     handleTableChange(key, eventType, value, row) {
-      this.$emit('change', JSON.parse(JSON.stringify(this.currentData)))
+      this.$emit('change', cloneDeep(this.currentData))
       this.$emit('table-change', key, eventType, value, row)
     },
 
@@ -206,7 +241,7 @@ export default {
     },
 
     handleRowStyle({row}) {
-      return row.isSummary ? { 'font-weight': 'bolder', 'color': '#333' } : {}
+      return row.isSummary || row.isBold ? { 'font-weight': 'bolder', 'color': '#333' } : {}
     },
 
     formatterValue(v, type) {
@@ -229,6 +264,37 @@ export default {
 
       return value
     },
+
+    // 设置多级表格的样式
+    setTableStyle() {
+      const headerTh = [...document.querySelectorAll('.el-table__header-wrapper thead.is-group tr:first-child th:not(.gutter):not(.is-leaf)')];
+
+      headerTh.length && headerTh.pop().classList.add('no-after')
+    },
+
+    // 表头收缩点击 需求:只有二级表头下一级可以收缩
+    handleHeaderClose(scope,event){
+      let {currentConfig} = this
+      let newConfig = cloneDeep(currentConfig);
+      let isClose = newConfig[scope.$index].isClose;
+      newConfig[scope.$index].isClose = !isClose
+      // 修改class
+      let className = 'table-header-icon'
+      if(!isClose){
+         //关闭状态下调整class 并且把newConfig的children减少至2个
+         className+=' table-header-icon-close'
+         newConfig[scope.$index].children.splice(2,newConfig[scope.$index].children.length)
+      }else{
+        newConfig[scope.$index].children = [...this.config[scope.$index].children]
+      }
+
+      this.currentConfig = newConfig
+      event.toElement.className = className
+    },
+
+    load() {
+      console.log('lalal')
+    }
   },
 
   watch: {
@@ -244,10 +310,19 @@ export default {
     'data': {
       deep: true,
       handler() {
-        this.currentData = JSON.parse(JSON.stringify(this.data));
+        this.currentData = cloneDeep(this.data);
       }
     },
-
+    config:{
+      deep: true,
+      handler() {
+        this.tableKey++ 
+        this.currentConfig = cloneDeep(this.config);
+        this.$nextTick(()=>{
+          this.setMouseMove()
+        })
+      }
+    },
     totals: {
       handler(val) {
         this.pageTotal = val
@@ -289,18 +364,9 @@ export default {
             break;
           case 'select':
             {
-              const Options = typeof props.options === 'function' ? props.options() : props.options;
-              ItemTemplate = <el-select v-model={scope.row[key]} disabled={isDisable} placeholder={props.placeholder || '请输入'} size="mini" {...{props}} onChange={() => this.handleTableChange(key, 'change', scope.row[key], scope.row)}>
-                {
-                  Options.map((item, index) => {
-                    return <el-option
-                      key={index}
-                      label={item.label}
-                      value={item.value}>
-                    </el-option>
-                  })
-                }
-              </el-select>
+              const ps = {attrs: { ...props }}
+              
+              ItemTemplate = <YsNSelect v-model={scope.row[key]} placeholder={props.placeholder || '请选择'} {...ps} on-change={() => this.handleTableChange(key, 'change', scope.row[key], scope.row)}></YsNSelect>
             }
             break;
           case 'custom':
@@ -330,7 +396,7 @@ export default {
 
     const renderChildren = (data) => {
       // eslint-disable-next-line
-      const { key, label, type, width, props, children, ...prop } = data;
+      const { key, label, type, width, props, children, hasClose, isClose , ...prop } = data;
 
       // 默认显示规则 面积/金额/百分比 靠右显示， 其他的则靠左显示
       const displayRegArr = ['area', 'money', 'rate', 'ten-thousand']
@@ -349,7 +415,7 @@ export default {
       }
 
       let ScopeS = {}
-
+    
       if (type === 'selection' || type === 'index' || type === 'expand') {
         PROPS.align = props.align || 'center'
         PROPS.type = type;
@@ -367,41 +433,72 @@ export default {
 
         if (prop.renderHeader) {
           ScopeS.scopedSlots.header = (scope) => {
-            return prop.renderHeader(h, scope)
+            return prop.renderHeader(scope)
           }
+        }
+      }
+
+      // 收起展开需求 二级表头children大于2时出现展开收起
+      if(hasClose && children.length>0){
+        ScopeS = {
+          scopedSlots: {
+            default: (scope) => {
+              return renderItem(scope, data)
+            }
+          }
+        }
+        ScopeS.scopedSlots.header = (scope) => {
+          let { column } = scope;
+          return  (
+            <span>
+              { column.label } 
+              <i
+                class={['table-header-icon']}
+                on={{['click']: (event)=>{this.handleHeaderClose(scope,event)}}}
+              />
+            </span>
+          )
         }
       }
 
       for (let [key, value] of Object.entries(PROPS)) {
         (value == undefined) && delete PROPS[key]
       }
-
       return <el-table-column
         {...{props: PROPS}}
         {...ScopeS}>
-        { children && children.length ? children.map(item => renderChildren(item)) : '' }
+        { children && children.length ? 
+          children.map(item => renderChildren(item)) 
+         : '' }
       </el-table-column>
     }
 
-    const tableHeightH = this.height ? (this.height - (this.hasPagination ? 60 : 0) + 'px') : '0';
-    const tableHeightMH = this.maxHeight ? (this.maxHeight - (this.hasPagination ? 60 : 0) + 'px') : '0';
+    let heightProps = {}
+    if (this.height === 'auto') {
+      heightProps = { height: '100%' }
+    } else {
+      const tableHeightH = this.height ? (this.height - (this.hasPagination ? 60 : 0) + 'px') : '0';
+      const tableHeightMH = this.maxHeight ? (this.maxHeight - (this.hasPagination ? 60 : 0) + 'px') : '0';
 
-    const tableHeight = tableHeightMH > tableHeightH ? tableHeightMH : tableHeightH
+      const tableHeight = tableHeightMH > tableHeightH ? tableHeightMH : tableHeightH
+
+      heightProps = { maxHeight: tableHeight }
+    }
     // style={{ 'max-height': tableHeight }}
-    return(<div class={['p-table-area', 'table-area' + this.id]} v-loading={this.loading}>
-      <section class="table-area">
+    return(<div class={['p-table-area', 'table-area' + this.id]} style={{ height: this.height === 'auto' ? '0' : 'auto'}} v-loading={this.loading}>
+      <section class="table-area" style={{ height: this.height === 'auto' ? '0' : 'auto'}} >
         <el-table
-          // height="100%"
-          stripe
+          key={this.tableKey}
+          ref="ysnTable"
           rowStyle={this.handleRowStyle}
-          {...{props: this.$attrs}}
+          {...{props: Object.assign({}, this.$attrs, heightProps)}}
           {...{on: this.$listeners}}
-          maxHeight={tableHeight}
           data={this.currentData}
+          class={[this.isDisTable?'disTable':'',this.newUi?'newUi':'']}
           on={{ ['cell-dblclick']: this.handleCellDblclick }}
         >
           {
-            this.config.map((item) => {
+            this.currentConfig.map((item) => {
               return renderChildren(item)
             })
           }
@@ -417,6 +514,7 @@ export default {
             currentPage={this.currentPage}
             pageSizes={this.pageSizes}
             pageSize={this.currentPageSize}
+            pagerCount={this.pagerCount}
             on={{['update:currentPage']: this.handleCurrentChange}}
             on={{['update:pageSize']: this.handleSizeChange}}
             layout={this.pageLayout}

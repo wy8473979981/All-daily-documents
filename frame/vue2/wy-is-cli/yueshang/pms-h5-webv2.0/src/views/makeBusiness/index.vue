@@ -1,6 +1,6 @@
 <template>
   <div :class="'shouru-zujin ' + (recovery.show ? 'recovery' : '')" v-webTitle :data-title="`招商信息`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`招商信息`" />
 
       <div class="app-header">

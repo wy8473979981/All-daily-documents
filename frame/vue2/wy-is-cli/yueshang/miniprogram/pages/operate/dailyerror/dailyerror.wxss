@@ -1,0 +1,26 @@
+/* pages/operate/dailyfinish/dailyfinish.wxss */
+page{
+  font-size: 30rpx;
+  background: #f5f5f5;
+  color: #666;
+}
+#dailyfinish{
+  padding: 0 30rpx;
+}
+.top{
+  padding: 100rpx 0;
+  font-size: 32rpx;
+  text-align: center;
+}
+.top .text{
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #666;
+}
+.bottom{
+  line-height: 40rpx;
+}
+.bottom .content{
+  margin-top: 10rpx;
+}

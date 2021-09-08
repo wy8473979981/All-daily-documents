@@ -54,7 +54,7 @@ export default {
     } else {
 
       if (!this.getCookie('token') && !this.getCookie('uiid') && this.moduleName != 'zhaoshang') {
-        // 本地没有存储 登录信息  并且 除了 招商分析 
+        // 本地没有存储 登录信息  并且 除了 招商分析
         this.getToken()
 
       } else {
@@ -97,6 +97,9 @@ export default {
             params = { uiid: uiid, token: token, source: this.moduleName }
           } else {
             params = { uiid: uiid, token: token }
+          }
+          if(!uiid || !token || uiid === 'undefined' || token === 'undefined' || uiid === 'null' || token === 'null') {
+            return
           }
           let res = await this.$axios.externalLinkServe.getProjectList(params, false)
           if (res.code == 0) {

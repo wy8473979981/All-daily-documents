@@ -31,6 +31,15 @@ export const FormConfig = [
       type: 'date'
     }
   },
+  {
+    key: 'isAssess',
+    label: '', // 业态
+    type: 'select',
+    props: {
+      options: () => enumList.squareFlagAllDict,
+      placeholder: '面积类型'
+    }
+  },
 ]
 
 export const TableConfig = [

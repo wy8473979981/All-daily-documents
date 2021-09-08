@@ -1,0 +1,26 @@
+<template>
+  <div class="app-page-main">
+    <FormItem />
+    <TableList />
+  </div>
+</template>
+<script>
+import FormItem from './blocks/formItem'
+import TableList from './blocks/tableList'
+export default {
+  name: 'BrandLibrary',
+  components: { FormItem, TableList },
+  data() {
+    return {
+
+    }
+  },
+  computed: {},
+  mounted() {
+    console.log(this.$router.app._route.name)
+  },
+  methods: {
+
+  }
+}
+</script>

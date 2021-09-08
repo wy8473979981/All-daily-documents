@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       dataList: [
-        { label: '品牌', key1: '对比', key2: '预算', key3: 'MUJI无印良品MUJI无印良品MUJI无印良品MUJI无印良品MUJI无印良品', status: '0', mainText: '不一致', className: 'red' },
+        { label: '品牌', key1: '对比', key2: '预算', key3: 'MUJI无印良品', status: '0', mainText: '不一致', className: 'red' },
         { label: '业态', key1: '对比', key2: '标准', key3: '零售配套', status: '0', mainText: '不一致', className: 'red' },
         { label: '交付日期', key1: '对比', key2: '预算', key3: '2021-05-29', status: '0', mainText: '有延期', className: 'red' },
         { label: '租金', key1: '对比', key2: '标准', key3: '首年 +8%', status: '1', mainText: '有提高', className: 'dark-blue' },
@@ -78,7 +78,7 @@ export default {
 
       .main-text {
         display: inline-block;
-        width: 42px;
+        flex: 0 0 42px;
         font-size: 14px;
         font-weight: 400;
         color: #575757;
@@ -88,7 +88,7 @@ export default {
       }
       .sub-text {
         display: inline-block;
-        width: 42px;
+        flex: 0 0 42px;
         font-size: 14px;
         font-weight: 400;
         color: #575757;
@@ -98,7 +98,8 @@ export default {
       }
       .second-text {
         height: 19px;
-        width: 152px;
+        // width: 152px;
+        flex: 1;
         line-height: 22px;
         padding-right: 5px;
         font-size: 10px;

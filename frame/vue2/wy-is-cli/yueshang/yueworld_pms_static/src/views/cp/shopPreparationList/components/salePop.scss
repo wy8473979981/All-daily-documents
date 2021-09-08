@@ -1,0 +1,59 @@
+.dialog-box {
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+            padding-top: 8px;
+
+            span {
+                margin-right: 30px;
+            }
+        }
+
+        .right {
+            display: flex;
+
+            span {
+                margin-right: 8px;
+                margin-top: 8px;
+            }
+
+            ::v-deep.el-input__inner {
+                height: 32px;
+                border-radius: 16px;
+            }
+
+            ::v-deep.el-input--medium .el-input__icon {
+                line-height: 32px;
+            }
+
+            .date {
+                display: flex;
+                flex-direction: column;
+
+                span {
+                    width: 215px;
+                    font-size: 12px;
+                    font-family: PingFangSC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #848382;
+                }
+            }
+        }
+    }
+
+    .top-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {}
+    }
+}
+
+.btn-group {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+}

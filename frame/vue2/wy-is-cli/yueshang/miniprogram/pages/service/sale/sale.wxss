@@ -1,0 +1,52 @@
+page{
+  background: #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 100rpx;
+}
+.ys-block-gap{
+  background: #fff;
+}
+.input-wrapper{
+  border-bottom: none;
+}
+.input-info-wrapper{
+  justify-content: space-between;
+}
+.img-wrapper .icon{
+  border-radius: 20rpx;
+}
+.add{
+  border-radius: 20rpx;
+}
+.input-wrapper{
+  border-top: 1rpx solid #f5f5f5;
+}
+.input-wrapper:nth-child(1){
+  border-top: none;
+}
+.input-wrapper label{
+  width: 40%;
+}
+.select-person label text{
+  font-size: 24rpx;
+  color: #999;
+}
+.tips{
+  line-height: 40rpx;
+  background: #fff;
+}
+.tips .title{
+  color: #ff8c35;
+}
+.tips .title image{
+  float: left;
+  margin-top: 5rpx;
+  margin-right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.tips .content{
+  margin-top: 10rpx;
+  color: #999;
+}

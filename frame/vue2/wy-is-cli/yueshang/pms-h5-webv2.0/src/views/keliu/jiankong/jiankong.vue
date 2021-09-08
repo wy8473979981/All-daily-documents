@@ -1,6 +1,6 @@
 <template>
   <div v-webTitle :data-title="`客流监控`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`客流监控`" />
       <!-- <div class="updata-time">数据更新时间：2020-11-10 数据来源系统：PMS系统</div> -->
     </div>

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">组件通信</router-link> |
+      <router-link to="/about">vue sync修饰符示例</router-link> |
+      <router-link to="/slots">slots</router-link>
     </div>
     <router-view />
   </div>

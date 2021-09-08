@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="24pt/编辑备份-2" stroke="#FFFFFF">
+            <path d="M18.75,12.75 L18.75,18 C18.75,18.414225 18.414225,18.75 18,18.75 L6,18.75 C5.58578625,18.75 5.25,18.414225 5.25,18 L5.25,6 C5.25,5.58578625 5.58578625,5.25 6,5.25 L11.25,5.25" id="路径"></path>
+            <polygon id="路径" points="8.25 13.0199625 8.25 15.75 10.99395 15.75 18.75 7.9905375 16.0106625 5.25"></polygon>
+        </g>
+    </g>
+</svg>

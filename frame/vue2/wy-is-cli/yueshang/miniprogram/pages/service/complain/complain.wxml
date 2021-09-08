@@ -1,0 +1,66 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-broadcast' class='ys-block-fixed-footer'>
+  <my-warning id='warningComp'/>
+  <view class='ys-block-gap ys-block-gap-side remind'>
+    非工作时间请首先联系现场值班人员
+  </view>
+  <view class='ys-block-gap ys-block-gap-side header'>
+    <view class='label'>
+      <image src='{{globalData.detailInfo.clerkPhoto || default_avatar}}'></image>
+      <text>{{globalData.detailInfo.clerkName}}</text>
+    </view>
+    <!-- <view class='content' bindtap='goUrl'>我的投诉</view> -->
+  </view>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.detailInfo.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>铺位号</text>
+      <text class='content'>{{globalData.detailInfo.storeNo}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人</text>
+      <text class='content'>{{globalData.detailInfo.clerkName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人电话</text>
+      <text class='content'>{{globalData.detailInfo.bindTel}}</text>
+    </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='select-wrapper'>
+      <label>投诉类型</label>
+      <view class='picker-wrapper'>
+        <picker mode="selector" bindchange="bindPickerChange" range='{{types}}' value='id' range-key="name">
+          <view class="picker">
+            {{types[typesIndex].name}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <!-- 备注 -->
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='textarea'>
+      <label>投诉内容</label>
+      <textarea placeholder="在此描述您遇到的具体问题，将有助于客服人员更快地处理您的申请。" value='{{content}}' bindinput="bindKeyInput" name="textarea" />
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap select-person'>
+    <label>附件</label>
+    <view class='img-wrapper' wx:for="{{imgList}}" wx:key="index">
+      <image class='icon' bindtap='previewImage' data-src='{{item.fullPath}}' src='{{item.fullPath}}'></image>
+      <view class="img-wrapper-del" data-type='0' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>
+    </view>
+    <view class='img-wrapper' wx:if="{{picNum}}">
+      <view class='add' bindtap='upload'>+</view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="submit"> 投诉 </button>
+  </view>
+</view>

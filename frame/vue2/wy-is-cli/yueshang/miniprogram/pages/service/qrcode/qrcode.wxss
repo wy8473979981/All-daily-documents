@@ -1,0 +1,66 @@
+/* pages/service/qrcode/qrcode.wxss */
+
+#ys-qrcode {
+  height: 100vh;
+  background-color: #ec2e50;
+  background: -webkit-linear-gradient(45deg, #f55061 0, #d8054c 100%);
+  background: linear-gradient(45deg, #f55061 0, #d8054c 100%);
+  overflow: hidden;
+}
+.ys-block{
+  margin: 60rpx 50rpx 120rpx;
+  height: calc(100vh - 180rpx);
+  border-radius: 12rpx;
+  background: #fff;
+  text-align: center;
+  color: #333
+}
+.title{
+  font-size: 34rpx;
+  padding: 80rpx 0 90rpx;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+}
+.img-wrapper{
+  position: relative;
+  display: block;
+  height: 460rpx;
+  width: 460rpx;
+  margin: 0 auto;
+}
+.img-wrapper .qrcode{
+  height: 100%;
+  width: 100%;
+}
+.cover{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}
+.cover .icon{
+  margin-top: 190rpx;
+  height: 80rpx;
+  width: 80rpx;
+}
+.cover text{
+  font-size: 30rpx;
+  color: #333;
+}
+text{
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+}
+.tips{
+  margin-top: 110rpx;
+}
+.date{
+  line-height: 60rpx;
+  font-size: 34rpx;
+  color: #333;
+}
+.bottom{
+  margin-top: 80rpx;
+}

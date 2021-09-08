@@ -1,6 +1,6 @@
 <template>
   <div class="shuju-qiankuan-list" v-webTitle :data-title="`欠费-项目列表`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`欠费-项目列表`" />
 
       <div class="app-header">

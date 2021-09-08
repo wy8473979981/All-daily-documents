@@ -1,0 +1,28 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-project-detail'>
+<view class='ys-block note-info'>
+    <view>
+      <label>预留姓名</label>
+      <text>{{items.adviseInfo.reportName || ''}}</text>
+    </view>
+    <view>
+      <label>预留电话</label>
+      <text>{{items.adviseInfo.reportTel || ''}}</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <label>举报内容</label>
+    <view class='content'>{{}}</view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <label>回复内容</label>
+    <!-- <view class='content'>{{items.adviseInfo.conclusion || '暂无'}}</view> -->
+	<rich-text style="white-space: pre-wrap;" space="nbsp" nodes="{{items.adviseInfo.conclusion || '暂无'}}"></rich-text>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>附件</label>
+    <view class='img-wrapper' wx:for='{{images}}' wx:key='{{item.id}}'>
+      <image bindtap='previewImage' data-src='{{globalData.detailInfo.path+item}}' class='icon' src='{{globalData.detailInfo.path+item}}'></image>
+    </view>
+  </view>
+</view>

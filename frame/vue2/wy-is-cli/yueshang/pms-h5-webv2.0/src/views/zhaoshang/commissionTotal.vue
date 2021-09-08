@@ -1,6 +1,6 @@
 <template>
   <div class="home" v-webTitle :data-title="`筹备期全面抽成统计  `">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`筹备期全面抽成统计`" />
       <div class="app-header">
         <div class="app-header-container">

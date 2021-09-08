@@ -1,0 +1,16 @@
+<!-- <text class='tag-container success' wx:if='{{status==="success"}}'>
+  {{statusStr}}
+</text>
+<text class='tag-container completed' wx:if='{{status==="completed"}}'>
+  {{statusStr}}
+</text> -->
+<text class='tag-container info' wx:if='{{status==="info"}}'>{{statusStr}}</text>
+<text class='tag-container success' wx:if='{{status==="success"}}'>{{statusStr}}</text>
+<text class='tag-container danger' wx:if='{{status==="danger"}}'>{{statusStr}}</text>
+<text class='tag-container warning' wx:if='{{status==="warning"}}'>{{statusStr}}</text>
+<text class='tag-container' wx:if='{{status === ""}}'>{{statusStr}}</text>
+
+    <!-- '1': 'success',
+    '3': 'info',
+    '2': 'danger',
+    '4': 'warning' -->

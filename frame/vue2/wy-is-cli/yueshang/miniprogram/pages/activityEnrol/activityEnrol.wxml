@@ -1,0 +1,51 @@
+<wxs module='wIndex' src='../../index.wxs' />
+<view class='page-container'>
+  <view class='info-box pd-h pd-v'>
+    <image src='{{info.imgUrl}}' bindtap='preview' data-src='{{info.imgUrl}}'></image>
+    <view class='detail'>
+      <text class='title'>{{info.title}}</text>
+      <text>活动类型：{{info.type}}</text>
+      <text>活动时间：{{info.time}}</text>
+    </view>
+  </view>
+  <view class='pd-v pd-h title'>选择活动项</view>
+  <view class='list-box'>
+    <view class='list-box-item' wx:for='{{list}}' wx:key='index'>
+      <view class='pd-h pd-v'>
+        <image
+          src='../../static/images/hasChoosed.png'
+          wx:if="{{item.registrationStatus2 === '1' && item.hasEnroled || !available}}"
+          data-item="{{item}}"
+        ></image>
+        <image
+          src='../../static/images/choosed.png'
+          wx:if="{{item.registrationStatus2 === '1' && !item.hasEnroled && available}}"
+          data-item="{{item}}"
+          bindtap='onChoose'
+        ></image>
+        <view
+          class='icon'
+          wx:if="{{item.registrationStatus2 !== '1' && available}}"
+          data-item="{{item}}"
+          bindtap='onChoose'
+        ></view>
+        <view class='item-detail'>
+            <view class='title-box'>
+              <text class='title'>{{item.title}}</text>
+              <tag status='{{item.tagStatus}}' statusStr='{{wIndex.registrationStatus(item.registrationStatus)}}'/>
+            </view>
+          <text>时间：{{item.time}}</text>
+          <text>{{item.content}}</text>
+          <!-- <textarea placeholder='请输入备注' bindinput='bindTextAreaInput' auto-height data-item="{{item}}"></textarea> -->
+          <!-- disabled="{{!(item.registrationStatus2 !== '1' && available)}} -->
+          <input
+            disabled="{{!(item.registrationStatus !== '1' && available)}}"
+            maxlength='25' value='{{item.remark}}' placeholder="请输入备注" bindinput='onInput' data-id='{{item.id}}' class='remark-input'/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='sticky-button' bindtap='onTap' wx:if='{{available && canEnrol}}'>报名</view>
+  <view class='sticky-button expired' wx:elif='{{!available}}'>报名已截止</view>
+  <view class='sticky-button expired' wx:elif='{{available && !canEnrol}}'>已报名</view>
+</view>

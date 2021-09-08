@@ -1,0 +1,46 @@
+<view id="month" class='ys-block-fixed-footer'>
+  <view class='header'>
+    <view class='title'>2018年5月月销售额</view>
+    <view class='content'>
+      <view class='left-side'>
+        <view class='num'>1234561.88</view>
+        <view class='name'>总销售额(万元)</view>
+      </view>
+      <view class='line'></view>
+      <view class='right-side'>
+        <view class='num'>365</view>
+        <view class='name'>总笔数(笔)</view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-block'>
+    <view class='item' wx:for='{{items}}' wx:key='{{item.id}}'>
+      <view class='item-header'>
+        <view class='day'><text>{{item + 1}}日</text></view>
+        <view class='right-side'>
+          <view class='name'>
+            <view>日销售总额(元)</view>        
+            <view>日总笔数(笔)</view>
+          </view>
+          <view class='num'>
+            <view>31233.00</view>        
+            <view>234</view>
+          </view>
+        </view>
+      </view>
+      <view class='item-content'>
+        <label>珠宝</label>
+        <input value='12983.00'></input>
+        <input value='132'></input>
+      </view>
+      <view class='item-content'>
+        <label>黄金</label>
+        <input value='12983.00'></input>
+        <input value='132'></input>
+      </view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 提报 </button>
+  </view>
+</view>

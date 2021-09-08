@@ -1,0 +1,102 @@
+<view id='overtime' class='ys-block-fixed-footer'>
+  <my-warning
+    id='warningComp'
+  />
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>铺位号</text>
+      <text class='content'>{{globalData.storeNo}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人</text>
+      <text class='content'>{{globalData.clerkName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人电话</text>
+      <text class='content'>{{globalData.bindTel}}</text>
+    </view>
+  </view>
+  <!-- overtime -->
+  <view class='ys-block-gap ys-block-gap-side'>
+  <view class='select-wrapper'>
+    <label>加班事项</label>
+    <view class='picker-wrapper'>
+      <picker bindchange="bindPickerChange" value='id' range-key="name" range="{{types}}">
+        <view class="picker">
+          {{types[typeIndex].name}}
+          <image src='../../../static/images/icon_arrow_right.png'></image>
+        </view>
+      </picker>
+    </view>
+  </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-side'>
+ 
+    <view class='select-wrapper'>
+      <label>加班日期</label>
+      <view class='picker-wrapper'>
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+        <!-- <my-datepicker start="{{startDate}}" end="{{endDate}}" current="current"/> -->
+      </view>
+    </view>
+    <view class='select-wrapper'>
+      <label>加班开始时间</label>
+      <view class='picker-wrapper'>
+        <picker mode="time" value="{{startTime}}" start="{{startTimeBegin}}" end="24:00" bindchange="bindTimeStart">
+          <view class="picker">
+            {{startTime}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='select-wrapper'>
+      <label>加班结束时间</label>
+      <view class='picker-wrapper'>
+        <picker mode="time" value="{{endTime}}" start="00:00" end="24:00" bindchange="bindTimeEnd">
+          <view class="picker">
+            {{endTime}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <!-- admin -->
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='input-wrapper'>
+      <label>现场负责人</label>
+      <input placeholder-class="placeholder" placeholder='点击输入' data-key='name' bindinput='bindKeyInput' value='{{name}}'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>联系电话</label>
+      <input placeholder-class="placeholder" type='number' placeholder='点击输入' data-key='phone' bindinput='bindKeyInput' value='{{phone}}'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>人数</label>
+      <input type='number' placeholder-class="placeholder" placeholder='点击输入' data-key='num' bindinput='bindKeyInput' value='{{num}}'></input>
+    </view>
+  </view>
+  <!-- 备注 -->
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='textarea'>
+      <label>申请说明</label>
+      <textarea placeholder="请填写说明" value='{{remark}}' bindinput='bindKeyInput' data-key='remark' name="textarea" />
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <!-- <form class="form-id" bindsubmit="submit" report-submit='true' >
+      <button form-type="submit" type="default" size="mini"></button>
+    </form> -->
+    <button bindtap="confirm" class='ys-btn ys-footer-btn ys-btn-powderblue'> 提交 </button>
+  </view>
+</view>

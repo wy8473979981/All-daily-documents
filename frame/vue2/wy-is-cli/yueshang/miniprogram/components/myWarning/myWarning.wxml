@@ -1,0 +1,3 @@
+<view class='warning' hidden='{{!visible}}'>
+    <text>{{txt}}</text>
+  </view>

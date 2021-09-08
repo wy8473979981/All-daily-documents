@@ -1,6 +1,6 @@
 <template>
   <div class="rent" v-webTitle :data-title="`租约到期-项目`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`租约到期-项目`" />
       <div class="app-header">
         <div class="app-header-container">

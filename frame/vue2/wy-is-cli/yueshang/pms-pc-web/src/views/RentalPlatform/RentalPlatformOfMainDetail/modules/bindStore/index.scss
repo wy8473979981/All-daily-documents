@@ -1,0 +1,128 @@
+.bind-store--content {
+  flex: 1;
+  height: 0;
+  display: flex;
+  overflow: hidden;
+
+  .left {
+    flex: 1;
+    height: 100%;
+    width: 0;
+    padding-right: 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    .store-list {
+      height: 48px;
+      box-sizing: border-box;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      section {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .current {
+        color: $subMenuHover;
+      }
+    }
+
+    .map-area {
+      flex: 1;
+      height: 0;
+    }
+  }
+
+  .right {
+    width: 460px;
+    background-color: #FDFCFA;
+    padding: 14px 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    ::v-deep.el-table__body-wrapper tr {
+      background-color: #FDFCFA;
+    }
+  }
+
+  .store-list {
+    display: flex;
+    background-color: #FDFCFA;
+    height: 20px;
+    align-items: baseline;
+    font-size: 12px;
+
+    &--title {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    &--detail .unequal {
+      color: #6F120C;
+    }
+  }
+
+  .search-area {
+    display: flex;
+
+    &--input {
+      width: 232px;
+    }
+  }
+
+  .tab-area {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+
+    .tab-list {
+      display: flex;
+      width: 270px;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      line-height: 30px;
+
+      &--item {
+        transition: all 0.5s;
+        cursor: pointer;
+        position: relative;
+
+        &:after {
+          content: '';
+          width: 0;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 2px;
+          transition: all 0.5s;
+          background-color: $subMenuHover;
+        }
+      }
+
+      &--item.active {
+        font-size: 16px;
+        font-weight: bold;
+        color: $subMenuHover;
+
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+}
+
+.exit-tips {
+  color: #6F120C;
+  font-size: 12px;
+  margin-top: 5px;
+}

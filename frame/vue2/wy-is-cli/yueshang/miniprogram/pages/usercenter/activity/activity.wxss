@@ -1,0 +1,28 @@
+/* pages/usercenter/activity/activity.wxss */
+page{
+  background-color:#f5f5f5;
+
+}
+#activity .ys-list-wrapper{
+  height: calc(100vh - 88rpx);
+}
+#activity .ys-list-wrapper .list-item{
+  min-height:218rpx;
+  height:auto;
+}
+#activity .list-item .sub-title{
+  font-size:24rpx;
+} 
+
+#activity .col-left{
+  flex-basis: 200rpx;
+  flex-grow:0;
+}
+#activity .col-left image{
+  width:200rpx;
+  height:156rpx;
+}
+
+#activity .col-right{
+  padding-left:30rpx;
+}

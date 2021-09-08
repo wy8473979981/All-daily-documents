@@ -1,0 +1,247 @@
+
+// TODO:目前为在element-menu中改造，样式强行覆盖，后续演示版本上架后需优化
+#app {
+
+  &.app-nomenu{
+    .main-container{
+      margin-left: 0!important;
+    }
+    .sidebar-container {
+      display: none!important;
+    }
+    .nav-title-content {
+      display: none!important;
+    }
+    .home-container {
+      width: 1160px!important;
+    }
+    .home-container .el-container .el-header .user-container {
+      right: 50px!important;
+    }
+  }
+  .main-container {
+    min-height: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: margin-left .28s;
+    margin-left: $sideBarWidth;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-page-main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .max-area{
+    flex: 1;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    height: 100%;
+    position: absolute;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+    padding-left: 16px;
+    box-sizing: border-box;
+    background: #FDFCFA;
+
+    .el-icon-arrow-down{
+      display: none;
+    }
+    // reset element-ui css
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+    }
+
+    .el-scrollbar__bar.is-vertical {
+      right: 0px;
+    }
+
+    .el-scrollbar {
+      height: 100%;
+    }
+
+    &.has-logo {
+      .el-scrollbar {
+        height: calc(100% - 184px);
+      }
+    }
+
+    .is-horizontal {
+      display: none;
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .svg-icon {
+      margin-right: 16px;
+    }
+
+    .el-menu {
+      background-color: #FDFCFA !important;
+      border: none;
+      height: 100%;
+      width: 100% !important;
+    }
+
+    // menu hover
+    .submenu-title-noDropdown,
+    .el-submenu__title {
+      width: 242px;
+      height: 28px;
+      padding: 0;
+      line-height: 28px;
+      margin-bottom: 8px;
+      background: $menuDefaultBg;
+      color: $menuDefaultColor;
+      border-radius: 16px;
+      padding-left: 40px !important;
+      span{
+        vertical-align: inherit;
+      }
+      &:hover {
+        // background-color: $menuHover !important;
+        color: $menuHover !important;
+      }
+    }
+
+    .is-active>.el-submenu__title,.el-menu-item.is-active.submenu-title-noDropdown {
+      color: $subMenuActiveText !important;
+      background-color: $menuHover !important;
+    }
+
+    // .menu-wrapper>.el-submenu.is-active{
+    //   padding: 8px 0;
+    // }
+
+    .menu-wrapper:not(.nest-menu) {
+      margin-bottom: 8px;
+    }
+
+    & .nest-menu .el-submenu>.el-submenu__title,
+    & .el-submenu .el-menu-item {
+      width: $sideBarWidth !important;
+      background-color: $subMenuBg !important;
+      &:hover {
+        background-color: $subMenuHover !important;
+      }
+      
+    }
+
+    // 二级样式
+    .nest-menu.menu-wrapper>.el-submenu.is-active{
+      padding: 0;
+    }
+
+    & .nest-menu .el-menu-item,
+    & .nest-menu>.el-submenu>.el-submenu__title{
+      min-width:194px !important;
+      width:194px !important;
+      height: 28px;
+      line-height: 28px;
+      border-radius: 16px;
+      padding: 0 0 0 40px !important;
+      margin-left: 48px;
+      background-color: $subMenuBg !important;
+      box-sizing: border-box;
+      color: $menuDefaultColor;
+      margin-bottom: 8px;
+      &:hover {
+        color: $subMenuHover !important;
+        background-color:$subMenuBg !important;
+      }
+
+      // 二级选中
+      &.is-active {
+        background-color: $subMenuHover !important;
+        color: $subMenuBg !important;
+        position: relative;
+        &::after{
+          content: '';
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          width: 14px;
+          height: 14px;
+          border-radius: 14px;
+          background-color: #fff;
+          margin-top: -7px;
+        }
+      }
+    }
+    // 二级选中
+    & .nest-menu>.el-submenu.is-active>.el-submenu__title{
+      background-color: $subMenuHover !important;
+      color: $subMenuBg !important;
+      position: relative;
+      &::after{
+        content: '';
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 12px;
+        background-color: #fff;
+        margin-top: -7px;
+      }
+    }
+    .el-menu-item span {
+      height: 14px;
+      display: inline-block;
+      line-height: 14px;
+      margin-top: -2px;
+    }
+  
+    // 三级
+    & .nest-menu .nest-menu .el-menu-item{
+      background: none !important;
+      min-width: 160px !important;
+      width: 160px !important;
+      border-bottom: 1px solid #D1CEC9;
+      border-radius: 0;
+      box-sizing: border-box;
+      margin-left: 82px;
+      padding-left: 10px !important;
+      &:hover{
+        color:$subMenuHover ;
+      }
+
+      &.is-active{
+        color:$subMenuHover !important;
+        border-color:$subMenuHover ;
+      }
+    }
+  }
+
+
+  .withoutAnimation {
+
+    .main-container,
+    .sidebar-container {
+      transition: none;
+    }
+  }
+}

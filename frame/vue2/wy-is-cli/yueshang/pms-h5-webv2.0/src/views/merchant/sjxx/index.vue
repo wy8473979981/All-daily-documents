@@ -1,6 +1,6 @@
 <template>
   <div v-webTitle :data-title="`商家信息`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`商家信息`" />
     </div>
     <ys-n-section title="商家信息">
@@ -95,12 +95,13 @@ export default {
           rows: []
         }
       },
-      selected: { projectId: "", label: "商家", },
+      selected: { projectId: "", label: "商家" },
       query: {
         limit: 100,
         offset: 1,
         bisShopId: ''
-      }
+      },
+      // showNav: true
     };
   },
 
@@ -108,16 +109,17 @@ export default {
   props: {},
 
   mounted () {
+    // if(this.routerParams.hideNav === '1' || this.routerParams.hideNav === 1) {
+    //   this.showNav = false
+    // }
     this.setData({
       'query.bisShopId': this.routerParams.bisShopId
     });
     this.loadData();
   },
   methods: {
-    loadData: async function () {
-      try {
-        await this.$axios.merchantServe.getMerchantDetail(this.query, false).then(res => {
-
+     async loadData () {
+       await this.$axios.merchantServe.getMerchantDetail(this.query, false).then(res => {
           if (res.code == 200) {
             const { data } = res
 
@@ -192,7 +194,6 @@ export default {
                 maturity: item.maturity,
                 maturityDate: item.maturityDate,
                 termination: item.termination,
-                maturity: item.maturity,
                 effectflg: item.effectflg,
                 rentsquare: item.rentsquare
               };
@@ -221,11 +222,8 @@ export default {
             this.setData(setData);
           }
         })
-      } catch (e) {
-        console.log(e)
-      }
     },
-    checkboxChange: function (e) {
+    checkboxChange (e) {
       let checked = !this.checkbox.checked;
       let fileRows = [];
 

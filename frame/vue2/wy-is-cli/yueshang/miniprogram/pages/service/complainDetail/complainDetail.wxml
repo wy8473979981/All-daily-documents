@@ -1,0 +1,105 @@
+<!--pages/service/requestNote/requestNote.wxml-->
+<view id='ys-overtime-detail' class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap'>
+    <application-info info='{{info}}'/>
+  </view>
+  <!-- <view class='ys-block ys-block-gap'>
+    <view class='item-wrapper'>
+      <label>现场负责人</label>
+      <text>{{items.personInCharge}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>联系电话</label>
+      <text>{{items.phoneNumber}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>人数</label>
+      <text>{{items.overtimePersonNum}}人</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <view class='item-wrapper'>
+      <label>开始时间</label>
+      <text>{{items.overtimeBegin}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>结束时间</label>
+      <text>{{items.overtimeEnd}}</text>
+    </view>
+    <view class='item-wrapper'>
+      <label>加班类型</label>
+      <text wx:if='{{items.overtimeType == "1"}}'>打扫卫生</text>
+      <text wx:if='{{items.overtimeType == "2"}}'>盘货</text>
+      <text wx:if='{{items.overtimeType == "3"}}'>维修</text>
+      <text wx:if='{{items.overtimeType == "4"}}'>做报表</text>
+      <text wx:if='{{items.overtimeType == "5"}}'>其他</text>
+    </view>
+  </view> -->
+  <view  class='ys-block ys-block-gap'>
+    <view class='item-wrapper'>
+      <label>投诉类型</label>
+      <text>{{items.adviseInfo.subject}}</text>
+    </view>
+  </view>
+  <view class='ys-block ys-block-gap'>
+    <label>投诉说明</label>
+    <view class='content'>{{items.adviseInfo.advise}}</view>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>投诉附件</label>
+    <view class='img-wrapper' wx:for='{{images}}' wx:key='{{item.id}}'>
+      <image bindtap='previewImage' data-src='{{globalData.detailInfo.path + item}}' class='icon' src='{{globalData.detailInfo.path + item}}'></image>
+    </view>
+  </view>
+  <view class='chao-song ys-block-gap'>
+    <label>反馈附件</label>
+    <view class='img-wrapper' wx:for='{{replyImgs}}' wx:key='{{item.id}}'>
+      <image bindtap='previewImage' data-src='{{globalData.detailInfo.path + item}}' class='icon' src='{{globalData.detailInfo.path + item}}'></image>
+    </view>
+  </view>
+  <view class='ys-title'>流程进展</view>
+  <view class='ys-block evolve'>
+    <view class='lists'>
+      <view wx:for='{{items.processes}}' wx:key="items.id" class='list'>
+        <image class='icon' src='../../../static/images/icon_finish.png' wx:if='{{item.result == "0"}}'></image>
+        <image class='icon' src='../../../static/images/icon_wait.png' wx:if='{{item.result == "1"}}'></image>
+        <image class='icon' src='../../../static/images/icon_remark.png' wx:if='{{item.result == "2"}}'></image>
+        <image class='icon' src='../../../static/images/icon_warn.png' wx:if='{{item.result == "3"}}'></image>
+        <view class='header'>
+          <text class='title'>{{item.segment}}</text>
+          <text class='name'>{{item.processor}}</text>
+        </view>
+        <view class='date'>
+          <view>
+            <text>{{item.finishTime}}</text>
+          </view>
+          <text class='ballon-tips'><text class='triangle'></text>{{item.replyContent}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='ys-title'>满意度评价</view>
+  <view class='ys-block pingjia_div'>
+  	  <view class="pingjia_item pingjia_bs">
+  		  <view class="pingjia_title">响应速度</view>
+  		  <view class="pingjia_item">
+  			  <image wx:for='{{pingjia_sudu}}' wx:key="id" src='{{item.src}}'></image>
+  		  </view>
+  	  </view>
+  	  <view class="pingjia_item pingjia_bs">
+  	  		  <view class="pingjia_title">服务质量</view>
+  	  		  <view class="pingjia_item">
+  	  			  <image wx:for='{{pingjia_zhiliang}}' wx:key="id" src='{{item.src}}'></image>
+  	  		  </view>
+  	  </view>
+  	  <view class="pingjia_item pingjia_bs">
+  	  		  <view class="pingjia_title">服务态度</view>
+  	  		  <view class="pingjia_item">
+  	  			  <image wx:for='{{pingjia_taidu}}' wx:key="id" src='{{item.src}}'></image>
+  	  		  </view>
+  	  </view>
+  </view>
+  <view class='ys-fixed-footer' wx:if='{{statusCode == 2 && info.clerkId == userClerkId}}'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue submit' bindtap='goUrl'>去评价</button>
+  </view>
+</view>

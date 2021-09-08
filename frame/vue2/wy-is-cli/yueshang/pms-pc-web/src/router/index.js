@@ -7,8 +7,8 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 import { baseApi } from 'api/base'
-import isEmpty from 'lodash/isEmpty'
-import { getSession, setSession } from 'utils/utils'
+// import isEmpty from 'lodash/isEmpty'
+// import { getSession, setSession } from 'utils/utils'
 
 Vue.use(VueRouter)
 
@@ -23,8 +23,8 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    redirect: '/or-ranking-headquarters',
-    component: () => import('views/index/index.vue')
+    redirect: '/rp-rental-platform-main',
+    component: () => import('views/RentalPlatform/RentalPlatformOfMain/index.vue')
   },
   // {
   //   path: '/ranking-of-headquarters',
@@ -47,18 +47,24 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  if (!isEmpty(getSession('enumList'))) {
-    const list = JSON.parse(getSession('enumList'))
-    Store.commit('base/modifyEnum', list)
+  // if (!isEmpty(getSession('enumList'))) {
+  //   const list = JSON.parse(getSession('enumList'))
+  //   Store.commit('base/modifyEnum', list)
+  //   next()
+  // } else {
+  //   baseApi.getAllEnum().then(res => {
+  //     Store.commit('base/modifyEnum', res)
+  //     setSession('enumList', JSON.stringify(res), false)
+  //   }).finally(() => {
+  //     next()
+  //   })
+  // }
+
+  baseApi.getAllEnum().then(res => {
+    Store.commit('base/modifyEnum', res)
+  }).finally(() => {
     next()
-  } else {
-    baseApi.getAllEnum().then(res => {
-      Store.commit('base/modifyEnum', res)
-      setSession('enumList', JSON.stringify(res), false)
-    }).finally(() => {
-      next()
-    })
-  }
+  })
 })
 
 router.afterEach(() => {

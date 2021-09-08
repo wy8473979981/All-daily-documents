@@ -1,0 +1,64 @@
+<!--pages/operate/billOld/billOld.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+<view id="bill">
+  <view class='ys-swiper-tab'>
+    <view class='item-wrapper first' wx:for="{{tabs}}" wx:key="idx">
+      <view class="swiper-tab-item {{item.id == currentTab ? 'active':''}}" data-current="{{item.id}}" bindtap="clickTab">{{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class='container'>
+    <view class='papel'>
+      <text class="tips">最迟应付日期：{{lists.mustDate}}</text>
+      <view class='bill'>
+        <view class='label'>本期账单金额</view>
+        <text class="money">￥{{num.filterNum(lists.mustMoney)}}</text>
+      </view>
+      <view class='side'>
+        <view class='left'>
+          <view class='label'>本期已付</view>
+          <text class='money'>￥{{num.filterNum(lists.factMoney)}}</text>
+        </view>
+        <view class='right'>
+          <view class='label'>累计欠费</view>
+          <text class='money'>￥{{num.filterNum(lists.oweMoneyTotal)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='ys-block list'>
+      <view class='title'>
+        <text>历史账单</text>
+      </view>
+      <view class='items'>
+        <view class='item' wx:for="{{lists.historyBill}}" wx:for-index="idx" wx:for-item="item">
+          <view class='item-info'>
+            <view class='type'>
+              <label>类型:</label>
+              <text>{{item.typeName}}</text>
+            </view>
+            <view class='money'>
+              <label>金额:</label>
+              <text>{{num.filterNum(item.mustMoney)}}</text>
+            </view>
+            <view class='status'>
+              <label>状态:</label>
+              <text style='color:#02d7c0;' wx:if="{{item.oweMoney == 0}}">已缴清</text>
+              <text style='color:#ffa300;' wx:if="{{item.oweMoney != 0}}">未缴清</text>
+            </view>
+          </view>
+          <view class='date-list'>
+            <view>
+              <label>账期:</label>
+              <text>{{item.startDate}}~{{item.endDate}}</text>
+            </view>
+            <view>
+              <label>最迟缴费日期:</label>
+              <text>{{item.mustDate}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

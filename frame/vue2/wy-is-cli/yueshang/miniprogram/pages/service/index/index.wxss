@@ -1,0 +1,124 @@
+/* pages/ys-service/index/index.wxss */
+#ys-service{
+  font-size: 30rpx;
+  background: #f5f5f5;
+}
+#ys-service .header{
+  background-color:#ffa200;
+  overflow: hidden;
+  padding-bottom: 40rpx; 
+}
+.header .group .item{
+  float: left;
+  width: 33.33333%;
+  height: 140rpx;
+  padding-top: 40rpx; 
+  line-height: 60rpx;
+  color: #fff;
+  text-align: center;
+}
+.header .group image{
+  display: block;
+  height: 80rpx;
+  width: 80rpx;
+  margin: 0 auto;
+}
+#ys-service .ys-block{
+  background: #fff;
+}
+.ys-block .title{
+  padding: 25rpx 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-bottom: 1rpx solid #eee;
+  font-size: 32rpx;
+}
+.title text {
+  position: relative;
+  padding-left: 20rpx;
+  font-weight:bold;
+  color:#262626;
+}
+.title text::after{
+  position: absolute;
+  content: '';
+  background: #ffa200;
+  top: 5rpx;
+  left: 0;
+  height: 35rpx;
+  width: 8rpx;
+}
+.title image{
+  float: right;
+  margin-top: 7rpx;
+  height: 25rpx;
+  width: 12rpx;
+}
+.ys-block .items{
+  height:calc( 100vh - 520rpx );
+}
+.ys-block .item {
+  padding: 30rpx 25rpx; 
+  border-bottom: 1px solid #f5f5f5;
+}
+.bottom .user{
+  color: #666;
+}
+.list{
+  position: relative;
+  height: 106rpx;
+  border-bottom:1rpx solid #eee;
+}
+.left-side{
+  position: absolute;
+  left: 0;
+  right: 150rpx;
+  top: 13rpx;
+  height: 80rpx;
+  line-height: 40rpx;
+  padding: 0rpx 30rpx;
+}
+.right-side{
+  position: absolute;
+  right: 0;
+  top: 13rpx;
+  height: 80rpx;
+  width: 148rpx;
+  border-left: 2rpx solid #f5f5f5;
+  text-align: center;
+  color: #ff0000;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}
+.right-side image{
+  display: block;
+  height: 30rpx;
+  width: 30rpx;
+  margin: 5rpx auto;
+}
+.ys-block .list .top, .bottom{
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+} 
+.ys-block .list .top{
+  font-size: 30rpx;
+}
+.ys-block .list .bottom{
+  font-size: 24rpx;
+}
+.ys-block .list .name, .status{
+  color: #262626;
+}
+.ys-block .noData{
+  padding-top: 200rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #b2b2b2;
+}
+.ys-block .noData image{
+  display: block;
+  height: 200rpx;
+  width: 200rpx;
+  margin: 0 auto;
+}

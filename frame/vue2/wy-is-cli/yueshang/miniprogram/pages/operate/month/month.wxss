@@ -1,0 +1,116 @@
+/* pages/operate/month/month.wxss */
+page{
+  font-size: 30rpx;
+  background:#f5f5f5;
+}
+#month .header{
+  padding: 0 30rpx;
+  background: #02d6c0;
+  color: #fff;
+}
+.header .title{
+  line-height: 100rpx;
+  word-spacing: 2rpx;
+  color: #fff;
+}
+.header .content{
+  overflow: hidden;
+}
+.header .content .left-side{
+  float: left;
+  width: 60%;
+  text-align: left;
+}
+.content .line{
+  float: left;
+  height: 40rpx;
+  margin-top: 10rpx;
+  border-right: 2rpx solid #fff;
+}
+.content .num {
+  font-size: 60rpx;
+  line-height: 60rpx;
+}
+.header .content .right-side{
+  float: right;
+  width: 30%;
+}
+.header .name{
+  margin: 20rpx 0 40rpx 0; 
+  color: #fff;
+}
+.ys-block{
+  margin: 25rpx 30rpx;
+}
+.item{
+  margin-top: 25rpx;
+  background: #fff;
+}
+.item .item-header{
+  padding: 25rpx 0;
+  overflow: hidden;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.item .item-header .day{
+  float: left;
+  width: 20%;
+  align-items: center;
+}
+.day text{
+  display: inline-block;
+  height: 60rpx;
+  margin-top: 15rpx;
+  width: 100%;
+  padding-right: 20rpx;
+  border-radius: 40rpx;
+  text-align: right;
+  line-height: 60rpx;
+  margin-left: -50%;
+  background: #f7b84f;
+  color: #fff;
+}
+.item-header .right-side{
+  float: left;
+  width: 80%;
+}
+.item-header .right-side .name view{
+  width: 50%;
+  float: left;
+  height: 50rpx;
+  line-height: 50rxp;
+  color: #999;
+}
+.item-header .right-side .num  view{
+  width: 50%;
+  float: left;
+  height: 40rpx;
+  line-height: 40rxp;
+  font-size: 34rpx;
+  color: #333;
+}
+.item-content{
+  display: flex;
+  padding-top: 25rpx;
+}
+.item-content:nth-last-child(1){
+  padding-bottom: 25rpx;
+}
+.item-content label{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #999;
+}
+.item-content input{
+  border: 1rpx solid #f5f5f5;
+  width: 30%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #666;
+  padding: 0 10rpx;
+}
+.item-content input:nth-last-child(1){
+  margin-left: 10%;
+}

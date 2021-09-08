@@ -1,0 +1,106 @@
+<wxs module='wIndex' src='../../index.wxs' />
+<view id='ys-question'>
+  <image class='beijing' src='../../static/images/question-beijing.jpg'></image>
+  <view wx:if="{{!isConfirm}}">
+    <view class='info' wx:if="{{infoShow}}">
+      <view class='block'>
+        <view class='title'>{{lists.title}}</view>
+        <view class='content'>尊敬的合作伙伴：</view>
+        <view class='content'>为了能给你提供更好的沟通和服务，创造廉洁高效的合作机制，特邀请你对我们的管理质量进行调查评价，回答以下问题，在相应的选项内打“√”，我们会做出系统的分析和改进，谢谢你能够提出宝贵的改进意见。</view>
+        <view class='content'>本次调查采用匿名形式，相关问卷结果会直接系统推送到商业集团监审部，其他部门和个人都不会知晓相关信息。同时，监审部承诺您所反映的信息将严格保密，请放心作答。</view>
+        <view class='content'>
+          宝龙商业集团监审部举报邮箱：
+          <view>syjs@powerlong.com</view>
+        </view>
+        <button class='ys-btn' bindtap="start">开始问卷</button>
+      </view>
+    </view>
+    <view class='question' wx:if="{{!infoShow}}">
+      <view class='title'>{{questions.name}}</view>
+      <!-- 问题列表循环 -->
+      <view wx:for="{{questions.questionList}}" wx:key="parentId" wx:for-item="parent" wx:if="{{parent.number == num}}">
+        <view class='block' wx:if="{{parent.type == 1}}">
+          <view class='type'>
+            <text wx:if="{{parent.nature == 1}}" class='must'>必填</text>
+            <text wx:if="{{parent.type == 1}}" class='single'>单选</text>
+          </view>
+          <view class='name'>{{parent.number}}、{{parent.name}}</view>
+          <view class='radio-wrapper' wx:for="{{parent.answerList}}" wx:key="idx" wx:for-item="childItem" bindtap='selectRadio' data-childId="{{childItem.id}}" data-number="{{parent.number}}" data-checked="{{parent.checked}}">
+            <image wx:if="{{parent.checked != childItem.id}}" src='{{questionRadio}}'></image>
+            <image wx:if="{{parent.checked == childItem.id}}" src='{{questionRadioActive}}'></image>
+            <view>{{childItem.name}}</view>
+          </view>
+        </view>
+
+        <view class='block' wx:if="{{parent.type == 2}}">
+          <view class='type'>
+            <text wx:if="{{parent.nature == 1}}" class='must'>必填</text>
+            <text wx:if="{{parent.type == 1}}" class='single'>单选</text>
+          </view>
+          <view class='name'>{{parent.number}}、{{parent.name}}</view>
+          <view class='radio-wrapper' wx:for="{{parent.answerList}}" wx:key="idx" wx:for-item="childItem" bindtap='selectRadio' data-childId="{{childItem.id}}" data-number="{{parent.number}}" data-checked="{{parent.checked}}" >
+            <image wx:if="{{parent.checked != childItem.id}}" src='{{questionRadio}}'></image>
+            <image wx:if="{{parent.checked == childItem.id}}" src='{{questionRadioActive}}'></image>
+            <view>{{childItem.name}}</view>
+          </view>
+
+          <view wx:for="{{parent.answerList}}" wx:key="idx" wx:for-item="childItem">
+            <view wx:if="{{childItem.secondLevelList.length > 0 && childItem.id== parent.checked}}">
+              <view class='line'>
+                <text>如果选择“是”，请多选下列项目</text>
+                <view class='type'>
+                  <text class='multiple'>多选</text>
+                </view>
+              </view>
+              <view class='checkbox-wrapper' wx:for="{{childItem.secondLevelList}}" wx:key="idx" wx:for-item="childChildItem" bindtap='selectCheckbox' data-number="{{parent.number}}" data-checked="{{parent.checked}}"  data-parentId="{{childItem.id}}" data-childId="{{childChildItem.id}}">
+                <image wx:if="{{childChildItem.checked == false}}" src='{{questionCheckBook}}'></image>
+                <image wx:if="{{childChildItem.checked == true}}" src='{{questionCheckBookActive}}'></image>
+                <view>{{childChildItem.name}}</view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+
+
+        <view class='block' wx:if="{{parent.type == 3}}">
+          <view class='type'>
+            <text wx:if="{{parent.type == 3}}" class='single'>问答题</text>
+          </view>
+          <view class='name'>{{parent.number}}、{{parent.name}}</view>
+          <view class='textarea'>
+            <textarea placeholder="请输入" name="textarea" value='{{content}}' bindinput="bindKeyInput" />
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class='footer' wx:if="{{!infoShow}}">
+      <view class='progress-wrapper'>
+        <view class='progress' style="width : {{(num / questions.questionList.length) * 100}}%;"></view>
+      </view>
+      <view class='switch-wrapper'>
+        <view bindtap='pre'>上一题</view>
+        <view>{{num}}/{{questions.questionList.length}}</view>
+        <view bindtap='next' wx:if="{{num != questions.questionList.length}}">下一题</view>
+        <view bindtap='confirm' wx:if="{{num == questions.questionList.length}}">提交</view>
+      </view>
+    </view>
+  </view>
+  <view class='confirm-status' wx:if="{{isConfirm}}">
+    <view class='isSuccess' wx:if="{{isSuccess}}">
+      <image src='../../static/images/question-success.png'></image>
+      <view>提交成功</view>
+      <view>感谢您的宝贵时间</view>
+      <button bindtap='successFn' class='ys-btn'>确定</button>
+    </view>
+    <view class='isError' wx:if="{{!isSuccess}}">
+      <image src='../../static/images/question-error.png'></image>
+      <view>提交失败</view>
+      <view>请重新提交</view>
+      <button bindtap='errorFn' class='ys-btn'>返回</button>
+    </view>
+  </view>
+</view>

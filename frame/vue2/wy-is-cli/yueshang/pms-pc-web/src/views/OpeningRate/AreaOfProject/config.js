@@ -62,7 +62,7 @@ export const TableConfig = [
     sortable: 'custom'
   },
   {
-    key: 'companyName',
+    key: 'cooperativeBrand',
     label: '合作品牌',
     minWidth: 160,
     sortable: 'custom'

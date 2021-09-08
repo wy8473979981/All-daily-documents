@@ -1,0 +1,117 @@
+.app-page-main {
+    .carousel{
+      overflow-y:auto ;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.2);
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.2);
+      }
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 0;
+        background: rgba(0,0,0,0.1);
+      }
+    }
+    .hearder {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 32px;
+    }
+    .tables {
+        border-top: 1px solid #E5E2DE;
+        border-bottom: 1px solid #E5E2DE;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+        tr {
+          td {
+            width: 149px;
+            height: 36px;
+            background: #e5e2de;
+            line-height: 36px;
+            font-size: 14px;
+            font-family: MicrosoftYaHei;
+          }
+
+          td:nth-child(odd) {
+            padding-left: 16px;
+            border-top-left-radius: 16px;
+            border-bottom: 1px solid #fdf7ee !important;
+          }
+
+          td:nth-child(even) {
+            text-align: center;
+            border-bottom: 1px solid #fdf7ee !important;
+            background: #f6f5ee;
+          }
+        }
+
+        tr:nth-child(even) {
+          td:nth-child(odd) {
+            padding-left: 16px;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 16px;
+            border-bottom: none;
+          }
+        }
+      }
+    .int {
+        padding-right: 146px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 30px;
+        ::v-deep.el-input__inner {
+          width: 206px;
+          height: 32px;
+          background: #fdfcfa;
+          border-radius: 16px;
+          border: none;
+        }
+
+        ::v-deep.el-input.is-disabled .el-input__inner {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          line-height: 14px;
+        }
+
+        ::v-deepinput::-webkit-input-placeholder {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+        }
+        span {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          span {
+            margin: 0 13px;
+          }
+        }
+
+        .back {
+          ::v-deep.el-input__inner {
+            background: #1C4C7F;
+          }
+
+          ::v-deepinput::-webkit-input-placeholder {
+            font-size: 14px;
+            font-family: MicrosoftYaHei;
+            color: #ffffff !important;
+          }
+        }
+      }
+     .text {
+        width: 416px;
+        border-radius: 20px;
+        margin-top: 24px;
+        ::v-deep.el-textarea__inner {
+          border: none;
+          height: 96px;
+        }
+      }
+  }

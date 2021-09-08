@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "navigationBarTitleText": "加班申请单",
+  "usingComponents": {
+    "application-info": "../../../components/applicationInfo/applicationInfo"
+  }
+}

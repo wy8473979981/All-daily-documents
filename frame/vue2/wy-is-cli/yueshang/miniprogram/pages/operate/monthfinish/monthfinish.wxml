@@ -1,0 +1,12 @@
+<view id="monthfinish">
+  <view class='top'>
+    <icon type='success' size='100'></icon>
+    <view class='text'>3月份的月销售提报已经提交</view>
+    <button size='default' class='ys-btn' bindtap='detail'>查看详情</button>
+  </view>
+  <view class='bottom'>
+    <view class='title'>填报规则说明:</view>
+    <view class='content'>1、每日的月销售提报时间为下月的1日~5日，月销售额作为租金计算依据请谨慎填写。</view>
+    <view class='content'>2、每月的月销售提报时间为下月的1日~5日，月销售额作为租金计算依据谨慎填写。</view>
+  </view>
+</view>

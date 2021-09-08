@@ -1,3 +1,8 @@
+/*
+ * @Author: fhj
+ * @LastEditors: fhj
+ * @Description: 
+ */
 import { Api } from 'utils/api'
 
 export const exportConfig = {
@@ -34,6 +39,8 @@ export const exportConfig = {
 
   'ar-average-headquarters': '/plpms-report/bis/avgRentFee/queryAllAveRentFeeExport', // 平均租金 总部
   'ar-average-project': '/plpms-report/bis/avgRentFee/queryProjectAveRentFeeExport', // 平均租金 项目
+
+  'brf-list':'/plpms-report/bis/zs/report/investmentReportExport', // 招商报表导出
 }
 export class ExportExcel extends Api {
   exportApi = (url, params) => {

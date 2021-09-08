@@ -1,0 +1,74 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num" />
+<view id="list">
+  <view class='ys-swiper-tab'>
+    <view class='item-wrapper' wx:for="{{tabs}}" wx:key="idx">
+      <view class="swiper-tab-item {{item.id == currentTab ? 'active':''}}" data-current="{{item.id}}" bindtap="clickTab">{{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class="ys-block list" wx:if="{{currentTab === 'invoiceReceList'}}">
+    <view class='item' wx:for="{{invoiceReceList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+      <image class="item-checkbox" data-current="{{item}}" wx:if="{{item.isChecked}}" src="../../../static/images/icons/checkbox_check.png" mode="aspectFill" bindtap="handleSelect"/>
+      <image class="item-checkbox" data-current="{{item}}" wx:else src="../../../static/images/icons/checkbox_uncheck.png" mode="aspectFill" bindtap="handleSelect"/>
+      <view class="item-right" data-item="{{item}}">
+        <view class='item-info' >
+          <view class='type'>
+            <text class="title">类型:</text>
+            <text class="txt">{{item.feeTypeName}}</text>
+          </view>
+          <view class='money'>
+            <text class="title">金额:</text>
+            <text class="txt">{{num.filterNum(item.invoiceAmount)}}</text>
+          </view>
+          <view class='status'>
+            <text class="title">权责月:</text>
+            <text class="txt">{{item.yearMonth}}月</text>
+          </view>
+        </view>
+        <view class='item-info'>
+          <view>
+            <text class="title">缴费日期:</text>
+            <text class="txt">{{item.factDate}}</text>
+          </view>
+          <view>
+            <text class="title">最迟缴费日:</text>
+            <text class="txt">{{item.receDate}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="ys-block list" wx:if="{{currentTab === 'invoiceList'}}">
+    <view class='item' wx:for="{{invoiceList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+      <view class="item-right">
+        <view class='item-info' >
+          <view class='type'>
+            <text class="title">开票日期:</text>
+            <text class="txt">{{item.invoiceDateStr}}</text>
+          </view>
+          <view class='money'>
+            <text class="title">开票金额:</text>
+            <text class="txt">{{num.filterNum(item.invoiceMoney)}}</text>
+          </view>
+        </view>
+        <view class='item-info'>
+          <view>
+            <text class="title">发票号:</text>
+            <text class="txt">{{item.invoiceNo}}</text>
+          </view>
+          <view data-item="{{item}}" bindtap="seeDetail" class="see-detail">
+            <text class="show-detail">查看发票</text>
+            <image class="show-detail__icon" src="../../../static/images/icons/arrow_right.png" mode="aspectFill"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{currentTab === 'invoiceReceList'}}" class="submit" bindtap="handleSubmit">
+    <text>开票</text>
+  </view>
+
+</view>

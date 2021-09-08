@@ -1,0 +1,37 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-broadcast' class='ys-block-fixed-footer'>
+  <my-warning id='warningComp'/>
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='input-wrapper'>
+      <label>预留姓名</label>
+      <input placeholder-class="placeholder" placeholder='点击输入' data-key='name' bindinput='bindKeyInput' value='{{name}}'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>预留电话</label>
+      <input placeholder-class="placeholder" type='number' placeholder='点击输入' data-key='phone' bindinput='bindKeyInput' value='{{phone}}'></input>
+    </view>
+  </view>
+  <!-- 备注 -->
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='textarea'>
+      <label>举报内容<text style='color:#f00;'>*</text></label>
+      <textarea placeholder="在此描述您遇到的具体问题，将有助于商业集团审计人员更快地处理您的申请。" data-key='content' value='{{content}}' bindinput="bindKeyInput" name="textarea" />
+    </view>
+  </view>
+  <!-- 附件 -->
+  <view class='ys-block-gap select-person'>
+    <label>附件
+      <!-- <text style='color:#f00;'>*</text> -->
+    </label>
+    <view class='img-wrapper' wx:for="{{imgList}}" wx:key="index">
+      <image class='icon' bindtap='previewImage' data-src='{{item.fullPath}}' src='{{item.fullPath}}'></image>
+      <view class="img-wrapper-del" data-type='0' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>
+    </view>
+    <view class='img-wrapper' wx:if="{{picNum}}">
+      <view class='add' bindtap='upload'>+</view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="submit"> 举报 </button>
+  </view>
+</view>

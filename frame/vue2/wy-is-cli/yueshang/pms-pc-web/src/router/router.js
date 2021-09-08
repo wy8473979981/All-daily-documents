@@ -234,8 +234,68 @@ const RouterList = [
         ],
       },
       // 责任铺分工 模块结束
+
+      // 租赁平台 模块开始
+      {
+        title: "租赁平台",
+        show: false,
+        path: "RentalPlatform",
+        children: [
+          {
+            title: "租赁平台",
+            name: "RentalPlatformOfMain",
+            path: "rp-rental-platform-main",
+            sortIndex: 1,
+          },
+          {
+            title: "租赁平台",
+            name: "RentalPlatformOfMainDetail",
+            path: "rp-rental-platform-main-detail",
+            sortIndex: 2,
+          },
+        ],
+      },
+      // 租赁平台 模块结束
+
+      // 招商报表 模块开始
+      {
+        title: "招商报表",
+        show: false,
+        path: "BusinessReportForm",
+        children: [
+          {
+            title: "招商报表",
+            name: "BusinessReportFormList",
+            path: "brf-list",
+            sortIndex: 1,
+          },
+        ],
+      },
+      // 招商报表 模块结束
+
+      // 在线签约 模块开始
+      {
+        title: "在线签约",
+        show: false,
+        path: "OnlineSigning",
+        children: [
+          {
+            title: "在线签约",
+            name: "OnlineSigningOfLaunch",
+            path: "os-online-signing-launch",
+            sortIndex: 1,
+          },
+          {
+            title: "指定签署位置",
+            name: "OnlineSigningOfPosition",
+            path: "os-online-signing-position",
+            sortIndex: 2,
+          },
+        ],
+      },
+      // 在线签约 模块结束
     ],
   },
 ];
 
-export default RouterList
+export default RouterList;

@@ -1,0 +1,11 @@
+<view id="dailyfinish">
+  <view class='top'>
+    <icon type='success' size='100'></icon>
+    <view class='text'>{{date}}的销售提报已经提交</view>
+    <button size='default' class='ys-btn' bindtap='detail'>查看详情</button>
+  </view>
+  <view class='bottom'>
+    <view class='title'>填报规则说明:</view>
+    <view class='content'>1、当前月整月可以提报、修改未审核的上月销售额。</view>
+  </view>
+</view>

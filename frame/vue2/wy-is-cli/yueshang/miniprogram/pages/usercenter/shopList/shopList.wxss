@@ -1,0 +1,32 @@
+page{
+  font-size: 30rpx;
+  color: #333;
+  background: #fff;
+}
+.ys-block{
+  line-height: 60rpx;
+  padding: 28rpx 36rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.note-info{
+  background: #f5f5f5;
+  color: #999;
+  line-height: 40rpx;
+  padding: 18rpx 36rpx;
+}
+.local{
+  width: 36rpx;
+  height: 36rpx;
+  float: left;
+  margin-top: 11rpx;
+  margin-right: 20rpx;
+}
+.ys-block text{
+  color: #333;
+}
+.list{
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

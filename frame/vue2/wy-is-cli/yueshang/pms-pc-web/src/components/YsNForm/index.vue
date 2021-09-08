@@ -2,8 +2,13 @@
 /* eslint-disable */
 const WIDTH = '178px'
 const LABEL_WIDTH = '100px'
+import YsNSelect from '../YsNSelect/index.vue'
+import YsNCascader from '../YsNCascader/index.vue'
+import YsNAutocomplete from '../YsNAutocomplete/index.vue'
 export default {
   name: 'YsNForm',
+
+  components: { YsNSelect, YsNCascader, YsNAutocomplete },
 
   model: {
     prop: 'formData',
@@ -44,7 +49,7 @@ export default {
   render(h) {
     const renderFormItemChild = (data) => {
       let item = null
-      const { key, type, props, ...others } = data
+      const { key, type, props ,hasSearch, ...others } = data
       const ps = {
         props: {
           key,
@@ -77,19 +82,32 @@ export default {
           break
         case 'select':
           {
-            ps.attrs = { ...others }
-            const Options = typeof ps.props.options === 'function' ? ps.props.options() : ps.props.options;
-            item = <el-select v-model={this.form[key]} placeholder={ps.props.placeholder || '请选择'} {...ps} on-change={(val) => this.handleChange(key, val)} style={{ width: ps.props.width ? ps.props.width : WIDTH }}>
-              {
-                Options.map((item, index) => {
-                  return <el-option
-                    key={index}
-                    label={item.label}
-                    value={item.key}>
-                  </el-option>
-                })
-              }
-            </el-select>
+            ps.attrs = { ...others, ...ps.props }
+            // const Options = typeof ps.props.options === 'function' ? ps.props.options() : ps.props.options;
+            // item = <el-select v-model={this.form[key]} placeholder={ps.props.placeholder || '请选择'} {...ps} on-change={(val) => this.handleChange(key, val)} style={{ width: ps.props.width ? ps.props.width : WIDTH }}>
+            //   {
+            //     Options.map((item, index) => {
+            //       return <el-option
+            //         key={index}
+            //         label={item.label}
+            //         value={item.key}>
+            //       </el-option>
+            //     })
+            //   }
+            // </el-select>
+            item = <YsNSelect v-model={this.form[key]} placeholder={ps.props.placeholder || '请选择'} {...ps} on-change={(val) => this.handleChange(key, val)} style={{ width: ps.props.width ? ps.props.width : WIDTH }}></YsNSelect>
+          }
+          break;
+        case 'cascader':
+          {
+            ps.attrs = { ...others, ...ps.props }
+            item = <YsNCascader v-model={this.form[key]} placeholder={ps.props.placeholder || '请选择'} {...ps} on-change={(val) => this.handleChange(key, val)} style={{ width: ps.props.width ? ps.props.width : WIDTH }}></YsNCascader>
+          }
+          break;
+        case 'autocomplete':
+          {
+            ps.attrs = { ...others, ...ps.props }
+            item = <YsNAutocomplete v-model={this.form[key]} placeholder={ps.props.placeholder || '请选择'} {...ps} on-change={(val) => this.handleChange(key, val)} style={{ width: ps.props.width ? ps.props.width : WIDTH }}></YsNAutocomplete>
           }
           break;
         case 'radioGroup':
@@ -248,7 +266,6 @@ export default {
   watch: {
     formData: {
       handler: function() {
-        console.log('formData', JSON.stringify(this.formData))
         Object.keys(this.formData).forEach(key => {
           this.$set(this.form, key, this.formData[key])
         })

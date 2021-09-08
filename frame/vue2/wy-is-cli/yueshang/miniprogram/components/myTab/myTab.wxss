@@ -1,0 +1,23 @@
+view.my-tab-container{
+  display: flex;
+  background-color: white;
+}
+view.my-tab-container view.my-tab-wrapper{
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+view.my-tab-container view.my-tab-wrapper>view{
+  width: 80%;
+  text-align: center;
+}
+view.my-tab-container view.my-tab-wrapper>view.active{
+  border-bottom: 2px solid #ffa200;
+}
+view.my-tab-container view.my-tab-wrapper>view.active text{
+  color: #ffa200;
+}
+view.my-tab-container view.my-tab-wrapper>view>text{
+  color: grey;
+  line-height: 80rpx;
+}

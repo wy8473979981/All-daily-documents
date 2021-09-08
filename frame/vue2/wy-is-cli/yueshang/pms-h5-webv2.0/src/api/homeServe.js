@@ -31,7 +31,7 @@ class home {
     }
     // 获取会员列表信息
     async getMemberList (p, showLoading = false) {
-        return await get(URL.homeURL.getMemberList, p, showLoading)
+        return await post(URL.homeURL.getMemberList, p, showLoading)
     }
     // 租约到期 根据物业类型查询,租约到期汇总数据
     async queryLeaseExpires (p, showLoading = true) {

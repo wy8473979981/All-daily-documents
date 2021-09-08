@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "投诉列表",
+  "backgroundColor": "#eee",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "违约单详情",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
+}

@@ -1,6 +1,6 @@
 <template>
   <div :class="'huiyuan-index '" v-webTitle :data-title="`会员`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`会员`" />
       <div class="app-header">
         <div class="app-header-container">
@@ -94,8 +94,8 @@ export default {
       try {
         const { row, column } = e.detail;
         if (column.key === "projectName") {
-          let projectId = e.detail.row.id;
-          let projectName = e.detail.row.name;
+          let projectId = row.projectId;
+          let projectName = row.projectName;
 
           this.$router.push({
             path: '/huiyuan/detail',
@@ -123,7 +123,7 @@ export default {
           .then((res) => {
             this.decreaseIsLoadingCount()
             this.dataList = [];
-            if (res.code == 200) {
+            if (res.code == 1) {
               if (res.data && res.data.length > 0) {
                 let result = res.data.map((item, index) => {
                   return {
@@ -133,7 +133,7 @@ export default {
                   };
                 });
                 result.map(item => {
-                  if (item.name == "合计") {
+                  if (item.projectName == "合计") {
                     this.totalRow = item;
                   } else {
                     this.dataList.push(item)

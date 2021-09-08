@@ -1,3 +1,8 @@
+/*
+ * @Author: fhj
+ * @LastEditors: fhj
+ * @Description: 
+ */
 
 import { getSession } from 'utils/utils'
 import store from '@/store'
@@ -40,6 +45,5 @@ export function BeforeSearchModifyFormData(data) {
     }
     formData[key] = val;
   }
-
   return formData;
 }

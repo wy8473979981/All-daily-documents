@@ -1,0 +1,6 @@
+<view wx:if='{{activityList.length>0}}'>
+  <view wx:for='{{activityList}}' class='activity-list-item'>
+    <tpl-activity data="{{item}}" wx:key='index' bindtap='checkDetail' data-item='{{item}}'/>
+  </view>
+</view>
+<no-data txt="暂时没有活动" wx:else/>

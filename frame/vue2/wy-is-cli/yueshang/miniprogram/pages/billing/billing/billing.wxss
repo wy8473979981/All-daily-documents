@@ -1,0 +1,93 @@
+page {
+  background: #ECF0F2;
+  font-size: 30rpx;
+  padding-top: 20rpx;
+}
+
+.input-area {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  margin-left: 35rpx;
+  display: flex;
+  border-top:2rpx solid #ECF0F2;
+  height: 88rpx;
+  align-items: center;
+}
+
+.item-title {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: border;
+  margin-right: 18rpx;
+}
+
+.item-select {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 24rpx;
+}
+.item-select__icon {
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 10rpx;
+}
+.item-select .item-select__txt {
+  color: #696969;
+  font-size: 28rpx;
+}
+
+
+.item-input {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+.item-input input {
+  width: 80%;
+}
+.item-input__icon {
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 32rpx;
+  margin-left: 10rpx;
+}
+
+
+.total {
+  margin-top: 20rpx;
+  border-top: 0;
+  background: #fff;
+}
+.item-money {
+  color: #FFA305;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+.item-unit {
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 35rpx;
+  background: #fff;
+}
+
+.submit text {
+  display: block;
+  background: #FFA200;
+  height: 80rpx;
+  color: #fff;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  text-align: center;
+}

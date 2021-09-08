@@ -1,0 +1,43 @@
+/* pages/usercenter/acitvity-detail/activity-detail.wxss */
+#acitvity-detail{
+
+}
+#acitvity-detail .ys-info-panel{
+  padding:0 28rpx;
+}
+#acitvity-detail .ys-info-panel .ys-badge{
+  margin-bottom:10rpx;
+}
+
+#acitvity-detail .ys-info-panel .ys-cell{
+  padding:0;
+  height:48rpx;
+  font-size:28rpx;
+  color:#666;
+}
+#acitvity-detail  .ys-cell{
+  padding:0;
+  height:auto;
+}
+
+#acitvity-detail .ys-section .ys-section-title{
+  padding-bottom:0;
+}
+#acitvity-detail  .ys-cell .ys-cell-content{
+  justify-content: flex-start;
+  margin-bottom:8rpx;
+  font-size:24rpx;
+  color:#666;
+}
+#acitvity-detail .ys-section-content .comments{
+  font-size:24rpx;
+  line-height: 1.4;
+  color:#666;
+}
+
+#acitvity-detail .ys-section + .ys-section{
+  border-top:solid 2rpx #f0f0f0;
+}
+
+
+

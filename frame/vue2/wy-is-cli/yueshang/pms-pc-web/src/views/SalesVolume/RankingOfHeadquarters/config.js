@@ -58,6 +58,15 @@ export const FormConfig = [
       placeholder: '业态'
     }
   },
+  {
+    key: 'isAssess',
+    label: '', // 业态
+    type: 'select',
+    props: {
+      options: () => enumList.squareFlagAllDict,
+      placeholder: '面积类型'
+    }
+  },
 ]
 
 export function TableConfig() {

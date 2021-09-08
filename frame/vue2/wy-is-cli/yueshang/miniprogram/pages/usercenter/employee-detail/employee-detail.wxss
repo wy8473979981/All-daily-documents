@@ -1,0 +1,36 @@
+/* pages/usercenter/employee-detail/employee-detail.wxss */
+#employee-detail {
+
+}
+#employee-detail .ys-figure-wrapper{
+  align-items:stretch;
+  height:220rpx;
+  background-color:#78bfed;
+}
+.ys-figure-info .ys-icon{
+  height: 34rpx;
+  width: 34rpx;
+}
+.ys-info-detail{
+  margin-top: 20rpx;
+}
+.ys-info-detail .ys-badge{
+  margin-right: 20rpx;
+  line-height: 34rpx;
+  background: #ffa200;
+}
+#employee-detail .ys-figure-wrapper .ys-figure-info{
+  color:#fff;
+}
+.request image{
+  margin-left: 20rpx;
+}
+.ys-btn{
+  color: #ffa200;
+}
+.ys-figure-avatar{
+  color: #fff;
+  text-align: center;
+  font-size: 60rpx;
+  line-height: 124rpx;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="16pt/详情-蓝色" stroke="#1C4C7F">
+            <path d="M8,13 C10.7614237,13 13,10.7614237 13,8 C13,5.23857625 10.7614237,3 8,3 C5.23857625,3 3,5.23857625 3,8 C3,10.7614237 5.23857625,13 8,13 Z" id="椭圆形" stroke-dasharray="0,0"></path>
+            <line x1="8" y1="5.10108626" x2="8" y2="6.10108626" id="路径-10"></line>
+            <line x1="8" y1="7.10108626" x2="8" y2="11" id="路径-10备份"></line>
+        </g>
+    </g>
+</svg>

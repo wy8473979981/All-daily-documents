@@ -227,7 +227,7 @@ export default {
 
 <style lang="scss" scoped>
 .x-chart {
-  height: 100%;
+  height: 400px;
   width: 100%;
   position: relative;
 

@@ -1,0 +1,59 @@
+.top-box {
+    display: flex;
+    justify-content: space-between;
+    .btn1 {
+      border: 0;
+      background: #F6F5EE;
+      color: #1C4C7F;
+
+      span {
+        font-size: 14px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #050101;
+        margin-right: 31px;
+      }
+    }
+  }
+  .btn-group{
+     display: flex;
+     justify-content: flex-end;
+     padding-bottom: 24px;
+  }
+
+::v-deep.success-dialog3 {
+  .shop-name {
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    color: #050101;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #050101;
+    margin-bottom: 22px;
+    margin-top: 30px;
+    border-bottom: #d1cec9 solid 1px;
+    padding-bottom: 10px;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 122px;
+      height: 1px;
+      background: #050101;
+      position: absolute;
+      top: 0;
+      top: 28px;
+      left: 0;
+    }
+
+  }
+
+}
+.news{
+ margin-bottom: 40px;
+}

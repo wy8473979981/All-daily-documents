@@ -1,24 +1,11 @@
 // 第三方接口API
-// let blMain1 = 'http://pms.powerlong.com/PowerDesk'
-// let blMain2 = 'http://proservice.powerlong.com'
-// let blMain3 = 'http://pms.powerlong.com'
-// if (process.env.NODE_ENV === "production") {
-//     blMain1 = 'https://pd.powerlong.com'
-//     blMain2 = 'https://proservice.powerlong.com'
-//     blMain3 = 'https://pms.powerlong.com'
-// }
-
-
 let blMain1 = 'https://pms.powerlong.com/PowerDesk'
 let blMain2 = 'https://proservice.powerlong.com'
-let blMain3 = 'http://pmstest.powerlong.com'
-// let blMain4 = 'https://apipre.powerlong.com'// 会员测试
-let blMain4 = 'https://proservice.powerlong.com'// 会员生产
+let blMain3 = 'https://pmstest.powerlong.com'
 if (process.env.NODE_ENV === "production") {
     blMain1 = 'http://pd.powerlong.com'
     blMain2 = 'https://proservice.powerlong.com'
     blMain3 = 'http://pms.powerlong.com'
-    blMain4 = 'https://proservice.powerlong.com'
 }
 
 // https://demo.powerlong.com/PowerDesk ----- https://pd.powerlong.com
@@ -35,7 +22,7 @@ const URL = {
         queryZsTotal: "/plpms-report/bis/zs/queryZsTotal", // 招商 首页 汇总数据
         queryOweFeeData: "/plpms-report/bis/oweFeeProject/queryOweFeeData", // 查询欠费模块汇总数据
         getYunYingGeneralMemberInfo: '/plpms-report/bis/member/queryMember',// 获取会员汇总信息
-        getMemberList: blMain4 + '/pms/statistics/memberStatistics/basicMemberData/rank',// 获取会员列表信息
+        getMemberList: '/plpms-report/bis/member/queryProjectMemberList',// 获取会员列表信息
         queryLeaseExpiresTotal: "/plpms-report/bis/lease-expires/queryTotal", // 租约到期 根据物业类型查询,租约到期汇总数据
         queryCoverRentTotal: "/plpms-report/bis/cover-rent/queryTotal", // 押不抵租 根据物业类型查询,押不抵租汇总数据
     },

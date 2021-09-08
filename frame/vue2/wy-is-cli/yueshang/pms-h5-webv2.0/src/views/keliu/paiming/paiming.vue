@@ -1,6 +1,6 @@
 <template>
   <div v-webTitle :data-title="`客流排名`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`客流排名`" />
 
       <div class="app-header">

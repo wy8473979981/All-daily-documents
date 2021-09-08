@@ -1,0 +1,48 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+<view class="ys-block ys-block-fixed-footer" id="employee-detail">
+  <view class="ys-figure-wrapper" >
+       <view class="ys-figure ys-figure-horizontal">
+              <view wx:if="{{item.clerkRole == '1'}}" class="ys-figure-avatar" style='background:#6cbbff;'>{{num.sliceName(item.clerkName)}}</view>
+              <view wx:if="{{item.clerkRole == '2'}}" class="ys-figure-avatar" style='background:#0fcbbc;'>{{num.sliceName(item.clerkName)}}</view>
+
+              <view class="ys-figure-info">
+                  <!-- <view class="ys-info-title">{{item.clerkName}}({{item.clerkRole == '1' ? '店长': '店员'}})
+                  </view> -->
+                  <view wx:if="{{item.clerkRole == '1'}}" >{{item.clerkName}}(店长)</view>
+                  <view wx:if="{{item.clerkRole == '2'}}" >{{item.clerkName}}(店员)</view>
+                  <view wx:if="{{item.clerkRole == '3'}}" >{{item.clerkName}}(财务)</view>
+                  <view wx:if="{{item.clerkRole == '4'}}" >{{item.clerkName}}(店长&财务)</view>
+                  <view class="ys-info-detail">
+                      <view class="ys-badge ys-badge-sm ys-badge-normal">在职</view>
+                      <text>入店时间: {{item.entryTimeStr}}</text>
+                   </view>
+               </view>
+       </view>
+
+  </view><!--ys-figure-wrapper-->
+
+  <view class="ys-section ys-section-gap">
+      <view class="ys-cell request">
+          <view class="ys-cell-label">手机</view>
+          <view class="ys-cell-content" data-phone='{{item.bindTel}}' data-name='{{item.clerkName}}' bindtap='makePhoneCall'>
+              <text>{{item.bindTel}}</text>
+              <image class="ys-icon ys-icon-phone" src='../../../static/images/icon_phone.png'></image>
+          </view>
+      </view><!--cell-->
+  </view><!--ys-section-->
+
+   <view class="ys-section ys-section-gap">
+      <view class="ys-section-title">相片(证件照)</view>
+      <view class="ys-section-content">
+        <view class="ys-thumbnail-wrapper">
+            <view class="thumbnail" wx:for="{{item.clerkPhotoList}}" wx:key="index">
+              <image mode="aspectFill" src="{{item.path}}"></image>
+            </view>
+        </view>
+      </view>
+   </view>
+  <view class="ys-fixed-footer">
+      <button class="ys-btn ys-footer-btn" data-id='{{item.id}}' bindtap='delEmployee'><image class="ys-icon ys-icon-add" src='../../../static/images/icon_layout.png'></image>注销</button>
+      <button class="ys-btn ys-footer-btn" bindtap='editEmployee'><image class="ys-icon ys-icon-add" src='../../../static/images/icon_edit.png'></image>编辑</button>
+  </view>
+</view>

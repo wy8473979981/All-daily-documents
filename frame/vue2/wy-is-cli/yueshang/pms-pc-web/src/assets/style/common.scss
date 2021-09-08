@@ -12,6 +12,7 @@ html, body {
   display: flex;
   box-sizing: border-box;
   height: 100%;
+  background-color: $mainColor;
 
   // ff
   scrollbar-width: thin;
@@ -47,6 +48,7 @@ html, body {
     flex-direction: column;
     width: 100%;
     padding-top: 10px;
+    height: 0;
   }
 
   .page-title {
@@ -93,5 +95,71 @@ html, body {
     word-break: break-all;
     -webkit-line-clamp: #{$index};
     -webkit-box-orient: vertical;
+  }
+}
+
+.scrollbar-custom {
+  // ff
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2);
+
+  // chrome safari
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+// margin padding
+@for $index from 0 to 300 {
+  .mt-#{$index} {
+    margin-top: #{$index}px;
+  }
+  .mb-#{$index} {
+    margin-bottom: #{$index}px;
+  }
+  .ml-#{$index} {
+    margin-left: #{$index}px;
+  }
+  .mr-#{$index} {
+    margin-right: #{$index}px;
+  }
+  .pt-#{$index} {
+    padding-top: #{$index}px;
+  }
+  .pb-#{$index} {
+    padding-bottom: #{$index}px;
+  }
+  .pl-#{$index} {
+    padding-left: #{$index}px;
+  }
+  .pr-#{$index} {
+    padding-right: #{$index}px;
+  }
+}
+
+// 左浮动
+.float-left {
+  float: left;
+}
+
+// 右浮动
+.float-right {
+  float: right;
+}
+
+@for $i from 0 to 10 {
+  .font-#{2 * $i + 10}{
+      font-size: 2 * $i + 10 + px;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="cheliu" v-webTitle :data-title="`车流-项目排名`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`车流-项目排名`" />
       <div class="app-header">
         <div class="app-header-right">

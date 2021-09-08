@@ -1,0 +1,131 @@
+{
+  "pages": [
+    "pages/index_bridge/index_bridge",
+    "pages/activityEnrol/activityEnrol",
+    "pages/activityDetail/activityDetail",
+    "components/activity/activity",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/404/404",
+    "pages/service/index/index",
+    "pages/service/overtime/overtime",
+    "pages/service/overtimeDetail/overtimeDetail",
+    "pages/service/goods/goods",
+    "pages/service/goodsDetail/goodsDetail",
+    "pages/service/complain/complain",
+    "pages/service/complainDetail/complainDetail",
+    "pages/service/complainList/complainList",
+    "pages/service/broadcast/broadcast",
+    "pages/service/broadcastDetail/broadcastDetail",
+    "pages/service/opinion/opinion",
+    "pages/service/opinionDetail/opinionDetail",
+    "pages/service/advert/advert",
+    "pages/service/advertDetail/advertDetail",
+    "pages/service/project/project",
+    "pages/service/projectDetail/projectDetail",
+    "pages/service/evaluate/evaluate",
+    "pages/service/copyer/copyer",
+    "pages/service/goodsTypePicker/goodsTypePicker",
+    "pages/service/qrcode/qrcode",
+    "pages/service/record/record",
+    "pages/service/report/report",
+    "pages/message/msgList/msgList",
+    "pages/message/msgDetail/msgDetail",
+    "pages/usercenter/index/index",
+    "pages/usercenter/employee/employee",
+    "pages/usercenter/employee-detail/employee-detail",
+    "pages/usercenter/employee-add/employee-add",
+    "pages/usercenter/employee-edit/employee-edit",
+    "pages/usercenter/breach/breach",
+    "pages/usercenter/breach-detail/breach-detail",
+    "pages/login/login",
+    "pages/operate/saleList/saleList",
+    "pages/operate/dailyerror/dailyerror",
+    "pages/operate/daily/daily",
+    "pages/operate/dailyDetail/dailyDetail",
+    "pages/operate/dailyEdit/dailyEdit",
+    "pages/operate/dailyfinish/dailyfinish",
+    "pages/operate/month/month",
+    "pages/operate/monthfinish/monthfinish",
+    "pages/operate/montherror/montherror",
+    "pages/service/sale/sale",
+    "pages/operate/index/index",
+    "pages/operate/bill/bill",
+    "pages/operate/billJump/jump",
+    "pages/usercenter/shopList/shopList",
+    "pages/question/question",
+    "pages/service/reportDetail/reportDetail",
+    "pages/service/reportList/reportList",
+    "pages/operate/monthReport/monthReport",
+    "pages/operate/monthReportFinish/monthReportFinish",
+    "pages/operate/monthReportDetail/monthReportDetail",
+    "pages/operate/monthReportEdit/monthReportEdit",
+    "pages/operate/billOld/billOld",
+    "pages/billing/billList/list",
+    "pages/billing/billing/billing"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/images/icon_home.png",
+        "selectedIconPath": "./static/images/icon_home_green.png"
+      },
+      {
+        "pagePath": "pages/service/index/index",
+        "text": "服务",
+        "iconPath": "./static/images/icon_service.png",
+        "selectedIconPath": "./static/images/icon_service_green.png"
+      },
+      {
+        "pagePath": "pages/operate/index/index",
+        "text": "经营",
+        "iconPath": "./static/images/icon_op.png",
+        "selectedIconPath": "./static/images/icon_op_green.png"
+      },
+      {
+        "pagePath": "pages/message/msgList/msgList",
+        "text": "消息",
+        "iconPath": "./static/images/icon_msg.png",
+        "selectedIconPath": "./static/images/icon_msg_green.png"
+      },
+      {
+        "pagePath": "pages/usercenter/index/index",
+        "text": "我的",
+        "iconPath": "./static/images/icon_user.png",
+        "selectedIconPath": "./static/images/icon_user_green.png"
+      }
+    ],
+    "color": "#ccc",
+    "selectedColor": "#ffa200",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "position": "bottom"
+  },
+  "networkTimeout": {
+    "request": 6000,
+    "downloadFile": 6000
+  },
+  "debug": true,
+  "plugins": {
+    "myPlugin": {
+      "version": "3.0.5",
+      "provider": "wxf1c914ae975dffca"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "tag": "/components/tag/tag",
+    "no-data": "/components/nodata/nodata",
+    "my-tab": "/components/myTab/myTab",
+    "my-btn": "/components/myBtn/myBtn",
+    "my-warning": "/components/myWarning/myWarning",
+    "my-datepicker": "/components/myDatepicker/myDatepicker"
+  }
+}

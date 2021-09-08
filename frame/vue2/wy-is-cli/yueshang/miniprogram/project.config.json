@@ -1,0 +1,120 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.1",
+  "appid": "wxae172c30338872f2",
+  "projectname": "bl",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "活动",
+          "pathName": "components/activity/activity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "已报名活动",
+          "pathName": "components/activity/activity",
+          "query": "isEnrol=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/operate/monthReport/monthReport",
+          "pathName": "pages/operate/monthReport/monthReport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/operate/monthReportFinish/monthReportFinish",
+          "pathName": "pages/operate/monthReportFinish/monthReportFinish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/operate/monthReportDetail/monthReportDetail",
+          "pathName": "pages/operate/monthReportDetail/monthReportDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/operate/monthReportEdit/monthReportEdit",
+          "pathName": "pages/operate/monthReportEdit/monthReportEdit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/operate/bill/bill",
+          "pathName": "pages/operate/bill/bill",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

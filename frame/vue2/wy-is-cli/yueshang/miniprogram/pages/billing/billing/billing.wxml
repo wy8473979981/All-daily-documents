@@ -1,0 +1,54 @@
+<wxs src="../../../static/js/filterNum.wxs" module="num" />
+<view class="billing">
+  <view class="input-area">
+    <view class="item">
+      <text class="item-title">抬头类型:</text>
+      <view class="item-select" data-type="office" bindtap="handleSelect">
+        <image class="item-select__icon" wx:if="{{currentType === 'office'}}" src="../../../static/images/icons/radio_check.png" mode="aspectFill"/>
+        <image class="item-select__icon" wx:else src="../../../static/images/icons/radio_uncheck.png" mode="aspectFill"/>
+        <view class="item-select__txt">企业单位</view>
+      </view>
+      <view class="item-select" data-type="personal"  bindtap="handleSelect">
+        <image class="item-select__icon" wx:if="{{currentType === 'personal'}}" src="../../../static/images/icons/radio_check.png" mode="aspectFill"/>
+        <image class="item-select__icon" wx:else src="../../../static/images/icons/radio_uncheck.png" mode="aspectFill"/>
+        <view class="item-select__txt">个人/非企业单位</view>
+      </view>
+    </view>
+    
+    <view class="item">
+      <text class="item-title">公司名称:</text>
+      <view class="item-input">
+        <input type="text" disabled="{{true}}" value="{{invoiceTitle}}" data-type="invoiceTitle" bindfocus="handleFocus" bindblur="handleBlur" bindinput="handleInput"/>
+        <image class="item-input__icon" wx:if="{{focusType === 'invoiceTitle'}}" src="../../../static/images/icons/close.png" mode="aspectFill" data-type="invoiceTitle" bindtap="handleClear"/>
+      </view>
+    </view>
+    
+    <view class="item" wx:if="{{currentType === 'office'}}">
+      <text class="item-title">公司税号:</text>
+      <view class="item-input">
+        <input type="text" disabled="{{true}}" value="{{creditCode}}" data-type="creditCode" bindfocus="handleFocus" bindblur="handleBlur" bindinput="handleInput"/>
+        <image class="item-input__icon" wx:if="{{focusType === 'creditCode'}}" src="../../../static/images/icons/close.png" mode="aspectFill" data-type="creditCode" bindtap="handleClear"/>
+      </view>
+    </view>
+    <view class="item">
+      <text class="item-title">备注:</text>
+      <view class="item-input">
+        <input class="weui-input" value="{{remark}}" bindinput="handleRemarkInput"/>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="total">
+    <view class="item">
+      <text class="item-title">总金额:</text>
+      <view class="item-money">{{num.filterNum(money)}}</view>
+      <view class="item-unit">元</view>
+    </view>
+  </view>
+
+  <view class="submit" bindtap="handleSubmit">
+    <text>提交</text>
+  </view>
+  
+</view>

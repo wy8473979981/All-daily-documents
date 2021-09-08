@@ -1,0 +1,13 @@
+<view id="dailyfinish">
+  <view class='top'>
+    <icon type='warn' size='100'></icon>
+    <view class='text'>
+      <view>{{month}}月{{day}}日的销售提报时间已截止</view>
+      <view>下次请按时提报</view>
+    </view>
+  </view>
+  <view class='bottom'>
+    <view class='title'>填报规则说明:</view>
+    <view class='content'>1、每日的销售额需在当天中午12:00至次日上午11:00前完成提报，过时将不再允许提报。</view>
+  </view>
+</view>

@@ -1,6 +1,6 @@
 <template>
   <div class="kaiye-details" v-webTitle :data-title="`招商空铺信息`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`招商信息`" />
       <div class="app-header">
         <ys-n-project-select :moduleName="'yysj'" :selected="selected" @projeSelected="projeSelected" :isHome="false"></ys-n-project-select>

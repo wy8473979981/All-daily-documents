@@ -1,0 +1,41 @@
+<!--pages/service/overtime/overtime.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+
+<view id='ys-daily' class='ys-block-fixed-footer'>
+  <!-- shop -->
+  <view class='top'>
+  <!-- 销售额(元) -->
+    <view class='title'>已盖章销售额</view>
+    <view class='content'>{{num.filterNum(pageData.tenantAmount || '0')}}</view>
+  
+  </view>
+  <view class='ys-block-gap'>
+    <view class='info-wrapper'>
+      <text class='label'>上报日期</text>
+      <text class='content'>{{reportDate}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.detailInfo.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>笔数(笔)</text>
+      <text class='content'>{{pageData.tenantCount || '0'}}</text>
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap select-person'>
+    <label>盖章版销售额图片</label>
+    <view class='img-wrapper' wx:for="{{paths}}" wx:key="index">
+      <image class='icon' bindtap='previewImage' data-src='{{item}}' src='{{item}}'></image>
+    </view>
+  </view>
+  <view class='ys-block-gap bottom'>
+    <view class='info-wrapper'>
+      {{pageData.rightTime}} 月 提报
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="edit"> 修改 </button>
+  </view>
+</view>

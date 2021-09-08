@@ -1,0 +1,27 @@
+<template>
+  <div class="app-page-main">
+    <FormItem />
+    <TableList />
+  </div>
+</template>
+<script>
+import FormItem from './blocks/formItem'
+import TableList from './blocks/tableList'
+export default {
+  name: 'MultipathList',
+  components: { FormItem, TableList },
+  data() {
+    return {
+
+    }
+  },
+  computed: {},
+  created() {
+
+  },
+  methods: {
+
+  }
+}
+</script>
+

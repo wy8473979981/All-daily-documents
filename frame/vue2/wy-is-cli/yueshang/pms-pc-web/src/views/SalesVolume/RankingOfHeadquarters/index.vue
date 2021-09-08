@@ -31,6 +31,7 @@ export default {
         areaId: '',
         province: '',
         primaryForms: '',
+        isAssess: 'empty',
         startDate: parseTime(new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000), '{y}-{m}-{d}'),
         endDate: parseTime(new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000), '{y}-{m}-{d}'),
       },

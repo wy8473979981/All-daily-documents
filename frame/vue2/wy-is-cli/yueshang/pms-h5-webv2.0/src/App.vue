@@ -35,23 +35,34 @@ export default {
   },
   methods: {
     async getToken () {
-      this.setCookie("uiid", null)
-      this.setCookie("token", null)
+      this.setCookie("uiid", '')
+      this.setCookie("token", '')
       this.$store.commit('setHasToken', false)
       // 在企业微信环境中获取用户信息逻辑
       try {
-        if (!this.$isWxwork) {
-          const { uiid, token } = this.$route.query
-          this.setCookie("uiid", uiid)
-          this.setCookie("token", token)
+        const ua = navigator.userAgent.toLowerCase();
+        const isWxwork = ua.match(/wxwork/i) == 'wxwork'
+        let uiid = this.$route.query.uiid
+        let token = this.$route.query.token
+        if (!isWxwork) {
+          if(uiid && token) {
+            this.setCookie("uiid", uiid)
+            this.setCookie("token", token)
+          }
           return
         }
         const code = this.$util.getQueryString('code',window.location.href)
         if(!code) {
           return
         }
-        let source = ''
-        let operStatus = 0
+        // 生产环境
+        // let source = ''
+        // let operStatus = 0
+
+        // 测试环境：运营数据、招商、商业预算、商家分析，这里这样写
+        let source = 'testyy'
+        let operStatus = '2'
+
         if (process.env.VUE_APP_ENV === "prod") {
           source = 'yysj'
           operStatus = 2
@@ -62,6 +73,7 @@ export default {
             source = 'syys'
           }
         }
+        if(!source)return
         await this.$axios.commonServe.getToken({ source: source, code: code, operStatus: operStatus }, false).then(res => {
           if (res && res.data && res.data.token) {
             const { token, uiid, userName } = res.data
@@ -198,9 +210,9 @@ body,
   // padding: 40px 36px;
   //  background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
 
-  height: 111.9998px;
+  //height: 111.9998px;
   // line-height: 111.9998px;
-  padding-top: 6px;
+  padding: 30px 0 60px;
   color: #ffffff;
   font-size: 0.35rem;
 
@@ -260,7 +272,7 @@ img {
 .header-top {
   position: relative;
   padding: 0 30px;
-  padding-top: 96px;
+  //padding-top: 96px;
   // background: linear-gradient(360deg, #3a96bd 0%, #1e5385 100%);
   background: linear-gradient(270deg, #1e5385 0%, #3a96bd 100%);
 }

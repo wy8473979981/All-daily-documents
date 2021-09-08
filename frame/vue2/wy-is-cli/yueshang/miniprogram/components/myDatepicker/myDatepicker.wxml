@@ -1,0 +1,5 @@
+<picker mode="date" value="{{current}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+  <view class="picker">
+    当前选择: {{current}}
+  </view>
+</picker>

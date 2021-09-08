@@ -1,7 +1,7 @@
 
 import qs from 'qs'
 import axios from 'axios';
-import MD5 from 'MD5'
+import md5 from 'md5'
 import { APIConfig } from './api.config'
 import { Message } from 'element-ui'
 
@@ -52,11 +52,13 @@ export class Api {
         if (code !== 1) {
           if (code === 403) {
             Message.info('登陆状态失效，正在跳转登陆页面···')
+            return Promise.reject()
           } else if (response.headers && response.headers['content-disposition']) {
             // 文件流下载
             return response
           } else {
             Message.error(res.message || '出错了， 请稍后重试')
+            return Promise.reject()
           }
         } else {
           return res.data
@@ -77,7 +79,7 @@ export class Api {
   getSendData (data) {
     const timestamp = new Date().getTime();
     const nonce = Math.floor(Math.random() * (1 - 100) + 100);
-    const sign = MD5(`${timestamp}||${nonce}||yueworld`);
+    const sign = md5(`${timestamp}||${nonce}||yueworld`);
     const sendData = Object.assign({}, data, { timestamp, nonce, sign })
     return sendData
   }

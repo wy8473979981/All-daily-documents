@@ -1,0 +1,28 @@
+.app-page-main .shopinformations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.app-page-main .shopinformations .shopinformation {
+  margin-right: 54px;
+}
+
+.app-page-main .shopinformations .shopinformation p:nth-child(1) {
+  font-size: 12px;
+  font-family: MicrosoftYaHei;
+  color: #848382;
+  padding: 0;
+  margin: 0;
+  margin-left: 8px;
+}
+
+.app-page-main .shopinformations .shopinformation p:nth-child(2) {
+  font-size: 14px;
+  font-family: MicrosoftYaHei;
+  color: #050101;
+  padding-top: 12px;
+  margin: 0;
+  margin-left: 8px;
+}
+/*# sourceMappingURL=index.css.map */

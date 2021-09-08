@@ -1,0 +1,171 @@
+// 打印页面边距调整
+@media print {
+  @page {
+    padding: 10px;
+    // margin: 0.5cm;
+    margin: 5mm 8.5mm 5mm 5mm;
+    display: none !important;
+    display: block !important;
+  }
+  body {
+    display: none !important;
+    display: block !important;
+    zoom: 0.75;
+    // zoom: 1;
+    -webkit-print-color-adjust: exact !important;
+  }
+  ::v-deep .el-step {
+    page-break-inside: avoid;
+  }
+  .public-box {
+    min-width: auto;
+    .el-row {
+      .el-col {
+        border: solid #DDDDDD;
+        border-width: 0 0 1.5pt 1.5pt;
+        .d-min {
+          >span {
+            border-right: 1.5pt solid #DDDDDD;
+            background-color: #FFFFFF;
+            color: #000000;
+          }
+          .file-p {
+            color: #000000;
+          }
+          .explain-p-one-title {
+            color: #000000;
+            background-color: #FFFFFF;
+          }
+          .el-input__inner {
+            color: #000000;
+          }
+          .el-textarea__inner {
+            color: #000000;
+          }
+          .el-radio__label {
+            color: #000000;
+          }
+          .el-checkbox {
+            margin-top: 9px;
+          }
+          .el-checkbox__label {
+            color: #000000;
+          }
+        }
+        .span-100 {
+          border-right: 1.5pt solid #DDDDDD;
+          color: #000000;
+        }
+      }
+      .topRight-col {
+        border: 1.5pt solid #DDDDDD;
+      }
+      .right-col {
+        border-right: 1.5pt solid #DDDDDD;
+      }
+      // el-col打印时显示列
+      .show-print {
+        display: block;
+      }
+      .title-col {
+        background-color: #FFFFFF;
+        h2 {
+          color: #000000;
+        }
+      }
+      .table-col {
+        // 打印时显示列
+        .show-print {
+          display: block;
+        }
+        // 清除打印时输入框边框
+        .el-input {
+          .el-input__inner {
+            border: 0 !important;
+            padding: 0 !important;
+            color: #000000;
+            font-size: 12px;
+            font-family: '微软雅黑' !important;
+          }
+        }
+        // 打印自适应表格宽度
+        .el-table__header {
+          width: auto !important;
+        }
+        .el-table__body {
+          width: auto !important;
+        }
+        .el-table--border th {
+          background-color: #FFFFFF;
+        }
+        .el-table th > .cell {
+          color: #000000;
+        }
+        // 清除斑马纹颜色
+        .el-table__row--striped td {
+          background-color: #FFFFFF !important;
+        }
+      }
+    }
+    .top-row {
+      border-top: 1.5pt solid #DDDDDD;
+    }
+    .green-row {
+      border-left: 6pt solid #67C23A;
+    }
+    .blue-row {
+      border-left: 6pt solid #468CEB;
+    }
+    .tl-row {
+      th {
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      td {
+        .div-flex {
+          .title {
+            color: #000000;
+            background-color: #FFFFFF;
+          }
+        }
+        .el-checkbox {
+          margin-top: 9px;
+        }
+      }
+      .title {
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .title-header {
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+    }
+    .green-table {
+      border-left: 6pt solid #67C23A;
+    }
+    .blue-table {
+      border-left: 6pt solid #468CEB;
+    }
+  }
+  // .el-col {
+  //   border: 1.5pt solid #ccc !important;
+  // }
+  .print-textarea {
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 5px 10px;
+  }
+  .el-radio__input.is-checked {
+    .el-radio__inner {
+      border: 3px solid #409EFF !important;
+    }
+  }
+  .el-upload-list__item-name [class^=el-icon] {
+    height: auto;
+  }
+  .el-upload-list__item label {
+    display: none !important;
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="24pt/用户/极简">
+            <rect id="矩形" fill-opacity="0.01" fill="#FFFFFF" fill-rule="nonzero" x="4" y="4" width="16" height="16"></rect>
+            <g id="编组" transform="translate(6.000000, 5.000000)" stroke="#050101">
+                <path d="M6,6 C7.65685714,6 9,4.65685714 9,3 C9,1.34314714 7.65685714,0 6,0 C4.34314286,0 3,1.34314714 3,3 C3,4.65685714 4.34314286,6 6,6 Z" id="路径"></path>
+                <path d="M12,14 C12,10.6862943 9.31371429,8 6,8 C2.68628571,8 0,10.6862943 0,14" id="路径备份"></path>
+            </g>
+        </g>
+        <rect id="矩形" stroke="#48A0C3" stroke-width="3" x="-197.5" y="-617.5" width="418" height="1718"></rect>
+    </g>
+</svg>

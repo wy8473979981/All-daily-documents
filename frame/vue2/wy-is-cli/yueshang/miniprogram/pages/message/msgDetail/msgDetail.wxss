@@ -1,0 +1,57 @@
+/* pages/msgDetail/msgDetail.wxss */
+page{
+  background: #eee;
+  font-size: 30rpx;
+}
+#msg-detail .ys-block .item{
+  padding: 50rpx 25rpx 200rpx;
+  background: #fff;
+}
+.item .left-side{
+  float: left;
+}
+.item .left-side .icon{
+  height: 80rpx;
+  width: 80rpx;
+}
+.item .right-side {
+  /* margin-left: 100rpx; */
+}
+.item .right-side .title .name{
+  font-size: 30rpx;
+  color: #333;
+}
+.item .right-side .title{
+  display: flex;
+  justify-content: space-between;
+  line-height: 40rpx;
+}
+.item .right-side .badge{
+  padding: 4rpx 10rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  background: orange;
+  color: #fff;
+}
+.item .right-side .date{
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 24rpx;
+  line-height: 20rpx;
+  color: #666;
+}
+.item .content{
+  margin-top:40rpx;
+  line-height:30rpx;
+  letter-spacing:4rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+button{
+  width: 90%;
+  font-size: 34rpx;
+  margin-top: 60rpx;
+  color: #fff;
+}

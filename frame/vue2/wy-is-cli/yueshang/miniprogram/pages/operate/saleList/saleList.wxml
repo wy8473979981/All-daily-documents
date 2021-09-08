@@ -1,0 +1,33 @@
+<!--pages/message.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+<view id="dailyList">
+  <!-- <view class='ys-swiper-tab'>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == 1 ? 'active':''}}" data-current="1" bindtap="clickTab">日销售记录
+      </view>
+    </view>
+    <text class='swiper-tab-line'></text>
+    <view class='item-wrapper'>
+      <view class="swiper-tab-item {{currentTab == 2 ? 'active':''}}" data-current="2" bindtap="clickTab">月销售记录
+      </view>
+    </view>
+  </view> -->
+  <view class='ys-block-items'>
+    <view class='items' wx:for="{{items}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+      <view class='header'>
+        <text>{{item.key}}</text>
+      </view>
+      <view class='item' wx:key="idx" wx:for="{{item.newArr}}" data-type='2' bindtap="detail" wx:for-index="idx" wx:for-item="item" data-item="{{item}}">
+        <view class='date'>{{item.createdDateStr}}</view>
+        <view class='bottom'>
+          <text>销售额(元)：{{num.filterNum(item.sale)}}</text>
+          <text>销售笔数(笔)：{{item.count}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='noData' wx:if="{{items.length == 0}}">
+      <image src='{{icon_no_data}}'></image>
+      <text>您还没有销售记录哦！</text>
+    </view>
+  </view>
+</view>

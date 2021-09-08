@@ -1,6 +1,6 @@
 <template>
   <div class="project-select" v-webTitle :data-title="`商家管理`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`商家管理`" />
     </div>
     <div class="selected">

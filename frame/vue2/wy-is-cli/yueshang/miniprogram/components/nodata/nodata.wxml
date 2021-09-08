@@ -1,0 +1,4 @@
+<view class='no-data-wrapper'>
+  <image src='../../static/images/icon_no_data.png'></image>
+  <text>{{txt}}</text>
+</view>

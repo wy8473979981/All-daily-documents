@@ -86,12 +86,12 @@ export const TableConfig = [
             type: 'rate',
             minWidth: 120,
           },
-          {
-            key: 'contCollectionRateTb',
-            label: '同比',
-            type: 'rate',
-            minWidth: 120,
-          },
+          // {
+          //   key: 'contCollectionRateTb',
+          //   label: '同比',
+          //   type: 'rate',
+          //   minWidth: 120,
+          // },
         ]
       },
       {
@@ -118,12 +118,12 @@ export const TableConfig = [
             type: 'rate',
             minWidth: 120,
           },
-          {
-            key: 'contCollectionRateTbYtd',
-            label: '同比',
-            type: 'rate',
-            minWidth: 120,
-          },
+          // {
+          //   key: 'contCollectionRateTbYtd',
+          //   label: '同比',
+          //   type: 'rate',
+          //   minWidth: 120,
+          // },
         ]
       }
     ]

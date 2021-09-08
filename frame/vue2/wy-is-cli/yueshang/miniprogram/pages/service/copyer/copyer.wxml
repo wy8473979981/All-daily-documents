@@ -1,0 +1,15 @@
+<view id="ys-copyer-list" class='ys-block-fixed-footer'>
+  <view class='ys-block ys-block-gap'>
+    <view class='item' wx:for='{{items}}' wx:key="idx">
+      <!-- <checkbox class='checkbox' checked="{{item.status}}"/> -->
+      <checkbox size="20" checked="{{item.status}}" data-item='{{item}}' bindtap='checkboxChange'/>
+      <view class='avatar'>
+        <image src='{{item.clerkPhotoList[0].path || figure}}'></image>
+      </view>
+      <text class='name'>{{item.clerkName}}</text>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 确认 </button>
+  </view>
+</view>

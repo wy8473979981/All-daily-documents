@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tpl-activity": "./tplActivity/tplActivity"
+  },
+  "navigationBarTitleText": "商家活动"
+}

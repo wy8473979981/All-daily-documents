@@ -1,7 +1,7 @@
 <template>
   <div class="root" v-webTitle :data-title="`会员`">
 
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`会员`" />
       <div class="app-header">
         <div class="app-header-container">

@@ -1,5 +1,5 @@
 <template>
-  <van-nav-bar v-if="showNav" class="navbar" :title="title" left-text="" right-text="" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+  <van-nav-bar v-if="show?showNav:show" class="navbar" :title="title" left-text="" right-text="" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
     <template #title>
       <span class="title">{{title}}</span>
     </template>
@@ -15,6 +15,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    show: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -27,7 +31,9 @@ export default {
   },
   watch: {},
   mounted () {
-    if (!this.$isWxwork) {
+    const ua = navigator.userAgent.toLowerCase();
+    const isWxwork = ua.match(/wxwork/i) == 'wxwork'
+    if (!isWxwork) {
       this.showNav = true
     }
   },

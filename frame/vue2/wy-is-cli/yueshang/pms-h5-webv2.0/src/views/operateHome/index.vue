@@ -865,6 +865,9 @@ export default {
         let uiid = this.getCookie('uiid')
         let token = this.getCookie('token')
         let params = { uiid: uiid, token: token, source: 'yysj' }
+        if(!uiid || !token || uiid === 'undefined' || token === 'undefined' || uiid === 'null' || token === 'null') {
+          return
+        }
         await this.$axios.externalLinkServe.getProjectList(params, true).then(res => {
           if (res.code == 0) {
             this.setHasAuth(true)

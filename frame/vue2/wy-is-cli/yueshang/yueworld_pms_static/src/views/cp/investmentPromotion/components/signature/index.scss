@@ -1,0 +1,26 @@
+.app-page-main {
+    .shopinformations {
+     
+      display: flex;
+      .shopinformation {
+        margin-right: 54px;
+        p:nth-child(1) {
+          font-size: 14px;
+          font-family: MicrosoftYaHei;
+          color: #050101;
+          padding: 0;
+          margin: 0;
+          margin-left: 8px;
+        }
+        p:nth-child(2) {
+          font-size: 20px;
+          font-family: MicrosoftYaHei;
+          color: #050101;
+          padding-top: 12px;
+          margin: 0;
+          margin-left: 8px;
+        }
+      }
+    }
+
+  }

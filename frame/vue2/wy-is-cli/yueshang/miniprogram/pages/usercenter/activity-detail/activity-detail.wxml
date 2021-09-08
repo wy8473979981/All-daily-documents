@@ -1,0 +1,78 @@
+<!--pages/usercenter/acitvity-detail/activity-detail.wxml-->
+<view class="ys-block ys-block-fixed-footer" id="acitvity-detail">
+  
+<view class="ys-section">
+    <view class="panel-image-wrapper">
+        <image style="width:100%;height:488rpx;" src="../../../static/images/assets/figure.jpg"  mode="aspectFill"></image>
+    </view>
+     <view class="ys-section-title">甜蜜七夕,给你宠爱大促销！</view>
+    <view class="ys-info-panel">
+      <view class="ys-badge ys-badge-sm ys-badge-green" wx:if="{{status=='goingon'}}">进行中</view>
+      <view class="ys-badge ys-badge-sm ys-badge-disable" wx:if="{{status=='outdate'}}">已过期</view>
+      <view class="ys-cell">
+          <view class="ys-cell-content">
+              <text>活动类型: 促销活动</text>
+          </view>
+
+          
+      </view><!--cell-->
+
+      <view class="ys-cell">
+          <view class="ys-cell-content">
+              <text>活动时间: 2018/03/24 ～ 2018/03/30</text>
+          </view>
+      </view>
+
+      <view class="ys-cell">
+          <view class="ys-cell-content">
+              <text>指定业态: 服饰/化妆品</text>
+          </view>
+      </view>
+    </view>
+      
+  </view><!--ys-section-->
+
+   <view class="section-separate section-separate-title">
+    <text>活动内容</text>
+   </view>
+
+    <view class="ys-section">
+      <view class="ys-section-title">餐饮类七夕优惠节</view>
+      <view class="ys-section-content">
+        <view class="ys-cell">
+            <view class="ys-cell-content">
+                <text>活动时间:2018/05/08 ～ 2018/05/30</text>
+            </view>
+        </view>    
+        <view class="comments">此活动针对餐饮类商铺,为七夕情人节做优惠促销活动，整体优惠力度需根据商场标准进行调控。</view>
+      </view>
+   </view><!--ys-section-->
+
+<view class="ys-section">
+      <view class="ys-section-title">餐饮类七夕优惠节</view>
+      <view class="ys-section-content">
+        <view class="ys-cell">
+            <view class="ys-cell-content">
+                <text>活动时间:2018/05/08 ～ 2018/05/30</text>
+            </view>
+        </view>    
+        <view class="comments">此活动针对餐饮类商铺,为七夕情人节做优惠促销活动，整体优惠力度需根据商场标准进行调控。</view>
+      </view>
+   </view><!--ys-section-->
+   <view class="ys-section">
+      <view class="ys-section-title">餐饮类七夕优惠节</view>
+      <view class="ys-section-content">
+        <view class="ys-cell">
+            <view class="ys-cell-content">
+                <text>活动时间:2018/05/08 ～ 2018/05/30</text>
+            </view>
+        </view>    
+        <view class="comments">此活动针对餐饮类商铺,为七夕情人节做优惠促销活动，整体优惠力度需根据商场标准进行调控。</view>
+      </view>
+   </view><!--ys-section-->
+
+
+  <view class="ys-fixed-footer">
+      <button class="ys-btn ys-footer-btn  ys-btn-powderblue" bindtap='signup'>报名</button>
+  </view><!--ys-fixed-footer-->
+</view>

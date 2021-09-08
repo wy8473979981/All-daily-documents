@@ -1,0 +1,42 @@
+/* pages/usercenter/activity-signup/activity-signup.wxss */
+page{
+  background-color:#f5f5f5;
+}
+#activity-signup .list-item{
+  /*min-height:218rpx;*/
+  padding:30rpx;
+  height:auto;
+  background-color:#fff;
+}
+#activity-signup .list-item .sub-title{
+  font-size:24rpx;
+} 
+
+#activity-signup .col-left{
+  flex-basis: 200rpx;
+  flex-grow:0;
+}
+#activity-signup .col-left image{
+  width:200rpx;
+  height:156rpx;
+}
+
+#activity-signup  .col-right{
+  padding-left:30rpx;
+}
+#activity-select-wrapper .ys-list-wrapper{
+  border-top:0;
+}
+#activity-select-wrapper .list-item{
+  padding:30rpx;
+}
+
+#activity-select-wrapper .list-item .col-left{
+  align-self: flex-start;
+  flex-basis:80rpx;
+  flex-grow:0;
+  flex-shrink:0;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+}

@@ -1,0 +1,52 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-advert' class='ys-block-fixed-footer'>
+  <view class='ys-block-gap'>
+    <view class='info-wrapper'>
+      <text>位置</text>
+      <text class='content'>户外楼体外墙-西立面外墙广告位1</text>
+    </view>
+    <view class='info-wrapper'>
+      <text>类型</text>
+      <text class='content'>LED</text>
+    </view>
+    <view class='info-wrapper'>
+      <text>编号</text>
+      <text class='content'>A2-L2-016</text>
+    </view>
+    <view class='info-wrapper'>
+      <text>尺寸</text>
+      <text class='content'>5.58x9.6m</text>
+    </view>
+    <view class='info-wrapper'>
+      <text>档期开始时间</text>
+      <text class='content'>2018/05/30</text>
+    </view>
+  </view>
+  <view class='ys-block-gap'>
+    <view class='select-wrapper'>
+      <label>进出类型</label>
+      <view class='picker-wrapper'>
+        <picker bindchange="bindPickerChange" value="{{typeIndex}}" range="{{array}}">
+          <view class="picker">
+            {{array[typeIndex]}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='descript'>开始时间默认档期开始时间</view>
+  </view>
+  <view class='ys-block-gap'>
+    <view class='input-wrapper'>
+      <label>商户联系人</label>
+      <input placeholder='点击输入'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>联系电话</label>
+      <input placeholder='点击输入'></input>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 提交 </button>
+  </view>
+</view>

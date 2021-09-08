@@ -1,0 +1,53 @@
+page{
+  background: #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 100rpx;
+}
+#ys-broadcast .remind{
+  text-align: center;
+  color: orange;
+  padding: 10rpx 0;
+}
+
+.ys-block-gap{
+  background: #fff;
+}
+.header{
+  height: 106rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 106rpx;
+}
+.header image{
+  float: left;
+  height: 48rpx;
+  width: 48rpx;
+  margin-top: 29rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+.header text{
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.header .content{
+  color: #02d7c0;
+}
+.select-wrapper{
+  position: relative;
+  border-bottom: none;
+}
+.picker{
+  color: #999;
+}
+.img-wrapper .icon{
+  border-radius: 20rpx;
+}
+.add{
+  border-radius: 20rpx;
+}
+.ys-fixed-footer{
+  background: #02d7c0;
+  color: #fff;
+}

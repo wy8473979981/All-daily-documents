@@ -1,0 +1,37 @@
+<!--pages/usercenter/employee/employee.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+
+<view class="ys-block ys-block-fixed-footer" id="employee-list">
+  <view class="ys-list-wrapper">
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key=""
+      >
+
+    <view class="content" bindtap="showEmployeeDetail" data-info='{{item}}' data-eid="{{item.eid|'eid'}}">
+      <view class="ys-figure-avatar" >
+        <view wx:if="{{item.clerkRole == '1'}}" class="ys-figure-avatar" style='background:#6cbbff;'>{{num.sliceName(item.clerkName)}}</view>
+        <view wx:if="{{item.clerkRole == '2'}}" class="ys-figure-avatar" style='background:#0fcbbc;'>{{num.sliceName(item.clerkName)}}</view>
+        <view wx:if="{{item.clerkRole == '3'}}" class="ys-figure-avatar" style='background:#C792EA;'>{{num.sliceName(item.clerkName)}}</view>
+        <view wx:if="{{item.clerkRole == '4'}}" class="ys-figure-avatar" style='background:#787DFF;'>{{num.sliceName(item.clerkName)}}</view>
+        </view>
+        <view class="ys-figure-info">
+          <view class="name">
+              <view wx:if="{{global.clerkRole == '1'}}" >{{item.clerkName}}(店长)</view>
+              <view wx:if="{{global.clerkRole == '2'}}" >{{item.clerkName}}(店员)</view>
+              <view wx:if="{{global.clerkRole == '3'}}" >{{item.clerkName}}(财务)</view>
+              <view wx:if="{{global.clerkRole == '4'}}" >{{item.clerkName}}(店长&财务)</view>
+          </view>
+          <view class="join-time">
+            入店时间:{{item.entryTimeStr}}
+          </view>
+        </view>
+    </view>
+
+    <view class="del" catchtap="del" data-id='{{item.id}}' data-index="{{index}}" data-target="cancel">注销</view>
+
+  </view>
+  </view><!--ys-list-wrapper-->
+  
+  <view class="ys-fixed-footer">
+      <button class="ys-btn ys-footer-btn" bindtap='addEmployee'><image class="ys-icon ys-icon-add" src='../../../static/images/icon_add.png'></image>新增员工</button>
+  </view>
+</view>

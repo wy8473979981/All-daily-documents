@@ -161,7 +161,7 @@ export function TableConfig() {
       sortable: 'custom'
     },
     {
-      key: 'addRentSquare',
+      key: 'twoSignRentSquare',
       label: '新增签约面积(㎡)',
       type: 'area',
       minWidth: 135,

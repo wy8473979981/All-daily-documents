@@ -144,7 +144,7 @@ export default {
   position: relative;
   height: auto;
   margin-top: 6px;
-  padding: 0 11px;
+  padding: 0 6px;
   overflow: hidden;
   transition: all 500ms;
 }

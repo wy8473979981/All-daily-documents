@@ -71,7 +71,9 @@ export default {
           uiid: uiid,
           token: token
         }
-
+        if(!uiid || !token || uiid === 'undefined' || token === 'undefined' || uiid === 'null' || token === 'null') {
+          return
+        }
         let res = await this.$axios.externalLinkServe.getProjectList(params, false)
 
         if (res.code == 0) {

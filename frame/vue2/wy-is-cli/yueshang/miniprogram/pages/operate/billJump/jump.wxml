@@ -1,0 +1,2 @@
+<!--pages/operate/billJump/jump.wxml-->
+<web-view src="{{url}}"></web-view>

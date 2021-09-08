@@ -1,0 +1,34 @@
+<view id='reportList'>
+  <view class='header'>
+    <view class='tab' bindtap="showTabsFn">
+      <text>{{currentTab.name}}</text>
+      <image src="../../../static/images/arrow-down.png" class="arrow-down {{showTabLists? 'reversed': ''}}"></image>
+    </view>
+    <view class='addWrapper' bindtap='goLink' data-key='add'>
+      <image class='ys-icon ys-icon-add' src="../../../static/images/icon_add.png" role="img"></image>
+      新增举报
+    </view>
+  </view>
+  <view class='tabLists' wx:if="{{showTabLists}}">
+    <view class='tabList' wx:key="idx" wx:for="{{tabs}}" bindtap="selectTab" wx:for-index="idx" wx:for-item="item" data-item="{{item}}">{{item.name}}</view>
+  </view>
+
+
+  <view class='ys-block-items'>
+    <view class='items'>
+      <view class='list' wx:for="{{items}}" wx:key="idx"  bindtap='goLink' data-key='detail' data-item='{{item}}'>
+        <view class='status' wx:if="{{item.statusCode == '100701'}}" style='color:#ffa300'>已提交</view>
+        <view class='status' wx:if="{{item.statusCode == '100702'}}" style='color:#ff0000'>已失效</view>
+        <view class='status' wx:if="{{item.statusCode == '100703'}}" style='color:#ffa300;'>处理中</view>
+        <view class='status' wx:if="{{item.statusCode == '100704'}}" style='color:#3e9309'>已完成</view>
+        <view class='content'>{{item.reportContent}}</view>
+        <view class='date'>{{item.createDateStr}}</view>
+      </view>
+      <view class='noData' wx:if="{{noData}}">
+        <image src='{{icon_no_data}}'></image>
+        <text>您还没有举报单哦！</text>
+      </view>
+    </view>
+  </view>
+
+</view>

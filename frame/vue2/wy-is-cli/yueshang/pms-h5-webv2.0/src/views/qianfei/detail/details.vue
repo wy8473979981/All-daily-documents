@@ -1,6 +1,6 @@
 <template>
   <div class="shuju-qiankuan-details" v-webTitle :data-title="`欠费-商家排名`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`欠费-商家排名`" />
       <div class="app-header">
         <div class="app-header-container">
@@ -368,10 +368,15 @@ export default {
     },
 
     onRowClick (e) {
-      let url = './sjfx/index.html#/merchant/sjxx?bisShopId=' + e.detail.row.id
+      let uiid = this.getCookie('uiid')
+      let token = this.getCookie('token')
+      let hideNav = 0
+      if (this.$isWxwork) {
+        hideNav = 1
+      }
+      let url = `./sjfx/index.html#/merchant/sjxx?bisShopId=${e.detail.row.id}&uiid=${uiid}&token=${token}&hideNav=${hideNav}`
       window.location.href = url
-    },
-
+    }
   },
 };
 </script>

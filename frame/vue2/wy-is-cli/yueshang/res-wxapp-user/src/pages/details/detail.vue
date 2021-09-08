@@ -1,6 +1,6 @@
 <template>
   <ui-main class="sp-detail-wrapper">
-    <div class="sticky-header-container" ref="fixedBox">
+    <div :class="useScroll?'sticky-header-container sticky-header-container__small':'sticky-header-container'" ref="fixedBox">
       <headerButtonList />
       <div class="detail-content">
         <template v-if="!useScroll">
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="tag-detail">
-            <customTags :data="{mainText:'M1-L2-2041'}" :type="'vertical'" />
+            <customTags :data="{mainText:'M1-L2-2041'}" />
             <div class="for-sale">
               <span>大商铺</span>
               <span>续签</span>
@@ -60,13 +60,13 @@
 
     <div class="content-box" style="padding: 0; border: 0;" :style="{'padding-top': contentTop}">
       <!-- <van-skeleton title :row="6" :loading="isSkeleton"> -->
-        <!-- todo   模板组件渲染 -->
-        <!-- <component ref="tempComponent" v-if="showTest && !tempMode" :is="CName"></component>
+      <!-- todo   模板组件渲染 -->
+      <!-- <component ref="tempComponent" v-if="showTest && !tempMode" :is="CName"></component>
         <templateDemo v-if="templateData && tempMode" :data="templateData"></templateDemo>
       </van-skeleton> -->
-	  <templateDemo :data="templateData"></templateDemo>
+      <templateDemo :data="templateData"></templateDemo>
     </div>
-   
+
     <!-- 申请延期组件 -->
     <delay-module v-if="form.approveDelay" @submit="submitDelay"></delay-module>
     <!-- 其他附件组件 -->
@@ -193,7 +193,7 @@ export default {
       bossFileDetail: [],
       contentTop: '',
       useScroll: false,
-      
+
     };
   },
   computed: {
@@ -224,7 +224,7 @@ export default {
       this.contentTop = this.$refs.fixedBox.offsetHeight + 'px'
       let uiMainScroll = document.querySelector(".ui-main-scroll");
       var scrollTop = uiMainScroll.pageYOffset || uiMainScroll.scrollTop || uiMainScroll.scrollTop;
-      console.log(scrollTop, 'scrollTop')
+      // console.log(scrollTop, 'scrollTop')
       if (scrollTop > 10) {
         this.useScroll = true;
       } else {
@@ -851,7 +851,6 @@ $color: #26a2ff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 6px;
       .company-name {
         width: 125px;
         white-space: nowrap;
@@ -887,6 +886,11 @@ $color: #26a2ff;
       }
     }
   }
+}
+.sticky-header-container__small {
+  padding: 10px 15px 13px 20px;
+  background: #fdfcfa;
+  border-bottom: 1px solid RGBA(217, 217, 209, 1);
 }
 </style>
 

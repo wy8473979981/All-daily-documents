@@ -1,0 +1,41 @@
+/**app.wxss**/
+@import "./static/css/common.wxss";
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+
+.pd-h{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.pd-v{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+view.sticky-button{
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  background-color: #0fcbbc;
+  color: white;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 40rpx;
+}
+.theme-color{
+  color: #0fcbbc;
+}
+.theme-bgcolor{
+  background-color: #0fcbbc;
+}

@@ -1,0 +1,124 @@
+<!--pages/usercenter/employee-add/employee-add.wxml-->
+<view class="ys-block ys-block-fixed-footer">
+  <my-warning id='warningComp'/>
+<form bindsubmit="formSubmit" >
+  <view class="ys-section ys-section-gap">
+      <view class="ys-cell request">
+          <view class="ys-cell-label">手机</view>
+          <view class="ys-cell-content">
+              <input type='number' placeholder='请填写' value='{{bindTel}}' data-key='phone' bindinput="bindKeyInput" />
+          </view>
+      </view><!--ys-cell-->
+
+      <view class="ys-cell request">
+          <view class="ys-cell-label">姓名</view>
+          <view class="ys-cell-content">
+              <input type='text' placeholder='请填写' value='{{clerkName}}'  data-key='name' bindinput="bindKeyInput" />
+          </view>
+      </view><!--ys-cell-->
+
+      <view class="ys-cell request">
+          <view class="ys-cell-label">性别</view>
+          <view class="ys-cell-content">
+              <picker value="sexIndex" range="{{sexArray}}"   range-key="name" bindchange="bindPickerChange">
+                  <view class="picker">
+                    当前选择：{{sexArray[sexIndex].name}}
+                  </view>
+              </picker>
+          </view>
+      </view><!--ys-cell-->
+
+      <view class="ys-cell request">
+          <view class="ys-cell-label">身份证号</view>
+          <view class="ys-cell-content">
+              <input type='idcard' placeholder='请填写' value='{{idNo}}'  data-key='numberId' bindinput="bindKeyInput" />
+          </view>
+      </view><!--ys-cell-->
+
+      <view class="ys-cell request">
+          <view class="ys-cell-label">入职时间</view>
+          <view class="ys-cell-content">
+              <picker value="{{entryTimeStr}}" start="startDate" end="endDate"   mode="date" bindchange="bindDateChange">
+                  <view class="picker">
+                   {{entryTimeStr}}
+                  </view>
+              </picker>
+          </view>
+      </view><!--ys-cell-->
+     
+  </view><!--ys-section-->
+
+   <view class="ys-section ys-section-gap">
+      <view class="ys-section-title">相片(证件照)</view>
+      <view class="ys-section-content">
+        <view class="ys-thumbnail-wrapper">
+            <view class="thumbnail" wx:for="{{clerkPhotoList}}" wx:key="index">
+              <image mode="aspectFill" src="{{item.path}}"></image>
+ <view class="thumbnail-del" data-type='0' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>            </view>
+             <view class="thumbnail thumbnail-add" wx:if="{{picNum0}}" data-id='0' bindtap='upload0'>
+             +
+            </view>
+        </view>
+      </view>
+   </view><!--ys-section-->
+
+    <view class="ys-section ys-section-gap">
+      <view class="ys-section-title">
+        身份证
+        <text>(正反面照片)</text>
+      </view>
+      <view class="ys-section-content">
+        <view class="ys-thumbnail-wrapper">
+            <view class="thumbnail"  wx:for="{{cardPhoto}}" wx:key="index">
+              <image mode="aspectFill" src="{{item.path}}"></image>
+ <view class="thumbnail-del" data-type='1' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>            </view>
+
+            <view class="thumbnail thumbnail-add" data-id='1' bindtap='upload1' wx:if="{{picNum1}}">
+            +
+            </view>
+        </view>
+      </view>
+   </view><!--ys-section-->
+
+   <view class="ys-section ys-section-gap">
+      <view class="ys-section-title">健康证</view>
+      <view class="ys-section-content">
+        <view class="ys-thumbnail-wrapper">
+            <view class="thumbnail"  wx:for="{{healthCardList}}" wx:key="index">
+              <image mode="aspectFill" src="{{item.path}}"></image>
+ <view class="thumbnail-del" data-type='2' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>            </view>
+
+             <view class="thumbnail thumbnail-add" data-id='2' bindtap='upload2' wx:if="{{picNum2}}">
+             +
+            </view>
+        </view>
+      </view>
+   </view><!--ys-section-->
+
+    <view class="ys-section ys-section-gap">
+      <view class="ys-section-title ys-section-title-gaped">权限设置</view>
+      <view class="ys-section-content">
+
+        <view class="ys-cell">
+          <view class="ys-cell-label">录入销售额</view>
+          <view class="ys-cell-content">
+              <switch checked='{{isSales}}' data-id='0' bindchange="switchChange" type="switch"/>
+          </view>
+        </view><!--ys-cell-->
+
+        <view class="ys-cell">
+          <view class="ys-cell-label">服务申请</view>
+          <view class="ys-cell-content">
+               <switch checked='{{isElecard}}' data-id='1' bindchange="switchChange"  type="switch"/>
+          </view>
+        </view><!--ys-cell-->
+
+      </view>
+   </view><!--ys-section-->
+
+</form>
+  <view class="ys-fixed-footer">
+      <button class="ys-btn ys-footer-btn ys-btn-powderblue" bindtap='addEmployee'>提交</button>
+  </view><!--ys-fixed-footer-->
+</view>
+

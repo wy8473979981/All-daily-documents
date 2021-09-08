@@ -1,0 +1,85 @@
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  font-size: 30rpx;
+  color: #ffa200;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+.addWrapper image{
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.tab .arrow-down{
+  width: 16rpx;
+  height: 10rpx;
+  vertical-align:middle;
+  margin-left: 30rpx;
+}
+.tab .arrow-down.reversed{
+  transform: rotate(180deg);
+}
+.reversed{
+  transform: rotate(180deg);
+}
+.tabLists {
+  position: fixed;
+  z-index: 2;
+  top: 90rpx;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+.tabLists .tabList {
+  border-top: 1px solid #eee;
+  line-height: 90rpx;
+  height: 90rpx;
+  text-align: center;
+}
+
+.ys-block-items {
+  margin-top: 90rpx;
+  bottom: 0;
+  width: 100%;
+}
+
+.ys-block-items .list{
+  padding: 10rpx 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.ys-block-items .list .content{
+  line-height: 60rpx;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ys-block-items .list .date{
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+}
+.ys-block-items .list .status{
+  font-size: 24rpx;
+  text-align: right;
+}
+.noData{
+  padding-top: 150rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #b2b2b2;
+}
+.noData image{
+  display: block;
+  height: 200rpx;
+  width: 200rpx;
+  margin: 0 auto;
+}

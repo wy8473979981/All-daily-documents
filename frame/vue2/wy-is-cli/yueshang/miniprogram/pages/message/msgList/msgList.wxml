@@ -1,0 +1,27 @@
+<view class="tabbar">
+  <my-tab
+    tabVal='{{tabVal}}'
+    tabList='{{tabList}}'
+    bindchangeTab="changeTab"
+  />
+</view>
+<view
+  bindtap="showType1"
+  hidden='{{!btnShow}}'
+  class="btn-show information-type-item"
+>
+  <text>{{typeName}}</text>
+  <image src="../../../static/images/arrow-down.png" class="arrow-down {{showTypeList1? 'reversed': ''}}"></image>
+</view>
+<view class="information-type-list" hidden='{{!showTypeList1}}'>
+  <view wx:for='{{typeList1}}' wx:key='index' data-item='{{item}}'
+    class="information-type-item {{params.informationType===item.id?'active':''}}"
+    bindtap='select'
+  >
+  {{item.name}}
+  </view>
+</view>
+<view class='list-wrapper' style="padding-top: {{params.type === 1? '180rpx': '90rpx'}}">
+  <msg-item items='{{resultList}}' msgType="{{params.type}}" wx:if='{{resultList.length>0}}'/>
+  <no-data wx:else/>
+</view>

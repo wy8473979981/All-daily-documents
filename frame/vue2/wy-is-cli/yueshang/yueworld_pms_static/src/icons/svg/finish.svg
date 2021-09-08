@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="24pt/已完成">
+            <circle id="椭圆形" stroke="#9ABBDD" stroke-width="2" fill="#1C4C7F" cx="12" cy="12" r="10"></circle>
+            <polyline id="路径-125" stroke="#FFFFFF" transform="translate(12.787115, 9.278295) scale(-1, 1) rotate(-225.000000) translate(-12.787115, -9.278295) " points="9.78711451 4.27829518 15.7871145 4.27829518 15.7871145 14.2782952"></polyline>
+        </g>
+    </g>
+</svg>

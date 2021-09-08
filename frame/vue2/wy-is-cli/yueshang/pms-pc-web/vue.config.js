@@ -5,8 +5,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const resolve = dir => path.join(__dirname, dir);
 
 const publicPath = process.env.VUE_BASE_PATH || '';
-const name = 'PMS';
-const devPort = '8080';
+const name = '租赁首页';
+const devPort = '8888';
 const timeStamp = new Date().getTime()
 
 module.exports = {
@@ -30,10 +30,10 @@ module.exports = {
         changeOrigin: true,
       },
       '/': {
-        target: 'http://pmstest.powerlong.com',
-        // target: 'http://192.168.121.5:8081', // 曲鹏翰
+        // target: 'http://pmstest.powerlong.com',
+        target: 'http://pms.powerlong.com',
         // target: 'http://192.168.120.114:8081', // 王锦涛 Sky Wang
-        // target: 'http://192.168.120.96:8081',
+        // target: 'http://172.16.12.71:8082', // 徐常硕
         changeOrigin: true
       },
       // [process.env.VUE_BASE_API]: {
@@ -52,22 +52,10 @@ module.exports = {
     }
   },
 
-  configureWebpack: (config) => {
+  configureWebpack() {
     const plugins = []
     plugins.push(new LodashModuleReplacementPlugin())
     plugins.push(new WebpackMd5Hash())
-    // 环境变量
-    config.resolve = {
-      extensions: ['.js', '.vue', '.json'],
-      alias: {
-        '@': resolve('src'),
-      },
-    }
-
-    // 开启 source-map 方便调试
-    if (process.env.NODE_ENV === 'development') {
-      config.devtool = 'source-map'
-    }
 
     return {
       plugins,
@@ -97,6 +85,12 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].title= name
+        return args
+      })
 
     // 把图片传给组件 <avatar img-src="./assets/default-avatar.png"></avatar>
     config.module

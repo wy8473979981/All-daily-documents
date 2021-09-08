@@ -1,0 +1,15 @@
+<view class="my-tab-container">
+  <view class='my-tab-wrapper'
+    wx:for="{{tabList}}" 
+    wx:key='index'
+  >
+    <view
+      data-value="{{item}}"
+      class='{{index==tabVal? "active":""}}'
+      bindtap='handleTap'
+      data-index="{{index}}"
+    >
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+</view>

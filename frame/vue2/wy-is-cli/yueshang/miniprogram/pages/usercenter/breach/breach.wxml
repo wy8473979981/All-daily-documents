@@ -1,0 +1,23 @@
+<!--pages/usercenter/breach/breach.wxml-->
+<view class="ys-block" id="breach-list">
+  <scroll-view class="ys-list-wrapper" scroll-y="true">
+    <view class="list-item" data-index="{{index}}" wx:for="{{items}}" wx:key="" 
+    bindtap="showBreachDetail" data-eid="{{item.id|'id'}}">
+        <view class="ys-list-info col-left">
+                  <view class="title">
+                    {{item.name}}
+                    <view class="ys-badge ys-badge-sm ys-badge-warn" wx:if="{{item.status=='unpay'}}">未缴纳</view>
+                    <view class="ys-badge ys-badge-sm ys-badge-disabled" wx:if="{{item.status=='paid'}}">已缴纳</view>
+                  </view>
+                  <view class="sub-title">
+                    {{item.time}}
+                  </view>
+        </view>
+
+         <view class="ys-list-info col-right">
+                  <view class="title text-red">{{item.fee}}</view>
+        </view>
+  </view>
+  </scroll-view><!--ys-list-wrapper-->
+  
+</view>

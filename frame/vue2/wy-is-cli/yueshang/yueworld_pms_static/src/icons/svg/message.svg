@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组" stroke="#050101" transform="translate(4.500000, 6.000000)">
+            <polygon id="路径" points="0 0 15 0 15 10.2857143 9.375 10.2857143 7.5 12 5.625 10.2857143 0 10.2857143"></polygon>
+            <line x1="6.5" y1="4.875" x2="8.5" y2="4.875" id="路径"></line>
+            <line x1="2.5" y1="4.875" x2="4.5" y2="4.875" id="路径备份-2"></line>
+            <line x1="10.5" y1="4.875" x2="12.5" y2="4.875" id="路径备份"></line>
+        </g>
+        <rect id="矩形" stroke="#48A0C3" stroke-width="3" x="-197.5" y="-793.5" width="418" height="1718"></rect>
+    </g>
+</svg>

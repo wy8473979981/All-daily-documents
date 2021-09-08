@@ -13,6 +13,8 @@ const queryFormatterMixins = {
 
     requestConfig: Object, // 接口请求配置
 
+    asyncBeforeExport: Function, // 导出接口发送数据之前,需要处理的函数
+    
     asyncBeforeSearch: Function, // 查询接口发送数据之前，需要处理的函数
     asyncBefortTableUpdate: Function, // 接口获取到数据之后，需要处理的函数
   },
@@ -101,7 +103,12 @@ const queryFormatterMixins = {
         ? this.asyncBeforeSearch(cloneDeep(data))
         : data;
     },
-
+    // 导出之前需要的特殊处理
+    beforeExport(data){
+      return this.asyncBeforeExport
+        ? this.asyncBeforeExport(cloneDeep(data))
+        : data;
+    },
     // 搜索
     handleSearch() {
       this.fecthData();
@@ -121,7 +128,7 @@ const queryFormatterMixins = {
       this.loadingLock = true;
 
       let params = {
-        ...this.beforeSearchModifyFormData(this.currentFormData),
+        ...this.beforeSearchModifyFormData(this.beforeExport(this.currentFormData)),
         responseType: "blob",
       };
       exportEexcel

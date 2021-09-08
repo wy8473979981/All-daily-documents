@@ -1,0 +1,156 @@
+.process-box {
+  background-color: #F6F5EE;
+  .el-input__inner {
+    height: 32px;
+    border: none;
+    border-radius: 16px;
+    color: #050101;
+    background-color: #FDFCFA;
+  }
+  .el-input__inner::placeholder {
+    color: #848382;
+  }
+  .el-input__icon {
+    width: 30px;
+    line-height: 26px;
+    color: #848382;
+  }
+  .el-input--prefix .el-input__inner {
+    padding-left: 40px;
+  }
+  // 下拉框icon
+  .el-select .el-input .el-select__caret {
+    color: #848382;
+  }
+  // 单选样式
+  .el-radio {
+    margin-right: 20px;
+  }
+  .el-radio__label {
+    color: #050101;
+    font-weight: 400;
+  }
+  .el-radio__inner {
+    border: 1px solid #848382;
+  }
+  .el-radio__inner:hover {
+    border-color: #1C4C7F;
+  }
+  .el-radio__input.is-checked + .el-radio__label {
+    color: #050101;
+  }
+  .el-radio__input.is-checked .el-radio__inner {
+    border-color: #1C4C7F;
+    background: #1C4C7F;
+  }
+  .el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+    box-shadow: none;
+  }
+  // 多选样式
+  .el-checkbox {
+    margin-right: 20px;
+  }
+  .el-checkbox__label {
+    color: #050101;
+    font-weight: 400;
+    padding-left: 6px;
+  }
+  .el-checkbox__inner {
+    height: 12px;
+    width: 12px;
+    border: 1px solid #848382;
+    border-radius: 0;
+  }
+  .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: #1C4C7F;
+    border-color: #1C4C7F;
+  }
+  .el-checkbox__input.is-checked + .el-checkbox__label {
+    color: #050101;
+  }
+  .el-checkbox__inner::after {
+    height: 6px;
+    left: 3px;
+  }
+  // 日期控件样式
+  .el-date-editor.el-input__inner {
+    width: 235px;
+  }
+  .el-date-editor .el-range-separator {
+    line-height: 26px;
+  }
+  .el-table {
+    background-color: #F6F5EE;
+  }
+  .el-table__header-wrapper {
+    border-radius: 20px;
+  }
+  .el-table tr {
+    background-color: #F6F5EE;
+  }
+  // table hover颜色
+  .el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #EFEDEA !important;
+  }
+  .el-table th {
+    padding: 4px 0;
+    background-color: #E5E2DE !important;
+  }
+  // .el-table th:first-child {
+  //   border-radius: 20px 0 0 20px;
+  // }
+  // .el-table th:nth-last-child(2) {
+  //   border-radius: 0 20px 20px 0;
+  // }
+  .el-table th > .cell {
+    color: #050101;
+  }
+  .el-table--border th {
+    border-bottom: none;
+  }
+  .el-table td {
+    border-bottom: 1px solid #E5E2DE;
+  }
+  .el-table td > .cell {
+    color: #050101;
+    font-size: 14px;
+  }
+  .el-table.table-height td > .cell {
+    // line-height: 14px;
+  }
+  // 排序图标样式
+  .el-table .caret-wrapper {
+    width: 20px;
+    height: 20px;
+  }
+  .el-table .sort-caret {
+    left: 5px;
+  }
+  .el-table .sort-caret.ascending {
+    border-bottom-color: #848382;
+    top: -1px;
+  }
+  .el-table .sort-caret.descending {
+    border-top-color: #848382;
+    bottom: -1px;
+  }
+  .el-table .ascending .sort-caret.ascending {
+    border-bottom-color: #409EFF;
+  }
+  .el-table .descending .sort-caret.descending {
+    border-top-color: #409EFF;
+  }
+  .el-table--group, .el-table--border {
+    border: none;
+  }
+  .el-table--border th, .el-table--border td {
+    border-right: none;
+  }
+  .el-table--group::after, .el-table--border::after {
+    width: 0;
+  }
+  // loading样式
+  .el-loading-mask {
+    background-color: rgba(246, 245, 238, 0.8);
+  }
+}

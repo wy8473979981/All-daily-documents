@@ -1,6 +1,6 @@
 <template>
   <div class="xiaoshou" v-webTitle :data-title="`月销售`">
-    <div class="header-top">
+    <div class="header-top" :style="!$isWxwork ? 'padding-top:1.2rem':''">
       <ys-n-nav-bar :title="`月销售`" />
       <div class="app-header">
         <div class="app-header-container">
@@ -297,7 +297,13 @@ export default {
       this.leaderDetail = res.data
     }, */
     onRowClick (e) {
-      let url = './sjfx/index.html#/merchant/sjxx?bisShopId=' + e.detail.row.shopId
+      let uiid = this.getCookie('uiid')
+      let token = this.getCookie('token')
+      let hideNav = 0
+      if(this.$isWxwork) {
+        hideNav = 1
+      }
+      let url = `./sjfx/index.html#/merchant/sjxx?bisShopId=${e.detail.row.shopId}&uiid=${uiid}&token=${token}&hideNav=${hideNav}`
       window.location.href = url
     },
     /**

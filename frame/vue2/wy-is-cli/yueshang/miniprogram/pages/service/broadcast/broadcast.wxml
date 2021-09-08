@@ -1,0 +1,97 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-broadcast' class='ys-block-fixed-footer'>
+  <my-warning id='warningComp'/>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>铺位号</text>
+      <text class='content'>{{globalData.storeNo}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人</text>
+      <text class='content'>{{globalData.clerkName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>申请人电话</text>
+      <text class='content'>{{globalData.bindTel}}</text>
+    </view>
+  </view>
+  <!-- overtime -->
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='select-wrapper'>
+      <label>广播日期</label>
+      <view class='picker-wrapper'>
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="dateChange">
+          <view class="picker">
+            {{date}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='select-wrapper'>
+      <label>期望播放时间</label>
+      <view class='picker-wrapper'>
+        <picker mode="time" value="{{time}}" start="{{startTimeBegin}}" end="24:00" bindchange="timeChange">
+          <view class="picker">
+            {{time}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <!-- <view class='select-wrapper'>
+      <label>活动开始日期</label>
+      <view class='picker-wrapper'>
+        <picker mode="date" value="{{actionStart}}" start="{{startDate}}" end="{{endDate}}" bindchange="actionStartChange">
+          <view class="picker">
+            {{actionStart}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='select-wrapper'>
+      <label>活动结束日期</label>
+      <view class='picker-wrapper'>
+        <picker mode="date" value="{{actionEnd}}" start="{{startDate}}" end="{{endDate}}" bindchange="actionEndChange">
+          <view class="picker">
+            {{actionEnd}}
+            <image src='../../../static/images/icon_arrow_right.png'></image>
+          </view>
+        </picker>
+      </view>
+    </view> -->
+  </view>
+  <!-- admin -->
+  <!-- <view class='ys-block-gap ys-block-gap-side'>
+    <view class='input-wrapper'>
+      <label>折扣</label>
+      <input placeholder='请填写'></input>
+    </view>
+  </view> -->
+  <!-- 备注 -->
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='textarea'>
+      <label>广播内容</label>
+      <textarea placeholder="请输入广播稿内容" name="textarea" value='{{content}}' bindinput="bindKeyInput" />
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap select-person'>
+    <label>附件</label>
+    <view class='img-wrapper' wx:for="{{imgList}}" wx:key="index">
+      <image bindtap='previewImage' data-src='{{item.fullPath}}' class='icon' src='{{item.fullPath}}'></image>
+      <view class="img-wrapper-del" data-type='0' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>
+    </view>
+    <view class='img-wrapper' wx:if="{{picNum}}">
+      <view class='add' bindtap='upload'>+</view>
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button bindtap="submit" class='ys-btn ys-footer-btn ys-btn-powderblue'> 提交 </button>
+  </view>
+</view>

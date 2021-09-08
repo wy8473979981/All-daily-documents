@@ -1,0 +1,21 @@
+<view class='item-wrapper'>
+  <label>单据号</label>
+  <text>{{info.applicationNo}}</text>
+  <view class='status'>{{info.statusName}}</view>
+</view>
+<view class='item-wrapper'>
+  <label>商户</label>
+  <text>{{info.brandName}}</text>
+</view>
+<view class='item-wrapper'>
+  <label>铺位号</label>
+  <text>{{info.storeNos}}</text>
+</view>
+<view class='item-wrapper'>
+  <label>申请人</label>
+  <text>{{info.clerkName}}</text>
+</view>
+<view class='item-wrapper'>
+  <label>申请人电话</label>
+  <text>{{info.phoneNumber}}</text>
+</view>

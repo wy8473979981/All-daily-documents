@@ -29,7 +29,7 @@
           <div class="item-right">
             <span class="main-text">2021-12-21</span>
             <span class="tag-box">
-              <customTags :data="{mainText:'有批注',subText:'',secondText:''}" :className="'gray'" :mianTextStyle="{width:'52px',color:'#333333FF'}" />
+              <customTags :data="{mainText:'有批注',subText:'',secondText:''}" :className="'gray'" :mianTextStyle="{width:'52px',color:'#333333FF'}"  @handleClick="showPopup = true;"/>
             </span>
           </div>
         </div>
@@ -66,16 +66,20 @@
       </div>
 
     </ysSection>
+	<centerPopup :showPopup.sync='showPopup'  :title="'其它事项批注'" :content="'具体的批注内容，内容较多可滚动查看。'"></centerPopup>
   </div>
 </template>
 <script>
+import centerPopup from '../../pages/details/components/centerPopup'
 export default {
   name: 'ysNQtsxModule',
   components: {
+	 centerPopup 
   },
   data () {
     return {
-      dataList: []
+      dataList: [],
+	  showPopup:false,
     }
   },
   computed: {},

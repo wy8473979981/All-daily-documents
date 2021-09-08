@@ -1,0 +1,202 @@
+[{
+  "roles": [{
+    "userInfo": {
+      "userAccount": "ouww@powerlong.com",
+      "enterpriseName": "上海宝龙实业发展（集团）有限公司",
+      "userName": "曾志鹏"
+    },
+    "realNameAuthentication": {
+      "requireIdentityAssurance": null,
+      "requireEnterIdentityAssurance": null,
+      "idNumber": null
+    },
+    "userType": "ENTERPRISE",
+    "userTypeName": "宝龙签约企业",
+    "signOrderly": null,
+    "receiverType": "SIGNER",
+    "ridingSealY": 0.5,
+    "querySealsList": [{
+      "sealName": "公章"
+    }, {
+      "sealName": "合同专用章"
+    }, {
+      "sealName": "财务章"
+    }, {
+      "sealName": "法人章"
+    }, {
+      "sealName": "人事专用章"
+    }, {
+      "sealName": "电子公章"
+    }],
+    "sealName": "公章",
+    "roleName": "甲方",
+    "qyfName": "上海宝龙实业发展（集团）有限公司",
+    "stampChecked": true,
+    "qfzChecked": true
+  }],
+  "name": "新商务条件网批接口 - 副本.pdf",
+  "attachmentDetailList": [{
+    "order": 1,
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430750457921537",
+    "appendingSignLabels": [],
+    "fileName": "新商务条件网批接口 - 副本.pdf",
+    "dragList": [{
+      "id": "7989455057523762",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "gz",
+      "x": 0.366961,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 793,
+      "parentH": 1121
+    }, {
+      "id": "6930657015550876",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "rq",
+      "x": 0.629256,
+      "y": 0.165031,
+      "w": 78,
+      "h": 20,
+      "parentW": 793,
+      "parentH": 1121
+    }, {
+      "id": "5831491838363023",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "qfz",
+      "x": 0,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 138,
+      "parentH": 1121
+    }],
+    "hdUrl": null
+  }, {
+    "order": 2,
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430777926418433",
+    "appendingSignLabels": [],
+    "fileName": "新商务条件网批接口 - 副本.pdf",
+    "dragList": [{
+      "id": "5831491838363023",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "qfz",
+      "x": 0,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 138,
+      "parentH": 1121
+    }],
+    "hdUrl": null
+  }, {
+    "order": 3,
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430776198365184",
+    "appendingSignLabels": [],
+    "fileName": "新商务条件网批接口 - 副本.pdf",
+    "dragList": [{
+      "id": "5831491838363023",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "qfz",
+      "x": 0,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 138,
+      "parentH": 1121
+    }],
+    "hdUrl": null
+  }, {
+    "order": 4,
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430775548248065",
+    "appendingSignLabels": [],
+    "fileName": "新商务条件网批接口 - 副本.pdf",
+    "dragList": [{
+      "id": "5831491838363023",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "qfz",
+      "x": 0,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 138,
+      "parentH": 1121
+    }],
+    "hdUrl": null
+  }, {
+    "order": 5,
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430769139351553",
+    "appendingSignLabels": [],
+    "fileName": "新商务条件网批接口 - 副本.pdf",
+    "dragList": [{
+      "id": "5831491838363023",
+      "roleName": "甲方",
+      "userType": "ENTERPRISE",
+      "currentQyfIndex": 0,
+      "currentQyName": "上海宝龙实业发展（集团）有限公司",
+      "pageNumber": 1,
+      "type": "qfz",
+      "x": 0,
+      "y": 0.282783,
+      "w": 138,
+      "h": 150,
+      "parentW": 138,
+      "parentH": 1121
+    }],
+    "hdUrl": null
+  }],
+  "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430746318143488",
+  "currentPage": "1",
+  "totalPage": "5",
+  "success": "true",
+  "originalFileName": null,
+  "content": "https://resdemo.powerlong.com/ys-file-server/view/show/639430717188702209",
+  "fileName": "新商务条件网批接口 - 副本.pdf",
+  "imgList": [{
+    "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430746318143488",
+    "imagePreviewUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430746318143488",
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430750457921537"
+  }, {
+    "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430772381548544",
+    "imagePreviewUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430772381548544",
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430777926418433"
+  }, {
+    "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430768531177472",
+    "imagePreviewUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430768531177472",
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430776198365184"
+  }, {
+    "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430768388571137",
+    "imagePreviewUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430768388571137",
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430775548248065"
+  }, {
+    "curAbbImgBase64code": "https://filedemo.powerlong.com/ys-file-server/view/show/639430765683245056",
+    "imagePreviewUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430765683245056",
+    "attachmentDetailItemImgUrl": "https://filedemo.powerlong.com/ys-file-server/view/show/639430769139351553"
+  }],
+  "appendingSignLabels": [],
+  "contractIndex": 0
+}]

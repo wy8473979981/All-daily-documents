@@ -25,7 +25,7 @@ let columnList = {
 			serveApi: axios.commonServe.midBusinessIndistinct,
 		},
 		{
-			label: "创建人",
+			label: "用户名",
 			key: "userName",
 			width: '100px',
 			align: "center",

@@ -1,0 +1,61 @@
+<!--pages/service/overtime/overtime.wxml-->
+<view id='ys-daily' class='ys-block-fixed-footer'>
+  <my-warning id='warningComp'/>
+  <view class='ys-block-gap ys-block-gap-top'>
+    <view class='info-wrapper'>
+      <text class='label'>品牌</text>
+      <text class='content'>{{globalData.detailInfo.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>销售日期</text>
+      <text class='content'>{{saleYmStart}} ~ {{saleYmEnd}}</text>
+    </view>
+  </view>
+  <!-- admin -->
+  <view class='ys-block-gap ys-block-gap-side'>
+    <view class='input-wrapper'>
+      <label>含税销售额(元)</label>
+      <input placeholder='点击输入' value='{{hanshui}}' type='digit' bindinput='bindinput' data-type='hanshui'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>税率(%)</label>
+      <input placeholder='点击输入' value='{{shuilv}}' type='digit' bindinput='bindinput' data-type='shuilv'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>税额(元)</label>
+      <input placeholder='点击输入' value='{{shuie}}' type='digit' bindinput='bindinput' data-type='shuie'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>税后销售额(元)</label>
+      <input placeholder='点击输入' value='{{shuihou}}' type='digit' bindinput='bindinput' data-type='shuihou'></input>
+    </view>
+    <view class='input-wrapper'>
+      <label>净销售额(元)</label>
+      <input placeholder='点击输入' value='{{jingxiao}}' type='digit' bindinput='bindinput' data-type='jingxiao'></input>
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap select-person'>
+    <label>上传盖章后的销售说明</label>
+    <view class='img-wrapper' wx:for="{{imgList}}" wx:key="index">
+      <image class='icon' bindtap='previewImage' data-src='{{item.path}}' src='{{item.path}}'></image>
+      <view class="img-wrapper-del" data-type='0' data-index='{{index}}' bindtap='del'><image src='../../../static/images/icon_del.png'></image></view>
+    </view>
+    <view class='img-wrapper'>
+      <view class='add' bindtap='upload'>+</view>
+    </view>
+  </view>
+  <view class='ys-block-gap ys-block-gap-top tips'>
+    <view class='title'><image src='../../../static/images/wenhao.png'></image> 提报规则说明:</view>
+    <view class='content'>1、每日的销售额需在当天中午12:00至次日上午11:00前完成提报，过时将不再允许提报。</view>
+  </view>
+  <!-- <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 提交 </button>
+  </view> -->
+  <view class='ys-fixed-footer'>
+    <form class="form-id" bindsubmit="submit" report-submit='true' >
+      <button form-type="submit" type="default" size="mini"></button>
+    </form>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue'> 提交 </button>
+  </view>
+</view>

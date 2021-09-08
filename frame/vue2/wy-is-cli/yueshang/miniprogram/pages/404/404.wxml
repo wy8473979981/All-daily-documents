@@ -1,0 +1,10 @@
+<!--pages/404/404.wxml-->
+<view id="page-404">
+  <view class="image-wrapper">
+    <image src="../../static/images/construction.png" mode="aspectFit" style="width:100%;height:100%;"></image>
+    <view class="info">正在建设中...</view>
+  </view>
+  <!-- <form bindsubmit="submit" report-submit='true' >
+    <button form-type="submit" type="default" size="mini">提交</button>
+  </form> -->
+</view>

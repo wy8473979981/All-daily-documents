@@ -16,7 +16,7 @@
       </template>
 
       <template v-else-if="item.type === 'dateRang'">
-        <el-date-picker v-model="daterange" size="mini" type="daterange" align="left" unlink-panels :picker-options="pickerOptions" popper-class="daterangeMenu" range-separator="~" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" @change="search" @clear="search">
+        <el-date-picker v-model="daterange" size="mini" type="daterange" align="left" unlink-panels :picker-options="pickerOptions" popper-class="daterangeMenu" range-separator="~" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd"  @clear="search">
         </el-date-picker>
       </template>
 
@@ -190,7 +190,7 @@ export default {
         this.currentValue.appId = ''
       }
       // console.log(this.currentValue, 'this.search()')
-      this.search()
+	  this.search()
     },
     famater (date) {
       let arr = date.split('/')

@@ -1,0 +1,35 @@
+<!--pages/index_bridge/index_bridge.wxml-->
+<view class="ys-block" id="page-index">
+<view class="ys-section" style='padding:0 20rpx;'>
+    <view class="panel-image-wrapper">
+        <image style="width:100%;height:280rpx;" src="/static/images/assets/banner.png"  mode="aspectFill"></image>
+    </view>
+  </view><!--ys-section-->
+
+</view>
+<view class="ys-modal {{modalShow == true ? 'show':''}}" tabindex="-1" >
+    <view class="ys-modal-dialog" animation="{{modalAnim}}" bindtransitionend="closeModal" data-show="{{modalStatus}}">
+        <view class="ys-modal-content" wx:if="{{(authorize==false && userBind==true)}}">
+           <view class="title">授权提示</view>
+           <view class="content">
+              <text>授权后才能使用更多的商户服务，快来授权吧！</text>
+           </view>
+            <view class="ys-btn-wrapper">
+              <button class="ys-btn ys-btn-powderblue" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">同意授权</button>
+           </view> 
+        </view>
+
+        <view class="ys-modal-content" wx:if="{{(authorize==false && userBind==false)}}">
+           <view class="title">温馨提示</view>
+           <view class="content">
+              <text>请先联系主管营运，开通帐号才能登录小程序！</text>
+           </view>
+
+          <view class="ys-btn-wrapper">
+            <button class="ys-btn ys-btn-powderblue" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">立即绑定</button>
+          </view>
+        </view>
+    </view>
+ </view>
+
+

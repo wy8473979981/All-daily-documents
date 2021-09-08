@@ -1,0 +1,44 @@
+<!--pages/service/overtime/overtime.wxml-->
+<wxs src="../../../static/js/filterNum.wxs" module="num"/>
+
+<view id='ys-daily' class='ys-block-fixed-footer'>
+  <!-- shop -->
+  <view class='top'>
+  <!-- 销售额(元) -->
+    <view class='title'>实际销售额（折扣后）</view>
+    <view class='content'>{{num.filterNum(items.sale)}}</view>
+    <view class='title'>折扣金额</view>
+    <view class='content'>{{num.filterNum(items.tenantDiscountAmount)}}</view>
+    <view class='title'>销售额（折扣前）</view>
+    <view class='content'>{{num.filterNum(items.tenantBeforeDiscountAmount)}}</view>
+  </view>
+  <view class='ys-block-gap'>
+    <view class='info-wrapper'>
+      <text class='label'>销售日期</text>
+      <text class='content'>{{year}}-{{month}}-{{day}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>商户</text>
+      <text class='content'>{{globalData.detailInfo.brandName}}</text>
+    </view>
+    <view class='info-wrapper'>
+      <text class='label'>笔数(笔)</text>
+      <text class='content'>{{items.count}}</text>
+    </view>
+  </view>
+  <!-- 抄送人 -->
+  <view class='ys-block-gap select-person'>
+    <label>结算单</label>
+    <view class='img-wrapper' wx:for="{{paths}}" wx:key="index">
+      <image class='icon' bindtap='previewImage' data-src='{{item}}' src='{{item}}'></image>
+    </view>
+  </view>
+  <view class='ys-block-gap bottom'>
+    <view class='info-wrapper'>
+      {{year}}-{{month}}-{{day}}日 提报
+    </view>
+  </view>
+  <view class='ys-fixed-footer'>
+    <button class='ys-btn ys-footer-btn ys-btn-powderblue' bindtap="confirm"> 修改 </button>
+  </view>
+</view>
