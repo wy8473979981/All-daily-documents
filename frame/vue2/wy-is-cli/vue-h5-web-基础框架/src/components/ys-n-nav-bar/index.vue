@@ -1,7 +1,16 @@
 <template>
-  <van-nav-bar v-if="show?showNav:show" class="navbar" :title="title" left-text="" right-text="" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+  <van-nav-bar
+    v-if="show ? showNav : show"
+    class="navbar"
+    :title="title"
+    left-text=""
+    right-text=""
+    left-arrow
+    @click-left="onClickLeft"
+    @click-right="onClickRight"
+  >
     <template #title>
-      <span class="title">{{title}}</span>
+      <span class="title">{{ title }}</span>
     </template>
     <template #left>
       <van-icon name="arrow-left" size="18" />
@@ -9,79 +18,45 @@
   </van-nav-bar>
 </template>
 <script>
-import { mapMutations, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: "",
     },
     show: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
-    ...mapGetters(['getProjectIdBol']),
+    ...mapGetters(["getProjectIdBol"]),
   },
-  data () {
+  data() {
     return {
-      showNav: false
-    }
+      showNav: false,
+    };
   },
   watch: {},
-  mounted () {
+  mounted() {
     const ua = navigator.userAgent.toLowerCase();
-    const isWxwork = ua.match(/wxwork/i) == 'wxwork'
+    const isWxwork = ua.match(/wxwork/i) == "wxwork";
     if (!isWxwork) {
-      this.showNav = true
+      this.showNav = true;
     }
   },
   methods: {
-    onClickLeft () {
+    onClickLeft() {
       try {
-
-
-        let projectIdBol = this.getProjectIdBol;
-
-        if (this.$route.meta.goback == 1) {
-          // 首页 下的 二级页面
-          if (window.WebViewJavascriptBridge && !this.$isWxwork) {
-            window.WebViewJavascriptBridge.callHandler("goBack", { param: "返回" }, function (responseData) { });
-          } else if (window.webkit && window.webkit.messageHandlers && !this.$isWxwork) {
-            window.webkit.messageHandlers.goBack.postMessage({ param: "返回" });
-          } else {
-
-            window.history.go(-1)
-          }
-
-        } else {
-
-          if (projectIdBol === 1 && this.$route.meta.goback == 2) {
-            // 首页选择了项目，从项目详情跳转到首页
-
-            if (window.WebViewJavascriptBridge && !this.$isWxwork) {
-              window.WebViewJavascriptBridge.callHandler("goBack", { param: "返回" }, function (responseData) { });
-            } else if (window.webkit && window.webkit.messageHandlers && !this.$isWxwork) {
-              window.webkit.messageHandlers.goBack.postMessage({ param: "返回" });
-            } else {
-              window.history.go(-1)
-            }
-
-          } else {
-
-            window.history.go(-1)
-          }
-
-        }
-
+        window.history.go(-1);
       } catch (e) {
-        console.log(e)
-        window.history.go(-1)
+        console.log(e);
+        window.history.go(-1);
       }
     },
-    onClickRight () {
-      this.$Toast('按钮');
+    onClickRight() {
+      this.$Toast("按钮");
     },
   },
 };

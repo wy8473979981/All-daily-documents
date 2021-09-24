@@ -1,94 +1,28 @@
 <template>
   <div id="app">
-    <!--     <div>{{url}}</div>-->
-    <!-- <ys-n-watermark :text="watermarkText"></ys-n-watermark> -->
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <van-button type="primary">主要按钮</van-button>
+    <van-button type="info">信息按钮</van-button>
+    <van-button type="default">默认按钮</van-button>
+    <van-button type="warning">警告按钮</van-button>
+    <van-button type="danger">危险按钮</van-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  data () {
-    return {
-      watermarkText: this.$store.state.watermarkText,
-      // routerParams: this.$route.query,
-    }
+  name: "App",
+  data() {
+    return {};
   },
-  watch: {
-
-  },
-  created () {
-    try {
-      this.connectWebViewJavascriptBridge();
-      this.connectWebViewJavascriptBridge();
-    } catch (e) {
-      console.log('e', e)
-    }
-    this.getToken();
-    this.getAllDict();
-  },
-  mounted () {
-  },
-  methods: {
-    async getToken () {
-      this.setCookie("uiid", '')
-      this.setCookie("token", '')
-      this.$store.commit('setHasToken', false)
-      // 在企业微信环境中获取用户信息逻辑
-      try {
-        const ua = navigator.userAgent.toLowerCase();
-        const isWxwork = ua.match(/wxwork/i) == 'wxwork'
-        let uiid = this.$route.query.uiid
-        let token = this.$route.query.token
-        if (!isWxwork) {
-          if (uiid && token) {
-            this.setCookie("uiid", uiid)
-            this.setCookie("token", token)
-          }
-          return
-        }
-        const code = this.$util.getQueryString('code', window.location.href)
-        if (!code) {
-          return
-        }
-       
-        let source = 'testyy'
-        let operStatus = '2'
-
-        if (process.env.VUE_APP_ENV === "prod") {
-          source = 'yysj'
-          operStatus = 2
-        } else if (process.env.VUE_APP_ENV === "prodSyys") {
-          if (process.env.NODE_ENV === 'development') {
-            source = 'testyy'
-          } else {
-            source = 'syys'
-          }
-        }
-        if (!source) return
-        await this.$axios.commonServe.getToken({ source: source, code: code, operStatus: operStatus }, false).then(res => {
-          if (res && res.data && res.data.token) {
-            const { token, uiid, userName } = res.data
-            this.setCookie("uiid", uiid)
-            this.setCookie("token", token)
-            this.$store.commit('setUser', { uiid, token })
-            this.$store.commit('setHasToken', true)
-            this.$store.commit('setWatermarkText', userName)
-          }
-        }).catch(e => {
-          this.refreshCode()
-        })
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    
-  }
-}
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {},
+};
 </script>
 <style lang="scss" scope>
 html,

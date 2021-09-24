@@ -18,8 +18,8 @@ VueRouter.prototype.replace = function push(location, onResolve, onReject) {
 const routes = [
     {
         path: "/",
-        name: "operateHome",
-        component: () => import("../views/operateHome/index.vue"),
+        name: "home",
+        component: () => import("../views/home/index.vue"),
         meta:{
             keepAlive:true
         }
