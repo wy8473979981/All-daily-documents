@@ -146,7 +146,7 @@ function calculateWinner (squares) {
   return null;
 }
 
-// ========================================父组件向子组件通讯
+// ========================================父组件向子组件通讯 传递数据
 // class Parent extends React.Component {
 //   state = {
 //     msg: 'start',

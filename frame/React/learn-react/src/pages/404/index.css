@@ -1,0 +1,8 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+}
+.error{
+  width:100%;
+  height: 100px;
+  background-color: pink;
+}
