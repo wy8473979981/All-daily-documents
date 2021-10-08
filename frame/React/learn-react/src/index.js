@@ -6,11 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 //引入路由依赖，并起一个别名，因为原先的名字太长了
 import { BrowserRouter as Router } from "react-router-dom";
 
+import { Provider } from 'react-redux'
+import ReacReduxStore from '@/react-redux-store/index'
+
 
 
 ReactDOM.render(
   <Router>
-    <App />
+    <Provider store={ReacReduxStore}>
+      <App />
+    </Provider>
   </Router>,
   document.getElementById("root")
 );
