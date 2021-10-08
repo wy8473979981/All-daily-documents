@@ -30,7 +30,7 @@ class ReduxCpn extends Component {
   }
 
   testRedux(){
-    const action = addAction(2)
+    const action = addAction(1)
     reduxStore.dispatch(action)
   }
 }

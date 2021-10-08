@@ -1,6 +1,5 @@
 import {
-  ADD_NUMBER,
-  SUB_NUMBER
+  ADD_NUMBER
 } from './constants.js';
 
 const initialState = {
@@ -10,9 +9,7 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch(action.type) {
     case ADD_NUMBER:
-      return {...state, counter: state.counter + action.num};
-    case SUB_NUMBER:
-      return {...state, counter: state.counter - action.num};
+      return {...state, counter: state.counter + action.count};
     default:
       return state;
   } 

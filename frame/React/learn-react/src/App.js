@@ -9,6 +9,8 @@ import useReducer from "./pages/Hook/useReducer";
 import InputBind from "./pages/Hook/use-hook/InputBind";
 import Redux1 from "./pages/redux/redux-1";
 import Redux2 from "./pages/redux/react-redux-2";
+import ReactReduxModule1 from "./pages/redux/react-redux-module-1";
+import ReactReduxModule2 from "./pages/redux/react-redux-module-2";
 import List from "./List";
 import User from "./User";
 import Detail from "./Detail";
@@ -44,6 +46,12 @@ class App extends Component {
             <Link to="/Redux2">React-Redux使用</Link>
           </li>
           <li>
+            <Link to="/ReactReduxModule1">ReactReduxModule1</Link>
+          </li>
+          <li>
+            <Link to="/ReactReduxModule2">ReactReduxModule2</Link>
+          </li>
+          <li>
             <Link to="/list">列表页</Link>
           </li>
           <li>
@@ -63,6 +71,8 @@ class App extends Component {
           <Route path="/inputBind" exact component={InputBind}></Route>
           <Route path="/Redux1" exact component={Redux1}></Route>
           <Route path="/Redux2" exact component={Redux2}></Route>
+          <Route path="/ReactReduxModule1" exact component={ReactReduxModule1}></Route>
+          <Route path="/ReactReduxModule2" exact component={ReactReduxModule2}></Route>
           <Route path="/list" component={List}></Route>
           <Route path="/user" component={User}></Route>
           <Route path="/detail/:id" component={Detail}></Route>

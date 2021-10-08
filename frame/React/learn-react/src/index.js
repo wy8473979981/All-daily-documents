@@ -7,13 +7,14 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { Provider } from 'react-redux'
-import ReacReduxStore from '@/react-redux-store/index'
+// import ReacReduxStore from '@/react-redux-store/index'
+import ReacReduxStoreModule from '@/react-redux-store-module/store'
 
 
 
 ReactDOM.render(
   <Router>
-    <Provider store={ReacReduxStore}>
+    <Provider store={ReacReduxStoreModule}>
       <App />
     </Provider>
   </Router>,
