@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { changeRandom } from '@/react-redux-store-module/module2/actionCreators';
 
 class ReactReduxModule2 extends Component {
@@ -7,10 +8,13 @@ class ReactReduxModule2 extends Component {
   // constructor(props){
   //   super(props)
   // }
+  static propTypes = {
+    random: PropTypes.number,
+    changeRandom: PropTypes.func
+  }
 
   render() {
     let { random, changeRandom } = this.props;
-    debugger
     return (
       <div>
         <button onClick={changeRandom}>react-redux-module-2---测试Redux</button>
@@ -21,7 +25,6 @@ class ReactReduxModule2 extends Component {
 }
 
 const stateToProps = (state) => {
-  debugger
   return {
     random: state.random
   }

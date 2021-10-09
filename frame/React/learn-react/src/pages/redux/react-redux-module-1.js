@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { addAction } from '@/react-redux-store-module/module1/actionCreators';
 
 class ReactReduxModule1 extends Component {
@@ -7,6 +8,11 @@ class ReactReduxModule1 extends Component {
   // constructor(props) {
   //   super(props)
   // }
+  static propTypes = {
+    count: PropTypes.number,
+    addAction: PropTypes.func
+  }
+
 
   render () {
     let { count, addAction } = this.props;
@@ -20,7 +26,6 @@ class ReactReduxModule1 extends Component {
 }
 
 const stateToProps = (state) => {
-  debugger
   return {
     count: state.count
   }
