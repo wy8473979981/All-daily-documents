@@ -1,6 +1,0 @@
-sass --watch input.scss:output.css
-
-
-
-¹ÙÍø
-http://sass.bootcss.com/docs/sass-reference/

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.box {
+				width: 100%;
+			}
+			
+			.box ul li {
+				padding: 0.5rem;
+				margin-bottom: 1rem;
+				background: #ccc;
+			}
+			/* 移动端样式 */
+			@media (-webkit-min-device-pixel-ratio: 1.5),
+			(min-device-pixel-ratio: 1.5),
+			(-webkit-min-device-pixel-ratio: 2),
+			(min-device-pixel-ratio: 2),
+			(-webkit-min-device-pixel-ratio:3),
+			(min-device-pixel-ratio: 3) {
+				
+			}
+		</style>
+		<script>
+			function browserRedirect() { //手机端设置html的font-size
+				var sUserAgent = navigator.userAgent.toLowerCase();
+				//var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+				var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+				var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+				var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+				var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+				var bIsAndroid = sUserAgent.match(/android/i) == "android";
+				var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+				var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+				if(bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+					console.log("phone");
+					mobileTopicSign = "phone";
+					! function(e, t) {
+						function i() {
+							var t = n.getBoundingClientRect().width / 10;
+							n.style.fontSize = t + "px", p.rem = e.rem = t
+						}
+						var a, r = e.document,
+							n = r.documentElement,
+							o = r.querySelector('meta[name="viewport"]'),
+							l = r.querySelector('meta[name="flexible"]'),
+							m = r.querySelector('meta[name="flexible-in-x5"]'),
+							s = !0,
+							d = 0,
+							c = 0,
+							p = t.flexible || (t.flexible = {});
+						if(o) {
+							console.warn("将根据已有的meta标签来设置缩放比例");
+							var u = o.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+							u && (c = parseFloat(u[1]), d = parseInt(1 / c))
+						} else if(l) {
+							var f = l.getAttribute("content");
+							if(f) {
+								var h = f.match(/initial\-dpr=([\d\.]+)/),
+									v = f.match(/maximum\-dpr=([\d\.]+)/);
+								h && (d = parseFloat(h[1]), c = parseFloat((1 / d).toFixed(2))), v && (d = parseFloat(v[1]), c = parseFloat((1 / d).toFixed(2)))
+							}
+						}
+						if(m && (s = "false" !== m.getAttribute("content")), !d && !c) {
+							var x = (e.navigator.appVersion.match(/android/gi), e.chrome),
+								g = e.navigator.appVersion.match(/iphone/gi),
+								b = e.devicePixelRatio,
+								w = /TBS\/\d+/.test(e.navigator.userAgent),
+								y = !1;
+							try {
+								y = "true" === localStorage.getItem("IN_FLEXIBLE_WHITE_LIST")
+							} catch(e) {
+								y = !1
+							}
+							c = 1 / (d = g || x || w && s && y ? b >= 3 && (!d || d >= 3) ? 3 : b >= 2 && (!d || d >= 2) ? 2 : 1 : 1)
+						}
+						if(n.setAttribute("data-dpr", d), !o)
+							if((o = r.createElement("meta")).setAttribute("name", "viewport"), o.setAttribute("content", "initial-scale=" + c + ", maximum-scale=" + c + ", minimum-scale=" + c + ", user-scalable=no"), n.firstElementChild) n.firstElementChild.appendChild(o);
+							else {
+								var E = r.createElement("div");
+								E.appendChild(o), r.write(E.innerHTML)
+							}
+						e.addEventListener("resize", function() {
+							clearTimeout(a), a = setTimeout(i, 300)
+						}, !1), e.addEventListener("pageshow", function(e) {
+							e.persisted && (clearTimeout(a), a = setTimeout(i, 300))
+						}, !1), "complete" === r.readyState ? r.body.style.fontSize = 12 * d + "px" : r.addEventListener("DOMContentLoaded", function(e) {
+							r.body.style.fontSize = 12 * d + "px"
+						}, !1), i(), p.dpr = e.dpr = d, p.refreshRem = i, p.rem2px = function(e) {
+							var t = parseFloat(e) * this.rem;
+							return "string" == typeof e && e.match(/rem$/) && (t += "px"), t
+						}, p.px2rem = function(e) {
+							var t = parseFloat(e) / this.rem;
+							return "string" == typeof e && e.match(/px$/) && (t += "rem"), t
+						}
+					}(window, window.lib || (window.lib = {}));
+				}
+			}
+			browserRedirect();
+		</script>
+	</head>
+
+	<body>
+		<div class="box">
+			<ul>
+				<li>阿斯蒂芬</li>
+				<li>阿斯蒂芬</li>
+				<li>阿斯蒂芬</li>
+				<li>阿斯蒂芬</li>
+				<li>阿斯蒂芬</li>
+				<li>阿斯蒂芬</li>
+			</ul>
+			<div>https://github.com/wy8473979981/cssrem</div>
+			<div>px转rem插件</div>
+			<div>px转rem插件</div>
+			<div>
+				{ "px_to_rem": 37.5, "max_rem_fraction_length": 6, "available_file_types": [".css", ".less", ".sass",".html"] }
+			</div>
+			<div>
+				设计的尺寸是实际尺寸的一半，将默认值改为37.5，写写尺寸是就按照设计图的上尺寸来，不用乘以二
+
+			</div>
+		</div>
+	</body>
+
+</html>

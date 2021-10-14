@@ -1,0 +1,312 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+html,body {
+  width: 100%;
+  height: 100%;
+} */
+ul,ol,li {
+  list-style: none;
+}
+.one_line_hidden {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix:before,
+.clearfix:after{
+  display: table;
+  content: " ";
+}
+
+.clearfix:after{
+  clear: both;
+}
+.container {
+  position: relative;
+  padding: 136px 75px 0;
+  height: 100%;
+  box-sizing: border-box;
+  background: url(../images/fudai.png) no-repeat center top;
+}
+.fudai {
+  display: block;
+  margin: auto;
+  width: 545px;
+  height: 157px;
+}
+.prize-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  background-image: linear-gradient(-180deg, #FFF096 0%, #F1CD65 50%, #FFCF7A 100%);
+  border-radius: 20px;
+}
+.prize-item{
+  width: 170px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background-image: linear-gradient(-180deg, #DDB61A 0%, #FFECB6 31%, #FFFCE9 51%, #FFECB6 70%, #DDB61A 100%);
+border: 2px solid #FFE4A1;
+box-shadow: inset 0 1px 15px 0 rgba(213,155,63,0.90);
+border-radius: 20px;
+}
+.prize-images-content {
+  width: 170px;
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+}
+.btn {
+  position: relative;
+  width: 210px;
+  height: 91px;
+  margin: 20px auto 40px;
+  background: url(../images/btn.png) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+}
+.btn.disabled {
+  background: url(../images/disabled-icon.png) no-repeat center;
+  background-size: contain;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  left: -70px;
+  top: 67px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/star-icon.png) no-repeat center;
+  background-size: contain;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  right: -70px;
+  top: 33px;
+  width: 40px;
+  height: 40px;
+  background: url(../images/gold-coin-icon.png) no-repeat center;
+  background-size: contain;
+}
+.slotMachineGradient{
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(25%, rgba(0,0,0,1)), color-stop(75%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)) );
+
+}
+.price-img {
+  display: block;
+  /* display: none; */
+  width: 170px;
+  height: 170px;
+}
+.price-img.init-opa {
+  opacity: 0;
+}
+
+.prizes {
+  height: 278px;
+  padding: 20px 36px 30px;
+  margin-bottom: 20px;
+  background: #FFF4C5;
+  box-sizing: border-box;
+}
+.prizes-title {
+  line-height: 42px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 30px;
+  color: #B35A0A;
+}
+.prizes-display {
+  position: relative;
+  /* overflow: hidden; */
+}
+.prev-btn, .next-btn {
+  position: absolute;
+  z-index: 2;
+  width: 45px;
+  height: 126px;
+  top: 0;
+  background: url(../images/prev-icon.png) no-repeat center;
+  display: none;
+}
+.prev-btn {
+  left: -36px;
+}
+.next-btn {
+  right: -36px;
+  transform: rotate(180deg);
+}
+.pirzes-list {
+  font-size: 0;
+  white-space: nowrap;
+}
+.prizes-item {
+  display: inline-block;
+  width: 176px;
+  box-sizing: border-box;
+}
+.list-img {
+  display: block;
+  width: 126px;
+  margin: auto;
+}
+.prize-name {
+  line-height: 33px;
+  text-align: center;
+  font-size: 24px;
+  color: #B35A0A;
+}
+.scroll-info {
+  height: 202px;
+  overflow: hidden;
+}
+.winning-list {
+
+}
+.winning-item {
+  height: 52px;
+  line-height: 52px;
+  margin-bottom: 20px;
+  border: 1px solid;
+  border-color: rgba(179,90,10, .5);
+  border-radius: 5px;
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #B35A0A;
+}
+.winning-item.move {
+  animation: move 800ms linear both infinite;
+}
+
+@keyframes move {
+  from {
+    transform: translate3d(0,0,0)
+  }
+  to {
+    transform: translate3d(0,-74px,0)
+  }
+}
+.bottom-gold-icon {
+  /* position: absolute; */
+  /* z-index: 22; */
+  margin: 50px auto 18px;
+  /* left: 0;
+  right: 0;
+  bottom: 18px; */
+  width: 36px;
+  height: 36px;
+  background: url(../images/gold-icon-2.png) no-repeat center;
+  background-size: contain; 
+}
+
+.popup, .prize-toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0,0,0,.75);
+  text-align: center;
+  color: #333333;
+  display: none;
+}
+.prize-toast {
+  display: none;
+  background: transparent;
+}
+.error-message {
+  position: absolute;
+  padding: 20px;
+  line-height: 36px;
+  color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.75);
+  font-size: 28px;
+  border-radius: 8px;
+}
+.default-popup-content {
+  display: none;
+  position: absolute;
+  width: 500px;
+  height: 540px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #FFF9E0;
+  border-radius: 15px;
+
+}
+.close-popup {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 31px;
+  height: 31px;
+  background: url(../images/close.png) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+}
+.not-win-title {
+  margin: 60px auto 62px;
+  line-height: 56px;
+  font-size: 40px;
+  font-weight: bold;
+}
+.some-text {
+  font-size: 30px;
+  line-height: 42px;
+  margin: 0 72px 9px;
+}
+.triangle {
+  width: 169px;
+  height: 108px;
+  margin: 0 auto 42px;
+  background: url(../images/triangle-icon.png) no-repeat center;
+  background-size: contain;
+}
+.popup-default-btn {
+  margin: 0 30px;
+  line-height: 90px;
+  font-size: 35px;
+  background-image: linear-gradient(-180deg, #F8CC76 1%, #FFE18B 59%, #FFCF7A 100%);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.win-title {
+  margin: 48px auto 27px;
+  width: 186px;
+  height: 88px;
+  background: url(../images/win-title.png) no-repeat center;
+  background-size: contain;
+}
+.isWin-img {
+  display: block;
+  width: 440px;
+  height: 230px;
+  margin: 0 auto 20px;
+}
+.win-btn {
+  display: block;
+  color: #E65050;
+}
