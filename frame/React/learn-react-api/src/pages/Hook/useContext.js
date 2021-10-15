@@ -35,9 +35,10 @@
 //     return <div theme={this.context} />;
 //   }
 // }
+// https://juejin.cn/post/6977373208370479117
 // 三种使用context写法
-// 1.static contextType = ThemeContext;   this.context
-// 2.<MyContext.Consumer>  ;  value
+// 1.static contextType = ThemeContext;   this.context  在类组件中
+// 2.<MyContext.Consumer>  ;  value  在函数组件中
 // 3.ThemedButton.contextType = ThemeContext;  this.context
 
 
