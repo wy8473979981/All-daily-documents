@@ -11,4 +11,5 @@ npm install npm-check -g
 2：1检查depedencies中的最新版本 npm-check-updates 或者 ncu
 
 3： 更新dependencies到最新版本 ncu -u
+
 ```
