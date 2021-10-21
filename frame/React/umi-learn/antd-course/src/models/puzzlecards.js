@@ -1,4 +1,5 @@
 import request from '../util/request';  // request 是 demo 项目脚手架中提供的一个做 http 请求的方法，是对于 fetch 的封装，返回 Promise
+import { message } from 'antd';
 
 const delay = (millisecond) => {
   return new Promise((resolve) => {
@@ -14,19 +15,24 @@ export default {
   },
   effects: {
     *queryInitCards (_, sagaEffects) {
-      const { call, put } = sagaEffects;
-      const endPointURI = '/api/random_joke';
-      debugger
-      const puzzle = yield call(request, endPointURI);
-      debugger
-      yield put({ type: 'addNewCard', payload: puzzle });
-      debugger
-      yield call(delay, 3000);
-      debugger
-      const puzzle2 = yield call(request, endPointURI);
-      debugger
-      yield put({ type: 'addNewCard', payload: puzzle2 });
-      debugger
+
+      try { // 加入 try catch 捕获抛错
+        const { call, put } = sagaEffects;
+        const endPointURI = '/api/random_joke';
+
+        const puzzle = yield call(request, endPointURI);
+
+        yield put({ type: 'addNewCard', payload: puzzle });
+
+        yield call(delay, 3000);
+
+        const puzzle2 = yield call(request, endPointURI);
+
+        yield put({ type: 'addNewCard', payload: puzzle2 });
+      } catch (e) {
+        message.error('数据获取失败'); // 打印错误信息
+      }
+
     }
   },
   reducers: {
