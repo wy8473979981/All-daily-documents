@@ -50,7 +50,7 @@ function useDebouncedRef<T>(value: T, delay = 200) {
       },
       set(newValue: T) {
         clearTimeout(timeout);
-        timeout = setTimeout(() => {
+        timeout = window.setTimeout(() => {
           value = newValue;
           // 告诉Vue去触发界面更新
           trigger();

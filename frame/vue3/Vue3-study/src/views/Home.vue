@@ -74,10 +74,9 @@ export default defineComponent({
     // const handle = () => {
     //   console.log("setup：handle");
     // };
-
     // return { a: 3, b: 4, c: 5, handle }; // 会和data和methods合并
 
-    // // 一般定义原始类型的数据
+    // // ref一般定义原始类型的数据
     // const count = ref(1);
     // const str = ref("abc");
     // const boo = ref(true);
@@ -89,23 +88,21 @@ export default defineComponent({
     //   str.value = str.value.split("").reverse().join("");
     //   obj.value.a++;
     // };
-
     // return { count, str, boo, obj, update };
 
+    // // reactive 定义对象格式的响应式数据
     // const state = reactive({
     //   count: 1,
     //   str: "abc",
     //   boo: true,
     //   obj: { a: 1 },
     // });
-
     // const update = () => {
     //   state.count++;
     //   state.boo = !state.boo;
     //   state.str = state.str.split("").reverse().join("");
     //   state.obj.a++;
     // };
-
     // return { ...toRefs(state), update };
 
     // const initData: any = {
@@ -116,43 +113,35 @@ export default defineComponent({
     //   arr: ["a", "b", "c"],
     // };
     // const state = reactive(initData);
-
     // const add = () => {
     //   state.person.sex = "男";
     //   state.person.hobby = ["吃饭", "睡觉", "打豆豆"];
     // };
-
     // const modify = () => {
     //   state.arr[0] = "A";
     // };
-
     // return { ...toRefs(state), add, modify };
 
     const user = reactive({
       firstName: "zhang",
       lastName: "san",
     });
-
     const str = ref("abc");
-
     // 只有getter的计算属性
     const fullName1 = computed(() => {
       return user.firstName + "-" + user.lastName;
     });
-
     // 有getter与setter的计算属性
     const fullName2 = computed({
       get() {
         return user.firstName + "-" + user.lastName;
       },
-
       set(value: string) {
         const names = value.split("-");
         user.firstName = names[0];
         user.lastName = names[1];
       },
     });
-
     // 侦听ref数据
     watch(str, (newVal, oldVal) => {
       console.log("watch ref", newVal, oldVal);
@@ -164,7 +153,6 @@ export default defineComponent({
         console.log("watch reactive", newVal, oldVal);
       }
     );
-
     // 监听多个数据
     watch(
       [str, () => user.firstName, () => user.lastName],
@@ -172,12 +160,11 @@ export default defineComponent({
         console.log("监视多个数据", newVal, oldVal);
       }
     );
-
     /*
-        使用watch的2个特性:
-          深度监视
-          初始化立即执行
-        */
+      使用watch的2个特性:
+      深度监视
+      初始化立即执行
+    */
     const fullName3 = ref("");
     watch(
       user,
