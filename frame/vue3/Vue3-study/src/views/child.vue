@@ -28,19 +28,10 @@ export default defineComponent({
 
   // setup (props, context) {
   setup(props, { attrs, emit, slots }) {
-    console.log(
-      "props---",
-      props,
-
-      "attrs---",
-      attrs,
-
-      "slots---",
-      slots.aaa,
-
-      "emit---",
-      emit
-    );
+    console.log('props:',props)
+    console.log('attrs:',attrs)
+    console.log('emit:',emit)
+    console.log('slots:',slots)
 
     function update() {
       // 分发自定义事件

@@ -19,7 +19,7 @@ toRaw: 得到reactive代理对象的目标数据对象
 import { ref, reactive, toRaw, markRaw } from "vue";
 export default {
   setup() {
-    const state = reactive<any>({
+    const state = reactive({
       name: "tom",
       age: 25,
     });

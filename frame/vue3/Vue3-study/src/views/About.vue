@@ -8,31 +8,21 @@
 -->
 <template>
   <h2>Parent</h2>
-  <p>msg: {{msg}}</p>
+  <p>msg: {{ msg }}</p>
   <button @click="update('--')">更新</button>
   <hr />
-  <child
-    :msg="msg"
-    msg2="cba"
-    @fn="update"
-  >
+  <child :msg="msg" msg2="cba" @fn="update">
     <template #aaa>
       <em>我是插槽的内容</em>
     </template>
   </child>
 
-  <hr>
-  <input
-    type="text"
-    placeholder="我会自动获取焦点"
-    ref="inputRef"
-  />
+  <hr />
+  <input type="text" placeholder="我会自动获取焦点" ref="inputRef" />
 
-  <hr>
+  <hr />
   <h2>x: {{ x }}, y: {{ y }}</h2>
 </template>
-
-
 
 <script lang="ts">
 import {
@@ -53,27 +43,24 @@ import {
 } from "vue";
 import child from "./child.vue";
 
+// hooks
 function useMousePosition() {
   // 初始化坐标数据
   const x = ref(-1);
   const y = ref(-1);
-
   // 用于收集点击事件坐标的函数
   const updatePosition = (e: MouseEvent) => {
     x.value = e.pageX;
     y.value = e.pageY;
   };
-
   // 挂载后绑定点击监听
   onMounted(() => {
     document.addEventListener("click", updatePosition);
   });
-
   // 卸载前解绑点击监听
   onUnmounted(() => {
     document.removeEventListener("click", updatePosition);
   });
-
   return { x, y };
 }
 
@@ -81,16 +68,13 @@ export default defineComponent({
   components: {
     child,
   },
-
   setup() {
     const msg = ref("abc");
-
     function update(content: string) {
       msg.value += content;
     }
-
-    const inputRef = ref<HTMLElement | null>(null);
-
+    // const inputRef = ref<HTMLElement | null>(null);
+    const inputRef = ref(null);
     onBeforeMount(() => {
       console.log("--onBeforeMount");
       console.log("没有nextTick", document.querySelector("p")?.innerHTML);

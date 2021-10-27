@@ -32,19 +32,19 @@ module.exports = {
     /* 设置为0.0.0.0则所有的地址均能访问 */
     host: "0.0.0.0",
     port: 8088,
-    https: true,
+    https: false,
     hotOnly: true,
     /* 使用代理 */
     proxy: {
-      '/': {
+      '/api': {
         /* 目标代理服务器地址 */
-        target: 'https://www.fastmock.site/',// 测试服务器
+        target: 'https://www.fastmock.site/mock/454f99ba2d1c6fd0b1ed79a1ad0132de/api',// 测试服务器
         secure: true,
         // 是否跨域
         changeOrigin: true,
         pathRewrite: {
           // 重写接口
-          '^/': '/'
+          '^/api': ''
         }
       }
     }

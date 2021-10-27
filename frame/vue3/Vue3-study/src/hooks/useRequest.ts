@@ -11,7 +11,8 @@ import axios from "axios";
 
 export default function useRequest<T>(url: string) {
   // result的数据类型用泛型T表示，因为不同接口返回的数据结构肯定是不一样的
-  const result = ref<T | null>(null);
+  // const result = ref<T | null>(null);
+  const result = ref(null);
   const loading = ref(true);
   const errorMsg = ref("");
 

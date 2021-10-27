@@ -38,3 +38,5 @@ export const editDefs: FieldDef[] = [
   { type: 'text', model: 'subjectCode', label: '明细科目编码', options: { disabled: true }, rules: [{ required: true, message: '必填' }] },
   { type: 'text', model: 'subjectName', label: '会计科目名称', rules: [{ required: true, message: '必填' }] }
 ]
+
+

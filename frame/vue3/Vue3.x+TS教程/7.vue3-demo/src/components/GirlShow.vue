@@ -1,5 +1,5 @@
 <template>
-  <img :src="result && result.url" />
+  <img :src="result && result.url" height="500" width="500"/>
 </template>
 <script lang="ts">
 import axios from "axios";
@@ -8,7 +8,7 @@ export default defineComponent({
   async setup() {
     //promise 语法糖  返回之后也是promise对象
     const rawData = await axios.get(
-      "/mock/454f99ba2d1c6fd0b1ed79a1ad0132de/api/getImage"
+      "/api/getImage"
     );
     return { result: rawData.data.data };
   },
