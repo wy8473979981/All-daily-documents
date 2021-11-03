@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+
+    <script src="./jquery-2.1.0.js"></script>
+    <script src="echarts.js"></script>
+
+    <script type="text/javascript">
+      var dom = document.getElementById("container");
+      var myChart = echarts.init(dom);
+
+      var option;
+      var ROOT_PATH = "https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples";
+
+      $.get(ROOT_PATH + "/data/asset/geo/flight-seats.svg", function (svg) {
+        echarts.registerMap("flight-seats", { svg: svg });
+        const takenSeatNames = [
+          "26E",
+          "26D",
+          "26C",
+          "25D",
+          "23C",
+          "21A",
+          "20F",
+          "30F",
+        ];
+        option = {
+          tooltip: {},
+          
+          geo: {
+            map: "flight-seats",
+            roam: true,
+            selectedMode: "multiple",
+            layoutCenter: ["50%", "50%"],
+            layoutSize: "95%",
+            tooltip: {
+              show: true,
+            },
+            itemStyle: {
+              color: "#ccc",
+            },
+            emphasis: {
+              itemStyle: {
+                color: undefined,
+                borderColor: "green",
+                borderWidth: 2,
+              },
+              label: {
+                show: false,
+              },
+            },
+            select: {
+              itemStyle: {
+                color: "green",
+              },
+              label: {
+                show: false,
+                textBorderColor: "#fff",
+                textBorderWidth: 2,
+              },
+            },
+            regions: makeTakenRegions(takenSeatNames),
+          },
+        };
+        function makeTakenRegions(takenSeatNames) {
+          var regions = [];
+          for (var i = 0; i < takenSeatNames.length; i++) {
+            regions.push({
+              name: takenSeatNames[i],
+              silent: true,
+              itemStyle: {
+                color: "#bf0e08",
+              },
+              emphasis: {
+                itemStyle: {
+                  borderColor: "#aaa",
+                  borderWidth: 1,
+                },
+              },
+              select: {
+                itemStyle: {
+                  color: "pink",
+                },
+              },
+            });
+          }
+          return regions;
+        }
+        myChart.setOption(option);
+        // Get selected seats.
+        myChart.on("geoselectchanged", function (params) {
+          debugger
+          const selectedNames = params.allSelected[0].name.slice();
+          // Remove taken seats.
+          for (var i = selectedNames.length - 1; i >= 0; i--) {
+            if (takenSeatNames.indexOf(selectedNames[i]) >= 0) {
+              selectedNames.splice(i, 1);
+            }
+          }
+          console.log("selected", selectedNames);
+        });
+      });
+
+      if (option && typeof option === "object") {
+        myChart.setOption(option);
+      }
+    </script>
+  </body>
+</html>

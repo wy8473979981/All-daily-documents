@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+
+    <script src="./jquery-2.1.0.js"></script>
+    <script src="echarts.js"></script>
+
+    <script type="text/javascript">
+      var dom = document.getElementById("container");
+      var myChart = echarts.init(dom);
+      var option;
+
+      myChart.showLoading();
+      $.get("./xy.json", function (usaJson) {
+        myChart.hideLoading();
+        echarts.registerMap("pd", usaJson);
+        option = {
+          title: {
+            text: "pd Population Estimates (2012)",
+            subtext: "Data from www.census.gov",
+            sublink: "http://www.census.gov/popest/data/datasets.html",
+            left: "right",
+          },
+          tooltip: {
+            trigger: "item",
+            showDelay: 0,
+            transitionDuration: 0.2,
+            formatter: function (params) {
+              const value = (params.value + "").split(".");
+              const valueStr = value[0].replace(
+                /(\d{1,3})(?=(?:\d{3})+(?!\d))/g,
+                "$1,"
+              );
+              return (
+                params.seriesName + "<br/>" + params.name + ": " + valueStr
+              );
+            },
+          },
+          visualMap: {
+            left: "right",
+            min: 500000,
+            max: 38000000,
+            inRange: {
+              color: [
+                "#313695",
+                "#4575b4",
+                "#74add1",
+                "#abd9e9",
+                "#e0f3f8",
+                "#ffffbf",
+                "#fee090",
+                "#fdae61",
+                "#f46d43",
+                "#d73027",
+                "#a50026",
+              ],
+            },
+            text: ["High", "Low"],
+            calculable: true,
+          },
+          toolbox: {
+            show: true,
+            //orient: 'vertical',
+            left: "left",
+            top: "top",
+            feature: {
+              dataView: { readOnly: false },
+              restore: {},
+              saveAsImage: {},
+            },
+          },
+          series: [
+            {
+              name: "pd PopEstimates",
+              type: "map",
+              roam: true,
+              map: "pd",
+              emphasis: {
+                label: {
+                  show: true,
+                },
+              },
+              data: [
+                {
+                  name: "浦东新区",
+                  value: 111,
+                  itemStyle: {
+                    borderType: "dotted",
+                    borderColor: "#cccccc",
+                    borderWidth: 5,
+                  },
+                },
+              ],
+            },
+          ],
+        };
+        myChart.setOption(option);
+      });
+
+      option && myChart.setOption(option);
+    </script>
+  </body>
+</html>

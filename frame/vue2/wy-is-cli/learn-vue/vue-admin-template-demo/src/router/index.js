@@ -89,6 +89,54 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/echart',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'echart',
+        component: () => import('@/views/echart/index'),
+        meta: { title: 'echart', icon: 'echart' }
+      }
+    ]
+  },
+  {
+    path: '/echart2',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'echart',
+        component: () => import('@/views/echart/index2'),
+        meta: { title: 'echart2', icon: 'echart2' }
+      }
+    ]
+  },
+  {
+    path: '/echart3',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'echart',
+        component: () => import('@/views/echart/index3'),
+        meta: { title: 'echart3', icon: 'echart3' }
+      }
+    ]
+  },
+  {
+    path: '/svg',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'echart',
+        component: () => import('@/views/echart/svg'),
+        meta: { title: 'svg', icon: 'svg' }
+      }
+    ]
+  },
 
   {
     path: '/nested',

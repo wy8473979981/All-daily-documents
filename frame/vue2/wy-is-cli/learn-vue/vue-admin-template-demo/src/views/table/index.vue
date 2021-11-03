@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getSvg } from '@/api/table'
 import { TableConfig } from './config';
 export default {
   filters: {
