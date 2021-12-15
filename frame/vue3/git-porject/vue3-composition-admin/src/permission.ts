@@ -56,7 +56,7 @@ router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized,
           // Hack: ensure addRoutes is complete
           // Set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
-        } catch (err) {
+        } catch (err: any) {
           // Remove token and redirect to login page
           store.dispatch(UserActionTypes.ACTION_RESET_TOKEN, undefined)
           ElMessage.error(err || 'Has Error')

@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Dialog v-if="dialogVisible"></Dialog>
+    <Dialog v-if="dialogVisible">Dialog</Dialog>
     <button @click="dialogVisibleFun">Dialog</button>
   </div>
-
 </template>
 
 <script lang="ts">
 import useCount from "../hooks/useCount";
 import Dialog from "../components/Dialog.vue";
 import { defineComponent, ref } from "vue";
-export default {
+
+export default defineComponent({
   name: "App",
   components: {
     Dialog,
@@ -31,5 +31,10 @@ export default {
       dialogVisibleFun,
     };
   },
-};
+});
+
+
+
 </script>
+
+
