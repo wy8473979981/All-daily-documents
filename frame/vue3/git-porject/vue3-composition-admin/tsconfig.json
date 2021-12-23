@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "esnext", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES6'/'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "module": "esnext", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "preserve",  // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,

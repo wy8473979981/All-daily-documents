@@ -12,7 +12,6 @@ import { store as settings, SettingStore, SettingsState } from '@/store/modules/
 import { store as permission, PermissionStore, PermissionState } from '@/store/modules/permission'
 import { store as user, UserStore, UserState } from '@/store/modules/user'
 import { store as tagViews, TagsStore, TagsViewState } from '@/store/modules/tagsview'
-
 export interface RootState {
     app: AppState
     settings: SettingsState
