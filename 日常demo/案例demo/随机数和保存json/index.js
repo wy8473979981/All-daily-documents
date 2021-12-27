@@ -30,7 +30,7 @@ function createNum () {
 }
 
 function prefixInteger (num, n) {
-  return (Array(n).join(0) + num).slice(-n);
+  return (Array(n).join(0) + num).slice(-n)
 }
 
 function getFiveNumber (all) {
