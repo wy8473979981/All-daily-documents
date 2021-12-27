@@ -21,7 +21,7 @@ function createNum () {
   arr.sort((a, b) => a - b);
   //蓝色球 1个
   while (arr.length < 7) {
-    var result_sum = prefixInteger(parseInt(Math.floor(Math.random() * 16) + 1, 10), 2);
+    var result_sum = prefixInteger(parseInt(Math.floor(Math.random() * 16) + 1, 10), 2)
     if (!arr.includes(result_sum)) {
       arr.push(result_sum);
     }
