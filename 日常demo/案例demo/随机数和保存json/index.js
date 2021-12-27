@@ -9,7 +9,6 @@ new Promise((resolve, reject) => {
 }).then((res) => {
   getFiveNumber(res)
 })
-console.timeEnd('test')
 function createNum () {
   var arr = [];
   //红色球 6个
