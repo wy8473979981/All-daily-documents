@@ -9,21 +9,18 @@
   </body>
 
   <script>
-    var all = [];
-    var timer = setInterval(() => {
-      if (all.length > 17721088) {
-        clearInterval(timer);
-        saveHandler();
-        return;
-      }
-      all.push(createNum());
-    }, 0);
-    function createNum() {
+    var all = Array(10000000).fill(0);
+    all.forEach((_item, index, ary) => {
+      ary[index] = createNum();
+    });
+    getFiveNumber(all);
+    saveHandler();
+
+    function createNum () {
       var arr = [];
       //红色球 6个
       while (arr.length < 6) {
-        var random_num = Math.floor(Math.random() * 33) + 1; //js随机数1到33
-        var result_sum = prefixInteger(parseInt(random_num, 10), 2);
+        var result_sum = prefixInteger(parseInt(Math.floor(Math.random() * 33) + 1, 10), 2);
         if (!arr.includes(result_sum)) {
           arr.push(result_sum);
         }
@@ -31,13 +28,17 @@
       arr.sort((a, b) => a - b);
       //蓝色球 1个
       while (arr.length < 7) {
-        var random_num = Math.floor(Math.random() * 16) + 1; //js随机数1到16
-        var result_sum = prefixInteger(parseInt(random_num, 10), 2);
+        var result_sum = prefixInteger(parseInt(Math.floor(Math.random() * 16) + 1, 10), 2)
         if (!arr.includes(result_sum)) {
           arr.push(result_sum);
         }
       }
-      return arr;
+      if (all.includes(arr.join())) {
+        return createNum()
+      } else {
+        return arr.join();
+      }
+      // return arr.join();
     }
 
     // num传入的数字，n需要的字符长度
@@ -52,15 +53,9 @@
       var content = JSON.stringify(all);
       var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
       saveAs(blob, "save.json");
-      getFiveNumber();
     }
 
-    function getFiveNumber() {
-      var o_str = [];
-      all.forEach((item) => {
-        o_str.push(item.join());
-      });
-      var setAry = [...new Set(o_str)];
+    function getFiveNumber(all) {
       var result = Array(3).fill(8);
       result.forEach((item, index, ary) => {
         let i = Math.floor(Math.random() * all.length);

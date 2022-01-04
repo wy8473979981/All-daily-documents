@@ -39,7 +39,7 @@ module.exports = {
       '/': {
         /* 目标代理服务器地址 */
         // target: 'https://www.fastmock.site/',// 测试服务器
-        target:'https://jc.zhcw.com/',
+        target: 'https://jc.zhcw.com/',
         secure: true,
         // 是否跨域
         changeOrigin: true,
@@ -54,9 +54,6 @@ module.exports = {
     config.resolve.symlinks(true) //配置热刷新
     config.resolve.alias
       .set('@', resolve('./src'))
-      .set('@comps', resolve('./src/components'))
-      .set('@img', resolve('./static/img'))
-      .set('@utils', resolve('./src/utils'))
     // 当前模式为development的时候，就算filenameHashing的值为true，打包出的js文件不带hash值(css文件仍然受该值控制)，通过下行代码给打包的文件增加hash及时间戳值
     config.output.filename(`assets/js/[name].[hash].${timeStamp}.js`).chunkFilename(`assets/js/[name].[hash].${timeStamp}.js`).end()
   },
@@ -65,9 +62,8 @@ module.exports = {
       // 给 sass-loader 传递选项
       sass: {
         // @/ 是 src/ 的别名
-        // prependData: `
-        //           @import "~@//assets/style/baseColor.scss";
-        // `
+        // prependData: 
+        // @import "~@//assets/style/baseColor.scss";
       }
     }
   },
