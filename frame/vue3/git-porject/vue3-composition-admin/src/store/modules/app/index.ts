@@ -46,4 +46,3 @@ export const store: Module<AppState, RootState> = {
   // But without it, a bigger store might have clashes in namings
   // namespaced: true,
 }
-
