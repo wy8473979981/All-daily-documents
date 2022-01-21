@@ -1,10 +1,7 @@
 <template>
   <div class="app-container">
     <el-tabs v-model="activeName">
-      <el-tab-pane
-        label="use clipboard directly"
-        name="directly"
-      >
+      <el-tab-pane label="use clipboard directly" name="directly">
         <el-input
           v-model="inputData"
           placeholder="Please input"
@@ -18,10 +15,7 @@
           copy
         </el-button>
       </el-tab-pane>
-      <el-tab-pane
-        label="use clipboard by v-directive"
-        name="v-directive"
-      >
+      <el-tab-pane label="use clipboard by v-directive" name="v-directive">
         <el-input
           v-model="inputData"
           placeholder="Please input"

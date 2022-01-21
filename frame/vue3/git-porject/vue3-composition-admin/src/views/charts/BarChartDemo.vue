@@ -15,11 +15,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import BarChart from '@/components/charts/BarChart.vue'
+type FilmsType = InstanceType<typeof BarChart>
+
 export default defineComponent({
   components: {
     BarChart
+  },
+  setup() {
+    const films = ref<FilmsType | null>(null);
   }
 })
 </script>

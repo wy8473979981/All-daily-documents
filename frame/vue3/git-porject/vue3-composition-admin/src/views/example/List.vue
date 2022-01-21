@@ -117,7 +117,7 @@ export default defineComponent({
   setup() {
     const dataMap = reactive({
       total: 0,
-      list: Array<ArticleModel>(),
+      list: new Array<ArticleModel>(),
       listLoading: true,
       listQuery: {
         page: 1,

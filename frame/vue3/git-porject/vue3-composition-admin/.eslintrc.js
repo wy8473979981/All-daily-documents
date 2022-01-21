@@ -54,7 +54,8 @@ module.exports = {
       }
     ],
     'vue/attribute-hyphenation': 'off',
-    'vue/custom-event-name-casing': 'off'
+    'vue/custom-event-name-casing': 'off',
+    'semi': [0, 'never']
   },
   overrides: [
     {

@@ -21,6 +21,7 @@ import type { AppState } from './state'
 // https://segmentfault.com/a/1190000039800522
 // import type ... from — 让编译器知道您要导入的内容绝对是一种类型。
 // export type ... from — 一样， 仅用作导出。
+// TypeScript使用import type扩展了导入语法，该导入类型是只能导入类型的导入。
 
 export type { AppState } from './state'
 

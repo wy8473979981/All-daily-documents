@@ -117,5 +117,10 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "eslintConfig": {
+    "rules" : {
+      "semi": [0, "never"]
+    }
   }
 }

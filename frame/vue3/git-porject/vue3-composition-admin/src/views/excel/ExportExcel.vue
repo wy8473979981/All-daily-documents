@@ -106,7 +106,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n()
     const dataMap = reactive({
-      list: Array<ArticleModel>(),
+      list: new Array<ArticleModel>(),
       listLoading: true,
       downloadLoading: false,
       filename: '',
