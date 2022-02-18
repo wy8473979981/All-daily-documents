@@ -9,8 +9,12 @@
   <div class="dashboard-container">
     <div>{{ state }}</div>
     <div>{{ stateAsRefs }}</div>
-    <button @click="change1">change1</button>
-    <button @click="change2">change2</button>
+    <button @click="change1">
+      change1
+    </button>
+    <button @click="change2">
+      change2
+    </button>
     <component :is="currentRole" />
   </div>
 </template>
@@ -44,11 +48,11 @@ export default defineComponent({
 
     const stateAsRefs = toRefs(state)
 
-    function change1(){
+    function change1() {
       state.foo++
     }
 
-    function change2(){
+    function change2() {
       stateAsRefs.foo.value++
     }
 

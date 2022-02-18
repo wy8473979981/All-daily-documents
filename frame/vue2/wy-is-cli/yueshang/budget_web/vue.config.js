@@ -78,7 +78,8 @@ module.exports = {
     }
   },
   chainWebpack: function (config) {
-    config.resolve.alias.set('@', resolve('./src')).set('@images', resolve('./src/assets/images'))
+    config.resolve.alias.set('@', resolve('./src'))
+      .set('@images', resolve('./src/assets/images'))
       .set('@styles', resolve('./src/assets/styles'))
       .set('@views', resolve('./src/views'))
       .set('@comps', resolve('./src/components'))
