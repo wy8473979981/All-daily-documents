@@ -10,5 +10,6 @@ module.exports = {
   "tabWidth": 2, //指定了一个缩进的长度。
   "htmlWhitespaceSensitivity": "ignore",
   "semi": false, // 结尾不用分号
+	"trailingComma": 'none', // 尽可能控制尾随逗号的输出
   "disableLanguages": ["vue"] // 不格式化vue文件，vue文件的格式化单独设置
 }
