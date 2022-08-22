@@ -1,12 +1,14 @@
 module.exports = {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "singleQuote": true, // 使用单引号
-  "printWidth": 100, // 超过最大值换行
-  "htmlWhitespaceSensitivity": "ignore",
-  "semi": false, // 结尾不用分号
-  "disableLanguages": ["vue"] // 不格式化vue文件，vue文件的格式化单独设置
-};
+  printWidth: 120, // 换行字符串阈值
+  tabWidth: 2, // 设置工具每一个水平缩进的空格数
+  useTabs: false,
+  semi: false, // 句末是否加分号
+  vueIndentScriptAndStyle: true,
+  singleQuote: true, // 用单引号
+  trailingComma: 'none', // 最后一个对象元素符加逗号
+  bracketSpacing: true,
+  jsxBracketSameLine: true, // jsx > 是否另取一行
+  arrowParens: 'always', // 不需要写文件开头的 @prettier
+  insertPragma: false, // 不需要自动在文件开头加入 @prettier
+  endOfLine: 'lf' // 换行符使用 lf
+}
