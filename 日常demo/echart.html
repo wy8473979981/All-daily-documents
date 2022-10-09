@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>wtf</title>
+		<script src="jquery.min.js"></script>
+		<script src="echarts.min.js"></script>
+		<script>
+			$(function () {
+				//为0的数据就不要放进来了,
+				var orgData = {
+					北京: { 分类1: 123, 分类2: 89, 分类3: 78, 分类4: 12 },
+					上海: { 分类1: 123, 分类5: 32, 分类6: 56, 分类7: 44, 分类8: 12, 分类9: 34 },
+					天津: { 分类1: 34, 分类5: 42, 分类6: 32, 分类7: 55 },
+					吉林: { 分类1: 12, 分类5: 32, 分类6: 43, 分类7: 22, 分类8: 12, 分类9: 34 },
+					辽宁: { 分类1: 142, 分类5: 51, 分类6: 45, 分类8: 12, 分类9: 34 }
+				}
+
+				var xAxisData = []
+				var dataData = []
+
+				var orgList = []
+				var orgCount = {}
+				for (var org in orgData) {
+					xAxisData.push(org)
+
+					var odata = orgData[org]
+
+					var num = 0
+					for (var ks in odata) {
+						num++
+						if (orgList.indexOf(ks) == -1) {
+							orgList.push(ks)
+						}
+					}
+
+					orgCount[org] = num
+				}
+
+				var dataMap = {}
+				var count = 0
+				for (var org in orgData) {
+					var odata = orgData[org]
+
+					var preOrg = undefined
+					var preCount = 0
+					for (var ks in odata) {
+						if (dataMap[ks] == undefined) {
+							dataMap[ks] = []
+						}
+
+						preCount += checkEmpty(orgList, preOrg, ks)
+
+						dataMap[ks].push([count, count + 1, odata[ks], ks, preCount, orgCount[org]])
+
+						preOrg = ks
+					}
+					count++
+				}
+
+				var series = []
+				for (var d in orgList) {
+					var ks = orgList[d]
+
+					var ds = dataMap[ks]
+
+					series.push({
+						data: ds,
+						type: 'custom',
+						renderItem: renderItem,
+						encode: {
+							x: [0, 1],
+							y: 2,
+							tooltip: [3, 2],
+							itemName: 3
+						}
+					})
+				}
+
+				var option = {
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							type: 'shadow'
+						}
+					},
+					xAxis: {
+						type: 'category',
+						data: xAxisData
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: series
+				}
+
+				var dom = $('#c')[0]
+
+				var ec = echarts.init(dom)
+
+				ec.setOption(option)
+
+				function checkEmpty(orgList, preOrg, curOrg) {
+					if (preOrg == undefined) {
+						return orgList.indexOf(curOrg)
+					} else {
+						return orgList.indexOf(curOrg) - orgList.indexOf(preOrg) - 1
+					}
+				}
+
+				function renderItem(params, api) {
+					var yValue = api.value(2)
+					var start = api.coord([api.value(0), yValue])
+					var size = api.size([api.value(1) - api.value(0), yValue])
+					var style = api.style()
+
+					var barWidth = 10
+					var emptyCount = api.value(4)
+					var d = 0
+					if (emptyCount > 0) {
+						d = -barWidth * emptyCount
+					}
+
+					var barNum = api.value(5)
+					var p = [(-barNum * barWidth) / 2, 0]
+
+					return {
+						type: 'rect',
+						position: p,
+						shape: {
+							x: start[0] + params.seriesIndex * barWidth + d,
+							y: start[1],
+							width: barWidth,
+							height: size[1]
+						},
+						style: style
+					}
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div id="c" style="width: 800px; height: 500px"></div>
+	</body>
+</html>
