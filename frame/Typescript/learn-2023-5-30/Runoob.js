@@ -1,2 +1,5 @@
-var ss = 1;
-console.log(ss);
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    return Person;
+}());

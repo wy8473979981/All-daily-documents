@@ -10,7 +10,7 @@
     <div class="signed-page-content-container">
       <div class="point-position-page">
         <div class="doc-mini-documents fl">
-          <div class="title">
+          <div class="title">导出
             <span class="main-title">用章文件</span>
             <span class="sub-title">共5份</span>
           </div>
@@ -220,18 +220,18 @@ export default {
   created () {
     // localStorage.setItem('params', JSON.stringify(this.params))
 
-    let params = JSON.parse(localStorage.getItem('params'));
+    let params = JSON.parse(localStorage.getItem('params'))
 
     params.map((item, index) => {
-      let { documents, roles } = item;
-      let documentsAry = [];
-      let rolesAry = [];
+      let { documents, roles } = item
+      let documentsAry = []
+      let rolesAry = []
 
       documents.map((docItem, docIndex) => {
-        let documentsDetailItem = [];
+        let documentsDetailItem = []
         docItem.imgList.map((imgItem, imgIndex) => {
-          let obj = { index: imgIndex, contractDetailItemImgUrl: imgItem, appendingSignLabels: [] };
-          documentsDetailItem.push(obj);
+          let obj = { index: imgIndex, contractDetailItemImgUrl: imgItem, appendingSignLabels: [] }
+          documentsDetailItem.push(obj)
         })
         let contractItem = {
           pkid: docItem.pkid, name: docItem.title, contractDetailAry: documentsDetailItem, currentPage: docItem.curPage, totalPage: docItem.totalPage, suffix: documents.suffix, riginalFilename: docItem.riginalFilename, signingStatus: docItem.signingStatus, curAbbImgBase64code: docItem.curAbbImgBase64code, roles: roles
@@ -240,19 +240,19 @@ export default {
       })
       roles.map((roleItem, roleIndex) => {
         // ridingSealY  骑缝章坐标,数据跟着签约方
-        let obj = { index: index, roleName: roleItem.roleName, sealName: roleItem.sealName, signOrderly: roleItem.signOrderly, userInfo: roleItem.userInfo, enterpriseName: roleItem.enterpriseName, userAccount: roleItem.userAccount, userType: roleItem.userType, ridingSealY: '' };
-        rolesAry.push(obj);
+        let obj = { index: index, roleName: roleItem.roleName, sealName: roleItem.sealName, signOrderly: roleItem.signOrderly, userInfo: roleItem.userInfo, enterpriseName: roleItem.enterpriseName, userAccount: roleItem.userAccount, userType: roleItem.userType, ridingSealY: '' }
+        rolesAry.push(obj)
       })
       this.contracstList.push({ documents: documentsAry, roles: rolesAry })
     })
 
-    console.log('this.contracstList>>>', this.contracstList);
+    console.log('this.contracstList>>>', this.contracstList)
 
-    this.currentContractName = this.contracstList[0].name;
-    this.qianyuefangAry = this.contracstList[0].roles;
-    this.contractDetailAry = this.contracstList[0].contractDetailAry;
-    this.currentUserType = this.qianyuefangAry[0].userType;
-    this.currentContractTotalPage = this.contracstList[0].totalPage;
+    this.currentContractName = this.contracstList[0].name
+    this.qianyuefangAry = this.contracstList[0].roles
+    this.contractDetailAry = this.contracstList[0].contractDetailAry
+    this.currentUserType = this.qianyuefangAry[0].userType
+    this.currentContractTotalPage = this.contracstList[0].totalPage
 
     localStorage.setItem('contracstList', JSON.stringify(this.contracstList))
 
@@ -269,57 +269,57 @@ export default {
 
   methods: {
     computedStyle () {
-      this.pointPositionDocWrapperWidth = document.querySelector('.point-position-doc-con').offsetWidth - 100;
+      this.pointPositionDocWrapperWidth = document.querySelector('.point-position-doc-con').offsetWidth - 100
       if (this.qfzChecked) {
-        this.scaleSize = this.pointPositionDocWrapperWidth / 913;
+        this.scaleSize = this.pointPositionDocWrapperWidth / 913
       } else {
-        this.scaleSize = this.pointPositionDocWrapperWidth / 793;
+        this.scaleSize = this.pointPositionDocWrapperWidth / 793
       }
-      this.dottedLineHeight = document.querySelector('.point-position-site-ul .step:nth-child(1)').offsetHeight + document.querySelector('.point-position-site-ul .step:nth-child(2)').offsetHeight - 10;
+      this.dottedLineHeight = document.querySelector('.point-position-site-ul .step:nth-child(1)').offsetHeight + document.querySelector('.point-position-site-ul .step:nth-child(2)').offsetHeight - 10
     },
     qianyuefangClick (item, index) {
-      this.qianyuefangIndex = index;
-      this.currentUserType = item.userType;
-      console.log('已选签约方下标>>>', this.qianyuefangIndex);
+      this.qianyuefangIndex = index
+      this.currentUserType = item.userType
+      console.log('已选签约方下标>>>', this.qianyuefangIndex)
     },
     contractClick (item, index) {
-      this.currentContractName = item.name;
-      this.currentContractIndex = index;
-      this.qianyuefangAry = item.roles;
+      this.currentContractName = item.name
+      this.currentContractIndex = index
+      this.qianyuefangAry = item.roles
       this.contractDetailAry = this.contracstList[index].contractDetailAry
-      this.currentContractTotalPage = this.contracstList[index].totalPage;
+      this.currentContractTotalPage = this.contracstList[index].totalPage
 
-      console.log('当前操作合同列表下标>>>', this.currentContractIndex);
-      console.log('当前操作合同列表下的合同详情>>>', this.contractDetailAry);
+      console.log('当前操作合同列表下标>>>', this.currentContractIndex)
+      console.log('当前操作合同列表下的合同详情>>>', this.contractDetailAry)
     },
     contractDetailClick (contractDetailIndex) {
-      this.currentContractDetailPage = contractDetailIndex;
-      console.log('当前操作合同详情的页码>>>', this.currentContractDetailPage);
+      this.currentContractDetailPage = contractDetailIndex
+      console.log('当前操作合同详情的页码>>>', this.currentContractDetailPage)
     },
     onActivated (item, dragIndex, contractDetailIndex) {
-      this.currentDragModuleIndex = dragIndex;
-      this.currentContractDetailPage = contractDetailIndex;
-      console.log('当前操作拖拽项的下标>>>', this.currentDragModuleIndex);
-      console.log('当前操作合同详情的页码>>>', this.currentContractDetailPage);
+      this.currentDragModuleIndex = dragIndex
+      this.currentContractDetailPage = contractDetailIndex
+      console.log('当前操作拖拽项的下标>>>', this.currentDragModuleIndex)
+      console.log('当前操作合同详情的页码>>>', this.currentContractDetailPage)
     },
     deleteGzcFunc (index) {
-      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].splice(index, 1);
+      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].splice(index, 1)
 
-      this.contracstList[this.currentContractIndex].contractDetailAry = this.contractDetailAry;
+      this.contracstList[this.currentContractIndex].contractDetailAry = this.contractDetailAry
 
-      localStorage.setItem('contracstList', JSON.stringify(this.contracstList));
+      localStorage.setItem('contracstList', JSON.stringify(this.contracstList))
     },
     onDragstop (newRect) {
 
-      console.log(newRect, 'newRect');
+      console.log(newRect, 'newRect')
 
-      let currentItem = this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'][this.currentDragModuleIndex];// 当前拖拽的DOM节点
+      let currentItem = this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'][this.currentDragModuleIndex]// 当前拖拽的DOM节点
 
-      let newDragItem = { ...currentItem, qyf: this.qianyuefangIndex, x: newRect.left, y: newRect.top };// 当前节点的新坐标
+      let newDragItem = { ...currentItem, qyf: this.qianyuefangIndex, x: newRect.left, y: newRect.top }// 当前节点的新坐标
 
-      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].splice(this.currentDragModuleIndex, 1, newDragItem);// 替换当前节点
+      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].splice(this.currentDragModuleIndex, 1, newDragItem)// 替换当前节点
 
-      this.contracstList[this.currentContractIndex].contractDetailAry = this.contractDetailAry;
+      this.contracstList[this.currentContractIndex].contractDetailAry = this.contractDetailAry
 
       // localStorage.setItem('contracstList', JSON.stringify(this.contracstList));
 
@@ -328,16 +328,16 @@ export default {
     },
     createDragFunc (DragType) {
       // 点击盖章
-      let x, y;
+      let x, y
       if (DragType == 'gz') {
-        x = 140;
-        y = 152;
+        x = 140
+        y = 152
       } else if (DragType == 'rq') {
-        x = 80;
-        y = 20;
+        x = 80
+        y = 20
       } else if (DragType == 'qm') {
-        x = 92;
-        y = 72;
+        x = 92
+        y = 72
       }
       let obj = {
         id: Math.random().toString().substr(2),
@@ -351,10 +351,10 @@ export default {
         parentW: 793,
         parentH: 1121
       }
-      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].push(obj);
+      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].push(obj)
     },
     qfzFunc () {
-      this.qfzChecked = !this.qfzChecked;
+      this.qfzChecked = !this.qfzChecked
       // 点击骑缝章
       let obj = {
         id: Math.random().toString().substr(2),
@@ -368,8 +368,8 @@ export default {
         parentW: 116,
         parentH: 1121
       }
-      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].push(obj);
-      this.computedStyle();
+      this.contractDetailAry[this.currentContractDetailPage]['appendingSignLabels'].push(obj)
+      this.computedStyle()
     },
     saveFunc () {
       // {
@@ -523,7 +523,7 @@ export default {
               margin: 8px auto;
               width: 79px;
               height: 112px;
-              background-image: url("./img/thumbnail.png");
+              background-image: url('./img/thumbnail.png');
               background-position: 0 0;
               background-repeat: no-repeat;
               background-size: 79px 112px;
@@ -531,7 +531,7 @@ export default {
               .doc-thumbnail {
                 width: 71px;
                 height: 102px;
-                background-image: url("./img/20210806154455.png");
+                background-image: url('./img/20210806154455.png');
                 background-repeat: no-repeat;
                 background-size: 71px 102px;
                 background-position: 4px 4px;
@@ -715,13 +715,13 @@ export default {
               background-position: center;
             }
             .step-icon-left-1 {
-              background-image: url("./img/step-1.png");
+              background-image: url('./img/step-1.png');
             }
             .step-icon-left-2 {
-              background-image: url("./img/step-2.png");
+              background-image: url('./img/step-2.png');
             }
             .step-icon-left-3 {
-              background-image: url("./img/step-3.png");
+              background-image: url('./img/step-3.png');
             }
             .step-box-right {
               flex: 1;
@@ -760,25 +760,25 @@ export default {
                     background-position: center;
                   }
                   .no-check {
-                    background-image: url("./img/no-check.png");
+                    background-image: url('./img/no-check.png');
                   }
                   .checked {
-                    background-image: url("./img/checked.png");
+                    background-image: url('./img/checked.png');
                   }
                   .operation-qm {
-                    background-image: url("./img/operation-qm.png");
+                    background-image: url('./img/operation-qm.png');
                   }
                   .operation-gz {
-                    background-image: url("./img/operation-gz.png");
+                    background-image: url('./img/operation-gz.png');
                   }
                   .operation-rq {
-                    background-image: url("./img/operation-rq.png");
+                    background-image: url('./img/operation-rq.png');
                   }
                   .operation-qfz-check {
-                    background-image: url("./img/no-gouxuan.png");
+                    background-image: url('./img/no-gouxuan.png');
                   }
                   .operation-qfz-checked {
-                    background-image: url("./img/gouxuan.png");
+                    background-image: url('./img/gouxuan.png');
                   }
                   .qy-name {
                     display: inline-block;
@@ -799,7 +799,7 @@ export default {
   }
 }
 .vdr.active:before {
-  content: "";
+  content: '';
   width: 0;
   height: 0;
   top: 0;
@@ -866,7 +866,7 @@ export default {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    background-image: url("./img/delete.png");
+    background-image: url('./img/delete.png');
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 18px;
@@ -896,7 +896,7 @@ export default {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    background-image: url("./img/delete.png");
+    background-image: url('./img/delete.png');
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 18px;
@@ -939,7 +939,7 @@ export default {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    background-image: url("./img/delete.png");
+    background-image: url('./img/delete.png');
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 18px;
